@@ -4,14 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>推薦卡片設計稿</title>
-<!-- Local design study (not deployed): frosted-glass testimonial cards for the About page, 4 variants,
-     each shown at desktop width and phone width. Open via the "devices" server: http://localhost:8766/preview/testimonials-ui.html -->
+<!-- Local design study (not deployed): About recommendations as frosted-glass cards.
+     Round 2 (Joel picked layout A = featured card + 2-column grid): four UI style variations A1-A4, corners 4-6px,
+     each shown at desktop width and phone width. Round 1 (layouts A/B/C/D) is in git history.
+     Open via the "devices" server: http://localhost:8766/preview/testimonials-ui.html -->
 <style>
   @font-face { font-family: PoppinsL;  src: url("../site/assets/fonts/459113_ebfb1394532347b3b7691d160bb35bd1_woff2.woff2") format("woff2"); }
   @font-face { font-family: PoppinsR;  src: url("../site/assets/fonts/3f090f_d2b74fa2704044fa98373433c883f8ed_woff2.woff2") format("woff2"); }
   @font-face { font-family: PoppinsM;  src: url("../site/assets/fonts/3f090f_fbe2048d9f994d8c8d5073ed8164a33e_woff2.woff2") format("woff2"); }
   @font-face { font-family: PoppinsSB; src: url("../site/assets/fonts/459113_5846594cb6ea4f43b8e132f9d1a29629_woff2.woff2") format("woff2"); }
-  :root { color-scheme: dark; --blue: #4a90ff; --violet: #7b4dff; --ink: #000; --txt: rgba(255,255,255,.82); --mut: rgba(255,255,255,.5); }
+  :root { color-scheme: dark; --blue: #4a90ff; --violet: #7b4dff; --txt: rgba(255,255,255,.82); --mut: rgba(255,255,255,.5); }
   * { box-sizing: border-box; }
   html, body { margin: 0; background: #0b0b0d; color: #ddd; font: 14px/1.5 PoppinsL, system-ui, "Microsoft JhengHei", sans-serif; }
   .doc { max-width: 1240px; margin: 0 auto; padding: 28px 16px 80px; }
@@ -20,11 +22,11 @@
   .variant { margin: 0 0 56px; }
   .variant > h2 { font: 17px PoppinsM; color: #fff; margin: 0 0 4px; }
   .variant > h2 b { color: var(--blue); font-family: PoppinsSB; margin-right: 8px; }
-  .variant > p { color: #9a9a9a; font-size: 12.5px; margin: 0 0 14px; }
+  .variant > p { color: #9a9a9a; font-size: 12.5px; margin: 0 0 14px; max-width: 900px; }
   .stages { display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; }
   .label { font-size: 11px; color: #777; margin: 0 0 6px; letter-spacing: .05em; }
-  /* stage = a slice of the About page: black with the site's blue glow + a photo so the glass has something to blur */
-  .stage { container-type: inline-size; position: relative; overflow: hidden; border-radius: 6px; background: #000; padding: 56px 40px; isolation: isolate; }
+  /* stage = a slice of the About page: black, the site's blue/violet glow and a photo so the glass has something to blur */
+  .stage { container-type: inline-size; position: relative; overflow: hidden; border-radius: 4px; background: #000; padding: 56px 40px; isolation: isolate; }
   .stage.desk { flex: 1 1 760px; min-width: 0; }
   .stage.phone { width: 360px; flex: none; padding: 40px 18px; }
   .stage::before { content: ""; position: absolute; inset: 0; z-index: -2;
@@ -34,103 +36,89 @@
   .stage h3 { font: 26px PoppinsSB; color: #fff; text-align: center; margin: 0 0 30px; }
   @container (max-width: 520px) { .stage h3 { font-size: 20px; margin-bottom: 22px; } }
 
-  /* shared card bits */
-  .q { font: 44px/0.6 Georgia, serif; color: var(--blue); display: block; height: 22px; }
-  .who { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
-  .ava { width: 38px; height: 38px; border-radius: 50%; flex: none; display: grid; place-items: center; font: 13px PoppinsM; color: #fff;
-    background: linear-gradient(135deg, rgba(74,144,255,.55), rgba(123,77,255,.45)); border: 1px solid rgba(255,255,255,.25); }
-  .nm { font: 15px PoppinsSB; color: #fff; line-height: 1.2; }
-  .rl { font-size: 11.5px; color: var(--mut); line-height: 1.4; margin-top: 2px; }
-  .rl i { font-style: italic; color: rgba(255,255,255,.38); }
-  .li { width: 28px; height: 28px; border-radius: 6px; flex: none; margin-left: auto; display: grid; place-items: center;
-    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); transition: background .25s, border-color .25s, transform .15s; }
-  .li svg { width: 14px; height: 14px; fill: #fff; }
-  a.card { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
-  a.card:hover .li, a.card:focus-visible .li { background: var(--blue); border-color: var(--blue); }
-  a.card:active .li { transform: scale(.9); }
-  .glass { background: rgba(255,255,255,.06); -webkit-backdrop-filter: blur(22px) saturate(150%); backdrop-filter: blur(22px) saturate(150%);
-    border: 1px solid rgba(255,255,255,.12); border-radius: 14px; box-shadow: 0 12px 40px rgba(0,0,0,.35);
-    transition: transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s, background .35s, box-shadow .35s; }
-  a.glass:hover, a.glass:focus-visible { transform: translateY(-4px); border-color: rgba(255,255,255,.26); background: rgba(255,255,255,.09); box-shadow: 0 18px 50px rgba(0,0,0,.45), 0 0 0 1px rgba(74,144,255,.15); outline: none; }
-  a.glass:active { transform: translateY(-1px) scale(.99); }
+  /* ---- layout A (shared by all variations): featured card full width + 2-column grid; phone = 1 column ---- */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .card { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; display: flex; flex-direction: column; position: relative; padding: 26px 26px 22px; }
+  .card.feat { grid-column: 1 / -1; padding: 34px 36px 28px; }
   .txt { color: var(--txt); font-size: 14px; line-height: 1.65; margin: 10px 0 0; }
-
-  /* A: featured + grid */
-  .A { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  .A .card { padding: 26px 26px 22px; display: flex; flex-direction: column; }
-  .A .card .who { margin-top: auto; padding-top: 18px; }
-  .A .feat { grid-column: 1 / -1; padding: 34px 36px 28px; }
-  .A .feat .txt { font-size: 17px; line-height: 1.6; color: rgba(255,255,255,.9); max-width: 820px; }
-  @container (max-width: 520px) { .A { grid-template-columns: 1fr; gap: 12px; } .A .card, .A .feat { padding: 20px 18px 18px; } .A .feat .txt { font-size: 14.5px; } .A .txt { font-size: 13px; } }
-
-  /* B: horizontal swipe row */
-  .B { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px 2px 14px; scrollbar-width: none; }
-  .B::-webkit-scrollbar { display: none; }
-  .B .card { flex: 0 0 340px; scroll-snap-align: start; padding: 22px 22px 20px; display: flex; flex-direction: column; }
-  .B .who { margin: 0 0 14px; order: -1; }
-  .B .txt { margin: 0; font-size: 13.5px; }
-  .B .go { margin-top: auto; padding-top: 16px; font: 12px PoppinsM; color: var(--blue); letter-spacing: .04em; }
-  .B .q { display: none; }
-  .Bnav { display: flex; justify-content: flex-end; gap: 8px; margin-top: 6px; }
-  .Bnav button { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.06); color: #fff; font-size: 16px; cursor: pointer; backdrop-filter: blur(10px); }
-  .Bnav button:active { transform: scale(.92); }
-  @container (max-width: 520px) { .B .card { flex-basis: 82%; } .Bnav { display: none; } }
-  .dots { display: none; justify-content: center; gap: 6px; margin-top: 6px; }
-  .dots span { width: 6px; height: 6px; border-radius: 3px; background: rgba(255,255,255,.3); transition: width .3s, background .3s; }
-  .dots span.on { width: 18px; background: var(--blue); }
-  @container (max-width: 520px) { .dots { display: flex; } }
-
-  /* C: staggered columns with gradient edge */
-  .C { columns: 3 240px; column-gap: 18px; }
-  .C .card { display: block; break-inside: avoid; margin: 0 0 18px; padding: 24px 22px 20px; position: relative; border: 1px solid transparent;
-    background: linear-gradient(rgba(20,22,30,.55), rgba(20,22,30,.55)) padding-box, linear-gradient(135deg, rgba(74,144,255,.6), rgba(255,255,255,.08) 40%, rgba(123,77,255,.55)) border-box; }
-  .C .card::before { content: "\201C"; position: absolute; right: 14px; top: -6px; font: 110px/1 Georgia, serif; color: rgba(255,255,255,.06); pointer-events: none; }
-  .C .q { display: none; }
-  .C .txt { margin: 0; font-size: 13.5px; }
-  .C .card:first-child .txt { font-size: 16px; color: rgba(255,255,255,.9); }
-  @container (max-width: 520px) { .C { columns: 1; } .C .card { margin-bottom: 12px; } .C .card:first-child .txt { font-size: 14px; } }
-
-  /* D: spotlight with name list */
-  .D { display: grid; grid-template-columns: 230px 1fr; gap: 22px; align-items: stretch; }
-  .D .names { display: flex; flex-direction: column; gap: 6px; }
-  .D .names button { text-align: left; padding: 12px 14px; border-radius: 10px; border: 1px solid transparent; background: transparent; color: rgba(255,255,255,.55); cursor: pointer;
-    font: 14px PoppinsM; transition: background .3s, color .3s, border-color .3s; -webkit-tap-highlight-color: transparent; }
-  .D .names button small { display: block; font: 11px PoppinsL; color: rgba(255,255,255,.38); margin-top: 2px; }
-  .D .names button.on { color: #fff; background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.14); backdrop-filter: blur(14px); }
-  .D .names button:active { transform: scale(.98); }
-  .D .spot { padding: 38px 40px 30px; display: flex; flex-direction: column; min-height: 300px; position: relative; }
-  .D .spot .txt { font-size: 18px; line-height: 1.6; color: rgba(255,255,255,.92); transition: opacity .35s; }
-  .D .spot .who { margin-top: auto; padding-top: 22px; transition: opacity .35s; }
-  .D .bar { position: absolute; left: 40px; right: 40px; bottom: 14px; height: 2px; background: rgba(255,255,255,.1); border-radius: 1px; overflow: hidden; }
-  .D .bar i { display: block; height: 100%; width: 0; background: var(--blue); }
-  .D.fade .spot .txt, .D.fade .spot .who { opacity: 0; }
+  .feat .txt { font-size: 17px; line-height: 1.6; color: rgba(255,255,255,.9); max-width: 820px; }
+  .nm { font: 15px PoppinsSB; color: #fff; line-height: 1.2; }
+  .rl { font-size: 11.5px; color: var(--mut); line-height: 1.45; margin-top: 3px; }
+  .rl i { font-style: italic; color: rgba(255,255,255,.38); }
+  .liIcon { width: 14px; height: 14px; fill: currentColor; display: block; }
   @container (max-width: 520px) {
-    .D { grid-template-columns: 1fr; gap: 12px; }
-    .D .names { flex-direction: row; overflow-x: auto; scrollbar-width: none; gap: 6px; }
-    .D .names button { flex: none; padding: 8px 12px; font-size: 12.5px; border-color: rgba(255,255,255,.12); border-radius: 999px; }
-    .D .names button small { display: none; }
-    .D .spot { padding: 24px 20px 26px; min-height: 0; } .D .spot .txt { font-size: 14.5px; } .D .bar { left: 20px; right: 20px; }
+    .grid { grid-template-columns: 1fr; gap: 12px; }
+    .card, .card.feat { padding: 20px 18px 18px; }
+    .feat .txt { font-size: 14.5px; } .txt { font-size: 13px; }
   }
+  .glassbase { -webkit-backdrop-filter: blur(22px) saturate(150%); backdrop-filter: blur(22px) saturate(150%);
+    transition: transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s, background-color .35s, box-shadow .35s; }
+  .card:active { transform: translateY(-1px) scale(.99) !important; }
+
+  /* ---- A1: standard glass, 6px ---- */
+  .A1 .card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 6px; box-shadow: 0 12px 40px rgba(0,0,0,.35); }
+  .A1 .card:hover, .A1 .card:focus-visible { transform: translateY(-4px); border-color: rgba(255,255,255,.26); background: rgba(255,255,255,.09); outline: none; }
+  .A1 .q { font: 44px/0.6 Georgia, serif; color: var(--blue); height: 22px; }
+  .A1 .who { display: flex; align-items: center; gap: 12px; margin-top: auto; padding-top: 18px; }
+  .A1 .ava { width: 38px; height: 38px; border-radius: 50%; flex: none; display: grid; place-items: center; font: 13px PoppinsM; color: #fff;
+    background: linear-gradient(135deg, rgba(74,144,255,.55), rgba(123,77,255,.45)); border: 1px solid rgba(255,255,255,.25); }
+  .A1 .li { width: 28px; height: 28px; border-radius: 4px; flex: none; margin-left: auto; display: grid; place-items: center; color: #fff;
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); transition: background .25s, border-color .25s; }
+  .A1 .card:hover .li { background: var(--blue); border-color: var(--blue); }
+
+  /* ---- A2: minimal hairline, 4px: blue top rule, no avatar, text link ---- */
+  .A2 .card { background: rgba(255,255,255,.035); border: 1px solid rgba(255,255,255,.08); border-radius: 4px; }
+  .A2 .card::before { content: ""; position: absolute; left: 0; top: -1px; height: 2px; width: 44px; background: var(--blue); border-radius: 0 0 2px 0; transition: width .45s cubic-bezier(.2,.7,.2,1); }
+  .A2 .card:hover, .A2 .card:focus-visible { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.16); outline: none; }
+  .A2 .card:hover::before { width: 100%; }
+  .A2 .q { display: none; }
+  .A2 .txt { margin: 4px 0 0; }
+  .A2 .who { margin-top: auto; padding-top: 20px; }
+  .A2 .go { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font: 12px PoppinsM; letter-spacing: .04em; color: rgba(255,255,255,.55); transition: color .25s; }
+  .A2 .card:hover .go { color: var(--blue); }
+  .A2 .ava, .A2 .li { display: none; }
+
+  /* ---- A3: quote as the visual, 6px: big faint quote mark, divider above the name, LinkedIn top-right ---- */
+  .A3 .card { background: rgba(14,16,22,.38); border: 1px solid rgba(255,255,255,.1); border-radius: 6px; overflow: hidden; }
+  .A3 .card:hover, .A3 .card:focus-visible { transform: translateY(-3px); border-color: rgba(74,144,255,.45); outline: none; box-shadow: 0 14px 40px rgba(0,0,0,.4); }
+  .A3 .q { position: absolute; left: 18px; top: 6px; font: 120px/1 Georgia, serif; color: rgba(74,144,255,.16); pointer-events: none; }
+  .A3 .feat .q { font-size: 170px; left: 22px; top: 0; }
+  .A3 .txt { position: relative; margin-top: 30px; }
+  .A3 .who { margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.1); margin-top: 22px; }
+  .A3 .li { position: absolute; right: 16px; top: 16px; width: 26px; height: 26px; border-radius: 4px; display: grid; place-items: center; color: rgba(255,255,255,.7); border: 1px solid rgba(255,255,255,.16); transition: color .25s, background .25s, border-color .25s; }
+  .A3 .card:hover .li { color: #fff; background: #0a66c2; border-color: #0a66c2; }
+  .A3 .ava { display: none; }
+
+  /* ---- A4: gradient edge, 6px; featured card split name | quote ---- */
+  .A4 .card { border: 1px solid transparent; border-radius: 6px;
+    background: linear-gradient(rgba(16,18,26,.62), rgba(16,18,26,.62)) padding-box, linear-gradient(135deg, rgba(74,144,255,.55), rgba(255,255,255,.07) 45%, rgba(123,77,255,.5)) border-box; }
+  .A4 .card:hover, .A4 .card:focus-visible { transform: translateY(-3px); outline: none; box-shadow: 0 0 0 1px rgba(74,144,255,.25), 0 16px 44px rgba(0,0,0,.45); }
+  .A4 .q { font: 40px/0.6 Georgia, serif; color: var(--violet); height: 20px; }
+  .A4 .who { display: flex; align-items: center; gap: 10px; margin-top: auto; padding-top: 18px; }
+  .A4 .ava { width: 34px; height: 34px; border-radius: 4px; flex: none; display: grid; place-items: center; font: 12px PoppinsM; color: #fff; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); }
+  .A4 .li { margin-left: auto; color: rgba(255,255,255,.55); transition: color .25s; }
+  .A4 .card:hover .li { color: var(--blue); }
+  .A4 .feat { display: grid; grid-template-columns: 230px 1fr; column-gap: 36px; align-items: start; }
+  .A4 .feat .q { grid-column: 2; }
+  .A4 .feat .txt { grid-column: 2; grid-row: 2; margin-top: 6px; }
+  .A4 .feat .who { grid-column: 1; grid-row: 1 / span 2; flex-direction: column; align-items: flex-start; padding-top: 4px; gap: 12px; }
+  .A4 .feat .who .li { margin-left: 0; }
+  @container (max-width: 520px) { .A4 .feat { display: flex; } .A4 .feat .who { flex-direction: row; align-items: center; padding-top: 18px; } .A4 .feat .who .li { margin-left: auto; } }
 </style>
 </head>
 <body>
 <div class="doc">
-  <h1>About · 推薦卡片：毛玻璃設計稿</h1>
-  <p>每一版都同時放了桌機寬度（左）和手機寬度（右）。整張卡片都能點，會在新分頁開啟該人的 LinkedIn（目前是預留連結 #）。滑鼠移上去：卡片浮起、邊框變亮、LinkedIn 小方塊變藍；手機按下去有按壓感。</p>
-
-  <section class="variant"><h2><b>A</b>精選大卡 + 雙欄網格</h2><p>第一則（Marcus Kung）放大成精選，其餘兩欄排列；手機改成一欄。資訊層次最清楚，最接近現在的版面。</p>
-    <div class="stages"><div class="stage desk" data-v="A"></div><div><div class="label">手機</div><div class="stage phone" data-v="A"></div></div></div></section>
-
-  <section class="variant"><h2><b>B</b>橫向滑動列</h2><p>卡片排成一列，左右滑動（桌機有箭頭，手機用手指滑 + 下方圓點）。名字放在上方，底部「View on LinkedIn ↗」。佔用高度最少。</p>
-    <div class="stages"><div class="stage desk" data-v="B"></div><div><div class="label">手機</div><div class="stage phone" data-v="B"></div></div></div></section>
-
-  <section class="variant"><h2><b>C</b>錯落瀑布流 + 漸層邊框</h2><p>三欄高低錯落，卡片邊框是網站的藍→紫漸層光，右上角淡淡的大引號。最有設計感、和首頁 Design Approach 的光暈一致。</p>
-    <div class="stages"><div class="stage desk" data-v="C"></div><div><div class="label">手機</div><div class="stage phone" data-v="C"></div></div></div></section>
-
-  <section class="variant"><h2><b>D</b>聚光切換</h2><p>一張大卡片 + 左側名單，點名字切換（每 6 秒自動輪播，滑鼠移上去暫停，下方藍色進度條）。手機名單變成上方的橫向小膠囊。最聚焦、一次只讀一則。</p>
-    <div class="stages"><div class="stage desk" data-v="D"></div><div><div class="label">手機</div><div class="stage phone" data-v="D"></div></div></div></section>
+  <h1>About · 推薦卡片：版面 A 的四種 UI 風格</h1>
+  <p>版面都是 A（精選大卡 + 雙欄網格，手機一欄），只換卡片的視覺語言；圓角 4–6px。每版左邊桌機寬度、右邊手機寬度。整張卡片可點，開啟該人的 LinkedIn（目前預留 #）。滑鼠移上去看 hover 效果。</p>
+  <section class="variant"><h2><b>A1</b>標準玻璃 · 6px</h2><p>半透明白玻璃 + 細白邊；姓名縮寫圓形頭像（藍紫漸層）；右下 LinkedIn 小方塊，hover 時變藍、卡片浮起。最完整、資訊最多。</p>
+    <div class="stages"><div class="stage desk" data-v="A1"></div><div><div class="label">手機</div><div class="stage phone" data-v="A1"></div></div></div></section>
+  <section class="variant"><h2><b>A2</b>極簡細線 · 4px</h2><p>更淡的玻璃，左上一小段藍色細線（hover 時延伸到整條）；沒有頭像與引號，底部文字連結「LinkedIn ↗」。最安靜、最像編輯排版。</p>
+    <div class="stages"><div class="stage desk" data-v="A2"></div><div><div class="label">手機</div><div class="stage phone" data-v="A2"></div></div></div></section>
+  <section class="variant"><h2><b>A3</b>引號主視覺 · 6px</h2><p>深色玻璃，左上角一個很大的淡藍引號當背景圖形；姓名上方一條分隔線；LinkedIn 圖示在右上角，hover 變成 LinkedIn 藍、邊框亮藍。</p>
+    <div class="stages"><div class="stage desk" data-v="A3"></div><div><div class="label">手機</div><div class="stage phone" data-v="A3"></div></div></div></section>
+  <section class="variant"><h2><b>A4</b>漸層邊框 · 6px</h2><p>深玻璃 + 藍→紫漸層細邊（呼應首頁光暈）；精選卡左右分欄：左邊姓名職稱、右邊推薦語；方形縮寫頭像。最有品牌感。</p>
+    <div class="stages"><div class="stage desk" data-v="A4"></div><div><div class="label">手機</div><div class="stage phone" data-v="A4"></div></div></div></section>
 </div>
-
 <script>
 var T = [
   { n: 'Marcus Kung', r: 'Design Director, Tron Future', x: 'Former ID/PM, OPPO · Royal College of Art', li: '#',
@@ -144,34 +132,16 @@ var T = [
   { n: 'Ike Tsao', r: 'AVP, 5G Product Line, Gemtek', x: 'Former AVP 5G, Pegatron · Former Sr. Director, Askey', li: '#',
     t: "Joel's ability to balance aesthetic appeal with practical functionality is truly exceptional. He always ensured the proposed solutions aligned not only with the visual identity of the product but also with technical requirements and production constraints." }
 ];
-var LI = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.6 8.65 22 11.2 22 14.5V21h-4v-5.8c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.52-2.25 3.1V21h-4z"/></svg>';
+var LI = '<svg class="liIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.6 8.65 22 11.2 22 14.5V21h-4v-5.8c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.52-2.25 3.1V21h-4z"/></svg>';
 function ini(n) { return n.split(' ').map(function (w) { return w[0]; }).join('').slice(0, 2); }
-function who(p) { return '<div class="who"><div class="ava">' + ini(p.n) + '</div><div><div class="nm">' + p.n + '</div><div class="rl">' + p.r + ' · <i>' + p.x + '</i></div></div><span class="li" title="LinkedIn">' + LI + '</span></div>'; }
-function card(p, cls) { return '<a class="card glass ' + (cls || '') + '" href="' + p.li + '" target="_blank" rel="noopener" aria-label="' + p.n + ' on LinkedIn"><span class="q">“</span><p class="txt">' + p.t + '</p>' + who(p) + '</a>'; }
-var H = '<h3>Recommendations</h3>';
-var build = {
-  A: function () { return H + '<div class="A">' + T.map(function (p, i) { return card(p, i ? '' : 'feat'); }).join('') + '</div>'; },
-  B: function () { return H + '<div class="B">' + T.map(function (p) { return card(p).replace('</a>', '<div class="go">View on LinkedIn ↗</div></a>'); }).join('') + '</div><div class="Bnav"><button aria-label="Previous">←</button><button aria-label="Next">→</button></div><div class="dots">' + T.map(function (_, i) { return '<span' + (i ? '' : ' class="on"') + '></span>'; }).join('') + '</div>'; },
-  C: function () { return H + '<div class="C">' + T.map(function (p) { return card(p).replace('glass', 'glass'); }).join('') + '</div>'; },
-  D: function () { return H + '<div class="D"><div class="names">' + T.map(function (p, i) { return '<button' + (i ? '' : ' class="on"') + ' data-i="' + i + '">' + p.n + '<small>' + p.r + '</small></button>'; }).join('') + '</div><a class="spot card glass" target="_blank" rel="noopener"><span class="q">“</span><p class="txt"></p><div class="whoBox"></div><div class="bar"><i></i></div></a></div>'; }
-};
+function card(p, feat, v) {
+  var who = '<div class="who"><div class="ava">' + ini(p.n) + '</div><div><div class="nm">' + p.n + '</div><div class="rl">' + p.r + ' · <i>' + p.x + '</i></div></div><span class="li" title="LinkedIn">' + LI + '</span></div>';
+  var go = v === 'A2' ? '<span class="go">' + LI + 'LinkedIn ↗</span>' : '';
+  return '<a class="card glassbase' + (feat ? ' feat' : '') + '" href="' + p.li + '" target="_blank" rel="noopener" aria-label="' + p.n + ' on LinkedIn"><span class="q">“</span><p class="txt">' + p.t + '</p>' + who + go + '</a>';
+}
 document.querySelectorAll('.stage').forEach(function (st) {
-  var v = st.dataset.v; st.innerHTML = build[v]();
-  if (v === 'B') {
-    var row = st.querySelector('.B'), dots = st.querySelectorAll('.dots span');
-    st.querySelectorAll('.Bnav button').forEach(function (b, k) { b.onclick = function () { row.scrollBy({ left: (k ? 1 : -1) * 356, behavior: 'smooth' }); }; });
-    row.addEventListener('scroll', function () { var i = Math.round(row.scrollLeft / (row.querySelector('.card').offsetWidth + 16)); dots.forEach(function (d, j) { d.classList.toggle('on', j === i); }); }, { passive: true });
-  }
-  if (v === 'D') {
-    var D = st.querySelector('.D'), spot = st.querySelector('.spot'), btns = st.querySelectorAll('.names button'), bar = st.querySelector('.bar i'), cur = 0, t0 = 0, paused = false, DUR = 6000;
-    function show(i) { D.classList.add('fade'); setTimeout(function () { cur = i; var p = T[i];
-      spot.href = p.li; spot.querySelector('.txt').textContent = p.t; spot.querySelector('.whoBox').innerHTML = who(p);
-      btns.forEach(function (b, j) { b.classList.toggle('on', j === i); }); D.classList.remove('fade'); t0 = performance.now(); }, t0 ? 250 : 0); }
-    btns.forEach(function (b, i) { b.onclick = function () { show(i); }; });
-    spot.addEventListener('mouseenter', function () { paused = true; }); spot.addEventListener('mouseleave', function () { paused = false; t0 = performance.now() - parseFloat(bar.style.width || 0) / 100 * DUR; });
-    (function tick(now) { if (!paused && t0) { var k = (now - t0) / DUR; bar.style.width = Math.min(100, k * 100) + '%'; if (k >= 1) show((cur + 1) % T.length); } requestAnimationFrame(tick); })(0);
-    show(0);
-  }
+  var v = st.dataset.v;
+  st.innerHTML = '<h3>Recommendations</h3><div class="grid ' + v + '">' + T.map(function (p, i) { return card(p, i === 0, v); }).join('') + '</div>';
 });
 </script>
 </body>
