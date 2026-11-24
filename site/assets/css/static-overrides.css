@@ -57,3 +57,8 @@ body:not(.device-mobile-optimized) #comp-moqmsoes4 { height: 770px !important; }
   transition: opacity .45s ease; }
 .gpDCD5.jcd-tilting:hover .ih2JY1 > [data-testid="linkElement"]::before { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .gpDCD5 .ih2JY1 > [data-testid="linkElement"]::before { display: none; } }
+
+/* Networking: the 'Gemtek Wi-Fi 7 Gaming Home Gateway' card sat 44px above its row of small cards while every other
+   big card -> small-card row on the page is 16-18px (Moai 18). Move the big card down 26px (whole px, layout-neutral)
+   so that gap is 18px too. tilt.js accounts for the `translate` when it sets the card's transform origin. */
+body:not(.device-mobile-optimized) #comp-mng1uy9a { translate: 0 26px; }

@@ -10,7 +10,10 @@
   var mq = window.matchMedia;
   if (!mq || !mq('(hover: hover) and (pointer: fine)').matches || mq('(prefers-reduced-motion: reduce)').matches) return;
 
-  var MAX = 1, LIFT = 1.02, PERSP = 1100, EASE = 0.12;
+  var MAX = 1, LIFT = 1, PERSP = 1100, EASE = 0.12;
+  /* Size-aware: a corner of a wide card moves further than a small card's at the same angle, so each axis is scaled
+     so its corner displacement (which grows with size squared under perspective) never exceeds a small card's (reference 412x310, the 3-across networking tiles) at MAX. */
+  var REF_W = 412, REF_H = 310;
   var cards = [], mx = -1e6, my = -1e6, raf = 0;
 
   function strokeW(el) { return parseFloat(getComputedStyle(el).getPropertyValue('--stroke-width')) || 0; }
@@ -64,6 +67,7 @@
       return [r.left + sx - t[0], r.top + sy - t[1]];
     });
     c.box = { l: L + sx, t: T + sy, r: R + sx, b: B + sy };
+    c.maxY = MAX * Math.pow(Math.min(1, REF_W / Math.max(1, R - L)), 2); c.maxX = MAX * Math.pow(Math.min(1, REF_H / Math.max(1, B - T)), 2);
   }
   function remeasureFlat() { cards.forEach(function (c) { if (!c.live) measure(c); }); }
 
@@ -74,7 +78,7 @@
       var b = c.box, inside = px >= b.l && px <= b.r && py >= b.t && py <= b.b;
       if (inside) {
         var nx = (px - b.l) / (b.r - b.l) * 2 - 1, ny = (py - b.t) / (b.b - b.t) * 2 - 1;
-        c.ty = nx * MAX; c.tx = -ny * MAX; c.ts = LIFT; c.sx = (nx + 1) * 50; c.sy = (ny + 1) * 50;
+        c.ty = nx * c.maxY; c.tx = -ny * c.maxX; c.ts = LIFT; c.sx = (nx + 1) * 50; c.sy = (ny + 1) * 50;
       } else { c.tx = 0; c.ty = 0; c.ts = 1; }
       if (inside && !c.live) {                 /* starting from flat: fix the shared origin = card centre */
         measure(c); c.live = true;
