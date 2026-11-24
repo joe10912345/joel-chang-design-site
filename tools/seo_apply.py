@@ -14,7 +14,7 @@ from urllib.parse import urljoin, urlparse
 
 TOOLS = Path(__file__).resolve().parent
 sys.path.insert(0, str(TOOLS))
-from siteconfig import SITE_BASE, LANGS, DEFAULT_LANG  # noqa: E402
+from siteconfig import SITE_BASE, LANGS, DEFAULT_LANG, PUBLISH_I18N  # noqa: E402
 
 REPO = TOOLS.parent
 SITE = REPO / 'site'
@@ -274,6 +274,12 @@ def base() -> str:
 LANG_PREFIXES = {k for k, v in LANGS.items() if v.get('prefix')}
 
 
+
+def published_langs():
+    """Languages written into the deployed site/ tree."""
+    return list(LANGS) if PUBLISH_I18N else [DEFAULT_LANG]
+
+
 def lang_prefix(lang: str) -> str:
     return (LANGS.get(lang) or LANGS[DEFAULT_LANG]).get('prefix') or ''
 
@@ -312,9 +318,9 @@ def list_pages(lang: str = DEFAULT_LANG):
 
 
 def list_all_pages():
-    """(lang, slug, desktop, mobile) for every language that has been built."""
+    """(lang, slug, desktop, mobile) for every published language that has been built."""
     out = []
-    for lang in LANGS:
+    for lang in published_langs():
         for slug, desk, mob in list_pages(lang):
             if desk.exists():
                 out.append((lang, slug, desk, mob))
@@ -455,7 +461,7 @@ def org_person_graph(page_id: str, title: str, desc: str, image: str, slug: str,
             'url': base(),
             'publisher': {'@id': org_id},
             'description': HOME_DESC,
-            'inLanguage': [LANGS[k]['in_language'] for k in LANGS],
+            'inLanguage': [LANGS[k]['in_language'] for k in published_langs()],
         },
         {
             '@type': 'WebPage',
@@ -505,14 +511,16 @@ def seo_block(slug: str, title: str, desc: str, image, is_mobile: bool, lang: st
         f'<link rel="canonical" href="{escape(can, quote=True)}"/>',
         f'<link rel="alternate" media="only screen and (max-width: 599px)" href="{escape(alt_m, quote=True)}"/>',
     ]
-    for key, lm in LANGS.items():
-        href = canonical_url(slug, key)
+    if PUBLISH_I18N:
+        for key in published_langs():
+            lm = LANGS[key]
+            href = canonical_url(slug, key)
+            parts.append(
+                f'<link rel="alternate" hreflang="{escape(lm["hreflang"], quote=True)}" href="{escape(href, quote=True)}"/>'
+            )
         parts.append(
-            f'<link rel="alternate" hreflang="{escape(lm["hreflang"], quote=True)}" href="{escape(href, quote=True)}"/>'
+            f'<link rel="alternate" hreflang="x-default" href="{escape(canonical_url(slug, DEFAULT_LANG), quote=True)}"/>'
         )
-    parts.append(
-        f'<link rel="alternate" hreflang="x-default" href="{escape(canonical_url(slug, DEFAULT_LANG), quote=True)}"/>'
-    )
     parts += [
         f'<meta property="og:title" content="{escape(title, quote=True)}"/>',
         f'<meta property="og:description" content="{escape(desc, quote=True)}"/>',
@@ -527,12 +535,14 @@ def seo_block(slug: str, title: str, desc: str, image, is_mobile: bool, lang: st
         '<meta property="og:type" content="website"/>',
         f'<meta property="og:locale" content="{escape(meta["og_locale"], quote=True)}"/>',
     ]
-    for key, lm in LANGS.items():
-        if key == lang:
-            continue
-        parts.append(
-            f'<meta property="og:locale:alternate" content="{escape(lm["og_locale"], quote=True)}"/>'
-        )
+    if PUBLISH_I18N:
+        for key in published_langs():
+            if key == lang:
+                continue
+            lm = LANGS[key]
+            parts.append(
+                f'<meta property="og:locale:alternate" content="{escape(lm["og_locale"], quote=True)}"/>'
+            )
     parts += [
         '<meta name="twitter:card" content="summary_large_image"/>',
         f'<meta name="twitter:title" content="{escape(title, quote=True)}"/>',
@@ -788,8 +798,7 @@ def write_robots():
 
 
 def write_sitemap(all_pages):
-    """Desktop URLs in every language, each with xhtml:link hreflang alternates."""
-    # group by slug
+    """Desktop URLs for published languages. Hreflang xhtml:link only when PUBLISH_I18N."""
     by_slug = {}
     for lang, slug, desk, _mob in all_pages:
         by_slug.setdefault(slug, {})[lang] = desk
@@ -803,28 +812,36 @@ def write_sitemap(all_pages):
         for lang, desk in files.items():
             mtime = datetime.fromtimestamp(desk.stat().st_mtime).date().isoformat()
             loc = escape(canonical_url(slug, lang), quote=True)
-            links = []
-            for key, lm in LANGS.items():
-                href = escape(canonical_url(slug, key), quote=True)
+            block = '  <url>\n    <loc>' + loc + '</loc>\n    <lastmod>' + mtime + '</lastmod>'
+            if PUBLISH_I18N:
+                links = []
+                for key in published_langs():
+                    lm = LANGS[key]
+                    href = escape(canonical_url(slug, key), quote=True)
+                    links.append(
+                        f'    <xhtml:link rel="alternate" hreflang="{escape(lm["hreflang"], quote=True)}" href="{href}"/>'
+                    )
                 links.append(
-                    f'    <xhtml:link rel="alternate" hreflang="{escape(lm["hreflang"], quote=True)}" href="{href}"/>'
+                    f'    <xhtml:link rel="alternate" hreflang="x-default" href="{escape(canonical_url(slug, DEFAULT_LANG), quote=True)}"/>'
                 )
-            links.append(
-                f'    <xhtml:link rel="alternate" hreflang="x-default" href="{escape(canonical_url(slug, DEFAULT_LANG), quote=True)}"/>'
-            )
-            urls.append(
-                '  <url>\n    <loc>' + loc + '</loc>\n    <lastmod>' + mtime + '</lastmod>\n'
-                + '\n'.join(links) + '\n  </url>'
-            )
-    xml = (
-        '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
-        '        xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
-        + '\n'.join(urls)
-        + '\n</urlset>\n'
-    )
+                block += '\n' + '\n'.join(links)
+            block += '\n  </url>'
+            urls.append(block)
+    if PUBLISH_I18N:
+        header = (
+            '<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
+            '        xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
+        )
+    else:
+        header = (
+            '<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        )
+    xml = header + '\n'.join(urls) + '\n</urlset>\n'
     (SITE / 'sitemap.xml').write_text(xml, encoding='utf-8')
     return len(urls)
+
 
 
 def write_llms():
@@ -862,21 +879,29 @@ def write_llms():
         f'- [About]({u("about")})',
         f'- [Contact]({u("contact")})',
         '',
-        '## Languages',
-        '',
-        'The site is published in four languages at these URL prefixes (same page slugs):',
-        '',
-        f'- English (default, x-default): {b}/',
-        f'- Traditional Chinese (zh-Hant): {b}/zh-hant/',
-        f'- Simplified Chinese (zh-Hans): {b}/zh-cn/',
-        f'- Arabic (ar, right-to-left): {b}/ar/',
-        '',
         '## Notes for crawlers and agents',
         '',
-        f'- The canonical host is {b}. Paths match the former Wix site, with language prefixes as above.',
+        f'- The canonical host is {b}. Paths match the former Wix site.',
         '- The /scope page was password-protected on Wix; the public description above is taken from the Defense index, which links to it.',
         '',
     ]
+    if PUBLISH_I18N:
+        notes = short.index('## Notes for crawlers and agents')
+        short[notes:notes] = [
+            '## Languages',
+            '',
+            'The site is published in four languages at these URL prefixes (same page slugs):',
+            '',
+            f'- English (default, x-default): {b}/',
+            f'- Traditional Chinese (zh-Hant): {b}/zh-hant/',
+            f'- Simplified Chinese (zh-Hans): {b}/zh-cn/',
+            f'- Arabic (ar, right-to-left): {b}/ar/',
+            '',
+        ]
+        for i, line in enumerate(short):
+            if line.startswith('- The canonical host is '):
+                short[i] = f'- The canonical host is {b}. Paths match the former Wix site, with language prefixes as above.'
+                break
     (SITE / 'llms.txt').write_text('\n'.join(short), encoding='utf-8')
 
     # Fuller companion: first substantial paragraph of each project from content/*.md
@@ -977,8 +1002,8 @@ def main():
     write_llms()
     out = REPO / 'tools' / 'seo-report.json'
     out.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding='utf-8')
-    langs = ', '.join(LANGS)
-    print(f'Applied SEO to {len(report)} HTML files; sitemap {n_urls} desktop URLs; langs={langs}; SITE_BASE={base()}')
+    langs = ', '.join(published_langs())
+    print(f'Applied SEO to {len(report)} HTML files; sitemap {n_urls} desktop URLs; langs={langs}; PUBLISH_I18N={PUBLISH_I18N}; SITE_BASE={base()}')
     return report
 
 

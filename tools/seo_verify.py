@@ -6,7 +6,7 @@ from pathlib import Path
 
 TOOLS = Path(__file__).resolve().parent
 sys.path.insert(0, str(TOOLS))
-from siteconfig import SITE_BASE, LANGS  # noqa: E402
+from siteconfig import SITE_BASE, LANGS, DEFAULT_LANG, PUBLISH_I18N  # noqa: E402
 
 REPO = TOOLS.parent
 SITE = REPO / 'site'
@@ -17,7 +17,8 @@ def pages():
     """Every desktop and mobile HTML file, including language-prefixed trees."""
     skip = {'assets', 'm'} | {meta['prefix'].lstrip('/') for meta in LANGS.values() if meta.get('prefix')}
     out = []
-    for meta in LANGS.values():
+    langs = LANGS if PUBLISH_I18N else {DEFAULT_LANG: LANGS[DEFAULT_LANG]}
+    for meta in langs.values():
         prefix = meta['prefix'].lstrip('/')
         root = SITE / prefix if prefix else SITE
         if (root / 'index.html').exists():
@@ -108,10 +109,13 @@ def check(path: Path):
         issues.append(f'h1 count={len(h1s)}')
     hrefs = set(re.findall(r'rel="alternate"[^>]*hreflang="([^"]+)"', html, flags=re.I))
     hrefs |= set(re.findall(r'hreflang="([^"]+)"[^>]*rel="alternate"', html, flags=re.I))
-    needed = {'en', 'zh-Hant', 'zh-Hans', 'ar', 'x-default'}
-    missing_h = needed - hrefs
-    if missing_h:
-        issues.append('missing hreflang ' + ','.join(sorted(missing_h)))
+    if PUBLISH_I18N:
+        needed = {'en', 'zh-Hant', 'zh-Hans', 'ar', 'x-default'}
+        missing_h = needed - hrefs
+        if missing_h:
+            issues.append('missing hreflang ' + ','.join(sorted(missing_h)))
+    elif hrefs:
+        issues.append('unexpected hreflang ' + ','.join(sorted(hrefs)))
     if 'G-36L411LGT0' not in html:
         issues.append('missing GA4')
     return rel, issues
@@ -139,22 +143,36 @@ def main():
     if BASE not in sm:
         print('FAIL sitemap missing SITE_BASE')
         bad += 1
-    if 'xmlns:xhtml' not in sm:
+    if PUBLISH_I18N and 'xmlns:xhtml' not in sm:
         print('FAIL sitemap missing xmlns:xhtml')
         bad += 1
     loc_n = sm.count('<loc>')
-    if loc_n != 144:
-        print(f'FAIL sitemap loc count={loc_n} expected 144')
+    expect_locs = 144 if PUBLISH_I18N else 36
+    if loc_n != expect_locs:
+        print(f'FAIL sitemap loc count={loc_n} expected {expect_locs}')
         bad += 1
-    for hl in ('hreflang="en"', 'hreflang="zh-Hant"', 'hreflang="zh-Hans"', 'hreflang="ar"', 'hreflang="x-default"'):
-        if hl not in sm:
-            print(f'FAIL sitemap missing {hl}')
+    if PUBLISH_I18N:
+        for hl in ('hreflang="en"', 'hreflang="zh-Hant"', 'hreflang="zh-Hans"', 'hreflang="ar"', 'hreflang="x-default"'):
+            if hl not in sm:
+                print(f'FAIL sitemap missing {hl}')
+                bad += 1
+    else:
+        if 'xmlns:xhtml' in sm or 'hreflang=' in sm:
+            print('FAIL sitemap still has hreflang/xhtml alternates')
             bad += 1
     llms = (SITE / 'llms.txt').read_text(encoding='utf-8')
-    for s in ('## Languages', '/zh-hant/', '/zh-cn/', '/ar/'):
-        if s not in llms:
-            print(f'FAIL llms.txt missing {s}')
-            bad += 1
+    llms_full = (SITE / 'llms-full.txt').read_text(encoding='utf-8')
+    if PUBLISH_I18N:
+        for s in ('## Languages', '/zh-hant/', '/zh-cn/', '/ar/'):
+            if s not in llms:
+                print(f'FAIL llms.txt missing {s}')
+                bad += 1
+    else:
+        for label, text in (('llms.txt', llms), ('llms-full.txt', llms_full)):
+            for s in ('## Languages', '/zh-hant/', '/zh-cn/', '/ar/'):
+                if s in text:
+                    print(f'FAIL {label} still mentions {s}')
+                    bad += 1
     if 'CNAME' in (SITE / 'CNAME').exists().__str__() if False else '':
         pass
     if (SITE / 'CNAME').exists():

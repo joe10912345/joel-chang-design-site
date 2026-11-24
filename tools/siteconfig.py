@@ -57,3 +57,9 @@ LANGS = {
 }
 
 DEFAULT_LANG = 'en'
+
+# When False (default), GitHub Pages stays English-only. The last built
+# zh-hant / zh-cn / ar trees are kept in i18n-archive/site/ and are not
+# written into site/. Set this to True, or pass --publish to
+# tools/i18n_apply.py, then re-run tools/seo_apply.py to publish them again.
+PUBLISH_I18N = False

@@ -412,6 +412,15 @@ if __name__ == '__main__':
     json.dump(old, open(p,'w'), indent=1)
     json.dump(failures, open('/workspace/wixcopy-tools/out/failures.json','w'), indent=1)
     print('assets', len(inventory), 'failures', len(failures))
+    # Language trees live in i18n-archive/site/ and are not written into site/
+    # unless PUBLISH_I18N is True (or: python3 tools/i18n_apply.py --publish).
+    try:
+        from siteconfig import PUBLISH_I18N
+    except ImportError:
+        PUBLISH_I18N = False
+    if PUBLISH_I18N:
+        import i18n_apply
+        i18n_apply.main(publish=True)
     import seo_apply
     seo_apply.main()
     try:

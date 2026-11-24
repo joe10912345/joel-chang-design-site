@@ -51,16 +51,7 @@ Profiles: https://www.behance.net/joe10912345, https://www.linkedin.com/in/joel-
 - [About](https://www.joel-chang-design.com/about)
 - [Contact](https://www.joel-chang-design.com/contact)
 
-## Languages
-
-The site is published in four languages at these URL prefixes (same page slugs):
-
-- English (default, x-default): https://www.joel-chang-design.com/
-- Traditional Chinese (zh-Hant): https://www.joel-chang-design.com/zh-hant/
-- Simplified Chinese (zh-Hans): https://www.joel-chang-design.com/zh-cn/
-- Arabic (ar, right-to-left): https://www.joel-chang-design.com/ar/
-
 ## Notes for crawlers and agents
 
-- The canonical host is https://www.joel-chang-design.com. Paths match the former Wix site, with language prefixes as above.
+- The canonical host is https://www.joel-chang-design.com. Paths match the former Wix site.
 - The /scope page was password-protected on Wix; the public description above is taken from the Defense index, which links to it.

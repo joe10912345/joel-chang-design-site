@@ -15,7 +15,7 @@ from pathlib import Path
 
 TOOLS = Path(__file__).resolve().parent
 sys.path.insert(0, str(TOOLS))
-from siteconfig import SITE_BASE, LANGS, DEFAULT_LANG  # noqa: E402
+from siteconfig import SITE_BASE, LANGS, DEFAULT_LANG, PUBLISH_I18N  # noqa: E402
 
 REPO = TOOLS.parent
 SITE = REPO / 'site'
@@ -426,7 +426,25 @@ def inject_english_switcher():
             path.write_text(html, encoding='utf-8')
 
 
-def main():
+def main(publish: bool | None = None):
+    import argparse
+    if publish is None:
+        parser = argparse.ArgumentParser(description='Build language trees into site/ for deploy.')
+        parser.add_argument(
+            '--publish',
+            action='store_true',
+            help='Write /zh-hant/, /zh-cn/, and /ar/ into site/ so they deploy. '
+                 'Off by default (also controlled by PUBLISH_I18N in tools/siteconfig.py).',
+        )
+        args, _unknown = parser.parse_known_args()
+        publish = args.publish
+    if not (publish or PUBLISH_I18N):
+        raise SystemExit(
+            'i18n publish is off (PUBLISH_I18N=False). Translations stay in '
+            'tools/i18n/ and i18n-archive/site/ and are not written into site/. '
+            'Re-enable with: python3 tools/i18n_apply.py --publish '
+            '(or set PUBLISH_I18N = True in tools/siteconfig.py).'
+        )
     glossary = load_glossary()
     pages = list_english_pages()
     report = {'pages': 0, 'langs': {}, 'missing_unique': 0}
