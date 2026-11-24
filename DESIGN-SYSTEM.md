@@ -88,7 +88,7 @@ Scripts measuring with `getBoundingClientRect` must divide by `window.__jcdZoom`
 | Touch | Every hover effect also on tap/press (`:hover` sticks after a tap, `:active` while pressed); iOS needs the touchstart listener in `custom.js` |
 | Labels that are not buttons | No frame, no hover, no click (home "Selected") |
 | Cards that are not links | No glow, no hover, no press, default cursor (Design Approach cards 2-4). Only a card with a destination is pressable (Design Approach card 1: press-in + blue outline) |
-| Touch reveal | Overlays that show on hover with a mouse show while a finger rests on the item (~0.06s), not after the tap; scrolling/swiping never triggers them. Linked tiles (home Works grid) open in one tap; tiles without a link (End-to-End) keep the overlay after the tap |
+| Touch reveal | Overlays that show on hover with a mouse show while a finger rests on the item (~0.06s), not after the tap; scrolling/swiping never triggers them. Linked tiles (home Works grid) open in one tap; tiles without a link (End-to-End) keep the overlay after the tap. Overlay darkness on touch: Works grid 45%, End-to-End 60% (desktop hover 27%) |
 | Reduced motion | Every looping or moving effect is switched off under `prefers-reduced-motion: reduce` |
 
 ## 7. Motion

@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-24
 
+### Home Works grid: darker press overlay on phone / iPad
+- Joel: "not dark enough, one step darker". Touch devices (`hover: none`) 27% -> 45% black on the 12 Works tiles (`#pro-gallery-container-comp-mnpgav5j`); desktop hover unchanged (27%).
+
 ### Home Works grid (12 tiles) on phone / iPad: dark overlay while pressing, one tap opens the project
 - Joel: the 12 Works tiles should darken under a finger like the desktop hover. `site.js` 5b: on touch, a finger resting on any Pro Gallery tile shows the desktop hover overlay (dark + title) after ~60ms; moving the finger (page scroll / slider swipe) cancels it. Tiles that are links (Works grid) now open their project in ONE tap (overlay shows while pressed); tiles without a link (End-to-End) keep the overlay after the tap.
 

@@ -428,3 +428,7 @@ a.style-mp6zxgon__root:is(:hover, :focus-visible, :active) { animation-play-stat
 #SITE_HEADER img, #SITE_HEADER a { -webkit-user-drag: none; user-drag: none; }
 #SITE_HEADER a:focus:not(:focus-visible) { outline: none !important; box-shadow: none !important; }
 #SITE_HEADER ::selection { background: transparent; }
+
+/* ---------- Home Works grid (12 tiles) on phone / iPad: darker press overlay (Joel 2026-11-24: "one step darker").
+   Desktop hover keeps Wix's 27%; touch 45%. */
+@media (hover: none) { #pro-gallery-container-comp-mnpgav5j .jcd-ov .gallery-item-hover::before { background-color: rgba(0, 0, 0, .45) !important; } }
