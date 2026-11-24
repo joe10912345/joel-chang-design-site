@@ -11,7 +11,10 @@
         Add ?layout=desktop or ?layout=mobile to a URL to force one for this tab. */
   var touch = false;
   try {
-    touch = (window.matchMedia && matchMedia('(pointer: coarse)').matches) || navigator.maxTouchPoints > 1;
+    /* "touch device" = the PRIMARY pointer is a finger. A Windows laptop with a touch screen reports
+       maxTouchPoints 10 even when used with a mouse (and on an external monitor), so that alone must not count. */
+    var mm = function (q) { return !!(window.matchMedia && matchMedia(q).matches); };
+    touch = mm('(pointer: coarse)') || (navigator.maxTouchPoints > 1 && !mm('(pointer: fine)'));
     var q = (location.search.match(/[?&]layout=(desktop|mobile)/) || [])[1];
     if (q) sessionStorage.setItem('layout', q);
     var pref = sessionStorage.getItem('layout');
