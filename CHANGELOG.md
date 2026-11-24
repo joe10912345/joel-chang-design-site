@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-24
 
+### White block behind the header when clicking menu items quickly
+- Joel: pressing a menu item (e.g. Contact) several times quickly showed a white block filling the header area. Each click reloads the page; for a moment before `custom.js` runs, the Wix page background layer (white) showed behind the header. Dark pages now carry `class="jcd-dark-canvas"` on `<html>` in the HTML itself (52 files: 26 pages x desktop + phone), so the background is black from the first paint; the 10 light pages (20 files) keep Wix's white. The JS check stays as a backup.
+
 ### Gaming Home Gateway "Aerodynamic Concept": product and car always visible
 - Joel: on every device/resolution the product (left) and the car (right) must show. The photo was a sticky, screen-sized Wix background (`#img_comp-m5v68a5z2`, box = screen height inside a 2478px media strip), so on tall screens it was scaled up and both ends were cut. Now the photo covers only its section (`static-overrides.css`): full photo width on every screen (checked laptop, 1920, ultra-wide, 4K, iPad portrait/landscape: 100% width, 91% height shown, only black top/bottom trimmed; phone already showed the whole photo). Section height unchanged (750px layout); no clipping on the media box (Safari).
 
