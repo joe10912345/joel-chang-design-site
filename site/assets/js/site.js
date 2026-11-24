@@ -31,6 +31,21 @@
     });
   }
 
+  /* Wide screens (Joel 2026-11-24): the Wix desktop layout is designed for a ~1300px stage, so on a 1920/2560px
+     monitor at 100% it sat small in the middle with wide black bars. Like on his laptop (1920px @125% = 1536 CSS px),
+     scale the whole page with CSS zoom so 1536 CSS px of layout always fill the window (never shrink below 1).
+     Other scripts read window.__jcdZoom to convert screen px (clientX, getBoundingClientRect) into CSS px. */
+  window.__jcdZoom = 1;
+  if (mode === 'desktop' && !touch) {
+    var ZOOM_REF = 1536, root = document.documentElement;
+    var fitZoom = function () {
+      var w = window.innerWidth || root.clientWidth || ZOOM_REF;
+      var z = w > ZOOM_REF ? Math.round(w / ZOOM_REF * 1000) / 1000 : 1;
+      if (z !== window.__jcdZoom) { window.__jcdZoom = z; root.style.zoom = z === 1 ? '' : String(z); }
+    };
+    fitZoom(); window.addEventListener('resize', fitZoom);
+  }
+
   function ready(fn) { document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', fn) : fn(); }
 
   ready(function () {

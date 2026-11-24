@@ -10,8 +10,9 @@
       c.classList.add('jcd-glow-card');
       c.addEventListener('pointermove', function (e) {
         var r = c.getBoundingClientRect();
-        c.style.setProperty('--gx', (e.clientX - r.left) + 'px');
-        c.style.setProperty('--gy', (e.clientY - r.top) + 'px');
+        var z = window.__jcdZoom || 1;   /* page zoom on wide screens: screen px -> CSS px */
+        c.style.setProperty('--gx', (e.clientX - r.left) / z + 'px');
+        c.style.setProperty('--gy', (e.clientY - r.top) / z + 'px');
       });
       if (touch) c.addEventListener('click', function () {
         var on = !c.classList.contains('is-glow');
@@ -75,8 +76,9 @@
         var bx = ox + 169 * s, by = oy + 137 * s, bw = 2407 * s, bh = 1354 * s;
         var w = Math.max(bw, bh * 16 / 9) + 2, h = w * 9 / 16;            /* cover the window, 1px each side */
         var cx = bx + bw / 2, cy = by + bh / 2;
-        vid.style.setProperty('width', w + 'px', 'important');
-        vid.style.transform = 'translate(' + (cx - w / 2 - vr.left) + 'px,' + (cy - h / 2 - vr.top) + 'px)';
+        var z = window.__jcdZoom || 1;   /* rects are screen px; styles are CSS px */
+        vid.style.setProperty('width', w / z + 'px', 'important');
+        vid.style.transform = 'translate(' + (cx - w / 2 - vr.left) / z + 'px,' + (cy - h / 2 - vr.top) / z + 'px)';
       };
       fit(); window.addEventListener('resize', fit); window.addEventListener('load', fit);
     }
@@ -160,12 +162,13 @@
       var tx = 0, ty = 0, gx = 0, gy = 0, li = 0, lt = 0, raf = 0, seen = false;
       var step = function () {
         gx += (tx - gx) * 0.14; gy += (ty - gy) * 0.14; li += (lt - li) * 0.08;
-        rs.setProperty('--mx', gx.toFixed(1) + 'px'); rs.setProperty('--my', gy.toFixed(1) + 'px');
+        var z = window.__jcdZoom || 1;   /* page zoom on wide screens: screen px -> CSS px */
+        rs.setProperty('--mx', (gx / z).toFixed(1) + 'px'); rs.setProperty('--my', (gy / z).toFixed(1) + 'px');
         /* keep the header band free of light: the light image starts below the header (--hb) and fades out
            as the cursor nears it, so no edge shows */
         var hb = hdrEl ? Math.max(0, Math.round(hdrEl.getBoundingClientRect().bottom)) : 0;
         var f = Math.min(1, Math.max(0, (gy - hb) / 200));
-        rs.setProperty('--hb', hb + 'px');
+        rs.setProperty('--hb', (hb / z).toFixed(1) + 'px');
         rs.setProperty('--jcd-light', (li * f).toFixed(3));
         raf = (Math.abs(tx - gx) + Math.abs(ty - gy) > 0.3 || Math.abs(lt - li) > 0.004) ? requestAnimationFrame(step) : 0;
       };

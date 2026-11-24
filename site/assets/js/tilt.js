@@ -18,6 +18,7 @@
   var EXTRA = ['comp-mujmtw8h'];
   var cards = [], mx = -1e6, my = -1e6, raf = 0;
 
+  function Z() { return window.__jcdZoom || 1; }   /* wide-screen page zoom (site.js): screen px per CSS px */
   function strokeW(el) { return parseFloat(getComputedStyle(el).getPropertyValue('--stroke-width')) || 0; }
   function ownTranslate(el) {            /* CSS `translate` (used to snap a few outlines) is not part of the box */
     var t = getComputedStyle(el).translate; if (!t || t === 'none') return [0, 0];
@@ -68,11 +69,11 @@
     c.pos = c.mem.map(function (m) {
       var r = m.getBoundingClientRect(), t = ownTranslate(m);
       L = Math.min(L, r.left); T = Math.min(T, r.top); R = Math.max(R, r.right); B = Math.max(B, r.bottom);
-      return [r.left + sx - t[0], r.top + sy - t[1]];
+      return [r.left + sx - t[0] * Z(), r.top + sy - t[1] * Z()];   /* CSS translate is in CSS px, rects in screen px */
     });
     c.box = { l: L + sx, t: T + sy, r: R + sx, b: B + sy };
     if (c.full) { c.maxX = c.maxY = MAX; return; }
-    c.maxY = MAX * Math.pow(Math.min(1, REF_W / Math.max(1, R - L)), 2); c.maxX = MAX * Math.pow(Math.min(1, REF_H / Math.max(1, B - T)), 2);
+    c.maxY = MAX * Math.pow(Math.min(1, REF_W * Z() / Math.max(1, R - L)), 2); c.maxX = MAX * Math.pow(Math.min(1, REF_H * Z() / Math.max(1, B - T)), 2);
   }
   function remeasureFlat() { cards.forEach(function (c) { if (!c.live) measure(c); }); }
 
@@ -89,7 +90,7 @@
         measure(c); c.live = true;
         var ox = (c.box.l + c.box.r) / 2, oy = (c.box.t + c.box.b) / 2;
         c.mem.forEach(function (m, i) {
-          m.style.transformOrigin = (ox - c.pos[i][0]).toFixed(2) + 'px ' + (oy - c.pos[i][1]).toFixed(2) + 'px';
+          m.style.transformOrigin = ((ox - c.pos[i][0]) / Z()).toFixed(2) + 'px ' + ((oy - c.pos[i][1]) / Z()).toFixed(2) + 'px';
         });
         c.hb.classList.add('jcd-tilting');
       }
@@ -106,7 +107,7 @@
       /* Perspective makes a tilted card's projected outline drift: tipping the top away moves BOTH the top edge
          (shrinks toward the centre) and the bottom edge (grows) downward, so the card looked like it slid down.
          Project the 4 corners exactly as CSS does and move the result back so the outline stays centred in place. */
-      var hw = (c.box.r - c.box.l) / 2 * c.s, hh = (c.box.b - c.box.t) / 2 * c.s, ax = c.rx * Math.PI / 180, ay = c.ry * Math.PI / 180;
+      var hw = (c.box.r - c.box.l) / 2 / Z() * c.s, hh = (c.box.b - c.box.t) / 2 / Z() * c.s, ax = c.rx * Math.PI / 180, ay = c.ry * Math.PI / 180;
       var X0 = 1e9, X1 = -1e9, Y0 = 1e9, Y1 = -1e9;
       [[-hw, -hh], [hw, -hh], [hw, hh], [-hw, hh]].forEach(function (q) {
         var x1 = q[0] * Math.cos(ay), z1 = -q[0] * Math.sin(ay);                       /* rotateY */
