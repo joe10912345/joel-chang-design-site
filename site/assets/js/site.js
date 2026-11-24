@@ -6,7 +6,7 @@
   /* 1. Desktop <-> mobile layout. The Wix "classic" site has two separate layouts
         (desktop at /, mobile under /m/). Match what live Wix does:
         - phones (touch screen whose short side < 600px) get the mobile layout;
-        - tablets (iPad etc.) get the desktop layout, scaled to fit a 980px-wide viewport;
+        - tablets (iPad etc.) get the desktop layout, laid out TABLET_W (1366) px wide and scaled to fit, portrait + landscape;
         - desktop browsers get the desktop layout (a window narrower than 600px gets mobile).
         Add ?layout=desktop or ?layout=mobile to a URL to force one for this tab. */
   var touch = false;
@@ -24,10 +24,14 @@
     var want = pref || ((phone || narrowWindow) ? 'mobile' : 'desktop');
     if (alt && want !== mode) { location.replace(alt + location.hash); return; }
   } catch (e) {}
-  /* Tablets / touch devices on the desktop layout: same as Wix, lay the page out at 980px and scale to fit. */
+  /* Tablets / touch devices on the desktop layout: lay the page out TABLET_W px wide and scale it to the screen.
+     (Joel 2026-11-24) Wix used 980px, but most of this site's content spans ~1330-1430px around the centre (elements at
+     left:-140px etc.), so at 980 an iPad cut both sides off. 1366 shows every page whole; the browser rescales the same
+     layout when the iPad turns, so portrait AND landscape both fit. Keep preview/devices.html (TW) in step with this. */
+  var TABLET_W = 1366;
   if (mode === 'desktop' && touch) {
     var vp = document.querySelector('meta[name="viewport"]');
-    if (vp) vp.setAttribute('content', 'width=980, user-scalable=yes');
+    if (vp) vp.setAttribute('content', 'width=' + TABLET_W + ', user-scalable=yes');
     document.addEventListener('DOMContentLoaded', function () {
       document.body.classList.remove('device-mobile-optimized');
       document.body.classList.add('device-mobile-non-optimized');

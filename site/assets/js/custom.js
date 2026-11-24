@@ -265,6 +265,82 @@
     }
     }
   });
+  /* Phone menu: LinkedIn + Behance icons under the menu items (Joel 2026-11-24). The footer that held the only copy on
+     m/ pages is hidden (custom.css), so its two icon links are cloned into the hamburger menu. */
+  (function () {
+    function addSocial() {
+      var nav = document.getElementById('MENU_AS_CONTAINER_EXPANDABLE_MENU');
+      if (!nav || nav.querySelector('.jcd-menu-social')) return;
+      var links = document.querySelectorAll('#SITE_FOOTER a[href*="linkedin.com"], #SITE_FOOTER a[href*="behance.net"]');
+      if (!links.length) return;
+      var row = document.createElement('div'); row.className = 'jcd-menu-social';
+      [].forEach.call(links, function (a) {
+        var c = a.cloneNode(true); c.removeAttribute('id'); c.className = 'jcd-menu-social-a';
+        [].forEach.call(c.querySelectorAll('[id]'), function (n) { n.removeAttribute('id'); });
+        row.appendChild(c);
+      });
+      nav.appendChild(row);
+    }
+    document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', addSocial) : addSocial();
+  })();
+  /* Phone: taller top image (Joel 2026-11-24). On m/ pages the first image (home slideshow, product-page hero) was only
+     ~1/3 (home) or ~1/4 (products) of the screen. If the page starts with a full-width short image, every element of
+     that block with the image's height is set to half the screen height (Joel: 50%) (svh = stable on iOS when the toolbar moves);
+     the page below moves down with it. The HTML points these images at their largest file so they stay sharp.
+     Catalog pages / About (no full-width image at the top) are left alone. */
+  (function () {
+    function tallHero() {
+      if (!document.body.classList.contains('device-mobile-optimized')) return;
+      var sec = document.querySelector('#PAGES_CONTAINER section');
+      if (!sec || sec.classList.contains('jcd-mhero')) return;
+      var img = [].filter.call(sec.querySelectorAll('img'), function (i) { return !/^data:/.test(i.getAttribute('src') || ''); })[0];
+      if (!img) return;
+      var r = img.getBoundingClientRect(), vw = document.documentElement.clientWidth;
+      if (r.width < vw - 4 || r.height < 60 || r.height > 320 || r.top > 80) return;
+      var h0 = r.height;
+      [].forEach.call(sec.querySelectorAll('*'), function (e) {
+        if (Math.abs(e.getBoundingClientRect().height - h0) <= 2) e.style.setProperty('height', '50svh', 'important');
+      });
+      sec.classList.add('jcd-mhero');
+    }
+    document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', tallHero) : tallHero();
+  })();
+  /* Catalog title bars (Joel 2026-11-24): each card on the category pages is a white outline (vector) with a title bar
+     above the photo: title on the left, a short description on the right. Wix placed the right text a few px too low
+     (e.g. Lifestyle "Atmosphere & Daily Experience" nearly touches the photo). Every text inside a bar is moved so its
+     vertical centre sits on the bar's centre (bar = outline top .. photo top). Desktop, iPad and phone. Uses `top`
+     (the texts are position:relative), so tilt.js transforms are untouched. */
+  (function () {
+    function Z() { return window.__jcdZoom || 1; }
+    function centreBars() {
+      var photos = document.querySelectorAll('.gpDCD5');
+      if (!photos.length) return;
+      var texts = [].slice.call(document.querySelectorAll('#PAGES_CONTAINER [data-testid="richTextElement"]'));
+      var frames = [].slice.call(document.querySelectorAll('#PAGES_CONTAINER .wixui-vector-image'));
+      texts.forEach(function (t) { if (t.hasAttribute('data-jcd-bar')) { t.style.top = ''; } });
+      [].forEach.call(photos, function (ph) {
+        var pr = ph.getBoundingClientRect(); if (!pr.width) return;
+        var fr = null;
+        frames.forEach(function (v) {
+          var r = v.getBoundingClientRect();
+          if (r.top < pr.top - 8 && r.bottom >= pr.bottom - 4 && Math.abs(r.left - pr.left) < 8 && Math.abs(r.right - pr.right) < 8 && pr.top - r.top < 200 * Z()) fr = r;
+        });
+        if (!fr) return;
+        var c = (fr.top + pr.top) / 2;
+        texts.forEach(function (t) {
+          var r = t.getBoundingClientRect(); if (!r.height) return;
+          var tc = (r.top + r.bottom) / 2;
+          if (tc <= fr.top || tc >= pr.top || r.left < fr.left - 4 || r.right > fr.right + 4) return;
+          var d = (c - tc) / Z();
+          if (Math.abs(d) < 0.5 || Math.abs(d) > 30) return;
+          t.setAttribute('data-jcd-bar', ''); t.style.top = d.toFixed(2) + 'px';
+        });
+      });
+    }
+    function run() { centreBars(); }
+    var go = function () { (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () { setTimeout(run, 50); }); };
+    document.readyState === 'complete' ? go() : window.addEventListener('load', go);
+  })();
   // iOS Safari only applies :active (pressed states) when a touchstart listener exists.
   document.addEventListener('touchstart', function () {}, { passive: true });
 })();

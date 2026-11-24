@@ -1,5 +1,8 @@
 # joel-chang-design.com — static export (off Wix)
 
+> **Working on this site (people or AI)?** Read `CHANGELOG.md` and `TODO.md` first, and add an entry to
+> `CHANGELOG.md` after every change. Rules for AI assistants: `AGENTS.md`.
+
 A self-contained copy of https://www.joel-chang-design.com/ (Wix classic editor site),
 captured from the **live site** on 2026-11-23 (UTC+8). Every page was rendered in a headless
 browser (scrolled to load lazy content), the final DOM saved, Wix runtime/tracking scripts
@@ -68,9 +71,9 @@ These are changes Joel asked for that are **not** on the live Wix site. They are
 ## Known limitations (things that only worked on Wix)
 
 See the "Limitations" section of the export report; summary:
-- **Contact form**: no Wix backend — submitting does nothing. Replace with Formspree/Getform/mailto when hosting.
+- **Contact form**: now sends through Web3Forms (`site/assets/js/custom.js`), not Wix.
 - **Vimeo video** on the home page stays an embed from Vimeo (it's hosted there, not on Wix).
-- **Gallery lightboxes / expand-on-click** and Wix scroll-parallax effects are not reproduced.
+- **Gallery lightboxes**: reproduced for galleries that enlarged on click on live (custom.js). Wix scroll-parallax effects are not reproduced.
 - **Two images are broken on the live site too** (Wix returns 403): on `wi-fi7-hgu-ap` and `electronics`. They're blank placeholders here (`data-live-src-missing` attribute keeps the old URL). The site-wide social share image (og:image) is also gone on Wix and was dropped.
 - One link points to `/scope`, a live page not in the Wix sitemap (hidden page); it was not exported and still links to the live URL.
 - The HTML is Wix's generated markup (absolute-positioned, hashed class names). It looks right, but for real UI/UX changes a rebuild with clean HTML/CSS (using `content/` + `media-originals/` + screenshots as the spec) will be easier than editing this markup.
