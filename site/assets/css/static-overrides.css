@@ -62,3 +62,19 @@ body:not(.device-mobile-optimized) #comp-moqmsoes4 { height: 770px !important; }
    big card -> small-card row on the page is 16-18px (Moai 18). Move the big card down 26px (whole px, layout-neutral)
    so that gap is 18px too. tilt.js accounts for the `translate` when it sets the card's transform origin. */
 body:not(.device-mobile-optimized) #comp-mng1uy9a { translate: 0 26px; }
+
+/* Big cards with a row / 2x2 grid of photos under the main photo (industrial Advantech, electronics Plant X,
+   networking Moai): Wix left the photos 613-616px wide, 364-365px high, with 15-21px margins. Snap them to one
+   16px rhythm inside the white frame (inner 1280px: 16 + 616 + 16 + 616 + 16; same 16px between rows and to the
+   frame bottom). Whole pixels only; desktop only. */
+body:not(.device-mobile-optimized) :is(#comp-mnpltyo54,#comp-mnpltyo6,#comp-mnpn32jp,#comp-mnpn32jv,#comp-mnpoa76b,#comp-mnpoa76g,#comp-mng0xzle,#comp-mng0xzlb) :is(wow-image, img, [data-testid="linkElement"]) {
+  width: 100% !important; height: 100% !important; }
+body:not(.device-mobile-optimized) :is(#comp-mnpltyo54,#comp-mnpltyo6,#comp-mnpn32jp,#comp-mnpn32jv,#comp-mnpoa76b,#comp-mnpoa76g,#comp-mng0xzle,#comp-mng0xzlb) img { object-fit: cover !important; }
+body:not(.device-mobile-optimized) #comp-mnpltyo54 { width: 616px !important; height: 364px !important; }
+body:not(.device-mobile-optimized) #comp-mnpltyo6  { width: 616px !important; height: 364px !important; translate: -1px 0; }
+body:not(.device-mobile-optimized) #comp-mnpn32jp  { width: 616px !important; height: 364px !important; translate: 1px 0; }
+body:not(.device-mobile-optimized) #comp-mnpn32jv  { width: 616px !important; height: 364px !important; translate: -2px 0; }
+body:not(.device-mobile-optimized) #comp-mnpoa76b  { width: 616px !important; height: 366px !important; translate: 0 -1px; }
+body:not(.device-mobile-optimized) #comp-mnpoa76g  { width: 616px !important; height: 366px !important; }
+body:not(.device-mobile-optimized) #comp-mng0xzle  { width: 616px !important; height: 366px !important; }
+body:not(.device-mobile-optimized) #comp-mng0xzlb  { width: 616px !important; height: 366px !important; translate: -1px 0; }

@@ -14,6 +14,8 @@
   /* Size-aware: a corner of a wide card moves further than a small card's at the same angle, so each axis is scaled
      so its corner displacement (which grows with size squared under perspective) never exceeds a small card's (reference 412x310, the 3-across networking tiles) at MAX. */
   var REF_W = 412, REF_H = 310;
+  /* Stand-alone photos that tilt too, always at the full MAX angle (About: portrait with its white frame). */
+  var EXTRA = ['comp-mujmtw8h'];
   var cards = [], mx = -1e6, my = -1e6, raf = 0;
 
   function strokeW(el) { return parseFloat(getComputedStyle(el).getPropertyValue('--stroke-width')) || 0; }
@@ -53,6 +55,8 @@
       return;
     });
     /* biggest card first: a photo tile nested inside a bigger card's outline tilts with that card, not alone */
+    EXTRA.forEach(function (id) { var el = document.getElementById(id);
+      if (el && !pinned.some(function (f) { return f.contains(el); })) cards.push({ hb: el, mem: [el], full: true, rx: 0, ry: 0, s: 1, tx: 0, ty: 0, ts: 1, sx: 50, sy: 50, on: false, live: false, box: null }); });
     cand.sort(function (x, y) { return y.area - x.area; }).forEach(function (c) {
       var hb = c.hb, mem = c.mem;
       if (cards.some(function (o) { return o.mem.some(function (m) { return mem.some(function (n) { return m === n || m.contains(n) || n.contains(m); }); }); })) return;
@@ -67,6 +71,7 @@
       return [r.left + sx - t[0], r.top + sy - t[1]];
     });
     c.box = { l: L + sx, t: T + sy, r: R + sx, b: B + sy };
+    if (c.full) { c.maxX = c.maxY = MAX; return; }
     c.maxY = MAX * Math.pow(Math.min(1, REF_W / Math.max(1, R - L)), 2); c.maxX = MAX * Math.pow(Math.min(1, REF_H / Math.max(1, B - T)), 2);
   }
   function remeasureFlat() { cards.forEach(function (c) { if (!c.live) measure(c); }); }
@@ -85,16 +90,15 @@
         var ox = (c.box.l + c.box.r) / 2, oy = (c.box.t + c.box.b) / 2;
         c.mem.forEach(function (m, i) {
           m.style.transformOrigin = (ox - c.pos[i][0]).toFixed(2) + 'px ' + (oy - c.pos[i][1]).toFixed(2) + 'px';
-          m.style.willChange = 'transform';
         });
         c.hb.classList.add('jcd-tilting');
       }
       if (!c.live) return;
       c.rx += (c.tx - c.rx) * EASE; c.ry += (c.ty - c.ry) * EASE; c.s += (c.ts - c.s) * EASE;
-      var flat = !inside && Math.abs(c.rx) < 0.02 && Math.abs(c.ry) < 0.02 && Math.abs(c.s - 1) < 0.0005;
+      var flat = !inside && Math.abs(c.rx) < 0.003 && Math.abs(c.ry) < 0.003 && Math.abs(c.s - 1) < 0.0005;
       if (flat) {                               /* fully back: drop the transform so the rest state is untouched */
         c.rx = c.ry = 0; c.s = 1; c.live = false;
-        c.mem.forEach(function (m) { m.style.transform = ''; m.style.transformOrigin = ''; m.style.willChange = ''; });
+        c.mem.forEach(function (m) { m.style.transform = ''; m.style.transformOrigin = ''; });
         c.hb.classList.remove('jcd-tilting'); c.hb.style.removeProperty('--jcd-sx'); c.hb.style.removeProperty('--jcd-sy');
         return;
       }
@@ -111,8 +115,8 @@
         X0 = Math.min(X0, X); X1 = Math.max(X1, X); Y0 = Math.min(Y0, Y); Y1 = Math.max(Y1, Y);
       });
       var cx = -(X0 + X1) / 2, cy = -(Y0 + Y1) / 2;
-      var tf = 'translate(' + cx.toFixed(3) + 'px, ' + cy.toFixed(3) + 'px) perspective(' + PERSP + 'px) rotateX(' + c.rx.toFixed(3) + 'deg) rotateY(' + c.ry.toFixed(3) + 'deg) scale(' + c.s.toFixed(4) + ')';
-      c.mem.forEach(function (m) { m.style.transform = tf; });
+      var tf = ') perspective(' + PERSP + 'px) rotateX(' + c.rx.toFixed(3) + 'deg) rotateY(' + c.ry.toFixed(3) + 'deg) scale(' + c.s.toFixed(4) + ')';
+      c.mem.forEach(function (m) { m.style.transform = 'translate(' + cx.toFixed(3) + 'px, ' + cy.toFixed(3) + 'px' + tf; });
       c.hb.style.setProperty('--jcd-sx', c.sx.toFixed(1) + '%'); c.hb.style.setProperty('--jcd-sy', c.sy.toFixed(1) + '%');
       c.hb.style.setProperty('--jcd-sheen', inside ? '1' : '0');
     });
@@ -122,6 +126,10 @@
 
   function init() {
     build(); window.__jcdTilt = cards; if (!cards.length) return;
+    /* Every card part is its own compositor layer for the whole visit (never toggled): a layer paints sub-pixel
+       positions differently from normal painting (esp. at Windows 125%/150% scaling), so promoting it on hover and
+       dropping it after the ease-out made the card visibly jump (down) on leave. */
+    cards.forEach(function (c) { c.mem.forEach(function (m) { m.style.willChange = 'transform'; }); });
     document.addEventListener('pointermove', function (e) {
       if (e.pointerType && e.pointerType !== 'mouse' && e.pointerType !== 'pen') return;
       mx = e.clientX; my = e.clientY; kick();

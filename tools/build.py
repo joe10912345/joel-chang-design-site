@@ -25,7 +25,7 @@ BEHANCE_FIX = {
     'https://www.behance.net/portfolio/editor?project_id=91290285': 'https://www.behance.net/gallery/91290285/AIRMP',
     'https://www.behance.net/portfolio/editor?project_id=129479083': 'https://www.behance.net/gallery/129479083/Phantom-Lamp',
 }
-TILT_PAGES = {'defense', 'industrial', 'electronics', 'lifestyle', 'networking', 'experimental'}
+TILT_PAGES = {'defense', 'industrial', 'electronics', 'lifestyle', 'networking', 'experimental', 'about'}
 MISSING_SUBST = {'1e9c09_41de3ddba202445a81cf8c93c3e35bbb': 'assets/media/1e9c09_264a4186e7a2452da6a7e7137e00cd95_mv2_2560x1511_2df6d3ce.jpg'}
 
 def slug_of(u):
@@ -395,10 +395,37 @@ def build_page(mode, slug, pool):
         out = re.sub(r'(<head\b[^>]*>)', lambda m: m.group(1) + '\n' + GTAG, out, count=1)
     dest = os.path.join(SITE, me); os.makedirs(os.path.dirname(dest), exist_ok=True)
     for bad, good in BEHANCE_FIX.items(): out = out.replace(bad, good)
+    out = stamp_assets(out)
     open(dest, 'w', encoding='utf-8').write(out)
     return {'mode': mode, 'slug': slug, 'file': 'site/' + me, 'removed': removed, 'assets': len(urls), 'missing_imgs': missing_imgs, 'fill_imgs_fixed': len(full_bleed), 'hover_overlays': len(hover_injected), 'video_players': len(video_players), 'motion_rules_removed': sum(motion_removed), 'hero_slides_added': len(hero_added), 'works_links': len(works_links), 'lightbox_items': len(lightbox_items)}
 
+# Cache-busting: GitHub Pages serves files with max-age=600, so every local js/css under site/assets/ gets
+# ?v=<8-char content hash>; a changed file => new URL => browsers fetch it at once. Also usable on its own:
+#   python3 tools/build.py --stamp    (re-stamps every published HTML in site/ after editing a css/js by hand)
+ASSET_REF_RE = re.compile(r'(<(?:script|link)\b[^>]*?\b(?:src|href)=")((?:\.\./)*assets/[^"?#]+\.(?:js|css))(?:\?v=[0-9a-f]+)?(")')
+_ver_cache = {}
+def asset_ver(rel):
+    f = os.path.join(SITE, rel)
+    if f not in _ver_cache:
+        _ver_cache[f] = hashlib.md5(open(f, 'rb').read()).hexdigest()[:8] if os.path.exists(f) else None
+    return _ver_cache[f]
+def stamp_assets(out):
+    def rep(m):
+        v = asset_ver(re.sub(r'^(?:\.\./)+', '', m.group(2)))
+        return m.group(1) + m.group(2) + ('?v=' + v if v else '') + m.group(3)
+    return ASSET_REF_RE.sub(rep, out)
+def stamp_site():
+    n = 0
+    for root, dirs, files in os.walk(SITE):
+        for fn in files:
+            if not fn.endswith('.html'): continue
+            f = os.path.join(root, fn); t = open(f, encoding='utf-8').read(); t2 = stamp_assets(t)
+            if t2 != t: open(f, 'w', encoding='utf-8').write(t2); n += 1
+    return n
+
 if __name__ == '__main__':
+    if sys.argv[1:2] == ['--stamp']:
+        print('stamped', stamp_site()); sys.exit(0)
     modes = sys.argv[1].split(',') if len(sys.argv) > 1 else ['desktop','mobile']
     only = sys.argv[2].split(',') if len(sys.argv) > 2 else SLUGS
     report = []
