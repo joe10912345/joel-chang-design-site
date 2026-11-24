@@ -276,6 +276,7 @@
       var row = document.createElement('div'); row.className = 'jcd-menu-social';
       [].forEach.call(links, function (a) {
         var c = a.cloneNode(true); c.removeAttribute('id'); c.className = 'jcd-menu-social-a';
+        var im = c.querySelector('img'); if (im) c.style.setProperty('--jcd-mask', 'url("' + im.src + '")');   /* blue pressed copy */
         [].forEach.call(c.querySelectorAll('[id]'), function (n) { n.removeAttribute('id'); });
         row.appendChild(c);
       });
@@ -340,6 +341,57 @@
     function run() { centreBars(); }
     var go = function () { (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () { setTimeout(run, 50); }); };
     document.readyState === 'complete' ? go() : window.addEventListener('load', go);
+  })();
+  /* Page background (Joel 2026-11-24): if every top-level section is covered by its own opaque colour or image, the
+     page's white background layer can only show through seams (thin white lines) -> tag the page so CSS paints that
+     layer black. Pages with a transparent section (the light pages) keep Wix's white. Desktop, iPad and phone. */
+  (function () {
+    function alpha(c) { var m = (c || '').match(/[\d.]+/g); return !m ? 0 : (m.length > 3 ? +m[3] : 1); }
+    function classify() {
+      var open = 0;
+      [].forEach.call(document.querySelectorAll('#PAGES_CONTAINER section'), function (s) {
+        if (open || (s.parentElement && s.parentElement.closest('section'))) return;
+        var sr = s.getBoundingClientRect(); if (sr.height < 2) return;
+        var cands = [s].concat([].slice.call(s.querySelectorAll('section, div[id], [data-testid="colorUnderlay"], img, video, wow-image, wow-video, canvas')));
+        for (var i = 0; i < cands.length; i++) {
+          var e = cands[i], r = e.getBoundingClientRect();
+          if (r.width < sr.width * 0.97 || r.height < sr.height * 0.95) continue;
+          if (/^(IMG|VIDEO|CANVAS|WOW-IMAGE|WOW-VIDEO)$/.test(e.tagName)) return;
+          var cs = getComputedStyle(e);
+          if (alpha(cs.backgroundColor) >= 0.99 || cs.backgroundImage !== 'none') return;
+        }
+        open++;
+      });
+      document.documentElement.classList.toggle('jcd-dark-canvas', !open);
+    }
+    document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', classify) : classify();
+  })();
+
+  /* Category pages, desktop layout (computer + iPad): the white card frames were drawn ~15px left of centre in Wix
+     (titles are centred), so the left gap was smaller than the right. Every grid item that sits in a card row is
+     moved by the same amount so the frames are centred: equal space left and right (Joel 2026-11-24). */
+  (function () {
+    function centreCards() {
+      if (document.body.classList.contains('device-mobile-optimized') || !document.querySelector('.gpDCD5 .ih2JY1')) return;
+      var Z = window.__jcdZoom || 1, vw = document.documentElement.clientWidth;   /* both in screen px under the wide-screen zoom */
+      var frames = [].filter.call(document.querySelectorAll('#PAGES_CONTAINER .wixui-vector-image'), function (v) {
+        var r = v.getBoundingClientRect(); return r.width > vw * 0.6 && r.height > 40; });
+      if (!frames.length) return;
+      var rows = frames.map(function (v) { return v.getBoundingClientRect(); });
+      var mid = rows.reduce(function (a, r) { return a + (r.left + r.right) / 2; }, 0) / rows.length;
+      var d = (vw / 2 - mid) / Z;
+      if (Math.abs(d) < 2 || Math.abs(d) > 60) return;
+      [].forEach.call(document.querySelectorAll('#PAGES_CONTAINER [data-mesh-id$="inlineContent-gridContainer"] > [id]'), function (e) {
+        if (e.tagName === 'SECTION' || e.querySelector('section')) return;
+        var r = e.getBoundingClientRect(); if (!r.width) return;
+        var inRow = rows.some(function (f) { return r.top >= f.top - 2 && r.bottom <= f.bottom + 2 && r.left >= f.left - 4 && r.right <= f.right + 4; });
+        if (!inRow) return;
+        var cs = getComputedStyle(e); if (cs.position !== 'relative') return;
+        e.style.left = ((parseFloat(cs.left) || 0) + d).toFixed(2) + 'px';
+      });
+      window.dispatchEvent(new Event('resize'));   /* tilt.js / glow re-measure */
+    }
+    document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', centreCards) : centreCards();
   })();
   // iOS Safari only applies :active (pressed states) when a touchstart listener exists.
   document.addEventListener('touchstart', function () {}, { passive: true });

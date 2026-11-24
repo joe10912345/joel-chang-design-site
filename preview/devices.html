@@ -33,7 +33,7 @@
 <script>
 var SITE = 'http://localhost:8765';
 /* iPad: the desktop page laid out TW px wide and scaled to the iPad screen, as site.js does on real iPads. */
-var TW = +(new URLSearchParams(location.search).get('tw')) || 1366;   /* iPad layout width: keep equal to TABLET_W in site/assets/js/site.js */
+var TW = +(new URLSearchParams(location.search).get('tw')) || 1440;   /* iPad layout width: keep equal to TABLET_W in site/assets/js/site.js */
 var MODELS = {   /* portrait CSS px */
   air11: { name:'iPad Air 11 吋', w:820,  h:1180 },
   pro11: { name:'iPad Pro 11 吋', w:834,  h:1194 },
@@ -81,7 +81,8 @@ function build() {
     var box = document.createElement('div'); box.className = 'box';
     box.style.width = Math.round(v.w * s) + 'px'; box.style.height = Math.round(v.h * s) + 'px';
     var f = document.createElement('iframe');
-    f.width = v.w; f.height = v.h; f.style.transform = 'scale(' + s + ')';
+    /* real phones / iPads have overlay scrollbars: make the frame one scrollbar (15px) wider and clip it, so the scrollbar sits outside the box and does not narrow the page */
+    f.width = v.w + 15; f.height = v.h; f.style.transform = 'scale(' + s + ')';
     f.src = SITE + p + (p.indexOf('?') < 0 ? '?' : '&') + 'pv=' + Date.now();
     box.appendChild(f); wrap.appendChild(box); main.appendChild(wrap);
   });

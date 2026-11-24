@@ -7,9 +7,10 @@ Open items. When you finish one, move it to `CHANGELOG.md` with the date. Add ne
 - [ ] **Domain cutover**: point `www.joel-chang-design.com` at GitHub Pages (or Cloudflare in front). Keep `SITE_BASE` in `tools/siteconfig.py` as is. Then submit the sitemap in Google Search Console.
 - [ ] **Languages**: zh-hant / zh-cn / ar are built but not published (`i18n-archive/README.md` says how to publish). Note: they were built before the 11-24 changes, so rebuild before publishing.
 
-- [ ] **iPad on a real device**: tablet layout changed to 1366px wide (2026-11-24). Joel to check on a real iPad (portrait + landscape) once pushed; text in portrait is smaller than before (page scaled ~0.6).
+- [ ] **iPad on a real device**: tablet layout changed to 1440px wide (2026-11-24). Joel to check on a real iPad (portrait + landscape) once pushed; text in portrait is smaller than before (page scaled ~0.6).
 
 ## Known problems
+- [ ] Desktop windows narrower than ~1340px (e.g. a 1280px laptop window): the desktop layout is wider than the window and the category frames touch/cross the edges. Could shrink the page with CSS zoom below 1440 like the wide-screen zoom does above 1536.
 - [ ] Two images are broken on live Wix too (403): one on `wi-fi7-hgu-ap`, one on `electronics` (blank placeholders with `data-live-src-missing`). Need replacement images.
 - [ ] Site-wide social share image (og:image) is missing; needs a new one.
 - [ ] `/scope` is password-protected on Wix; the export is only the password gate.

@@ -200,7 +200,7 @@ html.jcd-light-on #SITE_HEADER [data-testid="colorUnderlay"] { background-image:
 html:has(> body.device-mobile-optimized), body.device-mobile-optimized { background-color: #000 !important; }
 .device-mobile-optimized #SITE_CONTAINER, .device-mobile-optimized #site-root, .device-mobile-optimized #masterPage { background-color: #000; }
 .device-mobile-optimized #SITE_FOOTER :is(.CmHRsG, .EaoiSu) { background-color: #000 !important; }
-.device-mobile-optimized [id^="bgLayers_pageBackground_"] .LNYVZi { background-color: #000 !important; }
+/* (removed 2026-11-24: painting every phone page background black turned the light pages (Wi-Fi 7 HGU/AP, MoAI ...) dark; see "Page background" at the end) */
 /* 2: white frames / lines at half thickness */
 .device-mobile-optimized .BprtEa { border-width: 1px !important; }
 .device-mobile-optimized .v9ZE1l { border-width: 1.5px !important; }
@@ -219,10 +219,10 @@ html:has(> body.device-mobile-optimized), body.device-mobile-optimized { backgro
 .device-mobile-optimized :is(#comp-mujj9yx82, #comp-mujj9yx9, #comp-mujn0kvg6, #comp-mujn0kvh5) :is(h1,h2,h3,h4,h5,h6,p,span) { font-size: 6px !important; line-height: normal !important; }
 /* 5: hamburger pressed state; logo blue copy uses the mobile logo file so its aspect matches */
 #MENU_AS_CONTAINER_TOGGLE, #SITE_HEADER a { -webkit-tap-highlight-color: transparent; }
-#MENU_AS_CONTAINER_TOGGLE { transition: transform .12s ease; outline: none; }
-#MENU_AS_CONTAINER_TOGGLE .jECeES { transition: background-color .12s ease; }
-#MENU_AS_CONTAINER_TOGGLE:active { transform: scale(.9); }
-#MENU_AS_CONTAINER_TOGGLE:active .jECeES { background-color: #4a90ff !important; }
+/* (2026-11-24 later) Joel: smaller icon, half-transparent at rest, pressed = full white (no longer blue); open (X) = white */
+#MENU_AS_CONTAINER_TOGGLE { transition: transform .12s ease, opacity .12s ease; outline: none; transform: scale(.78); opacity: .55; }
+#MENU_AS_CONTAINER_TOGGLE:active { transform: scale(.7); opacity: 1; }
+#MENU_AS_CONTAINER_TOGGLE.d0L2ow { opacity: 1; }
 .device-mobile-optimized :has(> #img_comp-m26ho7tp)::after { -webkit-mask-image: url("../media/1e9c09_96f6bcd5dbc9424296b269813bc29e19_mv2_300x38_3fb1d16b.png"); mask-image: url("../media/1e9c09_96f6bcd5dbc9424296b269813bc29e19_mv2_300x38_3fb1d16b.png"); }
 a:active:has(> #img_comp-m26ho7tp)::after, a:active :has(> #img_comp-m26ho7tp)::after { opacity: 1; }
 a:active #img_comp-m26ho7tp { opacity: 0 !important; }
@@ -268,5 +268,52 @@ body:not(.device-mobile-optimized) a:is(.style-mujxykae__root, .style-mp2gbz8a__
 
 /* ---------- No thin white lines between sections, every platform (Joel 2026-11-24) ----------
    The page canvas was transparent (= browser white). Whenever the page is scaled (wide-screen zoom, iPad, previews)
-   section edges land on half pixels and the white shows through as a hairline. Canvas black everywhere, like m/ already. */
-html, body, #site-root, #SITE_CONTAINER, #main_MF, #PAGES_CONTAINER, #SITE_PAGES, [data-testid="page-bg"] { background-color: #000 !important; }
+   section edges land on half pixels and the white shows through as a hairline. Browser canvas black everywhere, like m/ already. */
+html, body { background-color: #000 !important; }
+/* (fix, same day) NOT the Wix page layers: each page's own background (white on Wi-Fi 7 HGU/AP, MoAI ... ) lives in
+   [data-testid="page-bg"]; painting that black turned the light pages dark. */
+
+/* ---------- Home "End-to-End Expertise" slider on PHONE: overlay text sized for the small tiles (Joel 2026-11-24) ----------
+   The overlay markup came from the desktop hover (title 28px, text 12px, 30px padding) and overflowed the 149px phone
+   tiles. Tap shows it (site.js 5b, touch); darker so the text reads on any photo. iPad (desktop page, touch) keeps the
+   desktop sizes but gets the same darker overlay. */
+.device-mobile-optimized #pro-gallery-container-comp-mnfi6oqr .jcd-ov .gallery-item-hover { padding: 10px !important; }
+.device-mobile-optimized #pro-gallery-container-comp-mnfi6oqr .jcd-ov .hover-info-element { padding: 0 !important; }
+.device-mobile-optimized #pro-gallery-container-comp-mnfi6oqr .jcd-ov :is(.info-element-title, .info-element-title *) { font-size: 12px !important; line-height: 1.25 !important; }
+.device-mobile-optimized #pro-gallery-container-comp-mnfi6oqr .jcd-ov .info-element-title { margin-bottom: 4px !important; }
+.device-mobile-optimized #pro-gallery-container-comp-mnfi6oqr .jcd-ov :is(.info-element-description, .info-element-description *) { font-size: 8px !important; line-height: 1.4 !important; }
+.device-mobile-optimized #pro-gallery-container-comp-mnfi6oqr .jcd-ov .info-element-description { display: -webkit-box !important; -webkit-box-orient: vertical; -webkit-line-clamp: 7 !important; overflow: hidden !important; height: auto !important; }
+@media (hover: none) { #pro-gallery-container-comp-mnfi6oqr .jcd-ov .gallery-item-hover::before { background-color: rgba(0, 0, 0, .6) !important; } }
+
+/* ---------- Menus: pressed = blue + a small "press" (like the hamburger icon), every platform (Joel 2026-11-24) ---------- */
+/* phone menu items */
+#MENU_AS_CONTAINER_EXPANDABLE_MENU a { display: inline-block; -webkit-tap-highlight-color: transparent; transition: color .12s ease, transform .12s ease !important; }
+#MENU_AS_CONTAINER_EXPANDABLE_MENU a:active { color: #4a90ff !important; transform: scale(.92); }
+/* desktop / iPad top level (Works / About / Contact): already blue on hover, add the press */
+li[data-item-depth="0"] > div > a { -webkit-tap-highlight-color: transparent; transition: color .4s cubic-bezier(.22,.61,.36,1), transform .12s ease !important; }
+li[data-item-depth="0"] > div > a:active { transform: scale(.92); }
+li[data-item-depth="0"] > div > a:active, li[data-item-depth="0"] > div > a:active * { color: #4a90ff !important; }
+/* desktop / iPad Works dropdown (2nd level) */
+.itemDepth12472627565__root { -webkit-tap-highlight-color: transparent; }
+.itemDepth12472627565__label { display: inline-block; transition: color .12s ease, opacity .4s ease, transform .12s ease !important; }
+.itemDepth12472627565__root:active .itemDepth12472627565__label { color: #4a90ff !important; opacity: 1 !important; transform: scale(.92); }
+/* phone menu LinkedIn / Behance: pressed = blue copy of the icon (PNG used as mask; custom.js sets --jcd-mask) */
+.jcd-menu-social-a { position: relative; transition: transform .12s ease; }
+.jcd-menu-social-a::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: #4a90ff; opacity: 0; transition: opacity .12s ease;
+  -webkit-mask: var(--jcd-mask) center / contain no-repeat; mask: var(--jcd-mask) center / contain no-repeat; }
+.jcd-menu-social-a img { transition: opacity .12s ease; }
+.jcd-menu-social-a:active { opacity: 1 !important; transform: scale(.88); }
+.jcd-menu-social-a:active::after { opacity: 1; }
+.jcd-menu-social-a:active img { opacity: 0; }
+
+/* ---------- Phone menu layout (Joel 2026-11-24): the six product pages in a lighter weight, About / Contact moved down ---------- */
+#MENU_AS_CONTAINER_EXPANDABLE_MENU li:is([data-testid$="-1"], [data-testid$="-2"], [data-testid$="-3"], [data-testid$="-4"], [data-testid$="-5"], [data-testid$="-6"]) a {
+  font-family: wfont_459113_ebfb1394532347b3b7691d160bb35bd1, wf_ebfb1394532347b3b7691d160, orig_poppins_light, sans-serif !important; font-size: 15px !important; }
+#MENU_AS_CONTAINER_EXPANDABLE_MENU li[data-testid$="-7"] { margin-top: 26px !important; }
+
+/* ---------- Page background: light pages stay light, dark pages get no hairlines (Joel 2026-11-24) ----------
+   Wix paints every page's background layer white. On light pages (Wi-Fi 7 HGU/AP, MoAI, Extender, 2022, Airgain,
+   Lionic, AI Tool Kit, NLG MMA200, Sagittarius, Assistive) some sections are transparent and that white IS the page
+   colour. On the other pages every section covers itself, so the white only leaks through half-pixel seams as thin
+   lines. custom.js ("Page background") tags those fully-covered pages .jcd-dark-canvas -> background layer black. */
+.jcd-dark-canvas [id^="bgLayers_pageBackground_"] [data-testid="colorUnderlay"] { background-color: #000 !important; }

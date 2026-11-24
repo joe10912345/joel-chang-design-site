@@ -9,6 +9,14 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-24
 
+### Light pages white again; card frames centred; End-to-End tap overlay; menus
+- **Light pages were dark (regression)**: Wi-Fi 7 HGU/AP, MoAI, Extender, 2022, Airgain, Lionic, AI Tool Kit, NLG MMA200, Sagittarius, Assistive have transparent sections that show Wix's white page background. Two rules had painted that layer black: the phone "black canvas" rule from commit 8174d54 (`[id^="bgLayers_pageBackground_"] .LNYVZi`) and my earlier desktop hairline fix (`[data-testid="page-bg"]`). Both removed. Now `custom.js` ("Page background") checks each page: if every section covers itself, the page gets `.jcd-dark-canvas` and its background layer turns black (no white hairlines); pages with a transparent section keep Wix's white. Checked against joe10912345.wixsite.com/works.
+- **Category card frames centred** (desktop layout = computer + iPad): Wix drew them ~15px left of centre while the titles are centred. `custom.js` ("Category pages, desktop layout") moves the card-row items so frames have equal space left/right (1440: 78/78, 1920: 151/151). Phone frames were already 20/20.
+- **iPad layout width 1366 -> 1440** (`TABLET_W` in `site.js`) so the frames get ~50-78px breathing room instead of touching the edges.
+- **Home "End-to-End Expertise" slider**: tap on phone/iPad shows the dark overlay + text (already in site.js); on the phone the overlay text is now sized for the 149px tiles (title 12px, text 8px clamped to 7 lines, 10px padding) and the overlay is darker on touch (60%).
+- **Menus**: pressed = blue #4a90ff + small press-in on the phone menu items, desktop/iPad top level and the Works dropdown; phone menu LinkedIn/Behance turn blue when pressed. Phone menu: the six product pages in Poppins Light 15px, About/Contact moved down as their own group. Phone menu icon: smaller (0.78), half-transparent at rest, full white when pressed/open (was blue).
+- **Preview tool**: frames are one scrollbar wider and clipped, so the preview scrollbar no longer narrows the page (it made the phone pages look shifted right).
+
 ### Category title bars, section hairlines, phone Networking button
 - **Title bars** (Defense / Networking / Electronics / Lifestyle / Industrial / Experimental cards): the right-hand text sat up to ~5px too low (e.g. Lifestyle "Atmosphere & Daily Experience" touched the photo). `custom.js` ("Catalog title bars") now centres every text in a bar on the bar's middle (outline top .. photo top), desktop + iPad + phone. Checked all 6 pages at 1440 and 320 wide: every text within 0.5px of the centre.
 - **Thin white lines between sections**: the page canvas was transparent (browser white) and showed through half-pixel seams whenever the page is scaled. Canvas is now black on every platform (`custom.css`).
