@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-24
 
+### Home Works grid (12 tiles) on phone / iPad: dark overlay while pressing, one tap opens the project
+- Joel: the 12 Works tiles should darken under a finger like the desktop hover. `site.js` 5b: on touch, a finger resting on any Pro Gallery tile shows the desktop hover overlay (dark + title) after ~60ms; moving the finger (page scroll / slider swipe) cancels it. Tiles that are links (Works grid) now open their project in ONE tap (overlay shows while pressed); tiles without a link (End-to-End) keep the overlay after the tap.
+
 ### End-to-End: text appears while pressing (touch); Design Approach cards: no glow, only card 1 pressable
 - **Home "End-to-End Expertise" tiles, phone + iPad**: the dark overlay + text now appears as soon as a finger rests on a tile (~0.1s), not after the tap; a swipe through the slider does not trigger it. First tap still never follows a link. `site.js` 5b.
 - **Home "Design Approach" cards** (all platforms): the hover/tap glow is removed from all four. Cards 2-4 do nothing (no hover, no press, default cursor). Card 1 (01 DISCOVERY, with the ">>" arrow) is pressable: the whole card follows the arrow's link, and while pressed it pushes in (`scale(.985)`) with a brand-blue 1px outline. `custom.js` (start) + `custom.css` section 2.

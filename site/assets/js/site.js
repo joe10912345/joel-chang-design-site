@@ -148,17 +148,20 @@
       item.addEventListener('mouseenter', function () { if (!isTouch) show(); });
       item.addEventListener('mouseleave', function () { if (!isTouch) hide(); });
       item.addEventListener('focusin', show); item.addEventListener('focusout', hide);
-      /* Touch: the overlay appears as soon as a finger rests on the tile (Joel 2026-11-24: "while pressing", not after
-         the tap); a swipe (the slider) cancels it. The first tap still does not follow a link, the second does. */
-      var pressT = 0, justShown = false;
-      var touchShow = function () { if (!shown) { if (openItem && openItem !== hide) openItem(); show(); openItem = hide; justShown = true; } };
-      item.addEventListener('touchstart', function () { if (!isTouch) return; clearTimeout(pressT); pressT = setTimeout(touchShow, 90); }, { passive: true });
-      item.addEventListener('touchmove', function () { clearTimeout(pressT); }, { passive: true });
+      /* Touch (phone, iPad), Joel 2026-11-24: the overlay appears as soon as a finger rests on the tile, like the mouse
+         hover on desktop; moving the finger (scrolling the page / swiping the slider) cancels it.
+         - tiles that are links (home Works grid): one tap = dark overlay while pressed, then the link opens;
+         - tiles without a link (End-to-End slider): the overlay stays after the tap until another tile / elsewhere. */
+      var pressT = 0, isLink = !!item.closest('a[href]') || !!item.querySelector('a[href]');
+      var touchShow = function () { if (!shown) { if (openItem && openItem !== hide) openItem(); show(); openItem = hide; } };
+      item.addEventListener('touchstart', function () { if (!isTouch) return; clearTimeout(pressT); pressT = setTimeout(touchShow, 60); }, { passive: true });
+      item.addEventListener('touchmove', function () { clearTimeout(pressT); if (isLink) hide(); }, { passive: true });
+      item.addEventListener('touchcancel', function () { clearTimeout(pressT); if (isLink) hide(); }, { passive: true });
       item.addEventListener('click', function (e) {
         if (!isTouch) return;
         clearTimeout(pressT);
-        if (!shown || justShown) { e.preventDefault(); touchShow(); }
-        justShown = false;
+        if (isLink) { touchShow(); return; }            /* show it for the moment before the page changes, follow the link */
+        if (!shown) { e.preventDefault(); touchShow(); }
       }, true);
     });
     if (isTouch) document.addEventListener('click', function (e) { if (openItem && !(e.target.closest && e.target.closest('.gallery-item-container'))) { openItem(); openItem = null; } });
