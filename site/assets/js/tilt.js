@@ -10,7 +10,7 @@
   var mq = window.matchMedia;
   if (!mq || !mq('(hover: hover) and (pointer: fine)').matches || mq('(prefers-reduced-motion: reduce)').matches) return;
 
-  var MAX = 3, LIFT = 1.02, PERSP = 1100, EASE = 0.12;
+  var MAX = 1, LIFT = 1.02, PERSP = 1100, EASE = 0.12;
   var cards = [], mx = -1e6, my = -1e6, raf = 0;
 
   function strokeW(el) { return parseFloat(getComputedStyle(el).getPropertyValue('--stroke-width')) || 0; }
