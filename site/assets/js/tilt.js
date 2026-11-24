@@ -10,7 +10,7 @@
   var mq = window.matchMedia;
   if (!mq || !mq('(hover: hover) and (pointer: fine)').matches || mq('(prefers-reduced-motion: reduce)').matches) return;
 
-  var MAX = 1, LIFT = 1, PERSP = 1100, EASE = 0.12;
+  var MAX = 3, LIFT = 1, PERSP = 1100, EASE = 0.12;
   /* Size-aware: a corner of a wide card moves further than a small card's at the same angle, so each axis is scaled
      so its corner displacement (which grows with size squared under perspective) never exceeds a small card's (reference 412x310, the 3-across networking tiles) at MAX. */
   var REF_W = 412, REF_H = 310;
