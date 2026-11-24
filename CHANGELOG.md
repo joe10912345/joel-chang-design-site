@@ -7,6 +7,13 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ---
 
+## 2026-11-25
+
+### Wi-Fi 7 2022: new 4:3 top image (all three products visible)
+- Joel made a 4:3 version (2000x1500) of the three-product hero; now `site/assets/media/jcd_wi-fi7-2022-hero_4x3_2000x1500.jpg`, used by `wi-fi7-2022/index.html` and `m/wi-fi7-2022/index.html` (was the Wix 2028x1197 crop of a 2028x941 original). `object-position: 50% 62%`.
+- Checked (products + pedestals = image x 110-1845, y 650-1200): laptop, 1920, ultra-wide 3440, 4K, iPad landscape + portrait all show the full width and all three products. Phone (top image half the screen, ~0.92:1) still trims ~300px each side: the white and green units are partly cut — open question to Joel.
+- Hero image rule for Joel's new images: 4:3 canvas, products inside the middle ~55% height band, ideally 3840x2880 (2000px is fine but softer on 4K).
+
 ## 2026-11-24
 
 ### Cross-Category: white + dark towers tile -> Gaming Home Gateway
