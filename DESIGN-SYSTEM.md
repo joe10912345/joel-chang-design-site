@@ -62,7 +62,8 @@ Main headings: WORK EXPERIENCE, SELECTED AWARDS, EXPERTISE, TRUSTED COLLABORATIO
 
 Other rules
 - Phone page side margins: **20px** each side (equal) in the 320px layout.
-- Category card frames (desktop/iPad): centred, equal space left/right (`custom.js` "Category pages").
+- Category pages (desktop/iPad): white frames and the unframed tile rows share one left edge and are centred, equal space left/right (`custom.js` "Category pages").
+- About intro (desktop/iPad): text + portrait centred on the screen, at least 56px below the header (`custom.js` "About, desktop layout").
 - Catalog title bars: every text centred vertically on the bar (`custom.js` "Catalog title bars").
 - Content never touches the screen edge on iPad (that is why the iPad layout is 1440px wide).
 
@@ -90,7 +91,7 @@ Scripts measuring with `getBoundingClientRect` must divide by `window.__jcdZoom`
 
 ## 7. Motion
 
-- Recommendation card hover: two corner glows (blue top-left 300×200px, navy bottom-right), drifting 70px/22px along the edge, 5s alternate; centre stays black.
+- Recommendation card hover: two faint corner glows (blue top-left 300×200px at .28, navy bottom-right at .6), drifting 70px/22px along the edge, 5s alternate; centre stays black.
 - GET IN TOUCH (home): endless "balloon" breathing, scale 1 → 1.045 → 1, 2.8s; pauses on hover/press.
 - Ocean Series creature photos: dimmed 35% at rest; hover/tap = full brightness + the photo zooms 1.1 **inside its frame** (never covers text).
 - Category cards (desktop): 3D tilt following the mouse (`tilt.js`), max 3°.

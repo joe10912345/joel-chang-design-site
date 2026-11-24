@@ -389,9 +389,44 @@
     document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', classify) : classify();
   })();
 
-  /* Category pages, desktop layout (computer + iPad): the white card frames were drawn ~15px left of centre in Wix
-     (titles are centred), so the left gap was smaller than the right. Every grid item that sits in a card row is
-     moved by the same amount so the frames are centred: equal space left and right (Joel 2026-11-24). */
+  /* About, desktop layout (computer + iPad): the intro (text + portrait) sat ~140px below the middle of the screen
+     because Wix left a tall empty band above it. Move the whole first section's content up so the text + photo block
+     is centred on the screen, but never closer than 56px to the header; the section gets shorter by the same amount
+     so the rest of the page follows. Only ever moves up. Re-done on resize (window / zoom / iPad turning). (Joel 2026-11-24) */
+  (function () {
+    var applied = 0;
+    function centreIntro() {
+      if (document.body.classList.contains('device-mobile-optimized')) return;
+      var sec = document.querySelector('#PAGES_CONTAINER section');
+      if (!sec || !document.getElementById('comp-mujmtw8h') || !sec.contains(document.getElementById('comp-mujmtw8h'))) return;
+      var inner = sec.querySelector('[data-mesh-id$="inlineContent"]'); if (!inner) return;
+      var Z = window.__jcdZoom || 1;
+      inner.style.transform = ''; sec.style.marginBottom = ''; applied = 0;
+      var els = [].filter.call(sec.querySelectorAll('[data-testid="richTextElement"], .wixui-image'), function (e) {
+        var r = e.getBoundingClientRect(); return r.height > 5 && r.width > 5 && r.width < window.innerWidth * 0.9; });
+      if (!els.length) return;
+      var sy = window.scrollY, rs = els.map(function (e) { return e.getBoundingClientRect(); });
+      var top = Math.min.apply(null, rs.map(function (r) { return r.top + sy; })), bot = Math.max.apply(null, rs.map(function (r) { return r.bottom + sy; }));
+      var hdr = document.getElementById('SITE_HEADER'), hb = hdr ? hdr.getBoundingClientRect().bottom + sy : 0;
+      var vh = window.innerHeight, want = Math.max(hb + 56 * Z, (vh - (bot - top)) / 2);
+      var d = (top - want) / Z;                      /* CSS px to move up */
+      if (d < 2) return;
+      applied = d;
+      inner.style.transform = 'translateY(' + (-d).toFixed(1) + 'px)';
+      sec.style.marginBottom = (-d).toFixed(1) + 'px';
+    }
+    var t; function later() { clearTimeout(t); t = setTimeout(centreIntro, 120); }
+    var go = function () { (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () { setTimeout(centreIntro, 20); }); };
+    document.readyState === 'complete' ? go() : window.addEventListener('load', go);
+    window.addEventListener('resize', function () { if (!window.__jcdIntroBusy) later(); });
+  })();
+
+  /* Category pages, desktop layout (computer + iPad): the white card frames AND the photo tiles below them were drawn
+     ~15px left of centre in Wix (titles are centred), so the left gap was smaller than the right. Every top-level item
+     of a section that holds frames (big framed cards, the unframed tile rows below them, their captions) moves by the
+     same amount, so frames and tiles line up with each other and sit centred: equal space left and right.
+     Items that are already centred (page titles) or full width are left alone. (Joel 2026-11-24; second pass: the
+     first version only moved items inside a frame, so the unframed tiles no longer lined up with the frames.) */
   (function () {
     function centreCards() {
       if (document.body.classList.contains('device-mobile-optimized') || !document.querySelector('.gpDCD5 .ih2JY1')) return;
@@ -403,13 +438,17 @@
       var mid = rows.reduce(function (a, r) { return a + (r.left + r.right) / 2; }, 0) / rows.length;
       var d = (vw / 2 - mid) / Z;
       if (Math.abs(d) < 2 || Math.abs(d) > 60) return;
-      [].forEach.call(document.querySelectorAll('#PAGES_CONTAINER [data-mesh-id$="inlineContent-gridContainer"] > [id]'), function (e) {
-        if (e.tagName === 'SECTION' || e.querySelector('section')) return;
-        var r = e.getBoundingClientRect(); if (!r.width) return;
-        var inRow = rows.some(function (f) { return r.top >= f.top - 2 && r.bottom <= f.bottom + 2 && r.left >= f.left - 4 && r.right <= f.right + 4; });
-        if (!inRow) return;
-        var cs = getComputedStyle(e); if (cs.position !== 'relative') return;
-        e.style.left = ((parseFloat(cs.left) || 0) + d).toFixed(2) + 'px';
+      var secs = [];
+      frames.forEach(function (v) { var s = v.closest('section'); while (s && s.parentElement && s.parentElement.closest('section')) s = s.parentElement.closest('section'); if (s && secs.indexOf(s) < 0) secs.push(s); });
+      secs.forEach(function (sec) {
+        var grid = sec.querySelector('[data-mesh-id$="inlineContent-gridContainer"]'); if (!grid) return;
+        [].forEach.call(grid.children, function (e) {
+          if (!e.id || e.tagName === 'SECTION') return;
+          var r = e.getBoundingClientRect(); if (!r.width || r.width >= vw * 0.95) return;
+          if (Math.abs((r.left + r.right) / 2 - vw / 2) < 4) return;            /* already centred (titles) */
+          var cs = getComputedStyle(e); if (cs.position !== 'relative') return;
+          e.style.left = ((parseFloat(cs.left) || 0) + d).toFixed(2) + 'px';
+        });
       });
       window.dispatchEvent(new Event('resize'));   /* tilt.js / glow re-measure */
     }

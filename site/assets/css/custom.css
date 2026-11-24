@@ -377,8 +377,8 @@ button.style-mp6qabp3__root, button.style-mp6qabp3__root:is(:hover, :focus, :foc
 @property --jcd-gy { syntax: '<length>'; inherits: false; initial-value: 0px; }
 .jcd-rec-card::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0;
   background:
-    radial-gradient(300px 200px at var(--jcd-gx) var(--jcd-gy), rgba(var(--jcd-blue-rgb), .45), rgba(var(--jcd-blue-rgb), .14) 45%, transparent 75%),
-    radial-gradient(300px 200px at calc(100% - var(--jcd-gx)) calc(100% - var(--jcd-gy)), rgba(var(--jcd-navy-rgb), .85), rgba(var(--jcd-navy-rgb), .3) 45%, transparent 75%);
+    radial-gradient(300px 200px at var(--jcd-gx) var(--jcd-gy), rgba(var(--jcd-blue-rgb), .28), rgba(var(--jcd-blue-rgb), .08) 45%, transparent 75%),
+    radial-gradient(300px 200px at calc(100% - var(--jcd-gx)) calc(100% - var(--jcd-gy)), rgba(var(--jcd-navy-rgb), .6), rgba(var(--jcd-navy-rgb), .18) 45%, transparent 75%);
   transition: opacity .6s ease; }
 .jcd-rec-card:is(:hover, :focus-visible, :active)::before { opacity: 1; animation: jcdRecFlow 5s ease-in-out infinite alternate; }
 @keyframes jcdRecFlow { from { --jcd-gx: 0px; --jcd-gy: 0px; } to { --jcd-gx: 70px; --jcd-gy: 22px; } }

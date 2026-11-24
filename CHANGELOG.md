@@ -9,6 +9,11 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-24
 
+### Category frames + unframed tiles aligned; About intro centred on screen; card glows fainter
+- **Category pages (desktop/iPad)**: the first centring moved only items inside a white frame, so the unframed photo tiles below a big frame stayed ~15px left (e.g. Networking "Home-Based"). `custom.js` "Category pages" now moves every top-level item of each section that holds frames (framed cards, unframed tile rows, captions) by the same amount; centred titles and full-width items stay. Checked all 6 pages at 1440 / 1920: frames and tile rows share one left edge (77-79 / 156-159), equal left/right.
+- **About intro (desktop/iPad)**: text + portrait sat ~140px below the screen middle (tall empty band above). `custom.js` "About, desktop layout" moves the first section's content up so the block is centred on the screen, at least 56px under the header; the section shrinks by the same amount (rest of the page follows, WORK EXPERIENCE gap unchanged); recomputed on resize. 1536x864: 56px under the header; iPad landscape: exactly centred; ultra-wide: as high as allowed.
+- **Recommendation card hover glows**: fainter again (blue .45 -> .28, navy .85 -> .6).
+
 ### New colours #0062D9 / #00176C as design tokens; DESIGN-SYSTEM.md
 - Joel: blue -> **#0062D9**, blue-violet -> **#00176C**; also the cursor light, menu items and every pressed state that turns blue.
 - `custom.css` now starts with tokens `--jcd-blue` (#0062d9, `--jcd-blue-rgb`) and `--jcd-navy` (#00176c, `--jcd-navy-rgb`); every blue/violet in custom.css uses them (30 + 6 places): menu hover/press, dropdown press, phone menu press, logo/icon hover, phone menu LinkedIn/Behance, cursor light, Design Approach card glow, Cross-Category tile halo, Contact "sent" tick, recommendation quote/LinkedIn tile/top-left glow; navy for the recommendation bottom-right glow (alpha raised to .85 so the dark navy shows on black) and the avatar gradient end.
