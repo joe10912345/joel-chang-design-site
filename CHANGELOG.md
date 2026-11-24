@@ -10,8 +10,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 ## 2026-11-24
 
 ### Frosted-glass menus; About portrait frame
-- **Desktop / iPad "Works" dropdown**: was a flat 33% white box with black text -> lighter frosted glass (10% white, `backdrop-filter: blur(18px) saturate(140%)`, 1px 14%-white edge, 2px corners, soft shadow); labels white (78% at rest, white on hover / current page, blue pressed). `.submenu815198092__root` in `custom.css`.
+- **Desktop / iPad "Works" dropdown**: was a flat 33% white box with black text -> frosted glass. Second pass (Joel: text hard to read over light photos, bigger corners that scale): dark-tinted glass `rgba(18,20,26,.42)` + `blur(20px) saturate(150%)`, 1px 16%-white edge, **8px corners** (CSS px, so they scale with the wide-screen zoom / iPad scaling like the rest of the page), soft shadow; labels 90% white with a soft text shadow (70% while another item is hovered), white on hover / current page, blue pressed. `.submenu815198092__root` in `custom.css`.
 - **Phone full-screen menu**: was 85% black -> darker frosted glass (55% near-black + `blur(22px)`), the page behind shows blurred. `#bgLayers_MENU_AS_CONTAINER`.
+- **Phone About "What I Believe"**: text was 6px in the 320px layout (~7px on screen) -> 9.5px / line-height 1.55, title 11px -> 14px, 40px space below; the section grows with it (311 -> ~394px). Testimonial quotes above are still small (TODO).
 - **About portrait** (`#comp-mujmtw8h`): white 1px frame (looked thick on zoomed monitors) -> 0.5px grey (32% white), no white behind the photo. All platforms.
 
 ### External monitors: full width (wiwi) + top image exactly one screen high
