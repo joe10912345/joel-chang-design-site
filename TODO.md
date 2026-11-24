@@ -17,5 +17,5 @@ Open items. When you finish one, move it to `CHANGELOG.md` with the date. Add ne
 
 ## Workflow / housekeeping
 - [ ] `tools/build.py` and other export scripts use `/workspace/...` paths from the environment they were made in; they do not run on Joel's PC as-is. Today all edits are made directly in `site/`. Do NOT re-run `build.py` without checking: it would regenerate HTML from the raw Wix capture and could overwrite hand edits.
-- [ ] The Google Drive folder is not a git repo; it is synced to GitHub some other way. Confirm how, so every AI pushes the same way.
+- [ ] `reference/asset-sources.json` differs from GitHub (same files, different original-name URLs); unclear which is newer, left uncommitted.
 - [ ] README "Known limitations" should be kept in sync with this file.

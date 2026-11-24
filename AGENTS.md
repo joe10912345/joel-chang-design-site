@@ -11,3 +11,4 @@ Several AIs work on this site. To stay in sync:
 5b. Changes show on Joel's phone only after they are pushed to GitHub and Pages redeploys; say so when reporting a fix.
 6. Do not run `tools/build.py` without reading the warning in `TODO.md`.
 7. Joel writes in Traditional Chinese; reply in Traditional Chinese.
+8. This folder is a git clone of github.com/joe10912345/joel-chang-design-site (branch `main`; pushing deploys GitHub Pages). Before starting: `git pull`. After a change: commit with a clear message and push. Never commit the unused images in `site/assets/media/` that `git status` shows as untracked.
