@@ -353,7 +353,7 @@ li[data-item-depth="1"][aria-current="page"] .itemDepth12472627565__label { colo
 /* ---------- Phone About "What I Believe": text was 6px (about 7px on a phone screen) -> readable (Joel 2026-11-24) ---------- */
 .device-mobile-optimized #comp-mujq4ude6 :is(p, span) { font-size: 9.5px !important; line-height: 1.55 !important; }
 .device-mobile-optimized #comp-mujq4udg1 :is(h1, h2, h3, p, span) { font-size: 14px !important; }
-.device-mobile-optimized #comp-mujq4ude6 { height: auto !important; margin-bottom: 40px !important; }
+.device-mobile-optimized #comp-mujq4ude6 { height: auto !important; }   /* centred on its photo by custom.js (What I Believe) */
 
 /* ---------- Home "Works" row: "Selected" is a label, not a button (Joel 2026-11-24) ----------
    No frame (Wix drew a dark 1px box) and nothing happens on click/tap/hover. Desktop, iPad, phone. */
@@ -433,3 +433,10 @@ a.style-mp6zxgon__root:is(:hover, :focus-visible, :active) { animation-play-stat
 /* ---------- About: grid rows size to their content so heading spacing can be made equal (custom.js, Joel 2026-11-24) ---------- */
 .jcd-about-flow :is(#comp-mujj9yx18, #comp-mujj9yxj, #comp-mujk8qkl) [data-mesh-id$="inlineContent-gridContainer"] {
   grid-template-rows: none !important; grid-auto-rows: auto !important; min-height: 0 !important; height: auto !important; }
+
+/* ---------- Header: nothing in it can be selected or dragged (Joel 2026-11-24: pressing the logo left a light band
+   across the header = a text selection / drag ghost). All platforms. */
+#SITE_HEADER, #SITE_HEADER * { -webkit-user-select: none !important; user-select: none !important; -webkit-touch-callout: none; }
+#SITE_HEADER img, #SITE_HEADER a { -webkit-user-drag: none; user-drag: none; }
+#SITE_HEADER a:focus:not(:focus-visible) { outline: none !important; box-shadow: none !important; }
+#SITE_HEADER ::selection { background: transparent; }
