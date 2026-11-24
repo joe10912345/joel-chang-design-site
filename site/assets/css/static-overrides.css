@@ -85,3 +85,23 @@ body:not(.device-mobile-optimized) #comp-mng0xzlb  { width: 616px !important; he
 #bgMedia_comp-mujj9yyt { top: 0 !important; height: 100% !important; }
 #img_comp-mujj9yyt { position: absolute !important; top: 0 !important; left: 0; width: 100% !important; height: 100% !important; transform: none !important; }
 #img_comp-mujj9yyt img { width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: 50% 72% !important; }
+
+/* Header readability on light / white sections: a top-to-transparent dark veil behind the sticky
+   bar (white logo + Works/About/Contact + icons). Width is 100% of the header, not 100vw, so CSS
+   zoom on wide screens still spans the full layout. pointer-events:none so the 40px fade below
+   the bar does not block clicks. The veil is a ::before of #SITE_HEADER, so it slides away with
+   the bar when custom.js toggles .jcd-hidden (custom.css translates by calc(-100% - 40px) so
+   the extra 40px does not peek out). Header already has a stacking context (z-index 50/52);
+   z-index:-1 keeps the veil behind the logo and links. */
+#SITE_HEADER { overflow: visible !important; }
+#SITE_HEADER::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: calc(100% + 40px);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+  pointer-events: none;
+  z-index: -1;
+}

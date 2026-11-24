@@ -50,7 +50,7 @@ li[data-item-depth="1"][aria-current="page"] .itemDepth12472627565__label { colo
 
 /* ---------- 3. Header: hide on scroll down, show on scroll up (custom.js toggles .jcd-hidden) ---------- */
 #SITE_HEADER.jcd-autohide { transition: transform .3s ease, opacity .3s ease; will-change: transform; }
-#SITE_HEADER.jcd-autohide.jcd-hidden { transform: translateY(-100%); pointer-events: none; }
+#SITE_HEADER.jcd-autohide.jcd-hidden { transform: translateY(calc(-100% - 40px)); pointer-events: none; }
 @media (prefers-reduced-motion: reduce) { #SITE_HEADER.jcd-autohide { transition: none; } }
 
 /* ---------- 4. Cross-Category grid (home): dim blue glow behind each product tile on hover ---------- */
