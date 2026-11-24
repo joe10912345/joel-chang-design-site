@@ -357,12 +357,19 @@ button.style-mp6qabp3__root, button.style-mp6qabp3__root:is(:hover, :focus, :foc
 /* ---------- About "Trusted Collaboration": frosted-glass recommendation cards, style A1 (Joel 2026-11-24) ----------
    custom.js builds .jcd-rec inside #comp-mujk8qkl; the Wix pieces (quotes, names, lines) are hidden, the heading stays.
    Sizes are layout px: the desktop page (scaled by the wide-screen zoom / iPad) and the 320px phone page get their own.
-   The section is plain black, so a soft blue / violet glow sits behind the cards for the glass to blur. */
+   The cards sit straight on the black section (no glow layer behind them). */
 #comp-mujk8qkl.jcd-rec-on [data-mesh-id="comp-mujk8qklinlineContent-gridContainer"] > [id]:not(#comp-mujo1iy1) { display: none !important; }
 #comp-mujk8qkl.jcd-rec-on [data-mesh-id="comp-mujk8qklinlineContent-gridContainer"] { min-height: 0 !important; height: auto !important; grid-template-rows: auto !important; }   /* Wix fixed it at 1126px */
 .jcd-rec { position: relative; width: min(1220px, calc(100% - 80px)); margin: 36px auto 110px; isolation: isolate; }
-.jcd-rec::before { content: ""; position: absolute; inset: -60px -80px; z-index: -1; pointer-events: none;
-  background: radial-gradient(38% 45% at 12% 18%, rgba(40, 80, 170, .45), transparent 70%), radial-gradient(40% 50% at 92% 88%, rgba(110, 60, 220, .32), transparent 70%); }
+/* (later same day) Joel: no glow layer behind the cards; instead each card gets a slowly flowing blue (top-left) ->
+   blue-violet (bottom-right) gradient on hover (tap/press on touch). */
+.jcd-rec-card { isolation: isolate; overflow: hidden; }
+.jcd-rec-card::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0;
+  background: linear-gradient(135deg, rgba(40, 90, 200, .42) 0%, rgba(30, 50, 120, .12) 40%, rgba(70, 60, 190, .18) 65%, rgba(115, 65, 225, .4) 100%);
+  background-size: 220% 220%; background-position: 0% 0%; transition: opacity .6s ease; }
+.jcd-rec-card:is(:hover, :focus-visible, :active)::before { opacity: 1; animation: jcdRecFlow 6s ease-in-out infinite alternate; }
+@keyframes jcdRecFlow { from { background-position: 0% 0%; } to { background-position: 100% 100%; } }
+@media (prefers-reduced-motion: reduce) { .jcd-rec-card:is(:hover, :focus-visible, :active)::before { animation: none; } }
 .jcd-rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .jcd-rec-card { position: relative; display: flex; flex-direction: column; padding: 26px 26px 22px; color: inherit; text-decoration: none;
   background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .12); border-radius: 6px; box-shadow: 0 12px 40px rgba(0, 0, 0, .35);
@@ -387,7 +394,6 @@ button.style-mp6qabp3__root, button.style-mp6qabp3__root:is(:hover, :focus, :foc
 .jcd-rec-card:hover .jcd-rec-li, .jcd-rec-card:focus-visible .jcd-rec-li, .jcd-rec-card:active .jcd-rec-li { background: #4a90ff; border-color: #4a90ff; }
 /* phone (m/, 320px layout): one column, sizes for the small layout */
 .device-mobile-optimized .jcd-rec { width: calc(100% - 40px); margin: 22px auto 60px; }
-.device-mobile-optimized .jcd-rec::before { inset: -30px -20px; }
 .device-mobile-optimized .jcd-rec-grid { grid-template-columns: 1fr; gap: 10px; }
 .device-mobile-optimized .jcd-rec-card, .device-mobile-optimized .jcd-rec-card.feat { padding: 16px 15px 14px; }
 .device-mobile-optimized .jcd-rec-card:hover { transform: none; }
@@ -400,3 +406,11 @@ button.style-mp6qabp3__root, button.style-mp6qabp3__root:is(:hover, :focus, :foc
 .device-mobile-optimized .jcd-rec-rl { font-size: 8.5px; }
 .device-mobile-optimized .jcd-rec-li { width: 22px; height: 22px; }
 .device-mobile-optimized .jcd-rec-li svg { width: 11px; height: 11px; }
+
+/* ---------- Home "GET IN TOUCH": gentle endless balloon breathing (Joel 2026-11-24), desktop + iPad + phone ----------
+   Scales 1 -> 1.045 -> 1 every 2.8s with a soft ease (inflate, settle). Stops on hover/press so the click target is still,
+   and for visitors who prefer reduced motion. */
+a.style-mp6zxgon__root { transform-origin: 50% 50%; animation: jcdBalloon 2.8s cubic-bezier(.45, 0, .55, 1) infinite; will-change: transform; }
+a.style-mp6zxgon__root:is(:hover, :focus-visible, :active) { animation-play-state: paused; }
+@keyframes jcdBalloon { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.045); } }
+@media (prefers-reduced-motion: reduce) { a.style-mp6zxgon__root { animation: none; } }
