@@ -12,7 +12,7 @@ Last updated: 2026-11-24.
 
 | Token | Value | Use |
 |---|---|---|
-| `--jcd-blue` / `--jcd-blue-rgb` | **#0062D9** · rgb(0, 98, 217) | The one interactive blue: top-menu hover and press, dropdown press, phone-menu press, logo + LinkedIn/Behance icon hover, **every pressed state that turns blue**, cursor light, hover glows (Design Approach cards, Cross-Category tiles), recommendation quote mark + LinkedIn tile + top-left glow, Contact "sent" tick |
+| `--jcd-blue` / `--jcd-blue-rgb` | **#0062D9** · rgb(0, 98, 217) | The one interactive blue: top-menu hover and press, dropdown press, phone-menu press, logo + LinkedIn/Behance icon hover, **every pressed state that turns blue**, cursor light, hover glows (Cross-Category tiles), pressed outline (Design Approach card 1), recommendation quote mark + LinkedIn tile + top-left glow, Contact "sent" tick |
 | `--jcd-navy` / `--jcd-navy-rgb` | **#00176C** · rgb(0, 23, 108) | Deep blue-violet, second colour of gradients: recommendation card bottom-right glow, initials avatar gradient end |
 | Black | #000 | Page canvas (`html, body`), dark pages' background layer (`.jcd-dark-canvas`) |
 | White (page bg) | #fff | Light pages keep Wix's white page background (Wi-Fi 7 HGU/AP, MoAI, Extender, 2022, Airgain, Lionic, AI Tool Kit, NLG MMA200, Sagittarius, Assistive) — never paint it black |
@@ -87,6 +87,8 @@ Scripts measuring with `getBoundingClientRect` must divide by `window.__jcdZoom`
 | Press (all platforms) | Text → `--jcd-blue` + small press-in `scale(.92)` in .12s (menus, dropdown items, phone menu, menu icons); cards `scale(.99)` |
 | Touch | Every hover effect also on tap/press (`:hover` sticks after a tap, `:active` while pressed); iOS needs the touchstart listener in `custom.js` |
 | Labels that are not buttons | No frame, no hover, no click (home "Selected") |
+| Cards that are not links | No glow, no hover, no press, default cursor (Design Approach cards 2-4). Only a card with a destination is pressable (Design Approach card 1: press-in + blue outline) |
+| Touch reveal | Overlays that show on hover with a mouse show while a finger rests on the item (~0.1s), not after the tap; swiping never triggers them (End-to-End tiles) |
 | Reduced motion | Every looping or moving effect is switched off under `prefers-reduced-motion: reduce` |
 
 ## 7. Motion

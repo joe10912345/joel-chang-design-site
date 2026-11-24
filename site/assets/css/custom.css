@@ -30,29 +30,17 @@ ul:hover > li[data-item-depth="1"]:not(:hover) .itemDepth12472627565__label { op
 .itemDepth12472627565__root:focus-visible .itemDepth12472627565__label { color: #fff !important; opacity: 1; }
 li[data-item-depth="1"][aria-current="page"] .itemDepth12472627565__label { color: #fff !important; opacity: 1; }
 
-/* ---------- 2. Design Approach cards (home): hover glow ---------- */
-/* Cards are tagged .jcd-glow-card by custom.js. --gx/--gy follow the cursor. */
-.jcd-glow-card {
-  position: relative; isolation: isolate; border-radius: 2px;
-  transition: box-shadow .6s var(--jcd-ease), transform .6s var(--jcd-ease);
-}
-.jcd-glow-card::before {               /* inner radial light */
-  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; border-radius: inherit;
-  background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 40%),
-              rgba(var(--jcd-blue-rgb), .16), rgba(var(--jcd-blue-rgb), .05) 40%, transparent 70%);
-  opacity: 0; transition: opacity .6s var(--jcd-ease);
-}
-.jcd-glow-card::after {                /* glowing outline */
-  content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
-  box-shadow: inset 0 0 0 1px rgba(var(--jcd-blue-rgb), .55);
-  opacity: 0; transition: opacity .6s var(--jcd-ease);
-}
-.jcd-glow-card:hover, .jcd-glow-card.is-glow {
-  box-shadow: 0 0 28px rgba(var(--jcd-blue-rgb), .22), 0 0 2px rgba(var(--jcd-blue-rgb), .5);
-}
-.jcd-glow-card:hover::before, .jcd-glow-card.is-glow::before,
-.jcd-glow-card:hover::after,  .jcd-glow-card.is-glow::after { opacity: 1; }
-@media (prefers-reduced-motion: reduce) { .jcd-glow-card, .jcd-glow-card::before, .jcd-glow-card::after { transition: none; } }
+/* ---------- 2. Design Approach cards (home) ---------- */
+/* Joel 2026-11-24: no glow, no hover/press on the cards, except card 1 (with the ">>" arrow): custom.js tags it
+   .jcd-da-link; pressing it (anywhere, or on the arrow) pushes it in slightly with a brand-blue outline. */
+.jcd-da-card { -webkit-tap-highlight-color: transparent; }
+.jcd-da-card:not(.jcd-da-link) { cursor: default; }
+.jcd-da-link { cursor: pointer; transition: transform .12s ease; }
+.jcd-da-link::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: 2px;
+  box-shadow: inset 0 0 0 1px var(--jcd-blue); opacity: 0; transition: opacity .12s ease; }
+.jcd-da-link:active, .jcd-da-link.is-pressed { transform: scale(.985); }
+.jcd-da-link:active::after, .jcd-da-link.is-pressed::after, .jcd-da-link:focus-visible::after { opacity: 1; }
+.jcd-da-link:focus { outline: none; }
 
 /* ---------- 3. Header: hide on scroll down, show on scroll up (custom.js toggles .jcd-hidden) ---------- */
 #SITE_HEADER.jcd-autohide { transition: transform .3s ease, opacity .3s ease; will-change: transform; }

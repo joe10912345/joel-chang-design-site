@@ -9,6 +9,10 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-24
 
+### End-to-End: text appears while pressing (touch); Design Approach cards: no glow, only card 1 pressable
+- **Home "End-to-End Expertise" tiles, phone + iPad**: the dark overlay + text now appears as soon as a finger rests on a tile (~0.1s), not after the tap; a swipe through the slider does not trigger it. First tap still never follows a link. `site.js` 5b.
+- **Home "Design Approach" cards** (all platforms): the hover/tap glow is removed from all four. Cards 2-4 do nothing (no hover, no press, default cursor). Card 1 (01 DISCOVERY, with the ">>" arrow) is pressable: the whole card follows the arrow's link, and while pressed it pushes in (`scale(.985)`) with a brand-blue 1px outline. `custom.js` (start) + `custom.css` section 2.
+
 ### "What I Believe" centred on its photo; header can't be selected / dragged
 - **About "What I Believe"** (all platforms): title + text block now sits on the vertical centre of its photo section (`custom.js` "What I Believe", moves #comp-mujq4udg1 / #comp-mujq4ude6 with `top`, redone on resize). Was 27px low on the phone, 35px high on desktop/iPad; now equal space above/below (desktop/iPad 271/271, phone 52/52). The phone's extra 40px bottom margin was removed.
 - **Pressing the logo left a light band across the header** (Joel, not reproduced at 1348px): most likely a text selection / drag ghost of the header. The header and everything in it are now not selectable and not draggable (`user-select: none`, `draggable=false`, no selection colour, no mouse-focus outline), all platforms. To confirm by Joel on his monitor.

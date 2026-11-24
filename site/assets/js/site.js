@@ -148,10 +148,17 @@
       item.addEventListener('mouseenter', function () { if (!isTouch) show(); });
       item.addEventListener('mouseleave', function () { if (!isTouch) hide(); });
       item.addEventListener('focusin', show); item.addEventListener('focusout', hide);
-      /* Touch: first tap shows the overlay (like Wix on touch devices), second tap follows the link if any. */
+      /* Touch: the overlay appears as soon as a finger rests on the tile (Joel 2026-11-24: "while pressing", not after
+         the tap); a swipe (the slider) cancels it. The first tap still does not follow a link, the second does. */
+      var pressT = 0, justShown = false;
+      var touchShow = function () { if (!shown) { if (openItem && openItem !== hide) openItem(); show(); openItem = hide; justShown = true; } };
+      item.addEventListener('touchstart', function () { if (!isTouch) return; clearTimeout(pressT); pressT = setTimeout(touchShow, 90); }, { passive: true });
+      item.addEventListener('touchmove', function () { clearTimeout(pressT); }, { passive: true });
       item.addEventListener('click', function (e) {
         if (!isTouch) return;
-        if (!shown) { e.preventDefault(); if (openItem && openItem !== hide) openItem(); show(); openItem = hide; }
+        clearTimeout(pressT);
+        if (!shown || justShown) { e.preventDefault(); touchShow(); }
+        justShown = false;
       }, true);
     });
     if (isTouch) document.addEventListener('click', function (e) { if (openItem && !(e.target.closest && e.target.closest('.gallery-item-container'))) { openItem(); openItem = null; } });
