@@ -41,7 +41,7 @@
     var LINKS = {
       'comp-mv7qmnmm': [   /* Consumer Tech / Smart Home / Lifestyle & Wearable */
         ['interstellar05/index.html', 'Gaming PC Interstellar 05'], ['zenfone-9/index.html', 'Zenfone 9 Concept'], ['sagittarius-laptop/index.html', 'Laptop Sagittarius'],
-        ['wi-fi7-2022/index.html', 'Wi-Fi 7 2022 concept'], ['wi-fi7-hgu-ap/index.html', 'Wi-Fi 7 Dual-Band AP'], ['wi-fi7-2022/index.html', 'Wi-Fi 7 2022 concept'],
+        ['wi-fi7-gaming-home-gateway/index.html', 'Wi-Fi 7 Gaming Home Gateway'], ['wi-fi7-hgu-ap/index.html', 'Wi-Fi 7 Dual-Band AP'], ['wi-fi7-2022/index.html', 'Wi-Fi 7 2022 concept'],
         ['https://www.behance.net/gallery/124322077/Smoky-Tree', 'Humidifier Smoky Tree'], ['https://www.behance.net/gallery/91290285/AIRMP', 'Plant X Dehumidifier AIRMP'], ['speeder-pro-earbuds/index.html', 'Earbuds Speeder Pro']
       ],
       'comp-mv7qmnmr': [   /* Professional Equipment / Enterprise Solutions / Complex Systems */

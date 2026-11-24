@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-24
 
+### Cross-Category: white + dark towers tile -> Gaming Home Gateway
+- Joel: the left grid's row 2 / column 1 tile (white and dark towers in the purple room) links to `wi-fi7-gaming-home-gateway` (was Wi-Fi 7 2022). The green fabric tower (row 2 / column 3) stays on Wi-Fi 7 2022.
+
 ### iPad portrait: top image half the screen
 - Joel: iPad upright should not be full screen, half is enough. `custom.js` "Top image height": any portrait screen on the desktop page (iPad upright — also when an iPad with a trackpad is detected as a computer — or a portrait monitor) = 50% of the screen height; landscape (computers, iPad sideways) stays one screen; phone stays 50%. Checked home + MoAI: iPad portrait 50% (both detections), iPad landscape / laptop 100%, phone 50%.
 
