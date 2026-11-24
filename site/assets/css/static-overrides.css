@@ -78,3 +78,10 @@ body:not(.device-mobile-optimized) #comp-mnpoa76b  { width: 616px !important; he
 body:not(.device-mobile-optimized) #comp-mnpoa76g  { width: 616px !important; height: 366px !important; }
 body:not(.device-mobile-optimized) #comp-mng0xzle  { width: 616px !important; height: 366px !important; }
 body:not(.device-mobile-optimized) #comp-mng0xzlb  { width: 616px !important; height: 366px !important; translate: -1px 0; }
+
+/* About > 'What I Believe': Wix showed the photo as a fixed (sticky, viewport-sized) background, so while the
+   section scrolls up you only see the TOP of the photo (ceiling) and Joel - in the lower-left of the picture - is
+   cut off. Make the background scroll with the section and frame it on the people (x 50%, y 72%). */
+#bgMedia_comp-mujj9yyt { top: 0 !important; height: 100% !important; }
+#img_comp-mujj9yyt { position: absolute !important; top: 0 !important; left: 0; width: 100% !important; height: 100% !important; transform: none !important; }
+#img_comp-mujj9yyt img { width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: 50% 72% !important; }
