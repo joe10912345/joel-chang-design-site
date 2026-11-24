@@ -110,3 +110,11 @@ body:not(.device-mobile-optimized) #comp-mng0xzlb  { width: 616px !important; he
   pointer-events: none;
   z-index: -1;
 }
+
+/* Wi-Fi 7 Gaming Home Gateway > "Aerodynamic Concept" (Joel 2026-11-24): the photo (product left, car right) was a
+   sticky, screen-sized background, so on tall screens it was scaled up and the product and the car were cut off at the
+   sides. The photo now covers just its section: the desktop section is always wider than the photo's 16:10, so the full
+   width shows (product + car) on every screen; only black sky/floor is trimmed. No clipping on the media box (Safari). */
+#bgMedia_comp-m5v68a5z2 { top: 0 !important; height: 100% !important; overflow: visible !important; }
+#img_comp-m5v68a5z2 { position: absolute !important; top: 0 !important; left: 0; width: 100% !important; height: 100% !important; transform: none !important; }
+#img_comp-m5v68a5z2 img { width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: 50% 58% !important; }

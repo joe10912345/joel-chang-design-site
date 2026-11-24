@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-24
 
+### Gaming Home Gateway "Aerodynamic Concept": product and car always visible
+- Joel: on every device/resolution the product (left) and the car (right) must show. The photo was a sticky, screen-sized Wix background (`#img_comp-m5v68a5z2`, box = screen height inside a 2478px media strip), so on tall screens it was scaled up and both ends were cut. Now the photo covers only its section (`static-overrides.css`): full photo width on every screen (checked laptop, 1920, ultra-wide, 4K, iPad portrait/landscape: 100% width, 91% height shown, only black top/bottom trimmed; phone already showed the whole photo). Section height unchanged (750px layout); no clipping on the media box (Safari).
+
 ### Cross-Category tiles link to product pages; hidden light section colour (phone hairline); iPad "What I Believe" photo
 - **Home Cross-Category (18 tiles)**: each tile with a product page is now a link (`custom.js` `LINKS`, 9 per image, row by row): Interstellar 05, Zenfone 9, Sagittarius, Wi-Fi 7 2022 (x2), Wi-Fi 7 HGU/AP, Smoky Tree + AIRMP (Behance, new tab, as on the Lifestyle/Electronics pages), Speeder Pro, LionFilter 200, NLG MMA 200, T. Interceptor MP, T. Blade, MoAI, Airgain kit. The 3 tiles without a page (Advantech AIM 20 accessories, Gemtek X-Cell, Nichicon remote) have no hotspot: no lift, no glow, no link. Phone links go to the phone pages. Touch: lift/glow while the finger is down, one tap opens; scrolling cancels.
 - **Thin white line under "EXPERTISE" on real phones** (not visible in the preview, whose frame lands on whole pixels): the About work/awards section `#comp-mujj9yx016` had a hidden light colour rgb(246,246,246) under its black layer, leaking through the sub-pixel seam. `custom.js` "Page background" now gives any section whose light colour is fully covered by a dark layer that dark colour (also NLG MMA 200 hero).
