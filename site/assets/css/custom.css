@@ -11,7 +11,7 @@
 /* Hovered top item turns blue (Joel 2026-11-24); others stay pure white, no dimming */
 li[data-item-depth="0"] > div > a, li[data-item-depth="0"] > div > a * { transition: color .4s cubic-bezier(.22,.61,.36,1) !important; }
 li[data-item-depth="0"]:hover > div > a, li[data-item-depth="0"]:hover > div > a *,
-li[data-item-depth="0"][data-hovered] > div > a, li[data-item-depth="0"][data-hovered] > div > a * { color: #4a90ff !important; }
+li[data-item-depth="0"][data-hovered] > div > a, li[data-item-depth="0"][data-hovered] > div > a * { color: #1a2df3 !important; }
 
 /* Works dropdown items: no background box (Joel 2026-11-23). Items sit slightly dimmed and go to full
    white on hover with a gentle 0.4s ease; the others dim further. Current page stays full white. */
@@ -159,13 +159,14 @@ html.jcd-light-on #SITE_HEADER [data-testid="colorUnderlay"] { background-image:
   clip: rect(0, 0, 0, 0) !important; clip-path: inset(50%) !important;
   white-space: nowrap !important; border: 0 !important; }
 
-/* ---------- Header logo + header AND footer LinkedIn / Behance icons turn the menu-hover blue (#4a90ff) on hover (Joel 2026-11-24) ----------
+/* ---------- Header logo + header AND footer LinkedIn / Behance icons turn the menu-hover blue on hover (Joel 2026-11-24) ----------
+   Menu / dropdown / logo / icons / recommendation-card blue = #1a2df3, the blue of the Contact form lines on hover (Joel, later the same day; was #4a90ff).
    They are white PNGs (the <img> itself carries the id), so a blue copy is drawn on the img's wrapper with the same
    PNG as a mask (exact colour) and cross-faded in over 0.2s. */
 :has(> :is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto)) { position: relative; }
 :is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto) { transition: opacity .2s ease; }
 :has(> :is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto))::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none; background: #4a90ff; opacity: 0; transition: opacity .2s ease;
+  content: ""; position: absolute; inset: 0; pointer-events: none; background: #1a2df3; opacity: 0; transition: opacity .2s ease;
   -webkit-mask-position: center; mask-position: center; -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
 :has(> #img_comp-m26ho7tp)::after { -webkit-mask-image: url("../media/1e9c09_96f6bcd5dbc9424296b269813bc29e19_mv2_504x84_1723430a.png"); mask-image: url("../media/1e9c09_96f6bcd5dbc9424296b269813bc29e19_mv2_504x84_1723430a.png"); }
@@ -288,18 +289,18 @@ html, body { background-color: #000 !important; }
 /* ---------- Menus: pressed = blue + a small "press" (like the hamburger icon), every platform (Joel 2026-11-24) ---------- */
 /* phone menu items */
 #MENU_AS_CONTAINER_EXPANDABLE_MENU a { display: inline-block; -webkit-tap-highlight-color: transparent; transition: color .12s ease, transform .12s ease !important; }
-#MENU_AS_CONTAINER_EXPANDABLE_MENU a:active { color: #4a90ff !important; transform: scale(.92); }
+#MENU_AS_CONTAINER_EXPANDABLE_MENU a:active { color: #1a2df3 !important; transform: scale(.92); }
 /* desktop / iPad top level (Works / About / Contact): already blue on hover, add the press */
 li[data-item-depth="0"] > div > a { -webkit-tap-highlight-color: transparent; transition: color .4s cubic-bezier(.22,.61,.36,1), transform .12s ease !important; }
 li[data-item-depth="0"] > div > a:active { transform: scale(.92); }
-li[data-item-depth="0"] > div > a:active, li[data-item-depth="0"] > div > a:active * { color: #4a90ff !important; }
+li[data-item-depth="0"] > div > a:active, li[data-item-depth="0"] > div > a:active * { color: #1a2df3 !important; }
 /* desktop / iPad Works dropdown (2nd level) */
 .itemDepth12472627565__root { -webkit-tap-highlight-color: transparent; }
 .itemDepth12472627565__label { display: inline-block; transition: color .12s ease, opacity .4s ease, transform .12s ease !important; }
-.itemDepth12472627565__root:active .itemDepth12472627565__label { color: #4a90ff !important; opacity: 1 !important; transform: scale(.92); }
+.itemDepth12472627565__root:active .itemDepth12472627565__label { color: #1a2df3 !important; opacity: 1 !important; transform: scale(.92); }
 /* phone menu LinkedIn / Behance: pressed = blue copy of the icon (PNG used as mask; custom.js sets --jcd-mask) */
 .jcd-menu-social-a { position: relative; transition: transform .12s ease; }
-.jcd-menu-social-a::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: #4a90ff; opacity: 0; transition: opacity .12s ease;
+.jcd-menu-social-a::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: #1a2df3; opacity: 0; transition: opacity .12s ease;
   -webkit-mask: var(--jcd-mask) center / contain no-repeat; mask: var(--jcd-mask) center / contain no-repeat; }
 .jcd-menu-social-a img { transition: opacity .12s ease; }
 .jcd-menu-social-a:active { opacity: 1 !important; transform: scale(.88); }
@@ -334,7 +335,7 @@ li[data-item-depth="0"] > div > a:active, li[data-item-depth="0"] > div > a:acti
 ul:hover > li[data-item-depth="1"]:not(:hover) .itemDepth12472627565__label { opacity: .7 !important; }
 .itemDepth12472627565__root:hover .itemDepth12472627565__label,
 li[data-item-depth="1"][aria-current="page"] .itemDepth12472627565__label { color: #fff !important; }
-.itemDepth12472627565__root:active .itemDepth12472627565__label { color: #4a90ff !important; }
+.itemDepth12472627565__root:active .itemDepth12472627565__label { color: #1a2df3 !important; }
 #bgLayers_MENU_AS_CONTAINER { -webkit-backdrop-filter: blur(22px) saturate(140%); backdrop-filter: blur(22px) saturate(140%); }
 #bgLayers_MENU_AS_CONTAINER [data-testid="colorUnderlay"] { background-color: rgba(8, 9, 12, .55) !important; }
 
@@ -370,7 +371,7 @@ button.style-mp6qabp3__root, button.style-mp6qabp3__root:is(:hover, :focus, :foc
 @property --jcd-gy { syntax: '<length>'; inherits: false; initial-value: 0px; }
 .jcd-rec-card::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0;
   background:
-    radial-gradient(300px 200px at var(--jcd-gx) var(--jcd-gy), rgba(40, 110, 255, .7), rgba(40, 110, 255, .22) 45%, transparent 75%),
+    radial-gradient(300px 200px at var(--jcd-gx) var(--jcd-gy), rgba(26, 45, 243, .8), rgba(26, 45, 243, .25) 45%, transparent 75%),
     radial-gradient(300px 200px at calc(100% - var(--jcd-gx)) calc(100% - var(--jcd-gy)), rgba(125, 60, 255, .7), rgba(125, 60, 255, .22) 45%, transparent 75%);
   transition: opacity .6s ease; }
 .jcd-rec-card:is(:hover, :focus-visible, :active)::before { opacity: 1; animation: jcdRecFlow 5s ease-in-out infinite alternate; }
@@ -384,20 +385,20 @@ button.style-mp6qabp3__root, button.style-mp6qabp3__root:is(:hover, :focus, :foc
 .jcd-rec-card.feat { grid-column: 1 / -1; padding: 34px 36px 28px; }
 .jcd-rec-card:hover, .jcd-rec-card:focus-visible { transform: translateY(-4px); border-color: rgba(255, 255, 255, .26); background-color: rgba(255, 255, 255, .09); outline: none; }
 .jcd-rec-card.has-link:active { transform: translateY(-1px) scale(.99); }
-.jcd-rec-q { display: block; height: 22px; font: 44px/.6 Georgia, "Times New Roman", serif; color: #4a90ff; }
+.jcd-rec-q { display: block; height: 22px; font: 44px/.6 Georgia, "Times New Roman", serif; color: #1a2df3; }
 .jcd-rec-txt { margin: 10px 0 0; font: 14px/1.65 wfont_459113_ebfb1394532347b3b7691d160bb35bd1, wf_ebfb1394532347b3b7691d160, orig_poppins_light, sans-serif; color: rgba(255, 255, 255, .82); }
 .jcd-rec-card.feat .jcd-rec-txt { font-size: 17px; line-height: 1.6; color: rgba(255, 255, 255, .9); max-width: 860px; }
 .jcd-rec-who { display: flex; align-items: center; gap: 12px; margin-top: auto; padding-top: 18px; }
 .jcd-rec-ava { width: 38px; height: 38px; border-radius: 50%; flex: none; display: grid; place-items: center; color: #fff;
   font: 13px wfont_3f090f_fbe2048d9f994d8c8d5073ed8164a33e, wf_fbe2048d9f994d8c8d5073ed8, orig_poppins_medium, sans-serif;
-  background: linear-gradient(135deg, rgba(74, 144, 255, .55), rgba(123, 77, 255, .45)); border: 1px solid rgba(255, 255, 255, .25); }
+  background: linear-gradient(135deg, rgba(26, 45, 243, .75), rgba(123, 77, 255, .5)); border: 1px solid rgba(255, 255, 255, .25); }
 .jcd-rec-nm { font: 15px/1.2 wfont_459113_5846594cb6ea4f43b8e132f9d1a29629, wf_5846594cb6ea4f43b8e132f9d, orig_poppins_semibold, sans-serif; color: #fff; }
 .jcd-rec-rl { margin-top: 3px; font: 11.5px/1.45 wfont_459113_ebfb1394532347b3b7691d160bb35bd1, wf_ebfb1394532347b3b7691d160, orig_poppins_light, sans-serif; color: rgba(255, 255, 255, .5); }
 .jcd-rec-rl i { color: rgba(255, 255, 255, .38); }
 .jcd-rec-li { width: 28px; height: 28px; margin-left: auto; flex: none; display: grid; place-items: center; border-radius: 4px; color: #fff;
   background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .18); transition: background-color .25s, border-color .25s; }
 .jcd-rec-li svg { width: 14px; height: 14px; fill: currentColor; }
-.jcd-rec-card:hover .jcd-rec-li, .jcd-rec-card:focus-visible .jcd-rec-li, .jcd-rec-card:active .jcd-rec-li { background: #4a90ff; border-color: #4a90ff; }
+.jcd-rec-card:hover .jcd-rec-li, .jcd-rec-card:focus-visible .jcd-rec-li, .jcd-rec-card:active .jcd-rec-li { background: #1a2df3; border-color: #1a2df3; }
 /* phone (m/, 320px layout): one column, sizes for the small layout */
 .device-mobile-optimized .jcd-rec { width: calc(100% - 40px); margin: 22px auto 60px; }
 .device-mobile-optimized .jcd-rec-grid { grid-template-columns: 1fr; gap: 10px; }
