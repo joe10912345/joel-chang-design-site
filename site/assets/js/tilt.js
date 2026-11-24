@@ -99,7 +99,19 @@
         return;
       }
       busy = true;
-      var tf = 'perspective(' + PERSP + 'px) rotateX(' + c.rx.toFixed(3) + 'deg) rotateY(' + c.ry.toFixed(3) + 'deg) scale(' + c.s.toFixed(4) + ')';
+      /* Perspective makes a tilted card's projected outline drift: tipping the top away moves BOTH the top edge
+         (shrinks toward the centre) and the bottom edge (grows) downward, so the card looked like it slid down.
+         Project the 4 corners exactly as CSS does and move the result back so the outline stays centred in place. */
+      var hw = (c.box.r - c.box.l) / 2 * c.s, hh = (c.box.b - c.box.t) / 2 * c.s, ax = c.rx * Math.PI / 180, ay = c.ry * Math.PI / 180;
+      var X0 = 1e9, X1 = -1e9, Y0 = 1e9, Y1 = -1e9;
+      [[-hw, -hh], [hw, -hh], [hw, hh], [-hw, hh]].forEach(function (q) {
+        var x1 = q[0] * Math.cos(ay), z1 = -q[0] * Math.sin(ay);                       /* rotateY */
+        var y2 = q[1] * Math.cos(ax) - z1 * Math.sin(ax), z2 = q[1] * Math.sin(ax) + z1 * Math.cos(ax);   /* rotateX */
+        var w = 1 - z2 / PERSP, X = x1 / w, Y = y2 / w;                               /* perspective */
+        X0 = Math.min(X0, X); X1 = Math.max(X1, X); Y0 = Math.min(Y0, Y); Y1 = Math.max(Y1, Y);
+      });
+      var cx = -(X0 + X1) / 2, cy = -(Y0 + Y1) / 2;
+      var tf = 'translate(' + cx.toFixed(3) + 'px, ' + cy.toFixed(3) + 'px) perspective(' + PERSP + 'px) rotateX(' + c.rx.toFixed(3) + 'deg) rotateY(' + c.ry.toFixed(3) + 'deg) scale(' + c.s.toFixed(4) + ')';
       c.mem.forEach(function (m) { m.style.transform = tf; });
       c.hb.style.setProperty('--jcd-sx', c.sx.toFixed(1) + '%'); c.hb.style.setProperty('--jcd-sy', c.sy.toFixed(1) + '%');
       c.hb.style.setProperty('--jcd-sheen', inside ? '1' : '0');
