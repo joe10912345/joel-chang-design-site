@@ -339,7 +339,11 @@
         if (phone && hero.h0 > 320) { hero = false; return; }      /* phone heroes are short (Wix 136-231px) */
       }
       if (!hero) return;
+      /* Joel 2026-11-24: any PORTRAIT screen on the desktop page (iPad upright — also when an iPad with a trackpad is
+         detected as a computer — or a portrait monitor) = half the screen, never full screen; landscape = one screen. */
+      var portrait = !phone && window.innerHeight > window.innerWidth;
       var h = phone ? '50svh'
+        : portrait ? 'calc(50svh / ' + Z + ')'
         : padLand ? (hero.top ? 'calc(100svh - ' + hero.top + 'px)' : '100svh')
         : pc ? 'calc(100svh / ' + Z + ' - ' + (hero.top / Z).toFixed(1) + 'px)'
         : '';

@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-24
 
+### iPad portrait: top image half the screen
+- Joel: iPad upright should not be full screen, half is enough. `custom.js` "Top image height": any portrait screen on the desktop page (iPad upright — also when an iPad with a trackpad is detected as a computer — or a portrait monitor) = 50% of the screen height; landscape (computers, iPad sideways) stays one screen; phone stays 50%. Checked home + MoAI: iPad portrait 50% (both detections), iPad landscape / laptop 100%, phone 50%.
+
 ### White block behind the header when clicking menu items quickly
 - Joel: pressing a menu item (e.g. Contact) several times quickly showed a white block filling the header area. Each click reloads the page; for a moment before `custom.js` runs, the Wix page background layer (white) showed behind the header. Dark pages now carry `class="jcd-dark-canvas"` on `<html>` in the HTML itself (52 files: 26 pages x desktop + phone), so the background is black from the first paint; the 10 light pages (20 files) keep Wix's white. The JS check stays as a backup.
 

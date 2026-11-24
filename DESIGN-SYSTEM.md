@@ -76,7 +76,7 @@ Other rules
 | Computer ≤ 1536px | desktop page | 1:1 (Joel's laptop: 1920 @125% = 1536) |
 | Computer > 1536px (1920, 2560, 3440 ultra-wide, 3840 4K) | desktop page | CSS zoom = width / 1536 (`window.__jcdZoom`) → always full width |
 
-Top image ("hero", home slideshow + product pages): phone **50% of the screen height**; iPad landscape and computers **exactly one screen** (`100svh`, divided by `__jcdZoom` on computers); iPad portrait keeps the Wix height.
+Top image ("hero", home slideshow + product pages): phone **50% of the screen height**; any portrait screen on the desktop page (iPad upright) **50%**; landscape (computers, iPad sideways) **exactly one screen** (`100svh`, divided by `__jcdZoom` on computers).
 Scripts measuring with `getBoundingClientRect` must divide by `window.__jcdZoom` before writing CSS px.
 Background photos: never leave `overflow: clip/hidden` on a Wix `bgMedia_*` box that sits outside its section (iPad Safari hides the photo); sticky screen-sized Wix backgrounds crop products on tall screens — pin them to their section instead (About "What I Believe", Gaming gateway "Aerodynamic Concept").
 
