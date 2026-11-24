@@ -10,7 +10,7 @@
   var mq = window.matchMedia;
   if (!mq || !mq('(hover: hover) and (pointer: fine)').matches || mq('(prefers-reduced-motion: reduce)').matches) return;
 
-  var MAX = 7, LIFT = 1.02, PERSP = 1100, EASE = 0.12;
+  var MAX = 3, LIFT = 1.02, PERSP = 1100, EASE = 0.12;
   var cards = [], mx = -1e6, my = -1e6, raf = 0;
 
   function strokeW(el) { return parseFloat(getComputedStyle(el).getPropertyValue('--stroke-width')) || 0; }
@@ -20,6 +20,11 @@
   }
   function build() {
     var vecs = [].slice.call(document.querySelectorAll('.wixui-vector-image')).filter(function (v) { return strokeW(v) > 0; });
+    var cand = [], all = [].slice.call(document.querySelectorAll('[id^="comp-"]'));
+    /* header / anything fixed or sticky never belongs to a card even when it happens to overlap one */
+    var pinned = [].slice.call(document.querySelectorAll('header, #SITE_HEADER, [id^="comp-"]')).filter(function (e) {
+      var ps = getComputedStyle(e).position; return e.tagName === 'HEADER' || e.id === 'SITE_HEADER' || ps === 'fixed' || ps === 'sticky'; });
+    all = all.filter(function (e) { return !pinned.some(function (f) { return f.contains(e); }); });
     [].slice.call(document.querySelectorAll('.gpDCD5')).forEach(function (hb) {
       var ph = hb.querySelector('.ih2JY1'); if (!ph) return;
       var im = ph.getBoundingClientRect();
@@ -27,20 +32,27 @@
         if (hb.contains(v)) return false; var f = v.getBoundingClientRect();
         return f.top <= im.top + 3 && f.bottom >= im.bottom - 3 && Math.abs(f.left - im.left) < 6 && Math.abs(f.right - im.right) < 6;
       });
-      var a = hb.parentElement;
-      while (a && !frames.every(function (f) { return a.contains(f); })) a = a.parentElement;
-      if (!a) return;
-      var mem = [];
-      [].slice.call(a.children).forEach(function (k) { if (k.contains(hb)) mem.push(k); });
-      if (frames.length) {
-        var fr = frames.map(function (f) { return f.getBoundingClientRect(); });
-        var L = Math.min.apply(0, fr.map(function (r) { return r.left; })), T = Math.min.apply(0, fr.map(function (r) { return r.top; })),
-            R = Math.max.apply(0, fr.map(function (r) { return r.right; })), B = Math.max.apply(0, fr.map(function (r) { return r.bottom; }));
-        [].slice.call(a.children).forEach(function (k) {
-          if (mem.indexOf(k) >= 0) return; var q = k.getBoundingClientRect();
-          if (q.width > 0 && q.left >= L - 2 && q.right <= R + 2 && q.top >= T - 2 && q.bottom <= B + 2) mem.push(k);
-        });
-      }
+      /* The card = the area of its white outline(s) (or just the photo tile when it has none). EVERY element whose
+         box lies inside that area belongs to the card - title text, title bar, secondary photos, captions, >> -
+         found geometrically, keeping only the outermost ones (a container inside the card carries its children). */
+      var L = im.left, T = im.top, R = im.right, B = im.bottom;
+      frames.forEach(function (f) { var q = f.getBoundingClientRect();
+        L = Math.min(L, q.left); T = Math.min(T, q.top); R = Math.max(R, q.right); B = Math.max(B, q.bottom); });
+      var hbr = hb.getBoundingClientRect();
+      L = Math.min(L, hbr.left) - 2; T = Math.min(T, hbr.top) - 2; R = Math.max(R, hbr.right) + 2; B = Math.max(B, hbr.bottom) + 2;
+      var inBox = all.filter(function (e) {
+        var q = e.getBoundingClientRect();
+        return q.width > 0 && q.height > 0 && q.left >= L && q.right <= R && q.top >= T && q.bottom <= B;
+      });
+      var mem = inBox.filter(function (e) { return !inBox.some(function (o) { return o !== e && o.contains(e); }); });
+      if (!mem.some(function (m) { return m.contains(hb); })) return;
+      cand.push({ area: (R - L) * (B - T), hb: hb, mem: mem });
+      return;
+    });
+    /* biggest card first: a photo tile nested inside a bigger card's outline tilts with that card, not alone */
+    cand.sort(function (x, y) { return y.area - x.area; }).forEach(function (c) {
+      var hb = c.hb, mem = c.mem;
+      if (cards.some(function (o) { return o.mem.some(function (m) { return mem.some(function (n) { return m === n || m.contains(n) || n.contains(m); }); }); })) return;
       cards.push({ hb: hb, mem: mem, rx: 0, ry: 0, s: 1, tx: 0, ty: 0, ts: 1, sx: 50, sy: 50, on: false, live: false, box: null });
     });
   }
@@ -93,7 +105,7 @@
   function kick() { if (!raf) raf = requestAnimationFrame(step); }
 
   function init() {
-    build(); if (!cards.length) return;
+    build(); window.__jcdTilt = cards; if (!cards.length) return;
     document.addEventListener('pointermove', function (e) {
       if (e.pointerType && e.pointerType !== 'mouse' && e.pointerType !== 'pen') return;
       mx = e.clientX; my = e.clientY; kick();
