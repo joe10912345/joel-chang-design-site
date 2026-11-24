@@ -1,0 +1,158 @@
+# Joel Chang Design — full summary
+
+> Longer source-text companion to https://www.joel-chang-design.com/llms.txt. All wording is taken from the site.
+
+## About
+
+Tzu-I Chang (Joel Chang) is a Taiwanese industrial designer based in St. Louis, Missouri. Specializing in bridging design vision with engineering feasibility to drive complex hardware from concept to mass production.
+
+Currently Principal Industrial Designer at Tron Future Tech (remote), he has successfully launched 8+ products across networking, defense products, and drone systems. His career began at Gemtek, where he rebuilt the in-house product design language and custom design for global telecom partners. He transitioned into the defense technology sector, refining brand identity and product design to strike a perfect balance between aesthetic distinction, engineering challenges, and reliable manufacturing. Rooted in close collaboration with international clients, R&D, and Asian suppliers, he aligns user needs, product vision, and production constraints early on. He translates complex requirements into clear, memorable, Use-Friendly, and highly manufacturable solutions, bringing a strong foundation in DFM, UX, CMF, and brand identity, backed by extensive hands-on manufacturing experience.
+
+## Projects
+
+### AI Tool Kit
+URL: https://www.joel-chang-design.com/ai-tool-kit
+Integrating AI into the industrial design workflow since 2022.
+Since 2022, I have deeply integrated AI into my design workflow. From early-stage conceptual ideation and complex parametric design to high-fidelity contextual synthesis and stylistic layout, AI has become a core part of my workflow. The implementation of these technologies not only optimizes development efficiency but also empowers me to elevate both the visual and physical quality of my work to new heights with absolute precision.
+
+### Airgain FWA Easy Installation Kit
+URL: https://www.joel-chang-design.com/airgain-fwa-easy-installation-kit
+An outdoor antenna installation solution: simpler installation, seamless connectivity.
+Designed with user experience at its core, this innovative outdoor antenna installation solution combines aesthetics, usability, and functionality. Featuring an installation support net and a quick-release structure, it enables effortless operation when searching for the best signal, significantly simplifying the installation process. Crafted with durable materials and optimized for stability, it delivers an intuitive and reliable user experience. Dramatically improving installation efficiency and reducing hassle, especially in complex environments, this product redefines the standards for outdoor antenna installations.
+
+### Assistive products for children with dysarthria
+URL: https://www.joel-chang-design.com/assistive-products
+Lightweight, modular training aids for children’s oral-muscle and speech exercises.
+Children’s dysarthria training aids are designed to support oral muscle training through exercises tailored to different speech sounds and their related muscle movements. These functions are integrated into a modular training system that can be used during therapist-guided sessions and continued at home with parents, reducing the need to prepare separate props and creating a more consistent training experience for children.
+
+### Geometry Series
+URL: https://www.joel-chang-design.com/geometry-series
+Gemtek ID family: designed with order, built for modern living.
+As Gemtek’s second complete product family after the Ocean Series, the Geometry Series extends our design exploration into the 5G and Coax product lines. With the experience gained from developing a unified family language, we turned to architecture and contemporary interiors as the foundation for this series. Through careful studies of form, proportion, surface rhythm, material contrast, and refined detailing, we aimed to create products that feel composed, sophisticated, and naturally integrated into modern homes.
+
+### Interstellar 05
+URL: https://www.joel-chang-design.com/interstellar05
+An esports PC chassis concept shaped with futuristic minimalism.
+Interstellar 05 is an esports PC chassis design proposal inspired by the visual tension and mechanical presence of sci-fi starfighters. The design translates a sense of speed, combat readiness, and structural stability into a bold aluminum enclosure, using geometric cut lines, angled surfaces, and layered volumes to create a powerful yet refined silhouette.
+
+### JCG Tough Welding
+URL: https://www.joel-chang-design.com/jcg-tough-welding
+A cyberpunk-inspired welding machine concept for NLG’s design challenge.
+This project was designed for NLG, an electric welding machine company, with a Cyberpunk-inspired theme. I’m grateful to the client for providing such a fascinating concept, which allowed me to explore bold and creative designs during the early stages. Although this design was ultimately not selected due to cost considerations, I successfully completed the project with enthusiasm and dedication.
+
+### Lionic LionFilter 200
+URL: https://www.joel-chang-design.com/lionic-lionfilter-200
+A next-generation firewall designed from concept to delivery.
+A collaboration with Lionic to design their next-generation firewall product, carrying forward the brand's established design language. The project spanned the full end-to-end process — from initial concept proposals through to mass production and successful delivery. Throughout the development, close coordination with in-house mechanical engineers was essential to preserve the client's signature design elements: the distinctive rounded corners and stainless steel base — a deliberate departure from the sharp-edged metal boxes typical of the industry.
+
+### MoAI Router
+URL: https://www.joel-chang-design.com/moai-router
+A Wi-Fi 7 AI healthcare router — technology that feels human.
+The Dr.AI MoAI Router is an innovative Wi-Fi 7 AI solution designed to assist users in managing their health more effectively. By integrating an AI Avatar for medical pre-assessment, it reduces documentation workloads for healthcare providers by automatically transcribing patient interactions into structured SOAP notes. This project highlights a balance of high-end product aesthetics and functional reliability in the smart healthcare sector.
+
+### NLG MMA200 / MMA120
+URL: https://www.joel-chang-design.com/nlg-mma200
+Welding-machine exterior redesign balancing aesthetics and feasibility.
+Niagamas Lestari Gemilang is an industrial machinery company based in Indonesia. I provided exterior redesign services for their DAIDEN brand for the Japanese market. The original product featured a metal sheet exterior, and I focused on redesigning only the front panel with a plastic material while retaining all other metal components. This design approach not only modernized the product's appearance but also successfully reduced production costs for the client. Moreover, the new plastic front panel enhanced the product's visual identity and brand presence, further strengthening its competitiveness in the Japanese market.
+
+### Ocean Series
+URL: https://www.joel-chang-design.com/ocean-series
+A story-driven ID family for Gemtek’s Wi-Fi 7 portfolio.
+Gemtek is launching a new series of Generic Wi-Fi 7 product lines. We are committed to engaging with our clients and showcasing our industrial design capabilities through creativity and storytelling. For our 2023 products, we are aligning with international environmental trends (ESG) by using PCR (Post-Consumer Recycled) plastic materials and introducing a user-centered design approach as a new starting point. Each product is like a piece of art, embodying our designers' passion for the ocean and commitment to environmental sustainability.
+
+### Parametric Pattern Design
+URL: https://www.joel-chang-design.com/parametric-pattern-design
+Experimental Rhino Grasshopper studies of parametric holes and surfaces.
+This was an experimental project I explored during my spare time at work, using Rhino Grasshopper to study parametric hole design and surface transformations. This technique can be directly applied to future design needs, enhancing both innovation and feasibility.
+
+### SAGITTARIUS Laptop
+URL: https://www.joel-chang-design.com/sagittarius-laptop
+Stay Professional. Stay Sharp. Stay Yourself — a business laptop concept.
+Business laptop is designed to be "safe." In trying not to offend anyone, it ends up looking like everyone else. Every meeting is a row of identical silver lids: dependable, yet completely forgettable.
+
+### T. SCOPE
+URL: https://www.joel-chang-design.com/scope
+An AI-assisted scope system for target prediction (password-protected page on the original Wix site).
+This page is password-protected on the live Wix site (Wix “賓客區 / 請在下面輸入密碼” guest-area gate, page id jkb7g). The protected body was not exported. The static files keep the password-gate layout so the Defense page’s T. SCOPE link will not 404 after the domain cutover.
+
+### Speeder Pro Earbuds
+URL: https://www.joel-chang-design.com/speeder-pro-earbuds
+High-performance gaming earphones with high-speed, zero-delay connection.
+The Speeder Pro is a high-performance gaming earphone equipped with advanced high-speed connection technology, ensuring a seamless gaming experience with zero sound delay. Its design features a frosted glass panel as the centerpiece, complemented by a reflective bite-effect logo beneath it. The product aims to strike a balance between subtle sophistication and an aggressive, bold aesthetic.
+
+### T. Blade
+URL: https://www.joel-chang-design.com/t-blade
+An autonomous AI-powered reconnaissance drone for long-range mission awareness.
+Designed for extended-range missions, T. Blade is an autonomous reconnaissance drone concept focused on aerial observation, area monitoring, and real-time intelligence gathering. Its lightweight, streamlined architecture supports agile deployment while enabling stable and efficient performance across complex operational environments.
+
+### T. Interceptor CS
+URL: https://www.joel-chang-design.com/t-interceptor-cs
+Autonomous swarm interception for safer, more secure airspace.
+T. Interceptor CS is an autonomous interception drone system developed to protect sensitive sites, key facilities, and controlled airspace from illegal drone intrusion. Working in combination with Tron Future’s radar, the system detects aerial threats in real time and automatically dispatches interceptor units to respond. With AI-powered autonomy and swarm-based teamwork, the drones coordinate in flight to track and intercept unauthorized targets with speed, precision, and flexibility. The result is a scalable aerial defense solution that reduces response time, lowers operator workload, and strengthens overall site security.
+
+### T. Interceptor MP
+URL: https://www.joel-chang-design.com/t-interceptormp
+An autonomous AI-powered drone guarding airspace with speed and agility.
+As drone threats grow more prevalent, T.Interceptor MP is a multi-functional defense system built for urban security and critical infrastructure protection. It integrates AI image recognition, modular design, and cloud communication to perform real-time detection, monitoring, and interception in complex environments.
+
+### TEANA Earbuds
+URL: https://www.joel-chang-design.com/teana-earbuds
+A CMF exploration of luxury earbuds in Morandi colors for women aged 25–35.
+The Teana earbuds feature a simple yet luxurious design, targeting women aged 25–35. For its CMF (Color, Material, Finish), Morandi colors—known for their trendy and versatile appeal—were selected, making it easy to pair with various outfits. The speaker hole is crafted from stainless steel for durability and aesthetic quality. In terms of ergonomics, a side hook was added to the shell to ensure a secure fit within the ear.
+
+### Wi-Fi 7 Gateway 2022
+URL: https://www.joel-chang-design.com/wi-fi7-2022
+Gemtek’s first-generation Wi-Fi 7 routers: three identities, designed for the way you live.
+This was the second major project I took on after joining Gemtek, and a defining milestone. As the Wi-Fi 7 era arrived in 2022, I was entrusted with designing the company's first generation of Wi-Fi 7 routers, spanning three distinct lifestyle scenarios and market positions. These products needed to represent a breakthrough in Gemtek's design capabilities and command the spotlight at investor presentations and international exhibitions. My design approach is rooted in storytelling and emotional connection, built upon consumer research and market trends — a designer is not just a stylist, but a creator of emotional resonance with the user. I am proud to have brought my design expertise and insight to this project.
+
+### Wi-Fi 7 Extender
+URL: https://www.joel-chang-design.com/wi-fi7-extender
+Organic, biomimetic aesthetics in an ultra-compact Wi-Fi 7 extender.
+The Wi-Fi 7 extender introduces a distinctive biomimetic design language that creates a highly memorable visual identity. The primary challenge was maintaining this unique organic silhouette while meeting strict user experience and thermal requirements within an ultra-compact form factor. By navigating complex trade-offs in assembly mechanisms and heat dissipation alongside ME and thermal engineering teams, I successfully preserved the core ID concept. The project culminated in a successful partnership and deployment with a prominent Italian networking brand.
+
+### Wi-Fi 7 Gaming Home Gateway
+URL: https://www.joel-chang-design.com/wi-fi7-gaming-home-gateway
+Gemtek’s Wi-Fi 7 flagship: shaping performance into product identity.
+As Gemtek’s first flagship model for the Wi-Fi 7 generation and a key product for overseas launch, this project needed to communicate more than a technical upgrade. It had to make next-generation performance visible through a distinctive and memorable product presence.
+
+### Wi-Fi 7 HGU/AP
+URL: https://www.joel-chang-design.com/wi-fi7-hgu-ap
+A router design drawn from the organic elegance of sea anemones.
+To break free from the conventional boxy router design, I turned to the elegant, undulating forms of marine life for inspiration. Drawn from the sea anemone, this design introduces an eye-catching curvilinear silhouette and a signature "slim waist." By stripping away unnecessary decorative details, the result is a minimalist yet unforgettable, sculptural piece. Beyond aesthetics, the form is deeply rooted in UX principles — a thoughtfully arranged rear I/O layout makes the connection process intuitive for users, without compromising its vase-like elegance.
+
+### ASUS Zenfone 9
+URL: https://www.joel-chang-design.com/zenfone-9
+A smartphone CMF concept inspired by stage lighting, performance, and emotional contrast.
+Zenfone 9 CMF Concept explores how color, light, and surface finish can create a stronger emotional identity for a compact smartphone. Inspired by the atmosphere of live performances, the design transforms shifting stage lights, backstage shadows, and energetic visual rhythm into a refined color and material strategy.
+
+## Categories
+
+### Defense
+URL: https://www.joel-chang-design.com/defense
+Site-security hardware for detecting and responding to unauthorized drone activity.
+
+### Networking
+URL: https://www.joel-chang-design.com/networking
+Routers, gateways, extenders, firewalls, and ID families for telecom and enterprise.
+
+### Electronics
+URL: https://www.joel-chang-design.com/electronics
+Laptops, esports PCs, smartphones, and earbuds.
+
+### Industrial
+URL: https://www.joel-chang-design.com/industrial
+Welding machines, power tools, and business hardware accessories.
+
+### Lifestyle
+URL: https://www.joel-chang-design.com/lifestyle
+Lamps, humidifiers, and experimental lifestyle objects.
+
+### Experimental
+URL: https://www.joel-chang-design.com/experimental
+AI design tools, parametric pattern studies, and assistive devices.
+
+## Contact
+
+Email: joe10912345@gmail.com
+Behance: https://www.behance.net/joe10912345
+LinkedIn: https://www.linkedin.com/in/joel-chang

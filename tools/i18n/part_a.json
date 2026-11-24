@@ -1,0 +1,1238 @@
+{
+ "密碼": [
+  "密碼",
+  "كلمة المرور"
+ ],
+ "硬焊": [
+  "硬焊",
+  "硬焊"
+ ],
+ "網址": [
+  "網址",
+  "الرابط"
+ ],
+ "開始": [
+  "開始",
+  "ابدأ"
+ ],
+ "關閉": [
+  "關閉",
+  "إغلاق"
+ ],
+ "賓客區": [
+  "賓客區",
+  "منطقة الضيوف"
+ ],
+ "播放影片": [
+  "播放影片",
+  "تشغيل الفيديو"
+ ],
+ "社交工具列": [
+  "社交工具列",
+  "شريط التواصل الاجتماعي"
+ ],
+ "播放文字遮罩": [
+  "播放文字遮罩",
+  "تشغيل قناع النص"
+ ],
+ "跳到主要內容": [
+  "跳到主要內容",
+  "تخطّي إلى المحتوى الرئيسي"
+ ],
+ "開啟導覽選單": [
+  "開啟導覽選單",
+  "فتح قائمة التنقل"
+ ],
+ "內容在浮動時改變": [
+  "內容在浮動時改變",
+  "يتغيّر المحتوى عند التحويم"
+ ],
+ "請在下面輸入密碼。": [
+  "請在下面輸入密碼。",
+  "يُرجى إدخال كلمة المرور أدناه."
+ ],
+ "社交工�具列": [
+  "社交工具列",
+  "شريط التواصل الاجتماعي"
+ ],
+ "社交工��具列": [
+  "社交工具列",
+  "شريط التواصل الاجتماعي"
+ ],
+ "Works": [
+  "作品",
+  "الأعمال"
+ ],
+ "About": [
+  "關於",
+  "نبذة"
+ ],
+ "Contact": [
+  "聯絡",
+  "تواصل"
+ ],
+ "CONTACT": [
+  "聯絡",
+  "تواصل"
+ ],
+ "Defense": [
+  "防衛",
+  "الدفاع"
+ ],
+ "Networking": [
+  "網路設備",
+  "الشبكات"
+ ],
+ "Electronics": [
+  "電子產品",
+  "الإلكترونيات"
+ ],
+ "Lifestyle": [
+  "生活風格",
+  "أسلوب الحياة"
+ ],
+ "Industrial": [
+  "工業",
+  "الصناعي"
+ ],
+ "​Industrial": [
+  "工業",
+  "الصناعي"
+ ],
+ "Experimental": [
+  "實驗性創作",
+  "تجريبي"
+ ],
+ "Home": [
+  "首頁",
+  "الرئيسية"
+ ],
+ "Scope": [
+  "Scope",
+  "Scope"
+ ],
+ "Selected": [
+  "精選",
+  "مختار"
+ ],
+ "Toggle Works": [
+  "切換作品選單",
+  "إظهار قائمة الأعمال"
+ ],
+ "top of page": [
+  "回到頁首",
+  "أعلى الصفحة"
+ ],
+ "bottom of page": [
+  "到頁尾",
+  "أسفل الصفحة"
+ ],
+ "© All Rights Reserved": [
+  "© 版權所有",
+  "© جميع الحقوق محفوظة"
+ ],
+ "SUBMIT": [
+  "送出",
+  "إرسال"
+ ],
+ "Year": [
+  "年份",
+  "السنة"
+ ],
+ "Client": [
+  "客戶",
+  "العميل"
+ ],
+ "Designer": [
+  "設計師",
+  "المصمّم"
+ ],
+ "Form": [
+  "造型",
+  "الهيئة"
+ ],
+ "Email": [
+  "電子信箱",
+  "البريد الإلكتروني"
+ ],
+ "Phone": [
+  "電話",
+  "الهاتف"
+ ],
+ "Last Name": [
+  "姓氏",
+  "اسم العائلة"
+ ],
+ "First Name": [
+  "名字",
+  "الاسم الأول"
+ ],
+ "Leave a message...": [
+  "請留言……",
+  "اترك رسالة..."
+ ],
+ "GET IN TOUCH": [
+  "與我聯絡",
+  "تواصل معنا"
+ ],
+ "TRY NOW": [
+  "立即試用",
+  "جرّبه الآن"
+ ],
+ "Try Now": [
+  "立即試用",
+  "جرّبه الآن"
+ ],
+ "Coming Soon": [
+  "即將推出",
+  "قريبًا"
+ ],
+ "Check the video": [
+  "觀看影片",
+  "شاهد الفيديو"
+ ],
+ "Check the website": [
+  "前往網站",
+  "زر الموقع"
+ ],
+ "Slide show gallery": [
+  "投影片藝廊",
+  "معرض الشرائح"
+ ],
+ "Video Player": [
+  "影片播放器",
+  "مشغّل الفيديو"
+ ],
+ "Your Video Title Video Player": [
+  "影片播放器",
+  "مشغّل الفيديو"
+ ],
+ "Next Item": [
+  "下一則",
+  "العنصر التالي"
+ ],
+ "PATENTS": [
+  "專利",
+  "براءات الاختراع"
+ ],
+ "LANGUAGES": [
+  "語言",
+  "اللغات"
+ ],
+ "Native": [
+  "母語",
+  "اللغة الأم"
+ ],
+ "Fluent": [
+  "流利",
+  "بطلاقة"
+ ],
+ "Mandarin": [
+  "華語",
+  "الماندرين"
+ ],
+ "English": [
+  "英語",
+  "الإنجليزية"
+ ],
+ "EDUCATION": [
+  "學歷",
+  "التعليم"
+ ],
+ "EXPERTISE": [
+  "專長",
+  "الخبرات"
+ ],
+ "WORK EXPERIENCE": [
+  "工作經歷",
+  "الخبرة المهنية"
+ ],
+ "SELECTED AWARDS": [
+  "精選獎項",
+  "جوائز مختارة"
+ ],
+ "Achievements": [
+  "成就",
+  "الإنجازات"
+ ],
+ "Contribution": [
+  "參與內容",
+  "المساهمة"
+ ],
+ "Remote": [
+  "遠端",
+  "عن بُعد"
+ ],
+ "Features": [
+  "功能特色",
+  "الميزات"
+ ],
+ "Origin": [
+  "源起",
+  "الأصل"
+ ],
+ "Portfolio": [
+  "作品集",
+  "معرض الأعمال"
+ ],
+ "Branding": [
+  "品牌識別",
+  "الهوية البصرية"
+ ],
+ "UX": [
+  "UX",
+  "UX"
+ ],
+ "I": [
+  "I",
+  "I"
+ ],
+ "and": [
+  "and",
+  "and"
+ ],
+ "Toy": [
+  "玩具",
+  "ألعاب"
+ ],
+ "Lamp": [
+  "燈具",
+  "إضاءة"
+ ],
+ "Drone": [
+  "無人機",
+  "طائرة مسيّرة"
+ ],
+ "DRONE": [
+  "無人機",
+  "طائرة مسيّرة"
+ ],
+ "Router": [
+  "路由器",
+  "جهاز التوجيه"
+ ],
+ "luxury": [
+  "奢華",
+  "الفخامة"
+ ],
+ "texture": [
+  "質感",
+  "الملمس"
+ ],
+ "Texture": [
+  "質感",
+  "الملمس"
+ ],
+ "material": [
+  "材質",
+  "الخامة"
+ ],
+ "Emotion": [
+  "情感",
+  "الشعور"
+ ],
+ "Organic": [
+  "有機",
+  "عضوي"
+ ],
+ "Dynamic": [
+  "動感",
+  "ديناميكي"
+ ],
+ "Elegant": [
+  "優雅",
+  "أناقة"
+ ],
+ "Curvy": [
+  "曲線",
+  "منحني"
+ ],
+ "Attention": [
+  "注目",
+  "انتباه"
+ ],
+ "Aesthetics": [
+  "美學",
+  "الجماليات"
+ ],
+ "AESTHETIC": [
+  "美學",
+  "الجماليات"
+ ],
+ "Atmosphere": [
+  "氛圍",
+  "الأجواء"
+ ],
+ "Direction": [
+  "方向",
+  "الاتجاه"
+ ],
+ "DIRECTION": [
+  "方向",
+  "الاتجاه"
+ ],
+ "VALIDATION": [
+  "驗證",
+  "التحقق"
+ ],
+ "DISCIPLINED": [
+  "嚴謹有序",
+  "منضبط"
+ ],
+ "Sight": [
+  "瞄準",
+  "التصويب"
+ ],
+ "RAPID": [
+  "迅捷",
+  "سريع"
+ ],
+ "Alian": [
+  "Alian",
+  "Alian"
+ ],
+ "Orca": [
+  "虎鯨",
+  "الأوركا"
+ ],
+ "Gateway": [
+  "閘道器",
+  "البوابة"
+ ],
+ "Earbuds": [
+  "耳機",
+  "سماعات الأذن"
+ ],
+ "Laptop": [
+  "筆電",
+  "حاسوب محمول"
+ ],
+ "Design": [
+  "設計",
+  "التصميم"
+ ],
+ "architecture": [
+  "建築",
+  "العمارة"
+ ],
+ "pattern glass": [
+  "紋理玻璃",
+  "زجاج بنقوش"
+ ],
+ "the details": [
+  "細節之中",
+  "في التفاصيل"
+ ],
+ "possibilities.": [
+  "各種可能。",
+  "إمكانات لا حدود لها."
+ ],
+ "With Curvy,": [
+  "藉由曲線，",
+  "مع الانحناءات،"
+ ],
+ "With Wi-Fi": [
+  "搭載 Wi-Fi",
+  "مع Wi-Fi"
+ ],
+ "In Control.": [
+  "盡在掌握。",
+  "السيطرة بين يديك."
+ ],
+ "Stay Yourself.": [
+  "做自己。",
+  "كن أنت."
+ ],
+ "One Language.": [
+  "同一套語言。",
+  "لغة واحدة."
+ ],
+ "Many Expressions.": [
+  "多樣的表達。",
+  "تعبيرات متعدّدة."
+ ],
+ "What I Believe": [
+  "我的信念",
+  "ما أؤمن به"
+ ],
+ "Clarity. Conviction. Craft.": [
+  "清晰。信念。工藝。",
+  "وضوح. قناعة. حرفية."
+ ],
+ "Aug 2026 - Present": [
+  "2026年8月－至今",
+  "أغسطس 2026 – حتى الآن"
+ ],
+ "Dec 2019 - Dec 2020": [
+  "2019年12月－2020年12月",
+  "ديسمبر 2019 – ديسمبر 2020"
+ ],
+ "Jul 2019 - Aug 2019": [
+  "2019年7月－2019年8月",
+  "يوليو 2019 – أغسطس 2019"
+ ],
+ "Jul 2025 - Aug 2026": [
+  "2025年7月－2026年8月",
+  "يوليو 2025 – أغسطس 2026"
+ ],
+ "May 2022 - May 2024": [
+  "2022年5月－2024年5月",
+  "مايو 2022 – مايو 2024"
+ ],
+ "May 2024 - Jul 2025": [
+  "2024年5月－2025年7月",
+  "مايو 2024 – يوليو 2025"
+ ],
+ "CPO, Gemtek": [
+  "CPO，Gemtek",
+  "الرئيس التنفيذي للمنتجات، Gemtek"
+ ],
+ "ID Designer Intern": [
+  "工業設計實習生",
+  "متدرّب في التصميم الصناعي"
+ ],
+ "Industrial Design Manager": [
+  "工業設計經理",
+  "مدير التصميم الصناعي"
+ ],
+ "Senior Industrial Designer": [
+  "資深工業設計師",
+  "مصمّم صناعي أول"
+ ],
+ "Principal Industrial Designer": [
+  "首席工業設計師",
+  "المصمّم الصناعي الرئيسي"
+ ],
+ "Principal Designer, Tron Future": [
+  "首席設計師，Tron Future",
+  "المصمّم الرئيسي، Tron Future"
+ ],
+ "Design Director, Tron Future": [
+  "設計總監，Tron Future",
+  "مدير التصميم، Tron Future"
+ ],
+ "Material Designer": [
+  "材質設計師",
+  "مصمّم خامات"
+ ],
+ "AVP, 5G Product Line, Gemtek": [
+  "AVP，5G 產品線，Gemtek",
+  "نائب الرئيس المساعد، خط إنتاج 5G، Gemtek"
+ ],
+ "Joel Chang(Lead)": [
+  "Joel Chang（主導）",
+  "Joel Chang (قائد المشروع)"
+ ],
+ "Joel Chang (Lead)": [
+  "Joel Chang（主導）",
+  "Joel Chang (قائد المشروع)"
+ ],
+ "Joel Chang (Project Owner)": [
+  "Joel Chang（專案負責人）",
+  "Joel Chang (صاحب المشروع)"
+ ],
+ "Marcus Kung(Design Director)": [
+  "Marcus Kung（設計總監）",
+  "Marcus Kung (مدير التصميم)"
+ ],
+ "Designed by": [
+  "設計者",
+  "تصميم"
+ ],
+ "Designed by Joel": [
+  "設計：Joel",
+  "تصميم: Joel"
+ ],
+ "Designed by Shin": [
+  "設計：Shin",
+  "تصميم: Shin"
+ ],
+ "Designed by Joel / Hazel": [
+  "設計：Joel / Hazel",
+  "تصميم: Joel / Hazel"
+ ],
+ "(Joel Chang)": [
+  "(Joel Chang)",
+  "(Joel Chang)"
+ ],
+ "Bachelor of Industrial Design": [
+  "工業設計學士",
+  "بكالوريوس التصميم الصناعي"
+ ],
+ "Master of Design": [
+  "設計碩士",
+  "ماجستير التصميم"
+ ],
+ "DaYeh University": [
+  "大葉大學",
+  "جامعة DaYeh"
+ ],
+ "National Taiwan University of Science and Technology": [
+  "國立臺灣科技大學",
+  "جامعة تايوان الوطنية للعلوم والتكنولوجيا"
+ ],
+ "Grand Prize": [
+  "首獎",
+  "الجائزة الكبرى"
+ ],
+ "Bronze Award": [
+  "銅獎",
+  "الجائزة البرونزية"
+ ],
+ "The Best Choice Award": [
+  "金獎（Best Choice Award）",
+  "جائزة Best Choice"
+ ],
+ "Golden Pin Design Award": [
+  "金點設計獎",
+  "جائزة الدبوس الذهبي للتصميم"
+ ],
+ "COMPUTEX 2025": [
+  "COMPUTEX 2025",
+  "COMPUTEX 2025"
+ ],
+ "COMPUTEX · Best Choice Award": [
+  "COMPUTEX · Best Choice Award",
+  "COMPUTEX · Best Choice Award"
+ ],
+ "MWC 2023, Barcelona": [
+  "MWC 2023，巴塞隆納",
+  "MWC 2023، برشلونة"
+ ],
+ "2026 Singapore AIRSHOW": [
+  "2026 新加坡航空展",
+  "معرض سنغافورة للطيران 2026"
+ ],
+ "Uneec Applied Design Award 14th": [
+  "第14屆優力設計獎",
+  "جائزة Uneec للتصميم التطبيقي، الدورة 14"
+ ],
+ "Uneec Applied Design Award 14th · Grand Prize": [
+  "第14屆優力設計獎 · 首獎",
+  "جائزة Uneec للتصميم التطبيقي، الدورة 14 · الجائزة الكبرى"
+ ],
+ "Taiwan Innotech Expo · Golden Prize": [
+  "臺灣創新技術博覽會 · 金牌",
+  "معرض تايوان للابتكار التقني · الجائزة الذهبية"
+ ],
+ "2025 Taipei Aerospace & Defense Technology Exhibition": [
+  "2025 台北國際航空航太暨國防工業展",
+  "معرض تايبيه للفضاء والدفاع والتقنية 2025"
+ ],
+ "Thermaltake‘s Fantasy World Creation & Design Competition": [
+  "Thermaltake 幻想世界創作設計大賽",
+  "مسابقة Thermaltake لابتكار وتصميم العالم الخيالي"
+ ],
+ "Thermaltake's PC Chassis Design Competition · Bronze Award": [
+  "Thermaltake 機殼設計大賽 · 銅獎",
+  "مسابقة Thermaltake لتصميم صناديق الحاسوب · الجائزة البرونزية"
+ ],
+ "Advantech’s Elite100 of Intern Competition · Winning Award": [
+  "研華 Elite100 實習競賽 · 優勝",
+  "مسابقة Elite100 للمتدرّبين في Advantech · جائزة الفوز"
+ ],
+ "Design Awards Received": [
+  "曾獲設計獎項",
+  "الجوائز التصميمية الحاصل عليها"
+ ],
+ "Design patent, Taiwan D239718": [
+  "設計專利，臺灣 D239718",
+  "براءة تصميم، تايوان D239718"
+ ],
+ "Design Patent, Taiwan D246682": [
+  "設計專利，臺灣 D246682",
+  "براءة تصميم، تايوان D246682"
+ ],
+ "Design Patent, Taiwan D243851, D243843": [
+  "設計專利，臺灣 D243851、D243843",
+  "براءة تصميم، تايوان D243851، D243843"
+ ],
+ "Utility Model Patent I Taiwan M580661": [
+  "新型專利｜臺灣 M580661",
+  "براءة نموذج منفعة｜تايوان M580661"
+ ],
+ "Utility Model Patent I Taiwan M580859": [
+  "新型專利｜臺灣 M580859",
+  "براءة نموذج منفعة｜تايوان M580859"
+ ],
+ "Utility Model Patent I Taiwan M643914, China": [
+  "新型專利｜臺灣 M643914，中國",
+  "براءة نموذج منفعة｜تايوان M643914، الصين"
+ ],
+ "Utility Model Patent I Taiwan M643914, China 20548715": [
+  "新型專利｜臺灣 M643914，中國 20548715",
+  "براءة نموذج منفعة｜تايوان M643914، الصين 20548715"
+ ],
+ "Assembly structure of communication apparatus​": [
+  "通訊裝置之組裝結構",
+  "بنية تجميع لجهاز اتصالات"
+ ],
+ "Assembly structure of communication apparatus": [
+  "通訊裝置之組裝結構",
+  "بنية تجميع لجهاز اتصالات"
+ ],
+ "1 | Joel Chang Design": [
+  "1 | Joel Chang Design",
+  "1 | Joel Chang Design"
+ ],
+ "2 | Joel Chang Design": [
+  "2 | Joel Chang Design",
+  "2 | Joel Chang Design"
+ ],
+ "3 | Joel Chang Design": [
+  "3 | Joel Chang Design",
+  "3 | Joel Chang Design"
+ ],
+ "About | Joel Chang Design": [
+  "關於 | Joel Chang Design",
+  "نبذة | Joel Chang Design"
+ ],
+ "Scope | Joel Chang Design": [
+  "Scope | Joel Chang Design",
+  "Scope | Joel Chang Design"
+ ],
+ "Contact | Joel Chang Design": [
+  "聯絡 | Joel Chang Design",
+  "تواصل | Joel Chang Design"
+ ],
+ "Defense | Joel Chang Design": [
+  "防衛 | Joel Chang Design",
+  "الدفاع | Joel Chang Design"
+ ],
+ "Lifestyle | Joel Chang Design": [
+  "生活風格 | Joel Chang Design",
+  "أسلوب الحياة | Joel Chang Design"
+ ],
+ "Industrial | Joel Chang Design": [
+  "工業 | Joel Chang Design",
+  "الصناعي | Joel Chang Design"
+ ],
+ "Networking | Joel Chang Design": [
+  "網路設備 | Joel Chang Design",
+  "الشبكات | Joel Chang Design"
+ ],
+ "Electronics | Joel Chang Design": [
+  "電子產品 | Joel Chang Design",
+  "الإلكترونيات | Joel Chang Design"
+ ],
+ "Experimental | Joel Chang Design": [
+  "實驗性創作 | Joel Chang Design",
+  "تجريبي | Joel Chang Design"
+ ],
+ "T. Blade | Joel Chang Design": [
+  "T. Blade | Joel Chang Design",
+  "T. Blade | Joel Chang Design"
+ ],
+ "NLG MMA200 | Joel Chang Design": [
+  "NLG MMA200 | Joel Chang Design",
+  "NLG MMA200 | Joel Chang Design"
+ ],
+ "AI Tool Kit | Joel Chang Design": [
+  "AI Tool Kit | Joel Chang Design",
+  "AI Tool Kit | Joel Chang Design"
+ ],
+ "MoAI Router | Joel Chang Design": [
+  "MoAI Router | Joel Chang Design",
+  "MoAI Router | Joel Chang Design"
+ ],
+ "Ocean Series | Joel Chang Design": [
+  "Ocean Series | Joel Chang Design",
+  "Ocean Series | Joel Chang Design"
+ ],
+ "Wi-Fi 7 2022 | Joel Chang Design": [
+  "Wi-Fi 7 2022 | Joel Chang Design",
+  "Wi-Fi 7 2022 | Joel Chang Design"
+ ],
+ "TEANA Earbuds | Joel Chang Design": [
+  "TEANA Earbuds | Joel Chang Design",
+  "TEANA Earbuds | Joel Chang Design"
+ ],
+ "ASUS Zenfone 9 | Joel Chang Design": [
+  "ASUS Zenfone 9 | Joel Chang Design",
+  "ASUS Zenfone 9 | Joel Chang Design"
+ ],
+ "Wi-Fi 7 HGU/AP | Joel Chang Design": [
+  "Wi-Fi 7 HGU/AP | Joel Chang Design",
+  "Wi-Fi 7 HGU/AP | Joel Chang Design"
+ ],
+ "Geometry Series | Joel Chang Design": [
+  "Geometry Series | Joel Chang Design",
+  "Geometry Series | Joel Chang Design"
+ ],
+ "Interstellar 05 | Joel Chang Design": [
+  "Interstellar 05 | Joel Chang Design",
+  "Interstellar 05 | Joel Chang Design"
+ ],
+ "Wi-Fi 7 Extender | Joel Chang Design": [
+  "Wi-Fi 7 Extender | Joel Chang Design",
+  "Wi-Fi 7 Extender | Joel Chang Design"
+ ],
+ "JCG Tough Welding | Joel Chang Design": [
+  "JCG 硬焊 | Joel Chang Design",
+  "JCG 硬焊 | Joel Chang Design"
+ ],
+ "T. Interceptor CS | Joel Chang Design": [
+  "T. Interceptor CS | Joel Chang Design",
+  "T. Interceptor CS | Joel Chang Design"
+ ],
+ "T. Interceptor MP | Joel Chang Design": [
+  "T. Interceptor MP | Joel Chang Design",
+  "T. Interceptor MP | Joel Chang Design"
+ ],
+ "SAGITTARIUS Laptop | Joel Chang Design": [
+  "SAGITTARIUS Laptop | Joel Chang Design",
+  "SAGITTARIUS Laptop | Joel Chang Design"
+ ],
+ "Assistive products | Joel Chang Design": [
+  "輔具產品 | Joel Chang Design",
+  "منتجات مساعدة | Joel Chang Design"
+ ],
+ "Speeder Pro Earbuds | Joel Chang Design": [
+  "Speeder Pro Earbuds | Joel Chang Design",
+  "Speeder Pro Earbuds | Joel Chang Design"
+ ],
+ "Lionic LionFilter 200 | Joel Chang Design": [
+  "Lionic LionFilter 200 | Joel Chang Design",
+  "Lionic LionFilter 200 | Joel Chang Design"
+ ],
+ "Parametric Pattern Design | Joel Chang Design": [
+  "參數化紋理設計 | Joel Chang Design",
+  "تصميم نمطي بارامتري | Joel Chang Design"
+ ],
+ "Wi-Fi 7 Gaming Home Gateway | Joel Chang Design": [
+  "Wi-Fi 7 電競家用閘道器 | Joel Chang Design",
+  "بوابة منزلية للألعاب Wi-Fi 7 | Joel Chang Design"
+ ],
+ "Airgain FWA Easy Installation Kit | Joel Chang Design": [
+  "Airgain FWA 便捷安裝套件 | Joel Chang Design",
+  "طقم التركيب السهل Airgain FWA | Joel Chang Design"
+ ],
+ "Joel Chang Design | industrial design": [
+  "Joel Chang Design｜工業設計",
+  "Joel Chang Design | التصميم الصناعي"
+ ],
+ "Joel Chang Industrial Design": [
+  "Joel Chang 工業設計",
+  "Joel Chang للتصميم الصناعي"
+ ],
+ "Joel Chang - Industrial Design": [
+  "Joel Chang－工業設計",
+  "Joel Chang – التصميم الصناعي"
+ ],
+ "AI Industrial Design Studio": [
+  "AI 工業設計工作室",
+  "استوديو التصميم الصناعي بالذكاء الاصطناعي"
+ ],
+ "01 DISCOVERY": [
+  "01 探索發現",
+  "01 الاكتشاف"
+ ],
+ "02 ITERATION": [
+  "02 反覆迭代",
+  "02 التكرار"
+ ],
+ "03 REFINEMENT": [
+  "03 精煉調整",
+  "03 التنقيح"
+ ],
+ "04 REALIZATION": [
+  "04 落地實現",
+  "04 التنفيذ"
+ ],
+ "INSIGHT FIRST,": [
+  "洞察為先，",
+  "البصيرة أولًا،"
+ ],
+ "UX DRIVEN": [
+  "以體驗為驅動",
+  "مدفوع بالتجربة"
+ ],
+ "BUILDABLE EXECUTION MINDSET": [
+  "可落地的執行思維",
+  "عقلية تنفيذ قابلة للتصنيع"
+ ],
+ "TRUSTED COLLABORATION": [
+  "值得信賴的合作",
+  "تعاون موثوق"
+ ],
+ "Design Goal": [
+  "設計目標",
+  "هدف التصميم"
+ ],
+ "Design DNA": [
+  "設計 DNA",
+  "الحمض النووي للتصميم"
+ ],
+ "Design Spirit": [
+  "設計精神",
+  "روح التصميم"
+ ],
+ "Design Image": [
+  "設計意象",
+  "صورة التصميم"
+ ],
+ "Design Process": [
+  "設計過程",
+  "عملية التصميم"
+ ],
+ "Design Approach": [
+  "設計方法",
+  "منهج التصميم"
+ ],
+ "Design Language": [
+  "設計語言",
+  "لغة التصميم"
+ ],
+ "Design Research": [
+  "設計研究",
+  "بحث التصميم"
+ ],
+ "Design Outcome": [
+  "設計成果",
+  "حصيلة التصميم"
+ ],
+ "Design Background": [
+  "設計背景",
+  "خلفية التصميم"
+ ],
+ "Design Innovation": [
+  "設計創新",
+  "ابتكار التصميم"
+ ],
+ "Design Validation": [
+  "設計驗證",
+  "التحقق من التصميم"
+ ],
+ "Design Development": [
+  "設計發展",
+  "تطوير التصميم"
+ ],
+ "Design Fine-Tuning": [
+  "設計微調",
+  "ضبط التصميم"
+ ],
+ "Design Inspiration": [
+  "設計靈感",
+  "إلهام التصميم"
+ ],
+ "Design Narrowing": [
+  "設計收斂",
+  "تضييق نطاق التصميم"
+ ],
+ "Detail Design": [
+  "細設計",
+  "تصميم التفاصيل"
+ ],
+ "Final Design": [
+  "最終設計",
+  "التصميم النهائي"
+ ],
+ "Final Creation": [
+  "最終成果",
+  "الإنتاج النهائي"
+ ],
+ "Original Concept": [
+  "原始概念",
+  "المفهوم الأصلي"
+ ],
+ "Project Background": [
+  "專案背景",
+  "خلفية المشروع"
+ ],
+ "Problem Definition": [
+  "問題定義",
+  "تعريف المشكلة"
+ ],
+ "Current Pain Point": [
+  "現有痛點",
+  "نقطة الألم الحالية"
+ ],
+ "User Insight": [
+  "使用者洞察",
+  "بصيرة المستخدم"
+ ],
+ "User Experience": [
+  "使用者體驗",
+  "تجربة المستخدم"
+ ],
+ "Prototype Showcase": [
+  "原型展示",
+  "عرض النموذج الأولي"
+ ],
+ "Prototype Validation": [
+  "原型驗證",
+  "التحقق من النموذج الأولي"
+ ],
+ "Prototyping": [
+  "原型製作",
+  "النماذج الأولية"
+ ],
+ "Prototyping & DFM Validation": [
+  "原型製作與 DFM 驗證",
+  "النماذج الأولية والتحقق من قابلية التصنيع"
+ ],
+ "Verification": [
+  "驗證",
+  "التحقق"
+ ],
+ "Exploration": [
+  "探索",
+  "الاستكشاف"
+ ],
+ "Inspiration": [
+  "靈感",
+  "الإلهام"
+ ],
+ "Functionality": [
+  "機能",
+  "الوظائف"
+ ],
+ "Sustainability": [
+  "永續",
+  "الاستدامة"
+ ],
+ "Modular Design": [
+  "模組化設計",
+  "تصميم معياري"
+ ],
+ "Airflow Design": [
+  "氣流設計",
+  "تصميم تدفّق الهواء"
+ ],
+ "Cooling Design": [
+  "散熱設計",
+  "تصميم التبريد"
+ ],
+ "Crafted Detail": [
+  "雕琢細節",
+  "تفاصيل مصقولة"
+ ],
+ "Refined Detail": [
+  "精煉細節",
+  "تفاصيل منقّحة"
+ ],
+ "Product Family": [
+  "產品家族",
+  "عائلة المنتجات"
+ ],
+ "Product Identity": [
+  "產品識別",
+  "هوية المنتج"
+ ],
+ "Product Portfolio": [
+  "產品組合",
+  "محفظة المنتجات"
+ ],
+ "Visual Design": [
+  "視覺設計",
+  "التصميم البصري"
+ ],
+ "Visual Identity": [
+  "視覺識別",
+  "الهوية البصرية"
+ ],
+ "CMF Design": [
+  "CMF 設計",
+  "تصميم CMF"
+ ],
+ "CMF Review": [
+  "CMF 審視",
+  "مراجعة CMF"
+ ],
+ "CMF Strategy": [
+  "CMF 策略",
+  "استراتيجية CMF"
+ ],
+ "UCD Design": [
+  "UCD 設計",
+  "تصميم موجّه للمستخدم"
+ ],
+ "UCD Approach": [
+  "UCD 方法",
+  "منهج التصميم المتمحور حول المستخدم"
+ ],
+ "ID Family": [
+  "ID 家族",
+  "عائلة التصميم الصناعي"
+ ],
+ "ID Capability": [
+  "工業設計能力",
+  "قدرات التصميم الصناعي"
+ ],
+ "Side Project": [
+  "個人側寫專案",
+  "مشروع جانبي"
+ ],
+ "Graduated Project": [
+  "畢業專案",
+  "مشروع التخرّج"
+ ],
+ "Field observation": [
+  "場域觀察",
+  "الملاحظة الميدانية"
+ ],
+ "Field Protection": [
+  "場域防護",
+  "الحماية الميدانية"
+ ],
+ "Mockup Stage": [
+  "模型階段",
+  "مرحلة النموذج"
+ ],
+ "High-Poly Mockup": [
+  "高面數模型",
+  "نموذج عالي التفاصيل"
+ ],
+ "Solid 3D Modeling": [
+  "實體 3D 建模",
+  "نمذجة ثلاثية الأبعاد صلبة"
+ ],
+ "3D Modeling": [
+  "3D 建模",
+  "النمذجة الثلاثية الأبعاد"
+ ],
+ "3D Modeling Drafter": [
+  "3D 建模繪圖",
+  "رسّام النمذجة الثلاثية الأبعاد"
+ ],
+ "Engineering": [
+  "工程",
+  "الهندسة"
+ ],
+ "Industrial Design": [
+  "工業設計",
+  "التصميم الصناعي"
+ ],
+ "Application Fields": [
+  "應用場域",
+  "مجالات التطبيق"
+ ],
+ "Accessories Design": [
+  "配件設計",
+  "تصميم الإكسسوارات"
+ ],
+ "Accessory Design": [
+  "配件設計",
+  "تصميم الإكسسوارات"
+ ],
+ "Assistive Devices": [
+  "輔具",
+  "أجهزة مساعدة"
+ ],
+ "Assistive products": [
+  "輔具產品",
+  "منتجات مساعدة"
+ ],
+ "Smart Healthcare": [
+  "智慧醫療",
+  "الرعاية الصحية الذكية"
+ ],
+ "Home-Based": [
+  "居家使用",
+  "للاستخدام المنزلي"
+ ],
+ "Quiet Living": [
+  "靜謐生活",
+  "حياة هادئة"
+ ],
+ "Water Reuse": [
+  "水資源再利用",
+  "إعادة استخدام المياه"
+ ],
+ "Water Dam": [
+  "擋水",
+  "حاجز مائي"
+ ],
+ "Water Burn": [
+  "熱水／加熱",
+  "التسخين المائي"
+ ],
+ "Humidifier": [
+  "加濕器",
+  "مرطّب الهواء"
+ ],
+ "Dehumidifier": [
+  "除濕機",
+  "مزيل الرطوبة"
+ ],
+ "Floor Lamp": [
+  "落地燈",
+  "مصباح أرضي"
+ ],
+ "Wall Lamp": [
+  "壁燈",
+  "مصباح جداري"
+ ],
+ "Gaming PC": [
+  "電競主機",
+  "حاسوب ألعاب"
+ ],
+ "Smart Phone": [
+  "智慧型手機",
+  "هاتف ذكي"
+ ],
+ "Smartphone": [
+  "智慧型手機",
+  "هاتف ذكي"
+ ],
+ "Sports Car": [
+  "跑車",
+  "سيارة رياضية"
+ ],
+ "Power Tools": [
+  "電動工具",
+  "أدوات الطاقة"
+ ],
+ "Welding Machine": [
+  "焊接機",
+  "آلة لحام"
+ ],
+ "​Welding Machine": [
+  "焊接機",
+  "آلة لحام"
+ ],
+ "Tough Welding": [
+  "硬焊",
+  "硬焊"
+ ],
+ "​Tough Welding": [
+  "硬焊",
+  "硬焊"
+ ],
+ "Computer​": [
+  "電腦",
+  "حاسوب"
+ ],
+ "​Storytelling": [
+  "敘事",
+  "السرد"
+ ],
+ "​The Solution": [
+  "解決方案",
+  "الحل"
+ ],
+ "​Redefining Product Line": [
+  "重新定義產品線",
+  "إعادة تعريف خط المنتجات"
+ ],
+ "First Gen": [
+  "第一代",
+  "الجيل الأول"
+ ],
+ "Second Gen": [
+  "第二代",
+  "الجيل الثاني"
+ ],
+ "Third Gen": [
+  "第三代",
+  "الجيل الثالث"
+ ],
+ "Meet Gemtek": [
+  "認識 Gemtek",
+  "تعرّف إلى Gemtek"
+ ],
+ "Gemtek ID Family": [
+  "Gemtek ID 家族",
+  "عائلة التصميم الصناعي في Gemtek"
+ ]
+}

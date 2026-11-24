@@ -1,0 +1,236 @@
+/* =====================================================================
+   custom.css — Joel's own design tweaks on top of the Wix export.
+   Edit freely; loaded last on every page (after Wix CSS + static-overrides.css).
+   ===================================================================== */
+
+:root { --jcd-ease: cubic-bezier(.22, .61, .36, 1); }
+
+/* ---------- 1. Navigation hover states (desktop) ---------- */
+/* Top level: Works / About / Contact - no underline (Joel 2026-11-23); hover dims the other items */
+.itemDepth02233374943__label::after { content: none !important; display: none !important; }
+/* Hovered top item turns blue (Joel 2026-11-24); others stay pure white, no dimming */
+li[data-item-depth="0"] > div > a, li[data-item-depth="0"] > div > a * { transition: color .4s cubic-bezier(.22,.61,.36,1) !important; }
+li[data-item-depth="0"]:hover > div > a, li[data-item-depth="0"]:hover > div > a *,
+li[data-item-depth="0"][data-hovered] > div > a, li[data-item-depth="0"][data-hovered] > div > a * { color: #4a90ff !important; }
+
+/* Works dropdown items: no background box (Joel 2026-11-23). Items sit slightly dimmed and go to full
+   white on hover with a gentle 0.4s ease; the others dim further. Current page stays full white. */
+.itemDepth12472627565__root,
+.itemDepth12472627565__root:hover,
+.itemDepth12472627565__root:focus-visible { background: transparent !important; background-color: transparent !important; box-shadow: none !important; }
+.itemDepth12472627565__root .itemDepth12472627565__label { opacity: .8; transition: color .4s ease, opacity .4s ease; }
+ul:hover > li[data-item-depth="1"]:not(:hover) .itemDepth12472627565__label { opacity: .55; }
+.itemDepth12472627565__root:hover .itemDepth12472627565__label,
+.itemDepth12472627565__root:focus-visible .itemDepth12472627565__label { color: #fff !important; opacity: 1; }
+li[data-item-depth="1"][aria-current="page"] .itemDepth12472627565__label { color: #fff !important; opacity: 1; }
+
+/* ---------- 2. Design Approach cards (home): hover glow ---------- */
+/* Cards are tagged .jcd-glow-card by custom.js. --gx/--gy follow the cursor. */
+.jcd-glow-card {
+  position: relative; isolation: isolate; border-radius: 2px;
+  transition: box-shadow .6s var(--jcd-ease), transform .6s var(--jcd-ease);
+}
+.jcd-glow-card::before {               /* inner radial light */
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; border-radius: inherit;
+  background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 40%),
+              rgba(120, 160, 255, .16), rgba(120, 160, 255, .05) 40%, transparent 70%);
+  opacity: 0; transition: opacity .6s var(--jcd-ease);
+}
+.jcd-glow-card::after {                /* glowing outline */
+  content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(170, 195, 255, .55);
+  opacity: 0; transition: opacity .6s var(--jcd-ease);
+}
+.jcd-glow-card:hover, .jcd-glow-card.is-glow {
+  box-shadow: 0 0 28px rgba(90, 130, 255, .22), 0 0 2px rgba(170, 195, 255, .5);
+}
+.jcd-glow-card:hover::before, .jcd-glow-card.is-glow::before,
+.jcd-glow-card:hover::after,  .jcd-glow-card.is-glow::after { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .jcd-glow-card, .jcd-glow-card::before, .jcd-glow-card::after { transition: none; } }
+
+/* ---------- 3. Header: hide on scroll down, show on scroll up (custom.js toggles .jcd-hidden) ---------- */
+#SITE_HEADER.jcd-autohide { transition: transform .3s ease, opacity .3s ease; will-change: transform; }
+#SITE_HEADER.jcd-autohide.jcd-hidden { transform: translateY(-100%); pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { #SITE_HEADER.jcd-autohide { transition: none; } }
+
+/* ---------- 4. Cross-Category grid (home): dim blue glow behind each product tile on hover ---------- */
+/* custom.js lays 9 .jcd-tile hotspots over each grid image (each exactly over one tile's picture).
+   .jcd-tile-halo is clipped to the tile + its gutter (--jcd-g), so the glow only lights the dark gutter
+   around the hovered tile and never paints over neighbouring products. The crop (.jcd-tile-img) sits on top. */
+.jcd-tilegrid { overflow: visible !important; }
+.jcd-tiles { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.jcd-tile { position: absolute; pointer-events: auto; z-index: 1; }
+.jcd-tile:hover, .jcd-tile.is-glow { z-index: 5; }
+.jcd-tile-halo { position: absolute; inset: calc(var(--jcd-g, 4px) * -1); overflow: hidden; pointer-events: none; z-index: 0;
+  opacity: 0; transition: opacity .6s var(--jcd-ease); }
+.jcd-tile-halo::before { content: ""; position: absolute; inset: var(--jcd-g, 4px);
+  box-shadow: 0 0 calc(var(--jcd-g, 4px) * 1.6) calc(var(--jcd-g, 4px) * .5) rgba(60, 140, 255, .75),
+              0 0 calc(var(--jcd-g, 4px) * .6) 0 rgba(90, 160, 255, .6); }
+.jcd-tile-img { position: absolute; inset: 0; z-index: 1; background-repeat: no-repeat;
+  opacity: 0; transform: none; transition: opacity .25s var(--jcd-ease) .45s, transform .6s var(--jcd-ease); }
+.jcd-tile:hover .jcd-tile-halo, .jcd-tile.is-glow .jcd-tile-halo { opacity: 1; }
+.jcd-tile:hover .jcd-tile-img, .jcd-tile.is-glow .jcd-tile-img {
+  opacity: 1; transform: scale(1.012); transition: opacity .2s var(--jcd-ease) 0s, transform .6s var(--jcd-ease); }
+
+/* ---------- 5. Softer gallery hover overlays (site.js adds .jcd-ov / .jcd-ov-in) ---------- */
+/* Darkening fades in/out gradually; title then description fade in with a small rise (stagger). No idle motion. */
+.item-hover-flex-container.jcd-ov .gallery-item-hover,
+.item-hover-flex-container.jcd-ov .gallery-item-hover::before { transition: opacity .65s var(--jcd-ease) !important; opacity: 0 !important; }
+.item-hover-flex-container.jcd-ov.jcd-ov-in .gallery-item-hover,
+.item-hover-flex-container.jcd-ov.jcd-ov-in .gallery-item-hover::before { opacity: 1 !important; }
+/* (Wix forces .info-member{opacity:1 !important}, so the fade/rise is on the inner <span>.) */
+.item-hover-flex-container.jcd-ov .info-element-title > span,
+.item-hover-flex-container.jcd-ov .info-element-description > span {
+  display: block; opacity: 0; transform: translateY(10px);
+  transition: opacity .6s var(--jcd-ease), transform .6s var(--jcd-ease); }
+.item-hover-flex-container.jcd-ov.jcd-ov-in .info-element-title > span { opacity: 1; transform: none; transition-delay: .08s; }
+.item-hover-flex-container.jcd-ov.jcd-ov-in .info-element-description > span { opacity: 1; transform: none; transition-delay: .18s; }
+.gallery-item-container img, .gallery-item-container picture { transition: filter .65s var(--jcd-ease), transform .65s var(--jcd-ease); }
+
+@media (prefers-reduced-motion: reduce) {
+  .jcd-tile, .jcd-tile-halo, .jcd-tile-img, .item-hover-flex-container.jcd-ov * { transition: none !important; }
+}
+
+/* ---------- 6. Home "Works" grid: tiles link to their project pages (build.py turns the wrappers into <a>) ---------- */
+a.item-link-wrapper[data-jcd-link] { display: block; color: inherit; text-decoration: none; cursor: pointer; }
+a.item-link-wrapper[data-jcd-link] .gallery-item-container { cursor: pointer; }
+
+/* ---------- 7. Home video (Vimeo) inside its glow frame: no black ring ---------- */
+/* Wix gives the player a dark drop shadow and a black container; the video now fills its box edge to edge
+   at exact 16:9 (Vimeo letterboxes anything else), and custom.js lines it up with the glow image's frame. */
+#comp-moybizuw, #comp-moybizuw * { box-shadow: none !important; }
+#comp-moybizuw { aspect-ratio: 16 / 9; height: auto !important; overflow: hidden; background: transparent !important; }
+#comp-moybizuw > div, #comp-moybizuw [class*="playerContainer"] { position: absolute !important; inset: 0 !important;
+  width: 100% !important; height: 100% !important; padding: 0 !important; border: 0 !important; background: transparent !important; }
+#comp-moybizuw iframe { position: absolute; inset: 0; width: 100% !important; height: 100% !important; border: 0; display: block;
+  transform: scale(1.006); transform-origin: center; }   /* crops any sub-pixel hairline from the player */
+
+/* ---------- 8. Lightbox (only galleries that enlarge on click on the live site; see custom.js) ---------- */
+.jcd-lb { position: fixed; inset: 0; z-index: 100000; background: rgba(6, 7, 10, .94);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden; transition: opacity .4s var(--jcd-ease), visibility 0s linear .4s; }
+.jcd-lb.is-open { opacity: 1; visibility: visible; transition: opacity .4s var(--jcd-ease), visibility 0s; }
+.jcd-lb-stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 64px 88px; box-sizing: border-box; }
+.jcd-lb-img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; user-select: none; -webkit-user-drag: none;
+  opacity: 0; transition: opacity .4s var(--jcd-ease); }
+.jcd-lb-img.is-in { opacity: 1; }
+.jcd-lb-btn { position: absolute; background: none; border: 0; color: rgba(255, 255, 255, .7); cursor: pointer; padding: 12px;
+  font: 300 44px/1 sans-serif; transition: color .4s var(--jcd-ease), opacity .4s var(--jcd-ease); }
+.jcd-lb-btn:hover, .jcd-lb-btn:focus-visible { color: #fff; outline: none; }
+.jcd-lb-close { top: 14px; right: 18px; font-size: 26px; }
+.jcd-lb-prev { left: 16px; top: 50%; transform: translateY(-50%); font-size: 56px; }
+.jcd-lb-next { right: 16px; top: 50%; transform: translateY(-50%); font-size: 56px; }
+.jcd-lb-count { position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; color: rgba(255, 255, 255, .6);
+  font: 13px/1 sans-serif; letter-spacing: .08em; }
+.jcd-lb-single .jcd-lb-prev, .jcd-lb-single .jcd-lb-next, .jcd-lb-single .jcd-lb-count { display: none; }
+html.jcd-lb-lock, html.jcd-lb-lock body { overflow: hidden !important; }
+@media (max-width: 600px), (hover: none) and (max-width: 1024px) {
+  .jcd-lb-stage { padding: 56px 0; }
+  .jcd-lb-prev, .jcd-lb-next { font-size: 40px; padding: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { .jcd-lb, .jcd-lb-img { transition: none; } }
+
+/* ---------- 9. Cursor light: blue glow following the mouse, on the page BACKGROUND only (see custom.js) ---------- */
+/* Painted on Wix's background fill layers (colorUnderlay), which are below all images, video and text.
+   Only OPAQUE fills (+ the page background) get it - custom.js tags them .jcd-lit - so transparent layers stacked
+   in the header/columns never add a second copy: the light is one continuous circle at the same viewport
+   position (background-attachment: fixed) across header and sections. */
+:root { --mx: -2000px; --my: -2000px; --hb: 0px; --jcd-light: 0; }
+html.jcd-light-on .jcd-lit[data-testid="colorUnderlay"] {
+  background-image: radial-gradient(200px circle at var(--mx) calc(var(--my) - var(--hb)),
+      rgba(70, 150, 255, calc(.18 * var(--jcd-light))) 0%,
+      rgba(70, 150, 255, calc(.07 * var(--jcd-light))) 50%,
+      rgba(70, 150, 255, 0) 100%) !important;
+  background-attachment: fixed !important; background-repeat: no-repeat !important;
+  background-position: 0 var(--hb) !important; background-size: 100% calc(100% - var(--hb)) !important; }
+html.jcd-light-on #SITE_HEADER [data-testid="colorUnderlay"] { background-image: none !important; }   /* header: no light */
+
+/* ---------- 10. Home: "Joel Chang Design | industrial design" H1 kept for search engines only ---------- */
+/* Visually hidden (sr-only), still the page's H1 in the DOM; the headline below moves up into its place. */
+#comp-moymd9fm { position: absolute !important; width: 1px !important; height: 1px !important; margin: -1px !important;
+  padding: 0 !important; border: 0 !important; overflow: hidden !important; clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important; white-space: nowrap !important; left: 0 !important; top: 0 !important; }
+/* keep breathing room above the headline now that the H1 line is hidden (desktop/iPad layout only) */
+#comp-m276lfoi:has(#comp-moymd9fm) #comp-m276lmt2 { margin-top: 96px !important; }
+
+/* Visually hidden H1 used only when a page has no suitable heading */
+.seo-sr-only { position: absolute !important; width: 1px !important; height: 1px !important;
+  padding: 0 !important; margin: -1px !important; overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important; clip-path: inset(50%) !important;
+  white-space: nowrap !important; border: 0 !important; }
+
+
+/* ---------- 11. Language switcher + Arabic RTL text (Wix mesh stays LTR) ---------- */
+.jcd-lang {
+  position: absolute;
+  z-index: 20;
+  display: flex;
+  gap: 0.7em;
+  align-items: center;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: #fff;
+  font-weight: 500;
+}
+.jcd-lang a {
+  color: #fff;
+  text-decoration: none !important;
+  border: 0;
+  background: none;
+  padding: 0;
+  opacity: 1;
+  transition: color .5s ease;
+}
+.jcd-lang a:hover { color: #4a90ff; }
+.jcd-lang a.is-active { color: #4a90ff; }
+
+/* Desktop: bottom-right of the header, under Works / About / Contact */
+#SITE_HEADER .jcd-lang { top: auto; bottom: 20px; right: 32px; }
+@media (max-width: 599px) {
+  /* Mobile: left of the wordmark (the gap right of the logo is too narrow
+     for EN/繁/简/ع plus the hamburger). */
+  #SITE_HEADER .jcd-lang { top: 21px; bottom: auto; left: 10px; right: auto; font-size: 11px; gap: 0.5em; }
+}
+
+/* Password-gate and any page with no Wix header: compact bar, dark on light */
+body > .jcd-lang {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  right: auto;
+  color: #111;
+  z-index: 100;
+}
+body > .jcd-lang a { color: inherit; }
+body > .jcd-lang a:hover, body > .jcd-lang a.is-active { color: #4a90ff; }
+
+/* Arabic: document is RTL for accessibility; keep absolute Wix geometry in LTR
+   so the 3-column header and mesh positions do not mirror into a broken layout. */
+html[lang="ar"] { direction: rtl; }
+html[lang="ar"] #SITE_CONTAINER,
+html[lang="ar"] #masterPage,
+html[lang="ar"] .mesh-layout,
+html[lang="ar"] [data-mesh-id] { direction: ltr; }
+html[lang="ar"] .wixui-rich-text,
+html[lang="ar"] .wixui-rich-text__text,
+html[lang="ar"] p,
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3,
+html[lang="ar"] h4,
+html[lang="ar"] h5,
+html[lang="ar"] h6,
+html[lang="ar"] li,
+html[lang="ar"] label,
+html[lang="ar"] input,
+html[lang="ar"] textarea,
+html[lang="ar"] button:not(.jcd-lang a),
+html[lang="ar"] .wixui-horizontal-menu,
+html[lang="ar"] .wixui-mobile-menu,
+html[lang="ar"] .font_0,
+html[lang="ar"] .font_8,
+html[lang="ar"] .font_9 { direction: rtl; unicode-bidi: isolate; }
+html[lang="ar"] .wixui-rich-text [style*="text-align:left"],
+html[lang="ar"] .wixui-rich-text [style*="text-align: left"] { text-align: right !important; }
+html[lang="ar"] .jcd-lang { direction: ltr; } /* keep EN 繁 简 ع in a stable order */

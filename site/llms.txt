@@ -1,0 +1,66 @@
+# Joel Chang Design
+
+> Industrial design studio and portfolio of Joel Chang (Tzu-I Chang).
+
+Tzu-I Chang (Joel Chang) is a Taiwanese industrial designer based in St. Louis, Missouri. Specializing in bridging design vision with engineering feasibility to drive complex hardware from concept to mass production.
+
+Currently Principal Industrial Designer at Tron Future Tech (remote). He has launched 8+ products across networking, defense products, and drone systems, with earlier work at Gemtek rebuilding in-house product design language for global telecom partners. Practice areas named on the site include DFM, UX, CMF, and brand identity, from concept through mass production.
+
+Site: https://www.joel-chang-design.com
+Contact: joe10912345@gmail.com
+Profiles: https://www.behance.net/joe10912345, https://www.linkedin.com/in/joel-chang
+
+## Projects
+
+- [AI Tool Kit](https://www.joel-chang-design.com/ai-tool-kit): Integrating AI into the industrial design workflow since 2022.
+- [Airgain FWA Easy Installation Kit](https://www.joel-chang-design.com/airgain-fwa-easy-installation-kit): An outdoor antenna installation solution: simpler installation, seamless connectivity.
+- [Assistive products for children with dysarthria](https://www.joel-chang-design.com/assistive-products): Lightweight, modular training aids for children’s oral-muscle and speech exercises.
+- [Geometry Series](https://www.joel-chang-design.com/geometry-series): Gemtek ID family: designed with order, built for modern living.
+- [Interstellar 05](https://www.joel-chang-design.com/interstellar05): An esports PC chassis concept shaped with futuristic minimalism.
+- [JCG Tough Welding](https://www.joel-chang-design.com/jcg-tough-welding): A cyberpunk-inspired welding machine concept for NLG’s design challenge.
+- [Lionic LionFilter 200](https://www.joel-chang-design.com/lionic-lionfilter-200): A next-generation firewall designed from concept to delivery.
+- [MoAI Router](https://www.joel-chang-design.com/moai-router): A Wi-Fi 7 AI healthcare router — technology that feels human.
+- [NLG MMA200 / MMA120](https://www.joel-chang-design.com/nlg-mma200): Welding-machine exterior redesign balancing aesthetics and feasibility.
+- [Ocean Series](https://www.joel-chang-design.com/ocean-series): A story-driven ID family for Gemtek’s Wi-Fi 7 portfolio.
+- [Parametric Pattern Design](https://www.joel-chang-design.com/parametric-pattern-design): Experimental Rhino Grasshopper studies of parametric holes and surfaces.
+- [SAGITTARIUS Laptop](https://www.joel-chang-design.com/sagittarius-laptop): Stay Professional. Stay Sharp. Stay Yourself — a business laptop concept.
+- [T. SCOPE](https://www.joel-chang-design.com/scope): An AI-assisted scope system for target prediction (password-protected page on the original Wix site).
+- [Speeder Pro Earbuds](https://www.joel-chang-design.com/speeder-pro-earbuds): High-performance gaming earphones with high-speed, zero-delay connection.
+- [T. Blade](https://www.joel-chang-design.com/t-blade): An autonomous AI-powered reconnaissance drone for long-range mission awareness.
+- [T. Interceptor CS](https://www.joel-chang-design.com/t-interceptor-cs): Autonomous swarm interception for safer, more secure airspace.
+- [T. Interceptor MP](https://www.joel-chang-design.com/t-interceptormp): An autonomous AI-powered drone guarding airspace with speed and agility.
+- [TEANA Earbuds](https://www.joel-chang-design.com/teana-earbuds): A CMF exploration of luxury earbuds in Morandi colors for women aged 25–35.
+- [Wi-Fi 7 Gateway 2022](https://www.joel-chang-design.com/wi-fi7-2022): Gemtek’s first-generation Wi-Fi 7 routers: three identities, designed for the way you live.
+- [Wi-Fi 7 Extender](https://www.joel-chang-design.com/wi-fi7-extender): Organic, biomimetic aesthetics in an ultra-compact Wi-Fi 7 extender.
+- [Wi-Fi 7 Gaming Home Gateway](https://www.joel-chang-design.com/wi-fi7-gaming-home-gateway): Gemtek’s Wi-Fi 7 flagship: shaping performance into product identity.
+- [Wi-Fi 7 HGU/AP](https://www.joel-chang-design.com/wi-fi7-hgu-ap): A router design drawn from the organic elegance of sea anemones.
+- [ASUS Zenfone 9](https://www.joel-chang-design.com/zenfone-9): A smartphone CMF concept inspired by stage lighting, performance, and emotional contrast.
+
+## Categories
+
+- [Defense](https://www.joel-chang-design.com/defense): Site-security hardware for detecting and responding to unauthorized drone activity.
+- [Networking](https://www.joel-chang-design.com/networking): Routers, gateways, extenders, firewalls, and ID families for telecom and enterprise.
+- [Electronics](https://www.joel-chang-design.com/electronics): Laptops, esports PCs, smartphones, and earbuds.
+- [Industrial](https://www.joel-chang-design.com/industrial): Welding machines, power tools, and business hardware accessories.
+- [Lifestyle](https://www.joel-chang-design.com/lifestyle): Lamps, humidifiers, and experimental lifestyle objects.
+- [Experimental](https://www.joel-chang-design.com/experimental): AI design tools, parametric pattern studies, and assistive devices.
+
+## Pages
+
+- [Home](https://www.joel-chang-design.com)
+- [About](https://www.joel-chang-design.com/about)
+- [Contact](https://www.joel-chang-design.com/contact)
+
+## Languages
+
+The site is published in four languages at these URL prefixes (same page slugs):
+
+- English (default, x-default): https://www.joel-chang-design.com/
+- Traditional Chinese (zh-Hant): https://www.joel-chang-design.com/zh-hant/
+- Simplified Chinese (zh-Hans): https://www.joel-chang-design.com/zh-cn/
+- Arabic (ar, right-to-left): https://www.joel-chang-design.com/ar/
+
+## Notes for crawlers and agents
+
+- The canonical host is https://www.joel-chang-design.com. Paths match the former Wix site, with language prefixes as above.
+- The /scope page was password-protected on Wix; the public description above is taken from the Defense index, which links to it.

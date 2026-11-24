@@ -1,0 +1,38 @@
+# robots.txt for Joel Chang Design
+# While this site is served from a GitHub Pages project path
+# (joe10912345.github.io/joel-chang-design-site/), crawlers only honor
+# robots.txt at the host root (https://joe10912345.github.io/robots.txt),
+# not this file. After the custom domain points here as the site root,
+# this file is the one that counts.
+
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://www.joel-chang-design.com/sitemap.xml

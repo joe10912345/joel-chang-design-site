@@ -1,0 +1,17 @@
+const { chromium } = require('playwright-core');
+(async()=>{ const b=await chromium.launch({executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});
+const O='/workspace/joel-chang-design-site/reference/upd8/'; require('fs').mkdirSync(O,{recursive:true});
+const p=await (await b.newContext({viewport:{width:1440,height:900}})).newPage(); p.on('pageerror',e=>console.log('JSERR',e.message));
+const mv=async(x,y)=>{for(let i=0;i<10;i++){await p.mouse.move(x-50+i*5,y);await p.waitForTimeout(30);} await p.waitForTimeout(1500);};
+const hb=()=>p.evaluate(()=>{const h=document.getElementById('SITE_HEADER').getBoundingClientRect();return Math.round(h.bottom)});
+await p.goto('http://localhost:8765/about/index.html',{waitUntil:'load'}); await p.waitForTimeout(800);
+let b1=await hb(); await mv(260,b1); await p.screenshot({path:O+'cursor-light-about-header-edge-1440.png'}); console.log('about header bottom',b1);
+await p.evaluate(()=>scrollTo(0,700)); await p.waitForTimeout(500); await p.mouse.wheel(0,-200); await p.waitForTimeout(900);
+b1=await hb(); await mv(700,Math.max(b1,60)); await p.screenshot({path:O+'cursor-light-about-scrolled-header-shown-1440.png'}); console.log('about scrolled header bottom',b1, 'hidden?', await p.evaluate(()=>document.getElementById('SITE_HEADER').className.includes('jcd-hidden')));
+await mv(900,500); await p.screenshot({path:O+'cursor-light-about-mid-1440.png'});
+await p.goto('http://localhost:8765/',{waitUntil:'load'}); await p.waitForTimeout(800);
+b1=await hb(); await mv(300,b1); await p.screenshot({path:O+'cursor-light-home-header-edge-1440.png'}); console.log('home header bottom',b1);
+await p.evaluate(()=>scrollTo(0,2900)); await p.waitForTimeout(500); await p.mouse.wheel(0,-150); await p.waitForTimeout(900);
+b1=await hb(); await mv(1250,Math.max(b1,60)); await p.screenshot({path:O+'cursor-light-home-scrolled-header-edge-1440.png'}); console.log('home scrolled header bottom',b1);
+await mv(1250,560); await p.screenshot({path:O+'cursor-light-home-mid-1440.png'});
+await b.close();})();

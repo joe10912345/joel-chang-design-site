@@ -1,0 +1,35 @@
+/* Overrides that make the exported Wix DOM behave without the Wix runtime. */
+/* Gallery sliders become natively scrollable strips */
+.pro-gallery .gallery-horizontal-scroll { overflow-x: auto !important; scroll-snap-type: x proximity; }
+/* Users who prefer reduced motion: never leave anything hidden */
+@media (prefers-reduced-motion: reduce) { [id] { animation: none !important; } }
+
+/* Catalog tiles (Wix hover boxes on Defense / Industrial / Electronics / Lifestyle / Networking / Experimental,
+   desktop + m/). Wix drew the hover darkening as a separate vector rectangle whose size/offset never matched the
+   photo (1-3px off, or inset on mobile), the hover box itself sometimes had a second 2px border 1px off the photo's,
+   and on hover a 29px backdrop blur + transform kicked in. Result: two white frames that slid against each other.
+   Now the photo's own 2px border is the only frame and the darkening is drawn inside it, so nothing moves. */
+.gpDCD5:has(.wixui-image), .gpDCD5:has(.wixui-image):hover { transform: none !important; }
+.gpDCD5:has(.wixui-image) > [data-testid="container-bg"] {
+  border-width: 0 !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+.gpDCD5 .wixui-image ~ .wixui-vector-image svg { opacity: 0 !important; }   /* old overlay: invisible, still the click target */
+.gpDCD5 .wixui-image > [data-testid="linkElement"] { position: relative; }
+.gpDCD5 .wixui-image > [data-testid="linkElement"]::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: rgba(0, 0, 0, .3); opacity: 0; transition: opacity .4s ease-in-out; }
+.gpDCD5:hover .wixui-image > [data-testid="linkElement"]::after,
+.keyboard-tabbing-on .gpDCD5:focus-within .wixui-image > [data-testid="linkElement"]::after,
+.device-mobile-optimized .gpDCD5:has(.wixui-image ~ .wixui-vector-image a) .wixui-image > [data-testid="linkElement"]::after { opacity: 1; }
+/* Card outlines (white-stroke vectors) that Wix left 1-2px off their photo's frame: snap them onto it. */
+body:not(.device-mobile-optimized) #comp-mnfzfwpw3 { width: 1284px !important; }  /* defense */
+body:not(.device-mobile-optimized) #comp-mukou2cq { width: 1284px !important; }  /* defense */
+body:not(.device-mobile-optimized) #comp-mnpltyn7 { translate: 1px 0; }  /* industrial */
+body:not(.device-mobile-optimized) #comp-mnpng9cf3 { height: 769px !important; }  /* electronics */
+body:not(.device-mobile-optimized) #comp-mnpng9cy3 { height: 771px !important; }  /* electronics */
+body:not(.device-mobile-optimized) #comp-mnpnt4d31 { height: 772px !important; }  /* electronics */
+body:not(.device-mobile-optimized) #comp-mnpthwvg4 { height: 770px !important; }  /* lifestyle */
+body:not(.device-mobile-optimized) #comp-mnpthwwi { height: 772px !important; }  /* lifestyle */
+body:not(.device-mobile-optimized) #comp-moqmsoes4 { height: 770px !important; }  /* experimental */
+.device-mobile-optimized #comp-mnpltyn7 { translate: -1px 0; height: 199px !important; }  /* m/industrial */
+.device-mobile-optimized #comp-mng13dvk { height: 199px !important; }  /* m/networking */
+.device-mobile-optimized #comp-moqmsoft1 { height: 199px !important; }  /* m/experimental */

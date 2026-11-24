@@ -1,0 +1,110 @@
+{
+ "The vase-shaped waist is the signature curve of the Ocean Series. During development, the project goal was to reduce costs, and each team had its own priorities. The mechanical engineers wanted to remove the curve entirely, while the hardware engineers needed to leave room for internal components and preferred the simplest possible structure.": [
+  "花器般的腰線，是 Ocean Series 的標誌曲線。開發過程中，專案目標是降低成本，各團隊也有各自的優先事項。機構工程師希望完全拿掉這道曲線，硬體工程師則需要為內部零件留空間，並偏好盡可能單純的結構。",
+  "الخصر الذي يشبه المزهرية هو المنحنى المميز لسلسلة Ocean. وخلال التطوير، كان هدف المشروع خفض التكاليف، وكان لكل فريق أولوياته. أراد مهندسو الميكانيكا إزالة المنحنى بالكامل، بينما احتاج مهندسو العتاد إلى ترك حيّز للمكوّنات الداخلية وفضّلوا أبسط بنية ممكنة."
+ ],
+ "Throughout the design process, I collaborated closely with mechanical engineers to evaluate the feasibility of metal corner bending and ensure DFM alignment. By integrating industrial design creativity with production oversight, I was able to enhance the product’s market value while ensuring both visual appeal and manufacturing feasibility.": [
+  "在整個設計過程中，我與機構工程師緊密合作，評估金屬圓角折彎的可行性，並確保對齊 DFM。透過把工業設計創意與生產把關結合，我得以提升產品的市場價值，同時確保視覺吸引力與製造可行性。",
+  "طوال عملية التصميم، تعاونت عن قرب مع مهندسي الميكانيكا لتقييم جدوى ثني الزوايا المعدنية وضمان المواءمة مع قابلية التصنيع. وبدمج إبداع التصميم الصناعي مع الإشراف على الإنتاج، تمكّنت من تعزيز القيمة السوقية للمنتج مع ضمان الجاذبية البصرية وجدوى التصنيع معًا."
+ ],
+ "From controlled indoor environments to open-field scenarios, each flight test validates the system's autonomous detection and tracking function. Iterative testing under real-world conditions ensures reliability across diverse operational environments — refining flight dynamics, sensor accuracy, and structural durability before deployment.": [
+  "從受控的室內環境到開闊野外情境，每一次飛行測試都驗證系統的自主偵測與追蹤機能。在真實條件下的反覆測試，確保跨多樣作業環境的可靠性——在部署前精煉飛行動力學、感測精度與結構耐久。",
+  "من البيئات الداخلية المضبوطة إلى سيناريوهات الميدان المفتوح، يتحقق كل اختبار طيران من وظيفة الكشف والتتبع الذاتي للنظام. ويضمن الاختبار التكراري في ظروف العالم الحقيقي الموثوقية عبر بيئات تشغيل متنوّعة — منقّحًا ديناميكيات الطيران ودقة المستشعرات والمتانة البنيوية قبل النشر."
+ ],
+ "Single pain points are easy to patch one by one. The journey map showed they were connected: the same few loose items caused trouble at setup, on the ladder and on the way out. That shifted my goal from fixing individual frustrations to removing their shared cause, and led to one idea: let the unit carry everything the installer needs.": [
+  "單一痛點很容易逐一修補。旅程地圖顯示它們是連在一起的：同樣那幾件鬆散物品，在設置、爬梯與離開時都造成麻煩。這讓我的目標從修補個別挫折，轉成移除它們的共同原因，並導向一個想法：讓設備本身承載安裝人員所需的一切。",
+  "يسهل ترقيع نقاط الألم المفردة واحدة تلو الأخرى. وأظهرت خريطة الرحلة أنها متصلة: فالأغراض السائبة القليلة نفسها سبّبت المتاعب عند الإعداد وعلى السلّم وفي طريق الخروج. وذلك حوّل هدفي من إصلاح الإحباطات الفردية إلى إزالة سببها المشترك، وقاد إلى فكرة واحدة: دع الوحدة تحمل كل ما يحتاجه فنّي التركيب."
+ ],
+ "The final design integrates expandability, airflow, lighting, and interchangeable components into a cohesive chassis concept. Each feature was developed not only to improve usability and performance, but also to strengthen the product’s sci-fi gaming identity through controlled lighting, bold proportions, and a refined visual presence.": [
+  "最終設計把擴充性、氣流、燈光與可更換構件整合進一套完整的機殼概念。每一項機能的發展，不只為了提升易用性與效能，也透過受控燈光、大膽比例與精煉的視覺存在，強化產品的科幻電競識別。",
+  "يدمج التصميم النهائي قابلية التوسّع وتدفّق الهواء والإضاءة والمكوّنات القابلة للتبديل في مفهوم هيكل متماسك. ولم يُطوَّر كل سمة لتحسين سهولة الاستخدام والأداء فحسب، بل أيضًا لتعزيز هوية الألعاب الخيال علمية للمنتج عبر إضاءة مضبوطة ونسب جريئة وحضور بصري منقّح."
+ ],
+ "Designed for extended-range missions, T. Blade is an autonomous reconnaissance drone concept focused on aerial observation, area monitoring, and real-time intelligence gathering. Its lightweight, streamlined architecture supports agile deployment while enabling stable and efficient performance across complex operational environments.": [
+  "為長距離任務而設計，T. Blade 是一套以空中觀察、區域監看與即時情報蒐集為焦點的自主偵察無人機概念。輕量而流線的架構支援靈活部署，並能在複雜作業環境中保持穩定而有效率的表現。",
+  "مصمّم للمهام ممتدة المدى، T. Blade مفهوم مسيّرة استطلاع ذاتية تركّز على المراقبة الجوية ورصد المناطق وجمع الاستخبارات في الوقت الفعلي. وتدعم بنيته الخفيفة الانسيابية نشرًا رشيقًا مع تمكين أداء مستقر وفعّال عبر بيئات تشغيل معقّدة."
+ ],
+ "Regardless of style, what I valued most during the design phase was proportion, stance, and a memorable silhouette. I was aiming for a streamlined, flowing form with a sports car fastback posture. Step by step, I worked with the engineers to adjust the internal stack, achieving this goal without compromising function or performance.": [
+  "無論風格為何，設計階段我最看重的是比例、姿態與令人難忘的輪廓。我追求流線流動的造型，帶有跑車快背的姿態。一步一步，我與工程師調整內部堆疊，在不犧牲機能或效能的前提下達成這個目標。",
+  "بغضّ النظر عن الأسلوب، كان ما أقدّره أكثر خلال مرحلة التصميم هو التناسب والوقفة والصورة الجانبية التي لا تُنسى. وكنت أسعى إلى هيئة انسيابية متدفقة بوضعية الطرف الخلفي المنحدر للسيارات الرياضية. خطوة بخطوة، عملت مع المهندسين لضبط الرصّ الداخلي، محقّقًا هذا الهدف من دون المساس بالوظيفة أو الأداء."
+ ],
+ "Crafted specifically for the composed and sophisticated executive. The deep obsidian black chassis exudes a subtle yet premium metallic texture, while the refined gold accents on the hinge perfectly embody an aura of prestige and grandeur. With every fold and opening, it radiates impeccable professionalism and decisive leadership.": [
+  "專為沉穩而洗練的高階主管打造。深沉的黑曜石黑機身散發內斂卻高質感的金屬質地，轉軸上精煉的金色點綴則完美體現氣派與格局。每一次開闔，都散發出無可挑剔的專業，以及果斷的領導氣場。",
+  "صيغ خصيصًا للمسؤول التنفيذي الرصين والمتطور. ويُضفي الهيكل الأسود الأوبسيدياني العميق ملمسًا معدنيًا خفيًا وراقيًا، بينما تجسّد اللمسات الذهبية المنقّحة على المفصلة تمامًا هالة من المكانة والفخامة. ومع كل طي وفتح، يشع مهنية لا تشوبها شائبة وقيادة حاسمة."
+ ],
+ "Designed for rapid deployment and tight-formation flight, T. Interceptor CS prioritizes a compact, stackable form factor. The streamlined body reduces aerodynamic interference between units during swarm operations, while the angular profile projects a sharp, assertive presence that distinguishes it from commercial-grade platforms.": [
+  "為快速部署與緊密編隊飛行而設計，T. Interceptor CS 優先採用緊湊、可堆疊的造型。流線機身降低群體作業時單元之間的氣流干擾，稜角線條則投射銳利、自信的存在感，使其有別於商用等級平台。",
+  "مصمّم للنشر السريع والطيران في تشكيل متقارب، يعطي T. Interceptor CS الأولوية لعامل شكل مكتنز وقابل للرصّ. ويقلّل الجسم الانسيابي التداخل الديناميكي الهوائي بين الوحدات أثناء عمليات الأسراب، بينما يُسقط المحيط الزاوي حضورًا حادًا وجازمًا يميّزه عن المنصات من الدرجة التجارية."
+ ],
+ "2023 marked the breakout year for Wi-Fi 7, with every major player racing to stake their claim. With three SoC platforms of distinct performance tiers in hand and a plan to launch them simultaneously, I saw this as more than just a product release—it was a strategic opportunity to break free from Gemtek's established mold.": [
+  "2023 是 Wi-Fi 7 的爆發之年，各大廠都在爭相卡位。手上有三個不同效能層級的 SoC 平台，並計畫同步推出，我把這視為不只是一次產品發表——更是一個讓 Gemtek 跳出既有模子的策略機會。",
+  "مثّل عام 2023 سنة الانطلاق لـ Wi-Fi 7، حيث تسارع كل لاعب رئيسي ليثبت موقعه. ومع ثلاثة منصات شرائح بنطاقات أداء متمايزة في اليد وخطة لإطلاقها في آن، رأيت في ذلك ما يتجاوز إصدار منتج—بل فرصة استراتيجية للتحرّر من القالب الراسخ لدى Gemtek."
+ ],
+ "The launch platform houses two T. Blade units side by side, enabling consecutive deployment without reloading. An adjustable elevation mechanism allows operators to set the optimal launch angle based on terrain and mission profile — maximizing initial altitude gain and extending effective range from the moment of ejection.": [
+  "發射平台並排容納兩架 T. Blade，可連續部署而無需重新裝填。可調仰角機構讓操作人員依地形與任務樣貌設定最佳發射角度——從彈出那一刻起，最大化初始高度增益並延伸有效射程。",
+  "يؤوي منصة الإطلاق وحدتي T. Blade جنبًا إلى جنب، ما يتيح نشرًا متتابعًا من دون إعادة تحميل. وتسمح آلية ارتفاع قابلة للضبط للمشغّلين بتعيين زاوية الإطلاق المثلى وفق التضاريس وملف المهمة — معظّمة كسب الارتفاع الأولي وممدّدة المدى الفعّال منذ لحظة القذف."
+ ],
+ "Zenfone 9 CMF Concept explores how color, light, and surface finish can create a stronger emotional identity for a compact smartphone. Inspired by the atmosphere of live performances, the design transforms shifting stage lights, backstage shadows, and energetic visual rhythm into a refined color and material strategy.": [
+  "Zenfone 9 CMF 概念探索色彩、光線與表面處理，如何為緊湊的智慧型手機創造更強的情感識別。靈感來自現場演出的氛圍，設計把流轉的舞台燈光、幕後陰影與充滿能量的視覺節奏，轉化為精煉的色彩與材質策略。",
+  "يستكشف مفهوم CMF لـ Zenfone 9 كيف يمكن للون والضوء وتشطيب السطح أن يخلق هوية عاطفية أقوى لهاتف ذكي مكتنز. ومستوحى من أجواء العروض الحيّة، يحوّل التصميم أضواء المسرح المتبدّلة وظلال الكواليس والإيقاع البصري المفعم بالطاقة إلى استراتيجية لون وخامة منقّحة."
+ ],
+ "As drone threats grow more prevalent, T.Interceptor MP is a multi-functional defense system built for urban security and critical infrastructure protection. It integrates AI image recognition, modular design, and cloud communication to perform real-time detection, monitoring, and interception in complex environments.": [
+  "隨著無人機威脅日益普遍，T. Interceptor MP 是一套為都市安防與關鍵基礎設施防護打造的多功能防衛系統。它整合 AI 影像辨識、模組化設計與雲端通訊，在複雜環境中進行即時偵測、監看與攔截。",
+  "ومع تزايد تهديدات المسيّرات، يُعدّ T. Interceptor MP نظام دفاع متعدد الوظائف مبنيًا لأمن المدن وحماية البنية التحتية الحيوية. وهو يدمج التعرف على الصور بالذكاء الاصطناعي والتصميم المعياري والاتصال السحابي لأداء الكشف والمراقبة والاعتراض في الوقت الفعلي في بيئات معقّدة."
+ ],
+ "Gaming users expect more than speed — they look for intensity, control, and a product presence that matches the energy of their setup. For this full-featured gaming gateway, the design focuses on transforming high performance into a bold visual language, combining raw power, sculptural tension, and emotional impact.": [
+  "遊戲使用者期待的不只是速度——他們尋找強度、掌控感，以及能與配備能量相稱的產品存在感。針對這款全機能電競閘道器，設計聚焦把高效能轉成大膽的視覺語言，結合原始力量、雕塑張力與情感衝擊。",
+  "يتوقع مستخدمو الألعاب ما يتجاوز السرعة — فهم يبحثون عن الحدّة والتحكّم وحضور منتج يوازي طاقة تجهيزهم. ولهذه البوابة الكاملة الميزات للألعاب، يركّز التصميم على تحويل الأداء العالي إلى لغة بصرية جريئة، جامعة القوة الخام والتوتر النحتي والأثر العاطفي."
+ ],
+ "As Gemtek’s first flagship model for the Wi-Fi 7 generation and a key product for overseas launch, this project needed to communicate more than a technical upgrade. The design had to express speed, stability, and next-generation performance through a product presence strong enough to stand out in the gaming market.": [
+  "作為 Gemtek 在 Wi-Fi 7 世代的首款旗艦、也是海外上市的關鍵產品，此專案需要傳達的不只是技術升級。設計必須透過足以在電競市場中脫穎而出的產品存在感，表達速度、穩定與次世代效能。",
+  "بوصفه أول طراز رائد لدى Gemtek لجيل Wi-Fi 7 ومنتجًا محوريًا للإطلاق في الخارج، احتاج هذا المشروع إلى إيصال ما يتجاوز ترقية تقنية. وكان على التصميم أن يعبّر عن السرعة والاستقرار وأداء الجيل التالي عبر حضور منتج قوي بما يكفي ليبرز في سوق الألعاب."
+ ],
+ "Presented with a minimalist design language, the laptop is built with CNC machining and anodized finishing, complemented by delicate texturing for a distinctive, premium feel. Every detail is carefully crafted, from the A cover to the D cover and even the hinge, reflecting an uncompromising pursuit of refinement.": [
+  "以極簡設計語言呈現，筆電以 CNC 加工與陽極處理打造，並輔以細緻質感，營造獨特的高質感觸感。從 A 蓋到 D 蓋，乃至轉軸，每一處細節都經過仔細雕琢，體現對精煉毫不妥協的追求。",
+  "مقدَّم بلغة تصميم بالغة التبسيط، يُبنى الحاسوب المحمول بالتشغيل الرقمي بالحاسوب والتشطيب المؤكسد، مكمّلًا بملمس دقيق لإحساس راقٍ مميز. وكل تفصيل مصوغ بعناية، من الغطاء A إلى الغطاء D وحتى المفصلة، عاكسًا سعيًا لا هوادة فيه إلى الرقي."
+ ],
+ "Inspired by the graceful form of a sea anemone, the design was shaped to feel soft, elegant, and vase-like. With a memorable yet neutral minimalist expression, it avoids unnecessary visual complexity. Subtle textural contrast and silver screen printing add a refined premium quality to the overall appearance.": [
+  "靈感來自海葵優美的形態，設計被形塑成柔軟、優雅、如花器一般。以令人難忘卻中性的極簡表達，避開多餘的視覺複雜。細微的質感對比與銀色網印，為整體外觀增添精煉的高質感。",
+  "مستوحى من هيئة شقائق النعمان الرشيقة، شُكّل التصميم ليحسّ ناعمًا وأنيقًا وأشبه بمزهرية. وبتعبير بالغ التبسيط لا يُنسى ومحايد في آن، يتجنّب التعقيد البصري غير الضروري. ويضيف تباين ملمسي خفي وطباعة حريرية فضية جودة راقية منقّحة إلى المظهر الكلي."
+ ],
+ "NLG has commissioned me to redesign and revitalize their long-standing bestselling DAIDEN brand welding machines, specifically for the Japanese market. The core objective is to breathe new life into the product's established \"Retro Japan\" aesthetic, elevating it into a bold, modern, and eye-catching design.": [
+  "NLG 委託我重新設計並活化其長年暢銷的 DAIDEN 品牌焊接機，特別針對日本市場。核心目標是為產品既有的「復古日本」美學注入新生命，將它提升為大膽、現代、且能抓住目光的設計。",
+  "كلّفتني NLG بإعادة تصميم آلات اللحام ذات العلامة DAIDEN الأكثر مبيعًا منذ زمن وإحيائها، خصيصًا للسوق اليابانية. ويتمثّل الهدف الجوهري في بث حياة جديدة في جمالية «اليابان الكلاسيكية» الراسخة للمنتج، مرتقيًا بها إلى تصميم جريء وحديث ولافت."
+ ],
+ "These projects are presented as site-security hardware solutions, designed to help operators detect, assess, and respond to unauthorized drone activity in protected environments. The focus is on situational awareness, autonomous response, and reliable field deployment rather than weapon-system storytelling.": [
+  "這些專案以場域安防硬體方案的形式呈現，協助操作人員在受保護環境中偵測、研判並應處未經授權的無人機活動。焦點在情勢掌握、自主應變與可靠的現場部署，而非武器系統式的敘事。",
+  "تُقدَّم هذه المشاريع بوصفها حلول عتاد لأمن المواقع، مصمّمة لمساعدة المشغّلين على كشف نشاط المسيّرات غير المصرّح به وتقييمه والاستجابة له في بيئات محمية. ويتركّز الاهتمام على الوعي بالموقف والاستجابة الذاتية والنشر الميداني الموثوق، لا على سرد أنظمة التسليح."
+ ],
+ "Possessing comprehensive end-to-end design skills to realize product vision via a complete workflow. By balancing aesthetic creativity with engineering feasibility and mass production cost strategies, innovative ideas are seamlessly translated into solutions that truly serve users and drive business value.": [
+  "具備完整的端到端設計能力，透過完整工作流程實現產品願景。在美學創意、工程可行性與量產成本策略之間取得平衡，把創新想法無縫轉譯成真正服務使用者、並驅動商業價值的方案。",
+  "يمتلك مهارات تصميم شاملة من البداية إلى النهاية لتحقيق رؤية المنتج عبر سير عمل مكتمل. وبالموازنة بين الإبداع الجمالي والجدوى الهندسية واستراتيجيات تكلفة الإنتاج الكمّي، تُترجم الأفكار المبتكرة بسلاسة إلى حلول تخدم المستخدمين حقًا وتدفع القيمة التجارية."
+ ],
+ "Designed to harmonize beautifully with the router's sculptural form, the dedicated bracket creates a sophisticated, almost floating aesthetic on the wall. By incorporating a concealed cord management system at the bottom, it efficiently organizes cables and preserves a pristine, uninterrupted visual flow.": [
+  "專為與路由器雕塑般的造型和諧共存而設計，專用支架在牆面上營造洗練、近乎懸浮的美學。底部整合隱藏式線材整理系統，有效整理線纜，並維持潔淨、不被打斷的視覺流動。",
+  "مصمّم لينسجم بجمال مع الهيئة النحتية للموجّه، يخلق الحامل المخصّص جمالية راقية تكاد تكون عائمة على الجدار. وبإدماج نظام إدارة أسلاك مخفي في الأسفل، ينظّم الكابلات بكفاءة ويحافظ على تدفّق بصري نقي بلا انقطاع."
+ ],
+ "Ensured all surfaces achieved G2 continuity, maintained consistent plastic thickness, and included proper draft angles to meet manufacturing requirements. Despite numerous design constraints, I focused on maximizing detail, achieving harmonious proportions, and realizing my vision for ideal aesthetics.": [
+  "確保所有表面達到 G2 連續，維持一致的塑料壁厚，並具備適當拔模角以符合製造要求。儘管設計限制眾多，我仍專注把細節放到最大、達成和諧比例，並實現我對理想美學的願景。",
+  "ضمنت أن تبلغ جميع السطوح استمرارية G2، مع الحفاظ على سماكة بلاستيك متسقة وتضمين زوايا سحب مناسبة لتلبية متطلبات التصنيع. ورغم القيود التصميمية العديدة، ركّزت على تعظيم التفاصيل وتحقيق نسب متناغمة وتحقيق رؤيتي للجماليات المثالية."
+ ],
+ "For the third generation of the MoAI Router, the overall silhouette was softened to create a warmer and more approachable expression. By shortening the nose, subtly raising the mouth, and refining the facial curves, the design reduces visual rigidity while maintaining the iconic Moai-inspired identity.": [
+  "在第三代 MoAI Router 中，整體輪廓被柔化，以創造更溫暖、更親近的表達。透過縮短鼻部、微妙上提口部，並精煉面部曲線，設計在降低視覺剛硬的同時，仍維持標誌性的摩艾靈感識別。",
+  "للجيل الثالث من MoAI Router، لُيّنت الصورة الجانبية الكلية لخلق تعبير أدفأ وأكثر قربًا. وبتقصير الأنف ورفع الفم بلطف وتنقيح منحنيات الوجه، يقلّل التصميم الجمود البصري مع الحفاظ على الهوية الأيقونية المستوحاة من الموآي."
+ ],
+ "I first built ParaVents for my own work. Along the way I have benefited from so many resources that people shared freely, and ParaVents is my way of giving back. It is a personal, non-profit project, open to anyone who wants to use it. All I ask is that you tell me your story and what you plan to make.": [
+  "我先為自己的工作做了 ParaVents。一路上受惠於許多人無私分享的資源，ParaVents 是我回饋的方式。這是一項個人、非營利專案，開放給任何想使用的人。我只希望你告訴我你的故事，以及你打算做什麼。",
+  "بنيت ParaVents أولًا لعملي الخاص. وعلى الطريق استفدت من موارد كثيرة شاركها الناس بسخاء، وParaVents طريقتي في الردّ بالجميل. إنه مشروع شخصي غير ربحي، مفتوح لأي شخص يريد استخدامه. وكل ما أطلبه أن تخبرني قصتك وما تخطط لصنعه."
+ ],
+ "In addition to developing a diverse range of products, I also created ocean-themed imagery that represents the products, including photo editing and composite images. By using strong visual communication skills, This visual system encouraged internal discussion and strengthened stakeholder engagement.": [
+  "除了發展多樣產品，我也創作代表產品的海洋主題意象，包括照片後製與合成圖像。透過有力的視覺溝通能力，這套視覺系統促進了內部討論，並加強利害關係人的參與。",
+  "إضافة إلى تطوير نطاق متنوّع من المنتجات، أنشأت أيضًا صورًا بموضوع المحيط تمثّل المنتجات، بما في ذلك تحرير الصور والصور المركّبة. وباستخدام مهارات تواصل بصري قوية، شجّع هذا النظام البصري النقاش الداخلي وعزّز انخراط أصحاب المصلحة."
+ ],
+ "To stand out, the design evolved into four distinct variations, each defined by unique 3D textures on the front panel, such as diamond patterns, concave surfaces, and wave features. Additionally, the material was upgraded to recycled plastic, reinforcing the product's sustainability and modern appeal.": [
+  "為了脫穎而出，設計演進為四個截然不同的變體，各自以前面板上獨特的 3D 質感定義，例如菱面圖案、凹面與波浪特徵。此外，材質升級為回收塑料，強化產品的永續性與現代感。",
+  "للتميّز، تطوّر التصميم إلى أربعة تنويعات متمايزة، يُعرَّف كل منها بملامس ثلاثية الأبعاد فريدة على اللوحة الأمامية، مثل أنماط ماسية وسطوح مقعّرة وسمات موجية. إضافة إلى ذلك، رُقّيت الخامة إلى بلاستيك معاد تدويره، معزّزة استدامة المنتج وجاذبيته العصرية."
+ ],
+ "The design language draws from two sources of performance: the poised aggression of sports cars and the streamlined power of the orca. Sports-car references bring speed, tension, and precision, while the orca inspiration adds fluid strength, intelligent motion, and a commanding Ocean-Series identity.": [
+  "設計語言取材自兩種效能來源：跑車蓄勢待發的侵略，以及虎鯨流線的力量。跑車參照帶來速度、張力與精準，虎鯨靈感則加入流動的力量、智慧的動態，以及具主導性的 Ocean Series 識別。",
+  "تستمد لغة التصميم من مصدرين للأداء: العدوان المتأهّب للسيارات الرياضية والقوة الانسيابية للأوركا. وتجلب مراجع السيارات الرياضية السرعة والتوتر والدقة، بينما يضيف إلهام الأوركا قوة متدفقة وحركة ذكية وهوية سلسلة Ocean آمرة."
+ ]
+}
