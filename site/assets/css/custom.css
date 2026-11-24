@@ -194,3 +194,40 @@ html.jcd-light-on #SITE_HEADER [data-testid="colorUnderlay"] { background-image:
   border: 1px solid rgba(255, 255, 255, .5); font: 13px/1 "Poppins", Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase;
   transition: color .2s ease, border-color .2s ease; }
 #comp-jqc9copb .jcd-form-again:hover, #comp-jqc9copb .jcd-form-again:focus-visible { color: #4a90ff; border-color: #4a90ff; outline: none; }
+
+/* ===== Mobile fixes (pt120u) ===== */
+/* 1 + 4: page canvas black, so nothing white shows below the footer or through sub-pixel seams between sections */
+html:has(> body.device-mobile-optimized), body.device-mobile-optimized { background-color: #000 !important; }
+.device-mobile-optimized #SITE_CONTAINER, .device-mobile-optimized #site-root, .device-mobile-optimized #masterPage { background-color: #000; }
+.device-mobile-optimized #SITE_FOOTER :is(.CmHRsG, .EaoiSu) { background-color: #000 !important; }
+.device-mobile-optimized [id^="bgLayers_pageBackground_"] .LNYVZi { background-color: #000 !important; }
+/* 2: white frames / lines at half thickness */
+.device-mobile-optimized .BprtEa { border-width: 1px !important; }
+.device-mobile-optimized .v9ZE1l { border-width: 1.5px !important; }
+.device-mobile-optimized .wixui-horizontal-line { border-top-width: 1px !important; }
+.device-mobile-optimized .wixui-vector-image svg path { stroke-width: 1px !important; }
+/* 3: m/about Education + Languages laid out like Work Experience / Awards (year column + item column, same type sizes) */
+.device-mobile-optimized div:has(> #comp-mujj9yx713) { grid-template-rows: repeat(4, auto) !important; grid-template-columns: 280px !important; }
+.device-mobile-optimized :is(#comp-mujj9yx713, #comp-mujn0kvf12) { grid-area: auto / 1 / auto / 2 !important; margin: 0 0 10px !important; }
+.device-mobile-optimized #comp-mujj9yx713 { grid-row: 1 !important; margin-left: -3px !important; }
+.device-mobile-optimized #comp-mujn0kvf12 { grid-row: 3 !important; margin: 6px 0 10px -3px !important; }
+.device-mobile-optimized :is(#comp-mujj9yx713, #comp-mujn0kvf12) :is(h1,h2,h3,h4,h5,h6,p,span) { font-size: 11px !important; }
+.device-mobile-optimized :is(#comp-mujj9yx82, #comp-mujj9yx9) { grid-area: 2 / 1 / 3 / 2 !important; margin: 0 !important; }
+.device-mobile-optimized :is(#comp-mujn0kvg6, #comp-mujn0kvh5) { grid-area: 4 / 1 / 5 / 2 !important; margin: 0 !important; }
+.device-mobile-optimized :is(#comp-mujj9yx82, #comp-mujn0kvg6) { width: 86px !important; }
+.device-mobile-optimized :is(#comp-mujj9yx9, #comp-mujn0kvh5) { width: 204px !important; margin-left: 73px !important; }
+.device-mobile-optimized :is(#comp-mujj9yx82, #comp-mujj9yx9, #comp-mujn0kvg6, #comp-mujn0kvh5) :is(h1,h2,h3,h4,h5,h6,p,span) { font-size: 6px !important; line-height: normal !important; }
+/* 5: hamburger pressed state; logo blue copy uses the mobile logo file so its aspect matches */
+#MENU_AS_CONTAINER_TOGGLE, #SITE_HEADER a { -webkit-tap-highlight-color: transparent; }
+#MENU_AS_CONTAINER_TOGGLE { transition: transform .12s ease; outline: none; }
+#MENU_AS_CONTAINER_TOGGLE .jECeES { transition: background-color .12s ease; }
+#MENU_AS_CONTAINER_TOGGLE:active { transform: scale(.9); }
+#MENU_AS_CONTAINER_TOGGLE:active .jECeES { background-color: #4a90ff !important; }
+.device-mobile-optimized :has(> #img_comp-m26ho7tp)::after { -webkit-mask-image: url("../media/1e9c09_96f6bcd5dbc9424296b269813bc29e19_mv2_300x38_3fb1d16b.png"); mask-image: url("../media/1e9c09_96f6bcd5dbc9424296b269813bc29e19_mv2_300x38_3fb1d16b.png"); }
+a:active:has(> #img_comp-m26ho7tp)::after, a:active :has(> #img_comp-m26ho7tp)::after { opacity: 1; }
+a:active #img_comp-m26ho7tp { opacity: 0 !important; }
+/* 6: Works category buttons: no focus ring / tap flash; pressed = light-grey fill, white text, thin grey border */
+a.StylableButton2545352419__root { -webkit-tap-highlight-color: transparent; }
+a.StylableButton2545352419__root:focus { outline: none !important; box-shadow: none !important; }
+a.StylableButton2545352419__root:is(:active, :focus-visible) { background-color: #8a8a8a !important; border-color: rgb(62, 62, 62) !important; outline: none !important; box-shadow: none !important; }
+a.StylableButton2545352419__root:is(:active, :focus-visible) .StylableButton2545352419__label { color: #fff !important; }
