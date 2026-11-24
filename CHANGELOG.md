@@ -9,6 +9,10 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-24
 
+### Phone recommendation cards: text sized like the rest of the phone About page
+- Joel: phone card text too big. The phone About page uses 6-8px body text and 11px headings (320px layout); the cards had 10-11px text (bigger than the headings). Now text 8px (featured 8.5px), name 9.5px, role 6.5px, quote 22px, avatar 22px, LinkedIn tile 17px, padding 13px, corners 5px. iPad (desktop layout scaled) checked: 2 columns, proportions match the page, no change needed.
+- First push from this folder: 18 commits `8174d54..3462c1d`, GitHub Pages deploy succeeded.
+
 ### Category frames + unframed tiles aligned; About intro centred on screen; card glows fainter
 - **Category pages (desktop/iPad)**: the first centring moved only items inside a white frame, so the unframed photo tiles below a big frame stayed ~15px left (e.g. Networking "Home-Based"). `custom.js` "Category pages" now moves every top-level item of each section that holds frames (framed cards, unframed tile rows, captions) by the same amount; centred titles and full-width items stay. Checked all 6 pages at 1440 / 1920: frames and tile rows share one left edge (77-79 / 156-159), equal left/right.
 - **About intro (desktop/iPad)**: text + portrait sat ~140px below the screen middle (tall empty band above). `custom.js` "About, desktop layout" moves the first section's content up so the block is centred on the screen, at least 56px under the header; the section shrinks by the same amount (rest of the page follows, WORK EXPERIENCE gap unchanged); recomputed on resize. 1536x864: 56px under the header; iPad landscape: exactly centred; ultra-wide: as high as allowed.

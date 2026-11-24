@@ -406,20 +406,21 @@ button.style-mp6qabp3__root, button.style-mp6qabp3__root:is(:hover, :focus, :foc
   background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .18); transition: background-color .25s, border-color .25s; }
 .jcd-rec-li svg { width: 14px; height: 14px; fill: currentColor; }
 .jcd-rec-card:hover .jcd-rec-li, .jcd-rec-card:focus-visible .jcd-rec-li, .jcd-rec-card:active .jcd-rec-li { background: var(--jcd-blue); border-color: var(--jcd-blue); }
-/* phone (m/, 320px layout): one column, sizes for the small layout */
+/* phone (m/, 320px layout): one column. Sizes match the rest of the phone About page (body 6-8px, headings 11px);
+   Joel: the first version (text 10-11px) was bigger than the section headings. */
 .device-mobile-optimized .jcd-rec { width: calc(100% - 40px); margin: 22px auto 60px; }
-.device-mobile-optimized .jcd-rec-grid { grid-template-columns: 1fr; gap: 10px; }
-.device-mobile-optimized .jcd-rec-card, .device-mobile-optimized .jcd-rec-card.feat { padding: 16px 15px 14px; }
+.device-mobile-optimized .jcd-rec-grid { grid-template-columns: 1fr; gap: 9px; }
+.device-mobile-optimized .jcd-rec-card, .device-mobile-optimized .jcd-rec-card.feat { padding: 13px 13px 12px; border-radius: 5px; }
 .device-mobile-optimized .jcd-rec-card:hover { transform: none; }
-.device-mobile-optimized .jcd-rec-q { font-size: 30px; height: 14px; }
-.device-mobile-optimized .jcd-rec-txt { margin-top: 6px; font-size: 10px; line-height: 1.6; }
-.device-mobile-optimized .jcd-rec-card.feat .jcd-rec-txt { font-size: 11px; }
-.device-mobile-optimized .jcd-rec-who { gap: 9px; padding-top: 12px; }
-.device-mobile-optimized .jcd-rec-ava { width: 28px; height: 28px; font-size: 10px; }
-.device-mobile-optimized .jcd-rec-nm { font-size: 11.5px; }
-.device-mobile-optimized .jcd-rec-rl { font-size: 8.5px; }
-.device-mobile-optimized .jcd-rec-li { width: 22px; height: 22px; }
-.device-mobile-optimized .jcd-rec-li svg { width: 11px; height: 11px; }
+.device-mobile-optimized .jcd-rec-q { font-size: 22px; height: 10px; }
+.device-mobile-optimized .jcd-rec-txt { margin-top: 5px; font-size: 8px; line-height: 1.6; }
+.device-mobile-optimized .jcd-rec-card.feat .jcd-rec-txt { font-size: 8.5px; }
+.device-mobile-optimized .jcd-rec-who { gap: 7px; padding-top: 10px; }
+.device-mobile-optimized .jcd-rec-ava { width: 22px; height: 22px; font-size: 7.5px; }
+.device-mobile-optimized .jcd-rec-nm { font-size: 9.5px; }
+.device-mobile-optimized .jcd-rec-rl { font-size: 6.5px; margin-top: 2px; }
+.device-mobile-optimized .jcd-rec-li { width: 17px; height: 17px; border-radius: 3px; }
+.device-mobile-optimized .jcd-rec-li svg { width: 9px; height: 9px; }
 
 /* ---------- Home "GET IN TOUCH": gentle endless balloon breathing (Joel 2026-11-24), desktop + iPad + phone ----------
    Scales 1 -> 1.045 -> 1 every 2.8s with a soft ease (inflate, settle). Stops on hover/press so the click target is still,

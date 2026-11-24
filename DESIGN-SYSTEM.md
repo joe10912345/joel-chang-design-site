@@ -44,7 +44,7 @@ Radii are CSS px of the layout, so they scale with the page (wide-screen zoom, i
 | SemiBold | `wfont_459113_5846594cb6ea4f43b8e132f9d1a29629, wf_5846594cb6ea4f43b8e132f9d, orig_poppins_semibold` |
 
 Sizes set so far (layout px; desktop page / phone 320px page):
-- Recommendation card: featured text 17 / 11, text 14 / 10 (line-height 1.6–1.65), name SemiBold 15 / 11.5, role Light 11.5 / 8.5.
+- Recommendation card: featured text 17 / 8.5, text 14 / 8 (line-height 1.6–1.65), name SemiBold 15 / 9.5, role Light 11.5 / 6.5 (desktop / phone). Phone sizes follow the phone About page: body 6–8px, headings 11px — a card must never be louder than the section heading.
 - Phone menu: Works / About / Contact SemiBold (Wix size); the six product pages Light **13px**.
 - Phone About "What I Believe": text 9.5px / 1.55, title 14px. Phone body text must not go below ~8px in the 320px layout (≈10px on screen).
 - Quote mark: Georgia serif, white 85% at rest → `--jcd-blue` on hover/press.
