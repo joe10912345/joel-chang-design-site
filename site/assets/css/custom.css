@@ -347,3 +347,9 @@ li[data-item-depth="1"][aria-current="page"] .itemDepth12472627565__label { colo
 .device-mobile-optimized #comp-mujq4ude6 :is(p, span) { font-size: 9.5px !important; line-height: 1.55 !important; }
 .device-mobile-optimized #comp-mujq4udg1 :is(h1, h2, h3, p, span) { font-size: 14px !important; }
 .device-mobile-optimized #comp-mujq4ude6 { height: auto !important; margin-bottom: 40px !important; }
+
+/* ---------- Home "Works" row: "Selected" is a label, not a button (Joel 2026-11-24) ----------
+   No frame (Wix drew a dark 1px box) and nothing happens on click/tap/hover. Desktop, iPad, phone. */
+button.style-mp6qabp3__root, button.style-mp6qabp3__root:is(:hover, :focus, :focus-visible, :active) {
+  border-color: transparent !important; outline: none !important; box-shadow: none !important; pointer-events: none !important; cursor: default !important;
+  -webkit-tap-highlight-color: transparent; }
