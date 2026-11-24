@@ -25,6 +25,7 @@ BEHANCE_FIX = {
     'https://www.behance.net/portfolio/editor?project_id=91290285': 'https://www.behance.net/gallery/91290285/AIRMP',
     'https://www.behance.net/portfolio/editor?project_id=129479083': 'https://www.behance.net/gallery/129479083/Phantom-Lamp',
 }
+TILT_PAGES = {'defense', 'industrial', 'electronics', 'lifestyle', 'networking', 'experimental'}
 MISSING_SUBST = {'1e9c09_41de3ddba202445a81cf8c93c3e35bbb': 'assets/media/1e9c09_264a4186e7a2452da6a7e7137e00cd95_mv2_2560x1511_2df6d3ce.jpg'}
 
 def slug_of(u):
@@ -383,6 +384,8 @@ def build_page(mode, slug, pool):
     head_inject = f'<script>window.__STATIC_MODE="{mode}";window.__ALT_URL="{other}";</script>' \
         f'<script src="{js}"></script><link rel="stylesheet" href="{cssx}">' \
         f'<link rel="stylesheet" href="{relpath("assets/css/custom.css", me)}"><script src="{relpath("assets/js/custom.js", me)}" defer></script>'
+    if mode == 'desktop' and slug in TILT_PAGES:   # catalog cards: 3D tilt following the mouse (desktop only)
+        head_inject += f'<script src="{relpath("assets/js/tilt.js", me)}" defer></script>'
     out = out.replace('</head>', head_inject + '</head>', 1)
     # Google Analytics 4 (gtag.js, measurement ID G-36L411LGT0) - right after <head>, once per page.
     GTAG = ('<script async src="https://www.googletagmanager.com/gtag/js?id=G-36L411LGT0"></script>\n'
