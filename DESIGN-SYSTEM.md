@@ -78,6 +78,7 @@ Other rules
 
 Top image ("hero", home slideshow + product pages): phone **50% of the screen height**; iPad landscape and computers **exactly one screen** (`100svh`, divided by `__jcdZoom` on computers); iPad portrait keeps the Wix height.
 Scripts measuring with `getBoundingClientRect` must divide by `window.__jcdZoom` before writing CSS px.
+Background photos: never leave `overflow: clip/hidden` on a Wix `bgMedia_*` box that sits outside its section (iPad Safari hides the photo); sticky screen-sized Wix backgrounds crop products on tall screens — pin them to their section instead (About "What I Believe", Gaming gateway "Aerodynamic Concept").
 
 ## 6. Interaction states
 
