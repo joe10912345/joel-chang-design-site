@@ -19,6 +19,9 @@ SITE = os.path.join(REPO, 'site')
 ORIG = os.path.join(REPO, 'media-originals')
 LIVE = 'https://www.joel-chang-design.com'
 PAGES = [l.strip() for l in open('/workspace/wixcopy-tools/pages.txt') if l.strip()]
+# Wix media deleted on the live site (403). Electronics 'Gaming PC Interstellar 05' tile -> the project's hero image.
+MISSING_SUBST = {'1e9c09_41de3ddba202445a81cf8c93c3e35bbb': 'assets/media/1e9c09_264a4186e7a2452da6a7e7137e00cd95_mv2_2560x1511_2df6d3ce.jpg'}
+
 def slug_of(u):
     p = urlparse(u).path.strip('/'); return p or 'home'
 SLUGS = [slug_of(u) for u in PAGES]
@@ -328,6 +331,10 @@ def build_page(mode, slug, pool):
             if isinstance(v, str) and re.match(r'(?:https?:)?//' + ASSET_HOSTS, v):
                 r = localize_attr_url(v)
                 if r: t[attr] = relpath(r, me)
+                elif t.name == 'img' and attr == 'src' and any(k in v for k in MISSING_SUBST):
+                    # deleted from Wix media (403) but a same-project image exists locally -> use it
+                    t['data-live-src-substituted'] = v
+                    t['src'] = relpath(next(MISSING_SUBST[k] for k in MISSING_SUBST if k in v), me)
                 elif t.name == 'img' and attr == 'src':
                     # image is broken on the live site too (Wix returns 403) -> transparent placeholder
                     t['data-live-src-missing'] = v

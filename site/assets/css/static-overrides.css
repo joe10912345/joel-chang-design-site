@@ -4,22 +4,33 @@
 /* Users who prefer reduced motion: never leave anything hidden */
 @media (prefers-reduced-motion: reduce) { [id] { animation: none !important; } }
 
-/* Catalog tiles (Wix hover boxes on Defense / Industrial / Electronics / Lifestyle / Networking / Experimental,
-   desktop + m/). Wix drew the hover darkening as a separate vector rectangle whose size/offset never matched the
-   photo (1-3px off, or inset on mobile), the hover box itself sometimes had a second 2px border 1px off the photo's,
-   and on hover a 29px backdrop blur + transform kicked in. Result: two white frames that slid against each other.
-   Now the photo's own 2px border is the only frame and the darkening is drawn inside it, so nothing moves. */
-.gpDCD5:has(.wixui-image), .gpDCD5:has(.wixui-image):hover { transform: none !important; }
-.gpDCD5:has(.wixui-image) > [data-testid="container-bg"] {
-  border-width: 0 !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
-.gpDCD5 .wixui-image ~ .wixui-vector-image svg { opacity: 0 !important; }   /* old overlay: invisible, still the click target */
-.gpDCD5 .wixui-image > [data-testid="linkElement"] { position: relative; }
-.gpDCD5 .wixui-image > [data-testid="linkElement"]::after {
+/* Catalog tiles (Wix hover boxes whose photo is a plain WPhoto, .ih2JY1: Defense / Industrial / Electronics /
+   Lifestyle / Networking / Experimental (Workflow Enhancement), desktop + m/ + every language copy). Project-page
+   hover boxes (MouseOverPhoto zooms etc.) are deliberately NOT matched.
+   1) Wix drew the hover darkening as a separate vector rectangle whose size/offset never matched the photo, and
+      the hover box sometimes had a 2nd border 1px off the photo's -> two white frames sliding against each other.
+      Now the photo's own 2px border is the only frame and the darkening is drawn inside it.
+   2) On hover Wix switched the photo, overlay and captions from transform:none to an identity matrix with a
+      0.2-0.4s "transition: all". That promotes them to GPU layers mid-hover; tiles sit on half-pixel positions
+      (centred with calc((100% - 980px) * .5), x = n.5 whenever the window width is odd, e.g. with a scrollbar),
+      so the layer snaps to whole pixels and the photo visibly jumps left/right on hover-in and back on hover-out.
+      Kill every transform in the tile and only let opacity/visibility animate. */
+.gpDCD5:has(.ih2JY1), .gpDCD5:has(.ih2JY1):hover,
+.gpDCD5:has(.ih2JY1) [id^="comp-"], .gpDCD5:has(.ih2JY1):hover [id^="comp-"],
+.gpDCD5:has(.ih2JY1) [id^="comp-"] * { transform: none !important; will-change: auto !important; }
+.gpDCD5:has(.ih2JY1), .gpDCD5:has(.ih2JY1) [id^="comp-"], .gpDCD5:has(.ih2JY1) [id^="comp-"] * {
+  transition-property: opacity, visibility !important; }
+.gpDCD5:has(.ih2JY1) > [data-testid="container-bg"] {
+  border-width: 0 !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+  transition: none !important; }
+.gpDCD5 .ih2JY1 ~ .wixui-vector-image svg { opacity: 0 !important; }   /* old overlay: invisible, still the click target */
+.gpDCD5 .ih2JY1 > [data-testid="linkElement"] { position: relative; }
+.gpDCD5 .ih2JY1 > [data-testid="linkElement"]::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: rgba(0, 0, 0, .3); opacity: 0; transition: opacity .4s ease-in-out; }
-.gpDCD5:hover .wixui-image > [data-testid="linkElement"]::after,
-.keyboard-tabbing-on .gpDCD5:focus-within .wixui-image > [data-testid="linkElement"]::after,
-.device-mobile-optimized .gpDCD5:has(.wixui-image ~ .wixui-vector-image a) .wixui-image > [data-testid="linkElement"]::after { opacity: 1; }
+.gpDCD5:hover .ih2JY1 > [data-testid="linkElement"]::after,
+.keyboard-tabbing-on .gpDCD5:focus-within .ih2JY1 > [data-testid="linkElement"]::after,
+.device-mobile-optimized .gpDCD5:has(.ih2JY1 ~ .wixui-vector-image a) .ih2JY1 > [data-testid="linkElement"]::after { opacity: 1; }
 /* Card outlines (white-stroke vectors) that Wix left 1-2px off their photo's frame: snap them onto it. */
 body:not(.device-mobile-optimized) #comp-mnfzfwpw3 { width: 1284px !important; }  /* defense */
 body:not(.device-mobile-optimized) #comp-mukou2cq { width: 1284px !important; }  /* defense */
