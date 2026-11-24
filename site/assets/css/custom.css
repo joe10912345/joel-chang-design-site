@@ -53,7 +53,7 @@ li[data-item-depth="1"][aria-current="page"] .itemDepth12472627565__label { colo
    around the hovered tile and never paints over neighbouring products. The crop (.jcd-tile-img) sits on top. */
 .jcd-tilegrid { overflow: visible !important; }
 .jcd-tiles { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
-.jcd-tile { position: absolute; pointer-events: auto; z-index: 1; }
+.jcd-tile { position: absolute; pointer-events: auto; z-index: 1; display: block; cursor: pointer; text-decoration: none; -webkit-tap-highlight-color: transparent; outline: none; }   /* links to the product page (only tiles that have one, Joel 2026-11-24) */
 .jcd-tile:hover, .jcd-tile.is-glow { z-index: 5; }
 .jcd-tile-halo { position: absolute; inset: calc(var(--jcd-g, 4px) * -1); overflow: hidden; pointer-events: none; z-index: 0;
   opacity: 0; transition: opacity .6s var(--jcd-ease); }

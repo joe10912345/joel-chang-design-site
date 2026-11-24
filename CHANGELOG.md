@@ -9,6 +9,11 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-24
 
+### Cross-Category tiles link to product pages; hidden light section colour (phone hairline); iPad "What I Believe" photo
+- **Home Cross-Category (18 tiles)**: each tile with a product page is now a link (`custom.js` `LINKS`, 9 per image, row by row): Interstellar 05, Zenfone 9, Sagittarius, Wi-Fi 7 2022 (x2), Wi-Fi 7 HGU/AP, Smoky Tree + AIRMP (Behance, new tab, as on the Lifestyle/Electronics pages), Speeder Pro, LionFilter 200, NLG MMA 200, T. Interceptor MP, T. Blade, MoAI, Airgain kit. The 3 tiles without a page (Advantech AIM 20 accessories, Gemtek X-Cell, Nichicon remote) have no hotspot: no lift, no glow, no link. Phone links go to the phone pages. Touch: lift/glow while the finger is down, one tap opens; scrolling cancels.
+- **Thin white line under "EXPERTISE" on real phones** (not visible in the preview, whose frame lands on whole pixels): the About work/awards section `#comp-mujj9yx016` had a hidden light colour rgb(246,246,246) under its black layer, leaking through the sub-pixel seam. `custom.js` "Page background" now gives any section whose light colour is fully covered by a dark layer that dark colour (also NLG MMA 200 hero).
+- **iPad: "What I Believe" photo missing**: `#bgMedia_comp-mujj9yyt` is a static box above the section with `overflow: clip`; Safari clips the absolutely positioned photo (Chrome does not). Clip removed on that box (`static-overrides.css`); bgLayers still keeps the photo inside the section. To confirm by Joel on a real iPad.
+
 ### Home Works grid: darker press overlay on phone / iPad
 - Joel: "not dark enough, one step darker". Touch devices (`hover: none`) 27% -> 45% black on the 12 Works tiles (`#pro-gallery-container-comp-mnpgav5j`); desktop hover unchanged (27%).
 

@@ -28,11 +28,27 @@
        category caption strip. We lay 9 tile hotspots over each image, sized to each tile's real picture area
        (measured from the image pixels, 1px inset so no black gutter shows). On hover a tile's own crop lifts
        slightly; a dim blue glow sits underneath it and only shows in the dark gutter around that tile, never
-       over neighbouring products. Touch: tap toggles it. */
+       over neighbouring products.
+       Joel 2026-11-24: every tile with a product page links to it (one tap on touch: the lift/glow shows while the
+       finger is down, then the page opens); tiles without a product page get no lift, no glow, no link.
+       LINKS: 9 per image, row by row (top-left -> bottom-right); '' = no product page. Relative URLs work for both
+       site/index.html and site/m/index.html (the phone page links to the phone versions). */
     var W = 1192, H = 1259;
     var GRID = {   /* [x0,x1) and [y0,y1) of each tile column / row, in image pixels */
       'comp-mv7qmnmm': { c: [[0, 390], [402, 795], [805, 1192]], r: [[0, 385], [394, 786], [800, 1190]] },
       'comp-mv7qmnmr': { c: [[0, 391], [401, 794], [804, 1192]], r: [[0, 385], [394, 785], [800, 1190]] }
+    };
+    var LINKS = {
+      'comp-mv7qmnmm': [   /* Consumer Tech / Smart Home / Lifestyle & Wearable */
+        ['interstellar05/index.html', 'Gaming PC Interstellar 05'], ['zenfone-9/index.html', 'Zenfone 9 Concept'], ['sagittarius-laptop/index.html', 'Laptop Sagittarius'],
+        ['wi-fi7-2022/index.html', 'Wi-Fi 7 2022 concept'], ['wi-fi7-hgu-ap/index.html', 'Wi-Fi 7 Dual-Band AP'], ['wi-fi7-2022/index.html', 'Wi-Fi 7 2022 concept'],
+        ['https://www.behance.net/gallery/124322077/Smoky-Tree', 'Humidifier Smoky Tree'], ['https://www.behance.net/gallery/91290285/AIRMP', 'Plant X Dehumidifier AIRMP'], ['speeder-pro-earbuds/index.html', 'Earbuds Speeder Pro']
+      ],
+      'comp-mv7qmnmr': [   /* Professional Equipment / Enterprise Solutions / Complex Systems */
+        ['lionic-lionfilter-200/index.html', 'Lionic LionFilter 200'], ['nlg-mma200/index.html', 'NLG MMA 200'], ['', 'Advantech AIM 20 accessories'],
+        ['', 'Gemtek X-Cell'], ['t-interceptormp/index.html', 'T. Interceptor MP'], ['t-blade/index.html', 'T. Blade'],
+        ['moai-router/index.html', 'MoAI Router'], ['', 'Nichicon remote controller'], ['airgain-fwa-easy-installation-kit/index.html', 'Airgain FWA Easy Installation Kit']
+      ]
     };
     var tiles = [];
     Object.keys(GRID).forEach(function (id) {
@@ -41,11 +57,16 @@
       comp.classList.add('jcd-tilegrid');
       var setGutter = function () { comp.style.setProperty('--jcd-g', (9 * comp.clientWidth / W).toFixed(2) + 'px'); };
       setGutter(); window.addEventListener('resize', setGutter);
-      var layer = document.createElement('div'); layer.className = 'jcd-tiles'; layer.setAttribute('aria-hidden', 'true');
+      var layer = document.createElement('div'); layer.className = 'jcd-tiles';
+      var n = 0;
       GRID[id].r.forEach(function (r) { GRID[id].c.forEach(function (c) {
+        var link = (LINKS[id] || [])[n++] || ['', ''];
+        if (!link[0]) return;                                                /* no product page: no hotspot, no effect */
         var x0 = c[0] + 1, x1 = c[1] - 1, y0 = r[0] + 1, y1 = r[1] - 1;            /* 1px inset */
         var x = x0 / W, y = y0 / H, w = (x1 - x0) / W, h = (y1 - y0) / H;
-        var t = document.createElement('div'); t.className = 'jcd-tile';
+        var t = document.createElement('a'); t.className = 'jcd-tile';
+        t.href = link[0]; t.setAttribute('aria-label', link[1]);
+        if (/^https?:/.test(link[0])) { t.target = '_blank'; t.rel = 'noopener'; }
         t.style.cssText = 'left:' + x * 100 + '%;top:' + y * 100 + '%;width:' + w * 100 + '%;height:' + h * 100 + '%';
         var halo = document.createElement('div'); halo.className = 'jcd-tile-halo';
         var crop = document.createElement('div'); crop.className = 'jcd-tile-img';
@@ -56,11 +77,11 @@
       comp.appendChild(layer);
     });
     var touch = window.matchMedia && matchMedia('(hover: none)').matches;
-    if (touch) document.addEventListener('click', function (e) {
-      var t = e.target.closest && e.target.closest('.jcd-tile');
-      tiles.forEach(function (o) { if (o !== t) o.classList.remove('is-glow'); });
-      if (t) t.classList.toggle('is-glow');
+    if (touch) tiles.forEach(function (t) {   /* finger down = lift + glow; moving the finger (scroll) cancels; tap opens the link */
+      t.addEventListener('touchstart', function () { tiles.forEach(function (o) { o.classList.toggle('is-glow', o === t); }); }, { passive: true });
+      ['touchmove', 'touchcancel'].forEach(function (ev) { t.addEventListener(ev, function () { t.classList.remove('is-glow'); }, { passive: true }); });
     });
+    window.addEventListener('pageshow', function () { tiles.forEach(function (o) { o.classList.remove('is-glow'); }); });   /* back button */
 
     /* Home video: line the Vimeo player up exactly with the black window of its glow-frame image
        (comp-mp2fugu9; window measured from the image pixels: x 169-2576, y 137-1491 of 2734x1630),
@@ -386,6 +407,20 @@
         open++;
       });
       document.documentElement.classList.toggle('jcd-dark-canvas', !open);
+      /* Hidden light section colours (Joel 2026-11-24: a thin white line under "EXPERTISE" on the phone): a section whose
+         own colour is light but is fully covered by a dark layer shows that light colour only through sub-pixel seams
+         at its edges. Give it the covering layer's colour. (About work/awards section #comp-mujj9yx016 was rgb(246,246,246).) */
+      function lum(c) { var m = (c || '').match(/[\d.]+/g); if (!m || (m.length > 3 && +m[3] < 0.99)) return -1; return (+m[0] + +m[1] + +m[2]) / 3; }
+      [].forEach.call(document.querySelectorAll('#PAGES_CONTAINER section'), function (s) {
+        if (s.parentElement && s.parentElement.closest('section')) return;
+        var u = s.querySelector(':scope > [data-hook="bgLayers"] [data-testid="colorUnderlay"]'); if (!u) return;
+        if (lum(getComputedStyle(u).backgroundColor) < 200) return;
+        var sr = s.getBoundingClientRect();
+        var cover = [].filter.call(s.querySelectorAll('[data-testid="colorUnderlay"]'), function (e) {
+          if (e === u) return false; var r = e.getBoundingClientRect(), l = lum(getComputedStyle(e).backgroundColor);
+          return l >= 0 && l < 60 && r.width >= sr.width * 0.97 && r.height >= sr.height * 0.9; })[0];
+        if (cover) u.style.setProperty('background-color', getComputedStyle(cover).backgroundColor, 'important');
+      });
     }
     document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', classify) : classify();
   })();

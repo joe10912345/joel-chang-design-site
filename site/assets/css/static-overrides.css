@@ -83,6 +83,11 @@ body:not(.device-mobile-optimized) #comp-mng0xzlb  { width: 616px !important; he
    section scrolls up you only see the TOP of the photo (ceiling) and Joel - in the lower-left of the picture - is
    cut off. Make the background scroll with the section and frame it on the people (x 50%, y 72%). */
 #bgMedia_comp-mujj9yyt { top: 0 !important; height: 100% !important; }
+/* (Joel 2026-11-24: the photo did not show on iPad) bgMedia is a static box that sits ABOVE the section and has
+   overflow:clip. Chrome lets the absolutely positioned photo escape that clip (per spec, its containing block is
+   bgLayers); iPad Safari clips it away. No clipping on bgMedia; bgLayers (overflow:clip, exactly the section) still
+   keeps the photo inside the section. */
+#bgMedia_comp-mujj9yyt { overflow: visible !important; }
 #img_comp-mujj9yyt { position: absolute !important; top: 0 !important; left: 0; width: 100% !important; height: 100% !important; transform: none !important; }
 #img_comp-mujj9yyt img { width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: 50% 72% !important; }
 
