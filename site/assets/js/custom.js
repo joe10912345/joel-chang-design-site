@@ -289,6 +289,10 @@
        screen -> half the screen height (50svh). The HTML points these images at their largest file so they stay sharp.
      iPad in landscape (desktop page): the top image fills the whole screen (100svh minus where it starts); back to the
        Wix height in portrait. Re-checked when the iPad turns.
+     Computer (desktop page, any monitor: laptop 1536, 1920x1080, 2560x1440, 3440x1440 ultra-wide, 3840x2160): the top
+       image is exactly one screen high. The wide-screen zoom (site.js) already makes every width full; on a 21:9
+       ultra-wide it made the top image 137% of the screen, on 16:9 ~100%. Under that CSS zoom 100svh is multiplied by
+       the zoom too, so it is divided by window.__jcdZoom.
      How: if the page starts with a full-width image, every element of that block with the image's height gets the
      new height; the page below moves down with it. Catalog pages / About (no full-width image at the top) untouched. */
   (function () {
@@ -307,19 +311,21 @@
     function apply() {
       var phone = document.body.classList.contains('device-mobile-optimized');
       var padLand = !phone && window.__jcdTablet && window.innerWidth > window.innerHeight;
-      if (!hero) {
-        if (!phone && !window.__jcdTablet) return;
-        if (phone && hero === null) { /* phone heroes are short (Wix 136-231px) */ }
+      var pc = !phone && !window.__jcdTablet, Z = window.__jcdZoom || 1;
+      if (hero === null) {
         hero = find(); if (!hero) { hero = false; return; }
-        if (phone && hero.h0 > 320) { hero = false; return; }
+        if (phone && hero.h0 > 320) { hero = false; return; }      /* phone heroes are short (Wix 136-231px) */
       }
       if (!hero) return;
-      var h = phone ? '50svh' : padLand ? (hero.top ? 'calc(100svh - ' + hero.top + 'px)' : '100svh') : '';
+      var h = phone ? '50svh'
+        : padLand ? (hero.top ? 'calc(100svh - ' + hero.top + 'px)' : '100svh')
+        : pc ? 'calc(100svh / ' + Z + ' - ' + (hero.top / Z).toFixed(1) + 'px)'
+        : '';
       hero.els.forEach(function (e) { if (h) e.style.setProperty('height', h, 'important'); else e.style.removeProperty('height'); });
       var sec = document.querySelector('#PAGES_CONTAINER section'); if (sec) sec.classList.toggle('jcd-mhero', !!h);
     }
     document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', apply) : apply();
-    window.addEventListener('resize', function () { if (window.__jcdTablet) apply(); });
+    window.addEventListener('resize', function () { if (!document.body.classList.contains('device-mobile-optimized')) apply(); });   /* iPad turns, desktop window / zoom changes */
     window.addEventListener('orientationchange', function () { setTimeout(apply, 300); });
   })();
   /* Catalog title bars (Joel 2026-11-24): each card on the category pages is a white outline (vector) with a title bar

@@ -26,6 +26,7 @@
   <a data-d="all">全部並排</a><a data-d="phone">手機</a><a data-d="ipad">iPad 直</a><a data-d="ipadl">iPad 橫</a><a data-d="desktop">桌機</a>
   <span class="sp"></span>
   <select id="model" title="iPad 機型"></select>
+  <select id="screen" title="桌機螢幕"></select>
   <select id="page"></select>
   <button id="reload">重新整理</button>
 </header>
@@ -39,12 +40,21 @@ var MODELS = {   /* portrait CSS px */
   pro11: { name:'iPad Pro 11 吋', w:834,  h:1194 },
   pro13: { name:'iPad Pro 13 吋', w:1024, h:1366 }
 };
+var SCREENS = {   /* desktop browser windows in CSS px (Windows scaling already applied) */
+  laptop: { name:'筆電 1920@125%（1536×864）', w:1536, h:864 },
+  w1440:  { name:'1440×900', w:1440, h:900 },
+  fhd:    { name:'外接 1920×1080', w:1920, h:1080 },
+  qhd:    { name:'外接 2K 2560×1440', w:2560, h:1440 },
+  uw:     { name:'外接超寬 3440×1440', w:3440, h:1440 },
+  uhd:    { name:'外接 4K 3840×2160', w:3840, h:2160 }
+};
+var S = SCREENS[new URLSearchParams(location.search).get('s')] ? new URLSearchParams(location.search).get('s') : 'fhd', SD = SCREENS[S];
 var M = MODELS[new URLSearchParams(location.search).get('m')] ? new URLSearchParams(location.search).get('m') : 'air11', MD = MODELS[M];
 var DEV = {
   phone:   { name:'手機',      note:'390 × 844（手機版 m/，和真手機一樣排成 320 寬再放大）', w:320, h:693 },   /* m/ pages set viewport width=320: a 390x844 phone shows a 320x693 layout */
   ipad:    { name:MD.name + ' 直向', note:MD.w + ' × ' + MD.h + '（桌機版排成 ' + TW + ' 寬再縮放）', w:TW, h:Math.round(TW * MD.h / MD.w) },
   ipadl:   { name:MD.name + ' 橫向', note:MD.h + ' × ' + MD.w + '（桌機版排成 ' + TW + ' 寬再縮放）', w:TW, h:Math.round(TW * MD.w / MD.h) },
-  desktop: { name:'桌機',      note:'1440 × 900', w:1440, h:900 }
+  desktop: { name:'桌機 ' + SD.name, note:'', w:SD.w, h:SD.h }
 };
 var PAGES = ['/', '/about/', '/contact/', '/defense/', '/networking/', '/electronics/', '/lifestyle/', '/industrial/', '/experimental/',
   '/ocean-series/', '/geometry-series/', '/moai-router/', '/wi-fi7-extender/', '/wi-fi7-hgu-ap/', '/wi-fi7-gaming-home-gateway/', '/wi-fi7-2022/',
@@ -57,12 +67,15 @@ var p = qs.get('p') || '/ocean-series/';
 var sel = document.getElementById('page');
 PAGES.forEach(function (x) { var o = document.createElement('option'); o.value = o.textContent = x; if (x === p) o.selected = true; sel.appendChild(o); });
 document.querySelectorAll('header a').forEach(function (a) {
-  a.href = '?d=' + a.dataset.d + '&p=' + encodeURIComponent(p) + '&m=' + M + (qs.get('tw') ? '&tw=' + qs.get('tw') : '');
+  a.href = '?d=' + a.dataset.d + '&p=' + encodeURIComponent(p) + '&m=' + M + '&s=' + S + (qs.get('tw') ? '&tw=' + qs.get('tw') : '');
   if (a.dataset.d === d) a.className = 'on';
 });
 var msel = document.getElementById('model');
 Object.keys(MODELS).forEach(function (k) { var o = document.createElement('option'); o.value = k; o.textContent = MODELS[k].name; if (k === M) o.selected = true; msel.appendChild(o); });
-function go(pg, m) { location.search = '?d=' + d + '&p=' + encodeURIComponent(pg) + '&m=' + m + (qs.get('tw') ? '&tw=' + qs.get('tw') : ''); }
+var ssel = document.getElementById('screen');
+Object.keys(SCREENS).forEach(function (k) { var o = document.createElement('option'); o.value = k; o.textContent = SCREENS[k].name; if (k === S) o.selected = true; ssel.appendChild(o); });
+function go(pg, m, sc) { location.search = '?d=' + d + '&p=' + encodeURIComponent(pg) + '&m=' + m + '&s=' + (sc || S) + (qs.get('tw') ? '&tw=' + qs.get('tw') : ''); }
+ssel.onchange = function () { go(p, M, ssel.value); };
 sel.onchange = function () { go(sel.value, M); };
 msel.onchange = function () { go(p, msel.value); };
 document.getElementById('reload').onclick = function () { build(); };

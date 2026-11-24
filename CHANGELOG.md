@@ -9,6 +9,12 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-24
 
+### External monitors: full width (wiwi) + top image exactly one screen high
+- **How full width works on any monitor (wiwi, commits b36efba 18:55 + ba30d76 19:02, `site/assets/js/site.js` "Wide screens")** — Joel's problem: "full width on the laptop, not on the external monitor". The laptop is 1920px at 125% Windows scaling = 1536 CSS px, which the Wix desktop layout (~1300-1540px stage) fills; an external monitor at 100% is 1920+ CSS px, so the layout sat in the middle with black bars. Fix: on desktop (non-touch) windows wider than 1536 CSS px, `document.documentElement.style.zoom = innerWidth / 1536` (1920 -> 1.25, 2560 -> 1.667, 3440 -> 2.24, 3840 -> 2.5), re-run on resize. `window.__jcdZoom` holds the factor; tilt / glow / cursor light / video / custom.js convert screen px <-> CSS px with it. ba30d76: a Windows touch-screen laptop used with a mouse (maxTouchPoints > 1 but primary pointer fine) is NOT a touch device, otherwise it skipped the zoom.
+- **Checked (2026-11-24)** with the preview at laptop 1536x864, 1920x1080, 2K 2560x1440, ultra-wide 3440x1440, 4K 3840x2160: home, ocean-series, defense, about — every section full width, header edge to edge, no horizontal scroll.
+- **New: top image exactly one screen high on computers** (home slideshow + product pages): on 16:9 it was ~102%, on the 21:9 ultra-wide 137% (bottom of the image below the fold). `custom.js` "Top image height" now sets `calc(100svh / __jcdZoom - top)` on desktop (under CSS zoom `100svh` is multiplied by the zoom, so it is divided back). Result: 100% of the screen on all five sizes; next section starts at the bottom edge. About / category / contact untouched.
+- **Preview**: `preview/devices.html` has a desktop screen menu (`&s=laptop|w1440|fhd|qhd|uw|uhd`).
+
 ### iPad landscape full-screen top image; phone menu sizes; preview tool same-origin
 - **iPad landscape**: home slideshow and product-page top images fill the whole screen (`100svh`); portrait keeps the Wix height; re-checked when the iPad turns. `custom.js` "Top image height" (phone part unchanged: 50svh). `site.js` exposes `window.__jcdTablet`; `?tablet=1` makes a page act as an iPad (used by the preview).
 - **Phone menu**: six product items 15px -> 13px; LinkedIn/Behance icons 26px -> 18px and 48px lower.
