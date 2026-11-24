@@ -15,7 +15,7 @@
       (centred with calc((100% - 980px) * .5), x = n.5 whenever the window width is odd, e.g. with a scrollbar),
       so the layer snaps to whole pixels and the photo visibly jumps left/right on hover-in and back on hover-out.
       Kill every transform in the tile and only let opacity/visibility animate. */
-.gpDCD5:has(.ih2JY1), .gpDCD5:has(.ih2JY1):hover,
+.device-mobile-optimized .gpDCD5:has(.ih2JY1), .device-mobile-optimized .gpDCD5:has(.ih2JY1):hover,
 .gpDCD5:has(.ih2JY1) [id^="comp-"], .gpDCD5:has(.ih2JY1):hover [id^="comp-"],
 .gpDCD5:has(.ih2JY1) [id^="comp-"] * { transform: none !important; will-change: auto !important; }
 .gpDCD5:has(.ih2JY1), .gpDCD5:has(.ih2JY1) [id^="comp-"], .gpDCD5:has(.ih2JY1) [id^="comp-"] * {
@@ -44,3 +44,103 @@ body:not(.device-mobile-optimized) #comp-moqmsoes4 { height: 770px !important; }
 .device-mobile-optimized #comp-mnpltyn7 { translate: -1px 0; height: 199px !important; }  /* m/industrial */
 .device-mobile-optimized #comp-mng13dvk { height: 199px !important; }  /* m/networking */
 .device-mobile-optimized #comp-moqmsoft1 { height: 199px !important; }  /* m/experimental */
+
+/* ---------- Catalog cards: gentle float on hover (Joel 2026-11-24), desktop pointer only ----------
+   Each card (photo with its white border, caption, >>, plus the card's own white outline and title bar when it
+   has one) is animated as ONE unit: every member gets the same keyframes from the same moment, so nothing inside a
+   card ever moves relative to the rest of it (inner parts keep transform:none above).
+   Members are permanent compositor layers (will-change) so there is no layer switch / half-pixel jump at start.
+   Amplitude is a transitioned custom property: hover ramps it 0 -> 1 (smooth start), leaving pauses the loop and
+   ramps it back to 0 (smooth stop, no snap). Off for touch, m/ pages and prefers-reduced-motion. */
+@property --jcd-amp { syntax: '<number>'; inherits: false; initial-value: 0; }
+@keyframes jcd-float {
+  0%, 100% { transform: translate3d(0, calc(var(--jcd-amp) * -2px), 0); }
+  25%      { transform: translate3d(calc(var(--jcd-amp) * 1.5px), calc(var(--jcd-amp) * -3.5px), 0); }
+  50%      { transform: translate3d(0, calc(var(--jcd-amp) * -4px), 0); }
+  75%      { transform: translate3d(calc(var(--jcd-amp) * -1.5px), calc(var(--jcd-amp) * -2.5px), 0); }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  body:not(.device-mobile-optimized) :is(#comp-mnfyj6w43,#comp-mnfyv5uk,#comp-mnfz7lja,#comp-mnfz8i6y),
+  body:not(.device-mobile-optimized) :is(#comp-mnfzbibx6),
+  body:not(.device-mobile-optimized) :is(#comp-mnfze46q),
+  body:not(.device-mobile-optimized) :is(#comp-mnfzfwpx6,#comp-mnfzfwpw3,#comp-mnfzfwq31,#comp-mnfzfwq39),
+  body:not(.device-mobile-optimized) :is(#comp-mukou2d0,#comp-mukou2cq,#comp-mukou2e212,#comp-mukou2e37),
+  body:not(.device-mobile-optimized) :is(#comp-mnpml86a,#comp-mnpltyn6),
+  body:not(.device-mobile-optimized) :is(#comp-mnpmlem3),
+  body:not(.device-mobile-optimized) :is(#comp-mnpltyny,#comp-mnpltynx1,#comp-mnpltyo313,#comp-mnpltyo47),
+  body:not(.device-mobile-optimized) :is(#comp-mnppaap7,#comp-mnpng9ce3),
+  body:not(.device-mobile-optimized) :is(#comp-mnpng9cr11),
+  body:not(.device-mobile-optimized) :is(#comp-mnpng9cz1,#comp-mnpng9cy3,#comp-mnpng9d5,#comp-mnpng9d58),
+  body:not(.device-mobile-optimized) :is(#comp-mnpnt4d41,#comp-mnpnt4d31,#comp-mnpnt4dd,#comp-mnpnt4dd8),
+  body:not(.device-mobile-optimized) :is(#comp-mnpp53ev),
+  body:not(.device-mobile-optimized) :is(#comp-mnpo9qi9,#comp-mnpo9qi7,#comp-mnpo9qip1,#comp-mnpo9qiq7),
+  body:not(.device-mobile-optimized) :is(#comp-mnpthwvi8,#comp-mnpthwvg),
+  body:not(.device-mobile-optimized) :is(#comp-mnpthww0),
+  body:not(.device-mobile-optimized) :is(#comp-mnpthww96,#comp-mnpthww84,#comp-mnpthwwf9,#comp-mnpthwwg4),
+  body:not(.device-mobile-optimized) :is(#comp-mnptt6ns),
+  body:not(.device-mobile-optimized) :is(#comp-mnpthwwi7,#comp-mnpthwwi,#comp-mnpthwwo9,#comp-mnpthwwp6),
+  body:not(.device-mobile-optimized) :is(#comp-mnfzljgo7,#comp-mnfzljgo,#comp-mnfzljgx7,#comp-mnfzljgy5),
+  body:not(.device-mobile-optimized) :is(#comp-mnfzljgz),
+  body:not(.device-mobile-optimized) :is(#comp-mnfzyxjx),
+  body:not(.device-mobile-optimized) :is(#comp-mnfzljhb6,#comp-mnfzljha4,#comp-mnfzljhg13,#comp-mnfzljhh7),
+  body:not(.device-mobile-optimized) :is(#comp-mng13dvt3,#comp-mng13dvk,#comp-mng13dxe1,#comp-mng13dxf7),
+  body:not(.device-mobile-optimized) :is(#comp-mng13dv5),
+  body:not(.device-mobile-optimized) :is(#comp-mng1bb8q),
+  body:not(.device-mobile-optimized) :is(#comp-mng13dv9),
+  body:not(.device-mobile-optimized) :is(#comp-mng1qgzk),
+  body:not(.device-mobile-optimized) :is(#comp-mng1qei6),
+  body:not(.device-mobile-optimized) :is(#comp-mng1uy9l,#comp-mng1uy9j,#comp-mng1uy9t11,#comp-mng1uy9u7),
+  body:not(.device-mobile-optimized) :is(#comp-mng22vrf),
+  body:not(.device-mobile-optimized) :is(#comp-mng23sg9),
+  body:not(.device-mobile-optimized) :is(#comp-mozy666i),
+  body:not(.device-mobile-optimized) :is(#comp-mng24gl0),
+  body:not(.device-mobile-optimized) :is(#comp-mng23tyr),
+  body:not(.device-mobile-optimized) :is(#comp-mng24gl8),
+  body:not(.device-mobile-optimized) :is(#comp-mng24glf),
+  body:not(.device-mobile-optimized) :is(#comp-moqmsofu,#comp-moqmsoft1,#comp-moqmsofz10,#comp-moqmsog07),
+  body:not(.device-mobile-optimized) :is(#comp-moqmsof2,#comp-moqmsoes),
+  body:not(.device-mobile-optimized) :is(#comp-moqrbmp15,#comp-moqrbmot1,#comp-moqrbmqf,#comp-moqrbmqf8) {
+    animation: jcd-float 3.6s ease-in-out infinite paused !important;
+    will-change: transform; --jcd-amp: 0; transition: --jcd-amp .7s cubic-bezier(.22,.61,.36,1) !important; }
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnfzb79xinlineContent-gridContainer"]:has(> :is(#comp-mnfyj6w43,#comp-mnfyv5uk,#comp-mnfz7lja,#comp-mnfz8i6y):hover) > :is(#comp-mnfyj6w43,#comp-mnfyv5uk,#comp-mnfz7lja,#comp-mnfz8i6y),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnfyj6vzinlineContent-gridContainer"]:has(> :is(#comp-mnfzbibx6):hover) > :is(#comp-mnfzbibx6),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnfyj6vzinlineContent-gridContainer"]:has(> :is(#comp-mnfze46q):hover) > :is(#comp-mnfze46q),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnfzfwpsinlineContent-gridContainer"]:has(> :is(#comp-mnfzfwpx6,#comp-mnfzfwpw3,#comp-mnfzfwq31,#comp-mnfzfwq39):hover) > :is(#comp-mnfzfwpx6,#comp-mnfzfwpw3,#comp-mnfzfwq31,#comp-mnfzfwq39),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mukou2cdinlineContent-gridContainer"]:has(> :is(#comp-mukou2d0,#comp-mukou2cq,#comp-mukou2e212,#comp-mukou2e37):hover) > :is(#comp-mukou2d0,#comp-mukou2cq,#comp-mukou2e212,#comp-mukou2e37),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnpltymyinlineContent-gridContainer"]:has(> :is(#comp-mnpml86a,#comp-mnpltyn6):hover) > :is(#comp-mnpml86a,#comp-mnpltyn6),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnpltymyinlineContent-gridContainer"]:has(> :is(#comp-mnpmlem3):hover) > :is(#comp-mnpmlem3),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnpltynw1inlineContent-gridContainer"]:has(> :is(#comp-mnpltyny,#comp-mnpltynx1,#comp-mnpltyo313,#comp-mnpltyo47):hover) > :is(#comp-mnpltyny,#comp-mnpltynx1,#comp-mnpltyo313,#comp-mnpltyo47),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnpng9c8inlineContent-gridContainer"]:has(> :is(#comp-mnppaap7,#comp-mnpng9ce3):hover) > :is(#comp-mnppaap7,#comp-mnpng9ce3),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnpng9c8inlineContent-gridContainer"]:has(> :is(#comp-mnpng9cr11):hover) > :is(#comp-mnpng9cr11),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnpng9cx8inlineContent-gridContainer"]:has(> :is(#comp-mnpng9cz1,#comp-mnpng9cy3,#comp-mnpng9d5,#comp-mnpng9d58):hover) > :is(#comp-mnpng9cz1,#comp-mnpng9cy3,#comp-mnpng9d5,#comp-mnpng9d58),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnpnt4cwinlineContent-gridContainer"]:has(> :is(#comp-mnpnt4d41,#comp-mnpnt4d31,#comp-mnpnt4dd,#comp-mnpnt4dd8):hover) > :is(#comp-mnpnt4d41,#comp-mnpnt4d31,#comp-mnpnt4dd,#comp-mnpnt4dd8),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnpng9c8inlineContent-gridContainer"]:has(> :is(#comp-mnpp53ev):hover) > :is(#comp-mnpp53ev),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnpo9qhxinlineContent-gridContainer"]:has(> :is(#comp-mnpo9qi9,#comp-mnpo9qi7,#comp-mnpo9qip1,#comp-mnpo9qiq7):hover) > :is(#comp-mnpo9qi9,#comp-mnpo9qi7,#comp-mnpo9qip1,#comp-mnpo9qiq7),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnpthwvc5inlineContent-gridContainer"]:has(> :is(#comp-mnpthwvi8,#comp-mnpthwvg):hover) > :is(#comp-mnpthwvi8,#comp-mnpthwvg),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnpthwvc5inlineContent-gridContainer"]:has(> :is(#comp-mnpthww0):hover) > :is(#comp-mnpthww0),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnpthww8inlineContent-gridContainer"]:has(> :is(#comp-mnpthww96,#comp-mnpthww84,#comp-mnpthwwf9,#comp-mnpthwwg4):hover) > :is(#comp-mnpthww96,#comp-mnpthww84,#comp-mnpthwwf9,#comp-mnpthwwg4),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnpthwvc5inlineContent-gridContainer"]:has(> :is(#comp-mnptt6ns):hover) > :is(#comp-mnptt6ns),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnpthwwhinlineContent-gridContainer"]:has(> :is(#comp-mnpthwwi7,#comp-mnpthwwi,#comp-mnpthwwo9,#comp-mnpthwwp6):hover) > :is(#comp-mnpthwwi7,#comp-mnpthwwi,#comp-mnpthwwo9,#comp-mnpthwwp6),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnfzljgn3inlineContent-gridContainer"]:has(> :is(#comp-mnfzljgo7,#comp-mnfzljgo,#comp-mnfzljgx7,#comp-mnfzljgy5):hover) > :is(#comp-mnfzljgo7,#comp-mnfzljgo,#comp-mnfzljgx7,#comp-mnfzljgy5),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnfzljgi6inlineContent-gridContainer"]:has(> :is(#comp-mnfzljgz):hover) > :is(#comp-mnfzljgz),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnfzljgi6inlineContent-gridContainer"]:has(> :is(#comp-mnfzyxjx):hover) > :is(#comp-mnfzyxjx),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnfzljhainlineContent-gridContainer"]:has(> :is(#comp-mnfzljhb6,#comp-mnfzljha4,#comp-mnfzljhg13,#comp-mnfzljhh7):hover) > :is(#comp-mnfzljhb6,#comp-mnfzljha4,#comp-mnfzljhg13,#comp-mnfzljhh7),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mng13dv0inlineContent-gridContainer"]:has(> :is(#comp-mng13dvt3,#comp-mng13dvk,#comp-mng13dxe1,#comp-mng13dxf7):hover) > :is(#comp-mng13dvt3,#comp-mng13dvk,#comp-mng13dxe1,#comp-mng13dxf7),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnfzljgi6inlineContent-gridContainer"]:has(> :is(#comp-mng13dv5):hover) > :is(#comp-mng13dv5),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnfzljgi6inlineContent-gridContainer"]:has(> :is(#comp-mng1bb8q):hover) > :is(#comp-mng1bb8q),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnfzljgi6inlineContent-gridContainer"]:has(> :is(#comp-mng13dv9):hover) > :is(#comp-mng13dv9),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnfzljgi6inlineContent-gridContainer"]:has(> :is(#comp-mng1qgzk):hover) > :is(#comp-mng1qgzk),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnfzljgi6inlineContent-gridContainer"]:has(> :is(#comp-mng1qei6):hover) > :is(#comp-mng1qei6),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mng1uy9ainlineContent-gridContainer"]:has(> :is(#comp-mng1uy9l,#comp-mng1uy9j,#comp-mng1uy9t11,#comp-mng1uy9u7):hover) > :is(#comp-mng1uy9l,#comp-mng1uy9j,#comp-mng1uy9t11,#comp-mng1uy9u7),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnfzljgi6inlineContent-gridContainer"]:has(> :is(#comp-mng22vrf):hover) > :is(#comp-mng22vrf),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnfzljgi6inlineContent-gridContainer"]:has(> :is(#comp-mng23sg9):hover) > :is(#comp-mng23sg9),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnfzljgi6inlineContent-gridContainer"]:has(> :is(#comp-mozy666i):hover) > :is(#comp-mozy666i),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnfzljgi6inlineContent-gridContainer"]:has(> :is(#comp-mng24gl0):hover) > :is(#comp-mng24gl0),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnfzljgi6inlineContent-gridContainer"]:has(> :is(#comp-mng23tyr):hover) > :is(#comp-mng23tyr),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnfzljgi6inlineContent-gridContainer"]:has(> :is(#comp-mng24gl8):hover) > :is(#comp-mng24gl8),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-mnfzljgi6inlineContent-gridContainer"]:has(> :is(#comp-mng24glf):hover) > :is(#comp-mng24glf),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-moqmsofs2inlineContent-gridContainer"]:has(> :is(#comp-moqmsofu,#comp-moqmsoft1,#comp-moqmsofz10,#comp-moqmsog07):hover) > :is(#comp-moqmsofu,#comp-moqmsoft1,#comp-moqmsofz10,#comp-moqmsog07),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-moqmsoelinlineContent-gridContainer"]:has(> :is(#comp-moqmsof2,#comp-moqmsoes):hover) > :is(#comp-moqmsof2,#comp-moqmsoes),
+  body:not(.device-mobile-optimized) [data-mesh-id="comp-moqrbmooinlineContent-gridContainer"]:has(> :is(#comp-moqrbmp15,#comp-moqrbmot1,#comp-moqrbmqf,#comp-moqrbmqf8):hover) > :is(#comp-moqrbmp15,#comp-moqrbmot1,#comp-moqrbmqf,#comp-moqrbmqf8) {
+    animation-play-state: running !important; --jcd-amp: 1; }
+}

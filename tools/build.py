@@ -20,6 +20,11 @@ ORIG = os.path.join(REPO, 'media-originals')
 LIVE = 'https://www.joel-chang-design.com'
 PAGES = [l.strip() for l in open('/workspace/wixcopy-tools/pages.txt') if l.strip()]
 # Wix media deleted on the live site (403). Electronics 'Gaming PC Interstellar 05' tile -> the project's hero image.
+# Wix links that point at Behance's project EDITOR (owner-only, visitors get a login page) -> public gallery pages.
+BEHANCE_FIX = {
+    'https://www.behance.net/portfolio/editor?project_id=91290285': 'https://www.behance.net/gallery/91290285/AIRMP',
+    'https://www.behance.net/portfolio/editor?project_id=129479083': 'https://www.behance.net/gallery/129479083/Phantom-Lamp',
+}
 MISSING_SUBST = {'1e9c09_41de3ddba202445a81cf8c93c3e35bbb': 'assets/media/1e9c09_264a4186e7a2452da6a7e7137e00cd95_mv2_2560x1511_2df6d3ce.jpg'}
 
 def slug_of(u):
@@ -386,6 +391,7 @@ def build_page(mode, slug, pool):
     if 'G-36L411LGT0' not in out:
         out = re.sub(r'(<head\b[^>]*>)', lambda m: m.group(1) + '\n' + GTAG, out, count=1)
     dest = os.path.join(SITE, me); os.makedirs(os.path.dirname(dest), exist_ok=True)
+    for bad, good in BEHANCE_FIX.items(): out = out.replace(bad, good)
     open(dest, 'w', encoding='utf-8').write(out)
     return {'mode': mode, 'slug': slug, 'file': 'site/' + me, 'removed': removed, 'assets': len(urls), 'missing_imgs': missing_imgs, 'fill_imgs_fixed': len(full_bleed), 'hover_overlays': len(hover_injected), 'video_players': len(video_players), 'motion_rules_removed': sum(motion_removed), 'hero_slides_added': len(hero_added), 'works_links': len(works_links), 'lightbox_items': len(lightbox_items)}
 
