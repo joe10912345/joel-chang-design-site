@@ -3,8 +3,7 @@
 Open items. When you finish one, move it to `CHANGELOG.md` with the date. Add new items here.
 
 ## Waiting on Joel's decision
-- [ ] **T-Blade top image**: Joel to make a 4:3 version (original `media-originals/1e9c09_7319f0ff08dc4104901d18dd9da3ed71_mv2.jpg` is 3488x1216, both ends cut on narrow screens); same rule as Wi-Fi 7 2022.
-- [ ] **Phone: Wi-Fi 7 2022 top image** trims the white and green units (phone hero ~0.92:1). Options: a square phone crop, or show the whole 4:3 image on the phone (shorter hero).
+- [ ] **Phone: Wi-Fi 7 2022 + T-Blade top images** are trimmed at the sides (phone hero ~0.92:1: white/green units, drone nose/tail). Options: a square phone crop, or show the whole 4:3 image on the phone (shorter hero).
 - [ ] **Same black-on-hover on other pages?** The Wix MouseOverPhoto skin (`.hhxEkR`) that made Ocean Series photos go black on hover is also used on: airgain-fwa-easy-installation-kit (8), moai-router (3), industrial (2), defense, electronics, networking (1 each). Check whether those should get the "dim at rest, bright + zoom on hover" treatment too.
 - [ ] **Domain cutover**: point `www.joel-chang-design.com` at GitHub Pages (or Cloudflare in front). Keep `SITE_BASE` in `tools/siteconfig.py` as is. Then submit the sitemap in Google Search Console.
 - [ ] **Languages**: zh-hant / zh-cn / ar are built but not published (`i18n-archive/README.md` says how to publish). Note: they were built before the 11-24 changes, so rebuild before publishing.

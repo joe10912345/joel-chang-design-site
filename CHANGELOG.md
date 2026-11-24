@@ -9,6 +9,10 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-25
 
+### T-Blade: new 4:3 top image (whole drone visible)
+- Joel's 4:3 version (2000x1500) -> `site/assets/media/jcd_t-blade-hero_4x3_2000x1500.jpg`, used by `t-blade/index.html` and `m/t-blade/index.html` (was the Wix 2560x1511 crop of a 3488x1216 original). `object-position: 50% 45%`.
+- Checked (drone nose to tail fins = image x 190-1800, y 450-930): laptop, 1920, ultra-wide, 4K, iPad landscape + portrait: whole drone. Phone (~0.92:1) trims nose and tail — same open question as Wi-Fi 7 2022.
+
 ### Wi-Fi 7 2022: new 4:3 top image (all three products visible)
 - Joel made a 4:3 version (2000x1500) of the three-product hero; now `site/assets/media/jcd_wi-fi7-2022-hero_4x3_2000x1500.jpg`, used by `wi-fi7-2022/index.html` and `m/wi-fi7-2022/index.html` (was the Wix 2028x1197 crop of a 2028x941 original). `object-position: 50% 62%`.
 - Checked (products + pedestals = image x 110-1845, y 650-1200): laptop, 1920, ultra-wide 3440, 4K, iPad landscape + portrait all show the full width and all three products. Phone (top image half the screen, ~0.92:1) still trims ~300px each side: the white and green units are partly cut — open question to Joel.
