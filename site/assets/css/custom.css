@@ -253,10 +253,10 @@ a.StylableButton2545352419__root:is(:active, :focus-visible) .StylableButton2545
 #SITE_FOOTER { display: none !important; }
 
 /* ---------- Phone menu: LinkedIn + Behance icons under the menu items (custom.js clones them from the hidden footer, Joel 2026-11-24) ---------- */
-.jcd-menu-social { display: flex; justify-content: center; align-items: center; gap: 28px; margin-top: 28px; padding-top: 22px;
+.jcd-menu-social { display: flex; justify-content: center; align-items: center; gap: 22px; margin-top: 48px; padding-top: 22px;
   border-top: 1px solid rgba(255, 255, 255, .15); }
-.jcd-menu-social-a { display: block; width: 26px; height: 26px; -webkit-tap-highlight-color: transparent; transition: opacity .2s ease; }
-.jcd-menu-social-a img { display: block; width: 26px !important; height: 26px !important; object-fit: contain !important; }
+.jcd-menu-social-a { display: block; width: 18px; height: 18px; -webkit-tap-highlight-color: transparent; transition: opacity .2s ease; }
+.jcd-menu-social-a img { display: block; width: 18px !important; height: 18px !important; object-fit: contain !important; }
 .jcd-menu-social-a:active { opacity: .6; }
 
 /* ---------- Home "Works" category buttons (Defense ... Experimental): no black frame on hover (Joel 2026-11-24) ----------
@@ -308,7 +308,7 @@ li[data-item-depth="0"] > div > a:active, li[data-item-depth="0"] > div > a:acti
 
 /* ---------- Phone menu layout (Joel 2026-11-24): the six product pages in a lighter weight, About / Contact moved down ---------- */
 #MENU_AS_CONTAINER_EXPANDABLE_MENU li:is([data-testid$="-1"], [data-testid$="-2"], [data-testid$="-3"], [data-testid$="-4"], [data-testid$="-5"], [data-testid$="-6"]) a {
-  font-family: wfont_459113_ebfb1394532347b3b7691d160bb35bd1, wf_ebfb1394532347b3b7691d160, orig_poppins_light, sans-serif !important; font-size: 15px !important; }
+  font-family: wfont_459113_ebfb1394532347b3b7691d160bb35bd1, wf_ebfb1394532347b3b7691d160, orig_poppins_light, sans-serif !important; font-size: 13px !important; }
 #MENU_AS_CONTAINER_EXPANDABLE_MENU li[data-testid$="-7"] { margin-top: 26px !important; }
 
 /* ---------- Page background: light pages stay light, dark pages get no hairlines (Joel 2026-11-24) ----------

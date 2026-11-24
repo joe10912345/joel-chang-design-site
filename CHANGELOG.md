@@ -9,6 +9,11 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-24
 
+### iPad landscape full-screen top image; phone menu sizes; preview tool same-origin
+- **iPad landscape**: home slideshow and product-page top images fill the whole screen (`100svh`); portrait keeps the Wix height; re-checked when the iPad turns. `custom.js` "Top image height" (phone part unchanged: 50svh). `site.js` exposes `window.__jcdTablet`; `?tablet=1` makes a page act as an iPad (used by the preview).
+- **Phone menu**: six product items 15px -> 13px; LinkedIn/Behance icons 26px -> 18px and 48px lower.
+- **Menu icon "moved" when opened**: only in the preview (opening the menu locks scrolling, the preview frame's scrollbar disappeared and the page re-centred 7.5px to the right). Preview now same-origin (devices server serves the repo root: `http://localhost:8766/preview/devices.html`) and hides the frames' scrollbars, like real phones/iPads. On the real site the icon never moved (checked: 282,17 closed and open).
+
 ### Light pages white again; card frames centred; End-to-End tap overlay; menus
 - **Light pages were dark (regression)**: Wi-Fi 7 HGU/AP, MoAI, Extender, 2022, Airgain, Lionic, AI Tool Kit, NLG MMA200, Sagittarius, Assistive have transparent sections that show Wix's white page background. Two rules had painted that layer black: the phone "black canvas" rule from commit 8174d54 (`[id^="bgLayers_pageBackground_"] .LNYVZi`) and my earlier desktop hairline fix (`[data-testid="page-bg"]`). Both removed. Now `custom.js` ("Page background") checks each page: if every section covers itself, the page gets `.jcd-dark-canvas` and its background layer turns black (no white hairlines); pages with a transparent section keep Wix's white. Checked against joe10912345.wixsite.com/works.
 - **Category card frames centred** (desktop layout = computer + iPad): Wix drew them ~15px left of centre while the titles are centred. `custom.js` ("Category pages, desktop layout") moves the card-row items so frames have equal space left/right (1440: 78/78, 1920: 151/151). Phone frames were already 20/20.

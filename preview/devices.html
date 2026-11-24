@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>三平台預覽</title>
 <!-- Local-only preview tool (not deployed): shows the site at phone / iPad portrait / iPad landscape / desktop size, side by side or one per tab.
-     Needs the "site" server (port 8765) from .claude/launch.json. ?d=phone|ipad|ipadl|desktop|all  &p=/ocean-series/  (&tw= iPad layout width) -->
+     Served by the "devices" server (port 8766, repo root) from .claude/launch.json: open http://localhost:8766/preview/devices.html ?d=phone|ipad|ipadl|desktop|all  &p=/ocean-series/  (&tw= iPad layout width) -->
 <style>
   :root { color-scheme: dark; --bg:#111; --fg:#ddd; --mut:#888; --acc:#4a90ff; }
   * { box-sizing: border-box; }
@@ -31,7 +31,7 @@
 </header>
 <main id="main"></main>
 <script>
-var SITE = 'http://localhost:8765';
+var SITE = location.origin + '/site';   /* same origin as this page (devices server serves the repo root), so the frames' scrollbars can be hidden */
 /* iPad: the desktop page laid out TW px wide and scaled to the iPad screen, as site.js does on real iPads. */
 var TW = +(new URLSearchParams(location.search).get('tw')) || 1440;   /* iPad layout width: keep equal to TABLET_W in site/assets/js/site.js */
 var MODELS = {   /* portrait CSS px */
@@ -81,9 +81,11 @@ function build() {
     var box = document.createElement('div'); box.className = 'box';
     box.style.width = Math.round(v.w * s) + 'px'; box.style.height = Math.round(v.h * s) + 'px';
     var f = document.createElement('iframe');
-    /* real phones / iPads have overlay scrollbars: make the frame one scrollbar (15px) wider and clip it, so the scrollbar sits outside the box and does not narrow the page */
-    f.width = v.w + 15; f.height = v.h; f.style.transform = 'scale(' + s + ')';
-    f.src = SITE + p + (p.indexOf('?') < 0 ? '?' : '&') + 'pv=' + Date.now();
+    f.width = v.w; f.height = v.h; f.style.transform = 'scale(' + s + ')';
+    f.src = SITE + p + (p.indexOf('?') < 0 ? '?' : '&') + (k === 'ipad' || k === 'ipadl' ? 'tablet=1&' : '') + 'pv=' + Date.now();   /* tablet=1: site.js treats the frame as an iPad */
+    /* real phones / iPads have overlay scrollbars that take no width: hide the frame's scrollbar so the page gets the full width (also when the menu locks scrolling) */
+    f.addEventListener('load', function () { try { var st = f.contentDocument.createElement('style');
+      st.textContent = 'html{scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}'; f.contentDocument.head.appendChild(st); } catch (e) {} });
     box.appendChild(f); wrap.appendChild(box); main.appendChild(wrap);
   });
 }

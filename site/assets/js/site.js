@@ -15,6 +15,7 @@
        maxTouchPoints 10 even when used with a mouse (and on an external monitor), so that alone must not count. */
     var mm = function (q) { return !!(window.matchMedia && matchMedia(q).matches); };
     touch = mm('(pointer: coarse)') || (navigator.maxTouchPoints > 1 && !mm('(pointer: fine)'));
+    if (/[?&]tablet=1(&|$)/.test(location.search)) touch = true;   /* preview/devices.html: treat this frame as an iPad */
     var q = (location.search.match(/[?&]layout=(desktop|mobile)/) || [])[1];
     if (q) sessionStorage.setItem('layout', q);
     var pref = sessionStorage.getItem('layout');
@@ -28,6 +29,7 @@
      (Joel 2026-11-24) Wix used 980px, but most of this site's content spans ~1330-1430px around the centre (elements at
      left:-140px etc.), so at 980 an iPad cut both sides off. 1366 shows every page whole; the browser rescales the same
      layout when the iPad turns, so portrait AND landscape both fit. Keep preview/devices.html (TW) in step with this. */
+  window.__jcdTablet = mode === 'desktop' && touch;   /* read by custom.js (iPad landscape full-screen top image) */
   var TABLET_W = 1440;   /* 1366 fitted the content but the category frames almost touched the edges; 1440 leaves ~50px each side */
   if (mode === 'desktop' && touch) {
     var vp = document.querySelector('meta[name="viewport"]');

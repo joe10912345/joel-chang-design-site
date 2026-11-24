@@ -284,27 +284,43 @@
     }
     document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', addSocial) : addSocial();
   })();
-  /* Phone: taller top image (Joel 2026-11-24). On m/ pages the first image (home slideshow, product-page hero) was only
-     ~1/3 (home) or ~1/4 (products) of the screen. If the page starts with a full-width short image, every element of
-     that block with the image's height is set to half the screen height (Joel: 50%) (svh = stable on iOS when the toolbar moves);
-     the page below moves down with it. The HTML points these images at their largest file so they stay sharp.
-     Catalog pages / About (no full-width image at the top) are left alone. */
+  /* Top image height (Joel 2026-11-24).
+     Phone (m/): the first image (home slideshow, product-page hero) was only ~1/3 (home) or ~1/4 (products) of the
+       screen -> half the screen height (50svh). The HTML points these images at their largest file so they stay sharp.
+     iPad in landscape (desktop page): the top image fills the whole screen (100svh minus where it starts); back to the
+       Wix height in portrait. Re-checked when the iPad turns.
+     How: if the page starts with a full-width image, every element of that block with the image's height gets the
+     new height; the page below moves down with it. Catalog pages / About (no full-width image at the top) untouched. */
   (function () {
-    function tallHero() {
-      if (!document.body.classList.contains('device-mobile-optimized')) return;
+    var hero = null;   /* { els: [...], top: px } measured once at the Wix height */
+    function find() {
       var sec = document.querySelector('#PAGES_CONTAINER section');
-      if (!sec || sec.classList.contains('jcd-mhero')) return;
+      if (!sec) return null;
       var img = [].filter.call(sec.querySelectorAll('img'), function (i) { return !/^data:/.test(i.getAttribute('src') || ''); })[0];
-      if (!img) return;
+      if (!img) return null;
       var r = img.getBoundingClientRect(), vw = document.documentElement.clientWidth;
-      if (r.width < vw - 4 || r.height < 60 || r.height > 320 || r.top > 80) return;
-      var h0 = r.height;
-      [].forEach.call(sec.querySelectorAll('*'), function (e) {
-        if (Math.abs(e.getBoundingClientRect().height - h0) <= 2) e.style.setProperty('height', '50svh', 'important');
-      });
-      sec.classList.add('jcd-mhero');
+      if (r.width < vw - 4 || r.height < 60 || r.top + window.scrollY > 120) return null;
+      var h0 = r.height, els = [];
+      [].forEach.call(sec.querySelectorAll('*'), function (e) { if (Math.abs(e.getBoundingClientRect().height - h0) <= 2) els.push(e); });
+      return { els: els, top: Math.max(0, Math.round(r.top + window.scrollY)), h0: h0 };
     }
-    document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', tallHero) : tallHero();
+    function apply() {
+      var phone = document.body.classList.contains('device-mobile-optimized');
+      var padLand = !phone && window.__jcdTablet && window.innerWidth > window.innerHeight;
+      if (!hero) {
+        if (!phone && !window.__jcdTablet) return;
+        if (phone && hero === null) { /* phone heroes are short (Wix 136-231px) */ }
+        hero = find(); if (!hero) { hero = false; return; }
+        if (phone && hero.h0 > 320) { hero = false; return; }
+      }
+      if (!hero) return;
+      var h = phone ? '50svh' : padLand ? (hero.top ? 'calc(100svh - ' + hero.top + 'px)' : '100svh') : '';
+      hero.els.forEach(function (e) { if (h) e.style.setProperty('height', h, 'important'); else e.style.removeProperty('height'); });
+      var sec = document.querySelector('#PAGES_CONTAINER section'); if (sec) sec.classList.toggle('jcd-mhero', !!h);
+    }
+    document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', apply) : apply();
+    window.addEventListener('resize', function () { if (window.__jcdTablet) apply(); });
+    window.addEventListener('orientationchange', function () { setTimeout(apply, 300); });
   })();
   /* Catalog title bars (Joel 2026-11-24): each card on the category pages is a white outline (vector) with a title bar
      above the photo: title on the left, a short description on the right. Wix placed the right text a few px too low

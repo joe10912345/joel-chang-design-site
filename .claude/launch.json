@@ -4,13 +4,23 @@
     {
       "name": "site",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8765", "--directory", "site"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8765",
+        "--directory",
+        "site"
+      ],
       "port": 8765
     },
     {
       "name": "devices",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8766", "--directory", "preview"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8766"
+      ],
       "port": 8766
     }
   ]

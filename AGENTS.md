@@ -7,7 +7,7 @@ Several AIs work on this site. To stay in sync:
 3. Edit files directly in `site/`. Joel's own changes go in `site/assets/css/custom.css`, `site/assets/js/custom.js` (or `static-overrides.css` / `site.js` / `tilt.js` for Wix-replacement behaviour), with a short comment saying what and why, tagged `(Joel YYYY-MM-DD)`.
 4. After editing `custom.css` / `custom.js` etc., bump the `?v=` query on that file in every `site/**/index.html` so browsers do not use a cached copy.
 5. **Every fix must cover phone, desktop and iPad at the same time** (Joel's rule). Every page has a desktop file (`site/<page>/index.html`, also what iPads get: laid out 1440px wide and scaled, portrait + landscape, see `TABLET_W` in `site.js`) and a phone file (`site/m/<page>/index.html`). Hover effects need a touch equivalent (`:hover` sticks after a tap, `:active` while pressed). Check all three.
-5a. To check all three at once: start both servers in `.claude/launch.json` and open `http://localhost:8766/devices.html` (`?d=phone|ipad|desktop|all&p=/<page>/`).
+5a. To check all three at once: start the "devices" server in `.claude/launch.json` and open `http://localhost:8766/preview/devices.html` (`?d=phone|ipad|desktop|all&p=/<page>/`).
 5b. Changes show on Joel's phone only after they are pushed to GitHub and Pages redeploys; say so when reporting a fix.
 6. Do not run `tools/build.py` without reading the warning in `TODO.md`.
 7. Joel writes in Traditional Chinese; reply in Traditional Chinese.
