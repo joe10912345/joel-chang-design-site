@@ -9,6 +9,11 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-24
 
+### Frosted-glass menus; About portrait frame
+- **Desktop / iPad "Works" dropdown**: was a flat 33% white box with black text -> lighter frosted glass (10% white, `backdrop-filter: blur(18px) saturate(140%)`, 1px 14%-white edge, 2px corners, soft shadow); labels white (78% at rest, white on hover / current page, blue pressed). `.submenu815198092__root` in `custom.css`.
+- **Phone full-screen menu**: was 85% black -> darker frosted glass (55% near-black + `blur(22px)`), the page behind shows blurred. `#bgLayers_MENU_AS_CONTAINER`.
+- **About portrait** (`#comp-mujmtw8h`): white 1px frame (looked thick on zoomed monitors) -> 0.5px grey (32% white), no white behind the photo. All platforms.
+
 ### External monitors: full width (wiwi) + top image exactly one screen high
 - **How full width works on any monitor (wiwi, commits b36efba 18:55 + ba30d76 19:02, `site/assets/js/site.js` "Wide screens")** — Joel's problem: "full width on the laptop, not on the external monitor". The laptop is 1920px at 125% Windows scaling = 1536 CSS px, which the Wix desktop layout (~1300-1540px stage) fills; an external monitor at 100% is 1920+ CSS px, so the layout sat in the middle with black bars. Fix: on desktop (non-touch) windows wider than 1536 CSS px, `document.documentElement.style.zoom = innerWidth / 1536` (1920 -> 1.25, 2560 -> 1.667, 3440 -> 2.24, 3840 -> 2.5), re-run on resize. `window.__jcdZoom` holds the factor; tilt / glow / cursor light / video / custom.js convert screen px <-> CSS px with it. ba30d76: a Windows touch-screen laptop used with a mouse (maxTouchPoints > 1 but primary pointer fine) is NOT a touch device, otherwise it skipped the zoom.
 - **Checked (2026-11-24)** with the preview at laptop 1536x864, 1920x1080, 2K 2560x1440, ultra-wide 3440x1440, 4K 3840x2160: home, ocean-series, defense, about — every section full width, header edge to edge, no horizontal scroll.

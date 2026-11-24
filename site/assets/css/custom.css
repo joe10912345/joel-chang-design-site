@@ -317,3 +317,24 @@ li[data-item-depth="0"] > div > a:active, li[data-item-depth="0"] > div > a:acti
    colour. On the other pages every section covers itself, so the white only leaks through half-pixel seams as thin
    lines. custom.js ("Page background") tags those fully-covered pages .jcd-dark-canvas -> background layer black. */
 .jcd-dark-canvas [id^="bgLayers_pageBackground_"] [data-testid="colorUnderlay"] { background-color: #000 !important; }
+
+/* ---------- Frosted-glass menus (Joel 2026-11-24) ----------
+   Desktop / iPad "Works" dropdown: was a flat 33% white box with black text. Now a lighter translucent glass with the
+   page behind blurred, a hairline edge and 2px corners; labels white (dimmed at rest, full white on hover, blue pressed).
+   Phone full-screen menu: was 85% black; now a darker glass with the page behind blurred, so it still reads as a layer. */
+.submenu815198092__root {
+  background-color: rgba(255, 255, 255, .10) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, .14) !important; border-radius: 2px !important; overflow: hidden;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .25) !important; }
+.itemDepth12472627565__root .itemDepth12472627565__label { color: rgba(255, 255, 255, .78) !important; }
+.itemDepth12472627565__root:hover .itemDepth12472627565__label,
+li[data-item-depth="1"][aria-current="page"] .itemDepth12472627565__label { color: #fff !important; }
+.itemDepth12472627565__root:active .itemDepth12472627565__label { color: #4a90ff !important; }
+#bgLayers_MENU_AS_CONTAINER { -webkit-backdrop-filter: blur(22px) saturate(140%); backdrop-filter: blur(22px) saturate(140%); }
+#bgLayers_MENU_AS_CONTAINER [data-testid="colorUnderlay"] { background-color: rgba(8, 9, 12, .55) !important; }
+
+/* ---------- About portrait: thinner grey frame instead of the white one (Joel 2026-11-24), desktop + iPad + phone ----------
+   Wix: 1px (#f6f6f6) frame + the same colour behind the photo. On zoomed screens it read as a thick white line. */
+#comp-mujmtw8h .BprtEa { border-width: .5px !important; border-color: rgba(255, 255, 255, .32) !important; background-color: transparent !important; }
+#comp-mujmtw8h .BprtEa img { left: 0 !important; top: 0 !important; width: 100% !important; height: 100% !important; }
