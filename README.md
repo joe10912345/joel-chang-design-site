@@ -1,6 +1,6 @@
 # joel-chang-design.com — static export (off Wix)
 
-> **Working on this site (people or AI)?** Read `CHANGELOG.md` and `TODO.md` first, and add an entry to
+> **Working on this site (people or AI)?** Read `CHANGELOG.md`, `TODO.md` and `DESIGN-SYSTEM.md` first, and add an entry to
 > `CHANGELOG.md` after every change. Rules for AI assistants: `AGENTS.md`.
 
 A self-contained copy of https://www.joel-chang-design.com/ (Wix classic editor site),
