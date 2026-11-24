@@ -353,3 +353,50 @@ li[data-item-depth="1"][aria-current="page"] .itemDepth12472627565__label { colo
 button.style-mp6qabp3__root, button.style-mp6qabp3__root:is(:hover, :focus, :focus-visible, :active) {
   border-color: transparent !important; outline: none !important; box-shadow: none !important; pointer-events: none !important; cursor: default !important;
   -webkit-tap-highlight-color: transparent; }
+
+/* ---------- About "Trusted Collaboration": frosted-glass recommendation cards, style A1 (Joel 2026-11-24) ----------
+   custom.js builds .jcd-rec inside #comp-mujk8qkl; the Wix pieces (quotes, names, lines) are hidden, the heading stays.
+   Sizes are layout px: the desktop page (scaled by the wide-screen zoom / iPad) and the 320px phone page get their own.
+   The section is plain black, so a soft blue / violet glow sits behind the cards for the glass to blur. */
+#comp-mujk8qkl.jcd-rec-on [data-mesh-id="comp-mujk8qklinlineContent-gridContainer"] > [id]:not(#comp-mujo1iy1) { display: none !important; }
+#comp-mujk8qkl.jcd-rec-on [data-mesh-id="comp-mujk8qklinlineContent-gridContainer"] { min-height: 0 !important; height: auto !important; grid-template-rows: auto !important; }   /* Wix fixed it at 1126px */
+.jcd-rec { position: relative; width: min(1220px, calc(100% - 80px)); margin: 36px auto 110px; isolation: isolate; }
+.jcd-rec::before { content: ""; position: absolute; inset: -60px -80px; z-index: -1; pointer-events: none;
+  background: radial-gradient(38% 45% at 12% 18%, rgba(40, 80, 170, .45), transparent 70%), radial-gradient(40% 50% at 92% 88%, rgba(110, 60, 220, .32), transparent 70%); }
+.jcd-rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.jcd-rec-card { position: relative; display: flex; flex-direction: column; padding: 26px 26px 22px; color: inherit; text-decoration: none;
+  background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .12); border-radius: 6px; box-shadow: 0 12px 40px rgba(0, 0, 0, .35);
+  -webkit-backdrop-filter: blur(22px) saturate(150%); backdrop-filter: blur(22px) saturate(150%); -webkit-tap-highlight-color: transparent;
+  transition: transform .35s cubic-bezier(.2, .7, .2, 1), border-color .35s, background-color .35s, box-shadow .35s; }
+.jcd-rec-card.feat { grid-column: 1 / -1; padding: 34px 36px 28px; }
+.jcd-rec-card:hover, .jcd-rec-card:focus-visible { transform: translateY(-4px); border-color: rgba(255, 255, 255, .26); background-color: rgba(255, 255, 255, .09); outline: none; }
+.jcd-rec-card.has-link:active { transform: translateY(-1px) scale(.99); }
+.jcd-rec-q { display: block; height: 22px; font: 44px/.6 Georgia, "Times New Roman", serif; color: #4a90ff; }
+.jcd-rec-txt { margin: 10px 0 0; font: 14px/1.65 wfont_459113_ebfb1394532347b3b7691d160bb35bd1, wf_ebfb1394532347b3b7691d160, orig_poppins_light, sans-serif; color: rgba(255, 255, 255, .82); }
+.jcd-rec-card.feat .jcd-rec-txt { font-size: 17px; line-height: 1.6; color: rgba(255, 255, 255, .9); max-width: 860px; }
+.jcd-rec-who { display: flex; align-items: center; gap: 12px; margin-top: auto; padding-top: 18px; }
+.jcd-rec-ava { width: 38px; height: 38px; border-radius: 50%; flex: none; display: grid; place-items: center; color: #fff;
+  font: 13px wfont_3f090f_fbe2048d9f994d8c8d5073ed8164a33e, wf_fbe2048d9f994d8c8d5073ed8, orig_poppins_medium, sans-serif;
+  background: linear-gradient(135deg, rgba(74, 144, 255, .55), rgba(123, 77, 255, .45)); border: 1px solid rgba(255, 255, 255, .25); }
+.jcd-rec-nm { font: 15px/1.2 wfont_459113_5846594cb6ea4f43b8e132f9d1a29629, wf_5846594cb6ea4f43b8e132f9d, orig_poppins_semibold, sans-serif; color: #fff; }
+.jcd-rec-rl { margin-top: 3px; font: 11.5px/1.45 wfont_459113_ebfb1394532347b3b7691d160bb35bd1, wf_ebfb1394532347b3b7691d160, orig_poppins_light, sans-serif; color: rgba(255, 255, 255, .5); }
+.jcd-rec-rl i { color: rgba(255, 255, 255, .38); }
+.jcd-rec-li { width: 28px; height: 28px; margin-left: auto; flex: none; display: grid; place-items: center; border-radius: 4px; color: #fff;
+  background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .18); transition: background-color .25s, border-color .25s; }
+.jcd-rec-li svg { width: 14px; height: 14px; fill: currentColor; }
+.jcd-rec-card:hover .jcd-rec-li, .jcd-rec-card:focus-visible .jcd-rec-li, .jcd-rec-card:active .jcd-rec-li { background: #4a90ff; border-color: #4a90ff; }
+/* phone (m/, 320px layout): one column, sizes for the small layout */
+.device-mobile-optimized .jcd-rec { width: calc(100% - 40px); margin: 22px auto 60px; }
+.device-mobile-optimized .jcd-rec::before { inset: -30px -20px; }
+.device-mobile-optimized .jcd-rec-grid { grid-template-columns: 1fr; gap: 10px; }
+.device-mobile-optimized .jcd-rec-card, .device-mobile-optimized .jcd-rec-card.feat { padding: 16px 15px 14px; }
+.device-mobile-optimized .jcd-rec-card:hover { transform: none; }
+.device-mobile-optimized .jcd-rec-q { font-size: 30px; height: 14px; }
+.device-mobile-optimized .jcd-rec-txt { margin-top: 6px; font-size: 10px; line-height: 1.6; }
+.device-mobile-optimized .jcd-rec-card.feat .jcd-rec-txt { font-size: 11px; }
+.device-mobile-optimized .jcd-rec-who { gap: 9px; padding-top: 12px; }
+.device-mobile-optimized .jcd-rec-ava { width: 28px; height: 28px; font-size: 10px; }
+.device-mobile-optimized .jcd-rec-nm { font-size: 11.5px; }
+.device-mobile-optimized .jcd-rec-rl { font-size: 8.5px; }
+.device-mobile-optimized .jcd-rec-li { width: 22px; height: 22px; }
+.device-mobile-optimized .jcd-rec-li svg { width: 11px; height: 11px; }

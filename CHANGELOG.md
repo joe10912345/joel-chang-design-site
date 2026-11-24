@@ -9,6 +9,12 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-24
 
+### About "Trusted Collaboration": frosted-glass recommendation cards (style A1) with LinkedIn links
+- Joel picked layout A + style A1 from `preview/testimonials-ui.html`. `custom.js` ("About Trusted Collaboration") builds the cards inside section `#comp-mujk8qkl`; the Wix quote/name/role/line pieces stay in the HTML for search engines but are hidden, the heading "TRUSTED COLLABORATION" stays. The section's grid had a fixed `min-height: 1126px`; now auto, so the section fits the cards.
+- Desktop + iPad: featured card (Marcus Kung) full width + 2 columns; phone: 1 column with sizes for the 320px layout. Glass 6% white + `blur(22px)`, 1px edge, 6px corners, initials avatar, LinkedIn tile turns blue on hover/press, card lifts on hover; soft blue/violet glow behind the cards so the glass reads on the black section.
+- Each card links to the person's LinkedIn (new tab): Marcus Kung, Stanley Chai (cychai1995), Rick Chen, Kuo Kai Liao (kailiao929), Ike Tsao. `?locale=zh` removed so LinkedIn opens in the visitor's language. To change text or links: the `REC` list at the top of that block in `custom.js`.
+- Checked: 1536 / 2560 desktop (cards centred, left edge in line with the heading), phone 20/20 margins.
+
 ### Home "Selected" label; testimonial card design study
 - **Home Works row "Selected"**: was a Wix button with a dark 1px frame that could be clicked. Now a plain label: no frame, no hover/press/click (`pointer-events: none`), out of the keyboard tab order (`tabindex="-1"` in `site/index.html` + `site/m/index.html`). `button.style-mp6qabp3__root` in `custom.css`. All platforms.
 - **Design study (not on the site yet)**: `preview/testimonials-ui.html` — round 1: four frosted-glass layouts for the About recommendations (A featured + grid, B swipe row, C staggered with gradient edge, D spotlight with name list), each at desktop and phone width, every card linking to the person's LinkedIn (placeholder `#` until Joel sends the URLs). Open: `http://localhost:8766/preview/testimonials-ui.html`. Round 2 (Joel picked layout A, corners not too round): the page now shows four UI styles of layout A, corners 4-6px — A1 standard glass + initials avatar + LinkedIn tile, A2 minimal hairline (blue top rule, text link), A3 big faint quote mark + divider + LinkedIn top-right, A4 blue-violet gradient edge with the featured card split name | quote.
