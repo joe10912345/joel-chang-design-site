@@ -9,6 +9,14 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-24
 
+### About: equal heading spacing + one left edge (all platforms); card hover glow corners only
+- Joel: "SELECTED AWARDS, EXPERTISE, TRUSTED COLLABORATION are not spaced the same; check About on every platform". Measured before: desktop gaps above headings 76-116px, below 29-64px, left edges 145/152/156; phone gaps above 6-76px, left edges 17/20.
+- Now (`custom.js` "About page: one spacing rule", CSS `.jcd-about-flow` makes the rows of sections #comp-mujj9yx18 / #comp-mujj9yxj / #comp-mujk8qkl size to their content):
+  - desktop + iPad: main headings (WORK EXPERIENCE, SELECTED AWARDS, EXPERTISE, TRUSTED COLLABORATION) 98px below the content above, side heading LANGUAGES 60px; every heading 41px above its content; side-by-side headings (WORK EXPERIENCE | EDUCATION, SELECTED AWARDS | PATENTS) move together.
+  - phone: main headings 48px, side headings (EDUCATION, LANGUAGES, PATENTS) 28px, 12px to their content.
+  - one left edge = the WORK EXPERIENCE content edge: desktop EXPERTISE section moved +11px, TRUSTED COLLABORATION heading +4px and the cards lined up; phone headings at 17px moved to 20px.
+- **Recommendation card hover** (third pass): only the corners glow, vivid — blue top-left, blue-violet bottom-right, 300x200px each, drifting slightly along the edge; the middle stays black (animated with registered custom properties `--jcd-gx/--jcd-gy`).
+
 ### Recommendation cards: flowing gradient on hover; GET IN TOUCH balloon
 - **About cards**: the blue/violet glow layer behind all cards is removed (Joel). Instead the hovered card (tap/press on touch) fades in its own gradient, blue top-left -> blue-violet bottom-right, slowly flowing (6s alternate); off with reduced motion. `.jcd-rec-card::before` in `custom.css`.
 - **Home "GET IN TOUCH"** (`a.style-mp6zxgon__root`, desktop + iPad + phone): endless gentle "balloon" breathing, scale 1 -> 1.045 -> 1 every 2.8s; pauses on hover/press; off with reduced motion.

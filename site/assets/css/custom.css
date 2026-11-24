@@ -364,11 +364,17 @@ button.style-mp6qabp3__root, button.style-mp6qabp3__root:is(:hover, :focus, :foc
 /* (later same day) Joel: no glow layer behind the cards; instead each card gets a slowly flowing blue (top-left) ->
    blue-violet (bottom-right) gradient on hover (tap/press on touch). */
 .jcd-rec-card { isolation: isolate; overflow: hidden; }
+/* (third pass) Joel: middle stays black; only the two corners glow, vivid, hugging the edges: blue top-left,
+   blue-violet bottom-right. Each glow drifts a little along its edge (flowing), the centre never gets colour. */
+@property --jcd-gx { syntax: '<length>'; inherits: false; initial-value: 0px; }
+@property --jcd-gy { syntax: '<length>'; inherits: false; initial-value: 0px; }
 .jcd-rec-card::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0;
-  background: linear-gradient(135deg, rgba(40, 90, 200, .42) 0%, rgba(30, 50, 120, .12) 40%, rgba(70, 60, 190, .18) 65%, rgba(115, 65, 225, .4) 100%);
-  background-size: 220% 220%; background-position: 0% 0%; transition: opacity .6s ease; }
-.jcd-rec-card:is(:hover, :focus-visible, :active)::before { opacity: 1; animation: jcdRecFlow 6s ease-in-out infinite alternate; }
-@keyframes jcdRecFlow { from { background-position: 0% 0%; } to { background-position: 100% 100%; } }
+  background:
+    radial-gradient(300px 200px at var(--jcd-gx) var(--jcd-gy), rgba(40, 110, 255, .7), rgba(40, 110, 255, .22) 45%, transparent 75%),
+    radial-gradient(300px 200px at calc(100% - var(--jcd-gx)) calc(100% - var(--jcd-gy)), rgba(125, 60, 255, .7), rgba(125, 60, 255, .22) 45%, transparent 75%);
+  transition: opacity .6s ease; }
+.jcd-rec-card:is(:hover, :focus-visible, :active)::before { opacity: 1; animation: jcdRecFlow 5s ease-in-out infinite alternate; }
+@keyframes jcdRecFlow { from { --jcd-gx: 0px; --jcd-gy: 0px; } to { --jcd-gx: 70px; --jcd-gy: 22px; } }
 @media (prefers-reduced-motion: reduce) { .jcd-rec-card:is(:hover, :focus-visible, :active)::before { animation: none; } }
 .jcd-rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .jcd-rec-card { position: relative; display: flex; flex-direction: column; padding: 26px 26px 22px; color: inherit; text-decoration: none;
@@ -414,3 +420,7 @@ a.style-mp6zxgon__root { transform-origin: 50% 50%; animation: jcdBalloon 2.8s c
 a.style-mp6zxgon__root:is(:hover, :focus-visible, :active) { animation-play-state: paused; }
 @keyframes jcdBalloon { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.045); } }
 @media (prefers-reduced-motion: reduce) { a.style-mp6zxgon__root { animation: none; } }
+
+/* ---------- About: grid rows size to their content so heading spacing can be made equal (custom.js, Joel 2026-11-24) ---------- */
+.jcd-about-flow :is(#comp-mujj9yx18, #comp-mujj9yxj, #comp-mujk8qkl) [data-mesh-id$="inlineContent-gridContainer"] {
+  grid-template-rows: none !important; grid-auto-rows: auto !important; min-height: 0 !important; height: auto !important; }

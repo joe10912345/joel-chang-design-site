@@ -3,6 +3,7 @@
 Open items. When you finish one, move it to `CHANGELOG.md` with the date. Add new items here.
 
 ## Waiting on Joel's decision
+- [ ] **Contact blue line colour**: Joel wants the top menu (incl. dropdown), logo and LinkedIn card gradients to use "the blue line colour on Contact". No blue line was found on the local Contact page (inputs underline white, no blue vector/image) — ask Joel which line he means (live Wix page? a screenshot?).
 - [ ] **Same black-on-hover on other pages?** The Wix MouseOverPhoto skin (`.hhxEkR`) that made Ocean Series photos go black on hover is also used on: airgain-fwa-easy-installation-kit (8), moai-router (3), industrial (2), defense, electronics, networking (1 each). Check whether those should get the "dim at rest, bright + zoom on hover" treatment too.
 - [ ] **Domain cutover**: point `www.joel-chang-design.com` at GitHub Pages (or Cloudflare in front). Keep `SITE_BASE` in `tools/siteconfig.py` as is. Then submit the sitemap in Google Search Console.
 - [ ] **Languages**: zh-hant / zh-cn / ar are built but not published (`i18n-archive/README.md` says how to publish). Note: they were built before the 11-24 changes, so rebuild before publishing.
