@@ -371,21 +371,22 @@ button.style-mp6qabp3__root, button.style-mp6qabp3__root:is(:hover, :focus, :foc
 @property --jcd-gy { syntax: '<length>'; inherits: false; initial-value: 0px; }
 .jcd-rec-card::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0;
   background:
-    radial-gradient(300px 200px at var(--jcd-gx) var(--jcd-gy), rgba(26, 45, 243, .8), rgba(26, 45, 243, .25) 45%, transparent 75%),
-    radial-gradient(300px 200px at calc(100% - var(--jcd-gx)) calc(100% - var(--jcd-gy)), rgba(125, 60, 255, .7), rgba(125, 60, 255, .22) 45%, transparent 75%);
+    radial-gradient(300px 200px at var(--jcd-gx) var(--jcd-gy), rgba(26, 45, 243, .45), rgba(26, 45, 243, .14) 45%, transparent 75%),
+    radial-gradient(300px 200px at calc(100% - var(--jcd-gx)) calc(100% - var(--jcd-gy)), rgba(125, 60, 255, .4), rgba(125, 60, 255, .12) 45%, transparent 75%);
   transition: opacity .6s ease; }
 .jcd-rec-card:is(:hover, :focus-visible, :active)::before { opacity: 1; animation: jcdRecFlow 5s ease-in-out infinite alternate; }
 @keyframes jcdRecFlow { from { --jcd-gx: 0px; --jcd-gy: 0px; } to { --jcd-gx: 70px; --jcd-gy: 22px; } }
 @media (prefers-reduced-motion: reduce) { .jcd-rec-card:is(:hover, :focus-visible, :active)::before { animation: none; } }
 .jcd-rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .jcd-rec-card { position: relative; display: flex; flex-direction: column; padding: 26px 26px 22px; color: inherit; text-decoration: none;
-  background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .12); border-radius: 6px; box-shadow: 0 12px 40px rgba(0, 0, 0, .35);
+  background: rgba(255, 255, 255, .035); border: 1px solid rgba(255, 255, 255, .09); border-radius: 6px; box-shadow: 0 12px 40px rgba(0, 0, 0, .35);
   -webkit-backdrop-filter: blur(22px) saturate(150%); backdrop-filter: blur(22px) saturate(150%); -webkit-tap-highlight-color: transparent;
   transition: transform .35s cubic-bezier(.2, .7, .2, 1), border-color .35s, background-color .35s, box-shadow .35s; }
 .jcd-rec-card.feat { grid-column: 1 / -1; padding: 34px 36px 28px; }
-.jcd-rec-card:hover, .jcd-rec-card:focus-visible { transform: translateY(-4px); border-color: rgba(255, 255, 255, .26); background-color: rgba(255, 255, 255, .09); outline: none; }
+.jcd-rec-card:hover, .jcd-rec-card:focus-visible { transform: translateY(-4px); border-color: rgba(255, 255, 255, .2); background-color: rgba(255, 255, 255, .055); outline: none; }
 .jcd-rec-card.has-link:active { transform: translateY(-1px) scale(.99); }
-.jcd-rec-q { display: block; height: 22px; font: 44px/.6 Georgia, "Times New Roman", serif; color: #1a2df3; }
+.jcd-rec-q { display: block; height: 22px; font: 44px/.6 Georgia, "Times New Roman", serif; color: rgba(255, 255, 255, .85); transition: color .35s ease; }
+.jcd-rec-card:is(:hover, :focus-visible, :active) .jcd-rec-q { color: #1a2df3; }   /* white at rest, brand blue on hover / press (Joel) */
 .jcd-rec-txt { margin: 10px 0 0; font: 14px/1.65 wfont_459113_ebfb1394532347b3b7691d160bb35bd1, wf_ebfb1394532347b3b7691d160, orig_poppins_light, sans-serif; color: rgba(255, 255, 255, .82); }
 .jcd-rec-card.feat .jcd-rec-txt { font-size: 17px; line-height: 1.6; color: rgba(255, 255, 255, .9); max-width: 860px; }
 .jcd-rec-who { display: flex; align-items: center; gap: 12px; margin-top: auto; padding-top: 18px; }

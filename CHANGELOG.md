@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-24
 
+### Recommendation cards: lighter glass, white quote mark, softer hover glow
+- Card glass 6% -> 3.5% white, edge 12% -> 9% (hover 5.5% / 20%). Quote mark white (85%) at rest, turns brand blue #1a2df3 on hover / press. Corner glows about half as strong (blue .8 -> .45, violet .7 -> .4). Read "透明度降低" as "make it lighter / more see-through"; flip if Joel meant the opposite.
+
 ### One brand blue: the Contact form hover blue #1a2df3
 - Joel: menu (incl. dropdown), logo and the LinkedIn card glows should use the blue of the Contact form lines on hover. That colour is Wix's `--brdh` / `--brdf` on the Contact fields: **rgb(26, 45, 243) = #1a2df3**.
 - Changed from #4a90ff to #1a2df3: desktop/iPad top menu hover + press, Works dropdown press, phone menu press, header logo + LinkedIn/Behance icon hover (mask colour), phone menu LinkedIn/Behance press, recommendation cards (top-left corner glow, quote mark, initials gradient, LinkedIn tile hover). Left as is: Contact form "sent" tick/button and the cursor light.
