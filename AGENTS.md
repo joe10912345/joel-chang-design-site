@@ -36,10 +36,11 @@ Several AIs work on this site. To stay in sync, follow these rules. Architecture
 7. Follow `DESIGN-SYSTEM.md` (colours `--jcd-blue` #0062D9 / `--jcd-navy` #00176C — never hard-code a blue; glass, radii,
    type, copy rules, spacing, devices, states, motion). Update it when Joel changes a rule. 遵守設計系統，Joel 改規則時同步更新。
 8. Images (Joel's rule) 圖片規則: one folder per page `site/assets/media/<page>/`, named `<page>-<nn>-<w>x<h>.jpg`
-   (same-size replacement → `-v2`, `-v3`). Made from the original in `media-originals/` (JPEG q86 4:4:4); lighter phone
+   (same-size replacement → `-v2`, `-v3`). Made from the original in `media-originals/<page>/<page>-<nn>-<w>x<h>.<ext>` (same page + number as the site image; a new original goes there under that name) (JPEG q86 4:4:4); lighter phone
    copy when wider than needed (top image 2400px, others 1440px); `loading="lazy"` below the first section (never on an
    image that sizes its own box). Alt text = clean English description (never a file name). Record new files in
-   `reference/media-map.json`. 一頁一個資料夾、統一命名、從原始檔產生、替代文字用英文描述、記錄到 media-map.json。
+   `reference/media-map.json`. Every other file is named too: videos `site/assets/video/<page>/<page>-video-<nn>-<quality>.mp4`, fonts
+   `site/assets/fonts/<family>/`, Wix CSS `site/assets/wix/`. No raw camera / Wix / screenshot names anywhere. 一頁一個資料夾、統一命名、從原始檔產生、替代文字用英文描述、記錄到 media-map.json。
 9. Dark pages have `class="jcd-dark-canvas"` on `<html>`. Light pages (white Wix background: MoAI, Wi-Fi 7 Extender /
    HGU-AP / 2022, Airgain, Lionic, AI Tool Kit, NLG MMA200, Sagittarius, Assistive) must NOT have it.
    深色頁 `<html>` 要有 jcd-dark-canvas；淺色頁不可以有。
@@ -62,5 +63,5 @@ Several AIs work on this site. To stay in sync, follow these rules. Architecture
 
 - Don't run `tools/export-wix/*` (they rebuild from the raw Wix capture and would overwrite hand edits; paths are from
   another machine). 不要執行 `tools/export-wix/` 裡的腳本，會覆蓋手改內容。
-- Don't edit the 30 Wix CSS files in `site/assets/css/`. 不要改 Wix 原生 CSS。
+- Don't edit the Wix CSS in `site/assets/wix/`. 不要改 `site/assets/wix/` 裡的 Wix 原生 CSS。
 - Don't paste tokens or passwords in chat; pushes use Git Credential Manager. 不要在對話中貼 token 或密碼。

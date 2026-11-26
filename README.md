@@ -25,14 +25,18 @@ joel-chang-design-site/
 │     ├─ js/tilt.js           About portrait 3D tilt 大頭照傾斜
 │     ├─ css/custom.css       BUILT from src/css/ — do not edit 由 src/css/ 自動產生，不要直接改
 │     ├─ css/static-overrides.css  fixes needed to run without Wix 脫離 Wix 所需的修正
-│     ├─ css/(30 Wix files)   Wix's own styles — never edit Wix 原生樣式，不要改
+│     ├─ wix/                 Wix's own styles, never edit Wix 原生樣式，不要改:
+│     │                         component-<name>.css (one per Wix component), page-<page>-<n>.css (page styles), main.css …
 │     ├─ media/<page>/        images, one folder per page (+ shared/) 圖片，一頁一個資料夾
-│     ├─ video/ fonts/ files/ background videos, Poppins fonts, favicon 影片、字體、小圖示
+│     ├─ video/<page>/        background videos <page>-video-<nn>-<quality>.mp4 背景影片，一頁一個資料夾
+│     ├─ fonts/<family>/      fonts by family: poppins/poppins-light.woff2 … 字體，依字族分資料夾
+│     └─ files/favicon.ico    site icon 網站小圖示
 ├─ src/                       ★ the site's own CSS + JS, ONE FILE PER EFFECT, by area 自訂樣式與程式，一個效果一個檔
 │  ├─ css/<area>/<effect>.css  areas: global, home, about, category, product, contact, phone 分區
 │  ├─ js/<area>/<effect>.js
 │  └─ css/ORDER.txt, js/ORDER.txt   build order 合併順序
-├─ media-originals/           full-size originals the site images are made from (not online) 原始大圖（不上線）
+├─ media-originals/<page>/    full-size originals, named like the site images: <page>-<nn>-<w>x<h>.jpg (not online)
+│                             原始大圖，一頁一個資料夾，和網站圖片同編號（不上線）；_unused/ = 沒有頁面使用
 ├─ media-new/                 drop new images here for the AI to process 新圖放這裡給 AI 處理
 ├─ preview/
 │  ├─ devices.html            ★ three-device preview (phone / iPad / computer side by side) 三平台預覽
@@ -54,7 +58,7 @@ joel-chang-design-site/
 └─ *.md                       README, AGENTS, DESIGN-SYSTEM, TODO, CHANGELOG, PAGES, ASSETS
 ```
 
-Each sub-folder with its own rules has a short `README.md` (`src/`, `preview/`, `tools/`, `reference/`, `content/`).
+Each sub-folder with its own rules has a short `README.md` (`src/`, `preview/`, `tools/`, `reference/`, `content/`, `media-originals/`).
 有自己規則的子資料夾各有一份簡短 `README.md`。
 
 ## 2. How a page is put together 一個頁面怎麼組成

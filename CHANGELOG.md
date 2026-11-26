@@ -11,6 +11,13 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Every file renamed and sorted: originals, videos, fonts, Wix CSS 所有檔案重新命名分類
+- Joel: "media-originals 裡的圖片是亂碼跟散的欸，我想要所有圖片都整理好重新命名。其他資料夾的都要整理分類與命名".
+- `media-originals/`: 429 originals → `media-originals/<page>/<page>-<nn>-<w>x<h>.<ext>`, same page + number as the site image made from it; 41 that no page uses → `_unused/unused-<nn>-<w>x<h>`. 原始圖依頁面分資料夾，和網站圖片同編號。
+- Videos → `site/assets/video/<page>/<page>-video-<nn>-<quality>.mp4`; fonts → `site/assets/fonts/<family>/<family>-<weight>[-italic][-<subset>].<ext>` (poppins, poppins-google, caudex, avenir, helvetica …); all Wix CSS (30 in `css/`, 40 in `files/`) → `site/assets/wix/` as `component-<name>.css` / `page-<page>-<n>.css` / `main.css` …; `site/assets/css/` now holds only `custom.css` + `static-overrides.css`; favicon → `files/favicon.ico`. 影片、字體、Wix 樣式都改成可讀的名稱並分資料夾。
+- 617 files moved with git (history kept); 147 references updated in every page and CSS; `reference/media-map.json` points to the new originals (old name kept as `original_name`); full old → new list `reference/rename-map-2026-11-27.json`. Checked: all 4,592 file references resolve; phone / iPad / computer load fonts and videos with no missing files.
+- Docs: README folder map, AGENTS (naming rules), `media-originals/README.md` (new), `reference/README.md`.
+
 ### Interstellar 05 closing video: same breathing glow as the home video Interstellar 影片光暈
 - Joel: "interstellar 最下方的影片背景光暈也要參考首頁下方影片光暈的動態效果". The home video code now serves a list of videos: Interstellar 05's Vimeo player is lined up with the black window of its glow frame (2560×1526, window 157-2409 × 127-1395), overscanned and clipped (no dark edges), with the breathing blue light and the frame image dimming in step (4.5s). Rules now use shared classes `.jcd-vbox` / `.jcd-vframe` / `.jcd-vglow` instead of the home IDs.
   首頁影片的光暈程式改成可套用多支影片；Interstellar 影片對齊光框、去黑邊，並加上同樣的呼吸光暈。
