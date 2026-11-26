@@ -15,7 +15,7 @@
   .bar button.on { border-color: var(--jcd-blue); background: rgba(var(--jcd-blue-rgb), .22); color: #fff; }
   .desc { color: #c9cad2; background: #101116; border: 1px solid #2a2a30; border-radius: 6px; padding: 9px 14px; max-width: 980px; margin: 0 0 18px; min-height: 2.6em; }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; max-width: 1000px; }
-  .card { position: relative; border: 1.5px solid #fff; padding: 34px 40px 40px; min-height: 330px; cursor: default; overflow: hidden;
+  .card { position: relative; border: 1.5px solid #fff; padding: 34px 40px 40px; min-height: 360px; cursor: default; overflow: hidden;
           transition: border-color .35s, box-shadow .35s, background-color .35s; font-family: Poppins, system-ui, sans-serif; }
   .card .k { font-size: 15px; letter-spacing: .3px; } .card .k b { font-weight: 500; margin-right: 8px; }
   .card h3 { font-size: 40px; line-height: 1.12; margin: 4px 0 22px; font-weight: 600; }
@@ -49,12 +49,12 @@
 </head>
 <body>
 <h1>Design Approach 卡片：第一張的滑過效果（不位移）</h1>
-<p class="note">上排選滑過效果，下排選「&gt;&gt;」的樣式，兩個可以自由搭配。把滑鼠移到左上那張（可點），也可以按下去看填色（這裡不會換頁）。右邊那張是不可點的卡片，保持低調的滑過。</p>
+<p class="note">上排選滑過效果，下排選「&gt;&gt;」的樣式，兩個可以自由搭配。把滑鼠移到左上那張（可點），也可以按下去看填色（這裡不會換頁）。其他三張不可點，只有低調的滑過（白框變亮）。目前網站上用的是 C＋①。</p>
 <h2>1. 滑過效果</h2>
 <div class="bar" id="hv">
-  <button data-v="a" class="on">A 外框變藍＋外光</button>
+  <button data-v="a">A 外框變藍＋外光</button>
   <button data-v="b">B 角落雙色光暈</button>
-  <button data-v="c">C 藍色漸層由左滑入</button>
+  <button data-v="c" class="on">C 藍色漸層由左滑入</button>
   <button data-v="d">D 跟著游標的光</button>
 </div>
 <h2>2. 「&gt;&gt;」樣式（不壓到文字）</h2>
@@ -64,13 +64,17 @@
   <button data-g="3">③ 圓圈移到右上角</button>
 </div>
 <div class="desc" id="desc"></div>
-<div class="grid v-a g-1" id="grid">
+<div class="grid v-c g-1" id="grid">
   <div class="card link" id="c1"><div class="glowL"></div><div class="glowR"></div><div class="spot"></div>
     <div class="k"><b>01</b>DISCOVERY</div><h3>INSIGHT FIRST,<br>UX DRIVEN</h3>
     <p>Good design begins with understanding people. Breaking down every step uncovers the problems that frustrate most yet are hardest to notice, so the design answers a genuine need. Products should serve their users, not simply add more features.</p>
     <span class="go">&gt;&gt;</span><span class="plain">&gt;&gt;</span></div>
   <div class="card"><div class="k"><b>02</b>ITERATION</div><h3>RAPID<br>VALIDATION</h3>
     <p>An idea proves itself only when it can be held in the hand, not when it lives in imagination. Strong making skills turn concepts into models quickly, so they can be tested, refined and tested again in real context, bringing the design closer to the answer with every iteration.</p></div>
+  <div class="card"><div class="k"><b>03</b>REFINEMENT</div><h3>DISCIPLINED<br>AESTHETIC</h3>
+    <p>Good design avoids excess. A subtractive approach pursues clarity and purity, using proportion, tension and CMF to evoke emotional resonance. The goal is a product that feels calm, distinctive and timeless, not one chasing fleeting trends.</p></div>
+  <div class="card"><div class="k"><b>04</b>REALIZATION</div><h3>BUILDABLE<br>EXECUTION MINDSET</h3>
+    <p>Even the best concept must survive engineering, cost and manufacturing constraints to deliver real business value. Strong cross-functional collaboration ensures the product keeps its integrity and design intent from development through production.</p></div>
 </div>
 <script>
   var D = { a: 'A：白框變成品牌藍，外面一圈柔和的藍光。最清楚、最乾淨。',
@@ -80,7 +84,7 @@
   var G = { 1: '①：圓圈縮小到 30px，貼在右下角落，離文字更遠。',
             2: '②：沒有圓圈，只留「>>」文字，滑過變藍並往右移一點，按下也是藍。最輕。',
             3: '③：圓圈搬到右上角（標題旁邊的空白），完全不會碰到內文。' };
-  var grid = document.getElementById('grid'), v = 'a', g = '1';
+  var grid = document.getElementById('grid'), v = 'c', g = '1';
   function upd() { grid.className = 'grid v-' + v + ' g-' + g; document.getElementById('desc').textContent = D[v] + '　' + G[g];
     [].forEach.call(document.querySelectorAll('#hv button'), function (b) { b.classList.toggle('on', b.dataset.v === v); });
     [].forEach.call(document.querySelectorAll('#gv button'), function (b) { b.classList.toggle('on', b.dataset.g === g); }); }
