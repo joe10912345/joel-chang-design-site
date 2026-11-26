@@ -132,7 +132,7 @@ Other rules 其他:
 | Cards that are not links 無連結卡片 | Subtle hover only, default cursor, no >>. 只有低調滑過 |
 | Round >> 圓形 >> | Fills blue left → right (.9s) while hovered / pressed; click opens at once. 滑過／按住時由左到右填藍 |
 | Home category words 首頁類別字 | Computer/iPad: scale 1.05 on hover, pressed = blue, no fill. Phone: grey press fill. |
-| Home Selected grid 精選 12 格 | Spotlight: hovered tile bright + photo 1.06 + white line + name + >>; others brightness .38. Touch: name + >> always. |
+| Home Selected grid 精選 12 格 | Spotlight: hovered tile bright + photo 1.06 + white line + name + >>; others brightness .38. Touch: name + >> always. Round >> 26px computer / 34px iPad / 22px phone 圓圈尺寸. |
 | About portrait 大頭照 | Black-and-white; hover (computer) / press-and-hold (touch) shows the colour photo. 黑白，滑過或按住變彩色 |
 | Selection / context menu 選字與右鍵 | Disabled site-wide (form fields excepted). 全站禁止（表單除外） |
 | Tooltips 提示框 | None: no `title` attributes (no file names on hover). 不顯示任何 title |

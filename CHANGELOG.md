@@ -11,6 +11,10 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Home Selected grid: smaller round >> 首頁精選 12 格的 >> 圓圈縮小
+- Joel: "首頁12個小圖的">>"圓圈太大，幫我縮小". Computer 34 → 26px, iPad 46 → 34px, phone 30 → 22px (arrow text in step). 電腦 34→26、iPad 46→34、手機 30→22px。
+- Files: `src/css/home/selected-grid.css` → built `custom.css`, `?v=` in all page HTML; `DESIGN-SYSTEM.md`.
+
 ### custom.css / custom.js split into one file per effect (src/) 拆成一個效果一個檔
 - Joel: "Yes, split them". The 690-line `custom.css` and 1300-line `custom.js` now live as 54 CSS and 33 JS files in `src/css/<area>/` and `src/js/<area>/` (areas: global, home, about, category, product, contact, phone). `tools/build_assets.py` joins them in the order of `src/*/ORDER.txt` back into `site/assets/css/custom.css` / `site/assets/js/custom.js` (pages still load one file each) and bumps `?v=`. The rebuilt CSS is byte-identical to before; the JS differs only where one `ready()` held seven unrelated blocks, now one per file (the contact-form block had been nested inside the header block's `if`; now separate). Checked: every piece parses alone; home, About, Contact and Networking effects present on phone, iPad portrait/landscape and computer, no console errors.
   690 行的 custom.css 與 1300 行的 custom.js 拆成 `src/` 裡 54 個 CSS、33 個 JS 檔（依頁面分區）；`build_assets.py` 依 ORDER.txt 組合回原本的兩個檔並更新 ?v=。CSS 組合結果與原本逐位元相同；JS 只有原本擠在同一個 ready() 的七段改成各自獨立。四種裝置都檢查過，沒有錯誤。
