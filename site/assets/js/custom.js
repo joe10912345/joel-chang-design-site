@@ -1255,31 +1255,6 @@
       fitArrows(); window.addEventListener('load', fitArrows); setTimeout(fitArrows, 1500);
       window.addEventListener('resize', fitArrows); window.addEventListener('orientationchange', function () { setTimeout(fitArrows, 300); });
     }
-    /* Black gradient under each arrow (Joel 2026-11-27: "左右邊箭頭下可以壓整長方形塊黑漸層嗎? 高度跟圖方塊一樣高"): a strip as
-       tall as the squares, dark at the screen edge and fading toward the middle, shown only while its arrow is shown
-       (site.js fades the left arrow in once the strip has been scrolled). Computer + iPad. CSS: .jcd-e2e-shade */
-    var shades = [];
-    var fitShades = function () {
-      var arrows = [].slice.call(comp.querySelectorAll('.nav-arrows-container')), tile = { height: 0 };
-      [].some.call(comp.querySelectorAll('.gallery-item-container'), function (it) { var r = it.getBoundingClientRect(); if (r.height) { tile = r; return true; } });   /* live: the slider rebuilds its squares */
-      arrows.forEach(function (a, i) {
-        var host = a.offsetParent; if (!host || !tile.height) return;
-        var sh = shades[i]; if (!sh) { sh = shades[i] = document.createElement('div'); sh.__jcdScaled = 1; sh.className = 'jcd-e2e-shade';   /* __jcdScaled: the 1.35x observer above must skip it */ sh.setAttribute('aria-hidden', 'true'); host.insertBefore(sh, a); }
-        var left = !!a.style.left || /prev/.test(a.getAttribute('data-hook') || a.className), Z = window.__jcdZoom || 1;
-        var hr = host.getBoundingClientRect(), ar = a.getBoundingClientRect();
-        var W = Math.min(tile.width * 0.45, Math.max(ar.width * 3.2, 150 * Z));
-        sh.classList.toggle('is-right', !left);
-        sh.style.top = ((tile.top - hr.top) / Z).toFixed(1) + 'px'; sh.style.height = (tile.height / Z).toFixed(1) + 'px'; sh.style.width = (W / Z).toFixed(1) + 'px';
-        var edge = left ? Math.min(ar.left, Math.max(hr.left, 0)) : Math.max(ar.right, Math.min(hr.right, document.documentElement.clientWidth));
-        sh.style.left = (((left ? edge : edge - W) - hr.left) / Z).toFixed(1) + 'px';
-        sh.style.opacity = getComputedStyle(a).opacity;
-      });
-    };
-    var sq = 0, shadeSoon = function () { if (!sq) sq = requestAnimationFrame(function () { sq = 0; fitShades(); }); };
-    var stripE = comp.querySelector('.gallery-horizontal-scroll'); if (stripE) stripE.addEventListener('scroll', shadeSoon, { passive: true });
-    window.addEventListener('resize', shadeSoon); window.addEventListener('load', fitShades); setTimeout(fitShades, 1600);
-    if ('MutationObserver' in window) [].forEach.call(comp.querySelectorAll('.nav-arrows-container'), function (a) {
-      new MutationObserver(shadeSoon).observe(a, { attributes: true, attributeFilter: ['style'] }); });
     var grow = comp.scrollHeight - H0;
     comp.style.setProperty('height', (H0 * S).toFixed(1) + 'px', 'important');
     if (sec && grow > 0) sec.style.setProperty('min-height', (secH0 + H0 * (S - 1)).toFixed(1) + 'px', 'important');

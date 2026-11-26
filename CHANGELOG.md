@@ -11,6 +11,12 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Images load faster: PNG → WebP / JPEG; End-to-End arrow gradient removed 圖片變輕；取消箭頭漸層
+- Joel: "好像很多圖片讀取很慢" / "取消剛剛箭頭下的方塊漸層". 191 site images were PNG (lossless, 56 MB). The 183 with transparency (cut-out products, logos, icons) are now WebP with transparency (q86; small ones lossless): 55.8 MB → 7.6 MB; the 8 opaque ones JPEG q86 4:4:4. All references updated (pages, CSS masks, built files, `reference/media-map.json`); list of old → new in `reference/png-to-web-2026-11-27.json`; tool `tools/png_to_web.py`. Checked: 4,690 references resolve; WebP images load on phone, iPad, computer; home logo / Cross-Category grid unchanged.
+  191 張 PNG 改成 WebP（透明）或 JPG，圖片總量從 56 MB 降到約 8 MB。
+- End-to-End: the black gradient strips under the arrows (added earlier today) removed.
+- Files: `site/assets/media/**` (PNG → WebP/JPG), all page HTML, `src/css/global/header-icons-hover.css`, `src/css/phone/mobile-fixes.css`, `src/js/home/end-to-end-slider.js`, `src/css/home/end-to-end-arrows.css` → built files, `reference/media-map.json`, `tools/png_to_web.py` (new), AGENTS, DESIGN-SYSTEM.
+
 ### T. Scope now uses T. Interceptor MP's layout (blank), whole page encrypted T. Scope 改用 T. Interceptor MP 版型
 - Joel: "t scope 的空白公版頁請按照 t.interceptor mp 的做法與排版，你可以拿他多複製出來清除內容即可". `tools/make_blank_page.py` copied T. Interceptor MP (computer + phone) into `private/t-scope/page.html` / `page-m.html`: name "T. Scope", category "Defense", Client / Year / Designer / Contribution labels kept (Tron Future, [Year], Joel Chang, [Contribution]), every other text "[Heading]" / "[Placeholder text …]", top image the T. Scope photo, all other images `shared-05-1600x1000.jpg` (new neutral placeholder), JSON-LD removed, noindex. Encrypted as whole pages into `site/t-scope/protected.json` and `site/m/t-scope/protected.json`; the locked shells route phone / computer like every page, and after the right password the whole page replaces the shell (all site effects run). Checked: wrong password rejected, right password opens the full page on the computer; the phone shell and the phone copy decrypt.
   T. Scope 改用 T. Interceptor MP 的版型並清空內容；電腦與手機版整頁加密，輸入正確密碼後顯示完整頁面。

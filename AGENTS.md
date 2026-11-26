@@ -36,7 +36,7 @@ Several AIs work on this site. To stay in sync, follow these rules. Architecture
 7. Follow `DESIGN-SYSTEM.md` (colours `--jcd-blue` #0062D9 / `--jcd-navy` #00176C — never hard-code a blue; glass, radii,
    type, copy rules, spacing, devices, states, motion). Update it when Joel changes a rule. 遵守設計系統，Joel 改規則時同步更新。
 8. Images (Joel's rule) 圖片規則: one folder per page `site/assets/media/<page>/`, named `<page>-<nn>-<w>x<h>.jpg`
-   (same-size replacement → `-v2`, `-v3`). Made from the original in `media-originals/<page>/<page>-<nn>-<w>x<h>.<ext>` (same page + number as the site image; a new original goes there under that name) (JPEG q86 4:4:4); lighter phone
+   (same-size replacement → `-v2`, `-v3`). Made from the original in `media-originals/<page>/<page>-<nn>-<w>x<h>.<ext>` (same page + number as the site image; a new original goes there under that name) (JPEG q86 4:4:4; images with transparency as WebP q86, never PNG — `tools/png_to_web.py`); lighter phone
    copy when wider than needed (top image 2400px, others 1440px); `loading="lazy"` below the first section (never on an
    image that sizes its own box). Alt text = clean English description (never a file name). Record new files in
    `reference/media-map.json`. Every other file is named too: videos `site/assets/video/<page>/<page>-video-<nn>-<quality>.mp4`, fonts

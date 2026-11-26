@@ -1,5 +1,5 @@
 {
- "about/about-01-172x44.png": {
+ "about/about-01-172x44.webp": {
   "source": "export",
   "wix_ops": {
    "crop": null,
@@ -13,7 +13,7 @@
    "about"
   ]
  },
- "about/about-01-376x96.png": {
+ "about/about-01-376x96.webp": {
   "source": "export",
   "wix_ops": {
    "crop": null,
@@ -1228,7 +1228,7 @@
   ],
   "original_name": "1e9c09_27a3fc2028f242ab980ca92038dbb0f3_mv2.jpg"
  },
- "airgain-fwa-easy-installation-kit/airgain-fwa-easy-installation-kit-16-426x324.png": {
+ "airgain-fwa-easy-installation-kit/airgain-fwa-easy-installation-kit-16-426x324.webp": {
   "source": "media-originals/airgain-fwa-easy-installation-kit/airgain-fwa-easy-installation-kit-16-1700x1275.png",
   "wix_ops": {
    "crop": null,
@@ -1243,7 +1243,7 @@
   ],
   "original_name": "1e9c09_e46dfccaee0a46b6b283fa2e1c1f0d1a_mv2.png"
  },
- "airgain-fwa-easy-installation-kit/airgain-fwa-easy-installation-kit-16-808x614.png": {
+ "airgain-fwa-easy-installation-kit/airgain-fwa-easy-installation-kit-16-808x614.webp": {
   "source": "media-originals/airgain-fwa-easy-installation-kit/airgain-fwa-easy-installation-kit-16-1700x1275.png",
   "wix_ops": {
    "crop": null,
@@ -1258,7 +1258,7 @@
   ],
   "original_name": "1e9c09_e46dfccaee0a46b6b283fa2e1c1f0d1a_mv2.png"
  },
- "airgain-fwa-easy-installation-kit/airgain-fwa-easy-installation-kit-17-444x300.png": {
+ "airgain-fwa-easy-installation-kit/airgain-fwa-easy-installation-kit-17-444x300.webp": {
   "source": "media-originals/airgain-fwa-easy-installation-kit/airgain-fwa-easy-installation-kit-17-1300x980.png",
   "wix_ops": {
    "crop": [
@@ -1278,7 +1278,7 @@
   ],
   "original_name": "1e9c09_5ec33e411e4c47689bc92ce4b6a1d151_mv2.png"
  },
- "airgain-fwa-easy-installation-kit/airgain-fwa-easy-installation-kit-17-596x460.png": {
+ "airgain-fwa-easy-installation-kit/airgain-fwa-easy-installation-kit-17-596x460.webp": {
   "source": "media-originals/airgain-fwa-easy-installation-kit/airgain-fwa-easy-installation-kit-17-1300x980.png",
   "wix_ops": {
    "crop": [
@@ -1298,7 +1298,7 @@
   ],
   "original_name": "1e9c09_5ec33e411e4c47689bc92ce4b6a1d151_mv2.png"
  },
- "airgain-fwa-easy-installation-kit/airgain-fwa-easy-installation-kit-18-310x528.png": {
+ "airgain-fwa-easy-installation-kit/airgain-fwa-easy-installation-kit-18-310x528.webp": {
   "source": "media-originals/airgain-fwa-easy-installation-kit/airgain-fwa-easy-installation-kit-18-899x1500.png",
   "wix_ops": {
    "crop": [
@@ -1318,7 +1318,7 @@
   ],
   "original_name": "1e9c09_33a3e1eaee2e4345a7d44c4eecfc6626_mv2.png"
  },
- "airgain-fwa-easy-installation-kit/airgain-fwa-easy-installation-kit-18-818x1400.png": {
+ "airgain-fwa-easy-installation-kit/airgain-fwa-easy-installation-kit-18-818x1400.webp": {
   "source": "media-originals/airgain-fwa-easy-installation-kit/airgain-fwa-easy-installation-kit-18-899x1500.png",
   "wix_ops": {
    "crop": [
@@ -1478,7 +1478,7 @@
    "assistive-products"
   ]
  },
- "assistive-products/assistive-products-03-40x40.png": {
+ "assistive-products/assistive-products-03-40x40.webp": {
   "source": "export",
   "wix_ops": {
    "crop": null,
@@ -1492,7 +1492,7 @@
    "assistive-products"
   ]
  },
- "assistive-products/assistive-products-03-66x66.png": {
+ "assistive-products/assistive-products-03-66x66.webp": {
   "source": "media-originals/assistive-products/assistive-products-03-1105x1105.png",
   "wix_ops": {
    "crop": null,
@@ -1557,7 +1557,7 @@
   ],
   "original_name": "1e9c09_4d0281cd2b64485fa4c850e3b4b900f1_mv2.png"
  },
- "assistive-products/assistive-products-05-200x176.png": {
+ "assistive-products/assistive-products-05-200x176.jpg": {
   "source": "media-originals/assistive-products/assistive-products-05-1061x1500.png",
   "wix_ops": {
    "crop": [
@@ -2377,7 +2377,7 @@
   ],
   "original_name": "1e9c09_970aedd9dbe54234b7646a184d70664c_mv2.jpg"
  },
- "geometry-series/geometry-series-01-1304x752.png": {
+ "geometry-series/geometry-series-01-1304x752.webp": {
   "source": "media-originals/geometry-series/geometry-series-01-3840x2880.png",
   "wix_ops": {
    "crop": [
@@ -2397,7 +2397,7 @@
   ],
   "original_name": "1e9c09_8dd30f055ccc470a91d3fa15d95f3c07_mv2.png"
  },
- "geometry-series/geometry-series-01-398x220.png": {
+ "geometry-series/geometry-series-01-398x220.webp": {
   "source": "media-originals/geometry-series/geometry-series-01-3840x2880.png",
   "wix_ops": {
    "crop": [
@@ -2497,7 +2497,7 @@
   ],
   "original_name": "1e9c09_deb9ea5379fe4c00bc65b21c7269902d_mv2.jpg"
  },
- "geometry-series/geometry-series-05-116x108-b.png": {
+ "geometry-series/geometry-series-05-116x108-b.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -2516,7 +2516,7 @@
    "geometry-series"
   ]
  },
- "geometry-series/geometry-series-05-116x108-c.png": {
+ "geometry-series/geometry-series-05-116x108-c.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -2535,7 +2535,7 @@
    "geometry-series"
   ]
  },
- "geometry-series/geometry-series-05-116x108-d.png": {
+ "geometry-series/geometry-series-05-116x108-d.webp": {
   "source": "media-originals/geometry-series/geometry-series-05-1536x282.png",
   "wix_ops": {
    "crop": [
@@ -2555,7 +2555,7 @@
   ],
   "original_name": "1e9c09_d9b261c349cd45e69325650a2683fe2b_mv2.png"
  },
- "geometry-series/geometry-series-05-116x108.png": {
+ "geometry-series/geometry-series-05-116x108.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -2574,7 +2574,7 @@
    "geometry-series"
   ]
  },
- "geometry-series/geometry-series-05-60x64-b.png": {
+ "geometry-series/geometry-series-05-60x64-b.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -2593,7 +2593,7 @@
    "geometry-series"
   ]
  },
- "geometry-series/geometry-series-05-60x64-c.png": {
+ "geometry-series/geometry-series-05-60x64-c.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -2612,7 +2612,7 @@
    "geometry-series"
   ]
  },
- "geometry-series/geometry-series-05-60x64-d.png": {
+ "geometry-series/geometry-series-05-60x64-d.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -2631,7 +2631,7 @@
    "geometry-series"
   ]
  },
- "geometry-series/geometry-series-05-60x64.png": {
+ "geometry-series/geometry-series-05-60x64.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -2760,7 +2760,7 @@
   ],
   "original_name": "1e9c09_3f357a2925ba4a88afeaa335caa11ca7_mv2.jpg"
  },
- "geometry-series/geometry-series-09-398x276.png": {
+ "geometry-series/geometry-series-09-398x276.webp": {
   "source": "media-originals/geometry-series/geometry-series-09-3089x3089.png",
   "wix_ops": {
    "crop": [
@@ -2780,7 +2780,7 @@
   ],
   "original_name": "1e9c09_d9803c89ba474520b8414142efb9254e_mv2.png"
  },
- "geometry-series/geometry-series-09-988x686.png": {
+ "geometry-series/geometry-series-09-988x686.webp": {
   "source": "media-originals/geometry-series/geometry-series-09-3089x3089.png",
   "wix_ops": {
    "crop": [
@@ -2800,7 +2800,7 @@
   ],
   "original_name": "1e9c09_d9803c89ba474520b8414142efb9254e_mv2.png"
  },
- "geometry-series/geometry-series-10-388x264.png": {
+ "geometry-series/geometry-series-10-388x264.webp": {
   "source": "media-originals/geometry-series/geometry-series-10-3089x3089.png",
   "wix_ops": {
    "crop": [
@@ -2820,7 +2820,7 @@
   ],
   "original_name": "1e9c09_abf3056653d646b4a3a1d000bdc5a63b_mv2.png"
  },
- "geometry-series/geometry-series-10-964x656.png": {
+ "geometry-series/geometry-series-10-964x656.webp": {
   "source": "media-originals/geometry-series/geometry-series-10-3089x3089.png",
   "wix_ops": {
    "crop": [
@@ -2840,7 +2840,7 @@
   ],
   "original_name": "1e9c09_abf3056653d646b4a3a1d000bdc5a63b_mv2.png"
  },
- "geometry-series/geometry-series-11-1012x964.png": {
+ "geometry-series/geometry-series-11-1012x964.webp": {
   "source": "media-originals/geometry-series/geometry-series-11-1800x1573.png",
   "wix_ops": {
    "crop": [
@@ -2860,7 +2860,7 @@
   ],
   "original_name": "1e9c09_a22d92af9e1d4ddfa392440dd9ff1ba7_mv2.png"
  },
- "geometry-series/geometry-series-11-416x396.png": {
+ "geometry-series/geometry-series-11-416x396.webp": {
   "source": "media-originals/geometry-series/geometry-series-11-1800x1573.png",
   "wix_ops": {
    "crop": [
@@ -2880,7 +2880,7 @@
   ],
   "original_name": "1e9c09_a22d92af9e1d4ddfa392440dd9ff1ba7_mv2.png"
  },
- "geometry-series/geometry-series-12-276x496.png": {
+ "geometry-series/geometry-series-12-276x496.webp": {
   "source": "media-originals/geometry-series/geometry-series-12-1800x1573.png",
   "wix_ops": {
    "crop": [
@@ -2900,7 +2900,7 @@
   ],
   "original_name": "1e9c09_a8f2eff07c7b4c0f8c9fcd60681d58e5_mv2.png"
  },
- "geometry-series/geometry-series-12-670x1208.png": {
+ "geometry-series/geometry-series-12-670x1208.webp": {
   "source": "media-originals/geometry-series/geometry-series-12-1800x1573.png",
   "wix_ops": {
    "crop": [
@@ -2990,7 +2990,7 @@
   ],
   "original_name": "1e9c09_5bfd3be5c8a44d74a4c6c0d7e9d84b49_mv2.jpg"
  },
- "geometry-series/geometry-series-15-282x372-b.png": {
+ "geometry-series/geometry-series-15-282x372-b.webp": {
   "source": "media-originals/geometry-series/geometry-series-15-3145x2129.png",
   "wix_ops": {
    "crop": [
@@ -3010,7 +3010,7 @@
   ],
   "original_name": "1e9c09_edb51c38dc614785999af7746c6d65a4_mv2.png"
  },
- "geometry-series/geometry-series-15-282x372.png": {
+ "geometry-series/geometry-series-15-282x372.webp": {
   "source": "media-originals/geometry-series/geometry-series-15-3145x2129.png",
   "wix_ops": {
    "crop": [
@@ -3030,7 +3030,7 @@
   ],
   "original_name": "1e9c09_edb51c38dc614785999af7746c6d65a4_mv2.png"
  },
- "geometry-series/geometry-series-15-824x1082-b.png": {
+ "geometry-series/geometry-series-15-824x1082-b.webp": {
   "source": "media-originals/geometry-series/geometry-series-15-3145x2129.png",
   "wix_ops": {
    "crop": [
@@ -3050,7 +3050,7 @@
   ],
   "original_name": "1e9c09_edb51c38dc614785999af7746c6d65a4_mv2.png"
  },
- "geometry-series/geometry-series-15-824x1082.png": {
+ "geometry-series/geometry-series-15-824x1082.webp": {
   "source": "media-originals/geometry-series/geometry-series-15-3145x2129.png",
   "wix_ops": {
    "crop": [
@@ -3150,7 +3150,7 @@
   ],
   "original_name": "1e9c09_bc1a37a7dc5f4efb8943114da57ca8c3_mv2.jpg"
  },
- "geometry-series/geometry-series-18-278x290.png": {
+ "geometry-series/geometry-series-18-278x290.webp": {
   "source": "media-originals/geometry-series/geometry-series-18-800x831.png",
   "wix_ops": {
    "crop": null,
@@ -3165,7 +3165,7 @@
   ],
   "original_name": "1e9c09_1efe379447f94d4ebbf94fc8fde8ec52_mv2.png"
  },
- "geometry-series/geometry-series-18-800x831.png": {
+ "geometry-series/geometry-series-18-800x831.webp": {
   "source": "media-originals/geometry-series/geometry-series-18-800x831.png",
   "wix_ops": {
    "crop": null,
@@ -3180,7 +3180,7 @@
   ],
   "original_name": "1e9c09_1efe379447f94d4ebbf94fc8fde8ec52_mv2.png"
  },
- "geometry-series/geometry-series-19-290x376.png": {
+ "geometry-series/geometry-series-19-290x376.webp": {
   "source": "media-originals/geometry-series/geometry-series-19-1200x775.png",
   "wix_ops": {
    "crop": [
@@ -3200,7 +3200,7 @@
   ],
   "original_name": "1e9c09_6ba69f4e78fc44e3a584d972db21c687_mv2.png"
  },
- "geometry-series/geometry-series-19-563x773.png": {
+ "geometry-series/geometry-series-19-563x773.webp": {
   "source": "media-originals/geometry-series/geometry-series-19-1200x775.png",
   "wix_ops": {
    "crop": [
@@ -3760,7 +3760,7 @@
   ],
   "original_name": "1e9c09_17798917ab984753b99e1e368ff99fef_mv2.jpg"
  },
- "home/home-18-1908x528.png": {
+ "home/home-18-1908x528.webp": {
   "source": "media-originals/home/home-18-3087x855.png",
   "wix_ops": {
    "crop": null,
@@ -3775,7 +3775,7 @@
   ],
   "original_name": "1e9c09_f621fbf8d6fa4709b626e940130f1b0e_mv2.png"
  },
- "home/home-18-580x158.png": {
+ "home/home-18-580x158.webp": {
   "source": "export",
   "wix_ops": {
    "crop": null,
@@ -4339,7 +4339,7 @@
    "home"
   ]
  },
- "home/home-30-1192x1259-b.png": {
+ "home/home-30-1192x1259-b.webp": {
   "source": "media-originals/home/home-30-2500x1266.png",
   "wix_ops": {
    "crop": [
@@ -4359,7 +4359,7 @@
   ],
   "original_name": "1e9c09_a647ca25053945528927ad123f25d81c_mv2.png"
  },
- "home/home-30-1192x1259.png": {
+ "home/home-30-1192x1259.webp": {
   "source": "media-originals/home/home-30-2500x1266.png",
   "wix_ops": {
    "crop": [
@@ -4379,7 +4379,7 @@
   ],
   "original_name": "1e9c09_a647ca25053945528927ad123f25d81c_mv2.png"
  },
- "home/home-30-560x594-b.png": {
+ "home/home-30-560x594-b.webp": {
   "source": "media-originals/home/home-30-2500x1266.png",
   "wix_ops": {
    "crop": [
@@ -4399,7 +4399,7 @@
   ],
   "original_name": "1e9c09_a647ca25053945528927ad123f25d81c_mv2.png"
  },
- "home/home-30-560x594.png": {
+ "home/home-30-560x594.webp": {
   "source": "media-originals/home/home-30-2500x1266.png",
   "wix_ops": {
    "crop": [
@@ -4711,7 +4711,7 @@
    "interstellar05"
   ]
  },
- "interstellar05/interstellar05-02-2560x1526.png": {
+ "interstellar05/interstellar05-02-2560x1526.webp": {
   "source": "media-originals/interstellar05/interstellar05-02-2885x1718.png",
   "wix_ops": {
    "crop": null,
@@ -4728,7 +4728,7 @@
   ],
   "original_name": "1e9c09_7cf67a3a3e84461e9e30057f2ccd53d2_mv2.png"
  },
- "interstellar05/interstellar05-02-2883x1718.png": {
+ "interstellar05/interstellar05-02-2883x1718.webp": {
   "source": "export",
   "wix_ops": {
    "crop": null,
@@ -4742,7 +4742,7 @@
    "interstellar05"
   ]
  },
- "interstellar05/interstellar05-02-560x334.png": {
+ "interstellar05/interstellar05-02-560x334.webp": {
   "source": "media-originals/interstellar05/interstellar05-02-2885x1718.png",
   "wix_ops": {
    "crop": null,
@@ -4757,7 +4757,7 @@
   ],
   "original_name": "1e9c09_7cf67a3a3e84461e9e30057f2ccd53d2_mv2.png"
  },
- "interstellar05/interstellar05-03-40x40.png": {
+ "interstellar05/interstellar05-03-40x40.webp": {
   "source": "export",
   "wix_ops": {
    "crop": null,
@@ -4771,7 +4771,7 @@
    "interstellar05"
   ]
  },
- "interstellar05/interstellar05-03-64x64.png": {
+ "interstellar05/interstellar05-03-64x64.webp": {
   "source": "media-originals/interstellar05/interstellar05-03-938x937.png",
   "wix_ops": {
    "crop": null,
@@ -5076,7 +5076,7 @@
   ],
   "original_name": "1e9c09_adbebd7232e046889b0c4d1d76fda73b_mv2.jpg"
  },
- "interstellar05/interstellar05-13-560x424.png": {
+ "interstellar05/interstellar05-13-560x424.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -5095,7 +5095,7 @@
    "interstellar05"
   ]
  },
- "interstellar05/interstellar05-13-868x652.png": {
+ "interstellar05/interstellar05-13-868x652.webp": {
   "source": "media-originals/interstellar05/interstellar05-13-1500x1193.png",
   "wix_ops": {
    "crop": [
@@ -5295,7 +5295,7 @@
   ],
   "original_name": "1e9c09_612c85c3d66f4fd7a4eabd54d520c7b2_mv2.jpg"
  },
- "interstellar05/interstellar05-20-66x66.png": {
+ "interstellar05/interstellar05-20-66x66.webp": {
   "source": "media-originals/interstellar05/interstellar05-20-176x176.png",
   "wix_ops": {
    "crop": null,
@@ -5310,7 +5310,7 @@
   ],
   "original_name": "1e9c09_33e81f59b4564b7f963b7f32fbfd6793_mv2.png"
  },
- "interstellar05/interstellar05-20-96x96.png": {
+ "interstellar05/interstellar05-20-96x96.webp": {
   "source": "media-originals/interstellar05/interstellar05-20-176x176.png",
   "wix_ops": {
    "crop": null,
@@ -7165,7 +7165,7 @@
   ],
   "original_name": "1e9c09_a195b1086a734c5eaf75427979493336_mv2.jpg"
  },
- "moai-router/moai-router-06-126x164.png": {
+ "moai-router/moai-router-06-126x164.webp": {
   "source": "media-originals/moai-router/moai-router-06-1500x639.png",
   "wix_ops": {
    "crop": [
@@ -7185,7 +7185,7 @@
   ],
   "original_name": "1e9c09_ec2bc437779c4f02ada22c07ef6a5ca2_mv2.png"
  },
- "moai-router/moai-router-06-158x240.png": {
+ "moai-router/moai-router-06-158x240.webp": {
   "source": "media-originals/moai-router/moai-router-06-1500x639.png",
   "wix_ops": {
    "crop": [
@@ -7205,7 +7205,7 @@
   ],
   "original_name": "1e9c09_ec2bc437779c4f02ada22c07ef6a5ca2_mv2.png"
  },
- "moai-router/moai-router-06-350x286.png": {
+ "moai-router/moai-router-06-350x286.webp": {
   "source": "media-originals/moai-router/moai-router-06-1500x639.png",
   "wix_ops": {
    "crop": [
@@ -7225,7 +7225,7 @@
   ],
   "original_name": "1e9c09_ec2bc437779c4f02ada22c07ef6a5ca2_mv2.png"
  },
- "moai-router/moai-router-06-401x766.png": {
+ "moai-router/moai-router-06-401x766.webp": {
   "source": "media-originals/moai-router/moai-router-06-1500x639.png",
   "wix_ops": {
    "crop": [
@@ -7245,7 +7245,7 @@
   ],
   "original_name": "1e9c09_ec2bc437779c4f02ada22c07ef6a5ca2_mv2.png"
  },
- "moai-router/moai-router-06-497x767.png": {
+ "moai-router/moai-router-06-497x767.webp": {
   "source": "media-originals/moai-router/moai-router-06-1500x639.png",
   "wix_ops": {
    "crop": [
@@ -7265,7 +7265,7 @@
   ],
   "original_name": "1e9c09_ec2bc437779c4f02ada22c07ef6a5ca2_mv2.png"
  },
- "moai-router/moai-router-06-711x578.png": {
+ "moai-router/moai-router-06-711x578.webp": {
   "source": "media-originals/moai-router/moai-router-06-1500x639.png",
   "wix_ops": {
    "crop": [
@@ -7595,7 +7595,7 @@
   ],
   "original_name": "1e9c09_478e15ba416e42e79e1e6f3fae826a5c_mv2.png"
  },
- "moai-router/moai-router-16-354x374.png": {
+ "moai-router/moai-router-16-354x374.webp": {
   "source": "media-originals/moai-router/moai-router-16-2050x2046.png",
   "wix_ops": {
    "crop": [
@@ -7615,7 +7615,7 @@
   ],
   "original_name": "1e9c09_1f656b2f355a40d3975128b7557a57ba_mv2.png"
  },
- "moai-router/moai-router-16-712x790.png": {
+ "moai-router/moai-router-16-712x790.webp": {
   "source": "media-originals/moai-router/moai-router-16-2050x2046.png",
   "wix_ops": {
    "crop": [
@@ -7635,7 +7635,7 @@
   ],
   "original_name": "1e9c09_1f656b2f355a40d3975128b7557a57ba_mv2.png"
  },
- "moai-router/moai-router-17-600x512.png": {
+ "moai-router/moai-router-17-600x512.webp": {
   "source": "media-originals/moai-router/moai-router-17-1000x883.png",
   "wix_ops": {
    "crop": [
@@ -7655,7 +7655,7 @@
   ],
   "original_name": "1e9c09_18d5339364744290bc17f879e5f1b1f6_mv2.png"
  },
- "moai-router/moai-router-17-999x852.png": {
+ "moai-router/moai-router-17-999x852.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -7689,7 +7689,7 @@
   ],
   "original_name": "1e9c09_303ca8c90a114e20ac04a2eff32070b8_mv2.png"
  },
- "moai-router/moai-router-18-96x98.png": {
+ "moai-router/moai-router-18-96x98.jpg": {
   "source": "media-originals/moai-router/moai-router-18-378x379.png",
   "wix_ops": {
    "crop": null,
@@ -7719,7 +7719,7 @@
   ],
   "original_name": "1e9c09_fc2395bd9ca946a3ac80c28bdba612a8_mv2.png"
  },
- "moai-router/moai-router-19-96x98.png": {
+ "moai-router/moai-router-19-96x98.jpg": {
   "source": "media-originals/moai-router/moai-router-19-376x377.png",
   "wix_ops": {
    "crop": null,
@@ -7824,7 +7824,7 @@
   ],
   "original_name": "1e9c09_12ae7a3db70740a7adfc59b8ae7de943_mv2.jpg"
  },
- "moai-router/moai-router-23-344x452.png": {
+ "moai-router/moai-router-23-344x452.webp": {
   "source": "media-originals/moai-router/moai-router-23-1474x2115.png",
   "wix_ops": {
    "crop": null,
@@ -7839,7 +7839,7 @@
   ],
   "original_name": "1e9c09_c74f40e2dc54420bb48c57249e743781_mv2.png"
  },
- "moai-router/moai-router-23-876x1250.png": {
+ "moai-router/moai-router-23-876x1250.webp": {
   "source": "media-originals/moai-router/moai-router-23-1474x2115.png",
   "wix_ops": {
    "crop": null,
@@ -7854,7 +7854,7 @@
   ],
   "original_name": "1e9c09_c74f40e2dc54420bb48c57249e743781_mv2.png"
  },
- "moai-router/moai-router-24-1148x1659.png": {
+ "moai-router/moai-router-24-1148x1659.webp": {
   "source": "media-originals/moai-router/moai-router-24-1240x1700.png",
   "wix_ops": {
    "crop": [
@@ -7874,7 +7874,7 @@
   ],
   "original_name": "1e9c09_6f07f58802c940139ad7bf44035c2076_mv2.png"
  },
- "moai-router/moai-router-24-356x506.png": {
+ "moai-router/moai-router-24-356x506.webp": {
   "source": "media-originals/moai-router/moai-router-24-1240x1700.png",
   "wix_ops": {
    "crop": [
@@ -9349,7 +9349,7 @@
    "ocean-series"
   ]
  },
- "ocean-series/ocean-series-04-144x152-b.png": {
+ "ocean-series/ocean-series-04-144x152-b.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -9368,7 +9368,7 @@
    "ocean-series"
   ]
  },
- "ocean-series/ocean-series-04-144x152-c.png": {
+ "ocean-series/ocean-series-04-144x152-c.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -9387,7 +9387,7 @@
    "ocean-series"
   ]
  },
- "ocean-series/ocean-series-04-144x152-d.png": {
+ "ocean-series/ocean-series-04-144x152-d.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -9406,7 +9406,7 @@
    "ocean-series"
   ]
  },
- "ocean-series/ocean-series-04-144x152-e.png": {
+ "ocean-series/ocean-series-04-144x152-e.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -9425,7 +9425,7 @@
    "ocean-series"
   ]
  },
- "ocean-series/ocean-series-04-144x152.png": {
+ "ocean-series/ocean-series-04-144x152.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -9444,7 +9444,7 @@
    "ocean-series"
   ]
  },
- "ocean-series/ocean-series-04-80x80-b.png": {
+ "ocean-series/ocean-series-04-80x80-b.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -9463,7 +9463,7 @@
    "ocean-series"
   ]
  },
- "ocean-series/ocean-series-04-80x80-c.png": {
+ "ocean-series/ocean-series-04-80x80-c.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -9482,7 +9482,7 @@
    "ocean-series"
   ]
  },
- "ocean-series/ocean-series-04-80x80-d.png": {
+ "ocean-series/ocean-series-04-80x80-d.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -9501,7 +9501,7 @@
    "ocean-series"
   ]
  },
- "ocean-series/ocean-series-04-80x80-e.png": {
+ "ocean-series/ocean-series-04-80x80-e.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -9520,7 +9520,7 @@
    "ocean-series"
   ]
  },
- "ocean-series/ocean-series-04-80x80.png": {
+ "ocean-series/ocean-series-04-80x80.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -9689,7 +9689,7 @@
   ],
   "original_name": "1e9c09_1901a25a0d314de09a32625371effc71_mv2.jpg"
  },
- "ocean-series/ocean-series-07-110x136.png": {
+ "ocean-series/ocean-series-07-110x136.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -9708,7 +9708,7 @@
    "ocean-series"
   ]
  },
- "ocean-series/ocean-series-07-80x80-b.png": {
+ "ocean-series/ocean-series-07-80x80-b.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -9727,7 +9727,7 @@
    "ocean-series"
   ]
  },
- "ocean-series/ocean-series-07-80x80-c.png": {
+ "ocean-series/ocean-series-07-80x80-c.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -9746,7 +9746,7 @@
    "ocean-series"
   ]
  },
- "ocean-series/ocean-series-07-80x80-d.png": {
+ "ocean-series/ocean-series-07-80x80-d.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -9765,7 +9765,7 @@
    "ocean-series"
   ]
  },
- "ocean-series/ocean-series-07-80x80-e.png": {
+ "ocean-series/ocean-series-07-80x80-e.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -9784,7 +9784,7 @@
    "ocean-series"
   ]
  },
- "ocean-series/ocean-series-07-80x80.png": {
+ "ocean-series/ocean-series-07-80x80.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -9803,7 +9803,7 @@
    "ocean-series"
   ]
  },
- "ocean-series/ocean-series-07-98x118-b.png": {
+ "ocean-series/ocean-series-07-98x118-b.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -9822,7 +9822,7 @@
    "ocean-series"
   ]
  },
- "ocean-series/ocean-series-07-98x118-c.png": {
+ "ocean-series/ocean-series-07-98x118-c.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -9841,7 +9841,7 @@
    "ocean-series"
   ]
  },
- "ocean-series/ocean-series-07-98x118-d.png": {
+ "ocean-series/ocean-series-07-98x118-d.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -9860,7 +9860,7 @@
    "ocean-series"
   ]
  },
- "ocean-series/ocean-series-07-98x118.png": {
+ "ocean-series/ocean-series-07-98x118.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -10134,7 +10134,7 @@
   ],
   "original_name": "1e9c09_f37fa84cf93e4d98a5e1c389bb22fc5e_mv2.jpg"
  },
- "parametric-pattern-design/parametric-pattern-design-01-2400x1417.png": {
+ "parametric-pattern-design/parametric-pattern-design-01-2400x1417.webp": {
   "source": "export",
   "wix_ops": null,
   "replaces": [
@@ -10144,7 +10144,7 @@
    "parametric-pattern-design"
   ]
  },
- "parametric-pattern-design/parametric-pattern-design-01-2560x1511.png": {
+ "parametric-pattern-design/parametric-pattern-design-01-2560x1511.webp": {
   "source": "export",
   "wix_ops": null,
   "replaces": [
@@ -10784,7 +10784,7 @@
   ],
   "original_name": "1e9c09_6d242f2d0dc04487aa2a80abe872eaf8_mv2.png"
  },
- "parametric-pattern-design/parametric-pattern-design-23-640x400.png": {
+ "parametric-pattern-design/parametric-pattern-design-23-640x400.webp": {
   "source": "media-originals/parametric-pattern-design/parametric-pattern-design-23-3000x1515.png",
   "wix_ops": {
    "crop": null,
@@ -10939,7 +10939,7 @@
   ],
   "original_name": "1e9c09_341da4f4291c47dc94669252ad2e5087_mv2.jpg"
  },
- "sagittarius-laptop/sagittarius-laptop-05-1000x650.png": {
+ "sagittarius-laptop/sagittarius-laptop-05-1000x650.webp": {
   "source": "media-originals/sagittarius-laptop/sagittarius-laptop-05-1000x650.png",
   "wix_ops": {
    "crop": null,
@@ -10954,7 +10954,7 @@
   ],
   "original_name": "1e9c09_9e3bc76e54ed4bca967b65e833f848fb_mv2.png"
  },
- "sagittarius-laptop/sagittarius-laptop-05-560x364.png": {
+ "sagittarius-laptop/sagittarius-laptop-05-560x364.webp": {
   "source": "media-originals/sagittarius-laptop/sagittarius-laptop-05-1000x650.png",
   "wix_ops": {
    "crop": null,
@@ -10969,7 +10969,7 @@
   ],
   "original_name": "1e9c09_9e3bc76e54ed4bca967b65e833f848fb_mv2.png"
  },
- "sagittarius-laptop/sagittarius-laptop-06-1200x788.png": {
+ "sagittarius-laptop/sagittarius-laptop-06-1200x788.webp": {
   "source": "media-originals/sagittarius-laptop/sagittarius-laptop-06-1200x794.png",
   "wix_ops": {
    "crop": null,
@@ -10984,7 +10984,7 @@
   ],
   "original_name": "1e9c09_0edea60a5320434cb3b27e0c24a30dcf_mv2.png"
  },
- "sagittarius-laptop/sagittarius-laptop-06-580x384.png": {
+ "sagittarius-laptop/sagittarius-laptop-06-580x384.webp": {
   "source": "media-originals/sagittarius-laptop/sagittarius-laptop-06-1200x794.png",
   "wix_ops": {
    "crop": null,
@@ -10999,7 +10999,7 @@
   ],
   "original_name": "1e9c09_0edea60a5320434cb3b27e0c24a30dcf_mv2.png"
  },
- "sagittarius-laptop/sagittarius-laptop-07-2000x637.png": {
+ "sagittarius-laptop/sagittarius-laptop-07-2000x637.webp": {
   "source": "export",
   "wix_ops": {
    "crop": null,
@@ -11013,7 +11013,7 @@
    "sagittarius-laptop"
   ]
  },
- "sagittarius-laptop/sagittarius-laptop-07-720x228.png": {
+ "sagittarius-laptop/sagittarius-laptop-07-720x228.webp": {
   "source": "media-originals/sagittarius-laptop/sagittarius-laptop-07-2000x676.png",
   "wix_ops": {
    "crop": null,
@@ -11028,7 +11028,7 @@
   ],
   "original_name": "1e9c09_dc98b5ec819f42759d156776e736f31b_mv2.png"
  },
- "sagittarius-laptop/sagittarius-laptop-08-1778x386.png": {
+ "sagittarius-laptop/sagittarius-laptop-08-1778x386.webp": {
   "source": "media-originals/sagittarius-laptop/sagittarius-laptop-08-1800x436.png",
   "wix_ops": {
    "crop": null,
@@ -11043,7 +11043,7 @@
   ],
   "original_name": "1e9c09_b415c6c0d2fc4ad3a209ffb0b4f58791_mv2.png"
  },
- "sagittarius-laptop/sagittarius-laptop-08-560x122.png": {
+ "sagittarius-laptop/sagittarius-laptop-08-560x122.webp": {
   "source": "media-originals/sagittarius-laptop/sagittarius-laptop-08-1800x436.png",
   "wix_ops": {
    "crop": null,
@@ -11058,7 +11058,7 @@
   ],
   "original_name": "1e9c09_b415c6c0d2fc4ad3a209ffb0b4f58791_mv2.png"
  },
- "sagittarius-laptop/sagittarius-laptop-09-2012x216.png": {
+ "sagittarius-laptop/sagittarius-laptop-09-2012x216.webp": {
   "source": "media-originals/sagittarius-laptop/sagittarius-laptop-09-3000x428.png",
   "wix_ops": {
    "crop": [
@@ -11078,7 +11078,7 @@
   ],
   "original_name": "1e9c09_a10f581cd0814e308db0b0e5daa4c327_mv2.png"
  },
- "sagittarius-laptop/sagittarius-laptop-09-590x54.png": {
+ "sagittarius-laptop/sagittarius-laptop-09-590x54.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -11127,7 +11127,7 @@
   ],
   "original_name": "1e9c09_e9a5cc21e21a4e429e2b2dc4a660e7f2_mv2.jpg"
  },
- "sagittarius-laptop/sagittarius-laptop-11-158x158.png": {
+ "sagittarius-laptop/sagittarius-laptop-11-158x158.jpg": {
   "source": "media-originals/sagittarius-laptop/sagittarius-laptop-11-836x1274.png",
   "wix_ops": {
    "crop": [
@@ -11207,7 +11207,7 @@
   ],
   "original_name": "1e9c09_2ff765ba26b0465dafe29e65db434074_mv2.jpg"
  },
- "sagittarius-laptop/sagittarius-laptop-13-158x158.png": {
+ "sagittarius-laptop/sagittarius-laptop-13-158x158.jpg": {
   "source": "media-originals/sagittarius-laptop/sagittarius-laptop-13-880x1250.png",
   "wix_ops": {
    "crop": [
@@ -11367,7 +11367,7 @@
    "sagittarius-laptop"
   ]
  },
- "shared/shared-01-300x38.png": {
+ "shared/shared-01-300x38.webp": {
   "source": "export",
   "wix_ops": {
    "crop": null,
@@ -11416,7 +11416,7 @@
    "zenfone-9"
   ]
  },
- "shared/shared-01-504x84.png": {
+ "shared/shared-01-504x84.webp": {
   "source": "export",
   "wix_ops": {
    "crop": null,
@@ -11465,7 +11465,7 @@
    "zenfone-9"
   ]
  },
- "shared/shared-02-44x44.png": {
+ "shared/shared-02-44x44.webp": {
   "source": "export",
   "wix_ops": {
    "crop": null,
@@ -11513,7 +11513,7 @@
    "zenfone-9"
   ]
  },
- "shared/shared-02-50x50.png": {
+ "shared/shared-02-50x50.webp": {
   "source": "export",
   "wix_ops": {
    "crop": null,
@@ -11561,7 +11561,7 @@
    "zenfone-9"
   ]
  },
- "shared/shared-02-54x54.png": {
+ "shared/shared-02-54x54.webp": {
   "source": "export",
   "wix_ops": {
    "crop": null,
@@ -11610,7 +11610,7 @@
    "zenfone-9"
   ]
  },
- "shared/shared-03-44x44.png": {
+ "shared/shared-03-44x44.webp": {
   "source": "export",
   "wix_ops": {
    "crop": null,
@@ -11658,7 +11658,7 @@
    "zenfone-9"
   ]
  },
- "shared/shared-03-58x58.png": {
+ "shared/shared-03-58x58.webp": {
   "source": "export",
   "wix_ops": {
    "crop": null,
@@ -11706,7 +11706,7 @@
    "zenfone-9"
   ]
  },
- "shared/shared-03-60x60.png": {
+ "shared/shared-03-60x60.webp": {
   "source": "export",
   "wix_ops": {
    "crop": null,
@@ -11755,7 +11755,7 @@
    "zenfone-9"
   ]
  },
- "shared/shared-04-2124x1044.png": {
+ "shared/shared-04-2124x1044.webp": {
   "source": "media-originals/shared/shared-04-3000x1475.png",
   "wix_ops": {
    "crop": null,
@@ -11770,7 +11770,7 @@
   ],
   "original_name": "1e9c09_b81e2b0d221a4381b68d3d09fd4bd20e_mv2.png"
  },
- "shared/shared-04-2400x1180.png": {
+ "shared/shared-04-2400x1180.webp": {
   "source": "media-originals/shared/shared-04-3000x1475.png",
   "wix_ops": {
    "crop": null,
@@ -11790,7 +11790,7 @@
   ],
   "original_name": "1e9c09_b81e2b0d221a4381b68d3d09fd4bd20e_mv2.png"
  },
- "shared/shared-04-2560x1259.png": {
+ "shared/shared-04-2560x1259.webp": {
   "source": "media-originals/shared/shared-04-3000x1475.png",
   "wix_ops": {
    "crop": null,
@@ -11805,7 +11805,7 @@
   ],
   "original_name": "1e9c09_b81e2b0d221a4381b68d3d09fd4bd20e_mv2.png"
  },
- "shared/shared-04-3000x1475.png": {
+ "shared/shared-04-3000x1475.webp": {
   "source": "media-originals/shared/shared-04-3000x1475.png",
   "wix_ops": {
    "crop": null,
@@ -11822,7 +11822,7 @@
   ],
   "original_name": "1e9c09_b81e2b0d221a4381b68d3d09fd4bd20e_mv2.png"
  },
- "shared/shared-04-918x528.png": {
+ "shared/shared-04-918x528.webp": {
   "source": "media-originals/shared/shared-04-3000x1475.png",
   "wix_ops": {
    "crop": [
@@ -12465,7 +12465,7 @@
   ],
   "original_name": "1e9c09_aa50a390e50d441292672594a870c12d_mv2.png"
  },
- "shared/shared-11-352x480.png": {
+ "shared/shared-11-352x480.webp": {
   "source": "media-originals/shared/shared-11-786x1200.png",
   "wix_ops": {
    "crop": [
@@ -12485,7 +12485,7 @@
   ],
   "original_name": "1e9c09_fbf2fde7ca9b48f5afd50a8550c7bbd2_mv2.png"
  },
- "shared/shared-11-378x430.png": {
+ "shared/shared-11-378x430.webp": {
   "source": "media-originals/shared/shared-11-786x1200.png",
   "wix_ops": {
    "crop": [
@@ -12505,7 +12505,7 @@
   ],
   "original_name": "1e9c09_fbf2fde7ca9b48f5afd50a8550c7bbd2_mv2.png"
  },
- "shared/shared-11-782x1200.png": {
+ "shared/shared-11-782x1200.webp": {
   "source": "media-originals/shared/shared-11-786x1200.png",
   "wix_ops": {
    "crop": [
@@ -12525,7 +12525,7 @@
   ],
   "original_name": "1e9c09_fbf2fde7ca9b48f5afd50a8550c7bbd2_mv2.png"
  },
- "shared/shared-11-785x1071.png": {
+ "shared/shared-11-785x1071.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -12704,7 +12704,7 @@
   ],
   "original_name": "1e9c09_cd3e94b822304714b845d85b82a7ab4c_mv2.jpg"
  },
- "shared/shared-14-1306x936.png": {
+ "shared/shared-14-1306x936.webp": {
   "source": "media-originals/shared/shared-14-2000x937.png",
   "wix_ops": {
    "crop": [
@@ -12724,7 +12724,7 @@
   ],
   "original_name": "1e9c09_650addb87b3e4ddf9970136c04ee934c_mv2.png"
  },
- "shared/shared-14-560x262.png": {
+ "shared/shared-14-560x262.webp": {
   "source": "media-originals/shared/shared-14-2000x937.png",
   "wix_ops": {
    "crop": [
@@ -12744,7 +12744,7 @@
   ],
   "original_name": "1e9c09_650addb87b3e4ddf9970136c04ee934c_mv2.png"
  },
- "shared/shared-14-572x398.png": {
+ "shared/shared-14-572x398.webp": {
   "source": "media-originals/shared/shared-14-2000x937.png",
   "wix_ops": {
    "crop": [
@@ -12764,7 +12764,7 @@
   ],
   "original_name": "1e9c09_650addb87b3e4ddf9970136c04ee934c_mv2.png"
  },
- "shared/shared-14-760x528.png": {
+ "shared/shared-14-760x528.webp": {
   "source": "media-originals/shared/shared-14-2000x937.png",
   "wix_ops": {
    "crop": [
@@ -13044,7 +13044,7 @@
   ],
   "original_name": "1e9c09_8bac3b1ae31b4be3a9ecbe3f46f73fec_mv2.jpg"
  },
- "t-blade/t-blade-04-1692x244.png": {
+ "t-blade/t-blade-04-1692x244.webp": {
   "source": "media-originals/t-blade/t-blade-04-1843x265.png",
   "wix_ops": {
    "crop": null,
@@ -13059,7 +13059,7 @@
   ],
   "original_name": "1e9c09_735623ae86fd4db091375061550c1f9d_mv2.png"
  },
- "t-blade/t-blade-04-1843x263.png": {
+ "t-blade/t-blade-04-1843x263.webp": {
   "source": "media-originals/t-blade/t-blade-04-1843x265.png",
   "wix_ops": {
    "crop": null,
@@ -13074,7 +13074,7 @@
   ],
   "original_name": "1e9c09_735623ae86fd4db091375061550c1f9d_mv2.png"
  },
- "t-blade/t-blade-04-416x60.png": {
+ "t-blade/t-blade-04-416x60.webp": {
   "source": "media-originals/t-blade/t-blade-04-1843x265.png",
   "wix_ops": {
    "crop": null,
@@ -13089,7 +13089,7 @@
   ],
   "original_name": "1e9c09_735623ae86fd4db091375061550c1f9d_mv2.png"
  },
- "t-blade/t-blade-04-606x86.png": {
+ "t-blade/t-blade-04-606x86.webp": {
   "source": "media-originals/t-blade/t-blade-04-1843x265.png",
   "wix_ops": {
    "crop": null,
@@ -13104,7 +13104,7 @@
   ],
   "original_name": "1e9c09_735623ae86fd4db091375061550c1f9d_mv2.png"
  },
- "t-blade/t-blade-05-2000x1213.png": {
+ "t-blade/t-blade-05-2000x1213.webp": {
   "source": "export",
   "wix_ops": {
    "crop": null,
@@ -13118,7 +13118,7 @@
    "t-blade"
   ]
  },
- "t-blade/t-blade-05-560x340.png": {
+ "t-blade/t-blade-05-560x340.webp": {
   "source": "media-originals/t-blade/t-blade-05-2000x1216.png",
   "wix_ops": {
    "crop": null,
@@ -13133,7 +13133,7 @@
   ],
   "original_name": "1e9c09_28b9f349b9304974a3532dc02645f352_mv2.png"
  },
- "t-blade/t-blade-06-168x578.png": {
+ "t-blade/t-blade-06-168x578.webp": {
   "source": "media-originals/t-blade/t-blade-06-439x1500.png",
   "wix_ops": {
    "crop": null,
@@ -13148,7 +13148,7 @@
   ],
   "original_name": "1e9c09_4b183f8254274a798fd2190db3e619ff_mv2.png"
  },
- "t-blade/t-blade-06-437x1500.png": {
+ "t-blade/t-blade-06-437x1500.webp": {
   "source": "media-originals/t-blade/t-blade-06-439x1500.png",
   "wix_ops": {
    "crop": null,
@@ -13163,7 +13163,7 @@
   ],
   "original_name": "1e9c09_4b183f8254274a798fd2190db3e619ff_mv2.png"
  },
- "t-blade/t-blade-07-560x450.png": {
+ "t-blade/t-blade-07-560x450.webp": {
   "source": "media-originals/t-blade/t-blade-07-2000x1131.png",
   "wix_ops": {
    "crop": null,
@@ -13178,7 +13178,7 @@
   ],
   "original_name": "1e9c09_1509c92788614faca3e8760aca8a38e0_mv2.png"
  },
- "t-blade/t-blade-07-880x1131.png": {
+ "t-blade/t-blade-07-880x1131.webp": {
   "source": "media-originals/t-blade/t-blade-07-2000x1131.png",
   "wix_ops": {
    "crop": null,
@@ -13193,7 +13193,7 @@
   ],
   "original_name": "1e9c09_1509c92788614faca3e8760aca8a38e0_mv2.png"
  },
- "t-blade/t-blade-08-1400x477.png": {
+ "t-blade/t-blade-08-1400x477.webp": {
   "source": "media-originals/t-blade/t-blade-08-1400x477.png",
   "wix_ops": {
    "crop": null,
@@ -13208,7 +13208,7 @@
   ],
   "original_name": "1e9c09_ade6d4d3b5534a31b34e0406088d88ce_mv2.png"
  },
- "t-blade/t-blade-08-370x126.png": {
+ "t-blade/t-blade-08-370x126.webp": {
   "source": "media-originals/t-blade/t-blade-08-1400x477.png",
   "wix_ops": {
    "crop": null,
@@ -13643,7 +13643,7 @@
   ],
   "original_name": "1e9c09_0abc4840c11a4142af2949ce1cdc0f65_mv2.jpg"
  },
- "t-interceptor-cs/t-interceptor-cs-10-1053x1315.png": {
+ "t-interceptor-cs/t-interceptor-cs-10-1053x1315.webp": {
   "source": "media-originals/t-interceptor-cs/t-interceptor-cs-10-1300x1315.png",
   "wix_ops": {
    "crop": [
@@ -13663,7 +13663,7 @@
   ],
   "original_name": "1e9c09_c46f1ca859b345ff9e2c7089fff81e37_mv2.png"
  },
- "t-interceptor-cs/t-interceptor-cs-10-546x562.png": {
+ "t-interceptor-cs/t-interceptor-cs-10-546x562.webp": {
   "source": "media-originals/t-interceptor-cs/t-interceptor-cs-10-1300x1315.png",
   "wix_ops": {
    "crop": [
@@ -13683,7 +13683,7 @@
   ],
   "original_name": "1e9c09_c46f1ca859b345ff9e2c7089fff81e37_mv2.png"
  },
- "t-interceptor-cs/t-interceptor-cs-11-1108x1620.png": {
+ "t-interceptor-cs/t-interceptor-cs-11-1108x1620.webp": {
   "source": "media-originals/t-interceptor-cs/t-interceptor-cs-11-1554x1620.png",
   "wix_ops": {
    "crop": null,
@@ -13698,7 +13698,7 @@
   ],
   "original_name": "1e9c09_23f4684d397b417bb38ef9d6b7d64c4c_mv2.png"
  },
- "t-interceptor-cs/t-interceptor-cs-11-502x734.png": {
+ "t-interceptor-cs/t-interceptor-cs-11-502x734.webp": {
   "source": "media-originals/t-interceptor-cs/t-interceptor-cs-11-1554x1620.png",
   "wix_ops": {
    "crop": null,
@@ -13713,7 +13713,7 @@
   ],
   "original_name": "1e9c09_23f4684d397b417bb38ef9d6b7d64c4c_mv2.png"
  },
- "t-interceptor-cs/t-interceptor-cs-12-1168x733.png": {
+ "t-interceptor-cs/t-interceptor-cs-12-1168x733.webp": {
   "source": "media-originals/t-interceptor-cs/t-interceptor-cs-12-1168x1400.png",
   "wix_ops": {
    "crop": [
@@ -13733,7 +13733,7 @@
   ],
   "original_name": "1e9c09_e0352886d80641a186332eeb0ff4eb87_mv2.png"
  },
- "t-interceptor-cs/t-interceptor-cs-12-550x686.png": {
+ "t-interceptor-cs/t-interceptor-cs-12-550x686.webp": {
   "source": "media-originals/t-interceptor-cs/t-interceptor-cs-12-1168x1400.png",
   "wix_ops": {
    "crop": [
@@ -14083,7 +14083,7 @@
    "t-interceptormp"
   ]
  },
- "t-interceptormp/t-interceptormp-04-118x52.png": {
+ "t-interceptormp/t-interceptormp-04-118x52.webp": {
   "source": "export",
   "wix_ops": {
    "crop": null,
@@ -14097,7 +14097,7 @@
    "t-interceptormp"
   ]
  },
- "t-interceptormp/t-interceptormp-04-74x66.png": {
+ "t-interceptormp/t-interceptormp-04-74x66.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -14366,7 +14366,7 @@
   ],
   "original_name": "1e9c09_0e0a98e8edc3480e816d4ddfcf163ed4_mv2.jpg"
  },
- "t-interceptormp/t-interceptormp-13-1413x865.png": {
+ "t-interceptormp/t-interceptormp-13-1413x865.webp": {
   "source": "media-originals/t-interceptormp/t-interceptormp-13-1528x1000.png",
   "wix_ops": {
    "crop": [
@@ -14386,7 +14386,7 @@
   ],
   "original_name": "1e9c09_a081c01a186846719aff7004c9e0b183_mv2.png"
  },
- "t-interceptormp/t-interceptormp-13-560x342.png": {
+ "t-interceptormp/t-interceptormp-13-560x342.webp": {
   "source": "media-originals/t-interceptormp/t-interceptormp-13-1528x1000.png",
   "wix_ops": {
    "crop": [
@@ -14406,7 +14406,7 @@
   ],
   "original_name": "1e9c09_a081c01a186846719aff7004c9e0b183_mv2.png"
  },
- "t-interceptormp/t-interceptormp-14-1600x620.png": {
+ "t-interceptormp/t-interceptormp-14-1600x620.webp": {
   "source": "media-originals/t-interceptormp/t-interceptormp-14-1600x1000.png",
   "wix_ops": {
    "crop": [
@@ -14426,7 +14426,7 @@
   ],
   "original_name": "1e9c09_a47abfb4fa7e4398a0225033dc8fea93_mv2.png"
  },
- "t-interceptormp/t-interceptormp-14-560x216.png": {
+ "t-interceptormp/t-interceptormp-14-560x216.webp": {
   "source": "media-originals/t-interceptormp/t-interceptormp-14-1600x1000.png",
   "wix_ops": {
    "crop": [
@@ -14446,7 +14446,7 @@
   ],
   "original_name": "1e9c09_a47abfb4fa7e4398a0225033dc8fea93_mv2.png"
  },
- "t-interceptormp/t-interceptormp-15-1561x539.png": {
+ "t-interceptormp/t-interceptormp-15-1561x539.webp": {
   "source": "export",
   "wix_ops": {
    "crop": [
@@ -14465,7 +14465,7 @@
    "t-interceptormp"
   ]
  },
- "t-interceptormp/t-interceptormp-15-560x194.png": {
+ "t-interceptormp/t-interceptormp-15-560x194.webp": {
   "source": "media-originals/t-interceptormp/t-interceptormp-15-1672x1000.png",
   "wix_ops": {
    "crop": [
@@ -14485,7 +14485,7 @@
   ],
   "original_name": "1e9c09_1ec62e81aaf14ab6ae8a56e7570fee73_mv2.png"
  },
- "t-interceptormp/t-interceptormp-16-1140x542.png": {
+ "t-interceptormp/t-interceptormp-16-1140x542.webp": {
   "source": "media-originals/t-interceptormp/t-interceptormp-16-1339x1000.png",
   "wix_ops": {
    "crop": [
@@ -14505,7 +14505,7 @@
   ],
   "original_name": "1e9c09_809e9c3ccaeb4e02a9b5adb644865022_mv2.png"
  },
- "t-interceptormp/t-interceptormp-16-560x194.png": {
+ "t-interceptormp/t-interceptormp-16-560x194.webp": {
   "source": "media-originals/t-interceptormp/t-interceptormp-16-1339x1000.png",
   "wix_ops": {
    "crop": [
@@ -14525,7 +14525,7 @@
   ],
   "original_name": "1e9c09_809e9c3ccaeb4e02a9b5adb644865022_mv2.png"
  },
- "t-interceptormp/t-interceptormp-17-1220x580.png": {
+ "t-interceptormp/t-interceptormp-17-1220x580.webp": {
   "source": "media-originals/t-interceptormp/t-interceptormp-17-1735x1000.png",
   "wix_ops": {
    "crop": [
@@ -14545,7 +14545,7 @@
   ],
   "original_name": "1e9c09_d9d36d637f504a6abd48473b3c052bbb_mv2.png"
  },
- "t-interceptormp/t-interceptormp-17-560x266.png": {
+ "t-interceptormp/t-interceptormp-17-560x266.webp": {
   "source": "media-originals/t-interceptormp/t-interceptormp-17-1735x1000.png",
   "wix_ops": {
    "crop": [
@@ -15305,7 +15305,7 @@
   ],
   "original_name": "1e9c09_7259c5367afd4ab79e27b5831f348fe5_mv2.jpg"
  },
- "wi-fi7-2022/wi-fi7-2022-06-132x24.png": {
+ "wi-fi7-2022/wi-fi7-2022-06-132x24.webp": {
   "source": "export",
   "wix_ops": {
    "crop": null,
@@ -15319,7 +15319,7 @@
    "wi-fi7-2022"
   ]
  },
- "wi-fi7-2022/wi-fi7-2022-06-250x46.png": {
+ "wi-fi7-2022/wi-fi7-2022-06-250x46.webp": {
   "source": "export",
   "wix_ops": {
    "crop": null,
@@ -15333,7 +15333,7 @@
    "wi-fi7-2022"
   ]
  },
- "wi-fi7-2022/wi-fi7-2022-07-108x50.png": {
+ "wi-fi7-2022/wi-fi7-2022-07-108x50.jpg": {
   "source": "media-originals/wi-fi7-2022/wi-fi7-2022-07-337x150.png",
   "wix_ops": {
    "crop": null,
@@ -15348,7 +15348,7 @@
   ],
   "original_name": "1e9c09_b72d317e2d9643bd8b0a63ff7f6fff41_mv2.png"
  },
- "wi-fi7-2022/wi-fi7-2022-07-184x80.png": {
+ "wi-fi7-2022/wi-fi7-2022-07-184x80.jpg": {
   "source": "media-originals/wi-fi7-2022/wi-fi7-2022-07-337x150.png",
   "wix_ops": {
    "crop": null,
@@ -15463,7 +15463,7 @@
   ],
   "original_name": "1e9c09_27ecec1fcefe4341a014f22d02661eb3_mv2.jpg"
  },
- "wi-fi7-2022/wi-fi7-2022-11-212x222.png": {
+ "wi-fi7-2022/wi-fi7-2022-11-212x222.webp": {
   "source": "media-originals/wi-fi7-2022/wi-fi7-2022-11-1009x1062.png",
   "wix_ops": {
    "crop": null,
@@ -15478,7 +15478,7 @@
   ],
   "original_name": "1e9c09_0e37fa0f42214271b15488dc816a6f03_mv2.png"
  },
- "wi-fi7-2022/wi-fi7-2022-11-378x398.png": {
+ "wi-fi7-2022/wi-fi7-2022-11-378x398.webp": {
   "source": "media-originals/wi-fi7-2022/wi-fi7-2022-11-1009x1062.png",
   "wix_ops": {
    "crop": null,
@@ -15673,7 +15673,7 @@
   ],
   "original_name": "1e9c09_86372a651584484f9931080e2d36c3ba_mv2.jpg"
  },
- "wi-fi7-2022/wi-fi7-2022-17-174x314.png": {
+ "wi-fi7-2022/wi-fi7-2022-17-174x314.webp": {
   "source": "media-originals/wi-fi7-2022/wi-fi7-2022-17-555x1000.png",
   "wix_ops": {
    "crop": null,
@@ -15688,7 +15688,7 @@
   ],
   "original_name": "1e9c09_7a4594285f2d4b90a94790a12b5ab09f_mv2.png"
  },
- "wi-fi7-2022/wi-fi7-2022-17-316x572.png": {
+ "wi-fi7-2022/wi-fi7-2022-17-316x572.webp": {
   "source": "media-originals/wi-fi7-2022/wi-fi7-2022-17-555x1000.png",
   "wix_ops": {
    "crop": null,
@@ -15853,7 +15853,7 @@
   ],
   "original_name": "1e9c09_b0434184f2a7441690a9177777231d3e_mv2.jpg"
  },
- "wi-fi7-2022/wi-fi7-2022-22-206x252.png": {
+ "wi-fi7-2022/wi-fi7-2022-22-206x252.webp": {
   "source": "media-originals/wi-fi7-2022/wi-fi7-2022-22-1086x1448.png",
   "wix_ops": {
    "crop": [
@@ -15873,7 +15873,7 @@
   ],
   "original_name": "1e9c09_8bff7ef97d5b4dc2a139970807e9f16f_mv2.png"
  },
- "wi-fi7-2022/wi-fi7-2022-22-398x570.png": {
+ "wi-fi7-2022/wi-fi7-2022-22-398x570.webp": {
   "source": "media-originals/wi-fi7-2022/wi-fi7-2022-22-1086x1448.png",
   "wix_ops": {
    "crop": [
@@ -16063,7 +16063,7 @@
   ],
   "original_name": "1e9c09_fb8f419a0c9344bebdf6fbde25a19ad2_mv2.jpg"
  },
- "wi-fi7-extender/wi-fi7-extender-04-308x364.png": {
+ "wi-fi7-extender/wi-fi7-extender-04-308x364.webp": {
   "source": "media-originals/wi-fi7-extender/wi-fi7-extender-04-787x788.png",
   "wix_ops": {
    "crop": [
@@ -16083,7 +16083,7 @@
   ],
   "original_name": "1e9c09_c3fe498f46e74b889afec4cafb28796e_mv2.png"
  },
- "wi-fi7-extender/wi-fi7-extender-04-655x788.png": {
+ "wi-fi7-extender/wi-fi7-extender-04-655x788.webp": {
   "source": "media-originals/wi-fi7-extender/wi-fi7-extender-04-787x788.png",
   "wix_ops": {
    "crop": [
@@ -16133,7 +16133,7 @@
   ],
   "original_name": "1e9c09_c30cea5f15844d8aa5a141d8e774d273_mv2.jpg"
  },
- "wi-fi7-extender/wi-fi7-extender-06-188x232.png": {
+ "wi-fi7-extender/wi-fi7-extender-06-188x232.webp": {
   "source": "media-originals/wi-fi7-extender/wi-fi7-extender-06-750x873.png",
   "wix_ops": {
    "crop": null,
@@ -16148,7 +16148,7 @@
   ],
   "original_name": "1e9c09_9ad3b2aadedc4e9287d5b7545e311723_mv2.png"
  },
- "wi-fi7-extender/wi-fi7-extender-06-608x710.png": {
+ "wi-fi7-extender/wi-fi7-extender-06-608x710.webp": {
   "source": "media-originals/wi-fi7-extender/wi-fi7-extender-06-750x873.png",
   "wix_ops": {
    "crop": null,
@@ -16163,7 +16163,7 @@
   ],
   "original_name": "1e9c09_9ad3b2aadedc4e9287d5b7545e311723_mv2.png"
  },
- "wi-fi7-extender/wi-fi7-extender-07-224x258.png": {
+ "wi-fi7-extender/wi-fi7-extender-07-224x258.webp": {
   "source": "media-originals/wi-fi7-extender/wi-fi7-extender-07-1500x1522.png",
   "wix_ops": {
    "crop": [
@@ -16183,7 +16183,7 @@
   ],
   "original_name": "1e9c09_72b4bf703afa4dd499eb2a595f485b77_mv2.png"
  },
- "wi-fi7-extender/wi-fi7-extender-07-794x902.png": {
+ "wi-fi7-extender/wi-fi7-extender-07-794x902.webp": {
   "source": "media-originals/wi-fi7-extender/wi-fi7-extender-07-1500x1522.png",
   "wix_ops": {
    "crop": [
@@ -16273,7 +16273,7 @@
   ],
   "original_name": "1e9c09_336cf4f58f3e480187b7fffadd4b4d17_mv2.png"
  },
- "wi-fi7-extender/wi-fi7-extender-10-234x32.png": {
+ "wi-fi7-extender/wi-fi7-extender-10-234x32.webp": {
   "source": "media-originals/wi-fi7-extender/wi-fi7-extender-10-2116x1368.png",
   "wix_ops": {
    "crop": [
@@ -16293,7 +16293,7 @@
   ],
   "original_name": "1e9c09_4912f5c5e0734183894d3f5c6994b8b8_mv2.png"
  },
- "wi-fi7-extender/wi-fi7-extender-10-418x68.png": {
+ "wi-fi7-extender/wi-fi7-extender-10-418x68.webp": {
   "source": "media-originals/wi-fi7-extender/wi-fi7-extender-10-2116x1368.png",
   "wix_ops": {
    "crop": [
@@ -16313,7 +16313,7 @@
   ],
   "original_name": "1e9c09_4912f5c5e0734183894d3f5c6994b8b8_mv2.png"
  },
- "wi-fi7-extender/wi-fi7-extender-11-302x162.png": {
+ "wi-fi7-extender/wi-fi7-extender-11-302x162.webp": {
   "source": "media-originals/wi-fi7-extender/wi-fi7-extender-11-2116x1368.png",
   "wix_ops": {
    "crop": [
@@ -16333,7 +16333,7 @@
   ],
   "original_name": "1e9c09_e6e348550d54420c971bd97de0faddd5_mv2.png"
  },
- "wi-fi7-extender/wi-fi7-extender-11-580x132.png": {
+ "wi-fi7-extender/wi-fi7-extender-11-580x132.webp": {
   "source": "media-originals/wi-fi7-extender/wi-fi7-extender-11-2116x1368.png",
   "wix_ops": {
    "crop": [
@@ -16383,7 +16383,7 @@
   ],
   "original_name": "1e9c09_4f4f5a4ec0424083a29fd7fb3c59c04e_mv2.jpg"
  },
- "wi-fi7-extender/wi-fi7-extender-13-126x64.png": {
+ "wi-fi7-extender/wi-fi7-extender-13-126x64.jpg": {
   "source": "media-originals/wi-fi7-extender/wi-fi7-extender-13-498x264.png",
   "wix_ops": {
    "crop": null,
@@ -16798,7 +16798,7 @@
   ],
   "original_name": "1e9c09_fbf758d8b545432da1d69b90f4b1bcd6_mv2.jpg"
  },
- "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-05-1744x669.png": {
+ "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-05-1744x669.webp": {
   "source": "media-originals/wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-05-1800x669.png",
   "wix_ops": {
    "crop": [
@@ -16818,7 +16818,7 @@
   ],
   "original_name": "1e9c09_2d8b5d3cd8c44bf1a2d10f024ff1247e_mv2.png"
  },
- "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-05-382x194.png": {
+ "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-05-382x194.webp": {
   "source": "media-originals/wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-05-1800x669.png",
   "wix_ops": {
    "crop": [
@@ -16838,7 +16838,7 @@
   ],
   "original_name": "1e9c09_2d8b5d3cd8c44bf1a2d10f024ff1247e_mv2.png"
  },
- "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-05-640x342.png": {
+ "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-05-640x342.webp": {
   "source": "media-originals/wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-05-1800x669.png",
   "wix_ops": {
    "crop": null,
@@ -16988,7 +16988,7 @@
   ],
   "original_name": "1e9c09_117b14bb87564ea3a8aa897b8aa8e5f1_mv2.jpg"
  },
- "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-10-210x270.png": {
+ "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-10-210x270.webp": {
   "source": "media-originals/wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-10-983x1365.png",
   "wix_ops": {
    "crop": [
@@ -17008,7 +17008,7 @@
   ],
   "original_name": "1e9c09_3d29113eb51f4a64838d582a40f4f0b6_mv2.png"
  },
- "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-10-418x572.png": {
+ "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-10-418x572.webp": {
   "source": "media-originals/wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-10-983x1365.png",
   "wix_ops": {
    "crop": [
@@ -17108,7 +17108,7 @@
   ],
   "original_name": "1e9c09_b94a1c6c34d945f8bca1d961d5b1d4f3_mv2.png"
  },
- "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-13-1800x1125.png": {
+ "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-13-1800x1125.webp": {
   "source": "export",
   "wix_ops": null,
   "replaces": [
@@ -17118,7 +17118,7 @@
    "wi-fi7-gaming-home-gateway"
   ]
  },
- "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-14-236x226-b.png": {
+ "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-14-236x226-b.webp": {
   "source": "media-originals/wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-14-1983x793.png",
   "wix_ops": {
    "crop": [
@@ -17138,7 +17138,7 @@
   ],
   "original_name": "1e9c09_621544e5fe6b49058e81d7c512923ba2_mv2.png"
  },
- "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-14-236x226.png": {
+ "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-14-236x226.webp": {
   "source": "media-originals/wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-14-1983x793.png",
   "wix_ops": {
    "crop": [
@@ -17158,7 +17158,7 @@
   ],
   "original_name": "1e9c09_621544e5fe6b49058e81d7c512923ba2_mv2.png"
  },
- "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-14-90x90-b.png": {
+ "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-14-90x90-b.webp": {
   "source": "media-originals/wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-14-1983x793.png",
   "wix_ops": {
    "crop": [
@@ -17178,7 +17178,7 @@
   ],
   "original_name": "1e9c09_621544e5fe6b49058e81d7c512923ba2_mv2.png"
  },
- "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-14-90x90.png": {
+ "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-14-90x90.webp": {
   "source": "media-originals/wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-14-1983x793.png",
   "wix_ops": {
    "crop": [
@@ -17593,7 +17593,7 @@
   ],
   "original_name": "1e9c09_89cc590284a54760a333476cc506cf84_mv2.jpg"
  },
- "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-25-290x358.png": {
+ "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-25-290x358.webp": {
   "source": "media-originals/wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-25-975x1200.png",
   "wix_ops": {
    "crop": null,
@@ -17608,7 +17608,7 @@
   ],
   "original_name": "1e9c09_15808910e52641b29af7a03efa9c285f_mv2.png"
  },
- "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-25-786x968.png": {
+ "wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-25-786x968.webp": {
   "source": "media-originals/wi-fi7-gaming-home-gateway/wi-fi7-gaming-home-gateway-25-975x1200.png",
   "wix_ops": {
    "crop": null,
@@ -18363,7 +18363,7 @@
   ],
   "original_name": "1e9c09_42d3ce375da7495bad2b354eb98d3454_mv2.jpg"
  },
- "wi-fi7-hgu-ap/wi-fi7-hgu-ap-20-378x390.png": {
+ "wi-fi7-hgu-ap/wi-fi7-hgu-ap-20-378x390.webp": {
   "source": "media-originals/wi-fi7-hgu-ap/wi-fi7-hgu-ap-20-1000x928.png",
   "wix_ops": {
    "crop": [
@@ -18383,7 +18383,7 @@
   ],
   "original_name": "1e9c09_f7f1d36edb7043fc85d8974181d356e4_mv2.png"
  },
- "wi-fi7-hgu-ap/wi-fi7-hgu-ap-20-898x928.png": {
+ "wi-fi7-hgu-ap/wi-fi7-hgu-ap-20-898x928.webp": {
   "source": "media-originals/wi-fi7-hgu-ap/wi-fi7-hgu-ap-20-1000x928.png",
   "wix_ops": {
    "crop": [
@@ -19375,7 +19375,7 @@
   "note": "Joel's cleaner render 2026-11-26 (pasted, 2000px)",
   "original_name": "jcd_home-tower-black_2000x1077.jpg"
  },
- "home/home-19-1908x858-v2.png": {
+ "home/home-19-1908x858-v2.webp": {
   "source": "site/assets/media/home/home-19-1908x858.png (git history)",
   "wix_ops": null,
   "replaces": [
@@ -19387,7 +19387,7 @@
   ],
   "note": "Achievement world map; Italy's dot moved up from north Africa to Italy (Joel 2026-11-26); desktop"
  },
- "home/home-19-1160x522-v2.png": {
+ "home/home-19-1160x522-v2.webp": {
   "source": "site/assets/media/home/home-19-1908x858.png (git history)",
   "wix_ops": null,
   "replaces": [

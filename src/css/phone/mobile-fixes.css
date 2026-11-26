@@ -26,7 +26,7 @@ html:has(> body.device-mobile-optimized), body.device-mobile-optimized { backgro
 #MENU_AS_CONTAINER_TOGGLE { transition: transform .12s ease, opacity .12s ease; outline: none; transform: scale(.78); opacity: .55; }
 #MENU_AS_CONTAINER_TOGGLE:active { transform: scale(.7); opacity: 1; }
 #MENU_AS_CONTAINER_TOGGLE.d0L2ow { opacity: 1; }
-.device-mobile-optimized :has(> #img_comp-m26ho7tp)::after { -webkit-mask-image: url("../media/shared/shared-01-300x38.png"); mask-image: url("../media/shared/shared-01-300x38.png"); }
+.device-mobile-optimized :has(> #img_comp-m26ho7tp)::after { -webkit-mask-image: url("../media/shared/shared-01-300x38.webp"); mask-image: url("../media/shared/shared-01-300x38.webp"); }
 a:active:has(> #img_comp-m26ho7tp)::after, a:active :has(> #img_comp-m26ho7tp)::after { opacity: 1; }
 a:active #img_comp-m26ho7tp { opacity: 0 !important; }
 /* 6: Works category buttons: no focus ring / tap flash; pressed = light-grey fill, white text, thin grey border */

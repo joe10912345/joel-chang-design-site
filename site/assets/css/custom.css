@@ -166,9 +166,9 @@ html.jcd-light-on #SITE_HEADER [data-testid="colorUnderlay"] { background-image:
   content: ""; position: absolute; inset: 0; pointer-events: none; background: var(--jcd-blue); opacity: 0; transition: opacity .2s ease;
   -webkit-mask-position: center; mask-position: center; -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
-:has(> #img_comp-m26ho7tp)::after { -webkit-mask-image: url("../media/shared/shared-01-504x84.png"); mask-image: url("../media/shared/shared-01-504x84.png"); }
-:has(> :is(#img_0_comp-m26hqy39, #img_0_comp-m277hrti))::after { -webkit-mask-image: url("../media/shared/shared-02-54x54.png"); mask-image: url("../media/shared/shared-02-54x54.png"); }
-:has(> :is(#img_0_comp-m2768o98, #img_0_comp-m277hrto))::after { -webkit-mask-image: url("../media/shared/shared-03-60x60.png"); mask-image: url("../media/shared/shared-03-60x60.png"); }
+:has(> #img_comp-m26ho7tp)::after { -webkit-mask-image: url("../media/shared/shared-01-504x84.webp"); mask-image: url("../media/shared/shared-01-504x84.webp"); }
+:has(> :is(#img_0_comp-m26hqy39, #img_0_comp-m277hrti))::after { -webkit-mask-image: url("../media/shared/shared-02-54x54.webp"); mask-image: url("../media/shared/shared-02-54x54.webp"); }
+:has(> :is(#img_0_comp-m2768o98, #img_0_comp-m277hrto))::after { -webkit-mask-image: url("../media/shared/shared-03-60x60.webp"); mask-image: url("../media/shared/shared-03-60x60.webp"); }
 :is(a:hover, a:focus-visible):has(> :is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto))::after,
 :is(a:hover, a:focus-visible) :has(> :is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto))::after { opacity: 1; }
 :is(a:hover, a:focus-visible) :is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto) { opacity: 0 !important; }
@@ -221,7 +221,7 @@ html:has(> body.device-mobile-optimized), body.device-mobile-optimized { backgro
 #MENU_AS_CONTAINER_TOGGLE { transition: transform .12s ease, opacity .12s ease; outline: none; transform: scale(.78); opacity: .55; }
 #MENU_AS_CONTAINER_TOGGLE:active { transform: scale(.7); opacity: 1; }
 #MENU_AS_CONTAINER_TOGGLE.d0L2ow { opacity: 1; }
-.device-mobile-optimized :has(> #img_comp-m26ho7tp)::after { -webkit-mask-image: url("../media/shared/shared-01-300x38.png"); mask-image: url("../media/shared/shared-01-300x38.png"); }
+.device-mobile-optimized :has(> #img_comp-m26ho7tp)::after { -webkit-mask-image: url("../media/shared/shared-01-300x38.webp"); mask-image: url("../media/shared/shared-01-300x38.webp"); }
 a:active:has(> #img_comp-m26ho7tp)::after, a:active :has(> #img_comp-m26ho7tp)::after { opacity: 1; }
 a:active #img_comp-m26ho7tp { opacity: 0 !important; }
 /* 6: Works category buttons: no focus ring / tap flash; pressed = light-grey fill, white text, thin grey border */
@@ -688,11 +688,6 @@ body:not(.device-mobile-optimized) #comp-mujmtw8h { height: 421px !important; } 
 .jcd-e2e-arrow { filter: drop-shadow(0 0 6px rgba(0, 0, 0, .75)); z-index: 3; }
 /* End-to-End arrows thicker, every platform (Joel 2026-11-27 "箭頭可以粗點"): the thin chevron gets a stroke in its own colour */
 #comp-mnfi6oqr .nav-arrows-container svg path { stroke: #fff; stroke-width: 2.2px; stroke-linejoin: round; paint-order: stroke; }
-/* black gradient strip under each arrow, as tall as the squares (Joel 2026-11-27; placed by custom.js) */
-.jcd-e2e-shade { position: absolute; z-index: 2; pointer-events: none; transition: opacity .3s ease;
-  background: linear-gradient(90deg, rgba(0, 0, 0, .78), rgba(0, 0, 0, .45) 45%, transparent); }
-.jcd-e2e-shade.is-right { background: linear-gradient(270deg, rgba(0, 0, 0, .78), rgba(0, 0, 0, .45) 45%, transparent); }
-#comp-mnfi6oqr .nav-arrows-container { z-index: 3; }
 /* a category card with a link opens from anywhere on it, the photo included (custom.js cardLink, Joel 2026-11-27) */
 #PAGES_CONTAINER .gpDCD5:has(a[href]) { cursor: pointer; -webkit-tap-highlight-color: transparent; }
 /* Home top slideshow: no "1/10" slide counter in the bottom-right corner, every platform (Joel 2026-11-27: "不要有 1/10
