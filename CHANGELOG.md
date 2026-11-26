@@ -11,6 +11,11 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Wi-Fi 7 Gaming Home Gateway: video without control bar 影片拿掉控制列
+- Joel: "最右邊的影片不要有底下的控制攔". The "Sculpted Light Flow" video plays by itself (muted, looping) with no control
+  bar, computer + iPad + phone. Files: `site/wi-fi7-gaming-home-gateway/index.html`, `site/m/wi-fi7-gaming-home-gateway/index.html`.
+  「Sculpted Light Flow」段落右邊的影片拿掉下方控制列，照樣自動靜音循環播放（電腦、iPad、手機）。
+
 ### Scroll fade follows the scroll; new net photo on T. Interceptor MP; Gemtek photo at the bottom of home 捲動淡入跟著捲動；MP 換網子圖；首頁底圖換 Gemtek
 - Joel: "滾動動畫其實是 fade in，滾到畫面中央逐漸顯現，往上滾消失". The scroll reveal is now tied to the scroll position:
   content fades in as it moves from the bottom edge to the middle of the screen and fades out again when scrolling back;
