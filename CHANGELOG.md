@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### T-Blade on its cart: Joel's new render
+- Joel's new image (2000x1147, 334 KB JPEG, kept as `media-originals/jcd_t-blade-on-cart_2000x1147.jpg`) replaces the old render everywhere it was used: T-Blade page (image 13), home slideshow slide 6, Defense category tile (desktop + phone). Files: `t-blade/t-blade-13-2000x1147.jpg` (326 KB, q88 4:4:4) and `t-blade/t-blade-13-560x321.jpg` (phone tiles, 31 KB); old `home-06-*`, `defense-02-*`, `t-blade-13-2283x1284/560x314` removed. Note: the pasted file is 2000px wide (the old original was 3325px) — fine on laptops, slightly soft as a full-screen slide on 2560+/4K; a larger export can replace it the same way.
+
 ### Contact form, second pass: smaller text, quiet message hint
 - Joel: phone text still too big; "Leave a message..." smaller, greyer, thinner. Phone: field text 14 -> 11px, message hint 9.5px; all platforms: message hint Poppins Light, white 45% (desktop/iPad 13px). Field names stay white Medium. iPhones would zoom in on tap below 16px on screen, so `custom.js` caps the phone page's viewport `maximum-scale` at its fit-to-width scale on iPhones with a form (pinch-zoom by hand still works). `custom.css`, `custom.js`.
 

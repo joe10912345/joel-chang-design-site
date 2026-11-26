@@ -1735,44 +1735,6 @@
    "defense"
   ]
  },
- "defense/defense-02-2560x1400.jpg": {
-  "source": "media-originals/1e9c09_0c330c3768c1423d8518055da97e177d_mv2.jpg",
-  "wix_ops": {
-   "crop": [
-    108,
-    0,
-    3110,
-    1705
-   ],
-   "mode": "fill",
-   "align": "c"
-  },
-  "replaces": [
-   "1e9c09_0c330c3768c1423d8518055da97e177d_mv2_3110x1705_ea1b4f94.jpg"
-  ],
-  "pages": [
-   "defense"
-  ]
- },
- "defense/defense-02-552x342.jpg": {
-  "source": "media-originals/1e9c09_0c330c3768c1423d8518055da97e177d_mv2.jpg",
-  "wix_ops": {
-   "crop": [
-    108,
-    0,
-    3110,
-    1705
-   ],
-   "mode": "fill",
-   "align": "c"
-  },
-  "replaces": [
-   "1e9c09_0c330c3768c1423d8518055da97e177d_mv2_3110x1705_bc995fd2.jpg"
-  ],
-  "pages": [
-   "defense"
-  ]
- },
  "defense/defense-03-2560x1400.jpg": {
   "source": "media-originals/1e9c09_e9b4a0ea6a944a05b561490de830f93f_mv2.jpg",
   "wix_ops": {
@@ -3233,26 +3195,6 @@
   "wix_ops": null,
   "replaces": [
    "jcd_hero_351c898ef606_3200x1653.jpg"
-  ],
-  "pages": [
-   "home"
-  ]
- },
- "home/home-06-2400x1231.jpg": {
-  "source": "export",
-  "wix_ops": null,
-  "replaces": [
-   "jcd_hero_0c330c3768c1_3200x1641.jpg"
-  ],
-  "pages": [
-   "home"
-  ]
- },
- "home/home-06-3200x1641.jpg": {
-  "source": "export",
-  "wix_ops": null,
-  "replaces": [
-   "jcd_hero_0c330c3768c1_3200x1641.jpg"
   ],
   "pages": [
    "home"
@@ -12863,44 +12805,6 @@
    "t-blade"
   ]
  },
- "t-blade/t-blade-13-2283x1284.jpg": {
-  "source": "media-originals/1e9c09_2bd13254f41642ad9ec986994e2c0d47_mv2.jpg",
-  "wix_ops": {
-   "crop": [
-    242,
-    214,
-    2283,
-    1286
-   ],
-   "mode": "fill",
-   "align": "c"
-  },
-  "replaces": [
-   "1e9c09_2bd13254f41642ad9ec986994e2c0d47_mv2_2283x1286_801edd25.jpg"
-  ],
-  "pages": [
-   "t-blade"
-  ]
- },
- "t-blade/t-blade-13-560x314.jpg": {
-  "source": "media-originals/1e9c09_2bd13254f41642ad9ec986994e2c0d47_mv2.jpg",
-  "wix_ops": {
-   "crop": [
-    242,
-    214,
-    2283,
-    1286
-   ],
-   "mode": "fill",
-   "align": "c"
-  },
-  "replaces": [
-   "1e9c09_2bd13254f41642ad9ec986994e2c0d47_mv2_2283x1286_0a7b92a4.jpg"
-  ],
-  "pages": [
-   "t-blade"
-  ]
- },
  "t-blade/t-blade-14-2560x1403.jpg": {
   "source": "export",
   "wix_ops": null,
@@ -18519,5 +18423,41 @@
    "ai-tool-kit"
   ],
   "note": "lightbox full size"
+ },
+ "t-blade/t-blade-13-2000x1147.jpg": {
+  "source": "media-originals/jcd_t-blade-on-cart_2000x1147.jpg",
+  "wix_ops": null,
+  "replaces": [
+   "defense/defense-02-2560x1400.jpg",
+   "defense/defense-02-552x342.jpg",
+   "home/home-06-2400x1231.jpg",
+   "home/home-06-3200x1641.jpg",
+   "t-blade/t-blade-13-2283x1284.jpg",
+   "t-blade/t-blade-13-560x314.jpg"
+  ],
+  "pages": [
+   "t-blade",
+   "home",
+   "defense"
+  ],
+  "note": "Joel's new render 2026-11-26 (T-Blade on its cart); also home slide 6 and the Defense tile"
+ },
+ "t-blade/t-blade-13-560x321.jpg": {
+  "source": "media-originals/jcd_t-blade-on-cart_2000x1147.jpg",
+  "wix_ops": null,
+  "replaces": [
+   "defense/defense-02-2560x1400.jpg",
+   "defense/defense-02-552x342.jpg",
+   "home/home-06-2400x1231.jpg",
+   "home/home-06-3200x1641.jpg",
+   "t-blade/t-blade-13-2283x1284.jpg",
+   "t-blade/t-blade-13-560x314.jpg"
+  ],
+  "pages": [
+   "t-blade",
+   "home",
+   "defense"
+  ],
+  "note": "Joel's new render 2026-11-26 (T-Blade on its cart); also home slide 6 and the Defense tile"
  }
 }
