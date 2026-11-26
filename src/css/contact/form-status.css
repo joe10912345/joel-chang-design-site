@@ -1,0 +1,20 @@
+/* ---------- Contact form: status + "sent" confirmation (custom.js) ---------- */
+#comp-jqc9copb .jcd-honey { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; opacity: 0; }
+#comp-jqc9copb .jcd-bad { box-shadow: inset 0 -2px 0 #ff6b6b !important; }
+#comp-jqc9copb .jcd-form-note { position: absolute; left: 0; right: 0; top: 100%; margin-top: 14px; min-height: 1em;
+  font: 14px/1.5 "Poppins", "Helvetica Neue", Arial, sans-serif; letter-spacing: .02em; color: #ff8a8a; text-align: center; }
+#comp-jqc9copb button.jcd-sending { opacity: .55; cursor: progress !important; }
+#comp-jqc9copb .jcd-form-done { position: absolute; inset: -8px; z-index: 20; display: flex; align-items: center; justify-content: center;
+  background: rgba(8, 10, 14, .94); border: 1px solid rgba(255, 255, 255, .22); opacity: 0; visibility: hidden;
+  transition: opacity .35s ease, visibility 0s linear .35s; text-align: center; }
+#comp-jqc9copb.jcd-sent .jcd-form-done { opacity: 1; visibility: visible; transition: opacity .35s ease; }
+#comp-jqc9copb .jcd-form-done-in { padding: 24px; font-family: "Poppins", "Helvetica Neue", Arial, sans-serif; color: #fff; }
+#comp-jqc9copb .jcd-form-done-t { font-size: 22px; font-weight: 500; letter-spacing: .02em; }
+#comp-jqc9copb .jcd-form-done-t::before { content: "\2713"; display: block; margin: 0 auto 14px; width: 44px; height: 44px; line-height: 42px;
+  border: 1.5px solid var(--jcd-blue); border-radius: 50%; color: var(--jcd-blue); font-size: 22px; }
+#comp-jqc9copb .jcd-form-done-s { margin-top: 8px; font-size: 14px; color: rgba(255, 255, 255, .7); }
+#comp-jqc9copb .jcd-form-again { margin-top: 22px; padding: 10px 22px; background: transparent; color: #fff; cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, .5); font: 13px/1 "Poppins", Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase;
+  transition: color .2s ease, border-color .2s ease; }
+#comp-jqc9copb .jcd-form-again:hover, #comp-jqc9copb .jcd-form-again:focus-visible { color: var(--jcd-blue); border-color: var(--jcd-blue); outline: none; }
+

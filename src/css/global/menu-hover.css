@@ -1,0 +1,19 @@
+/* ---------- 1. Navigation hover states (desktop) ---------- */
+/* Top level: Works / About / Contact - no underline (Joel 2026-11-23); hover dims the other items */
+.itemDepth02233374943__label::after { content: none !important; display: none !important; }
+/* Hovered top item turns blue (Joel 2026-11-24); others stay pure white, no dimming */
+li[data-item-depth="0"] > div > a, li[data-item-depth="0"] > div > a * { transition: color .4s cubic-bezier(.22,.61,.36,1) !important; }
+li[data-item-depth="0"]:hover > div > a, li[data-item-depth="0"]:hover > div > a *,
+li[data-item-depth="0"][data-hovered] > div > a, li[data-item-depth="0"][data-hovered] > div > a * { color: var(--jcd-blue) !important; }
+
+/* Works dropdown items: no background box (Joel 2026-11-23). Items sit slightly dimmed and go to full
+   white on hover with a gentle 0.4s ease; the others dim further. Current page stays full white. */
+.itemDepth12472627565__root,
+.itemDepth12472627565__root:hover,
+.itemDepth12472627565__root:focus-visible { background: transparent !important; background-color: transparent !important; box-shadow: none !important; }
+.itemDepth12472627565__root .itemDepth12472627565__label { opacity: .8; transition: color .4s ease, opacity .4s ease; }
+ul:hover > li[data-item-depth="1"]:not(:hover) .itemDepth12472627565__label { opacity: .55; }
+.itemDepth12472627565__root:hover .itemDepth12472627565__label,
+.itemDepth12472627565__root:focus-visible .itemDepth12472627565__label { color: #fff !important; opacity: 1; }
+li[data-item-depth="1"][aria-current="page"] .itemDepth12472627565__label { color: #fff !important; opacity: 1; }
+

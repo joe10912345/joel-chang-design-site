@@ -1,0 +1,19 @@
+/* ---------- 5. Softer gallery hover overlays (site.js adds .jcd-ov / .jcd-ov-in) ---------- */
+/* Darkening fades in/out gradually; title then description fade in with a small rise (stagger). No idle motion. */
+.item-hover-flex-container.jcd-ov .gallery-item-hover,
+.item-hover-flex-container.jcd-ov .gallery-item-hover::before { transition: opacity .65s var(--jcd-ease) !important; opacity: 0 !important; }
+.item-hover-flex-container.jcd-ov.jcd-ov-in .gallery-item-hover,
+.item-hover-flex-container.jcd-ov.jcd-ov-in .gallery-item-hover::before { opacity: 1 !important; }
+/* (Wix forces .info-member{opacity:1 !important}, so the fade/rise is on the inner <span>.) */
+.item-hover-flex-container.jcd-ov .info-element-title > span,
+.item-hover-flex-container.jcd-ov .info-element-description > span {
+  display: block; opacity: 0; transform: translateY(10px);
+  transition: opacity .6s var(--jcd-ease), transform .6s var(--jcd-ease); }
+.item-hover-flex-container.jcd-ov.jcd-ov-in .info-element-title > span { opacity: 1; transform: none; transition-delay: .08s; }
+.item-hover-flex-container.jcd-ov.jcd-ov-in .info-element-description > span { opacity: 1; transform: none; transition-delay: .18s; }
+.gallery-item-container img, .gallery-item-container picture { transition: filter .65s var(--jcd-ease), transform .65s var(--jcd-ease); }
+
+@media (prefers-reduced-motion: reduce) {
+  .jcd-tile, .jcd-tile-halo, .jcd-tile-img, .item-hover-flex-container.jcd-ov * { transition: none !important; }
+}
+

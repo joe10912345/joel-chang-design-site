@@ -30,4 +30,3 @@ Open items. When you finish one, move it to `CHANGELOG.md` with the date. Add ne
 ## Housekeeping 整理
 - [ ] `reference/asset-sources.json` differs from GitHub (same files, different URLs); unclear which is newer, left uncommitted. 與 GitHub 版本不同，未 commit。
 - [ ] `content/*.md` is the 2026-11-23 text snapshot and is not kept up to date (text lives in the HTML). Regenerate or retire it. content/ 是舊快照，未同步。
-- [ ] `custom.js` / `custom.css` hold every effect in one file each (blocks are commented). Splitting them into one file per component would make them easier to browse. 效果都在同一檔，可拆成一個元件一個檔。

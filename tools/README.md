@@ -2,6 +2,7 @@
 
 | File 檔案 | What 內容 | Run 執行 |
 |---|---|---|
+| `build_assets.py` | Joins `src/css/` and `src/js/` (order: `src/*/ORDER.txt`) into `site/assets/css/custom.css` and `site/assets/js/custom.js`, and bumps their `?v=` in every page. 把 src/ 組合成 custom.css / custom.js 並更新 ?v=。 | `python tools/build_assets.py` (`--check` only checks) |
 | `clean_text.py` | Fixes alt text that is a file name, Wix labels left in Chinese, product-name spacing, the ESG heading, the DFM sentence. Safe to re-run. 清理檔名式替代文字、Wix 中文介面字、產品名空格等，可重複執行。 | `python tools/clean_text.py` |
 | `siteconfig.py` | `SITE_BASE` (public URL) and language switches, used by the SEO and i18n scripts. 公開網址與語言開關。 | — |
 | `seo_apply.py`, `seo_verify.py` | Canonical / Open Graph / JSON-LD tags, `sitemap.xml`, `robots.txt`, `llms.txt` from `SITE_BASE`. SEO 標籤與 sitemap。 | `python tools/seo_apply.py` then `seo_verify.py` |

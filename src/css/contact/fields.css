@@ -1,0 +1,26 @@
+/* Contact form, one style for every field (Joel 2026-11-26: on the phone the text was too big, the lines too thick
+   and not the same). All platforms: one 1px white underline at rest, still 1px when hovered / typing (only the
+   colour turns --jcd-blue), text starts at the same 12px indent. Field names (First Name ... Phone) white Medium;
+   the message hint "Leave a message..." smaller, grey and Light (second pass, Joel: "smaller, greyer, thinner").
+   Phone: 11px text, hint 9.5px. That is below what iPhones read without zooming, so custom.js stops the zoom on tap. */
+[id^="comp-jqc9cqa"] {
+  --brw: 0px 0px 1px 0px !important;
+  --brwh: 0px 0px 1px 0px !important;
+  --brwf: 0px 0px 1px 0px !important;
+  --brd: 255, 255, 255 !important;
+}
+[id^="comp-jqc9cqa"] input, [id^="comp-jqc9cqa"] textarea { border-bottom-width: 1px !important; padding-left: 12px !important; }
+[id^="comp-jqc9cqa"] input::placeholder {
+  color: #fff !important; opacity: 1 !important; font-family: inherit !important; font-weight: inherit !important;
+}
+[id^="comp-jqc9cqa"] textarea { font-size: 15px !important; }                 /* desktop / iPad: typed text = the inputs */
+[id^="comp-jqc9cqa"] textarea::placeholder {
+  font-size: 13px !important; color: rgba(255, 255, 255, .45) !important; opacity: 1 !important;
+  font-family: wfont_459113_ebfb1394532347b3b7691d160bb35bd1, wf_ebfb1394532347b3b7691d160, orig_poppins_light, sans-serif !important;
+  font-weight: 300 !important;
+}
+.device-mobile-optimized [id^="comp-jqc9cqa"] input,
+.device-mobile-optimized [id^="comp-jqc9cqa"] textarea,
+.device-mobile-optimized [id^="comp-jqc9cqa"] input::placeholder { font-size: 11px !important; }
+.device-mobile-optimized [id^="comp-jqc9cqa"] textarea::placeholder { font-size: 9.5px !important; }
+

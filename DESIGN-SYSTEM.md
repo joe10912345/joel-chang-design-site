@@ -2,11 +2,12 @@
 
 The visual rules Joel has set for this site. **Anyone (person or AI) changing the look follows this file and updates it
 when Joel changes a rule.** Layout numbers live in `site/assets/js/jcd-config.js`; colours and other values in
-`site/assets/css/custom.css`; behaviour in `site/assets/js/custom.js`. Why each rule exists: `CHANGELOG.md`.
+`src/css/` (tokens in `src/css/global/tokens.css`); behaviour in `src/js/` — one file per effect, built into
+`custom.css` / `custom.js` by `tools/build_assets.py`. Why each rule exists: `CHANGELOG.md`.
 
 Joel 為這個網站定下的視覺規則。**任何人（或 AI）改外觀都要照這份文件做，Joel 改規則時也要同步更新這裡。**
-版面數字在 `site/assets/js/jcd-config.js`；顏色等數值在 `site/assets/css/custom.css`；互動行為在
-`site/assets/js/custom.js`。每條規則的來由寫在 `CHANGELOG.md`。
+版面數字在 `site/assets/js/jcd-config.js`；顏色等數值在 `src/css/`（顏色變數在 `src/css/global/tokens.css`）；互動行為在
+`src/js/`，一個效果一個檔，由 `tools/build_assets.py` 組合成 custom.css / custom.js。每條規則的來由寫在 `CHANGELOG.md`。
 
 Last updated 最後更新: 2026-11-27.
 
@@ -20,7 +21,7 @@ Last updated 最後更新: 2026-11-27.
 | Monitor base width 電腦螢幕基準寬度 | `jcd-config.js` → `desktopRef` (1536) | how wide screens zoom 大螢幕的放大倍率 |
 | **iPad side margins** **iPad 左右留白** | `jcd-config.js` → `ipad.margin.landscape / portrait` (5.35%) | iPad layout width of every page, and `preview/devices.html` iPad 各頁排版寬度＋三平台預覽 |
 | iPad content widths per page type 各類頁面的內容寬度 | `jcd-config.js` → `ipad.content` | same 同上 |
-| Brand colours 品牌色 | `custom.css` `:root` `--jcd-blue`, `--jcd-navy` | every blue on the site 全站所有藍色 |
+| Brand colours 品牌色 | `src/css/global/tokens.css` `--jcd-blue`, `--jcd-navy` | every blue on the site 全站所有藍色 |
 
 Never write one of these numbers a second time in another file; read it from the config / token instead.
 這些數字不要在別的檔案再寫一次，要用的時候讀設定檔或 CSS 變數。
@@ -155,9 +156,9 @@ Other rules 其他:
 |---|---|
 | Layout numbers 版面數字 | `site/assets/js/jcd-config.js` |
 | Device detection, iPad viewport, monitor zoom, slideshow 裝置判斷、iPad 視窗、螢幕縮放、輪播 | `site/assets/js/site.js` |
-| All effects (each block starts with a comment naming it) 所有效果 | `site/assets/js/custom.js`, `site/assets/css/custom.css` |
+| All effects, one file each 所有效果（一個效果一個檔） | `src/css/<area>/`, `src/js/<area>/` (list: `src/README.md`), built into `custom.css` / `custom.js` |
 | Wix-replacement CSS fixes 取代 Wix 的修正 | `site/assets/css/static-overrides.css` |
 | About portrait tilt 大頭照傾斜 | `site/assets/js/tilt.js` |
-| Recommendation cards 推薦卡 | `custom.js` "About Trusted Collaboration", CSS `.jcd-rec*` |
+| Recommendation cards 推薦卡 | `src/js/about/recommendation-cards.js`, `src/css/about/recommendation-cards.css` |
 | Footer 頁尾 | removed on every page (`#SITE_FOOTER { display: none }`) |
 | Three-device preview 三平台預覽 | `preview/devices.html`; design studies 設計提案 `preview/mockups/` |

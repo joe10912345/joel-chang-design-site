@@ -1,0 +1,10 @@
+/* ---------- 7. Home video (Vimeo) inside its glow frame: no black ring ---------- */
+/* Wix gives the player a dark drop shadow and a black container; the video now fills its box edge to edge
+   at exact 16:9 (Vimeo letterboxes anything else), and custom.js lines it up with the glow image's frame. */
+#comp-moybizuw, #comp-moybizuw * { box-shadow: none !important; }
+#comp-moybizuw { aspect-ratio: 16 / 9; height: auto !important; overflow: hidden; background: transparent !important; }
+#comp-moybizuw > div, #comp-moybizuw [class*="playerContainer"] { position: absolute !important; inset: 0 !important;
+  width: 100% !important; height: 100% !important; padding: 0 !important; border: 0 !important; background: transparent !important; }
+#comp-moybizuw iframe { position: absolute; inset: 0; width: 100% !important; height: 100% !important; border: 0; display: block;
+  transform: scale(1.006); transform-origin: center; }   /* crops any sub-pixel hairline from the player */
+

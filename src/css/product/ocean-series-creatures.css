@@ -1,0 +1,16 @@
+/* ---------- Ocean Series creature tiles (1.jpg-6.jpg): dimmed at rest, hover/tap = photo zooms + full brightness (Joel 2026-11-24) ----------
+   Wix's MouseOverPhoto skin faded a 100% black ::after (--bgh = color_15) IN on hover, so the photo went black.
+   Now: 35% black at rest, removed on hover (mouse) or tap (:hover sticks after a tap on touch, :active while pressed).
+   Only the PHOTO zooms (1.1) inside its fixed frame (the link box clips it); the card and its frame never grow, so it can
+   never cover the captions above/below (Joel: zooming the whole card covered "Sea anemone" on the phone).
+   Wix's own hover-box zoom on the card (.gpDCD5:hover -> scale 1.1) is switched off.
+   SAME on desktop, iPad (desktop page + touch) and phone (m/). */
+:is(#comp-mosba1it9, #comp-mosba1j119, #comp-mosba1j519, #comp-mosba1ja, #comp-mosba1jb6, #comp-mosba1jd12) { -webkit-tap-highlight-color: transparent; transform: none !important; }
+:is(#comp-mosba1it9, #comp-mosba1j119, #comp-mosba1j519, #comp-mosba1ja, #comp-mosba1jb6, #comp-mosba1jd12) > .v9ZE1l { overflow: hidden !important; }
+:is(#comp-mosba1it9, #comp-mosba1j119, #comp-mosba1j519, #comp-mosba1ja, #comp-mosba1jb6, #comp-mosba1jd12) img { transform: scale(1); transform-origin: 50% 50%; transition: transform .5s ease-in-out !important; }
+:is(#comp-mosba1it9, #comp-mosba1j119, #comp-mosba1j519, #comp-mosba1ja, #comp-mosba1jb6, #comp-mosba1jd12)::after { background-color: #000 !important; opacity: .35 !important; transition: opacity .4s ease-in-out !important; }
+:is(#comp-mosba1it9, #comp-mosba1j119, #comp-mosba1j519, #comp-mosba1ja, #comp-mosba1jb6, #comp-mosba1jd12):is(:hover, :active, :focus-within)::after,
+.gpDCD5:is(:hover, :active, :focus-within) :is(#comp-mosba1it9, #comp-mosba1j119, #comp-mosba1j519, #comp-mosba1ja, #comp-mosba1jb6, #comp-mosba1jd12)::after { opacity: 0 !important; }
+:is(#comp-mosba1it9, #comp-mosba1j119, #comp-mosba1j519, #comp-mosba1ja, #comp-mosba1jb6, #comp-mosba1jd12):is(:hover, :active, :focus-within) img,
+.gpDCD5:is(:hover, :active, :focus-within) :is(#comp-mosba1it9, #comp-mosba1j119, #comp-mosba1j519, #comp-mosba1ja, #comp-mosba1jb6, #comp-mosba1jd12) img { transform: scale(1.1); }
+

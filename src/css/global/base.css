@@ -1,0 +1,7 @@
+/* =====================================================================
+   custom.css — Joel's own design tweaks on top of the Wix export.
+   Edit freely; loaded last on every page (after Wix CSS + static-overrides.css).
+   ===================================================================== */
+
+:root { --jcd-ease: cubic-bezier(.22, .61, .36, 1); }
+

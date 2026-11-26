@@ -1,0 +1,8 @@
+/* ---------- Ocean Series: no seams at the wave divider (Joel 2026-11-25: "the wave has a seam" on the phone) ----------
+   The waves are Wix's bottom divider of #comp-mosba1i51 (an SVG tile, #2D4E76, repeated 4x). Its top edge rasterised as
+   a faint line across the whole width; the image is now 3px taller than its box (anchored at the bottom) so that edge
+   row falls outside and is clipped. The next section's background (same blue at its top) reaches 2px up under the
+   waves so the sub-pixel gap between the two sections never shows. All platforms. */
+#comp-mosba1i51 [data-divider-layer="0"] { background-size: 25% calc(100% + 3px) !important; background-position: 50% 100% !important; }
+#comp-mosba1jl17 > [data-hook="bgLayers"] { top: -2px !important; }
+

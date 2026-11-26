@@ -1,0 +1,9 @@
+/* Contact form fields: the underline that turns blue on hover / focus (and the field labels) use the site blue
+   --jcd-blue instead of Wix's #1A2DF3 (Joel 2026-11-26). Desktop, iPad and phone contact pages (same comp ids). */
+[id^="comp-jqc9cqa"] {
+  --brdh: var(--jcd-blue-rgb) !important;
+  --brdf: var(--jcd-blue-rgb) !important;
+  --txtlbl: var(--jcd-blue-rgb) !important;
+  --txtlblrq: var(--jcd-blue-rgb) !important;
+}
+

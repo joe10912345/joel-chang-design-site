@@ -1,0 +1,4 @@
+/* ---------- About: grid rows size to their content so heading spacing can be made equal (custom.js, Joel 2026-11-24) ---------- */
+.jcd-about-flow :is(#comp-mujj9yx18, #comp-mujj9yxj, #comp-mujk8qkl) [data-mesh-id$="inlineContent-gridContainer"] {
+  grid-template-rows: none !important; grid-auto-rows: auto !important; min-height: 0 !important; height: auto !important; }
+

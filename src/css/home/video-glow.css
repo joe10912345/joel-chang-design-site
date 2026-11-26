@@ -1,0 +1,11 @@
+/* Home video: a soft blue light around the video window that gently breathes (Joel 2026-11-26; the turning ring
+   was removed the same day). custom.js places .jcd-vglow exactly on the window, under the video. */
+.jcd-vglow { position: absolute; z-index: 0; pointer-events: none; animation: jcdVBreath 4.5s ease-in-out infinite; }
+.jcd-vglow::before { content: ""; position: absolute; inset: -8px; border-radius: 6px;
+  background: linear-gradient(135deg, #0062d9, #3a5bff 50%, #00176c); filter: blur(16px); opacity: .85; }
+#comp-moybizuw { position: relative; z-index: 1; }
+@keyframes jcdVBreath { 0%, 100% { opacity: .2; } 50% { opacity: 1; } }
+/* stronger breathing (Joel): the glow-frame image itself dims to ~35% and comes back slightly brighter, in step */
+#comp-mp2fugu9 img { animation: jcdVFrame 4.5s ease-in-out infinite; }
+@keyframes jcdVFrame { 0%, 100% { filter: brightness(.35); } 50% { filter: brightness(1.15); } }
+@media (prefers-reduced-motion: reduce) { .jcd-vglow, #comp-mp2fugu9 img { animation: none; } }

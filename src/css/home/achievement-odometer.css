@@ -1,0 +1,8 @@
+/* Home Achievements numbers: odometer roll (custom.js). Each digit: an invisible final digit sizes the box, the
+   rolling strip lies on top; clipped above/below only, never at the sides. */
+.jcd-odo { display: inline-flex; vertical-align: top; }
+.jcd-odo-d { position: relative; display: inline-block; clip-path: inset(0 -0.5em); }
+.jcd-odo-s { visibility: hidden; display: inline-block; }
+.jcd-odo-c { position: absolute; left: 0; right: 0; top: 0; display: block; text-align: center;
+             transition: transform 1.8s cubic-bezier(.2, .75, .15, 1); will-change: transform; }
+.jcd-odo-c > span { display: block; white-space: nowrap; }

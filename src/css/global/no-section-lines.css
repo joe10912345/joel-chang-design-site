@@ -1,0 +1,7 @@
+/* ---------- No thin white lines between sections, every platform (Joel 2026-11-24) ----------
+   The page canvas was transparent (= browser white). Whenever the page is scaled (wide-screen zoom, iPad, previews)
+   section edges land on half pixels and the white shows through as a hairline. Browser canvas black everywhere, like m/ already. */
+html, body { background-color: #000 !important; }
+/* (fix, same day) NOT the Wix page layers: each page's own background (white on Wi-Fi 7 HGU/AP, MoAI ... ) lives in
+   [data-testid="page-bg"]; painting that black turned the light pages dark. */
+

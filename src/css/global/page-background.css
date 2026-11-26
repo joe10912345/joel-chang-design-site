@@ -1,0 +1,7 @@
+/* ---------- Page background: light pages stay light, dark pages get no hairlines (Joel 2026-11-24) ----------
+   Wix paints every page's background layer white. On light pages (Wi-Fi 7 HGU/AP, MoAI, Extender, 2022, Airgain,
+   Lionic, AI Tool Kit, NLG MMA200, Sagittarius, Assistive) some sections are transparent and that white IS the page
+   colour. On the other pages every section covers itself, so the white only leaks through half-pixel seams as thin
+   lines. custom.js ("Page background") tags those fully-covered pages .jcd-dark-canvas -> background layer black. */
+.jcd-dark-canvas [id^="bgLayers_pageBackground_"] [data-testid="colorUnderlay"] { background-color: #000 !important; }
+

@@ -1,0 +1,7 @@
+/* ---------- No text selection, no long-press callout, no image dragging — every platform (Joel 2026-11-25) ----------
+   Long presses on the phone kept selecting text; Joel also does not want "save image" menus. custom.js blocks the
+   context menu (right click / long press) and image dragging. Form fields (Contact) stay selectable/editable. */
+html, body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+img, a, wow-image { -webkit-user-drag: none; user-drag: none; -webkit-touch-callout: none; }
+input, textarea, select, [contenteditable="true"] { -webkit-user-select: text !important; user-select: text !important; -webkit-touch-callout: default; }
+

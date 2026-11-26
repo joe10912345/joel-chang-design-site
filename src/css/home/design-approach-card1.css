@@ -1,0 +1,14 @@
+/* Design Approach cards (home), Joel 2026-11-26 (option C + 1 of preview/design-approach-card.html): all four react to
+   the mouse (frame brightens, faint light fill). Card 1 (the link) does not move: its frame turns --jcd-blue with a soft blue outer glow
+   (option A + 1, Joel's final pick); a small round >> (30px) sits in the bottom-right corner, clear of the text, and fills blue when
+   the card is pressed (custom.js). */
+.jcd-da-card { transition: box-shadow .35s cubic-bezier(.2, .7, .2, 1), background-color .35s ease, background-size .6s cubic-bezier(.2, .7, .2, 1); }
+.jcd-da-card:not(.jcd-da-link):hover { background-color: rgba(255, 255, 255, .03); box-shadow: 0 0 0 1px rgba(255, 255, 255, .9); }
+.jcd-da-card > .wixui-box { transition: border-color .35s ease; }
+.jcd-da-link:hover > .wixui-box, .jcd-da-link:focus-visible > .wixui-box { border-color: var(--jcd-blue) !important; }   /* the white frame itself turns blue */
+.jcd-da-link:hover, .jcd-da-link:focus-visible { box-shadow: 0 0 0 1px var(--jcd-blue), 0 0 34px rgba(var(--jcd-blue-rgb), .45); }
+.jcd-da-link:active, .jcd-da-link.is-pressed { transform: none; }
+.jcd-da-go, body:not(.device-mobile-optimized) .jcd-go.jcd-da-go { position: absolute; right: 16px; bottom: 14px; z-index: 3; width: 30px; height: 30px; font-size: 11px; pointer-events: none; }
+.device-mobile-optimized .jcd-go.jcd-da-go { right: 8px; bottom: 7px; width: 20px; height: 20px; font-size: 8px; }
+.jcd-da-link:hover .jcd-da-go { background: rgba(var(--jcd-blue-rgb), .35); border-color: rgba(255, 255, 255, .6); }
+@media (hover: none) { .jcd-da-card:hover { background-color: transparent; box-shadow: none; } }

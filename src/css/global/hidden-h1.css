@@ -1,0 +1,14 @@
+/* ---------- 10. Home: "Joel Chang Design | industrial design" H1 kept for search engines only ---------- */
+/* Visually hidden (sr-only), still the page's H1 in the DOM; the headline below moves up into its place. */
+#comp-moymd9fm { position: absolute !important; width: 1px !important; height: 1px !important; margin: -1px !important;
+  padding: 0 !important; border: 0 !important; overflow: hidden !important; clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important; white-space: nowrap !important; left: 0 !important; top: 0 !important; }
+/* keep breathing room above the headline now that the H1 line is hidden (desktop/iPad layout only) */
+#comp-m276lfoi:has(#comp-moymd9fm) #comp-m276lmt2 { margin-top: 96px !important; }
+
+/* Visually hidden H1 used only when a page has no suitable heading */
+.seo-sr-only { position: absolute !important; width: 1px !important; height: 1px !important;
+  padding: 0 !important; margin: -1px !important; overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important; clip-path: inset(50%) !important;
+  white-space: nowrap !important; border: 0 !important; }
+

@@ -1,0 +1,21 @@
+/* ---------- Menus: pressed = blue + a small "press" (like the hamburger icon), every platform (Joel 2026-11-24) ---------- */
+/* phone menu items */
+#MENU_AS_CONTAINER_EXPANDABLE_MENU a { display: inline-block; -webkit-tap-highlight-color: transparent; transition: color .12s ease, transform .12s ease !important; }
+#MENU_AS_CONTAINER_EXPANDABLE_MENU a:active { color: var(--jcd-blue) !important; transform: scale(.92); }
+/* desktop / iPad top level (Works / About / Contact): already blue on hover, add the press */
+li[data-item-depth="0"] > div > a { -webkit-tap-highlight-color: transparent; transition: color .4s cubic-bezier(.22,.61,.36,1), transform .12s ease !important; }
+li[data-item-depth="0"] > div > a:active { transform: scale(.92); }
+li[data-item-depth="0"] > div > a:active, li[data-item-depth="0"] > div > a:active * { color: var(--jcd-blue) !important; }
+/* desktop / iPad Works dropdown (2nd level) */
+.itemDepth12472627565__root { -webkit-tap-highlight-color: transparent; }
+.itemDepth12472627565__label { display: inline-block; transition: color .12s ease, opacity .4s ease, transform .12s ease !important; }
+.itemDepth12472627565__root:active .itemDepth12472627565__label { color: var(--jcd-blue) !important; opacity: 1 !important; transform: scale(.92); }
+/* phone menu LinkedIn / Behance: pressed = blue copy of the icon (PNG used as mask; custom.js sets --jcd-mask) */
+.jcd-menu-social-a { position: relative; transition: transform .12s ease; }
+.jcd-menu-social-a::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: var(--jcd-blue); opacity: 0; transition: opacity .12s ease;
+  -webkit-mask: var(--jcd-mask) center / contain no-repeat; mask: var(--jcd-mask) center / contain no-repeat; }
+.jcd-menu-social-a img { transition: opacity .12s ease; }
+.jcd-menu-social-a:active { opacity: 1 !important; transform: scale(.88); }
+.jcd-menu-social-a:active::after { opacity: 1; }
+.jcd-menu-social-a:active img { opacity: 0; }
+

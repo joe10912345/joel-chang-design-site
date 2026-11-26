@@ -1,0 +1,7 @@
+/* ---------- Home "Works" category buttons (Defense ... Experimental): no black frame on hover (Joel 2026-11-24) ----------
+   Wix gave them "border: 1px solid #000" on hover. Desktop / iPad: no frame at all; phone (m/): keeps its normal grey frame. */
+body:not(.device-mobile-optimized) a:is(.style-mujxykae__root, .style-mp2gbz8a__root, .style-muksgg1g__root, .style-mp2gc8ur3__root, .style-mp2z7axw__root, .style-mp2z7d7b6__root):is(:hover, :focus, :active) { border-color: transparent !important; outline: none !important; }
+.device-mobile-optimized a:is(.style-mujxykae__root, .style-mp2gbz8a__root, .style-muksgg1g__root, .style-mp2gc8ur3__root, .style-mp2z7axw__root, .style-mp2z7d7b6__root):hover { border-color: #3E3E3E !important; }
+/* Phone: Wix made only "Networking" grow on hover (10px -> 13px). Same size as the others. */
+.device-mobile-optimized a:is(.style-mujxykae__root, .style-mp2gbz8a__root, .style-muksgg1g__root, .style-mp2gc8ur3__root, .style-mp2z7axw__root, .style-mp2z7d7b6__root):hover .StylableButton2545352419__label { font-size: 10px !important; }
+

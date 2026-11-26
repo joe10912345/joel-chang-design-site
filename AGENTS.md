@@ -20,8 +20,10 @@ Several AIs work on this site. To stay in sync, follow these rules. Architecture
 4. Edit files directly in `site/`. Put a short comment on every block you add, tagged `(Joel YYYY-MM-DD)`, saying what and why.
    直接改 `site/`；新增的程式區塊要加註解，寫明做什麼、為什麼，並標 `(Joel 日期)`。
    - Layout numbers (scale, iPad side margins, content widths): **only** `site/assets/js/jcd-config.js`. 版面數字只改 jcd-config.js。
-   - Look and effects: `site/assets/css/custom.css`, `site/assets/js/custom.js`; Wix-replacement behaviour: `site.js`,
-     `static-overrides.css`, `tilt.js`. 外觀與效果改 custom.css / custom.js；取代 Wix 的行為改 site.js 等。
+   - Look and effects: the effect's own file in `src/css/<area>/` / `src/js/<area>/` (list: `src/README.md`), new files
+     added to `src/*/ORDER.txt`; then run `python tools/build_assets.py`. **Never edit `custom.css` / `custom.js` directly**
+     (they are generated). Wix-replacement behaviour: `site.js`, `static-overrides.css`, `tilt.js`.
+     外觀與效果改 `src/` 裡該效果的檔案（新檔要加進 ORDER.txt），再執行 build_assets.py；**不可直接改 custom.css / custom.js**。
    - Text or images: both HTML files of the page (`site/<page>/` and `site/m/<page>/`). 文字或圖片要改電腦版與手機版兩份。
    - Never write a number twice (two files that must "stay in step" by hand): read it from `jcd-config.js` or a CSS token.
      同一個數字不要寫在兩個地方。
@@ -44,9 +46,10 @@ Several AIs work on this site. To stay in sync, follow these rules. Architecture
 
 ## After a change 修改後
 
-10. Bump `?v=` of every css/js you edited in every page HTML, e.g. 每改一個 css/js 都要更新所有頁面的 `?v=`：
+10. `tools/build_assets.py` bumps `?v=` of custom.css / custom.js. For any other css/js you edited, bump its `?v=` in every
+    page HTML, e.g. build_assets.py 會自動更新；其他 css/js 要手動更新所有頁面的 `?v=`：
     ```bash
-    f=custom.js; h=$(md5sum site/assets/js/$f | cut -c1-8); grep -rl "$f?v=" site --include=index.html | xargs sed -i -E "s/$f\?v=[0-9a-f]+/$f?v=$h/g"
+    f=site.js; h=$(md5sum site/assets/js/$f | cut -c1-8); grep -rl "$f?v=" site --include=index.html | xargs sed -i -E "s/$f\?v=[0-9a-f]+/$f?v=$h/g"
     ```
 11. Add an entry at the top of `CHANGELOG.md` (date UTC+8, what changed in Joel's words, files) — in English **and** Chinese.
     Update `TODO.md`. 在 CHANGELOG 最上面新增中英對照紀錄，並更新 TODO。

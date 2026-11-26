@@ -1,0 +1,6 @@
+/* ---------- Home "Works" row: "Selected" is a label, not a button (Joel 2026-11-24) ----------
+   No frame (Wix drew a dark 1px box) and nothing happens on click/tap/hover. Desktop, iPad, phone. */
+button.style-mp6qabp3__root, button.style-mp6qabp3__root:is(:hover, :focus, :focus-visible, :active) {
+  border-color: transparent !important; outline: none !important; box-shadow: none !important; pointer-events: none !important; cursor: default !important;
+  -webkit-tap-highlight-color: transparent; }
+

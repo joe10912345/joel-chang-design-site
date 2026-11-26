@@ -1,0 +1,4 @@
+/* ---------- 6. Home "Works" grid: tiles link to their project pages (build.py turns the wrappers into <a>) ---------- */
+a.item-link-wrapper[data-jcd-link] { display: block; color: inherit; text-decoration: none; cursor: pointer; }
+a.item-link-wrapper[data-jcd-link] .gallery-item-container { cursor: pointer; }
+

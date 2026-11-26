@@ -1,0 +1,20 @@
+/* ---------- Frosted-glass menus (Joel 2026-11-24) ----------
+   Desktop / iPad "Works" dropdown: was a flat 33% white box with black text. Now a lighter translucent glass with the
+   page behind blurred, a hairline edge and 2px corners; labels white (dimmed at rest, full white on hover, blue pressed).
+   Phone full-screen menu: was 85% black; now a darker glass with the page behind blurred, so it still reads as a layer. */
+/* (later same day) Joel: text was hard to read over light photos -> glass tinted dark (white text reads on any
+   background, still light-looking), labels brighter with a soft shadow; corners 8px. Sizes are CSS px, so they scale
+   with the page (wide-screen zoom, iPad scaling) like the rest of the layout. */
+.submenu815198092__root {
+  background-color: rgba(18, 20, 26, .42) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%); backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, .16) !important; border-radius: 8px !important; overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .3) !important; }
+.itemDepth12472627565__root .itemDepth12472627565__label { color: rgba(255, 255, 255, .9) !important; opacity: 1 !important; text-shadow: 0 1px 2px rgba(0, 0, 0, .35); }
+ul:hover > li[data-item-depth="1"]:not(:hover) .itemDepth12472627565__label { opacity: .7 !important; }
+.itemDepth12472627565__root:hover .itemDepth12472627565__label,
+li[data-item-depth="1"][aria-current="page"] .itemDepth12472627565__label { color: #fff !important; }
+.itemDepth12472627565__root:active .itemDepth12472627565__label { color: var(--jcd-blue) !important; }
+#bgLayers_MENU_AS_CONTAINER { -webkit-backdrop-filter: blur(22px) saturate(140%); backdrop-filter: blur(22px) saturate(140%); }
+#bgLayers_MENU_AS_CONTAINER [data-testid="colorUnderlay"] { background-color: rgba(8, 9, 12, .55) !important; }
+

@@ -1,0 +1,5 @@
+/* ---------- Phone About "What I Believe": text was 6px (about 7px on a phone screen) -> readable (Joel 2026-11-24) ---------- */
+.device-mobile-optimized #comp-mujq4ude6 :is(p, span) { font-size: 9.5px !important; line-height: 1.55 !important; }
+.device-mobile-optimized #comp-mujq4udg1 :is(h1, h2, h3, p, span) { font-size: 14px !important; }
+.device-mobile-optimized #comp-mujq4ude6 { height: auto !important; }   /* centred on its photo by custom.js (What I Believe) */
+

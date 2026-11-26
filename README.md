@@ -21,19 +21,24 @@ joel-chang-design-site/
 │  └─ assets/
 │     ├─ js/jcd-config.js     ★ layout numbers: scale, iPad side margins … 版面參數（只改這裡）
 │     ├─ js/site.js           device detection, iPad viewport, monitor zoom, menus, slideshow 裝置判斷、縮放、選單、輪播
-│     ├─ js/custom.js         every effect Joel asked for (one commented block each) Joel 要的所有效果
+│     ├─ js/custom.js         BUILT from src/js/ — do not edit 由 src/js/ 自動產生，不要直接改
 │     ├─ js/tilt.js           About portrait 3D tilt 大頭照傾斜
-│     ├─ css/custom.css       ★ colours (tokens at the top) and every custom style 顏色變數與自訂樣式
+│     ├─ css/custom.css       BUILT from src/css/ — do not edit 由 src/css/ 自動產生，不要直接改
 │     ├─ css/static-overrides.css  fixes needed to run without Wix 脫離 Wix 所需的修正
 │     ├─ css/(30 Wix files)   Wix's own styles — never edit Wix 原生樣式，不要改
 │     ├─ media/<page>/        images, one folder per page (+ shared/) 圖片，一頁一個資料夾
 │     ├─ video/ fonts/ files/ background videos, Poppins fonts, favicon 影片、字體、小圖示
+├─ src/                       ★ the site's own CSS + JS, ONE FILE PER EFFECT, by area 自訂樣式與程式，一個效果一個檔
+│  ├─ css/<area>/<effect>.css  areas: global, home, about, category, product, contact, phone 分區
+│  ├─ js/<area>/<effect>.js
+│  └─ css/ORDER.txt, js/ORDER.txt   build order 合併順序
 ├─ media-originals/           full-size originals the site images are made from (not online) 原始大圖（不上線）
 ├─ media-new/                 drop new images here for the AI to process 新圖放這裡給 AI 處理
 ├─ preview/
 │  ├─ devices.html            ★ three-device preview (phone / iPad / computer side by side) 三平台預覽
 │  └─ mockups/                design studies shown to Joel before building 設計提案
 ├─ tools/
+│  ├─ build_assets.py         joins src/ into custom.css + custom.js and bumps ?v= 組合 src/ 並更新 ?v=
 │  ├─ clean_text.py           alt text / Wix labels / typo clean-up (safe to re-run) 文字清理
 │  ├─ seo_apply.py, seo_verify.py, siteconfig.py   SEO tags + sitemap from one SITE_BASE SEO 產生器
 │  ├─ i18n_apply.py, i18n/    unpublished translations 未上線的翻譯
@@ -49,7 +54,7 @@ joel-chang-design-site/
 └─ *.md                       README, AGENTS, DESIGN-SYSTEM, TODO, CHANGELOG, PAGES, ASSETS
 ```
 
-Each sub-folder with its own rules has a short `README.md` (`site/`, `preview/`, `tools/`, `reference/`, `content/`).
+Each sub-folder with its own rules has a short `README.md` (`src/`, `preview/`, `tools/`, `reference/`, `content/`).
 有自己規則的子資料夾各有一份簡短 `README.md`。
 
 ## 2. How a page is put together 一個頁面怎麼組成
@@ -58,8 +63,8 @@ Each sub-folder with its own rules has a short `README.md` (`site/`, `preview/`,
 site/<page>/index.html (computer + iPad)        site/m/<page>/index.html (phone)
         │ Wix's HTML (absolute-positioned, hashed class names; text and images live here)
         │ Wix 的 HTML（絕對定位、亂碼 class；文字和圖片都在這裡）
-        ├─ css: Wix files → static-overrides.css → custom.css   (later wins 後載入的優先)
-        └─ js : jcd-config.js → site.js → custom.js, tilt.js  (config first 先載入設定)
+        ├─ css: Wix files → static-overrides.css → custom.css (built from src/css/)   (later wins 後載入的優先)
+        └─ js : jcd-config.js → site.js → custom.js (built from src/js/), tilt.js  (config first 先載入設定)
                      │              │
                      │              └─ decides phone / iPad / computer, sets the iPad viewport width,
                      │                 zooms monitors, menus, slideshow 判斷裝置、設 iPad 排版寬、螢幕縮放
@@ -67,9 +72,9 @@ site/<page>/index.html (computer + iPad)        site/m/<page>/index.html (phone)
 ```
 
 - A change of TEXT or an IMAGE is made in BOTH HTML files of the page (computer and phone). 改文字或圖片要改兩份 HTML（電腦＋手機）。
-- A change of LOOK or BEHAVIOUR goes in `custom.css` / `custom.js` and then covers phone + iPad + computer. 改外觀或互動寫在 custom.css / custom.js，三平台一起處理。
+- A change of LOOK or BEHAVIOUR goes in the effect's file in `src/css/` or `src/js/`, then `python tools/build_assets.py`; it must cover phone + iPad + computer. 改外觀或互動：改 `src/` 裡該效果的檔案，再執行 build_assets.py；三平台一起處理。
 - A change of a LAYOUT NUMBER goes in `jcd-config.js` only. 改版面數字只改 jcd-config.js。
-- After editing any css/js: bump its `?v=` in every page HTML (`AGENTS.md` has the one-line command). 改完 css/js 要更新所有頁面的 `?v=`。
+- `build_assets.py` bumps `?v=` for custom.css/custom.js itself; after editing `jcd-config.js`, `site.js`, `tilt.js` or `static-overrides.css` bump theirs by hand (`AGENTS.md`). build_assets.py 會自動更新 ?v=；其他檔案手動更新。
 
 Which layout a visitor gets 訪客看到哪一版: phones (touch, short side < 600px) → `m/`; iPads/tablets → the desktop page laid
 out at the width from `jcd-config.js` and scaled; computers → the desktop page zoomed to fill the window. Force one with

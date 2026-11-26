@@ -1,0 +1,12 @@
+/* ---------- 2. Design Approach cards (home) ---------- */
+/* Joel 2026-11-24: no glow, no hover/press on the cards, except card 1 (with the ">>" arrow): custom.js tags it
+   .jcd-da-link; pressing it (anywhere, or on the arrow) pushes it in slightly with a brand-blue outline. */
+.jcd-da-card { -webkit-tap-highlight-color: transparent; }
+.jcd-da-card:not(.jcd-da-link) { cursor: default; }
+.jcd-da-link { cursor: pointer; transition: transform .12s ease; }
+.jcd-da-link::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: 2px;
+  box-shadow: inset 0 0 0 1px var(--jcd-blue); opacity: 0; transition: opacity .12s ease; }
+.jcd-da-link:active, .jcd-da-link.is-pressed { transform: scale(.985); }
+.jcd-da-link:active::after, .jcd-da-link.is-pressed::after, .jcd-da-link:focus-visible::after { opacity: 1; }
+.jcd-da-link:focus { outline: none; }
+

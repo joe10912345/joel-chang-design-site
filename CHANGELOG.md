@@ -11,6 +11,12 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### custom.css / custom.js split into one file per effect (src/) 拆成一個效果一個檔
+- Joel: "Yes, split them". The 690-line `custom.css` and 1300-line `custom.js` now live as 54 CSS and 33 JS files in `src/css/<area>/` and `src/js/<area>/` (areas: global, home, about, category, product, contact, phone). `tools/build_assets.py` joins them in the order of `src/*/ORDER.txt` back into `site/assets/css/custom.css` / `site/assets/js/custom.js` (pages still load one file each) and bumps `?v=`. The rebuilt CSS is byte-identical to before; the JS differs only where one `ready()` held seven unrelated blocks, now one per file (the contact-form block had been nested inside the header block's `if`; now separate). Checked: every piece parses alone; home, About, Contact and Networking effects present on phone, iPad portrait/landscape and computer, no console errors.
+  690 行的 custom.css 與 1300 行的 custom.js 拆成 `src/` 裡 54 個 CSS、33 個 JS 檔（依頁面分區）；`build_assets.py` 依 ORDER.txt 組合回原本的兩個檔並更新 ?v=。CSS 組合結果與原本逐位元相同；JS 只有原本擠在同一個 ready() 的七段改成各自獨立。四種裝置都檢查過，沒有錯誤。
+- Docs: `src/README.md` (new, file list), README folder map, AGENTS (edit `src/`, never the built files), DESIGN-SYSTEM, `tools/README.md`, TODO.
+- Files: `src/**` (new), `tools/build_assets.py` (new), `site/assets/css/custom.css`, `site/assets/js/custom.js` (now generated), `?v=` in all page HTML, docs.
+
 ### Structure clean-up: one config for layout numbers, folders tidied, bilingual docs, text clean-up 架構整理
 - Joel: "把各平台(橫直)左右要留多間距寫成規則…整理我的design system、本地資料夾與線上的架構…很多東西可以共用同個參數修改…所有 md 都要中英對照…三平台預覽預設打開規則", plus an outside review of the copy (alt text, language, typos, ESG heading, DFM wording).
 - **Layout config 版面設定**: new `site/assets/js/jcd-config.js`, loaded before `site.js` on every page and read by `preview/devices.html`: `uiScale`, `desktopRef`, and the **iPad side-margin rule** (5.35% each side, landscape and portrait) with content widths per page type (product 1284, About 1211, home/Contact 1179). Resulting iPad widths: product pages 1438, About 1356, home/Contact 1320 (≈ the widths Joel approved). `site.js` and `devices.html` no longer hold their own copies.

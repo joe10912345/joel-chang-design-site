@@ -1,0 +1,7 @@
+/* ---------- Phone menu: LinkedIn + Behance icons under the menu items (custom.js clones them from the hidden footer, Joel 2026-11-24) ---------- */
+.jcd-menu-social { display: flex; justify-content: center; align-items: center; gap: 22px; margin-top: 48px; padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, .15); }
+.jcd-menu-social-a { display: block; width: 18px; height: 18px; -webkit-tap-highlight-color: transparent; transition: opacity .2s ease; }
+.jcd-menu-social-a img { display: block; width: 18px !important; height: 18px !important; object-fit: contain !important; }
+.jcd-menu-social-a:active { opacity: .6; }
+

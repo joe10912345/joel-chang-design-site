@@ -1,0 +1,10 @@
+/* About intro photo: frame in the photos' ratio (2000x1425) + second photo on hover / tap (custom.js, Joel 2026-11-26) */
+body:not(.device-mobile-optimized) #comp-mujmtw8h { height: 421px !important; }   /* 589 wide */
+.device-mobile-optimized #comp-mujmtw8h { height: 194px !important; }              /* 270 wide */
+.jcd-swap .jcd-swap-b { position: absolute; inset: 0; width: 100% !important; height: 100% !important; object-fit: cover;
+  opacity: 0; transition: opacity .6s ease; pointer-events: none; }
+@media (hover: hover) and (pointer: fine) { .jcd-swap:not(.jcd-swap-touch):hover .jcd-swap-b { opacity: 1; } }
+.jcd-swap.jcd-on .jcd-swap-b { opacity: 1; }
+.jcd-swap-touch { cursor: pointer; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+.jcd-swap-touch img { -webkit-touch-callout: none; pointer-events: none; }
+.jcd-swap-touch .jcd-swap-b { transition-duration: .35s; }   /* press: quicker to colour and back (Joel 2026-11-27) */

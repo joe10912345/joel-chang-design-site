@@ -1,0 +1,17 @@
+/* ---------- Header logo + header AND footer LinkedIn / Behance icons turn the menu-hover blue on hover (Joel 2026-11-24) ----------
+   All blues use the design tokens at the top of this file (see DESIGN-SYSTEM.md).
+   They are white PNGs (the <img> itself carries the id), so a blue copy is drawn on the img's wrapper with the same
+   PNG as a mask (exact colour) and cross-faded in over 0.2s. */
+:has(> :is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto)) { position: relative; }
+:is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto) { transition: opacity .2s ease; }
+:has(> :is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto))::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; background: var(--jcd-blue); opacity: 0; transition: opacity .2s ease;
+  -webkit-mask-position: center; mask-position: center; -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
+:has(> #img_comp-m26ho7tp)::after { -webkit-mask-image: url("../media/shared/shared-01-504x84.png"); mask-image: url("../media/shared/shared-01-504x84.png"); }
+:has(> :is(#img_0_comp-m26hqy39, #img_0_comp-m277hrti))::after { -webkit-mask-image: url("../media/shared/shared-02-54x54.png"); mask-image: url("../media/shared/shared-02-54x54.png"); }
+:has(> :is(#img_0_comp-m2768o98, #img_0_comp-m277hrto))::after { -webkit-mask-image: url("../media/shared/shared-03-60x60.png"); mask-image: url("../media/shared/shared-03-60x60.png"); }
+:is(a:hover, a:focus-visible):has(> :is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto))::after,
+:is(a:hover, a:focus-visible) :has(> :is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto))::after { opacity: 1; }
+:is(a:hover, a:focus-visible) :is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto) { opacity: 0 !important; }
+

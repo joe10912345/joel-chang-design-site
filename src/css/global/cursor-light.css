@@ -1,0 +1,15 @@
+/* ---------- 9. Cursor light: blue glow following the mouse, on the page BACKGROUND only (see custom.js) ---------- */
+/* Painted on Wix's background fill layers (colorUnderlay), which are below all images, video and text.
+   Only OPAQUE fills (+ the page background) get it - custom.js tags them .jcd-lit - so transparent layers stacked
+   in the header/columns never add a second copy: the light is one continuous circle at the same viewport
+   position (background-attachment: fixed) across header and sections. */
+:root { --mx: -2000px; --my: -2000px; --hb: 0px; --jcd-light: 0; }
+html.jcd-light-on .jcd-lit[data-testid="colorUnderlay"] {
+  background-image: radial-gradient(200px circle at var(--mx) calc(var(--my) - var(--hb)),
+      rgba(var(--jcd-blue-rgb), calc(.18 * var(--jcd-light))) 0%,
+      rgba(var(--jcd-blue-rgb), calc(.07 * var(--jcd-light))) 50%,
+      rgba(var(--jcd-blue-rgb), 0) 100%) !important;
+  background-attachment: fixed !important; background-repeat: no-repeat !important;
+  background-position: 0 var(--hb) !important; background-size: 100% calc(100% - var(--hb)) !important; }
+html.jcd-light-on #SITE_HEADER [data-testid="colorUnderlay"] { background-image: none !important; }   /* header: no light */
+

@@ -1,0 +1,8 @@
+/* ---------- Home "GET IN TOUCH": gentle endless balloon breathing (Joel 2026-11-24), desktop + iPad + phone ----------
+   Scales 1 -> 1.045 -> 1 every 2.8s with a soft ease (inflate, settle). Stops on hover/press so the click target is still,
+   and for visitors who prefer reduced motion. */
+a.style-mp6zxgon__root { transform-origin: 50% 50%; animation: jcdBalloon 2.8s cubic-bezier(.45, 0, .55, 1) infinite; will-change: transform; }
+a.style-mp6zxgon__root:is(:hover, :focus-visible, :active) { animation-play-state: paused; }
+@keyframes jcdBalloon { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.045); } }
+@media (prefers-reduced-motion: reduce) { a.style-mp6zxgon__root { animation: none; } }
+

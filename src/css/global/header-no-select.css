@@ -1,0 +1,7 @@
+/* ---------- Header: nothing in it can be selected or dragged (Joel 2026-11-24: pressing the logo left a light band
+   across the header = a text selection / drag ghost). All platforms. */
+#SITE_HEADER, #SITE_HEADER * { -webkit-user-select: none !important; user-select: none !important; -webkit-touch-callout: none; }
+#SITE_HEADER img, #SITE_HEADER a { -webkit-user-drag: none; user-drag: none; }
+#SITE_HEADER a:focus:not(:focus-visible) { outline: none !important; box-shadow: none !important; }
+#SITE_HEADER ::selection { background: transparent; }
+

@@ -1,0 +1,4 @@
+/* ---------- No footer: the black bottom section (LinkedIn / Behance icons) is removed on every page, desktop + iPad + phone (Joel 2026-11-24) ----------
+   Desktop/iPad keep LinkedIn + Behance in the header. NOTE: on the phone (m/) the footer held the only copy of those links. */
+#SITE_FOOTER { display: none !important; }
+

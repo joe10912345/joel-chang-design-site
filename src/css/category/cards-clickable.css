@@ -1,0 +1,2 @@
+/* a category card with a link opens from anywhere on it, the photo included (custom.js cardLink, Joel 2026-11-27) */
+#PAGES_CONTAINER .gpDCD5:has(a[href]) { cursor: pointer; -webkit-tap-highlight-color: transparent; }

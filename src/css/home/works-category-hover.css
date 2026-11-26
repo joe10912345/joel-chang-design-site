@@ -1,0 +1,9 @@
+/* Home "Works" category buttons, computer + iPad (Joel 2026-11-26): the word grows a little on hover; pressing no
+   longer fills the button grey (the phone keeps its grey press) - the word turns --jcd-blue instead. */
+body:not(.device-mobile-optimized) a:is(.style-mujxykae__root, .style-mp2gbz8a__root, .style-muksgg1g__root, .style-mp2gc8ur3__root, .style-mp2z7axw__root, .style-mp2z7d7b6__root) .StylableButton2545352419__label {
+  display: inline-block; transition: transform .35s cubic-bezier(.2, .7, .2, 1), color .2s ease; }
+body:not(.device-mobile-optimized) a:is(.style-mujxykae__root, .style-mp2gbz8a__root, .style-muksgg1g__root, .style-mp2gc8ur3__root, .style-mp2z7axw__root, .style-mp2z7d7b6__root):hover .StylableButton2545352419__label { transform: scale(1.05); }
+body:not(.device-mobile-optimized) a:is(.style-mujxykae__root, .style-mp2gbz8a__root, .style-muksgg1g__root, .style-mp2gc8ur3__root, .style-mp2z7axw__root, .style-mp2z7d7b6__root):is(:active, :focus-visible) {
+  background-color: transparent !important; }
+body:not(.device-mobile-optimized) a:is(.style-mujxykae__root, .style-mp2gbz8a__root, .style-muksgg1g__root, .style-mp2gc8ur3__root, .style-mp2z7axw__root, .style-mp2z7d7b6__root):active .StylableButton2545352419__label {
+  color: var(--jcd-blue) !important; transform: scale(1.03); }
