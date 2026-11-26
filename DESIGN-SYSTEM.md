@@ -35,7 +35,7 @@ Never write one of these numbers a second time in another file; read it from the
 | `--jcd-blue` / `--jcd-blue-rgb` | **#0062D9** · rgb(0, 98, 217) | The one interactive blue: menu hover/press, every pressed state that turns blue, icon hover, glows, round >> fill, Contact underline. 唯一的互動藍：選單滑過／按下、所有按下變藍、圖示滑過、光暈、圓形 >> 填色、Contact 底線 |
 | `--jcd-navy` / `--jcd-navy-rgb` | **#00176C** · rgb(0, 23, 108) | Second colour of gradients (recommendation glow, avatar). 漸層的第二色（推薦卡光暈、頭像） |
 | Black 黑 | #000 | Page canvas, dark pages (`.jcd-dark-canvas`). 頁面底色、深色頁 |
-| White page 白底頁 | #fff | Light pages keep Wix's white background (Wi-Fi 7 HGU/AP, MoAI, Extender, 2022, Airgain, Lionic, AI Tool Kit, NLG MMA200, Sagittarius, Assistive) — never paint black. 淺色頁保留白底，不可改黑 |
+| White page 白底頁 — **never change 不可更改** | #fff | **WHITE PAGES STAY WHITE** (checked by `tools/check_site.py`, AGENTS rule 9): light pages keep Wix's white background (Wi-Fi 7 HGU/AP, MoAI, Extender, 2022, Airgain, Lionic, AI Tool Kit, NLG MMA200, Sagittarius, Assistive) — never paint black. 淺色頁保留白底，不可改黑 |
 | Text on dark 深底文字 | #fff headings · rgba(255,255,255,.82–.9) body · .5 secondary · .38 tertiary | 標題白、內文 82–90%、次要 50%、第三層 38% |
 
 Rules 規則

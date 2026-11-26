@@ -11,6 +11,14 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### T. Guardian photo moved to the Selected tile; GET IN TOUCH image restored; white-page rule enforced 圖片換位置、白底規則
+- Joel: "錯了，首頁最底下的圖要改回來，剛剛 t. guardian 的要更新替換在首頁 12 張小圖的其中一張" / "我注意到你又把我的某些產品子頁的白背景改掉了。應該寫進 md 裡，不然都被忽略".
+- Home "Let's Shape the Next Product Together / GET IN TOUCH" background: back to the original (`home-01-2560x1828`, as WebP; social preview JPEG and og size restored; phone `home-32-640x430.webp`).
+- Home Selected grid "Defense / T. Guardian" tile (`home-16`, all four sizes): the new T. Guardian photo, as `home-16-<size>-v2.webp`; original `media-originals/home/home-16-2898x1628.jpg`.
+- White pages: AGENTS rule 9 rewritten as a hard rule naming the 10 white pages; DESIGN-SYSTEM marks the white page background "never change"; new `tools/check_site.py` (fails on a dark-canvas class or a dark rule on those pages, a missing file, a PNG, or stale built files) — AGENTS 9b: run it before every commit. Today's check: all 10 white pages are white (computer + phone, locally and on the live site).
+  白底規則寫成硬性規定並加自動檢查；首頁 GET IN TOUCH 換回原圖，T. Guardian 新圖放到精選 12 格的 Defense。
+- Files: `site/index.html`, `site/m/index.html`, home images, `media-originals/home/home-16-2898x1628.jpg`, `reference/media-map.json`, `tools/check_site.py` (new), AGENTS, DESIGN-SYSTEM.
+
 ### All site photos WebP (~46% lighter); new T. Guardian image behind "GET IN TOUCH" 照片全部轉 WebP；首頁 T. Guardian 換圖
 - Joel: "Yes, convert them" (JPG photos → WebP) / "我放了一張圖在 media new 裡，可換掉首頁圖的 t.guardian。你可以轉檔跟重新命名，符合你剛剛 webp 的作法".
 - 988 JPEG photos → WebP q86 (`tools/jpg_to_webp.py`): 123.5 MB → 67.1 MB; with the PNG change before, the site's images went from ~180 MB to 82 MB. JPEG copies kept only for social / search previews (og:image, twitter:image, JSON-LD), which don't reliably show WebP. Old → new: `reference/jpg-to-webp-2026-11-27.json`. All references checked.
