@@ -584,4 +584,4 @@ body:not(.device-mobile-optimized) #pro-gallery-container-comp-mnpgav5j.jcd-spot
 .jcd-gg-hide { visibility: hidden !important; }
 body:not(.device-mobile-optimized) .jcd-go.jcd-go-hover { position: absolute; right: 16px; bottom: 14px; z-index: 2; width: 40px; height: 40px; font-size: 15px;
   opacity: 0; transition: opacity .35s, background .12s, border-color .12s; pointer-events: none; }
-.gpDCD5:hover .jcd-go-hover, .gpDCD5:focus-within .jcd-go-hover { opacity: 1; }
+body:not(.device-mobile-optimized) .gpDCD5:hover .jcd-go-hover, body:not(.device-mobile-optimized) .gpDCD5:focus-within .jcd-go-hover { opacity: 1; }

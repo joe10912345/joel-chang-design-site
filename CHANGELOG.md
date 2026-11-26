@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Fix: round ">>" did not appear on hover (computers)
+- The size rule for the round ">>" (`body:not(.device-mobile-optimized) .jcd-go.jcd-go-hover`, opacity 0) outranked the hover rule, so it stayed invisible. The hover rule now has the same `body:not(...)` prefix and wins. `custom.css`.
+
 ### Category cards on computers: round ">>" like the other platforms
 - Joel: the computer ">>" should be circled, as on phone / iPad. Wix's text ">>" is hidden; linked cards get the same round frosted ">>" (40px) in the photo's bottom-right corner, shown only while the mouse is on the card. Big cards whose Wix link box is 0px tall now hang the overlay on the photo itself (also fixes their position on touch). Checked all six category pages, computer + phone: every linked card has its round ">>" in the bottom-right corner. `custom.js`, `custom.css` `.jcd-go-hover`, `.jcd-gg-hide`.
 
