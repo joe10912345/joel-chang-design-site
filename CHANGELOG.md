@@ -11,6 +11,12 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### T. Blade top image framing adjustable T. Blade 首圖位置可調
+- Joel: "T. Blade 首圖可以讓我調整位置嗎? mockup". The top image is now a per-platform `photoFrames.tBladeHero` entry in
+  `jcd-config.js` (starts at the old 50% 45%), adjustable in `preview/mockups/photo-align.html?key=tBladeHero&p=/t-blade/`.
+  Files: `site/assets/js/jcd-config.js` (+ `?v=` in every page).
+  T. Blade 首圖改由 jcd-config.js 控制（各平台分開，起始值同原本），可在 photo-align mockup 拖曳調整。
+
 ### Scroll fade timing set by Joel 捲動淡入採用 Joel 調的數值
 - Set in `preview/mockups/scroll-fade.html`: starts appearing at 89% of the screen height, fully visible at the middle,
   soft curve, 0.24s smoothing. Phone, iPad, computer. Files: `site/assets/js/jcd-config.js` (+ `?v=` in every page).
