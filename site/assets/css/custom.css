@@ -619,24 +619,27 @@ img.jcd-sig { -webkit-mask-image: linear-gradient(90deg, #000 40%, transparent 6
 img.jcd-sig.jcd-sig-in { -webkit-mask-position: 0 0 !important; mask-position: 0 0 !important;   /* the transition only on the way in: no hide flash at load */
   transition: -webkit-mask-position 1.6s cubic-bezier(.45, .05, .35, 1), mask-position 1.6s cubic-bezier(.45, .05, .35, 1) !important; }
 /* Design Approach cards (home), Joel 2026-11-26 (option C + 1 of preview/design-approach-card.html): all four react to
-   the mouse (frame brightens, faint light fill). Card 1 (the link) does not move: a light blue gradient slides in
-   from the left; a small round >> (30px) sits in the bottom-right corner, clear of the text, and fills blue when
+   the mouse (frame brightens, faint light fill). Card 1 (the link) does not move: its frame turns --jcd-blue with a soft blue outer glow
+   (option A + 1, Joel's final pick); a small round >> (30px) sits in the bottom-right corner, clear of the text, and fills blue when
    the card is pressed (custom.js). */
 .jcd-da-card { transition: box-shadow .35s cubic-bezier(.2, .7, .2, 1), background-color .35s ease, background-size .6s cubic-bezier(.2, .7, .2, 1); }
 .jcd-da-card:not(.jcd-da-link):hover { background-color: rgba(255, 255, 255, .03); box-shadow: 0 0 0 1px rgba(255, 255, 255, .9); }
-.jcd-da-link { background-image: linear-gradient(110deg, rgba(var(--jcd-blue-rgb), .28), transparent 60%) !important;
-  background-size: 0% 100% !important; background-repeat: no-repeat !important; }
-.jcd-da-link:hover, .jcd-da-link:focus-visible { background-size: 100% 100% !important; }
+.jcd-da-card > .wixui-box { transition: border-color .35s ease; }
+.jcd-da-link:hover > .wixui-box, .jcd-da-link:focus-visible > .wixui-box { border-color: var(--jcd-blue) !important; }   /* the white frame itself turns blue */
+.jcd-da-link:hover, .jcd-da-link:focus-visible { box-shadow: 0 0 0 1px var(--jcd-blue), 0 0 34px rgba(var(--jcd-blue-rgb), .45); }
 .jcd-da-link:active, .jcd-da-link.is-pressed { transform: none; }
 .jcd-da-go, body:not(.device-mobile-optimized) .jcd-go.jcd-da-go { position: absolute; right: 16px; bottom: 14px; z-index: 3; width: 30px; height: 30px; font-size: 11px; pointer-events: none; }
 .device-mobile-optimized .jcd-go.jcd-da-go { right: 8px; bottom: 7px; width: 20px; height: 20px; font-size: 8px; }
 .jcd-da-link:hover .jcd-da-go { background: rgba(var(--jcd-blue-rgb), .35); border-color: rgba(255, 255, 255, .6); }
-@media (hover: none) { .jcd-da-card:hover { background-color: transparent; box-shadow: none; } .jcd-da-link:hover { background-size: 0% 100% !important; } }
+@media (hover: none) { .jcd-da-card:hover { background-color: transparent; box-shadow: none; } }
 /* Home video: a soft blue light around the video window that gently breathes (Joel 2026-11-26; the turning ring
    was removed the same day). custom.js places .jcd-vglow exactly on the window, under the video. */
 .jcd-vglow { position: absolute; z-index: 0; pointer-events: none; animation: jcdVBreath 4.5s ease-in-out infinite; }
 .jcd-vglow::before { content: ""; position: absolute; inset: -8px; border-radius: 6px;
   background: linear-gradient(135deg, #0062d9, #3a5bff 50%, #00176c); filter: blur(16px); opacity: .85; }
 #comp-moybizuw { position: relative; z-index: 1; }
-@keyframes jcdVBreath { 0%, 100% { opacity: .65; } 50% { opacity: 1; } }
-@media (prefers-reduced-motion: reduce) { .jcd-vglow { animation: none; } }
+@keyframes jcdVBreath { 0%, 100% { opacity: .2; } 50% { opacity: 1; } }
+/* stronger breathing (Joel): the glow-frame image itself dims to ~35% and comes back slightly brighter, in step */
+#comp-mp2fugu9 img { animation: jcdVFrame 4.5s ease-in-out infinite; }
+@keyframes jcdVFrame { 0%, 100% { filter: brightness(.35); } 50% { filter: brightness(1.15); } }
+@media (prefers-reduced-motion: reduce) { .jcd-vglow, #comp-mp2fugu9 img { animation: none; } }

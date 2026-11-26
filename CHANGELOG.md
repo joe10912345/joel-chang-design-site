@@ -9,6 +9,10 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Design Approach card 1 = A + 1; stronger video breathing
+- Joel's final pick (A + 1): on hover card 1's frame itself turns `--jcd-blue` with a soft blue outer glow (no movement, no gradient); small round >> in the corner. `custom.css` `.jcd-da-*` (frame drawn by the inner `.wixui-box`).
+- Video glow (Joel: breathing too weak, dark phase should be darker): the glow-frame image now breathes too, brightness .35 -> 1.15 (4.5s), the added light .2 -> 1, in step. `custom.css`.
+
 ### Design Approach card 1: no lift, blue gradient slides in, small >> in the corner
 - Joel chose C + 1 of `preview/design-approach-card.html`: card 1 no longer moves on hover; a light blue gradient slides in from the left. The round >> is 30px (phone 20px) in the bottom-right corner, clear of the text; still fills blue when pressed. `custom.css` `.jcd-da-*`.
 
