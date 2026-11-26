@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### About "What I Believe" on iPad upright / phone: framing
+- Joel: speaker too far left on phone/iPad; on an upright iPad his head was cut, then too much ceiling/floor. Phone: photo anchored at 17% (speaker ~left of centre). iPad: 15% 70%. iPad upright: section and photo 38% of the screen tall (wide crop, less ceiling/floor), photo held at the screen bottom (this is the page's last section, so it lines up at the end like the product pages), text drawn 1.25x and re-centred. `custom.js`.
+
 ### About "What I Believe": scroll reveal; speaker kept in view on phone/iPad
 - Joel: same reveal as the product pages. The photo is one screen tall and stays still while the section passes over it like a window (CSS sticky; its box reaches one screen above/below the section, the section's background box clips with `overflow: clip`). Loads at once (not lazy). Phone + iPad: the photo is anchored left (`object-position: 12% 60%`) so the speaker on the left shows. Phone now uses the large file (`about-03-2151x1344.jpg`; the 640px crop `about-04` removed) because the photo fills a whole tall screen. `custom.js` "About What I Believe".
 
