@@ -11,6 +11,10 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Home top slideshow: "1/10" counter hidden 首頁首圖不顯示張數
+- Joel: "首頁首圖右下角不要有 1/10 這種數量示意，直接隱藏". Hidden on phone, iPad and computer. 手機、iPad、電腦都隱藏。
+- Files: `src/css/home/hero-no-counter.css` (new), `src/css/ORDER.txt`, built `custom.css`, `?v=` in all page HTML, `src/README.md`, `DESIGN-SYSTEM.md`.
+
 ### Home Selected grid: smaller round >> 首頁精選 12 格的 >> 圓圈縮小
 - Joel: "首頁12個小圖的">>"圓圈太大，幫我縮小". Computer 34 → 26px, iPad 46 → 34px, phone 30 → 22px (arrow text in step). 電腦 34→26、iPad 46→34、手機 30→22px。
 - Files: `src/css/home/selected-grid.css` → built `custom.css`, `?v=` in all page HTML; `DESIGN-SYSTEM.md`.

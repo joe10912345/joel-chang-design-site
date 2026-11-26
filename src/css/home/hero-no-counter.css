@@ -1,0 +1,3 @@
+/* Home top slideshow: no "1/10" slide counter in the bottom-right corner, every platform (Joel 2026-11-27: "不要有 1/10
+   這種數量示意，直接隱藏"). site.js still updates it; it is simply not shown. */
+#SITE_CONTAINER [data-testid="gallery-counter"] { display: none !important; }

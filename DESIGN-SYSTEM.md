@@ -118,7 +118,7 @@ Other rules 其他:
 - Top image 首圖: phone 50% of screen height; portrait screens 50%; landscape exactly one screen (`100svh`). 手機與直向半個螢幕高、橫向剛好一個螢幕。
 - Background photos are pinned to their section, never `overflow: clip/hidden` on a Wix `bgMedia_*` outside its section. 背景圖固定在所屬段落。
 - Closing photo of product pages: CSS-sticky scroll reveal (`.jcd-reveal`), full original photo. 產品頁最後一張圖：捲動揭幕（CSS sticky）。
-- Home slideshow always starts at slide 1. 首頁輪播每次從第一張開始。
+- Home slideshow always starts at slide 1, and shows no "1/10" counter. 首頁輪播每次從第一張開始，不顯示「1/10」張數。
 - Images 圖片: `site/assets/media/<page>/<page>-<nn>-<w>x<h>.jpg` from `media-originals/`, JPEG q86 4:4:4 (top images q90, max 3200px); phone copies max 2400 (top) / 1440; `loading="lazy"` below the first section. 命名、品質、手機版尺寸、延遲載入規則。
 
 ## 6. Interaction states 互動狀態

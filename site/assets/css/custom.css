@@ -689,3 +689,6 @@ body:not(.device-mobile-optimized) #comp-mujmtw8h { height: 421px !important; } 
 #comp-mnfi6oqr .nav-arrows-container svg path { stroke: #fff; stroke-width: 2.2px; stroke-linejoin: round; paint-order: stroke; }
 /* a category card with a link opens from anywhere on it, the photo included (custom.js cardLink, Joel 2026-11-27) */
 #PAGES_CONTAINER .gpDCD5:has(a[href]) { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+/* Home top slideshow: no "1/10" slide counter in the bottom-right corner, every platform (Joel 2026-11-27: "不要有 1/10
+   這種數量示意，直接隱藏"). site.js still updates it; it is simply not shown. */
+#SITE_CONTAINER [data-testid="gallery-counter"] { display: none !important; }
