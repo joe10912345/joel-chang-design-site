@@ -103,6 +103,18 @@
         first.addEventListener('keydown', function (e) { if (e.key === 'Enter') arrow.click(); });
         arrow.addEventListener('pointerdown', function () { first.classList.add('is-pressed'); });
         ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (ev) { arrow.addEventListener(ev, function () { first.classList.remove('is-pressed'); }); });
+        /* Joel 2026-11-26: the round ">>" (same as the category cards) replaces Wix's text arrow; pressing the card
+           fills it blue and the page opens a moment later */
+        var acomp = arrow.closest('[id^="comp-"]'); if (acomp) acomp.classList.add('jcd-gg-hide');
+        var chip = document.createElement('span'); chip.className = 'jcd-go jcd-da-go'; chip.textContent = '>>'; first.appendChild(chip);
+        var href = arrow.href;
+        first.removeEventListener('click', go);
+        first.addEventListener('click', function (e) {
+          if (e.metaKey || e.ctrlKey || e.shiftKey) { window.open(href, '_blank'); return; }
+          e.preventDefault(); chip.classList.add('jcd-go-fill');
+          setTimeout(function () { location.href = href; }, 420);
+        });
+        window.addEventListener('pageshow', function () { chip.classList.remove('jcd-go-fill'); });
       }
     }
 
@@ -1181,6 +1193,23 @@
     var grow = comp.scrollHeight - H0;
     comp.style.setProperty('height', (H0 * S).toFixed(1) + 'px', 'important');
     if (sec && grow > 0) sec.style.setProperty('min-height', (secH0 + H0 * (S - 1)).toFixed(1) + 'px', 'important');
+  });
+
+  /* About signature (Joel 2026-11-26): hidden until it scrolls into view, then appears from left to right with a
+     soft edge (1.6s), once. Every platform; reduced motion = shown at once. CSS: .jcd-sig / .jcd-sig-in. */
+  ready(function () {
+    var img = document.getElementById('img_comp-mujp6oap'); if (!img) return;
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    img.loading = 'eager'; img.removeAttribute('loading');
+    img.classList.add('jcd-sig');
+    var go = function () { void img.offsetWidth; img.classList.add('jcd-sig-in'); };
+    if (!('IntersectionObserver' in window)) { go(); return; }
+    var done = false, fire = function () { if (done) return; done = true; setTimeout(go, 200); };
+    var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); fire(); } }, { threshold: 0.6 });
+    io.observe(img);
+    /* backup: a plain scroll check (some embedded/throttled views never report the intersection) */
+    var chk = function () { var r = img.getBoundingClientRect(); if (r.height && r.top < window.innerHeight * 0.92 && r.bottom > 0) { fire(); window.removeEventListener('scroll', chk); } };
+    window.addEventListener('scroll', chk, { passive: true }); setTimeout(chk, 600);
   });
 
   // iOS Safari only applies :active (pressed states) when a touchstart listener exists.

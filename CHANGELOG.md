@@ -9,6 +9,11 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### About signature reveal; Design Approach cards interactive; smaller hover grow on category words
+- About signature: hidden until it scrolls into view, then appears left to right with a soft edge (1.6s), once; all platforms (Joel chose this over stroke-by-stroke writing). CSS mask with `!important` (Wix's img rule sets mask-position/size and loads later); the transition only runs on the way in (no hide flash at load); a scroll check backs up the IntersectionObserver. `custom.js` "About signature", `custom.css` `.jcd-sig`.
+- Home Design Approach cards: all four react to the mouse (frame brightens, faint light fill). Card 1 (the link) also lifts 4px with a soft blue/navy glow; Wix's text ">>" is replaced by the round ">>" (40px, phone 26px) that fills `--jcd-blue` when the card is pressed, page opens 0.42s later. `custom.js` (Design Approach block), `custom.css` `.jcd-da-*`.
+- Home category words: hover grow 1.12 -> 1.05 (press 1.03) (Joel: too big).
+
 ### Home: End-to-End squares larger; category words grow on hover, no grey press
 - End-to-End Expertise slider (computer + iPad): squares drawn 1.35x (356 -> 481px) so the text in the photos is readable; strip, gallery box and section grow with them (same space below), arrows step one (new) card, the hover caption layer is resized too. `custom.js` "End-to-End", `site.js` 5 (card step in CSS px).
 - "Works" category words (Defense ... Experimental), computer + iPad: the word grows 1.12x on hover; pressing no longer fills the button grey, the word turns `--jcd-blue` (phone keeps its grey press). `custom.css`.

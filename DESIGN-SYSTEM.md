@@ -95,10 +95,10 @@ Home slideshow: always starts at slide 1 when the page is shown (also after the 
 | Press (all platforms) | Text → `--jcd-blue` + small press-in `scale(.92)` in .12s (menus, dropdown items, phone menu, menu icons); cards `scale(.99)` |
 | Touch | Every hover effect also on tap/press (`:hover` sticks after a tap, `:active` while pressed); iOS needs the touchstart listener in `custom.js` |
 | Labels that are not buttons | No frame, no hover, no click (home "Selected") |
-| Cards that are not links | No glow, no hover, no press, default cursor (Design Approach cards 2-4). Only a card with a destination is pressable (Design Approach card 1: press-in + blue outline) |
+| Cards that are not links | Design Approach cards 2-4: subtle hover only (frame brightens, faint fill), no press, default cursor. Card 1 (link): lift 4px + blue/navy glow + round >> that fills blue on press |
 | Category cards | Computer: only linked cards tilt + light sheen; unlinked keep the darken + name on hover, arrow cursor; a round frosted >> (40px, bottom-right) only on hover. Touch (phone + iPad): name bottom-left (brand small + model, soft shadow), linked cards a round frosted >> on the same centre line, blue while pressed |
 | Touch reveal | Overlays that show on hover with a mouse show while a finger rests on the item (~0.06s), not after the tap; scrolling/swiping never triggers them. Tiles without a link (End-to-End) keep the overlay after the tap (60% on touch, 27% desktop hover) |
-| Home category words | Computer/iPad: word scales 1.12 on hover (.35s), pressed = --jcd-blue text, no fill. Phone: grey press fill |
+| Home category words | Computer/iPad: word scales 1.05 on hover (.35s), pressed = --jcd-blue text, no fill. Phone: grey press fill |
 | Round >> press | Clicking a card with a round >> fills it --jcd-blue, the page opens 0.42s later (every platform) |
 | Home Selected grid | Spotlight: hovered tile bright + photo 1.06 inside the frame + white 1px line + category/name + round >>; the others brightness .38. Touch: name + round >> always shown |
 | Selection / context menu | Disabled site-wide on phone, iPad and computer (`custom.css` + `custom.js`): no right-click / long-press menu, no text selection with the mouse or a long press, no image drag. Form fields (Contact) excepted |
@@ -111,6 +111,7 @@ Home slideshow: always starts at slide 1 when the page is shown (also after the 
 - GET IN TOUCH (home): endless "balloon" breathing, scale 1 → 1.045 → 1, 2.8s; pauses on hover/press.
 - Ocean Series creature photos: dimmed 35% at rest; hover/tap = full brightness + the photo zooms 1.1 **inside its frame** (never covers text).
 - Category cards (desktop): 3D tilt following the mouse (`tilt.js`), max 3°.
+- About signature: left-to-right soft-edge reveal on scroll-in, 1.6s, once.
 - Home Achievements numbers: odometer roll on scroll-in, 1.8s cubic-bezier(.2,.75,.15,1), numbers 0.15s apart, once.
 - Home Achievement map: dots breathe (3.2s) with a spreading ring; a soft light (fading head and tail) runs each line into its flag (4.8s, countries staggered 0.55s); flag outline glows on arrival. Computer hover: the country's products scale 1.07, its dot/flag stay lit without motion, other countries' effects fade out.
 
