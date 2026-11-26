@@ -11,6 +11,10 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### T. Xcalar photo: Joel's framing applied T. Xcalar 照片套用 Joel 的對齊
+- Joel aligned it in `preview/mockups/photo-align.html` ("搞定"): `photoFrames.xcalar` x 46, y 26, zoom 1.19 (computer, iPad, phone). 依 Joel 對齊的數值寫入設定。
+- Files: `site/assets/js/jcd-config.js`, `?v=` in all page HTML.
+
 ### Fix: photo framing zoom was ignored 修正：照片放大沒有作用
 - Joel: "沒辦法放大欸". A site rule that forbids transforms inside category tiles (`static-overrides.css`) overrode the zoom; `photo-frames.js` now sets it with priority. Checked on computer, iPad and phone in the tool. 照片放大被既有規則蓋掉，已修正。
 - Files: `src/js/global/photo-frames.js` → built `custom.js`, `?v=` in all page HTML.

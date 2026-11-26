@@ -54,7 +54,7 @@ window.JCD_CONFIG = {
      the photo stays in view (0-100%, like object-position), `zoom` = how much larger than just filling the card.
      Same on every device. 卡片內照片取景：x / y 決定看哪個位置（0-100%），zoom 放大倍率；三平台共用。 */
   photoFrames: {
-    xcalar: { img: '#img_comp-jcdxcal1', x: 50, y: 40, zoom: 1.2 },   /* Defense, T. Xcalar card */
+    xcalar: { img: '#img_comp-jcdxcal1', x: 46, y: 26, zoom: 1.19 },   /* Defense, T. Xcalar card — aligned by Joel 2026-11-27 */
   },
 
   /* Forms (Contact page + Guest Area "Request access"): sent to Joel's mailbox through Web3Forms (no server on GitHub
