@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Round ">>": slower fill
+- Joel: slower - the left-to-right blue fill now takes .9s (was .45s), ease-in-out. `custom.css`.
+
 ### Round ">>": fill runs left to right
 - Joel: not from the centre - the blue now fills the circle from left to right (.45s). `custom.css` .jcd-go::before (scaleX, origin left; the round chip clips it).
 

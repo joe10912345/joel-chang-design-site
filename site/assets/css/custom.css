@@ -648,7 +648,7 @@ img.jcd-sig.jcd-sig-in { -webkit-mask-position: 0 0 !important; mask-position: 0
 .jcd-go { isolation: isolate; overflow: hidden; }
 .jcd-go:not(.jcd-go-hover):not(.jcd-da-go) { position: relative; }
 .jcd-go::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--jcd-blue);   /* fills left -> right (Joel) */
-  transform: scaleX(0); transform-origin: 0 50%; transition: transform .45s cubic-bezier(.2, .7, .2, 1); }
+  transform: scaleX(0); transform-origin: 0 50%; transition: transform .9s cubic-bezier(.4, 0, .2, 1); }
 .jcd-spot a.jcd-hot-tile .jcd-go::before, .gpDCD5:hover .jcd-go::before, .jcd-da-link:hover .jcd-go::before,
 a.item-link-wrapper:active .jcd-go::before, .gpDCD5:active .jcd-go::before, .jcd-da-link:active .jcd-go::before { transform: scale(1); }
 .jcd-spot a.jcd-hot-tile .jcd-go, .gpDCD5:hover .jcd-go, .jcd-da-link:hover .jcd-go { border-color: var(--jcd-blue); background: rgba(20, 22, 28, .45); }
