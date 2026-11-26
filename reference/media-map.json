@@ -6646,66 +6646,6 @@
   ],
   "original_name": "1e9c09_e67511e287594fed9ee981edd66ebbc1_mv2.jpg"
  },
- "home/home-16-1440x810.webp": {
-  "source": "media-originals/home/home-16-2898x1628.jpg",
-  "wix_ops": {
-   "crop": null,
-   "mode": "fill",
-   "align": "c"
-  },
-  "replaces": [
-   "1e9c09_f0569fdd3c044fe48dd59f081dab6c2f_mv2_1713x963_80397aca.jpg"
-  ],
-  "pages": [
-   "home"
-  ],
-  "original_name": "1e9c09_f0569fdd3c044fe48dd59f081dab6c2f_mv2.jpg"
- },
- "home/home-16-343x193.webp": {
-  "source": "media-originals/home/home-16-2898x1628.jpg",
-  "wix_ops": {
-   "crop": null,
-   "mode": "fill",
-   "align": "c"
-  },
-  "replaces": [
-   "1e9c09_f0569fdd3c044fe48dd59f081dab6c2f_mv2_343x193_3adf55c9.jpg"
-  ],
-  "pages": [
-   "home"
-  ],
-  "original_name": "1e9c09_f0569fdd3c044fe48dd59f081dab6c2f_mv2.jpg"
- },
- "home/home-16-399x224.webp": {
-  "source": "media-originals/home/home-16-2898x1628.jpg",
-  "wix_ops": {
-   "crop": null,
-   "mode": "fill",
-   "align": "c"
-  },
-  "replaces": [
-   "1e9c09_f0569fdd3c044fe48dd59f081dab6c2f_mv2_399x224_8b969157.jpg"
-  ],
-  "pages": [
-   "home"
-  ],
-  "original_name": "1e9c09_f0569fdd3c044fe48dd59f081dab6c2f_mv2.jpg"
- },
- "home/home-16-997x560.webp": {
-  "source": "media-originals/home/home-16-2898x1628.jpg",
-  "wix_ops": {
-   "crop": null,
-   "mode": "fill",
-   "align": "c"
-  },
-  "replaces": [
-   "1e9c09_f0569fdd3c044fe48dd59f081dab6c2f_mv2_1995x1120_119c0f37.jpg"
-  ],
-  "pages": [
-   "home"
-  ],
-  "original_name": "1e9c09_f0569fdd3c044fe48dd59f081dab6c2f_mv2.jpg"
- },
  "home/home-17-1440x810.webp": {
   "source": "media-originals/home/home-17-2560x1440.jpg",
   "wix_ops": {
@@ -20362,19 +20302,18 @@
   ],
   "note": "T. Xcalar (Joel 2026-11-27)"
  },
- "home/home-01-2898x1628.webp": {
-  "source": "media-originals/home/home-01-2898x1628.jpg",
+ "home/home-01-2560x1828.webp": {
+  "source": "media-originals/home/home-01-2560x1828.jpg",
   "wix_ops": {
    "crop": null
   },
   "replaces": [],
   "pages": [
    "home"
-  ],
-  "note": "T. Guardian, GET IN TOUCH background (Joel 2026-11-27)"
+  ]
  },
- "home/home-01-2898x1628.jpg": {
-  "source": "media-originals/home/home-01-2898x1628.jpg",
+ "home/home-01-2560x1828.jpg": {
+  "source": "media-originals/home/home-01-2560x1828.jpg",
   "wix_ops": {
    "crop": null
   },
@@ -20382,17 +20321,80 @@
   "pages": [
    "home"
   ],
-  "note": "T. Guardian, GET IN TOUCH background (Joel 2026-11-27)"
+  "note": "JPEG kept for social previews"
  },
- "home/home-32-960x539.webp": {
-  "source": "media-originals/home/home-01-2898x1628.jpg",
+ "home/home-32-640x430.webp": {
+  "source": "media-originals/home/home-01-2560x1828.jpg",
   "wix_ops": {
    "crop": null
   },
   "replaces": [],
   "pages": [
    "home"
+  ]
+ },
+ "home/home-16-1440x810-v2.webp": {
+  "source": "media-originals/home/home-16-2898x1628.jpg",
+  "wix_ops": {
+   "crop": null,
+   "mode": "fill",
+   "align": "c"
+  },
+  "replaces": [
+   "1e9c09_f0569fdd3c044fe48dd59f081dab6c2f_mv2_1713x963_80397aca.jpg"
   ],
-  "note": "T. Guardian, GET IN TOUCH background (Joel 2026-11-27)"
+  "pages": [
+   "home"
+  ],
+  "original_name": "1e9c09_f0569fdd3c044fe48dd59f081dab6c2f_mv2.jpg",
+  "note": "T. Guardian (Joel 2026-11-27)"
+ },
+ "home/home-16-343x193-v2.webp": {
+  "source": "media-originals/home/home-16-2898x1628.jpg",
+  "wix_ops": {
+   "crop": null,
+   "mode": "fill",
+   "align": "c"
+  },
+  "replaces": [
+   "1e9c09_f0569fdd3c044fe48dd59f081dab6c2f_mv2_343x193_3adf55c9.jpg"
+  ],
+  "pages": [
+   "home"
+  ],
+  "original_name": "1e9c09_f0569fdd3c044fe48dd59f081dab6c2f_mv2.jpg",
+  "note": "T. Guardian (Joel 2026-11-27)"
+ },
+ "home/home-16-399x224-v2.webp": {
+  "source": "media-originals/home/home-16-2898x1628.jpg",
+  "wix_ops": {
+   "crop": null,
+   "mode": "fill",
+   "align": "c"
+  },
+  "replaces": [
+   "1e9c09_f0569fdd3c044fe48dd59f081dab6c2f_mv2_399x224_8b969157.jpg"
+  ],
+  "pages": [
+   "home"
+  ],
+  "original_name": "1e9c09_f0569fdd3c044fe48dd59f081dab6c2f_mv2.jpg",
+  "note": "T. Guardian (Joel 2026-11-27)"
+ },
+ "home/home-16-997x560-v2.webp": {
+  "source": "media-originals/home/home-16-2898x1628.jpg",
+  "wix_ops": {
+   "crop": null,
+   "mode": "fill",
+   "align": "c"
+  },
+  "replaces": [
+   "1e9c09_f0569fdd3c044fe48dd59f081dab6c2f_mv2_1995x1120_119c0f37.jpg"
+  ],
+  "pages": [
+   "home"
+  ],
+  "original_name": "1e9c09_f0569fdd3c044fe48dd59f081dab6c2f_mv2.jpg",
+  "note": "T. Guardian (Joel 2026-11-27)"
  }
 }

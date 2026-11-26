@@ -41,9 +41,15 @@ Several AIs work on this site. To stay in sync, follow these rules. Architecture
    image that sizes its own box). Alt text = clean English description (never a file name). Record new files in
    `reference/media-map.json`. Every other file is named too: videos `site/assets/video/<page>/<page>-video-<nn>-<quality>.mp4`, fonts
    `site/assets/fonts/<family>/`, Wix CSS `site/assets/wix/`. No raw camera / Wix / screenshot names anywhere. 一頁一個資料夾、統一命名、從原始檔產生、替代文字用英文描述、記錄到 media-map.json。
-9. Dark pages have `class="jcd-dark-canvas"` on `<html>`. Light pages (white Wix background: MoAI, Wi-Fi 7 Extender /
-   HGU-AP / 2022, Airgain, Lionic, AI Tool Kit, NLG MMA200, Sagittarius, Assistive) must NOT have it.
-   深色頁 `<html>` 要有 jcd-dark-canvas；淺色頁不可以有。
+9. **WHITE PAGES STAY WHITE (Joel's rule, broken before — never again).** These product pages have a WHITE background
+   that shows through their transparent sections: **MoAI Router, Wi-Fi 7 Extender, Wi-Fi 7 HGU/AP, Wi-Fi 7 2022, Airgain FWA,
+   Lionic LionFilter 200, AI Tool Kit, NLG MMA200, Sagittarius Laptop, Assistive Products** (computer + phone). Never give
+   them `class="jcd-dark-canvas"`, never paint their page background, sections or images dark, never "unify" them with the
+   black pages. Dark pages have `jcd-dark-canvas` on `<html>`. A new page: add it only if every section covers itself.
+   **白底頁面一律維持白底（Joel 的規則，曾被改錯，不可再犯）**：上列 10 頁（電腦＋手機）不可加 jcd-dark-canvas、不可把背景、段落或
+   圖片改深色、不可為了統一改成黑底。深色頁才加 jcd-dark-canvas。
+9b. **Before every commit run `python tools/check_site.py`** (light pages still light, every referenced file exists, no PNG,
+   built CSS/JS up to date). Do not commit while it reports a problem. **每次 commit 前必跑 `python tools/check_site.py`**，有錯不可 commit。
 
 ## After a change 修改後
 
