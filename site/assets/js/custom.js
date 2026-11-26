@@ -1030,6 +1030,59 @@
     [].forEach.call(document.querySelectorAll('.jcd-go-fill'), function (g) { g.classList.remove('jcd-go-fill'); });
   });
 
+  /* Home "Achievements" numbers (10+, 15+, 30+, 8+, 2+): odometer roll (Joel 2026-11-26, option A of
+     preview/achievement-counters.html). Each digit is a column that rolls up like a clock / odometer (units roll
+     more turns than tens), fast then slow, and all stop on the real number; numbers start 0.15s apart, once, when
+     they scroll into view. The digits keep Wix's font and size (column height = the measured digit height).
+     Every platform; reduced motion = plain numbers. */
+  ready(function () {
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var nums = [];
+    [].forEach.call(document.querySelectorAll('#PAGES_CONTAINER [data-testid="richTextElement"]'), function (rt) {
+      if (!/^\s*\d+\s*\+\s*$/.test(rt.textContent)) return;
+      var w = document.createTreeWalker(rt, NodeFilter.SHOW_TEXT), tn, node = null;
+      while ((tn = w.nextNode())) { if (/\d/.test(tn.nodeValue)) { node = tn; break; } }
+      if (!node) return;
+      var m = /^(\s*)(\d+)(.*)$/.exec(node.nodeValue); if (!m) return;
+      var probe = document.createElement('span'); probe.textContent = m[2];
+      node.parentNode.insertBefore(probe, node); node.nodeValue = m[1] + m[3];
+      nums.push({ probe: probe, digits: m[2].split(''), cols: [] });
+    });
+    if (!nums.length) return;
+    nums.forEach(function (n) {
+      var h = n.probe.offsetHeight;   /* layout px: not changed by the page zoom or any scaling transform */
+      if (!h) return;
+      var wrap = document.createElement('span'); wrap.className = 'jcd-odo'; wrap.setAttribute('aria-label', n.digits.join(''));
+      n.digits.forEach(function (d, k) {
+        var od = document.createElement('span'); od.className = 'jcd-odo-d'; od.style.height = h + 'px';
+        /* each column is as wide as its final digit (a column holds all ten digits, and a wide 0 must not push
+           "10+" onto two lines) */
+        var pw = document.createElement('span'); pw.textContent = d; n.probe.parentNode.insertBefore(pw, n.probe);
+        od.style.width = pw.offsetWidth + 'px'; pw.parentNode.removeChild(pw);
+        var col = document.createElement('span'); col.className = 'jcd-odo-c'; col.setAttribute('aria-hidden', 'true');
+        var total = (n.digits.length - k) * 10 + (+d);
+        for (var j = 0; j <= total; j++) { var i = document.createElement('span'); i.textContent = j % 10; i.style.height = h + 'px'; i.style.lineHeight = h + 'px'; col.appendChild(i); }
+        od.appendChild(col); wrap.appendChild(od); n.cols.push({ col: col, total: total, h: h });
+      });
+      var blk = n.probe.closest('h1,h2,h3,h4,h5,h6,p') || n.probe.parentNode; blk.style.whiteSpace = 'nowrap';
+      n.probe.parentNode.replaceChild(wrap, n.probe);
+    });
+    function run() {
+      nums.forEach(function (n, idx) {
+        n.cols.forEach(function (c) {
+          c.col.style.transitionDelay = (idx * 0.15) + 's';
+          c.col.style.transform = 'translateY(' + (-c.h * c.total) + 'px)';
+        });
+      });
+    }
+    var target = nums[0].cols.length ? nums[0].cols[0].col.closest('section') : null;
+    if (!('IntersectionObserver' in window) || !target) { run(); return; }
+    var io = new IntersectionObserver(function (es) {
+      if (es.some(function (e) { return e.isIntersecting; })) { io.disconnect(); setTimeout(run, 150); }
+    }, { threshold: 0.25 });
+    nums.forEach(function (n) { if (n.cols[0]) io.observe(n.cols[0].col.closest('.jcd-odo')); });
+  });
+
   // iOS Safari only applies :active (pressed states) when a touchstart listener exists.
   document.addEventListener('touchstart', function () {}, { passive: true });
 })();

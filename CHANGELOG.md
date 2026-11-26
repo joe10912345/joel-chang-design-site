@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Home Achievements numbers: odometer roll
+- Joel chose option A of `preview/achievement-counters.html`. 10+ / 15+ / 30+ / 8+ / 2+: each digit rolls up like an odometer (units more turns than tens, 1.8s fast-then-slow), the five numbers 0.15s apart, once, when they scroll into view. Wix's font and size kept (column height = measured digit height; each column as wide as its final digit, the line never wraps). All platforms; off under reduced motion. `custom.js`, `custom.css` `.jcd-odo*`.
+
 ### Fix: product-page closing photos were gone (reveal)
 - Cause: the image clean-up made images below the first screen lazy-loading. The reveal section takes its height from the photo, so it started at 0px and a lazy photo in a 0px box never loads. `custom.js` reveal block: the closing photo always loads at once, and the photo ratio is read from the file name (`-2000x942`) so the height is right before the photo arrives. Checked 18 product pages x computer + phone: all 36 show their photo.
 
