@@ -7,6 +7,11 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ---
 
+## 2026-11-27
+
+### Category cards with a link: photo zooms in on hover
+- Joel: clickable category cards zoom in. The photo scales 1.06 inside its frame (.8s) on hover with a mouse, while pressed on touch; cards without a product page stay still. `custom.css` (beats the static-overrides "no transform in tiles" rule).
+
 ## 2026-11-26
 
 ### No 3D tilt on category cards
