@@ -6,7 +6,7 @@
   /* 1. Desktop <-> mobile layout. The Wix "classic" site has two separate layouts
         (desktop at /, mobile under /m/). Match what live Wix does:
         - phones (touch screen whose short side < 600px) get the mobile layout;
-        - tablets (iPad etc.) get the desktop layout, laid out TABLET_W (1440) px wide and scaled to fit, portrait + landscape;
+        - tablets (iPad etc.) get the desktop layout, laid out the width jcd-config.js gives (per page type) and scaled to fit;
         - desktop browsers get the desktop layout (a window narrower than 600px gets mobile).
         Add ?layout=desktop or ?layout=mobile to a URL to force one for this tab. */
   var touch = false;
@@ -25,38 +25,20 @@
     var want = pref || ((phone || narrowWindow) ? 'mobile' : 'desktop');
     if (alt && want !== mode) { location.replace(alt + location.hash); return; }
   } catch (e) {}
-  /* Tablets / touch devices on the desktop layout: lay the page out TABLET_W px wide and scale it to the screen.
-     (Joel 2026-11-24) Wix used 980px, but most of this site's content spans ~1330-1430px around the centre (elements at
-     left:-140px etc.), so at 980 an iPad cut both sides off. 1366 shows every page whole; the browser rescales the same
-     layout when the iPad turns, so portrait AND landscape both fit. Keep preview/devices.html (TW) in step with this. */
+  /* Tablets / touch devices on the desktop layout: the page is laid out a fixed width and scaled to the iPad screen.
+     ALL the numbers (scale, iPad side margins, content widths) live in jcd-config.js (loaded before this file);
+     the fallbacks below are only used if that file failed to load. 數字都在 jcd-config.js。 */
   window.__jcdTablet = mode === 'desktop' && touch;   /* read by custom.js (iPad landscape full-screen top image) */
-  /* UI_SCALE (Joel 2026-11-25: menu, category headings and frames looked too big — "make every page smaller, keep the
-     top images the same"): the whole desktop-layout page (computer + iPad) is drawn at this fraction of its previous
-     size. Top images still fill the screen (their height is computed from the screen, see custom.js). Phone (m/) is not
-     affected. 1 = previous size. */
-  var UI_SCALE = 0.85;
+  var CFG = window.JCD_CONFIG || null;
+  var UI_SCALE = CFG ? CFG.uiScale : 0.85;
   window.__jcdUiScale = UI_SCALE;
-  /* Joel 2026-11-27 ("iPad landscape has too much space left and right, make everything bigger"): measured on every
-     page, the content that must stay whole (category frames, product grids, text) spans at most ~1305px around the
-     centre; wider elements are photos that bleed off the edge by design. So the iPad lays the page out 1320 wide
-     in BOTH orientations (landscape was 1694 = 28% larger now, portrait 1440 = 9% larger). Never below ~1310. Category + product pages: 1440 (below). */
-  var TABLET_W = 1320;
-  /* iPad upright (Joel 2026-11-26/27: "portrait is too small"): same 1320 as landscape (see above); kept as its own
-     constant because html.jcd-tab-portrait still adds upright-only tweaks. Re-set whenever the iPad turns. */
-  var TABLET_W_PORTRAIT = 1320;
-  /* Joel 2026-11-27: on category and product pages the 1320 layout put the frames/photos too close to the iPad's
-     edges ("太貼左右邊了，整體縮小"), so those pages use 1440 (both orientations, ~65px margins); home, About,
-     Contact (and the hidden 1-4 pages) keep 1320. */
   var pageSlug = (location.pathname.replace(/\/index\.html$/, '').replace(/\/+$/, '').split('/').pop() || '').toLowerCase();
-  if (!/^(|joel-chang-design-site|site|about|contact|[1-4])$/.test(pageSlug)) { TABLET_W = 1440; TABLET_W_PORTRAIT = 1440; }
-  /* Joel 2026-11-27: About's text + photo block (56-1267px at 1320) gets the same side margins on the iPad as the
-     category pages' white frames (77px of 1440 = 5.3%): laid out 1352 wide. */
-  else if (pageSlug === 'about') { TABLET_W = 1352; TABLET_W_PORTRAIT = 1352; }
+  if (pageSlug === 'joel-chang-design-site' || pageSlug === 'site') pageSlug = '';   /* home on GitHub Pages / local */
   function tabletPortrait() {
     if (typeof window.orientation === 'number') return Math.abs(window.orientation) !== 90;
     return window.matchMedia ? matchMedia('(orientation: portrait)').matches : false;
   }
-  window.__jcdTabletW = function () { return tabletPortrait() ? TABLET_W_PORTRAIT : TABLET_W; };
+  window.__jcdTabletW = function () { return CFG ? CFG.tabletWidth(pageSlug, tabletPortrait()) : 1440; };
   if (mode === 'desktop' && touch) {
     var vp = document.querySelector('meta[name="viewport"]');
     var setVp = function () {
@@ -77,7 +59,7 @@
      Other scripts read window.__jcdZoom to convert screen px (clientX, getBoundingClientRect) into CSS px. */
   window.__jcdZoom = 1;
   if (mode === 'desktop' && !touch) {
-    var ZOOM_REF = 1536, root = document.documentElement;
+    var ZOOM_REF = CFG ? CFG.desktopRef : 1536, root = document.documentElement;
     var fitZoom = function () {
       var w = window.innerWidth || root.clientWidth || ZOOM_REF;
       var z = Math.round((w > ZOOM_REF ? w / ZOOM_REF : 1) * UI_SCALE * 1000) / 1000;   /* also below 1 now (UI_SCALE) */

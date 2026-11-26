@@ -1,18 +1,63 @@
-# Instructions for AI assistants (Claude, Codex, Gemini, Copilot, ...)
+# Instructions for AI assistants AI 助手工作規則 (Claude, Codex, Gemini, Copilot, …)
 
-Several AIs work on this site. To stay in sync:
+Several AIs work on this site. To stay in sync, follow these rules. Architecture: `README.md`.
+多個 AI 一起維護這個網站，請遵守以下規則。架構說明見 `README.md`。
 
-1. **Before starting**, read `CHANGELOG.md` (what changed recently), `TODO.md` (what is open) and `DESIGN-SYSTEM.md` (the visual rules), then `README.md` (how the site is built).
-2. **After any change**, add an entry at the top of `CHANGELOG.md`: date (UTC+8), what changed, files touched. Update `TODO.md` (tick off / add items).
-3. Edit files directly in `site/`. Joel's own changes go in `site/assets/css/custom.css`, `site/assets/js/custom.js` (or `static-overrides.css` / `site.js` / `tilt.js` for Wix-replacement behaviour), with a short comment saying what and why, tagged `(Joel YYYY-MM-DD)`.
-4. After editing `custom.css` / `custom.js` etc., bump the `?v=` query on that file in every `site/**/index.html` so browsers do not use a cached copy.
-5. **Every fix must cover phone, desktop and iPad at the same time** (Joel's rule). Every page has a desktop file (`site/<page>/index.html`, also what iPads get: laid out 1320px wide (home, Contact), 1352px (About) or 1440px (category + product pages) in landscape and upright, then scaled, see `TABLET_W` / `TABLET_W_PORTRAIT` in `site.js`) and a phone file (`site/m/<page>/index.html`). Hover effects need a touch equivalent (`:hover` sticks after a tap, `:active` while pressed). Check all three.
-5a. To check all three at once: start the "devices" server in `.claude/launch.json` and open `http://localhost:8766/preview/devices.html` (`?d=phone|ipad|desktop|all&p=/<page>/`).
-5c. **Computer monitors must stay full width** (Joel's rule): laptop 1536x864 (1920 @125%), 1920x1080, 2560x1440, 3440x1440 ultra-wide, 3840x2160 4K. This works through the wide-screen CSS zoom in `site.js` (zoom = max(window width / 1536, 1) x UI_SCALE 0.85, factor in `window.__jcdZoom`). Never remove it; any script that measures with `getBoundingClientRect` / `clientX` must divide by `window.__jcdZoom` before writing CSS px, and `100vh/100svh` must be divided by it too. Check the five sizes in the preview (`&s=laptop|fhd|qhd|uw|uhd`).
-5b. Changes show on Joel's phone only after they are pushed to GitHub and Pages redeploys; say so when reporting a fix.
-6. Do not run `tools/build.py` without reading the warning in `TODO.md`.
-6b. **Design system: `DESIGN-SYSTEM.md`** — colours (blue #0062D9 = `--jcd-blue`, navy #00176C = `--jcd-navy`; never hard-code a blue), glass, radii, type, spacing, devices, states, motion. Follow it and update it when Joel changes a rule.
-7. Joel writes in Traditional Chinese; reply in Traditional Chinese.
-8. This folder is a git clone of github.com/joe10912345/joel-chang-design-site (branch `main`; pushing deploys GitHub Pages). Before starting: `git pull`. After a change: commit with a clear message and push. Never commit the unused images in `site/assets/media/` that `git status` shows as untracked.
-8b. **Images** (Joel's rule): one folder per page in `site/assets/media/<page>/`, named `<page>-<nn>-<width>x<height>.jpg` (no random/Wix names; a replacement with the same size gets `-v2`, `-v3` so browsers do not show the cached old file). Make them from the original in `media-originals/` (JPEG q86 4:4:4), add a lighter copy for the phone page if it is wider than needed (top image 2400px, others 1440px), and use `loading="lazy"` for every image below the first section (never for an image whose box gets its size from that image, e.g. the product-page closing reveal). Record new files in `reference/media-map.json`.
-9. Dark pages have `class="jcd-dark-canvas"` on `<html>` in their HTML (black page background from the first paint, no white flash). Light pages (white Wix background showing through transparent sections: MoAI, Wi-Fi 7 Extender / HGU-AP / 2022, Airgain, Lionic, AI Tool Kit, NLG MMA200, Sagittarius, Assistive) must NOT have it. A new page: add it if every section covers itself.
+## Before you start 開始前
+
+1. `git pull`. Read `README.md` (folder map, how pages are built), `DESIGN-SYSTEM.md` (visual rules), `TODO.md` (open
+   items) and the top of `CHANGELOG.md` (recent changes). 先 pull，再讀 README、DESIGN-SYSTEM、TODO 和 CHANGELOG 最上面幾則。
+2. **Open the three-device preview and keep it open the whole session** (Joel follows the work there):
+   start the "site" and "devices" servers from `.claude/launch.json`, open
+   `http://localhost:8766/preview/devices.html?d=all&p=/` in its own tab and never navigate or close that tab. Do your
+   own checks and mockups in other tabs; bring another tab to the front only to show Joel a mockup.
+   **三平台預覽在整個工作期間都要開著**（Joel 從那裡看進度）：啟動 site 與 devices 伺服器，在獨立分頁開
+   `devices.html?d=all&p=/`，不可切走或關閉；自己的檢查與 mockup 用其他分頁，只有給 Joel 看 mockup 時才切到前面。
+3. Joel writes in Traditional Chinese; reply in Traditional Chinese. Joel 用繁體中文，請用繁體中文回覆。
+
+## While working 工作中
+
+4. Edit files directly in `site/`. Put a short comment on every block you add, tagged `(Joel YYYY-MM-DD)`, saying what and why.
+   直接改 `site/`；新增的程式區塊要加註解，寫明做什麼、為什麼，並標 `(Joel 日期)`。
+   - Layout numbers (scale, iPad side margins, content widths): **only** `site/assets/js/jcd-config.js`. 版面數字只改 jcd-config.js。
+   - Look and effects: `site/assets/css/custom.css`, `site/assets/js/custom.js`; Wix-replacement behaviour: `site.js`,
+     `static-overrides.css`, `tilt.js`. 外觀與效果改 custom.css / custom.js；取代 Wix 的行為改 site.js 等。
+   - Text or images: both HTML files of the page (`site/<page>/` and `site/m/<page>/`). 文字或圖片要改電腦版與手機版兩份。
+   - Never write a number twice (two files that must "stay in step" by hand): read it from `jcd-config.js` or a CSS token.
+     同一個數字不要寫在兩個地方。
+5. **Every fix covers phone, iPad (portrait AND landscape) and computer at the same time** (Joel's rule). iPads get the
+   desktop page at the width from `jcd-config.js` (iPad side-margin rule, `DESIGN-SYSTEM.md` §4). Hover effects need a touch
+   equivalent; one tap must open a link. **每個修正都要同時涵蓋手機、iPad（直與橫）、電腦。** 滑過效果要有觸控對應，點一下就要能換頁。
+6. **Computer monitors stay full width**: laptop 1536×864, 1920×1080, 2560×1440, 3440×1440, 3840×2160 — check with `&s=`.
+   Never remove the monitor zoom in `site.js`; scripts measuring with `getBoundingClientRect` / `clientX` divide by
+   `window.__jcdZoom`, and `100vh/100svh` too. **電腦螢幕永遠滿版**，五種尺寸都要檢查；量位置的程式要除以 `__jcdZoom`。
+7. Follow `DESIGN-SYSTEM.md` (colours `--jcd-blue` #0062D9 / `--jcd-navy` #00176C — never hard-code a blue; glass, radii,
+   type, copy rules, spacing, devices, states, motion). Update it when Joel changes a rule. 遵守設計系統，Joel 改規則時同步更新。
+8. Images (Joel's rule) 圖片規則: one folder per page `site/assets/media/<page>/`, named `<page>-<nn>-<w>x<h>.jpg`
+   (same-size replacement → `-v2`, `-v3`). Made from the original in `media-originals/` (JPEG q86 4:4:4); lighter phone
+   copy when wider than needed (top image 2400px, others 1440px); `loading="lazy"` below the first section (never on an
+   image that sizes its own box). Alt text = clean English description (never a file name). Record new files in
+   `reference/media-map.json`. 一頁一個資料夾、統一命名、從原始檔產生、替代文字用英文描述、記錄到 media-map.json。
+9. Dark pages have `class="jcd-dark-canvas"` on `<html>`. Light pages (white Wix background: MoAI, Wi-Fi 7 Extender /
+   HGU-AP / 2022, Airgain, Lionic, AI Tool Kit, NLG MMA200, Sagittarius, Assistive) must NOT have it.
+   深色頁 `<html>` 要有 jcd-dark-canvas；淺色頁不可以有。
+
+## After a change 修改後
+
+10. Bump `?v=` of every css/js you edited in every page HTML, e.g. 每改一個 css/js 都要更新所有頁面的 `?v=`：
+    ```bash
+    f=custom.js; h=$(md5sum site/assets/js/$f | cut -c1-8); grep -rl "$f?v=" site --include=index.html | xargs sed -i -E "s/$f\?v=[0-9a-f]+/$f?v=$h/g"
+    ```
+11. Add an entry at the top of `CHANGELOG.md` (date UTC+8, what changed in Joel's words, files) — in English **and** Chinese.
+    Update `TODO.md`. 在 CHANGELOG 最上面新增中英對照紀錄，並更新 TODO。
+12. Commit with a clear message and push to `main` (this deploys GitHub Pages). Tell Joel it shows on his phone only after
+    Pages redeploys (~1 min). Never commit `推送到Github.bat`, `reference/asset-sources.json` changes, or files in
+    `reference/archive/unused-wix-media/`. commit 並 push；告訴 Joel 要等部署後手機才看得到。上述檔案不可 commit。
+13. All `.md` files are bilingual (English + Traditional Chinese). 所有 md 檔都要中英對照。
+
+## Don't 不要做
+
+- Don't run `tools/export-wix/*` (they rebuild from the raw Wix capture and would overwrite hand edits; paths are from
+  another machine). 不要執行 `tools/export-wix/` 裡的腳本，會覆蓋手改內容。
+- Don't edit the 30 Wix CSS files in `site/assets/css/`. 不要改 Wix 原生 CSS。
+- Don't paste tokens or passwords in chat; pushes use Git Credential Manager. 不要在對話中貼 token 或密碼。

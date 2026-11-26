@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>簽名筆順</title>
+<style>
+  :root { --jcd-blue: #0062d9; --jcd-blue-rgb: 0, 98, 217; --mut: #8d8f99; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #000; color: #eee; font: 15px/1.55 system-ui, "Noto Sans TC", sans-serif; padding: 24px 16px 80px; }
+  h1 { font-size: 22px; margin: 0 0 6px; } .note { color: var(--mut); max-width: 980px; margin: 0 0 14px; }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; align-items: center; }
+  .bar button { background: #15161b; color: #eee; border: 1px solid #30313a; border-radius: 6px; padding: 7px 14px; font: inherit; cursor: pointer; }
+  .bar button.main { background: var(--jcd-blue); border-color: var(--jcd-blue); color: #fff; }
+  .board { background: #0b0c10; border: 1px solid #23242b; border-radius: 8px; padding: 18px; overflow-x: auto; }
+  svg { display: block; width: 100%; max-width: 1400px; height: auto; }
+  .stroke { fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 3.2; cursor: pointer; opacity: .9; }
+  .stroke:hover { stroke-width: 4.6; opacity: 1; }
+  .hit { fill: none; stroke: transparent; stroke-width: 10; cursor: pointer; }
+  .done { stroke: #3a3c46 !important; }
+  .lbl { font: 600 7px system-ui, sans-serif; fill: #fff; pointer-events: none; }
+  .lblbg { fill: var(--jcd-blue); pointer-events: none; }
+  .start { pointer-events: none; }
+  .list { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; background: #15161b; border: 1px solid #2c2d35; border-radius: 999px; padding: 3px 6px 3px 10px; font-size: 13px; }
+  .chip i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .chip button { background: #22242c; border: 0; color: #ddd; border-radius: 999px; width: 24px; height: 22px; cursor: pointer; }
+  .chip button:hover { background: var(--jcd-blue); color: #fff; }
+  .out { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
+  code { background: #14151a; border: 1px solid #2a2b33; border-radius: 6px; padding: 8px 12px; font-size: 14px; word-break: break-all; }
+  .ok { color: #7fd18b; font-size: 13px; }
+  .play { margin-top: 16px; background: radial-gradient(90% 120% at 30% 40%, rgba(0, 60, 180, .55), transparent 60%), #000; border-radius: 8px; padding: 30px; }
+  .play svg { max-width: 752px; }
+</style>
+</head>
+<body>
+<h1>About 簽名：排筆順</h1>
+<p class="note">每種顏色是一筆，綠色小點是那一筆目前的起點。照你真正簽名的順序<b>依序點擊</b>每一筆（點到的會變灰、標上編號）。方向反了就按清單裡的「⇄」。小碎點會自動跟著旁邊那一筆。排好按「播放」看效果，滿意再按「複製」貼給我。</p>
+<div class="bar">
+  <button class="main" id="play">播放 ▶</button>
+  <button id="undo">上一步</button>
+  <button id="reset">重來</button>
+  <span class="ok" id="count"></span>
+</div>
+<div class="board"><svg id="pick"></svg></div>
+<div class="list" id="list"></div>
+<div class="out"><code id="txt"></code><button class="bar main" id="copy" style="border:0;border-radius:6px;padding:9px 16px;color:#fff;background:var(--jcd-blue);cursor:pointer">複製</button><span class="ok" id="ok"></span></div>
+<div class="play"><svg id="pv"></svg></div>
+<script>
+  var NS = 'http://www.w3.org/2000/svg', SRC = '../../site/assets/media/about/about-01-376x96.png', W, H, ALL = [];
+  var COLORS = ['#ff6b6b','#ffd166','#06d6a0','#4cc9f0','#b388ff','#ff9f1c','#f72585','#90be6d','#43aa8b','#f9844a','#577590','#e9c46a','#2ec4b6','#ff70a6','#70d6ff','#cddc39'];
+  var order = [], rev = {};
+  fetch('signature-paths.json').then(function (r) { return r.json(); }).then(function (d) {
+    W = d.w; H = d.h;
+    var tmp = document.createElementNS(NS, 'svg'); tmp.style.position = 'absolute'; tmp.style.visibility = 'hidden'; document.body.appendChild(tmp);
+    d.paths.forEach(function (pd, i) { var p = document.createElementNS(NS, 'path'); p.setAttribute('d', pd); tmp.appendChild(p);
+      var L = p.getTotalLength(), pts = []; for (var k = 0; k <= 8; k++) pts.push(p.getPointAtLength(L * k / 8)); ALL.push({ i: i, d: pd, L: L, pts: pts }); });
+    tmp.remove();
+    ALL.big = ALL.filter(function (o) { return o.L >= 18; });
+    ALL.big.forEach(function (o, k) { o.k = k + 1; o.color = COLORS[k % COLORS.length]; o.kids = []; });
+    ALL.filter(function (o) { return o.L < 18; }).forEach(function (o) {
+      var best = null, bd = 1e9;
+      ALL.big.forEach(function (b) { b.pts.forEach(function (q) { o.pts.forEach(function (r) { var dd = (q.x - r.x) * (q.x - r.x) + (q.y - r.y) * (q.y - r.y); if (dd < bd) { bd = dd; best = b; } }); }); });
+      best.kids.push(o);
+    });
+    draw(); play();
+  });
+  function revD(o) {   /* reverse a path made of M/L commands */
+    var pts = o.d.replace(/[ML]/g, '|').split('|').filter(Boolean).map(function (s) { return s.trim(); });
+    return pts.reverse().map(function (s, i) { return (i ? 'L' : 'M') + s; }).join(' ');
+  }
+  function dOf(o) { return rev[o.k] ? revD(o) : o.d; }
+  function draw() {
+    var svg = document.getElementById('pick'); svg.setAttribute('viewBox', '-6 -6 ' + (W + 12) + ' ' + (H + 12));
+    var h = '<image href="' + SRC + '" width="' + W + '" height="' + H + '" opacity=".12"/>';
+    ALL.big.forEach(function (o) {
+      var done = order.indexOf(o.k) >= 0;
+      h += '<path class="stroke' + (done ? ' done' : '') + '" d="' + dOf(o) + '" stroke="' + o.color + '"/>';
+      o.kids.forEach(function (c) { h += '<path class="stroke' + (done ? ' done' : '') + '" d="' + c.d + '" stroke="' + o.color + '" style="stroke-width:2"/>'; });
+      h += '<path class="hit" data-k="' + o.k + '" d="' + o.d + '"/>';
+      var s = dOf(o).split(' ').slice(0, 2); var sx = parseFloat(s[0].slice(1)), sy = parseFloat(s[1]);
+      if (!done) h += '<circle class="start" cx="' + sx + '" cy="' + sy + '" r="2.2" fill="#3ddc84"/>';
+    });
+    order.forEach(function (k, n) { var o = ALL.big[k - 1], m = o.pts[4];
+      h += '<circle class="lblbg" cx="' + m.x + '" cy="' + (m.y - 7) + '" r="5"/><text class="lbl" x="' + m.x + '" y="' + (m.y - 4.6) + '" text-anchor="middle">' + (n + 1) + '</text>'; });
+    svg.innerHTML = h;
+    [].forEach.call(svg.querySelectorAll('.hit'), function (p) { p.addEventListener('click', function () { var k = +p.dataset.k; if (order.indexOf(k) < 0) { order.push(k); draw(); } }); });
+    var list = document.getElementById('list'); list.innerHTML = '';
+    order.forEach(function (k, n) { var o = ALL.big[k - 1];
+      var c = document.createElement('span'); c.className = 'chip'; c.innerHTML = (n + 1) + '. <i style="background:' + o.color + '"></i> 筆 ' + k + (rev[k] ? '（反向）' : '') + ' <button title="">⇄</button>';
+      c.querySelector('button').addEventListener('click', function () { rev[k] = !rev[k]; draw(); }); list.appendChild(c); });
+    document.getElementById('count').textContent = '已排 ' + order.length + ' / ' + ALL.big.length + ' 筆' + (order.length === ALL.big.length ? '（全部排好了）' : '');
+    document.getElementById('txt').textContent = '簽名筆順：' + (order.length ? order.map(function (k) { return k + (rev[k] ? 'r' : ''); }).join(',') : '（尚未點選）');
+  }
+  function seq() {   /* the order to play: picked strokes first, the rest left to right after them */
+    var rest = ALL.big.map(function (o) { return o.k; }).filter(function (k) { return order.indexOf(k) < 0; });
+    var ks = order.concat(rest), out = [];
+    ks.forEach(function (k) { var o = ALL.big[k - 1]; out.push({ d: dOf(o) }); o.kids.forEach(function (c) { out.push({ d: c.d }); }); });
+    return out;
+  }
+  function play() {
+    var svg = document.getElementById('pv'), id = 'm' + Date.now();
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    var s = seq();
+    svg.innerHTML = '<defs><mask id="' + id + '" maskUnits="userSpaceOnUse" x="0" y="0" width="' + W + '" height="' + H + '">' +
+      s.map(function (o) { return '<path d="' + o.d + '" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>'; }).join('') +
+      '</mask></defs><image href="' + SRC + '" width="' + W + '" height="' + H + '" mask="url(#' + id + ')"/>';
+    var paths = [].slice.call(svg.querySelectorAll('mask path'));
+    var lens = paths.map(function (p) { var L = p.getTotalLength(); p.style.strokeDasharray = L + ' ' + (L + 20); p.style.strokeDashoffset = L + 10; return L; });
+    var total = lens.reduce(function (a, b) { return a + b; }, 0), DUR = 2200, starts = [], acc = 0;
+    lens.forEach(function (L) { starts.push(acc); acc += L / total * DUR + (L > 30 ? 40 : 0); });
+    var t0 = null;
+    (function step(t) { if (!t0) t0 = t; var el = t - t0;
+      paths.forEach(function (p, i) { var d = lens[i] / total * DUR, k = Math.min(1, Math.max(0, (el - starts[i]) / d));
+        p.style.strokeDashoffset = (k <= 0 ? lens[i] + 10 : lens[i] * (1 - k)).toFixed(2); });
+      if (el < acc + 50) requestAnimationFrame(step); })(performance.now());
+  }
+  document.getElementById('play').addEventListener('click', play);
+  document.getElementById('undo').addEventListener('click', function () { order.pop(); draw(); });
+  document.getElementById('reset').addEventListener('click', function () { order = []; rev = {}; draw(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var t = document.getElementById('txt').textContent;
+    (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { document.getElementById('ok').textContent = '已複製，貼給我即可'; },
+      function () { document.getElementById('ok').textContent = '請手動選取那一行複製'; });
+  });
+</script>
+</body>
+</html>

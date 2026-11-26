@@ -1,0 +1,47 @@
+/* jcd-config.js — the ONE place for the site's layout numbers (Joel 2026-11-27).
+   全站版面參數只寫在這裡。改這個檔，site.js 和 preview/devices.html 會一起跟著變。
+
+   Loaded on every page BEFORE site.js, and by preview/devices.html.
+   每一頁都會先載入這個檔，再載入 site.js；三平台預覽也讀同一份。
+
+   After editing: bump ?v= on jcd-config.js in every page HTML (site/ and site/m/, see AGENTS.md).
+   改完要更新所有頁面 HTML 裡 jcd-config.js 的 ?v=。 */
+window.JCD_CONFIG = {
+  /* Whole desktop-layout page (computer + iPad) drawn at this fraction of its Wix size. Phone not affected.
+     電腦版與 iPad 的整體縮放比例（手機不受影響）。 */
+  uiScale: 0.85,
+
+  /* Computer monitors: this many CSS px of layout always fill the window (then x uiScale). Laptop 1920 @125% = 1536.
+     電腦螢幕：視窗寬度對應的版面寬度基準。 */
+  desktopRef: 1536,
+
+  /* iPad SIDE-MARGIN RULE / iPad 左右留白規則
+     margin = share of the screen width left empty at EACH side of the page's content.
+     margin = 內容左右「各」留下螢幕寬度的幾 %。
+     content = width (layout px) of what must stay whole on that page type (frames, text + photo block).
+     content = 該類頁面必須完整顯示的內容寬度（白框、文字＋照片區塊）。
+     The iPad lays the page out  content / (1 - 2 x margin)  px wide and scales it to the screen.
+     iPad 的排版寬度 = content ÷ (1 − 2 × margin)，再縮放到螢幕。
+     Bigger margin = everything smaller with more air at the sides. 留白越大，畫面越小、兩側越空。 */
+  ipad: {
+    margin: { landscape: 0.0535, portrait: 0.0535 },   /* 5.35% each side = category white frames 77px of 1440 */
+    content: {
+      product: 1284,   /* category + product pages: white frames / product grids span 1284px  產品類別頁、產品頁 */
+      about: 1211,     /* About: text + portrait block (56-1267px)                         About */
+      home: 1179,      /* home, contact, 1-4: Joel asked for these larger (layout 1320)      首頁、Contact */
+    },
+    homeLike: ['', 'contact', '1', '2', '3', '4'],   /* page slugs that use content.home  使用 home 寬度的頁面 */
+  },
+
+  /* Phone (m/ pages): Wix's own mobile layout, 320px wide (viewport width=320), side margins set per element in
+     the Wix design (mostly 20px = 6.25%). Not driven from here. 手機版由 Wix 手機排版決定（多為 20px），不從這裡控制。 */
+  phone: { layoutWidth: 320 },
+};
+
+/* iPad layout width for a page slug ('' = home) and orientation.  某頁在 iPad 直／橫向的排版寬度。 */
+window.JCD_CONFIG.tabletWidth = function (slug, portrait) {
+  var c = window.JCD_CONFIG.ipad, s = (slug || '').toLowerCase();
+  var content = s === 'about' ? c.content.about : c.homeLike.indexOf(s) >= 0 ? c.content.home : c.content.product;
+  var m = portrait ? c.margin.portrait : c.margin.landscape;
+  return Math.round(content / (1 - 2 * m));
+};

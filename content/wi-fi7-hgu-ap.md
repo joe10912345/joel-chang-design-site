@@ -67,7 +67,7 @@ Designed to harmonize beautifully with the router's sculptural form, the dedicat
 
 The vase-shaped waist is the signature curve of the Ocean Series. During development, the project goal was to reduce costs, and each team had its own priorities. The mechanical engineers wanted to remove the curve entirely, while the hardware engineers needed to leave room for internal components and preferred the simplest possible structure.
 
-As an experienced designer, I believe it’s essential to protect the design intent while understanding the needs of every team. I took apart a wide range of plastic products and studied mold design. From that research, I proposed a vertical sleeve assembly that keeps the original form while lowering costs and making assembly more efficient. The solution was approved by everyone on the team and was well received by our client in Taiwan.
+Rather than trade the design intent for cost, I worked through the needs of every team, tore down a wide range of plastic products and dug into mold design. That research led to a vertical sleeve assembly that keeps the original form while cutting cost and speeding up assembly. The whole team approved it, and our client in Taiwan received it well.
 
 ## Balancing High-Performance Thermals with Aesthetic Integrity
 

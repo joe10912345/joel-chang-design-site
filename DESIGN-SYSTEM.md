@@ -1,131 +1,163 @@
-# Design system — joel-chang-design.com
+# Design system 設計系統 — joel-chang-design.com
 
-The visual rules Joel has set for this site. **Any person or AI changing the look must follow this file and update it
-when Joel changes a rule.** Values are implemented in `site/assets/css/custom.css` (tokens at the very top) and
-`site/assets/js/custom.js`. History of each decision: `CHANGELOG.md`.
+The visual rules Joel has set for this site. **Anyone (person or AI) changing the look follows this file and updates it
+when Joel changes a rule.** Layout numbers live in `site/assets/js/jcd-config.js`; colours and other values in
+`site/assets/css/custom.css`; behaviour in `site/assets/js/custom.js`. Why each rule exists: `CHANGELOG.md`.
 
-Last updated: 2026-11-26.
+Joel 為這個網站定下的視覺規則。**任何人（或 AI）改外觀都要照這份文件做，Joel 改規則時也要同步更新這裡。**
+版面數字在 `site/assets/js/jcd-config.js`；顏色等數值在 `site/assets/css/custom.css`；互動行為在
+`site/assets/js/custom.js`。每條規則的來由寫在 `CHANGELOG.md`。
+
+Last updated 最後更新: 2026-11-27.
 
 ---
 
-## 1. Colour
+## 0. One place for each number 一個數字只放一個地方
 
-| Token | Value | Use |
+| What 什麼 | Where 在哪 | Changes 會影響 |
 |---|---|---|
-| `--jcd-blue` / `--jcd-blue-rgb` | **#0062D9** · rgb(0, 98, 217) | The one interactive blue: top-menu hover and press, dropdown press, phone-menu press, logo + LinkedIn/Behance icon hover, **every pressed state that turns blue**, cursor light, hover glows (Cross-Category tiles), pressed outline (Design Approach card 1), recommendation quote mark + LinkedIn tile + top-left glow, Contact "sent" tick, Contact field underline on hover/focus |
-| `--jcd-navy` / `--jcd-navy-rgb` | **#00176C** · rgb(0, 23, 108) | Deep blue-violet, second colour of gradients: recommendation card bottom-right glow, initials avatar gradient end |
-| Black | #000 | Page canvas (`html, body`), dark pages' background layer (`.jcd-dark-canvas`) |
-| White (page bg) | #fff | Light pages keep Wix's white page background (Wi-Fi 7 HGU/AP, MoAI, Extender, 2022, Airgain, Lionic, AI Tool Kit, NLG MMA200, Sagittarius, Assistive) — never paint it black |
-| Text on dark | #fff headings · rgba(255,255,255,.82–.9) body · .5 secondary · .38 tertiary/italic | |
+| Overall size of the desktop page (computer + iPad) 電腦版與 iPad 整體大小 | `jcd-config.js` → `uiScale` (0.85) | every desktop page on computers and iPads 所有電腦、iPad 頁面 |
+| Monitor base width 電腦螢幕基準寬度 | `jcd-config.js` → `desktopRef` (1536) | how wide screens zoom 大螢幕的放大倍率 |
+| **iPad side margins** **iPad 左右留白** | `jcd-config.js` → `ipad.margin.landscape / portrait` (5.35%) | iPad layout width of every page, and `preview/devices.html` iPad 各頁排版寬度＋三平台預覽 |
+| iPad content widths per page type 各類頁面的內容寬度 | `jcd-config.js` → `ipad.content` | same 同上 |
+| Brand colours 品牌色 | `custom.css` `:root` `--jcd-blue`, `--jcd-navy` | every blue on the site 全站所有藍色 |
 
-Rules
-- Use the tokens, never a hex/rgb blue directly: `color: var(--jcd-blue)`, `rgba(var(--jcd-blue-rgb), .45)`.
-- A glow keeps its own alpha; only the colour comes from the token.
-- On black, `#00176C` is very dark: use it at high alpha (.85+) or as a gradient end next to `#0062D9`.
+Never write one of these numbers a second time in another file; read it from the config / token instead.
+這些數字不要在別的檔案再寫一次，要用的時候讀設定檔或 CSS 變數。
 
-## 2. Surfaces: frosted glass
+## 1. Colour 顏色
 
-| Component | Fill | Blur | Edge | Radius | Shadow |
+| Token | Value 值 | Use 用途 |
+|---|---|---|
+| `--jcd-blue` / `--jcd-blue-rgb` | **#0062D9** · rgb(0, 98, 217) | The one interactive blue: menu hover/press, every pressed state that turns blue, icon hover, glows, round >> fill, Contact underline. 唯一的互動藍：選單滑過／按下、所有按下變藍、圖示滑過、光暈、圓形 >> 填色、Contact 底線 |
+| `--jcd-navy` / `--jcd-navy-rgb` | **#00176C** · rgb(0, 23, 108) | Second colour of gradients (recommendation glow, avatar). 漸層的第二色（推薦卡光暈、頭像） |
+| Black 黑 | #000 | Page canvas, dark pages (`.jcd-dark-canvas`). 頁面底色、深色頁 |
+| White page 白底頁 | #fff | Light pages keep Wix's white background (Wi-Fi 7 HGU/AP, MoAI, Extender, 2022, Airgain, Lionic, AI Tool Kit, NLG MMA200, Sagittarius, Assistive) — never paint black. 淺色頁保留白底，不可改黑 |
+| Text on dark 深底文字 | #fff headings · rgba(255,255,255,.82–.9) body · .5 secondary · .38 tertiary | 標題白、內文 82–90%、次要 50%、第三層 38% |
+
+Rules 規則
+- Use the tokens, never a hex blue: `color: var(--jcd-blue)`, `rgba(var(--jcd-blue-rgb), .45)`. 一律用變數，不可直接寫藍色色碼。
+- A glow keeps its own alpha; only the colour comes from the token. 光暈的透明度自己訂，顏色用變數。
+- On black, navy is very dark: use it at .85+ or as a gradient end next to blue. 黑底上深藍要用高透明度或當漸層尾端。
+
+## 2. Surfaces: frosted glass 表面：毛玻璃
+
+| Component 元件 | Fill 填色 | Blur 模糊 | Edge 邊框 | Radius 圓角 | Shadow 陰影 |
 |---|---|---|---|---|---|
-| Recommendation card (About) | rgba(255,255,255,.035); hover .055 | `blur(22px) saturate(150%)` | 1px rgba(255,255,255,.09); hover .2 | **6px** | 0 12px 40px rgba(0,0,0,.35) |
-| Works dropdown (desktop / iPad) | rgba(18,20,26,.42) (dark tint so white text reads on light photos) | `blur(20px) saturate(150%)` | 1px rgba(255,255,255,.16) | **8px** | 0 10px 30px rgba(0,0,0,.3) |
-| Phone full-screen menu | rgba(8,9,12,.55) | `blur(22px) saturate(140%)` | — | — | — |
+| Recommendation card (About) 推薦卡 | rgba(255,255,255,.035); hover .055 | `blur(22px) saturate(150%)` | 1px rgba(255,255,255,.09); hover .2 | **6px** | 0 12px 40px rgba(0,0,0,.35) |
+| Works dropdown 下拉選單 | rgba(18,20,26,.42) | `blur(20px) saturate(150%)` | 1px rgba(255,255,255,.16) | **8px** | 0 10px 30px rgba(0,0,0,.3) |
+| Phone full-screen menu 手機全螢幕選單 | rgba(8,9,12,.55) | `blur(22px) saturate(140%)` | — | — | — |
 
-Corner radius scale: 2px hairline details · 4px small tiles/icons (LinkedIn tile) · **6px cards** · 8px floating panels. Joel: "not too round".
-Radii are CSS px of the layout, so they scale with the page (wide-screen zoom, iPad scaling) automatically.
+Radius scale 圓角級距: 2px hairline 細節 · 4px small tiles/icons 小圖示 · **6px cards 卡片** · 8px floating panels 浮動面板. Joel: "not too round 不要太圓".
+Radii are layout px, so they scale with the page. 圓角是版面 px，會跟著頁面縮放。
 
-## 3. Typography (Poppins, the Wix font files in `site/assets/fonts/`)
+## 3. Typography 字體（Poppins, Wix font files in `site/assets/fonts/`）
 
-| Weight | CSS font-family stack |
+| Weight 字重 | CSS font-family |
 |---|---|
 | Light | `wfont_459113_ebfb1394532347b3b7691d160bb35bd1, wf_ebfb1394532347b3b7691d160, orig_poppins_light` |
 | Regular | `wfont_3f090f_d2b74fa2704044fa98373433c883f8ed, wf_d2b74fa2704044fa98373433c, orig_poppins_regular` |
 | Medium | `wfont_3f090f_fbe2048d9f994d8c8d5073ed8164a33e, wf_fbe2048d9f994d8c8d5073ed8, orig_poppins_medium` |
 | SemiBold | `wfont_459113_5846594cb6ea4f43b8e132f9d1a29629, wf_5846594cb6ea4f43b8e132f9d, orig_poppins_semibold` |
 
-Sizes set so far (layout px; desktop page / phone 320px page):
-- Recommendation card: featured text 17 / 8.5, text 14 / 8 (line-height 1.6–1.65), name SemiBold 15 / 9.5, role Light 11.5 / 6.5 (desktop / phone). Phone sizes follow the phone About page: body 6–8px, headings 11px — a card must never be louder than the section heading.
-- Phone menu: Works / About / Contact SemiBold (Wix size); the six product pages Light **13px**.
-- Phone About "What I Believe": text 9.5px / 1.55, title 14px. Phone body text must not go below ~8px in the 320px layout (≈10px on screen).
-- Quote mark: Georgia serif, white 85% at rest → `--jcd-blue` on hover/press.
+Sizes (layout px; desktop page / phone 320px page) 字級（版面 px；電腦頁／手機 320px 頁）:
+- Recommendation card 推薦卡: featured 17 / 8.5, text 14 / 8, name SemiBold 15 / 9.5, role Light 11.5 / 6.5. A card is never louder than its section heading. 卡片不可比段落標題搶眼。
+- Phone menu 手機選單: Works / About / Contact SemiBold; product pages Light **13px**.
+- Phone body text never below ~8px in the 320px layout (≈10px on screen). 手機內文不小於 8px（螢幕上約 10px）。
+- End-to-End squares 方塊文字: computer/iPad title 34px, text 16px; phone 13 / 9.5px.
+- Quote mark 引號: Georgia, white 85% → `--jcd-blue` on hover/press.
 
-## 4. Spacing & alignment
+Copy 文案:
+- Product names exactly as on the product page: `T. Interceptor MP`, `T. Blade` (dot + space). 產品名稱寫法統一（點後空一格）。
+- A space before an opening bracket: `Marcus Kung (Design Director)`. 左括號前空一格。
+- Image alt text is clean English describing the image, never a file name; decorative images get `alt=""`. `tools/clean_text.py` fixes leftovers. 圖片替代文字用英文描述，不可是檔名；純裝飾圖留空。
+- Headings (`h1`–`h3`) are real headings only, never decorative text. 標題標籤只給真正的標題，裝飾字不可用 H1。
 
-About page (all section headings, `custom.js` "About page: one spacing rule"):
+## 4. Spacing & side margins 間距與左右留白
 
-| | Main heading above | Side heading above | Heading → content | Left edge |
-|---|---|---|---|---|
-| Desktop / iPad | 98px | 60px | 41px | one edge = WORK EXPERIENCE content |
-| Phone | 48px | 28px | 12px | 20px |
+**Side margins by platform 各平台左右留白（rule 規則）**
 
-Main headings: WORK EXPERIENCE, SELECTED AWARDS, EXPERTISE, TRUSTED COLLABORATION. Side: EDUCATION, LANGUAGES, PATENTS. Side-by-side headings share one line.
-
-Other rules
-- Phone page side margins: **20px** each side (equal) in the 320px layout.
-- Category pages (desktop/iPad): white frames and the unframed tile rows share one left edge and are centred, equal space left/right (`custom.js` "Category pages").
-- About intro (desktop/iPad): text + portrait centred in the space between the header and the screen bottom, at least 56px and at most 260px below the header (`custom.js` "About, desktop layout").
-- Catalog title bars: every text centred vertically on the bar (`custom.js` "Catalog title bars").
-- Phone category pages: frames of one category 8px apart, 48px before the next category (`custom.js`).
-- Contact form fields: 1px white underline (hover/typing: same width, `--jcd-blue`), 12px indent; field names white Medium (phone 11px, desktop 15px); message hint Poppins Light white 45% (phone 9.5px, desktop 13px). iPhone tap-zoom is stopped by `custom.js` (viewport maximum-scale).
-- Content never touches the screen edge on iPad (that is why the iPad layout is 1440px wide).
-
-## 5. Devices & scaling (Joel's rule: phone, iPad and computer are always fixed together)
-
-| Device | Page | How it fits |
+| Platform 平台 | Rule 規則 | Set in 設定位置 |
 |---|---|---|
-| Phone | `site/m/…` (320px layout) | scaled to the phone width by the viewport |
-| iPad (Air 11, Pro 11, Pro 13) | desktop page | laid out **1320px** wide in both orientations on home / Contact, **1352px** on About (same side margin as the category frames, 5.3%), **1440px** on category and product pages (more margin at the iPad's edges; `TABLET_W` / `TABLET_W_PORTRAIT` + page rule in `site.js`; the must-stay-whole content spans ≤ ~1305px, wider photos bleed by design — never go below ~1310) and scaled; upright, the header logo and menu are drawn 1.3x (`.jcd-tab-portrait`) |
-| Computer ≤ 1536px | desktop page | zoom = UI_SCALE 0.85 (Joel's laptop: 1920 @125% = 1536) |
-| Computer > 1536px (1920, 2560, 3440 ultra-wide, 3840 4K) | desktop page | CSS zoom = width / 1536 x UI_SCALE (`window.__jcdZoom`) → always full width |
+| iPad landscape iPad 橫 | content keeps **5.35%** of the screen width free at each side 內容兩側各留螢幕寬度 5.35% | `jcd-config.js` `ipad.margin.landscape` |
+| iPad portrait iPad 直 | **5.35%** each side 兩側各 5.35% | `jcd-config.js` `ipad.margin.portrait` |
+| Phone 手機 | **20px** each side in the 320px layout (6.25%) 320px 版面兩側各 20px | Wix mobile layout (per element) Wix 手機排版 |
+| Computer 電腦 | page always fills the window (zoom); Wix layout centres content 永遠滿版，內容置中 | `jcd-config.js` `desktopRef`, `uiScale` |
 
-**UI_SCALE = 0.85** (`site.js`): one knob for the size of everything on the desktop page (computer + iPad); 1 = the Wix size. Top images are not affected (always full screen / half on portrait).
+How the iPad rule works 運作方式: iPad layout width = `content ÷ (1 − 2 × margin)`; content = product 1284 (category frames),
+about 1211 (text + portrait), home 1179 (home, Contact, 1-4 — Joel wanted these larger). Today: product pages 1438,
+About 1356, home/Contact 1320. To give every iPad page more air, raise `margin`; to make one page type larger, lower its
+`content`. Never let the layout drop below ~1310 (the category frames would touch the edges).
+iPad 排版寬度 = 內容寬 ÷ (1 − 2 × 留白)。要每頁都更空就加大 margin；只想放大某類頁面就調小它的 content。排版寬度不要低於約 1310。
 
-Top image ("hero", home slideshow + product pages): phone **50% of the screen height**; any portrait screen on the desktop page (iPad upright) **50%**; landscape (computers, iPad sideways) **exactly one screen** (`100svh`, divided by `__jcdZoom` on computers).
-Scripts measuring with `getBoundingClientRect` must divide by `window.__jcdZoom` before writing CSS px.
-Background photos: Wix sticky/"fixed" section photos are pinned to their section by `custom.js` (no parallax). Never leave `overflow: clip/hidden` on a Wix `bgMedia_*` box that sits outside its section (iPad Safari hides the photo); sticky screen-sized Wix backgrounds crop products on tall screens — pin them to their section instead (About "What I Believe", Gaming gateway "Aerodynamic Concept").
-Closing photo of product pages (last section, photo only): Wix-style scroll reveal — section as tall as the whole photo (max one screen), photo stays still at the screen bottom while the section edge slides over it (`custom.js`, `.jcd-reveal`; CSS sticky, never a scroll script — scripts lag and show gaps on fast scrolls). Use the full original photo, never a Wix crop. About "What I Believe" uses the window form of the reveal (photo one screen tall, fixed while the section passes; phone/iPad anchored left to keep the speaker).
-Images: `site/assets/media/<page>/<page>-<nn>-<w>x<h>.jpg`, made from the uploaded original (`media-originals/`), JPEG q86 4:4:4 (top images q90, max 3200px), never Wix's re-encoded copies. Phone pages: top image max 2400px wide, others 1440px. Below the first section: `loading="lazy"`.
-Home slideshow: always starts at slide 1 when the page is shown (also after the back button).
+About page headings 關於頁標題（`custom.js` "About page: one spacing rule"）:
 
-## 6. Interaction states
+| | Main heading above 主標上方 | Side heading above 側標上方 | Heading → content 標題到內容 | Left edge 左緣 |
+|---|---|---|---|---|
+| Desktop / iPad 電腦／iPad | 98px | 60px | 41px | = WORK EXPERIENCE content |
+| Phone 手機 | 48px | 28px | 12px | 20px |
 
-| State | Rule |
+Other rules 其他:
+- Category pages: frames and unframed rows share one left edge, centred. 類別頁白框與無框列同一左緣、置中。
+- About intro: text + portrait centred between header and screen bottom, 56–260px below the header. About 開頭在 header 與螢幕底之間置中。
+- Catalog title bars: text centred vertically. 標題列文字垂直置中。
+- Phone category pages: frames 8px apart, 48px before the next category. 手機類別頁框距 8px、類別間 48px。
+- Contact fields: 1px white underline (hover/typing `--jcd-blue`), 12px indent; names Medium (phone 11 / desktop 15px); hint Light 45%. Contact 欄位規格。
+
+## 5. Devices & scaling 裝置與縮放（Joel's rule: phone, iPad and computer are always fixed together 三平台一起修）
+
+| Device 裝置 | Page 頁面 | How it fits 如何適配 |
+|---|---|---|
+| Phone 手機 | `site/m/…` (320px layout) | viewport width=320, scaled to the phone 縮放到手機寬 |
+| iPad (Air 11, Pro 11, Pro 13) | desktop page 電腦版頁 | laid out at the width `jcd-config.js` gives (side-margin rule above), scaled; upright the header logo/menu are 1.3x (`.jcd-tab-portrait`) 依留白規則排版再縮放；直放時 logo 與選單 1.3 倍 |
+| Computer ≤ 1536px 電腦 | desktop page | zoom = `uiScale` 0.85 |
+| Computer > 1536px (1920, 2560, 3440, 3840) | desktop page | CSS zoom = width / `desktopRef` × `uiScale` (`window.__jcdZoom`) → always full width 永遠滿版 |
+
+- Scripts measuring with `getBoundingClientRect` divide by `window.__jcdZoom` before writing CSS px. 量位置的程式要除以 `__jcdZoom`。
+- Top image 首圖: phone 50% of screen height; portrait screens 50%; landscape exactly one screen (`100svh`). 手機與直向半個螢幕高、橫向剛好一個螢幕。
+- Background photos are pinned to their section, never `overflow: clip/hidden` on a Wix `bgMedia_*` outside its section. 背景圖固定在所屬段落。
+- Closing photo of product pages: CSS-sticky scroll reveal (`.jcd-reveal`), full original photo. 產品頁最後一張圖：捲動揭幕（CSS sticky）。
+- Home slideshow always starts at slide 1. 首頁輪播每次從第一張開始。
+- Images 圖片: `site/assets/media/<page>/<page>-<nn>-<w>x<h>.jpg` from `media-originals/`, JPEG q86 4:4:4 (top images q90, max 3200px); phone copies max 2400 (top) / 1440; `loading="lazy"` below the first section. 命名、品質、手機版尺寸、延遲載入規則。
+
+## 6. Interaction states 互動狀態
+
+| State 狀態 | Rule 規則 |
 |---|---|
-| Hover (mouse) | Menu text → `--jcd-blue`; icons/logo cross-fade to a blue copy; cards lift `translateY(-4px)`; ease .35s `cubic-bezier(.2,.7,.2,1)` |
-| Press (all platforms) | Text → `--jcd-blue` + small press-in `scale(.92)` in .12s (menus, dropdown items, phone menu, menu icons); cards `scale(.99)` |
-| Touch | Every hover effect also on tap/press (`:hover` sticks after a tap, `:active` while pressed); iOS needs the touchstart listener in `custom.js` |
-| Labels that are not buttons | No frame, no hover, no click (home "Selected") |
-| Cards that are not links | Design Approach cards 2-4: subtle hover only (frame brightens, faint fill), no press, default cursor. Card 1 (link): no movement; frame turns --jcd-blue + soft blue outer glow; small round >> (30px, bottom-right corner) that fills blue on press |
-| Category cards | Computer: no tilt; linked cards: photo zooms 1.06 inside the frame on hover (touch: while pressed); hover darkens + shows the name; unlinked cards keep the arrow cursor; a round frosted >> (40px, bottom-right) only on hover. Touch (phone + iPad): name bottom-left (brand small + model, soft shadow), linked cards a round frosted >> on the same centre line, blue while pressed |
-| Touch reveal | Overlays that show on hover with a mouse show while a finger rests on the item (~0.06s), not after the tap; scrolling/swiping never triggers them. Tiles without a link (End-to-End) keep the overlay after the tap (60% on touch, 27% desktop hover) |
-| Home category words | Computer/iPad: word scales 1.05 on hover (.35s), pressed = --jcd-blue text, no fill. Phone: grey press fill |
-| Round >> | Fills --jcd-blue from left to right (.9s, ease-in-out) while the mouse is on its card (touch: while pressed); a click opens the page at once |
-| Home Selected grid | Spotlight: hovered tile bright + photo 1.06 inside the frame + white 1px line + category/name + round >>; the others brightness .38. Touch: name + round >> always shown |
-| Selection / context menu | Disabled site-wide on phone, iPad and computer (`custom.css` + `custom.js`): no right-click / long-press menu, no text selection with the mouse or a long press, no image drag. Form fields (Contact) excepted |
-| Tooltips | None. No `title` attribute anywhere (resting the mouse on a photo must not show its file name); `custom.js` strips any that appear later. Form fields excepted |
-| Reduced motion | Every looping or moving effect is switched off under `prefers-reduced-motion: reduce` |
+| Hover (mouse) 滑過 | Menu text → blue; icons cross-fade to blue; cards lift 4px; .35s `cubic-bezier(.2,.7,.2,1)`. 選單變藍、卡片上浮 4px |
+| Press (all) 按下 | Text → blue + `scale(.92)` in .12s; cards `scale(.99)`. 文字變藍並微縮 |
+| Touch 觸控 | Every hover effect also on press (`:active`); **one tap opens a link** (custom.js opens it at touchend; the top menu keeps its own behaviour). 滑過效果在按住時出現；**點一下就換頁** |
+| Linked category cards 有連結的類別卡 | Whole card is clickable (photo included) on every platform; photo zooms 1.06 inside its frame on hover/press; round frosted >> (40px) on hover (computer) / always (touch). 整張卡可點；照片在框內放大 1.06；圓形 >> |
+| Cards that are not links 無連結卡片 | Subtle hover only, default cursor, no >>. 只有低調滑過 |
+| Round >> 圓形 >> | Fills blue left → right (.9s) while hovered / pressed; click opens at once. 滑過／按住時由左到右填藍 |
+| Home category words 首頁類別字 | Computer/iPad: scale 1.05 on hover, pressed = blue, no fill. Phone: grey press fill. |
+| Home Selected grid 精選 12 格 | Spotlight: hovered tile bright + photo 1.06 + white line + name + >>; others brightness .38. Touch: name + >> always. |
+| About portrait 大頭照 | Black-and-white; hover (computer) / press-and-hold (touch) shows the colour photo. 黑白，滑過或按住變彩色 |
+| Selection / context menu 選字與右鍵 | Disabled site-wide (form fields excepted). 全站禁止（表單除外） |
+| Tooltips 提示框 | None: no `title` attributes (no file names on hover). 不顯示任何 title |
+| Reduced motion 減少動態 | Every looping/moving effect off under `prefers-reduced-motion`. |
 
-## 7. Motion
+## 7. Motion 動態
 
-- Recommendation card hover: two faint corner glows (blue top-left 300×200px at .28, navy bottom-right at .6), drifting 70px/22px along the edge, 5s alternate; centre stays black.
-- GET IN TOUCH (home): endless "balloon" breathing, scale 1 → 1.045 → 1, 2.8s; pauses on hover/press.
-- Ocean Series creature photos: dimmed 35% at rest; hover/tap = full brightness + the photo zooms 1.1 **inside its frame** (never covers text).
-- 3D tilt following the mouse (`tilt.js`, max 3°): About portrait only (category cards no longer tilt, Joel 2026-11-26).
-- Home video glow: soft blue blur around the video window + the glow-frame image breathing together in 4.5s (frame brightness .35-1.15, light .2-1); no rotation.
-- Links on touch: one tap opens the page (custom.js opens it at touchend; iOS would otherwise spend the first tap on :hover). A category card with a link opens from anywhere on it, photo included, on every platform.
-- About intro photo: black-and-white; cross-fades to the colour photo on hover (.6s); touch (phone, iPad): colour while the finger presses, back to black-and-white on release (.35s).
-- About signature: left-to-right soft-edge reveal on scroll-in, 1.6s, once.
-- Home Achievements numbers: odometer roll on scroll-in, 1.8s cubic-bezier(.2,.75,.15,1), numbers 0.15s apart, once.
-- Home Achievement map: dots breathe (3.2s) with a spreading ring; a soft light (fading head and tail) runs each line into its flag (4.8s, countries staggered 0.55s); flag outline glows on arrival. Computer hover: the country's products scale 1.07, its dot/flag stay lit without motion, other countries' effects fade out.
+- Recommendation card hover: two corner glows drifting, 5s. 推薦卡角落光暈飄移。
+- GET IN TOUCH: breathing scale 1 → 1.045, 2.8s. 呼吸縮放。
+- Ocean Series creatures: dimmed 35% at rest; hover/tap = bright + zoom 1.1 inside the frame. 海洋系列小圖。
+- 3D tilt (`tilt.js`, max 3°): About portrait only. 3D 傾斜只給大頭照。
+- Home video glow: breathing 4.5s. 首頁影片光暈呼吸。
+- About signature: left-to-right reveal on scroll-in, 1.6s. 簽名由左到右顯現。
+- Achievements numbers: odometer roll, 1.8s. 數字滾動。
+- Achievement map: dots breathe, light runs each line into its flag; computer hover enlarges that country's products. 地圖光點與光流。
+- End-to-End (iPad): arrows sit 14px inside the screen over the photos, with a soft shadow; arrows thicker on every platform. End-to-End 箭頭。
 
-## 8. Components (where they live)
+## 8. Components: where they live 元件位置
 
-| Component | Code |
+| Component 元件 | Code 程式 |
 |---|---|
-| Recommendation cards (About, style A1) | `custom.js` "About Trusted Collaboration" (texts + LinkedIn URLs in `REC`), CSS `.jcd-rec*` |
-| Works dropdown glass, phone menu glass | CSS "Frosted-glass menus" |
-| Phone menu LinkedIn/Behance | `custom.js` (cloned from the hidden footer), CSS `.jcd-menu-social*` |
-| Hero heights | `custom.js` "Top image height" |
-| Page background light/dark | `custom.js` "Page background", CSS `.jcd-dark-canvas` |
-| Footer | removed on every page (`#SITE_FOOTER { display: none }`) |
-| Design studies (not deployed) | `preview/testimonials-ui.html`; device preview `preview/devices.html` |
+| Layout numbers 版面數字 | `site/assets/js/jcd-config.js` |
+| Device detection, iPad viewport, monitor zoom, slideshow 裝置判斷、iPad 視窗、螢幕縮放、輪播 | `site/assets/js/site.js` |
+| All effects (each block starts with a comment naming it) 所有效果 | `site/assets/js/custom.js`, `site/assets/css/custom.css` |
+| Wix-replacement CSS fixes 取代 Wix 的修正 | `site/assets/css/static-overrides.css` |
+| About portrait tilt 大頭照傾斜 | `site/assets/js/tilt.js` |
+| Recommendation cards 推薦卡 | `custom.js` "About Trusted Collaboration", CSS `.jcd-rec*` |
+| Footer 頁尾 | removed on every page (`#SITE_FOOTER { display: none }`) |
+| Three-device preview 三平台預覽 | `preview/devices.html`; design studies 設計提案 `preview/mockups/` |

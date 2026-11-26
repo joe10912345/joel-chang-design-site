@@ -1,13 +1,27 @@
-# Changelog
+# Changelog 更新紀錄
 
-Every change to the site, newest first. **Any person or AI that edits this repo adds an entry here in the same change.**
-Format: date (UTC+8) — what changed (in Joel's words where possible) — files touched. Open items go in `TODO.md`.
+Every change to the site, newest first. **Any person or AI that edits this repo adds an entry here in the same change,
+in English and Chinese.** Format: date (UTC+8) — what changed (in Joel's words where possible) — files touched. Open items
+go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only.
 
-Entries before 2026-11-24 evening were reconstructed from code comments and README, so they are grouped, not exact.
+網站的每一次修改，新的在最上面。**任何人或 AI 修改時都要在同一次變更中加一則紀錄，中英對照。** 格式：日期（UTC+8）
+— 改了什麼（盡量用 Joel 的話）— 動到哪些檔案。待辦放 `TODO.md`。2026-11-27 結構整理之前的紀錄只有英文。
 
 ---
 
 ## 2026-11-27
+
+### Structure clean-up: one config for layout numbers, folders tidied, bilingual docs, text clean-up 架構整理
+- Joel: "把各平台(橫直)左右要留多間距寫成規則…整理我的design system、本地資料夾與線上的架構…很多東西可以共用同個參數修改…所有 md 都要中英對照…三平台預覽預設打開規則", plus an outside review of the copy (alt text, language, typos, ESG heading, DFM wording).
+- **Layout config 版面設定**: new `site/assets/js/jcd-config.js`, loaded before `site.js` on every page and read by `preview/devices.html`: `uiScale`, `desktopRef`, and the **iPad side-margin rule** (5.35% each side, landscape and portrait) with content widths per page type (product 1284, About 1211, home/Contact 1179). Resulting iPad widths: product pages 1438, About 1356, home/Contact 1320 (≈ the widths Joel approved). `site.js` and `devices.html` no longer hold their own copies.
+  新增 `jcd-config.js`：整體縮放、螢幕基準寬、**iPad 左右留白規則**（直橫各 5.35%）與各類頁面內容寬，全站與三平台預覽共用同一份。
+- **Folders 資料夾**: Wix export scripts → `tools/export-wix/` (history, not to run); design studies → `preview/mockups/` (paths fixed); export screenshots/comparisons/update rounds → `reference/archive/`; 85 old Wix-named images that no page used removed from git and moved with the other 56 loose ones to `reference/archive/unused-wix-media/` (local only, git-ignored). Short README in `preview/`, `tools/`, `reference/`, `content/`.
+  匯出腳本、mockup、舊截圖與沒用到的 Wix 圖各自歸檔；各資料夾加上說明。
+- **Docs 文件**: README (folder map, how a page is built, local work, publishing), AGENTS (rules incl. "three-device preview opens by default and stays open"), DESIGN-SYSTEM (new §0 "one place for each number", §4 side-margin table per platform, copy rules), TODO, PAGES (page types), ASSETS (recounted), i18n-archive and media-new notes — all English + Chinese.
+  所有 md 改為中英對照；README 有完整資料夾地圖與串接方式；AGENTS 寫入三平台預覽預設開啟規則。
+- **Text 文字** (`tools/clean_text.py`, re-runnable): 276 image alt texts that were file names (`未命名-1`, `螢幕擷取畫面 …`, `thermal vision(PLA).jpg`, `LINE_ALBUM_…`, `ok.jpg`, `fffs1.png` …) → clean English (descriptions for the key ones, "<Product> design detail <n>" for the rest; background glows empty); Wix labels left in Chinese (skip link "跳到主要內容", social bar, menu, video, password dialog) → English; `T.Interceptor` → `T. Interceptor`; `Marcus Kung (Design Director)`; Wi-Fi 7 HGU/AP decorative "ESG" text mask no longer an `<h1>`; the DFM paragraph rewritten action-first ("Rather than trade the design intent for cost, I …"). The two "Screenshot 2025-01-12 104631" images on HGU/AP are different pictures (pain point / solution) that shared a name — not a duplicate. `<html lang="en">` was already set on every page; the Chinese came from Wix's labels.
+  替代文字、Wix 中文介面字、產品名空格、括號空格、ESG 標題、DFM 語氣一併修正；HGU/AP 那兩張不是重複貼圖，只是同名。
+- Files: `site/assets/js/jcd-config.js` (new), `site/assets/js/site.js`, `site/assets/css/custom.css` (comments), all 72 page HTML, `preview/devices.html`, `preview/mockups/*`, `tools/clean_text.py` (new), `tools/export-wix/*`, `reference/archive/*`, `.gitignore`, all `.md`.
 
 ### One tap opens the page; whole category card clickable; iPad About width; End-to-End arrows
 - Joel: "平板我按產品類別頁的白框，按第一次是按鈕填滿藍色動畫，第二次才會進到下一頁。全面幫我檢查". Cause: Wix put each card's link on its white frame / title bar / >>, not on the photo, so tapping the photo only triggered the hover state (blue fill); iOS also spends a first tap on :hover. Now any click/tap anywhere on a linked card opens it (every platform), and on touch devices (phone + iPad) a short tap on any link opens it at once (not in the top menu). Checked by simulated taps on iPad, phone and a click on computer.

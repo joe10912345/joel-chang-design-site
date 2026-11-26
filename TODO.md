@@ -1,26 +1,33 @@
-# TODO
+# TODO 待辦
 
-Open items. When you finish one, move it to `CHANGELOG.md` with the date. Add new items here.
+Open items. When you finish one, move it to `CHANGELOG.md` with the date. Add new items here (English + 中文).
+未完成事項。完成後移到 `CHANGELOG.md` 並註明日期；新事項加在這裡（中英對照）。
 
-## Waiting on Joel's decision
-- [ ] **Phone: Wi-Fi 7 2022 + T-Blade top images** are trimmed at the sides (phone hero ~0.92:1: white/green units, drone nose/tail). Options: a square phone crop, or show the whole 4:3 image on the phone (shorter hero).
-- [ ] **Same black-on-hover on other pages?** The Wix MouseOverPhoto skin (`.hhxEkR`) that made Ocean Series photos go black on hover is also used on: airgain-fwa-easy-installation-kit (8), moai-router (3), industrial (2), defense, electronics, networking (1 each). Check whether those should get the "dim at rest, bright + zoom on hover" treatment too.
-- [ ] **Domain cutover**: point `www.joel-chang-design.com` at GitHub Pages (or Cloudflare in front). Keep `SITE_BASE` in `tools/siteconfig.py` as is. Then submit the sitemap in Google Search Console.
-- [ ] **Languages**: zh-hant / zh-cn / ar are built but not published (`i18n-archive/README.md` says how to publish). Note: they were built before the 11-24 changes, so rebuild before publishing.
+## Waiting on Joel's decision 等 Joel 決定
+- [ ] **Phone: Wi-Fi 7 2022 + T-Blade top images** are trimmed at the sides. Options: a square phone crop, or the whole 4:3 image (shorter hero).
+      **手機版 Wi-Fi 7 2022 與 T-Blade 首圖**左右被裁。選項：做方形手機裁切，或完整顯示 4:3 圖（首圖變矮）。
+- [ ] **Same "dim at rest, bright + zoom on hover" on other pages?** Wix's MouseOverPhoto skin is also used on Airgain (8), MoAI (3), Industrial (2), Defense, Electronics, Networking (1 each).
+      **其他頁面要不要也用「平常微暗、滑過變亮放大」？**
+- [ ] **Domain cut-over**: point `www.joel-chang-design.com` at GitHub Pages (or Cloudflare in front); keep `SITE_BASE`; submit the sitemap in Search Console.
+      **網域切換**：把網域指到 GitHub Pages，SITE_BASE 不變，再到 Search Console 提交 sitemap。
+- [ ] **Languages**: zh-hant / zh-cn / ar are built but not published (`i18n-archive/README.md`); built before the 11-24 changes, rebuild first.
+      **多語版**：已做好未上線，上線前要重建。
+- [ ] **iPad on a real device**: check the new layout widths (product pages 1438, About 1356, home/Contact 1320) and one-tap links on a real iPad, portrait + landscape.
+      **實機 iPad 檢查**：新的排版寬度與「點一下換頁」在實機直橫向都確認。
+- [ ] **Alt text detail**: most images now read "<Product> design detail <n>" (clean, but generic). Joel can give short descriptions for key images; edit `SPECIAL` in `tools/clean_text.py` or the HTML.
+      **替代文字細節**：多數圖片目前是「產品名 design detail 編號」，乾淨但籠統；重要圖片可由 Joel 提供描述。
 
-- [ ] **iPad on a real device**: tablet layout changed to 1440px wide (2026-11-24). Joel to check on a real iPad (portrait + landscape) once pushed; text in portrait is smaller than before (page scaled ~0.6).
+## Known problems 已知問題
+- [ ] Top images whose original is only ~2000px wide (home slides 4 / 8 / 9, Gaming gateway, Lionic, AI Tool Kit, T-Interceptor CS, NLG MMA200, Assistive): Joel can supply 3000px+ versions.
+      原圖只有約 2000px 的首圖，Joel 可提供 3000px 以上版本。
+- [ ] Desktop windows narrower than ~1340px: the layout is wider than the window. Could zoom below 1440 like the wide-screen zoom.
+      電腦視窗窄於約 1340px 時版面比視窗寬。
+- [ ] Two images broken on Wix too (403): `wi-fi7-hgu-ap`, `electronics` (`data-live-src-missing`). Need replacements. 兩張圖在 Wix 上就壞了，需要替換。
+- [ ] Site-wide social share image (og:image) missing. 缺全站分享圖。
+- [ ] `/scope` is password-protected on Wix; only the gate was exported. `/scope` 只有密碼頁。
+- [ ] Wix scroll-parallax effects not reproduced. Wix 捲動視差未重現。
 
-## Known problems
-- [ ] Top images whose original is only ~2000px wide (home slides 4 routers, 8 ACE, 9 black tower; Gaming gateway, Lionic, AI Tool Kit (1672), T-Interceptor CS, NLG MMA200, Assistive (1788)): Joel can supply 3000px+ versions for 2560/4K screens.
-- [ ] Desktop windows narrower than ~1340px (e.g. a 1280px laptop window): the desktop layout is wider than the window and the category frames touch/cross the edges. Could shrink the page with CSS zoom below 1440 like the wide-screen zoom does above 1536.
-- [ ] Two images are broken on live Wix too (403): one on `wi-fi7-hgu-ap`, one on `electronics` (blank placeholders with `data-live-src-missing`). Need replacement images.
-- [ ] Site-wide social share image (og:image) is missing; needs a new one.
-- [ ] `/scope` is password-protected on Wix; the export is only the password gate.
-- [ ] Wix scroll-parallax effects not reproduced.
-
-## Workflow / housekeeping
-- [ ] Untracked leftover Wix images still sit loose in `site/assets/media/` (not used, never committed); can be deleted locally.
-- [ ] `tools/*.py` export scripts still expect the old flat Wix image names.
-- [ ] `tools/build.py` and other export scripts use `/workspace/...` paths from the environment they were made in; they do not run on Joel's PC as-is. Today all edits are made directly in `site/`. Do NOT re-run `build.py` without checking: it would regenerate HTML from the raw Wix capture and could overwrite hand edits.
-- [ ] `reference/asset-sources.json` differs from GitHub (same files, different original-name URLs); unclear which is newer, left uncommitted.
-- [ ] README "Known limitations" should be kept in sync with this file.
+## Housekeeping 整理
+- [ ] `reference/asset-sources.json` differs from GitHub (same files, different URLs); unclear which is newer, left uncommitted. 與 GitHub 版本不同，未 commit。
+- [ ] `content/*.md` is the 2026-11-23 text snapshot and is not kept up to date (text lives in the HTML). Regenerate or retire it. content/ 是舊快照，未同步。
+- [ ] `custom.js` / `custom.css` hold every effect in one file each (blocks are commented). Splitting them into one file per component would make them easier to browse. 效果都在同一檔，可拆成一個元件一個檔。

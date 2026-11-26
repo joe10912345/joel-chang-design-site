@@ -1,4 +1,15 @@
-# Page list
+# Page list 頁面清單
+
+Every page has a computer/iPad file (`site/<slug>/index.html`) and a phone file (`site/m/<slug>/index.html`).
+每頁都有電腦／iPad 版與手機版兩份 HTML。
+
+Page types (decide the iPad layout width in `site/assets/js/jcd-config.js`) 頁面類型（決定 iPad 排版寬度）:
+- **home-like 首頁類** (1320): home `''`, `contact`, `1`-`4`
+- **about** (1356): `about`
+- **product 產品類** (1438): the category pages `defense`, `networking`, `electronics`, `lifestyle`, `industrial`,
+  `experimental` and every product page 類別頁與所有產品頁
+
+The table below is from the export (2026-11-23); text/image counts are not updated. 下表為匯出時資料，數量未更新。
 
 | slug | title | live URL | desktop file | mobile file | text blocks | images |
 |---|---|---|---|---|---|---|

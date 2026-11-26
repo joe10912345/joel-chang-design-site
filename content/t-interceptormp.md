@@ -11,7 +11,7 @@ T. Interceptor MP
 
 Autonomous AI-powered drone, guarding airspace with speed and agility.
 
-As drone threats grow more prevalent, T.Interceptor MP is a multi-functional defense system built for urban security and critical infrastructure protection. It integrates AI image recognition, modular design, and cloud communication to perform real-time detection, monitoring, and interception in complex environments.
+As drone threats grow more prevalent, T. Interceptor MP is a multi-functional defense system built for urban security and critical infrastructure protection. It integrates AI image recognition, modular design, and cloud communication to perform real-time detection, monitoring, and interception in complex environments.
 
 Powered by AI flight control and visual recognition, the system autonomously detects and locks onto suspicious aerial targets without continuous human oversight. Once confirmed, it launches a physical capture net to intercept the threat and bring it safely to the ground — delivering high-mobility protection with minimal impact on the surrounding environment.
 
@@ -25,7 +25,7 @@ Year
 
 2025-2026
 
-Designer Joel Chang (Project Owner) Marcus Kung(Design Director)
+Designer Joel Chang (Project Owner) Marcus Kung (Design Director)
 
 Contribution Concept Development Industrial Design User Experience Color, Material and Finish Prototyping Design for Manufacture
 
@@ -33,7 +33,7 @@ Reconnaissance, interception, and rapid response — one platform, multiple miss
 
 Autonomous Detection, Tracking & Interception
 
-No need for personnel with drone jamming guns on-site. The T.Interceptor MP intercepts threats autonomously, while net-based capture minimizes collateral impact to the surrounding environment.
+No need for personnel with drone jamming guns on-site. The T. Interceptor MP intercepts threats autonomously, while net-based capture minimizes collateral impact to the surrounding environment.
 
 From a Working Prototype to a Product That Meets Every Team’s Needs
 

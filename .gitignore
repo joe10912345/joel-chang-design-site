@@ -4,3 +4,6 @@ tools/scrub_*.py
 tools/seo-report.json
 media-new/*
 !media-new/README.txt
+
+# Wix-export images no page uses (kept locally only, 2026-11-27)
+reference/archive/unused-wix-media/

@@ -1,4 +1,8 @@
-# Language archive (not deployed)
+# Language archive (not deployed) 多語版存檔（未上線）
+
+繁中（zh-hant）、簡中（zh-cn）、阿拉伯文（ar）的靜態版本放在這裡，GitHub Pages 只發佈最上層 `site/`，所以這些不會上線。
+要上線時：設 `PUBLISH_I18N = True`（tools/siteconfig.py）或執行 `python tools/i18n_apply.py --publish`，再跑 `python tools/seo_apply.py`，然後 commit、push。
+（這些版本是 11-24 之前做的，上線前要先重建。）
 
 This folder holds the last built Traditional Chinese (`site/zh-hant/`),
 Simplified Chinese (`site/zh-cn/`), and Arabic (`site/ar/`) static trees.

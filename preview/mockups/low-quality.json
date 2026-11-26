@@ -1,0 +1,616 @@
+[
+ {
+  "src": "media-originals/1e9c09_4d0281cd2b64485fa4c850e3b4b900f1_mv2.png",
+  "size": [
+   1061,
+   1500
+  ],
+  "kb": 768,
+  "pages": [
+   "assistive-products"
+  ],
+  "shown": "assistive-products/assistive-products-05-480x452.jpg",
+  "reasons": [
+   "upscaled x1.3"
+  ],
+  "worst": 1.35,
+  "maxw": 1059,
+  "sev": 1
+ },
+ {
+  "src": "media-originals/1e9c09_d3f20eb6c2f348aeb941b9c7b76b1077_mv2.png",
+  "size": [
+   2310,
+   339
+  ],
+  "kb": 564,
+  "pages": [
+   "zenfone-9"
+  ],
+  "shown": "zenfone-9/zenfone-9-08-508x376-b.jpg",
+  "reasons": [
+   "upscaled x1.3"
+  ],
+  "worst": 1.3,
+  "maxw": 508,
+  "sev": 1
+ },
+ {
+  "src": "media-originals/1e9c09_fd6b9d7bc53d47ddb3811313e8917df7_mv2.jpg",
+  "size": [
+   1591,
+   466
+  ],
+  "kb": 341,
+  "pages": [
+   "nlg-mma200"
+  ],
+  "shown": "nlg-mma200/nlg-mma200-07-392x584.jpg",
+  "reasons": [
+   "upscaled x1.3"
+  ],
+  "worst": 1.27,
+  "maxw": 546,
+  "sev": 1
+ },
+ {
+  "src": "media-originals/1e9c09_09b9e61a7e354b5f81a65f48e28bb26e_mv2.jpg",
+  "size": [
+   1995,
+   3000
+  ],
+  "kb": 305,
+  "pages": [
+   "t-interceptor-cs"
+  ],
+  "shown": "t-interceptor-cs/t-interceptor-cs-14-1244x1682.jpg",
+  "reasons": [
+   "heavily compressed (0.05 B/px)"
+  ],
+  "worst": 0.7,
+  "maxw": 1244,
+  "sev": 1
+ },
+ {
+  "src": "media-originals/1e9c09_1a16dd05e6884740b896a72adf2cfb14_mv2.jpg",
+  "size": [
+   3840,
+   2400
+  ],
+  "kb": 621,
+  "pages": [
+   "electronics"
+  ],
+  "shown": "electronics/electronics-01-2560x1400.jpg",
+  "reasons": [
+   "heavily compressed (0.07 B/px)"
+  ],
+  "worst": 0.67,
+  "maxw": 2560,
+  "sev": 1
+ },
+ {
+  "src": "media-originals/1e9c09_ba7711b7242b418fa2cd0387cfe74e0a_mv2.jpg",
+  "size": [
+   2217,
+   3000
+  ],
+  "kb": 362,
+  "pages": [
+   "t-interceptor-cs"
+  ],
+  "shown": "t-interceptor-cs/t-interceptor-cs-01-1244x1682.jpg",
+  "reasons": [
+   "heavily compressed (0.06 B/px)"
+  ],
+  "worst": 0.67,
+  "maxw": 1244,
+  "sev": 1
+ },
+ {
+  "src": "media-originals/1e9c09_068266b4c7474e6cb5997177092120e2_mv2.jpg",
+  "size": [
+   3840,
+   2262
+  ],
+  "kb": 319,
+  "pages": [
+   "speeder-pro-earbuds"
+  ],
+  "shown": "speeder-pro-earbuds/speeder-pro-earbuds-05-1510x1268.jpg",
+  "reasons": [
+   "heavily compressed (0.04 B/px)"
+  ],
+  "worst": 0.66,
+  "maxw": 1510,
+  "sev": 1
+ },
+ {
+  "src": "media-originals/1e9c09_cfa75c6deb5b452b8eca6b8d7fc271a0_mv2.jpg",
+  "size": [
+   3840,
+   2400
+  ],
+  "kb": 516,
+  "pages": [
+   "teana-earbuds"
+  ],
+  "shown": "teana-earbuds/teana-earbuds-04-2520x1420.jpg",
+  "reasons": [
+   "heavily compressed (0.06 B/px)"
+  ],
+  "worst": 0.66,
+  "maxw": 2520,
+  "sev": 1
+ },
+ {
+  "src": "media-originals/1e9c09_0180b4a0f22545419bbd5946a099ef68_mv2.jpg",
+  "size": [
+   3840,
+   2400
+  ],
+  "kb": 526,
+  "pages": [
+   "teana-earbuds"
+  ],
+  "shown": "teana-earbuds/teana-earbuds-05-2520x1420.jpg",
+  "reasons": [
+   "heavily compressed (0.06 B/px)"
+  ],
+  "worst": 0.66,
+  "maxw": 2520,
+  "sev": 1
+ },
+ {
+  "src": "media-originals/1e9c09_b69537dcad8e4c8eac77ec270f7ec173_mv2.jpg",
+  "size": [
+   3840,
+   2400
+  ],
+  "kb": 575,
+  "pages": [
+   "teana-earbuds"
+  ],
+  "shown": "teana-earbuds/teana-earbuds-06-2520x1420.jpg",
+  "reasons": [
+   "heavily compressed (0.06 B/px)"
+  ],
+  "worst": 0.66,
+  "maxw": 2520,
+  "sev": 1
+ },
+ {
+  "src": "media-originals/1e9c09_c36be6592fcd48f8945e69a7e2b52613_mv2.jpg",
+  "size": [
+   3840,
+   2400
+  ],
+  "kb": 574,
+  "pages": [
+   "teana-earbuds"
+  ],
+  "shown": "teana-earbuds/teana-earbuds-07-2520x1420.jpg",
+  "reasons": [
+   "heavily compressed (0.06 B/px)"
+  ],
+  "worst": 0.66,
+  "maxw": 2520,
+  "sev": 1
+ },
+ {
+  "src": "media-originals/1e9c09_c8701669fac24ff69c4c9680a7132bff_mv2.jpg",
+  "size": [
+   3547,
+   3458
+  ],
+  "kb": 766,
+  "pages": [
+   "zenfone-9"
+  ],
+  "shown": "zenfone-9/zenfone-9-01-898x1580.jpg",
+  "reasons": [
+   "heavily compressed (0.06 B/px)"
+  ],
+  "worst": 0.5,
+  "maxw": 898,
+  "sev": 1
+ },
+ {
+  "src": "media-originals/1e9c09_27a3fc2028f242ab980ca92038dbb0f3_mv2.jpg",
+  "size": [
+   2933,
+   1650
+  ],
+  "kb": 299,
+  "pages": [
+   "airgain-fwa-easy-installation-kit"
+  ],
+  "shown": "airgain-fwa-easy-installation-kit/airgain-fwa-easy-installation-kit-15-1338x748.jpg",
+  "reasons": [
+   "heavily compressed (0.06 B/px)"
+  ],
+  "worst": 0.46,
+  "maxw": 1338,
+  "sev": 1
+ },
+ {
+  "src": "media-originals/1e9c09_a760caf1693544efb954d3037e8634c8_mv2.jpg",
+  "size": [
+   2933,
+   1650
+  ],
+  "kb": 326,
+  "pages": [
+   "airgain-fwa-easy-installation-kit"
+  ],
+  "shown": "airgain-fwa-easy-installation-kit/airgain-fwa-easy-installation-kit-08-1098x618.jpg",
+  "reasons": [
+   "heavily compressed (0.07 B/px)"
+  ],
+  "worst": 0.37,
+  "maxw": 1098,
+  "sev": 1
+ },
+ {
+  "src": "media-originals/1e9c09_21d93c94d60c4486a69a478e60a76968_mv2.jpeg",
+  "size": [
+   1280,
+   1280
+  ],
+  "kb": 61,
+  "pages": [
+   "nlg-mma200"
+  ],
+  "shown": "nlg-mma200/nlg-mma200-03-418x192.jpg",
+  "reasons": [
+   "heavily compressed (0.04 B/px)"
+  ],
+  "worst": 0.33,
+  "maxw": 418,
+  "sev": 1
+ },
+ {
+  "src": "media-originals/1e9c09_d4b568f27cc848f98083e7e78eb5f675_mv2.png",
+  "size": [
+   2209,
+   974
+  ],
+  "kb": 968,
+  "pages": [
+   "lionic-lionfilter-200"
+  ],
+  "shown": "lionic-lionfilter-200/lionic-lionfilter-200-07-1265x409.jpg",
+  "reasons": [
+   "full-width, original only 2209px"
+  ],
+  "worst": 1.2,
+  "maxw": 2081,
+  "sev": 0
+ },
+ {
+  "src": "media-originals/1e9c09_6977a9af4c014978af742a0bcf1eb547_mv2.jpg",
+  "size": [
+   1911,
+   1076
+  ],
+  "kb": 682,
+  "pages": [
+   "assistive-products"
+  ],
+  "shown": "assistive-products/assistive-products-07-1910x1076.jpg",
+  "reasons": [
+   "full-width, original only 1911px"
+  ],
+  "worst": 1.0,
+  "maxw": 1910,
+  "sev": 0
+ },
+ {
+  "src": "media-originals/1e9c09_afae5c57e9b64caf8954d8c4dc94f5b7_mv2.jpg",
+  "size": [
+   1904,
+   1750
+  ],
+  "kb": 1986,
+  "pages": [
+   "defense"
+  ],
+  "shown": "defense/defense-05-1904x1748.jpg",
+  "reasons": [
+   "full-width, original only 1904px"
+  ],
+  "worst": 1.0,
+  "maxw": 1904,
+  "sev": 0
+ },
+ {
+  "src": "media-originals/1e9c09_9186f4a608dd46038e283d1fc334e895_mv2.jpg",
+  "size": [
+   2000,
+   1243
+  ],
+  "kb": 905,
+  "pages": [
+   "home",
+   "networking",
+   "wi-fi7-2022"
+  ],
+  "shown": "wi-fi7-2022/wi-fi7-2022-01-2000x1094.jpg",
+  "reasons": [
+   "full-width, original only 2000px"
+  ],
+  "worst": 1.0,
+  "maxw": 2000,
+  "sev": 0
+ },
+ {
+  "src": "media-originals/1e9c09_5b758ae2cdf74bcd8083a498fcc3516a_mv2.jpg",
+  "size": [
+   1946,
+   941
+  ],
+  "kb": 671,
+  "pages": [
+   "interstellar05"
+  ],
+  "shown": "interstellar05/interstellar05-16-1943x941.jpg",
+  "reasons": [
+   "full-width, original only 1946px"
+  ],
+  "worst": 1.0,
+  "maxw": 1943,
+  "sev": 0
+ },
+ {
+  "src": "media-originals/1e9c09_83984867e97647d6ad577439e44fabb9_mv2.jpg",
+  "size": [
+   2126,
+   1228
+  ],
+  "kb": 1366,
+  "pages": [
+   "interstellar05"
+  ],
+  "shown": "interstellar05/interstellar05-32-2126x1226.jpg",
+  "reasons": [
+   "full-width, original only 2126px"
+  ],
+  "worst": 1.0,
+  "maxw": 2126,
+  "sev": 0
+ },
+ {
+  "src": "media-originals/1e9c09_f36c6a1a41b1420c93561f9280b491f4_mv2.jpg",
+  "size": [
+   2151,
+   1727
+  ],
+  "kb": 552,
+  "pages": [
+   "lifestyle"
+  ],
+  "shown": "lifestyle/lifestyle-02-2151x1176.jpg",
+  "reasons": [
+   "full-width, original only 2151px"
+  ],
+  "worst": 1.0,
+  "maxw": 2151,
+  "sev": 0
+ },
+ {
+  "src": "media-originals/1e9c09_d5181c7ce4aa4f37b7280be06c1d8ef4_mv2.jpg",
+  "size": [
+   2349,
+   880
+  ],
+  "kb": 239,
+  "pages": [
+   "lionic-lionfilter-200"
+  ],
+  "shown": "lionic-lionfilter-200/lionic-lionfilter-200-06-2348x880.jpg",
+  "reasons": [
+   "full-width, original only 2349px"
+  ],
+  "worst": 1.0,
+  "maxw": 2348,
+  "sev": 0
+ },
+ {
+  "src": "media-originals/1e9c09_b0f0bf506b1f443d909364562a801a96_mv2.jpg",
+  "size": [
+   2000,
+   785
+  ],
+  "kb": 604,
+  "pages": [
+   "nlg-mma200"
+  ],
+  "shown": "nlg-mma200/nlg-mma200-09-2000x769.jpg",
+  "reasons": [
+   "full-width, original only 2000px"
+  ],
+  "worst": 1.0,
+  "maxw": 2000,
+  "sev": 0
+ },
+ {
+  "src": "media-originals/1e9c09_adb2e0ff7eeb43b59098e4a340af5ccc_mv2.jpg",
+  "size": [
+   2000,
+   1068
+  ],
+  "kb": 486,
+  "pages": [
+   "nlg-mma200"
+  ],
+  "shown": "nlg-mma200/nlg-mma200-12-2000x1033.jpg",
+  "reasons": [
+   "full-width, original only 2000px"
+  ],
+  "worst": 1.0,
+  "maxw": 2000,
+  "sev": 0
+ },
+ {
+  "src": "media-originals/1e9c09_0abc4840c11a4142af2949ce1cdc0f65_mv2.jpg",
+  "size": [
+   2000,
+   1174
+  ],
+  "kb": 671,
+  "pages": [
+   "t-interceptor-cs"
+  ],
+  "shown": "t-interceptor-cs/t-interceptor-cs-09-2000x1124.jpg",
+  "reasons": [
+   "full-width, original only 2000px"
+  ],
+  "worst": 1.0,
+  "maxw": 2000,
+  "sev": 0
+ },
+ {
+  "src": "media-originals/1e9c09_175e5d21c2824e5a9025ca1b1afbbe86_mv2.jpg",
+  "size": [
+   2008,
+   960
+  ],
+  "kb": 1115,
+  "pages": [
+   "t-interceptormp"
+  ],
+  "shown": "t-interceptormp/t-interceptormp-11-1983x960.jpg",
+  "reasons": [
+   "full-width, original only 2008px"
+  ],
+  "worst": 1.0,
+  "maxw": 1983,
+  "sev": 0
+ },
+ {
+  "src": "media-originals/1e9c09_5fe566abbd5c4e51a05a635b3fed1be4_mv2.jpg",
+  "size": [
+   2000,
+   1246
+  ],
+  "kb": 795,
+  "pages": [
+   "t-interceptormp"
+  ],
+  "shown": "t-interceptormp/t-interceptormp-18-2000x1225.jpg",
+  "reasons": [
+   "full-width, original only 2000px"
+  ],
+  "worst": 1.0,
+  "maxw": 2000,
+  "sev": 0
+ },
+ {
+  "src": "media-originals/1e9c09_7f1cfd7350ae45fc81921256c93f780c_mv2.jpg",
+  "size": [
+   2386,
+   1342
+  ],
+  "kb": 508,
+  "pages": [
+   "t-interceptormp"
+  ],
+  "shown": "t-interceptormp/t-interceptormp-19-2018x1236.jpg",
+  "reasons": [
+   "full-width, original only 2386px"
+  ],
+  "worst": 1.0,
+  "maxw": 2018,
+  "sev": 0
+ },
+ {
+  "src": "media-originals/1e9c09_c02c9bfba48a449586cce32b47e38566_mv2.jpg",
+  "size": [
+   2232,
+   1853
+  ],
+  "kb": 1678,
+  "pages": [
+   "t-interceptormp"
+  ],
+  "shown": "t-interceptormp/t-interceptormp-24-2232x1852.jpg",
+  "reasons": [
+   "full-width, original only 2232px"
+  ],
+  "worst": 1.0,
+  "maxw": 2232,
+  "sev": 0
+ },
+ {
+  "src": "media-originals/1e9c09_8f2f32e8a47443ca9bd5775b98ad5e94_mv2.jpg",
+  "size": [
+   2000,
+   1376
+  ],
+  "kb": 400,
+  "pages": [
+   "wi-fi7-2022"
+  ],
+  "shown": "wi-fi7-2022/wi-fi7-2022-24-2000x1147.jpg",
+  "reasons": [
+   "full-width, original only 2000px"
+  ],
+  "worst": 1.0,
+  "maxw": 2000,
+  "sev": 0
+ },
+ {
+  "src": "media-originals/1e9c09_d9583177313b4a49b7ca96784d1f353f_mv2.jpg",
+  "size": [
+   2034,
+   773
+  ],
+  "kb": 668,
+  "pages": [
+   "wi-fi7-hgu-ap"
+  ],
+  "shown": "wi-fi7-hgu-ap/wi-fi7-hgu-ap-05-2033x773.jpg",
+  "reasons": [
+   "full-width, original only 2034px"
+  ],
+  "worst": 1.0,
+  "maxw": 2033,
+  "sev": 0
+ },
+ {
+  "src": "media-originals/1e9c09_ffb7e3c8f11d4089a0785e11866b142c_mv2.jpg",
+  "size": [
+   2272,
+   1173
+  ],
+  "kb": 629,
+  "pages": [
+   "interstellar05"
+  ],
+  "shown": "interstellar05/interstellar05-10-1936x1002.jpg",
+  "reasons": [
+   "full-width, original only 2272px"
+  ],
+  "worst": 0.85,
+  "maxw": 1936,
+  "sev": 0
+ },
+ {
+  "src": "media-originals/1e9c09_a2d2dc96497644cd9aa3f0cd31378851_mv2.png",
+  "size": [
+   2345,
+   1280
+  ],
+  "kb": 1255,
+  "pages": [
+   "moai-router"
+  ],
+  "shown": "moai-router/moai-router-10-1960x1062.jpg",
+  "reasons": [
+   "full-width, original only 2345px"
+  ],
+  "worst": 0.84,
+  "maxw": 1960,
+  "sev": 0
+ }
+]
