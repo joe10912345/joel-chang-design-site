@@ -11,6 +11,12 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Defense: new "T. Xcalar" card in the T. Guardian group 新增 T. Xcalar 白框
+- Joel: "T. Guardian 下方新增一個白框可跟 guardian 視為一組。叫做 T. Xcalar" (photo: `Xcalar+Guardian(Final).jpg`). A photo card under the "Field Protection" frame, spaced like the Airspace Protection group (computer 34px, phone 8px), caption "Tron Future / T. Xcalar", no ">>" (no product page yet). Made by cloning the T. Guardian photo card (new ids `comp-jcdxcal0-4`) with its Wix layout rules in a `<style id="jcd-xcalar">` block on each page; phone, iPad and computer checked (same size as the Guardian card).
+  T. Guardian 下方新增 T. Xcalar 照片卡，和 Guardian 同組；手機、iPad、電腦都確認過。
+- Images: original `media-originals/defense/defense-09-5636x3580.jpg`; site `defense-09-2560x1404.jpg` (computer/iPad), `defense-09-560x307.jpg` (phone), JPEG q86 4:4:4, cropped to the card ratio keeping the top; recorded in `reference/media-map.json`.
+- Files: `site/defense/index.html`, `site/m/defense/index.html`, images above.
+
 ### Old /scope address opens the Guest Area dialog 舊的 /scope 網址改為跳出視窗
 - Joel: "等等 我還是要改成彈出視窗". `/scope` (and `/m/scope`) no longer show the Wix password page: they forward to Defense with `?guest=1`, which opens the Guest Area dialog at once (also after the phone/computer switch: `site.js` now keeps the query when it redirects). `/scope` removed from `sitemap.xml` and marked `noindex`. 舊網址、書籤、搜尋結果打開 /scope 都會回到 Defense 並直接跳出視窗。
 - Files: `site/scope/index.html`, `site/m/scope/index.html`, `site/sitemap.xml`, `site/assets/js/site.js`, `src/js/product/guest-area-dialog.js` → built `custom.js`, `?v=` in all page HTML.
