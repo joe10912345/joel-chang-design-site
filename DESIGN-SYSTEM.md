@@ -146,7 +146,7 @@ Other rules 其他:
 - GET IN TOUCH: breathing scale 1 → 1.045, 2.8s. 呼吸縮放。
 - Ocean Series creatures: dimmed 35% at rest; hover/tap = bright + zoom 1.1 inside the frame. 海洋系列小圖。
 - 3D tilt (`tilt.js`, max 3°): About portrait only. 3D 傾斜只給大頭照。
-- Home video glow: breathing 4.5s. 首頁影片光暈呼吸。
+- Video glow (home + Interstellar 05 closing video): breathing 4.5s, frame image dims in step. 影片光暈呼吸（首頁、Interstellar）。
 - About signature: left-to-right reveal on scroll-in, 1.6s. 簽名由左到右顯現。
 - Achievements numbers: odometer roll, 1.8s. 數字滾動。
 - Achievement map: dots breathe, light runs each line into its flag; computer hover enlarges that country's products. 地圖光點與光流。

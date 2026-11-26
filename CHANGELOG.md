@@ -11,6 +11,11 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Interstellar 05 closing video: same breathing glow as the home video Interstellar 影片光暈
+- Joel: "interstellar 最下方的影片背景光暈也要參考首頁下方影片光暈的動態效果". The home video code now serves a list of videos: Interstellar 05's Vimeo player is lined up with the black window of its glow frame (2560×1526, window 157-2409 × 127-1395), overscanned and clipped (no dark edges), with the breathing blue light and the frame image dimming in step (4.5s). Rules now use shared classes `.jcd-vbox` / `.jcd-vframe` / `.jcd-vglow` instead of the home IDs.
+  首頁影片的光暈程式改成可套用多支影片；Interstellar 影片對齊光框、去黑邊，並加上同樣的呼吸光暈。
+- Files: `src/js/home/video-frame.js`, `src/css/home/video-frame.css`, `src/css/home/video-glow.css` → built `custom.js` / `custom.css`, `?v=` in all page HTML, `DESIGN-SYSTEM.md`.
+
 ### Home End-to-End squares: smooth darkening + zoom-in End-to-End 方塊壓黑變順＋放大
 - Joel: "end to end 的方塊hover 後壓黑動畫有點不順。然後我要加點zoom in". The darkening was on the overlay site.js inserts/removes on every hover, inside a layer that also faded (eased twice, restarted from zero). Now one dark layer stays on each square and only fades (.7s; 36% computer, 60% touch); the photo eases in 8% inside its frame (1.2s). Computer on hover, phone/iPad while the overlay shows; off under reduced motion.
   壓黑改成每個方塊固定一層、只改透明度，不再每次重建；照片在框內放大 8%。

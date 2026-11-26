@@ -95,11 +95,11 @@ a.item-link-wrapper[data-jcd-link] .gallery-item-container { cursor: pointer; }
 /* ---------- 7. Home video (Vimeo) inside its glow frame: no black ring ---------- */
 /* Wix gives the player a dark drop shadow and a black container; the video now fills its box edge to edge
    at exact 16:9 (Vimeo letterboxes anything else), and custom.js lines it up with the glow image's frame. */
-#comp-moybizuw, #comp-moybizuw * { box-shadow: none !important; }
-#comp-moybizuw { aspect-ratio: 16 / 9; height: auto !important; overflow: hidden; background: transparent !important; }
-#comp-moybizuw > div, #comp-moybizuw [class*="playerContainer"] { position: absolute !important; inset: 0 !important;
+.jcd-vbox, .jcd-vbox * { box-shadow: none !important; }
+.jcd-vbox { aspect-ratio: 16 / 9; height: auto !important; overflow: hidden; background: transparent !important; }
+.jcd-vbox > div, .jcd-vbox [class*="playerContainer"] { position: absolute !important; inset: 0 !important;
   width: 100% !important; height: 100% !important; padding: 0 !important; border: 0 !important; background: transparent !important; }
-#comp-moybizuw iframe { position: absolute; inset: 0; width: 100% !important; height: 100% !important; border: 0; display: block;
+.jcd-vbox iframe { position: absolute; inset: 0; width: 100% !important; height: 100% !important; border: 0; display: block;
   transform: scale(1.006); transform-origin: center; }   /* crops any sub-pixel hairline from the player */
 
 /* ---------- 8. Lightbox (only galleries that enlarge on click on the live site; see custom.js) ---------- */
@@ -643,17 +643,17 @@ img.jcd-sig.jcd-sig-in { -webkit-mask-position: 0 0 !important; mask-position: 0
 .device-mobile-optimized .jcd-go.jcd-da-go { right: 8px; bottom: 7px; width: 20px; height: 20px; font-size: 8px; }
 .jcd-da-link:hover .jcd-da-go { background: rgba(var(--jcd-blue-rgb), .35); border-color: rgba(255, 255, 255, .6); }
 @media (hover: none) { .jcd-da-card:hover { background-color: transparent; box-shadow: none; } }
-/* Home video: a soft blue light around the video window that gently breathes (Joel 2026-11-26; the turning ring
+/* Video glow (home + Interstellar 05, classes added by custom.js): a soft blue light around the video window that gently breathes (Joel 2026-11-26; the turning ring
    was removed the same day). custom.js places .jcd-vglow exactly on the window, under the video. */
 .jcd-vglow { position: absolute; z-index: 0; pointer-events: none; animation: jcdVBreath 4.5s ease-in-out infinite; }
 .jcd-vglow::before { content: ""; position: absolute; inset: -8px; border-radius: 6px;
   background: linear-gradient(135deg, #0062d9, #3a5bff 50%, #00176c); filter: blur(16px); opacity: .85; }
-#comp-moybizuw { position: relative; z-index: 1; }
+.jcd-vbox { position: relative; z-index: 1; }
 @keyframes jcdVBreath { 0%, 100% { opacity: .2; } 50% { opacity: 1; } }
 /* stronger breathing (Joel): the glow-frame image itself dims to ~35% and comes back slightly brighter, in step */
-#comp-mp2fugu9 img { animation: jcdVFrame 4.5s ease-in-out infinite; }
+.jcd-vframe img { animation: jcdVFrame 4.5s ease-in-out infinite; }
 @keyframes jcdVFrame { 0%, 100% { filter: brightness(.35); } 50% { filter: brightness(1.15); } }
-@media (prefers-reduced-motion: reduce) { .jcd-vglow, #comp-mp2fugu9 img { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .jcd-vglow, .jcd-vframe img { animation: none; } }
 /* Round >> fills with --jcd-blue from left to right while the mouse is on its card (Joel 2026-11-26): home Selected
    tiles, category cards (computer hover chip + touch chips while pressed), Design Approach card 1. */
 .jcd-go { isolation: isolate; overflow: hidden; }
