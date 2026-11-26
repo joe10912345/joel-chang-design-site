@@ -1218,7 +1218,15 @@
     var host = img.parentElement; if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
     host.appendChild(b); comp.classList.add('jcd-swap');
     var touch = document.body.classList.contains('device-mobile-optimized') || window.__jcdTablet || (window.matchMedia && matchMedia('(hover: none)').matches);
-    if (touch) { comp.classList.add('jcd-swap-touch'); comp.addEventListener('click', function () { comp.classList.toggle('jcd-on'); }); }
+    /* Joel 2026-11-27: touch = press and hold shows the colour photo, letting go returns to black-and-white
+       (replaces the tap toggle). Long-press menu / image callout suppressed so holding works on iOS. */
+    if (touch) { comp.classList.add('jcd-swap-touch');
+      var on = function () { comp.classList.add('jcd-on'); }, off = function () { comp.classList.remove('jcd-on'); };
+      comp.addEventListener('touchstart', on, { passive: true });
+      ['touchend', 'touchcancel'].forEach(function (n) { comp.addEventListener(n, off, { passive: true }); });
+      comp.addEventListener('pointerdown', on);
+      ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (n) { comp.addEventListener(n, off); });
+      comp.addEventListener('contextmenu', function (e) { e.preventDefault(); }); }
   });
 
   // iOS Safari only applies :active (pressed states) when a touchstart listener exists.

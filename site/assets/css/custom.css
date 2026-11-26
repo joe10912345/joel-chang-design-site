@@ -544,7 +544,7 @@ html.jcd-cards-touch .jcd-card-photo > [data-testid="linkElement"]::after {
           background: rgba(20, 22, 28, .45); border: 1px solid rgba(255, 255, 255, .35);
           -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); transition: background .12s, border-color .12s; }
 .gpDCD5:active .jcd-go { background: var(--jcd-blue); border-color: var(--jcd-blue); }
-/* iPad: the desktop page is drawn 1694px wide and scaled down to the screen, so everything is set larger */
+/* iPad: the desktop page is drawn 1320px wide (was 1694) and scaled down to the screen, so everything is set larger */
 body:not(.device-mobile-optimized) .jcd-foot { left: 22px; right: 18px; bottom: 18px; gap: 16px; }
 body:not(.device-mobile-optimized) .jcd-nm { font-size: 22px; }
 body:not(.device-mobile-optimized) .jcd-nm small { font-size: 17px; }
@@ -575,7 +575,7 @@ body:not(.device-mobile-optimized) .jcd-go { width: 58px; height: 58px; font-siz
 .device-mobile-optimized #pro-gallery-container-comp-mnpgav5j .jcd-nm { font-size: 11px; }
 .device-mobile-optimized #pro-gallery-container-comp-mnpgav5j .jcd-nm small { font-size: 9.5px; }
 .device-mobile-optimized #pro-gallery-container-comp-mnpgav5j .jcd-go { width: 30px; height: 30px; font-size: 12px; }
-/* iPad (desktop page drawn 1694px wide and scaled down): larger */
+/* iPad (desktop page drawn 1320px wide (was 1694) and scaled down): larger */
 body:not(.device-mobile-optimized) #pro-gallery-container-comp-mnpgav5j.jcd-spot-touch .jcd-nm { font-size: 20px; }
 body:not(.device-mobile-optimized) #pro-gallery-container-comp-mnpgav5j.jcd-spot-touch .jcd-nm small { font-size: 15px; }
 body:not(.device-mobile-optimized) #pro-gallery-container-comp-mnpgav5j.jcd-spot-touch .jcd-go { width: 46px; height: 46px; font-size: 17px; }
@@ -659,7 +659,9 @@ body:not(.device-mobile-optimized) #comp-mujmtw8h { height: 421px !important; } 
   opacity: 0; transition: opacity .6s ease; pointer-events: none; }
 @media (hover: hover) and (pointer: fine) { .jcd-swap:not(.jcd-swap-touch):hover .jcd-swap-b { opacity: 1; } }
 .jcd-swap.jcd-on .jcd-swap-b { opacity: 1; }
-.jcd-swap-touch { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.jcd-swap-touch { cursor: pointer; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+.jcd-swap-touch img { -webkit-touch-callout: none; pointer-events: none; }
+.jcd-swap-touch .jcd-swap-b { transition-duration: .35s; }   /* press: quicker to colour and back (Joel 2026-11-27) */
 /* Category cards that open a product page (Joel 2026-11-27): the photo zooms in slightly inside its frame on hover
    (touch: while pressed). Cards without a link stay still. Beats static-overrides' "no transform in tiles" rule. */
 .gpDCD5:has(.ih2JY1):has(a[href]) .ih2JY1 { overflow: hidden !important; }

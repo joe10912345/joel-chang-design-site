@@ -9,6 +9,14 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-27
 
+### iPad: everything larger, landscape and upright
+- Joel: "ipad 直式的所有畫面要更大" / "ipad 橫式也是左右太多，整體可放大". Measured every desktop page: content that must stay whole spans at most ~1305px around the centre (wider items are bleeding photos). The iPad now lays the page out 1320px wide in both orientations (landscape was 1694 → 28% larger; upright was 1440 → 9% larger).
+- Files: `site/assets/js/site.js` (`TABLET_W`, `TABLET_W_PORTRAIT`), `preview/devices.html` (`TW`, `TWP`), `site/assets/css/custom.css` (comment), `DESIGN-SYSTEM.md`, `AGENTS.md`, `?v=` in all `site/**/index.html`.
+
+### About portrait: touch = press and hold for colour
+- Joel: "手機板/ipad版，手指壓著大頭照可以變成彩色，放掉後彈回黑色". Replaces the tap toggle; long-press menu suppressed. Computer hover unchanged.
+- Files: `site/assets/js/custom.js`, `site/assets/css/custom.css`, `DESIGN-SYSTEM.md`.
+
 ### Category cards with a link: photo zooms in on hover
 - Joel: clickable category cards zoom in. The photo scales 1.06 inside its frame (.8s) on hover with a mouse, while pressed on touch; cards without a product page stay still. `custom.css` (beats the static-overrides "no transform in tiles" rule).
 

@@ -34,8 +34,8 @@
 <script>
 var SITE = location.origin + '/site';   /* same origin as this page (devices server serves the repo root), so the frames' scrollbars can be hidden */
 /* iPad: the desktop page laid out TW px wide and scaled to the iPad screen, as site.js does on real iPads. */
-var TW = +(new URLSearchParams(location.search).get('tw')) || 1694;   /* iPad landscape layout width: keep equal to TABLET_W in site/assets/js/site.js (1440 / UI_SCALE 0.85) */
-var TWP = +(new URLSearchParams(location.search).get('twp')) || 1440;   /* iPad portrait layout width: TABLET_W_PORTRAIT in site.js */
+var TW = +(new URLSearchParams(location.search).get('tw')) || 1320;   /* iPad landscape layout width: keep equal to TABLET_W in site/assets/js/site.js */
+var TWP = +(new URLSearchParams(location.search).get('twp')) || 1320;   /* iPad portrait layout width: TABLET_W_PORTRAIT in site.js */
 var MODELS = {   /* portrait CSS px */
   air11: { name:'iPad Air 11 吋', w:820,  h:1180 },
   pro11: { name:'iPad Pro 11 吋', w:834,  h:1194 },

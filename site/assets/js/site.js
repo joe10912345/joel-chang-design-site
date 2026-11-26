@@ -36,11 +36,14 @@
      affected. 1 = previous size. */
   var UI_SCALE = 0.85;
   window.__jcdUiScale = UI_SCALE;
-  var TABLET_W = Math.round(1440 / UI_SCALE);   /* 1440 at full size (1366 let the category frames touch the edges) */
-  /* iPad upright (Joel 2026-11-26: "portrait is too small, the menu too"): laid out 1440 wide instead of 1694, i.e.
-     ~18% larger; 1440 is the narrowest width where every page still keeps a margin at the screen edges. Landscape
-     stays 1694. The viewport is switched again whenever the iPad turns. */
-  var TABLET_W_PORTRAIT = 1440;
+  /* Joel 2026-11-27 ("iPad landscape has too much space left and right, make everything bigger"): measured on every
+     page, the content that must stay whole (category frames, product grids, text) spans at most ~1305px around the
+     centre; wider elements are photos that bleed off the edge by design. So the iPad lays the page out 1320 wide
+     in BOTH orientations (landscape was 1694 = 28% larger now, portrait 1440 = 9% larger). Never below ~1310. */
+  var TABLET_W = 1320;
+  /* iPad upright (Joel 2026-11-26/27: "portrait is too small"): same 1320 as landscape (see above); kept as its own
+     constant because html.jcd-tab-portrait still adds upright-only tweaks. Re-set whenever the iPad turns. */
+  var TABLET_W_PORTRAIT = 1320;
   function tabletPortrait() {
     if (typeof window.orientation === 'number') return Math.abs(window.orientation) !== 90;
     return window.matchMedia ? matchMedia('(orientation: portrait)').matches : false;
