@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Round ">>": fills blue on hover, click opens at once
+- Joel: the round >> (home Selected tiles, category cards, Design Approach card 1) now fills with `--jcd-blue` from its centre (.45s) while the mouse is on its card (touch: while pressed). The "fill, then open 0.42s later" click handler was removed: a click opens the page at once. `custom.css` (.jcd-go::before), `custom.js`.
+
 ### Design Approach card 1 = A + 1; stronger video breathing
 - Joel's final pick (A + 1): on hover card 1's frame itself turns `--jcd-blue` with a soft blue outer glow (no movement, no gradient); small round >> in the corner. `custom.css` `.jcd-da-*` (frame drawn by the inner `.wixui-box`).
 - Video glow (Joel: breathing too weak, dark phase should be darker): the glow-frame image now breathes too, brightness .35 -> 1.15 (4.5s), the added light .2 -> 1, in step. `custom.css`.

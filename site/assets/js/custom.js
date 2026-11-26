@@ -111,10 +111,8 @@
         first.removeEventListener('click', go);
         first.addEventListener('click', function (e) {
           if (e.metaKey || e.ctrlKey || e.shiftKey) { window.open(href, '_blank'); return; }
-          e.preventDefault(); chip.classList.add('jcd-go-fill');
-          setTimeout(function () { location.href = href; }, 420);
+          location.href = href;
         });
-        window.addEventListener('pageshow', function () { chip.classList.remove('jcd-go-fill'); });
       }
     }
 
@@ -1045,24 +1043,8 @@
     });
   });
 
-  /* Round ">>": when a card or tile with one is clicked / tapped, the ">>" fills with --jcd-blue first and the
-     page changes a moment later (Joel 2026-11-26: "it flashed blue and the page changed too fast"). Home Selected
-     grid + category cards, every platform. Ctrl/Cmd/Shift/middle clicks (new tab) are left alone. */
-  var GO_DELAY = 420;
-  document.addEventListener('click', function (e) {
-    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-    var a = e.target.closest && e.target.closest('a[href]'); if (!a || a.target === '_blank') return;
-    var go = null, tile = a.closest('#pro-gallery-container-comp-mnpgav5j a.item-link-wrapper') || (a.matches('#pro-gallery-container-comp-mnpgav5j a.item-link-wrapper') ? a : null);
-    if (tile) go = tile.querySelector('.jcd-go');
-    else { var hb = a.closest('.gpDCD5'); if (hb) go = hb._jcdGo || hb.querySelector('.jcd-go'); }
-    if (!go) return;
-    e.preventDefault();
-    var href = a.href; go.classList.add('jcd-go-fill');
-    setTimeout(function () { location.href = href; }, GO_DELAY);
-  }, true);
-  window.addEventListener('pageshow', function () {          /* back button: no blue left over */
-    [].forEach.call(document.querySelectorAll('.jcd-go-fill'), function (g) { g.classList.remove('jcd-go-fill'); });
-  });
+  /* Round ">>" (Joel 2026-11-26, 2nd pass): it fills blue gradually while the mouse is on its card (CSS); a click
+     opens the page at once (the earlier "fill, then open 0.42s later" was dropped). */
 
   /* Home "Achievements" numbers (10+, 15+, 30+, 8+, 2+): odometer roll (Joel 2026-11-26, option A of
      preview/achievement-counters.html). Each digit is a column that rolls up like a clock / odometer (units roll
