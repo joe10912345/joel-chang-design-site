@@ -9,6 +9,11 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-25
 
+### Bottom images no longer cut; no right-click / long-press / selection; Ocean wave seams
+- **Images cut at the bottom of many pages** (Joel: e.g. Wi-Fi 7 2022 "New Wi-Fi 7 Generation", all platforms): Wix "fixed" section backgrounds are sticky and screen-sized, so a section taller than the screen never showed the photo's bottom (desktop 1000px sections on an 864px screen), and phone sections (300px) showed less than half of a 693px photo. `custom.js` (first block) now pins every sticky/fixed section photo to its own section (`object-fit: cover`, media box unclipped for Safari). 30 photos on 21 pages (desktop + phone) checked: each covers exactly its section, none sticky. The parallax "fixed" feel is gone by design.
+- **No context menu, no text selection, no image dragging** (Joel: long presses on the phone kept selecting text; no "save image" menus): `custom.css` + `custom.js`, every platform. Contact form fields stay selectable/editable. Note: this deters casual saving; it cannot stop screenshots or developer tools.
+- **Ocean Series wave seams** (phone): the divider SVG's top edge drew a faint line across the width; image is now 3px taller than its box (bottom-anchored) so that edge row is clipped, and the next section's blue reaches 2px up under the waves. All platforms.
+
 ### T-Blade: new 4:3 top image (whole drone visible)
 - Joel's 4:3 version (2000x1500) -> `site/assets/media/jcd_t-blade-hero_4x3_2000x1500.jpg`, used by `t-blade/index.html` and `m/t-blade/index.html` (was the Wix 2560x1511 crop of a 3488x1216 original). `object-position: 50% 45%`.
 - Checked (drone nose to tail fins = image x 190-1800, y 450-930): laptop, 1920, ultra-wide, 4K, iPad landscape + portrait: whole drone. Phone (~0.92:1) trims nose and tail — same open question as Wi-Fi 7 2022.

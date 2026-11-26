@@ -78,7 +78,7 @@ Other rules
 
 Top image ("hero", home slideshow + product pages): phone **50% of the screen height**; any portrait screen on the desktop page (iPad upright) **50%**; landscape (computers, iPad sideways) **exactly one screen** (`100svh`, divided by `__jcdZoom` on computers).
 Scripts measuring with `getBoundingClientRect` must divide by `window.__jcdZoom` before writing CSS px.
-Background photos: never leave `overflow: clip/hidden` on a Wix `bgMedia_*` box that sits outside its section (iPad Safari hides the photo); sticky screen-sized Wix backgrounds crop products on tall screens — pin them to their section instead (About "What I Believe", Gaming gateway "Aerodynamic Concept").
+Background photos: Wix sticky/"fixed" section photos are pinned to their section by `custom.js` (no parallax). Never leave `overflow: clip/hidden` on a Wix `bgMedia_*` box that sits outside its section (iPad Safari hides the photo); sticky screen-sized Wix backgrounds crop products on tall screens — pin them to their section instead (About "What I Believe", Gaming gateway "Aerodynamic Concept").
 
 ## 6. Interaction states
 
@@ -90,6 +90,7 @@ Background photos: never leave `overflow: clip/hidden` on a Wix `bgMedia_*` box 
 | Labels that are not buttons | No frame, no hover, no click (home "Selected") |
 | Cards that are not links | No glow, no hover, no press, default cursor (Design Approach cards 2-4). Only a card with a destination is pressable (Design Approach card 1: press-in + blue outline) |
 | Touch reveal | Overlays that show on hover with a mouse show while a finger rests on the item (~0.06s), not after the tap; scrolling/swiping never triggers them. Linked tiles (home Works grid) open in one tap; tiles without a link (End-to-End) keep the overlay after the tap. Overlay darkness on touch: Works grid 45%, End-to-End 60% (desktop hover 27%) |
+| Selection / context menu | Disabled site-wide (no right-click / long-press menu, no text selection, no image drag); form fields excepted |
 | Reduced motion | Every looping or moving effect is switched off under `prefers-reduced-motion: reduce` |
 
 ## 7. Motion

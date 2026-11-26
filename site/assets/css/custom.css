@@ -432,3 +432,18 @@ a.style-mp6zxgon__root:is(:hover, :focus-visible, :active) { animation-play-stat
 /* ---------- Home Works grid (12 tiles) on phone / iPad: darker press overlay (Joel 2026-11-24: "one step darker").
    Desktop hover keeps Wix's 27%; touch 45%. */
 @media (hover: none) { #pro-gallery-container-comp-mnpgav5j .jcd-ov .gallery-item-hover::before { background-color: rgba(0, 0, 0, .45) !important; } }
+
+/* ---------- Ocean Series: no seams at the wave divider (Joel 2026-11-25: "the wave has a seam" on the phone) ----------
+   The waves are Wix's bottom divider of #comp-mosba1i51 (an SVG tile, #2D4E76, repeated 4x). Its top edge rasterised as
+   a faint line across the whole width; the image is now 3px taller than its box (anchored at the bottom) so that edge
+   row falls outside and is clipped. The next section's background (same blue at its top) reaches 2px up under the
+   waves so the sub-pixel gap between the two sections never shows. All platforms. */
+#comp-mosba1i51 [data-divider-layer="0"] { background-size: 25% calc(100% + 3px) !important; background-position: 50% 100% !important; }
+#comp-mosba1jl17 > [data-hook="bgLayers"] { top: -2px !important; }
+
+/* ---------- No text selection, no long-press callout, no image dragging — every platform (Joel 2026-11-25) ----------
+   Long presses on the phone kept selecting text; Joel also does not want "save image" menus. custom.js blocks the
+   context menu (right click / long press) and image dragging. Form fields (Contact) stay selectable/editable. */
+html, body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+img, a, wow-image { -webkit-user-drag: none; user-drag: none; -webkit-touch-callout: none; }
+input, textarea, select, [contenteditable="true"] { -webkit-user-select: text !important; user-select: text !important; -webkit-touch-callout: default; }
