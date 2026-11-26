@@ -9,6 +9,10 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Sharper top images (home slideshow + product pages)
+- Joel: home and product top images looked much worse than on Wix. The exported files were Wix re-encodes (e.g. 2560px at ~300KB, some 2000px originals blown up to 2560, phone slide 10 only 552px). They are now made from the uploaded originals in `media-originals/`: full original (no Wix crop), at most 3200px wide, JPEG quality 90 with full colour resolution (4:4:4) -> `site/assets/media/jcd_hero_<id>_<w>x<h>.jpg`. Home slideshow (10 slides, desktop + phone, order checked against Joel's list: Guardian, T-Blade drone, gaming case, routers, Wi-Fi 7 2022 pair, welding bench, blue tower, ACE, black tower, Zenfone) and the top image of 18 product/series pages (desktop + m/). Parametric Pattern (PNG) and Wi-Fi 7 2022 / T-Blade (Joel's own 4:3 files) unchanged.
+- Limits: some originals are only 2000px wide or less (home slides 4, 8, 9; Gaming gateway, Lionic, AI Tool Kit, T-Interceptor CS, NLG MMA200, Assistive top images) — sharp on laptops, slightly soft on 2560+/4K screens unless Joel supplies larger files. Wi-Fi 7 HGU/AP top image is still missing (broken on Wix too).
+
 ### Closing-photo reveal: no more white gaps when scrolling fast
 - Joel: scrolling fast to the bottom of a product page made white areas pop up in the reveal. The photo was moved by a scroll script, one frame late. Now done with CSS `position: sticky` (the browser keeps the photo still at the screen bottom): the photo's box reaches one photo-height above the section, the photo sits at its bottom (flex, no margin) and sticks to the screen bottom; the section's background box clips it (`overflow: clip`, not `hidden`, which on the phone would stop the sticky). Wix's `margin-top: -1 screen` on that box removed. `custom.js`. Checked phone, iPad portrait + landscape, 1920 and 1536: photo still while the section edge slides; whole photo at the end.
 

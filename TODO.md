@@ -11,7 +11,7 @@ Open items. When you finish one, move it to `CHANGELOG.md` with the date. Add ne
 - [ ] **iPad on a real device**: tablet layout changed to 1440px wide (2026-11-24). Joel to check on a real iPad (portrait + landscape) once pushed; text in portrait is smaller than before (page scaled ~0.6).
 
 ## Known problems
-- [ ] 4K monitors: top images are the 2560px files, shown up to 3840px wide (1.5x, slightly soft). `media-originals/` has larger originals for most (2700-4000px) that could be copied into `site/assets/media/` for the desktop top images.
+- [ ] Top images whose original is only ~2000px wide (home slides 4 routers, 8 ACE, 9 black tower; Gaming gateway, Lionic, AI Tool Kit (1672), T-Interceptor CS, NLG MMA200, Assistive (1788)): Joel can supply 3000px+ versions for 2560/4K screens.
 - [ ] Desktop windows narrower than ~1340px (e.g. a 1280px laptop window): the desktop layout is wider than the window and the category frames touch/cross the edges. Could shrink the page with CSS zoom below 1440 like the wide-screen zoom does above 1536.
 - [ ] Two images are broken on live Wix too (403): one on `wi-fi7-hgu-ap`, one on `electronics` (blank placeholders with `data-live-src-missing`). Need replacement images.
 - [ ] Site-wide social share image (og:image) is missing; needs a new one.
