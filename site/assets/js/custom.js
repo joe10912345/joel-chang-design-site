@@ -37,6 +37,9 @@
     var wi = sec.querySelector('[id^="bgMedia_"] > wow-image[id^="img_"]'); if (!wi) return;
     if (sec.querySelector('[data-testid="richTextElement"]')) return;
     var img = wi.querySelector('img'); if (!img) return;
+    /* never lazy: the section's height comes from the photo, and a lazy photo in a 0px section never loads (2026-11-26) */
+    img.loading = 'eager'; img.removeAttribute('loading');
+    var fm = /-(\d+)x(\d+)(?:-[a-z0-9]+)?\.(?:jpe?g|png|webp)/i.exec(img.getAttribute('src') || '');   /* size in the file name */
     var media = wi.parentElement;
     /* Done with CSS sticky, not a scroll script (Joel 2026-11-26: with the script, fast scrolling showed white gaps
        because the photo was moved a frame late). The media box reaches one photo-height above the section; the photo
@@ -63,6 +66,7 @@
     var ratio = 0;
     function size() {
       if (img.naturalWidth) ratio = img.naturalWidth / img.naturalHeight;
+      else if (fm) ratio = +fm[1] / +fm[2];
       if (!ratio) return;
       var w = sec.offsetWidth, vh = window.innerHeight / Z();
       var h = Math.round(Math.min(w / ratio, vh));
@@ -960,7 +964,7 @@
         if (touch && ls.length && !name) { name = ls; comp.classList.add('jcd-cap-hide'); }
       });
       if (!touch) {                                  /* computer: round >> in the corner, on hover only */
-        if (linked) { var g2 = document.createElement('span'); g2.className = 'jcd-go jcd-go-hover'; g2.textContent = '>>'; host.appendChild(g2); }
+        if (linked) { var g2 = document.createElement('span'); g2.className = 'jcd-go jcd-go-hover'; g2.textContent = '>>'; host.appendChild(g2); hb._jcdGo = g2; }
         return;
       }
       if (!name && !linked) return;
@@ -971,7 +975,7 @@
         nm.appendChild(document.createTextNode(name.length > 1 ? name.slice(1).join(' ') : name[0]));
       }
       foot.appendChild(nm);
-      if (linked) { var go = document.createElement('span'); go.className = 'jcd-go'; go.textContent = '>>'; foot.appendChild(go); }
+      if (linked) { var go = document.createElement('span'); go.className = 'jcd-go'; go.textContent = '>>'; foot.appendChild(go); hb._jcdGo = go; }
       host.appendChild(foot);
     });
   });
@@ -1005,6 +1009,25 @@
       a.addEventListener('mouseenter', function () { g.classList.add('jcd-hot'); a.classList.add('jcd-hot-tile'); });
       a.addEventListener('mouseleave', function () { g.classList.remove('jcd-hot'); a.classList.remove('jcd-hot-tile'); });
     });
+  });
+
+  /* Round ">>": when a card or tile with one is clicked / tapped, the ">>" fills with --jcd-blue first and the
+     page changes a moment later (Joel 2026-11-26: "it flashed blue and the page changed too fast"). Home Selected
+     grid + category cards, every platform. Ctrl/Cmd/Shift/middle clicks (new tab) are left alone. */
+  var GO_DELAY = 420;
+  document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest && e.target.closest('a[href]'); if (!a || a.target === '_blank') return;
+    var go = null, tile = a.closest('#pro-gallery-container-comp-mnpgav5j a.item-link-wrapper') || (a.matches('#pro-gallery-container-comp-mnpgav5j a.item-link-wrapper') ? a : null);
+    if (tile) go = tile.querySelector('.jcd-go');
+    else { var hb = a.closest('.gpDCD5'); if (hb) go = hb._jcdGo || hb.querySelector('.jcd-go'); }
+    if (!go) return;
+    e.preventDefault();
+    var href = a.href; go.classList.add('jcd-go-fill');
+    setTimeout(function () { location.href = href; }, GO_DELAY);
+  }, true);
+  window.addEventListener('pageshow', function () {          /* back button: no blue left over */
+    [].forEach.call(document.querySelectorAll('.jcd-go-fill'), function (g) { g.classList.remove('jcd-go-fill'); });
   });
 
   // iOS Safari only applies :active (pressed states) when a touchstart listener exists.

@@ -9,6 +9,12 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Fix: product-page closing photos were gone (reveal)
+- Cause: the image clean-up made images below the first screen lazy-loading. The reveal section takes its height from the photo, so it started at 0px and a lazy photo in a 0px box never loads. `custom.js` reveal block: the closing photo always loads at once, and the photo ratio is read from the file name (`-2000x942`) so the height is right before the photo arrives. Checked 18 product pages x computer + phone: all 36 show their photo.
+
+### Round ">>": blue fill before the page changes
+- Joel: tapping a home tile flashed the ">>" blue and the page changed too fast. Clicking/tapping a card with a round ">>" (home Selected grid, category cards; all platforms) now fills it with `--jcd-blue` (slight 1.08 grow) and opens the page 0.42s later (`GO_DELAY`). Ctrl/Cmd/Shift/middle clicks still open new tabs at once; the back button clears the blue. `custom.js`, `custom.css` `.jcd-go-fill`.
+
 ### Fix: round ">>" did not appear on hover (computers)
 - The size rule for the round ">>" (`body:not(.device-mobile-optimized) .jcd-go.jcd-go-hover`, opacity 0) outranked the hover rule, so it stayed invisible. The hover rule now has the same `body:not(...)` prefix and wins. `custom.css`.
 

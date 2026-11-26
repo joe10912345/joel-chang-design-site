@@ -585,3 +585,7 @@ body:not(.device-mobile-optimized) #pro-gallery-container-comp-mnpgav5j.jcd-spot
 body:not(.device-mobile-optimized) .jcd-go.jcd-go-hover { position: absolute; right: 16px; bottom: 14px; z-index: 2; width: 40px; height: 40px; font-size: 15px;
   opacity: 0; transition: opacity .35s, background .12s, border-color .12s; pointer-events: none; }
 body:not(.device-mobile-optimized) .gpDCD5:hover .jcd-go-hover, body:not(.device-mobile-optimized) .gpDCD5:focus-within .jcd-go-hover { opacity: 1; }
+/* round >> fills blue when its card is clicked, before the page changes (custom.js GO_DELAY 420ms) */
+.jcd-go.jcd-go-fill, body:not(.device-mobile-optimized) .jcd-go.jcd-go-hover.jcd-go-fill {
+  opacity: 1 !important; background: var(--jcd-blue) !important; border-color: var(--jcd-blue) !important;
+  transition: background .28s ease, border-color .28s ease, transform .28s ease !important; transform: scale(1.08); }

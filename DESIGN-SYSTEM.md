@@ -98,6 +98,7 @@ Home slideshow: always starts at slide 1 when the page is shown (also after the 
 | Cards that are not links | No glow, no hover, no press, default cursor (Design Approach cards 2-4). Only a card with a destination is pressable (Design Approach card 1: press-in + blue outline) |
 | Category cards | Computer: only linked cards tilt + light sheen; unlinked keep the darken + name on hover, arrow cursor; a round frosted >> (40px, bottom-right) only on hover. Touch (phone + iPad): name bottom-left (brand small + model, soft shadow), linked cards a round frosted >> on the same centre line, blue while pressed |
 | Touch reveal | Overlays that show on hover with a mouse show while a finger rests on the item (~0.06s), not after the tap; scrolling/swiping never triggers them. Tiles without a link (End-to-End) keep the overlay after the tap (60% on touch, 27% desktop hover) |
+| Round >> press | Clicking a card with a round >> fills it --jcd-blue, the page opens 0.42s later (every platform) |
 | Home Selected grid | Spotlight: hovered tile bright + photo 1.06 inside the frame + white 1px line + category/name + round >>; the others brightness .38. Touch: name + round >> always shown |
 | Selection / context menu | Disabled site-wide (no right-click / long-press menu, no text selection, no image drag); form fields excepted |
 | Reduced motion | Every looping or moving effect is switched off under `prefers-reduced-motion: reduce` |
