@@ -125,7 +125,9 @@
         next.parentNode.insertBefore(prev, next);
       }
       var card = root.querySelector('.gallery-item-container');
-      var step = function () { return card ? card.getBoundingClientRect().width + 21 : strip.clientWidth * 0.8; };
+      var step = function () {   /* one card in CSS px (scrollLeft units; cards may be resized by custom.js) */
+        if (!card) return strip.clientWidth * 0.8;
+        var m = parseFloat(getComputedStyle(card).marginLeft) || 10.5; return card.offsetWidth + 2 * m; };
       var sync = function () {
         var max = strip.scrollWidth - strip.clientWidth - 2;
         if (prev) prev.style.display = strip.scrollLeft > 2 ? '' : 'none';

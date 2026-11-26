@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>分類順序</title>
+<style>
+  :root { --jcd-blue: #0062d9; --jcd-blue-rgb: 0, 98, 217; --mut: #8d8f99; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #000; color: #eee; font: 15px/1.55 system-ui, "Noto Sans TC", sans-serif; padding: 28px 16px 80px; }
+  h1 { font-size: 22px; margin: 0 0 6px; } .note { color: var(--mut); max-width: 760px; margin: 0 0 18px; }
+  ol { list-style: none; padding: 0; margin: 0 0 22px; max-width: 420px; }
+  li { display: flex; align-items: center; gap: 10px; background: #14151a; border: 1px solid #2a2b33; border-radius: 6px; padding: 10px 12px; margin-bottom: 8px;
+       cursor: grab; user-select: none; touch-action: none; transition: background .15s, border-color .15s; }
+  li.drag { opacity: .45; } li.over { border-color: var(--jcd-blue); background: rgba(var(--jcd-blue-rgb), .15); }
+  li .n { width: 22px; color: var(--mut); font-variant-numeric: tabular-nums; }
+  li .t { flex: 1; font-weight: 600; }
+  li button { background: #1d1f26; color: #ddd; border: 1px solid #33343c; border-radius: 4px; width: 32px; height: 30px; cursor: pointer; font-size: 14px; }
+  li button:active { background: var(--jcd-blue); border-color: var(--jcd-blue); color: #fff; }
+  .row { display: flex; flex-wrap: wrap; gap: 6px 36px; padding: 22px 26px; background: radial-gradient(60% 120% at 10% 30%, rgba(0,40,120,.45), transparent 60%), #050506; border-radius: 6px; max-width: 1000px; margin: 6px 0 22px; }
+  .row span { font-weight: 600; color: rgba(255,255,255,.8); letter-spacing: .2px; }
+  .out { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  code { background: #14151a; border: 1px solid #2a2b33; border-radius: 6px; padding: 8px 12px; font-size: 14px; }
+  .copy { background: var(--jcd-blue); color: #fff; border: 0; border-radius: 6px; padding: 9px 16px; font: inherit; cursor: pointer; }
+  .ok { color: #7fd18b; font-size: 13px; }
+</style>
+</head>
+<body>
+<h1>首頁分類連結：排順序</h1>
+<p class="note">拖曳項目（或按 ↑ ↓）排成你要的順序，下方會即時顯示首頁那一排的樣子。排好後按「複製」，把那一行貼給我就好。</p>
+<ol id="list"></ol>
+<div class="row" id="row"></div>
+<div class="out"><code id="txt"></code><button class="copy" id="copy">複製</button><span class="ok" id="ok"></span></div>
+<script>
+  var items = ['Defense', 'Networking', 'Electronics', 'Lifestyle', 'Industrial', 'Experimental'];
+  var list = document.getElementById('list');
+  function render() {
+    list.innerHTML = '';
+    items.forEach(function (t, i) {
+      var li = document.createElement('li'); li.draggable = true; li.dataset.i = i;
+      li.innerHTML = '<span class="n">' + (i + 1) + '</span><span class="t">' + t + '</span><button data-d="-1" aria-label="上移">↑</button><button data-d="1" aria-label="下移">↓</button>';
+      list.appendChild(li);
+    });
+    document.getElementById('row').innerHTML = items.map(function (t) { return '<span>' + t + '</span>'; }).join('');
+    document.getElementById('txt').textContent = '分類順序：' + items.join(' → ');
+  }
+  function move(from, to) { if (to < 0 || to >= items.length) return; var x = items.splice(from, 1)[0]; items.splice(to, 0, x); render(); }
+  list.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; var i = +b.closest('li').dataset.i; move(i, i + +b.dataset.d); });
+  var dragI = null;
+  list.addEventListener('dragstart', function (e) { var li = e.target.closest('li'); dragI = +li.dataset.i; li.classList.add('drag'); e.dataTransfer.effectAllowed = 'move'; });
+  list.addEventListener('dragover', function (e) { e.preventDefault(); [].forEach.call(list.children, function (l) { l.classList.remove('over'); }); var li = e.target.closest('li'); if (li) li.classList.add('over'); });
+  list.addEventListener('drop', function (e) { e.preventDefault(); var li = e.target.closest('li'); if (li && dragI !== null) move(dragI, +li.dataset.i); dragI = null; });
+  list.addEventListener('dragend', function () { dragI = null; render(); });
+  document.getElementById('copy').addEventListener('click', function () {
+    var t = document.getElementById('txt').textContent;
+    (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { document.getElementById('ok').textContent = '已複製，貼給我即可'; },
+      function () { document.getElementById('ok').textContent = '請手動選取上面那行複製'; });
+  });
+  render();
+</script>
+</body>
+</html>

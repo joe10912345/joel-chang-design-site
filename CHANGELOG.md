@@ -9,6 +9,11 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Home: End-to-End squares larger; category words grow on hover, no grey press
+- End-to-End Expertise slider (computer + iPad): squares drawn 1.35x (356 -> 481px) so the text in the photos is readable; strip, gallery box and section grow with them (same space below), arrows step one (new) card, the hover caption layer is resized too. `custom.js` "End-to-End", `site.js` 5 (card step in CSS px).
+- "Works" category words (Defense ... Experimental), computer + iPad: the word grows 1.12x on hover; pressing no longer fills the button grey, the word turns `--jcd-blue` (phone keeps its grey press). `custom.css`.
+- `preview/category-order.html`: drag-to-reorder tool for Joel to choose the order of the category words. `preview/signature-write.html` + `signature-paths.json`: About signature hand-writing study (strokes traced from the signature image).
+
 ### About "What I Believe" on iPad upright / phone: framing
 - Joel: speaker too far left on phone/iPad; on an upright iPad his head was cut, then too much ceiling/floor. Phone: photo anchored at 17% (speaker ~left of centre). iPad: 15% 70%. iPad upright: section and photo 38% of the screen tall (wide crop, less ceiling/floor), photo held at the screen bottom (this is the page's last section, so it lines up at the end like the product pages), text drawn 1.25x and re-centred. `custom.js`.
 
