@@ -30,6 +30,7 @@ about/signature-reveal.js
 about/portrait-swap.js
 product/guest-area-dialog.js
 product/defense-website.js
+product/t-blade-last-photo.js
 global/one-tap-links.js
 global/photo-frames.js
 global/scroll-reveal.js

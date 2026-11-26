@@ -11,6 +11,17 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### T. Blade: top image framing set by Joel; last photo matches the ones above; phone stowage box taller T. Blade 首圖位置、最下方圖尺寸與間距、手機灰方塊加高
+- Top image framing per platform as Joel set it in the photo-align mockup (`jcd-config.js` `photoFrames.tBladeHero`).
+  首圖位置套用 Joel 在 mockup 調好的各平台數值。
+- Joel: "t.blade 最下方的圖尺寸跟上方要一致，且間距要一樣". The last photo (drone on its stand) is now the same size as
+  the wide photo above it, with the same gap as between the photos above, measured on every layout (computer, iPad, phone).
+  File: `src/js/product/t-blade-last-photo.js`. 最下方的圖改成跟上方大圖同尺寸、同間距（三平台）。
+- Joel: "這張圖的手機版灰方塊能加高嗎? 看起來好擠". Phone: the grey box behind the folded drone (Compact Stowage
+  Configuration) is 100px tall instead of 60px, drone centred. File: `src/css/product/t-blade-stowage-phone.css`.
+  手機版摺疊無人機的灰方塊從 60px 加高到 100px，圖置中。
+- Also: built `custom.*`, `src/*/ORDER.txt`, `src/README.md`, `?v=` of jcd-config.js in every page.
+
 ### T. Blade top image framing adjustable T. Blade 首圖位置可調
 - Joel: "T. Blade 首圖可以讓我調整位置嗎? mockup". The top image is now a per-platform `photoFrames.tBladeHero` entry in
   `jcd-config.js` (starts at the old 50% 45%), adjustable in `preview/mockups/photo-align.html?key=tBladeHero&p=/t-blade/`.

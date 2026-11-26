@@ -70,8 +70,8 @@ window.JCD_CONFIG = {
       phone: { x: 36, y: 100, zoom: 1.23 } },   /* aligned by Joel 2026-11-27 */
     /* T. Blade top image, per platform (Joel 2026-11-27: "T. Blade 首圖可以讓我調整位置嗎"); starts at the old 50% 45% */
     tBladeHero: { img: 'img[src*="t-blade-02-2000x1500"]',
-      desktop: { x: 50, y: 45, zoom: 1 }, ipadLandscape: { x: 50, y: 45, zoom: 1 }, ipadPortrait: { x: 50, y: 45, zoom: 1 },
-      phone: { x: 50, y: 45, zoom: 1 } },
+      desktop: { x: 50, y: 45, zoom: 1 }, ipadLandscape: { x: 48, y: 45, zoom: 1 }, ipadPortrait: { x: 37, y: 51, zoom: 1.06 },
+      phone: { x: 12, y: 57, zoom: 1 } },   /* aligned by Joel 2026-11-27 */
   },
 
   /* Forms (Contact page + Guest Area "Request access"): sent to Joel's mailbox through Web3Forms (no server on GitHub

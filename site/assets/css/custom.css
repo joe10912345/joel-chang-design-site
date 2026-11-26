@@ -824,6 +824,11 @@ body:not(.device-mobile-optimized) :is(#comp-mojwork6, #comp-mojwmx3v, #comp-moj
 #comp-mter72km img { width: 100% !important; height: 100% !important; object-fit: contain !important; }
 .device-mobile-optimized #comp-mter72km { width: 26px !important; height: 26px !important; }
 .device-mobile-optimized #comp-mwqkxs15 { translate: -22px -35px; }
+/* T. Blade, phone: the grey box behind the folded drone ("Compact Stowage Configuration") taller, the drone centred in
+   it (Joel 2026-11-27: "這張圖的手機版灰方塊能加高嗎? 看起來好擠"). Was 60px tall; the text below moves down with it.
+   Phone layout is a fixed 320px wide, so plain px. Computer / iPad unchanged (the box there is already roomy). */
+.device-mobile-optimized #comp-mojvrvz8 { --jcd-stow-h: 100px; height: var(--jcd-stow-h) !important; }
+.device-mobile-optimized #comp-mojvqzt5 { margin-top: calc((var(--jcd-stow-h) - 43px) / 2) !important; }   /* 43px = drone image height */
 /* Scroll reveal (Joel 2026-11-27; custom.js "Scroll reveal"): the opacity of each piece follows the scroll position
    (set by the script). The transition smooths it; its length is `smooth` in jcd-config.js scrollReveal. */
 .jcd-rv { transition: opacity var(--jcd-rv-smooth, .12s) linear; }
