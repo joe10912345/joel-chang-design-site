@@ -679,3 +679,10 @@ body:not(.device-mobile-optimized) #comp-mujmtw8h { height: 421px !important; } 
   .gpDCD5:has(.ih2JY1):has(a[href]):hover .ih2JY1 img { transform: scale(1.06) !important; } }
 .gpDCD5:has(.ih2JY1):has(a[href]):active .ih2JY1 img { transform: scale(1.06) !important; }
 @media (prefers-reduced-motion: reduce) { .gpDCD5:has(.ih2JY1):has(a[href]) .ih2JY1 img { transition: none !important; } }
+
+/* iPad End-to-End arrows pulled inside the screen sit over the photos: a soft shadow keeps them readable (Joel 2026-11-27) */
+.jcd-e2e-arrow { filter: drop-shadow(0 0 6px rgba(0, 0, 0, .75)); z-index: 3; }
+/* End-to-End arrows thicker, every platform (Joel 2026-11-27 "箭頭可以粗點"): the thin chevron gets a stroke in its own colour */
+#comp-mnfi6oqr .nav-arrows-container svg path { stroke: #fff; stroke-width: 2.2px; stroke-linejoin: round; paint-order: stroke; }
+/* a category card with a link opens from anywhere on it, the photo included (custom.js cardLink, Joel 2026-11-27) */
+#PAGES_CONTAINER .gpDCD5:has(a[href]) { cursor: pointer; -webkit-tap-highlight-color: transparent; }

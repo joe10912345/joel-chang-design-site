@@ -9,6 +9,12 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-27
 
+### One tap opens the page; whole category card clickable; iPad About width; End-to-End arrows
+- Joel: "平板我按產品類別頁的白框，按第一次是按鈕填滿藍色動畫，第二次才會進到下一頁。全面幫我檢查". Cause: Wix put each card's link on its white frame / title bar / >>, not on the photo, so tapping the photo only triggered the hover state (blue fill); iOS also spends a first tap on :hover. Now any click/tap anywhere on a linked card opens it (every platform), and on touch devices (phone + iPad) a short tap on any link opens it at once (not in the top menu). Checked by simulated taps on iPad, phone and a click on computer.
+- "平板的about左右寬度要跟產品列別頁白框左右寬度一樣": iPad About laid out 1352 wide → text/photo block 5.3% from the edges, like the category frames (77/1440).
+- End-to-End (iPad): the arrows sat off the screen / cut at the edge; now pulled 14px inside the screen over the photos with a soft shadow. Arrows thicker on every platform ("箭頭可以粗點").
+- Files: `site/assets/js/custom.js`, `site/assets/js/site.js`, `site/assets/css/custom.css`, `preview/devices.html`, `DESIGN-SYSTEM.md`, `AGENTS.md`, `?v=` in all `site/**/index.html`.
+
 ### iPad: category + product pages smaller again (1440)
 - Joel: "Ipad 直跟橫的產品列別頁、產品介紹頁太貼左右邊了，整體縮小。其他頁面都不動". On iPad (both orientations) category and product pages are laid out 1440px wide (~65px margin each side); home, About, Contact and 1-4 stay 1320. The devices preview picks the same width per page.
 - Files: `site/assets/js/site.js`, `preview/devices.html`, `DESIGN-SYSTEM.md`, `AGENTS.md`, `?v=` in all `site/**/index.html`.

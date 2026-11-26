@@ -49,6 +49,9 @@
      Contact (and the hidden 1-4 pages) keep 1320. */
   var pageSlug = (location.pathname.replace(/\/index\.html$/, '').replace(/\/+$/, '').split('/').pop() || '').toLowerCase();
   if (!/^(|joel-chang-design-site|site|about|contact|[1-4])$/.test(pageSlug)) { TABLET_W = 1440; TABLET_W_PORTRAIT = 1440; }
+  /* Joel 2026-11-27: About's text + photo block (56-1267px at 1320) gets the same side margins on the iPad as the
+     category pages' white frames (77px of 1440 = 5.3%): laid out 1352 wide. */
+  else if (pageSlug === 'about') { TABLET_W = 1352; TABLET_W_PORTRAIT = 1352; }
   function tabletPortrait() {
     if (typeof window.orientation === 'number') return Math.abs(window.orientation) !== 90;
     return window.matchMedia ? matchMedia('(orientation: portrait)').matches : false;

@@ -74,7 +74,7 @@ Other rules
 | Device | Page | How it fits |
 |---|---|---|
 | Phone | `site/m/…` (320px layout) | scaled to the phone width by the viewport |
-| iPad (Air 11, Pro 11, Pro 13) | desktop page | laid out **1320px** wide in both orientations on home / About / Contact, **1440px** on category and product pages (more margin at the iPad's edges; `TABLET_W` / `TABLET_W_PORTRAIT` + page rule in `site.js`; the must-stay-whole content spans ≤ ~1305px, wider photos bleed by design — never go below ~1310) and scaled; upright, the header logo and menu are drawn 1.3x (`.jcd-tab-portrait`) |
+| iPad (Air 11, Pro 11, Pro 13) | desktop page | laid out **1320px** wide in both orientations on home / Contact, **1352px** on About (same side margin as the category frames, 5.3%), **1440px** on category and product pages (more margin at the iPad's edges; `TABLET_W` / `TABLET_W_PORTRAIT` + page rule in `site.js`; the must-stay-whole content spans ≤ ~1305px, wider photos bleed by design — never go below ~1310) and scaled; upright, the header logo and menu are drawn 1.3x (`.jcd-tab-portrait`) |
 | Computer ≤ 1536px | desktop page | zoom = UI_SCALE 0.85 (Joel's laptop: 1920 @125% = 1536) |
 | Computer > 1536px (1920, 2560, 3440 ultra-wide, 3840 4K) | desktop page | CSS zoom = width / 1536 x UI_SCALE (`window.__jcdZoom`) → always full width |
 
@@ -112,6 +112,7 @@ Home slideshow: always starts at slide 1 when the page is shown (also after the 
 - Ocean Series creature photos: dimmed 35% at rest; hover/tap = full brightness + the photo zooms 1.1 **inside its frame** (never covers text).
 - 3D tilt following the mouse (`tilt.js`, max 3°): About portrait only (category cards no longer tilt, Joel 2026-11-26).
 - Home video glow: soft blue blur around the video window + the glow-frame image breathing together in 4.5s (frame brightness .35-1.15, light .2-1); no rotation.
+- Links on touch: one tap opens the page (custom.js opens it at touchend; iOS would otherwise spend the first tap on :hover). A category card with a link opens from anywhere on it, photo included, on every platform.
 - About intro photo: black-and-white; cross-fades to the colour photo on hover (.6s); touch (phone, iPad): colour while the finger presses, back to black-and-white on release (.35s).
 - About signature: left-to-right soft-edge reveal on scroll-in, 1.6s, once.
 - Home Achievements numbers: odometer roll on scroll-in, 1.8s cubic-bezier(.2,.75,.15,1), numbers 0.15s apart, once.
