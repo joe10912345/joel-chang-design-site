@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### No 3D tilt on category cards
+- Joel: the 3D tilt (and its light sheen) is removed from every category card; only the About portrait still tilts. `tilt.js` (candidate cards dropped, EXTRA kept). Hover darkening, names and the round >> stay.
+
 ### About intro: new photo, second photo on hover / tap
 - Joel's two photos (2000x1425): Joel at the material wall (`about/about-05-*`) replaces the old portrait; with the mouse on it, it cross-fades (.6s) to the Golden Pin 2025 photo (`about/about-06-*`). Phone + iPad: a tap switches to the second photo, another tap back. The frame now takes the photos' ratio (589x421 desktop, 270x194 phone). Phone uses 1200px copies. Old `about-02-*` removed; originals in `media-originals/jcd_about-portrait-*`. `custom.js` "About intro photo", `custom.css` `.jcd-swap*`.
 

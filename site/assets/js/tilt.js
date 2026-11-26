@@ -61,6 +61,8 @@
     /* biggest card first: a photo tile nested inside a bigger card's outline tilts with that card, not alone */
     EXTRA.forEach(function (id) { var el = document.getElementById(id);
       if (el && !pinned.some(function (f) { return f.contains(el); })) cards.push({ hb: el, mem: [el], full: true, rx: 0, ry: 0, s: 1, tx: 0, ty: 0, ts: 1, sx: 50, sy: 50, on: false, live: false, box: null }); });
+    /* Joel 2026-11-26: category cards no longer tilt at all; only the About portrait (EXTRA) does */
+    cand = [];
     cand.sort(function (x, y) { return y.area - x.area; }).forEach(function (c) {
       var hb = c.hb, mem = c.mem;
       if (cards.some(function (o) { return o.mem.some(function (m) { return mem.some(function (n) { return m === n || m.contains(n) || n.contains(m); }); }); })) return;
