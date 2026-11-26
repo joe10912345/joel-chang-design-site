@@ -40,6 +40,6 @@ Areas 分區: `global` = every page 全站 · `home` = home 首頁 · `about` = 
 | `product` | `closing-photo-reveal.js`, `guest-area-dialog.js`, `defense-website.js`, `t-blade-last-photo.js` |
 | `home` | `design-approach-cards.js`, `cross-category-grid.js`, `video-frame.js`, `achievement-map.js`, `selected-grid.js`, `achievement-odometer.js`, `end-to-end-slider.js` |
 | `contact` | `contact-form.js`, `iphone-no-zoom.js` |
-| `category` | `catalog-title-bars.js`, `frames-desktop.js`, `spacing-phone.js`, `cards-touch.js` |
+| `category` | `catalog-title-bars.js`, `frames-desktop.js`, `spacing-phone.js`, `bottom-space.js`, `cards-touch.js` |
 | `about` | `intro-layout-desktop.js`, `recommendation-cards.js`, `heading-spacing.js`, `believe-centre.js`, `believe-reveal.js`, `signature-reveal.js`, `portrait-swap.js` |
 

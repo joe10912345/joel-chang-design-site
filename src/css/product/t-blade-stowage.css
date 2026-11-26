@@ -11,7 +11,13 @@
 body:not(.device-mobile-optimized) #comp-mojvq8rn { margin-top: 85px !important; }   /* under "Compact Stowage" */
 body:not(.device-mobile-optimized) #comp-mojvlu9z6,
 body:not(.device-mobile-optimized) #comp-mojvlua08 { margin-top: 63px !important; }  /* under "In-Flight Deployment" */
-body:not(.device-mobile-optimized) :has(> #comp-mojvq8rn) { padding-bottom: 101px !important; }   /* keeps the next gap */
+/* the same gap (Joel 2026-11-27: "這兩頁靠太遠") after "Long-range surveillance" (was 202px) and after "Dual-Unit Launcher"
+   (was 206px, into the photo grid). This section's grid had a fixed minimum height that swallowed every change: off. */
+body:not(.device-mobile-optimized) #comp-mojvrvz8 { margin-top: 12px !important; }   /* was 138px */
+body:not(.device-mobile-optimized) :has(> #comp-mojvq8rn) { min-height: 0 !important; margin-bottom: -31px !important; }
 /* Phone: same evening out — text -> next photo was 10px and 3px (In-Flight, tall photo); now 16px clear for both */
 .device-mobile-optimized #comp-mojvq8rn { margin-top: 6px !important; }
 .device-mobile-optimized #comp-mojvlu9z6 { margin-top: 13px !important; }
+/* Phone: after "Long-range surveillance" (was 40px) and "Dual-Unit Launcher" (was 37px) also 16px like the rest */
+.device-mobile-optimized #comp-mojvrvz8 { margin-top: -4px !important; }   /* was 20px */
+.device-mobile-optimized :has(> #comp-mojvq8rn) { margin-bottom: -21px !important; }

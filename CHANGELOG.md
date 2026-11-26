@@ -11,6 +11,16 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Category pages: the same bottom space on every page; T. Blade text -> photo gaps all even 類別頁底部空間一致；T. Blade 文字到圖片間距全部一致
+- Joel: "defense 下方黑色空間再多點，太窄了，其他類別頁也是" + "手機下方的黑空間太多了，再縮點。其實每個平台的類別頁底下都要多一些空間".
+  The black space under the last item was 92-277px (computer) and 9-258px (phone). Now the same on all six category
+  pages: `jcd-config.js` `categoryBottom` (computer + iPad 280, phone 80 CSS px), set by `src/js/category/bottom-space.js`.
+  六個類別頁最下方的黑色空間統一（電腦／iPad 280、手機 80），數值在 jcd-config.js。
+- Joel: "這兩頁靠太遠" (T. Blade). After "Long-range surveillance" (202px) and after "Dual-Unit Launcher" (206px) the gap
+  is now the same as the other text -> photo gaps (computer about 95px, phone 16px). File: `src/css/product/t-blade-stowage.css`.
+  T. Blade「Long-range」與「Dual-Unit」後面的大間距縮成跟其他段落一樣。
+- Also: built `custom.*`, `src/js/ORDER.txt`, `src/README.md`, `?v=` of jcd-config.js in every page.
+
 ### T. Blade: even spacing between text and photos T. Blade 文字與圖片間距平均
 - Joel: "這段文字下的圖片靠太近了，拉遠點" + "我覺得都可以在平均點位置，整頁尋一下". Measured the whole page: photo -> title,
   title -> text, the photo grid and the gaps between sections were already even; text -> next photo was not (computer 91px

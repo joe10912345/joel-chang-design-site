@@ -21,6 +21,7 @@ about/believe-centre.js
 global/no-context-menu.js
 home/achievement-map.js
 category/cards-touch.js
+category/bottom-space.js
 home/selected-grid.js
 home/achievement-odometer.js
 global/no-tooltips.js

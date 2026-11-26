@@ -59,6 +59,12 @@ window.JCD_CONFIG = {
      curve＝曲線；smooth＝跟上捲動的秒數（越大越柔、越慢）。三平台共用。 */
   scrollReveal: { start: 0.89, end: 0.5, curve: 'ease', smooth: 0.24 },   /* set by Joel 2026-11-27 */
 
+  /* Black space under the last item of every category page (Defense, Networking, Electronics, Industrial, Lifestyle,
+     Experimental), the same on each page (Joel 2026-11-27: "defense 下方黑色空間再多點，其他類別頁也是" / "手機下方的黑空間太多了，
+     再縮點，每個平台的類別頁底下都要多一些空間"). CSS px; `desktop` = computer + iPad. Was 92-277 (computer), 9-258 (phone).
+     類別頁最下方黑色空間（每頁一致）。 */
+  categoryBottom: { desktop: 280, phone: 80 },
+
   /* Photo framing inside a card (Joel 2026-11-27, set with preview/mockups/photo-align.html): `x` / `y` = which point of
      the photo stays in view (0-100%, like object-position), `zoom` = how much larger than just filling the card.
      Same on every device, unless the entry has per-platform values: desktop / ipadLandscape / ipadPortrait / phone. 卡片內照片取景：x / y 決定看哪個位置（0-100%），zoom 放大倍率；三平台共用。 */
