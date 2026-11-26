@@ -11,6 +11,10 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Home End-to-End: text in the squares larger again End-to-End 方塊文字再放大
+- Joel: "end to end 的圖片內文字再放大". Computer + iPad: title 34 → 40px, text 16 → 19px (all 9 squares fit, ≥30px to the edges). Phone: title 13 → 14px, text 9.5 → 10px; on the ~149px phone squares the descriptions are cut after 7 lines ("…"). 電腦／iPad 標題 40、內文 19px；手機 14／10px，手機的說明文字超過 7 行會截斷。
+- Files: `src/css/home/end-to-end-text.css` → built `custom.css`, `?v=` in all page HTML, `DESIGN-SYSTEM.md`.
+
 ### Every file renamed and sorted: originals, videos, fonts, Wix CSS 所有檔案重新命名分類
 - Joel: "media-originals 裡的圖片是亂碼跟散的欸，我想要所有圖片都整理好重新命名。其他資料夾的都要整理分類與命名".
 - `media-originals/`: 429 originals → `media-originals/<page>/<page>-<nn>-<w>x<h>.<ext>`, same page + number as the site image made from it; 41 that no page uses → `_unused/unused-<nn>-<w>x<h>`. 原始圖依頁面分資料夾，和網站圖片同編號。

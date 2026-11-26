@@ -66,7 +66,7 @@ Sizes (layout px; desktop page / phone 320px page) 字級（版面 px；電腦�
 - Recommendation card 推薦卡: featured 17 / 8.5, text 14 / 8, name SemiBold 15 / 9.5, role Light 11.5 / 6.5. A card is never louder than its section heading. 卡片不可比段落標題搶眼。
 - Phone menu 手機選單: Works / About / Contact SemiBold; product pages Light **13px**.
 - Phone body text never below ~8px in the 320px layout (≈10px on screen). 手機內文不小於 8px（螢幕上約 10px）。
-- End-to-End squares 方塊文字: computer/iPad title 34px, text 16px; phone 13 / 9.5px.
+- End-to-End squares 方塊文字: computer/iPad title 40px, text 19px; phone 14 / 10px (phone text cut after 7 lines).
 - Quote mark 引號: Georgia, white 85% → `--jcd-blue` on hover/press.
 
 Copy 文案:

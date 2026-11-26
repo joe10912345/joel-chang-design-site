@@ -10,11 +10,11 @@
 .device-mobile-optimized #pro-gallery-container-comp-mnfi6oqr .jcd-ov .info-element-description { display: -webkit-box !important; -webkit-box-orient: vertical; -webkit-line-clamp: 7 !important; overflow: hidden !important; height: auto !important; }
 /* Joel 2026-11-27 ("end to end 圖片裡面的字體可以大些"): overlay text larger. Computer + iPad: title 28 -> 34px,
    text 12 -> 16px (squares are 481px). Phone: title 12 -> 13px, text 8 -> 9.5px (more lines clamped away). */
-body:not(.device-mobile-optimized) #pro-gallery-container-comp-mnfi6oqr :is(.info-element-title, .info-element-title *) { font-size: 34px !important; line-height: 1.2 !important; }
+body:not(.device-mobile-optimized) #pro-gallery-container-comp-mnfi6oqr :is(.info-element-title, .info-element-title *) { font-size: 40px !important; line-height: 1.15 !important; }
 body:not(.device-mobile-optimized) #pro-gallery-container-comp-mnfi6oqr .info-element-title { height: auto !important; margin-bottom: 14px !important; }
-body:not(.device-mobile-optimized) #pro-gallery-container-comp-mnfi6oqr :is(.info-element-description, .info-element-description *) { font-size: 16px !important; line-height: 1.55 !important; }
+body:not(.device-mobile-optimized) #pro-gallery-container-comp-mnfi6oqr :is(.info-element-description, .info-element-description *) { font-size: 19px !important; line-height: 1.5 !important; }
 body:not(.device-mobile-optimized) #pro-gallery-container-comp-mnfi6oqr .info-element-description { height: auto !important; }
-.device-mobile-optimized #pro-gallery-container-comp-mnfi6oqr .jcd-ov :is(.info-element-title, .info-element-title *) { font-size: 13px !important; }
-.device-mobile-optimized #pro-gallery-container-comp-mnfi6oqr .jcd-ov :is(.info-element-description, .info-element-description *) { font-size: 9.5px !important; }
+.device-mobile-optimized #pro-gallery-container-comp-mnfi6oqr .jcd-ov :is(.info-element-title, .info-element-title *) { font-size: 14px !important; }
+.device-mobile-optimized #pro-gallery-container-comp-mnfi6oqr .jcd-ov :is(.info-element-description, .info-element-description *) { font-size: 10px !important; }   /* Joel 2026-11-27 2nd pass: larger again (computer/iPad 40 / 19px, phone 14 / 10px) */
 @media (hover: none) { #pro-gallery-container-comp-mnfi6oqr .jcd-ov .gallery-item-hover::before { background-color: rgba(0, 0, 0, .6) !important; } }
 
