@@ -23,7 +23,7 @@
 .device-mobile-optimized #pro-gallery-container-comp-mnpgav5j .jcd-foot { left: 10px; right: 8px; bottom: 8px; gap: 8px; }
 .device-mobile-optimized #pro-gallery-container-comp-mnpgav5j .jcd-nm { font-size: 11px; }
 .device-mobile-optimized #pro-gallery-container-comp-mnpgav5j .jcd-nm small { font-size: 9.5px; }
-.device-mobile-optimized #pro-gallery-container-comp-mnpgav5j .jcd-go { width: 22px; height: 22px; font-size: 9px; }
+.device-mobile-optimized #pro-gallery-container-comp-mnpgav5j .jcd-go { width: 18px; height: 18px; font-size: 7.5px; }   /* Joel 2026-11-27: smaller on the phone */
 /* iPad (desktop page at the jcd-config.js width, scaled down): larger */
 body:not(.device-mobile-optimized) #pro-gallery-container-comp-mnpgav5j.jcd-spot-touch .jcd-nm { font-size: 20px; }
 body:not(.device-mobile-optimized) #pro-gallery-container-comp-mnpgav5j.jcd-spot-touch .jcd-nm small { font-size: 15px; }

@@ -9,6 +9,6 @@
 .jcd-da-link:hover, .jcd-da-link:focus-visible { box-shadow: 0 0 0 1px var(--jcd-blue), 0 0 34px rgba(var(--jcd-blue-rgb), .45); }
 .jcd-da-link:active, .jcd-da-link.is-pressed { transform: none; }
 .jcd-da-go, body:not(.device-mobile-optimized) .jcd-go.jcd-da-go { position: absolute; right: 16px; bottom: 14px; z-index: 3; width: 30px; height: 30px; font-size: 11px; pointer-events: none; }
-.device-mobile-optimized .jcd-go.jcd-da-go { right: 8px; bottom: 7px; width: 20px; height: 20px; font-size: 8px; }
+.device-mobile-optimized .jcd-go.jcd-da-go { right: 8px; bottom: 7px; width: 18px; height: 18px; font-size: 7.5px; }
 .jcd-da-link:hover .jcd-da-go { background: rgba(var(--jcd-blue-rgb), .35); border-color: rgba(255, 255, 255, .6); }
 @media (hover: none) { .jcd-da-card:hover { background-color: transparent; box-shadow: none; } }

@@ -11,6 +11,12 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Touch card labels: smaller >> on the phone, larger product names; website caption wording 觸控卡片標籤與網站圖標題
+- Joel: "手機板的 >> 圓圈都太大了" / "手機版跟平板觸碰版的產品類別頁的名稱…字體都一樣大，把產品名稱字體加大" / "Design Refinement & Build 看起來沒有合力貢獻的感覺…這是團隊合作，我也協助打磨".
+- Phone circles: category cards 30 → 22px, home Selected grid 22 → 18px, Design Approach card 20 → 18px. Product names: phone 11 → 14px (brand line 9px), iPad 22 → 30px (brand 16px).
+- Defense website caption: "Company Website | Brand Visual Identity | Team Collaboration & Refinement".
+- Files: `src/css/category/cards-linked.css`, `src/css/category/cards-ipad-sizes.css`, `src/css/home/selected-grid.css`, `src/css/home/design-approach-card1.css`, `src/js/product/defense-website.js` → built files, `?v=` in all page HTML, `DESIGN-SYSTEM.md`.
+
 ### T. Scope page (black product template) protected by a password; password field in the Guest Area dialog T. Scope 子頁與密碼
 - Joel: "先幫我準備一個黑底產品子頁 frame 頁充當 t.scope 子頁。然後一樣 get request access 要有輸入密碼的欄位".
 - New `site/t-scope/`: black product page template (hero, kicker + title + lede, Client / Year / Designer / Contribution row, overview text, 16:9 and 4:3 white-framed images with placeholders, design details, three features, closing image), one responsive page for phone / iPad / computer (`site/assets/css/product-page.css`). Hero/closing: the T. Scope photo (`defense-03`); the rest are placeholders for Joel's content.
