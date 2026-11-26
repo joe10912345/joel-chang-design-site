@@ -1,9 +1,12 @@
-/* About, Work Experience: "Present" of the current job brighter, with a soft blue breathing glow
-   (Joel 2026-11-27: "present 字體提亮，幫我上藍色呼吸發光"). Phone, iPad, computer; still under reduced motion. */
-.jcd-present { color: #fff !important; font-weight: 500; text-shadow: 0 0 6px rgba(var(--jcd-blue-rgb), .55);
-  animation: jcdPresent 3s ease-in-out infinite; }
-@keyframes jcdPresent {
-  0%, 100% { text-shadow: 0 0 4px rgba(var(--jcd-blue-rgb), .35), 0 0 10px rgba(var(--jcd-blue-rgb), .2); }
-  50% { text-shadow: 0 0 8px rgba(var(--jcd-blue-rgb), .95), 0 0 22px rgba(var(--jcd-blue-rgb), .75), 0 0 40px rgba(var(--jcd-blue-rgb), .4); }
-}
-@media (prefers-reduced-motion: reduce) { .jcd-present { animation: none; text-shadow: 0 0 8px rgba(var(--jcd-blue-rgb), .7); } }
+/* About, Work Experience: "Present" of the current job (Joel 2026-11-27, option C of preview/mockups/present-options.html:
+   "藍光掃過不錯，但掃完後有變黑，應該一直循環掃"). The original grey text with a blue light sweeping across it, left to
+   right, without a break: the light band repeats (background repeat-x) and moves by exactly one tile per loop, so the
+   word is always grey + light, never blank. Phone, iPad, computer; plain grey under reduced motion. */
+.jcd-present {
+  background-image: linear-gradient(100deg, rgba(255, 255, 255, .5) 0 30%, #5aa0ff 44%, var(--jcd-blue) 50%, rgba(255, 255, 255, .5) 64% 100%);
+  background-size: 260% 100%; background-repeat: repeat-x; background-position: 0 0;
+  -webkit-background-clip: text; background-clip: text; color: transparent !important; -webkit-text-fill-color: transparent;
+  animation: jcdPresentSweep 2.6s linear infinite; }
+/* with a 260% wide tile, 0% -> -162.5% moves the background right by exactly one tile (2.6 / 1.6 = 1.625): seamless */
+@keyframes jcdPresentSweep { from { background-position: 0 0; } to { background-position: -162.5% 0; } }
+@media (prefers-reduced-motion: reduce) { .jcd-present { animation: none; background: none; color: rgba(255, 255, 255, .5) !important; -webkit-text-fill-color: currentColor; } }

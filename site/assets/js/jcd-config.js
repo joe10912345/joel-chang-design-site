@@ -57,8 +57,8 @@ window.JCD_CONFIG = {
     xcalar: { img: '#img_comp-jcdxcal1', x: 46, y: 26, zoom: 1.19 },   /* Defense, T. Xcalar card — aligned by Joel 2026-11-27 */
     /* MoAI hand photo: one setting per platform (Joel 2026-11-27: "做出 mockup 讓我調整個平台的位置") */
     moaiHand: { img: 'img[src*="moai-router-13-2560x1314"], img[src*="moai-router-30-1120x575"]',
-      desktop: { x: 0, y: 100, zoom: 1 }, ipadLandscape: { x: 0, y: 100, zoom: 1 }, ipadPortrait: { x: 0, y: 100, zoom: 1 },
-      phone: { x: 22, y: 100, zoom: 1 } },
+      desktop: { x: 0, y: 100, zoom: 1.15 }, ipadLandscape: { x: 15, y: 100, zoom: 1.12 }, ipadPortrait: { x: 22, y: 100, zoom: 1.19 },
+      phone: { x: 36, y: 100, zoom: 1.23 } },   /* aligned by Joel 2026-11-27 */
   },
 
   /* Forms (Contact page + Guest Area "Request access"): sent to Joel's mailbox through Web3Forms (no server on GitHub

@@ -2687,39 +2687,6 @@
   ],
   "original_name": "1e9c09_e0352886d80641a186332eeb0ff4eb87_mv2.png"
  },
- "t-interceptormp/t-interceptormp-04-118x52.webp": {
-  "source": "export",
-  "wix_ops": {
-   "crop": null,
-   "mode": "fill",
-   "align": "c"
-  },
-  "replaces": [
-   "1e9c09_c371e68abe0b491eaa01c8c93fb0cb69_mv2_118x52_85842bbb.png"
-  ],
-  "pages": [
-   "t-interceptormp"
-  ]
- },
- "t-interceptormp/t-interceptormp-04-74x66.webp": {
-  "source": "export",
-  "wix_ops": {
-   "crop": [
-    0,
-    0,
-    382,
-    342
-   ],
-   "mode": "fill",
-   "align": "c"
-  },
-  "replaces": [
-   "1e9c09_c371e68abe0b491eaa01c8c93fb0cb69_mv2_382x342_a8f8925d.png"
-  ],
-  "pages": [
-   "t-interceptormp"
-  ]
- },
  "t-interceptormp/t-interceptormp-13-1413x865.webp": {
   "source": "media-originals/t-interceptormp/t-interceptormp-13-1528x1000.png",
   "wix_ops": {
@@ -20393,5 +20360,16 @@
    "moai-router"
   ],
   "note": "wider original: more of the hand (Joel 2026-11-27)"
+ },
+ "t-interceptormp/t-interceptormp-04-120x120.webp": {
+  "source": "media-originals/t-interceptormp/t-interceptormp-04-775x342.png",
+  "wix_ops": {
+   "crop": "gold mark only, square"
+  },
+  "replaces": [],
+  "pages": [
+   "t-interceptormp"
+  ],
+  "note": "Golden Pin badge, text cropped off (Joel 2026-11-27)"
  }
 }

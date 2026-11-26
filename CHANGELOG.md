@@ -11,6 +11,12 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Present: grey with a continuous blue sweep; MoAI hand framing per platform; T. Interceptor MP award badge 三項調整
+- Joel: "Present 我想改成原本的灰字，但可以從左到右循環填滿藍色，或是字體有跳動循環的感覺。可以先做 mockup" → picked C "藍光掃過…應該一直循環掃". "Present" is the original grey again with a blue light sweeping left to right without a break (repeating band moved one tile per 2.6s loop); plain grey under reduced motion. Mockup: `preview/mockups/present-options.html`.
+- MoAI hand photo: "摩艾頭手部那張也可以做出 mockup 讓我調整個平台的位置" → `preview/mockups/photo-align.html?key=moaiHand&p=/moai-router/` (one setting per platform); Joel's values in `jcd-config.js` `photoFrames.moaiHand`: computer x0 / 1.15x, iPad landscape x15 / 1.12x, iPad portrait x22 / 1.19x, phone x36 / 1.23x. `photo-frames.js` now reads per-platform values.
+- T. Interceptor MP: "獎項標籤跟文字有歪掉，標章要裁切成正方(把圖片文字裁掉)，然後把下方的字移上去". The Golden Pin badge is now only the square gold mark (`t-interceptormp-04-120x120.webp`, cut from the original logo, now `media-originals/t-interceptormp/t-interceptormp-04-775x342.png`); computer/iPad 33px square beside the text, phone 26px with the award text moved up beside it, top-aligned.
+- Files: `src/css/about/present-glow.css`, `src/css/product/t-interceptormp-award.css` (new), `src/js/global/photo-frames.js`, `site/assets/js/jcd-config.js` → built files, T. Interceptor MP pages, images, `reference/media-map.json`, mockups, `?v=` in all page HTML.
+
 ### MoAI: hand photo from Joel's wider original, more of the hand MoAI 手部照片換更寬原圖
 - Joel: "moai 的這張圖，可以往右移嗎? 手想露多一點" (the Wix copy cut the hand at its own edge) → wider original `media-originals/moai-router/moai-router-13-4000x2053.jpg`. Computer/iPad `moai-router-13-2560x1314.webp` anchored left (whole hand, product right of centre); phone `moai-router-30-1120x575.webp` anchored 22% from the left (hand + whole product in the narrow box).
   換成手比較完整的原圖；電腦／iPad 靠左顯示整隻手，手機調整位置讓產品完整。

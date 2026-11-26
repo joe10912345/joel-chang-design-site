@@ -1,0 +1,7 @@
+/* T. Interceptor MP, Golden Pin badge (Joel 2026-11-27: "獎項標籤跟文字有歪掉，標章要裁切成正方(把圖片文字裁掉)，然後把
+   下方的字移上去"). The badge is now only the square gold mark (t-interceptormp-04-120x120.webp, from the original logo).
+   Computer/iPad: square 33px next to the text. Phone: square 26px, the award text moved up beside it, top-aligned. */
+#comp-mter72km { width: 33px !important; height: 33px !important; }
+#comp-mter72km img { width: 100% !important; height: 100% !important; object-fit: contain !important; }
+.device-mobile-optimized #comp-mter72km { width: 26px !important; height: 26px !important; }
+.device-mobile-optimized #comp-mwqkxs15 { translate: -22px -35px; }
