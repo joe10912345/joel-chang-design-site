@@ -9,6 +9,12 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Phone category pages: frames of one category closer, clear gap between categories
+- Joel: on the phone the frames were too spread out and the gaps inside a category looked like the gaps between categories. `custom.js` (phone, networking / defense / electronics / industrial / lifestyle / experimental): frames of one group 8px apart (was 15px), a new group (frame with a title bar) 48px below (was 40px); captions/overlay layers move with their frame; the section is shortened by the space saved.
+
+### Contact form: one style for every field
+- Joel (phone): text too big, lines too thick, not uniform. All platforms: one 1px white underline at rest and when hovered/typing (colour still turns `--jcd-blue`), same 12px indent, same white hint text for every field. Phone text 20px -> 14px (still >= 16px on screen, so iPhones do not zoom in on tap); desktop/iPad message box 12px -> 15px like the other fields. `custom.css`.
+
 ### Images: one folder per page, readable names, rebuilt from the originals, faster loading
 - Joel: image names must be consistent (no random strings, easy to manage), quality checked, loading speed checked. `site/assets/media/` is now one folder per page (`home/`, `about/`, `wi-fi7-2022/`, ... and `shared/` for images used on several product pages or by the CSS). Names: `<page>-<nn>-<width>x<height>.<jpg|png>` — `nn` = order of first appearance on the desktop page; the same photo in several sizes keeps its number (`-b`, `-c` when two crops share a size). 1,139 Wix files -> 1,172 files, 31 folders (incl. the 11 AI Tool Kit lightbox images that were in `full/`). `reference/media-map.json` lists each file: original upload, Wix crop/fill used, old Wix names, pages.
 - Quality: every image re-made from the uploaded original in `media-originals/` with Wix's exact crop/fill/alignment (JPEG q86, 4:4:4; PNG kept only for transparency or small graphics). 54 transparent PNGs whose rebuild did not match pixel-for-pixel keep the exported file (renamed).

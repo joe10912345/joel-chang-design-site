@@ -460,3 +460,24 @@ input, textarea, select, [contenteditable="true"] { -webkit-user-select: text !i
 /* Defense "Field Protection" (T. Guardian) frame: no ">>" — it has no product page yet (Joel 2026-11-26).
    Desktop, iPad and phone defense pages share the comp id. */
 #comp-mukou2e11 { display: none !important; }
+
+/* Contact form, one style for every field (Joel 2026-11-26: on the phone the text was too big, the lines too thick
+   and not the same — inputs 20px text / thin line, message box 10px text / 2px line). All platforms: one 1px white
+   underline at rest, still 1px when hovered / typing (only the colour turns --jcd-blue), text starts at the same
+   12px indent. Phone: 14px text (20px before); 14px x the phone's 320px-page scale is still >= 16px on screen, so
+   iPhones do not zoom in when a field is tapped. */
+[id^="comp-jqc9cqa"] {
+  --brw: 0px 0px 1px 0px !important;
+  --brwh: 0px 0px 1px 0px !important;
+  --brwf: 0px 0px 1px 0px !important;
+  --brd: 255, 255, 255 !important;
+}
+[id^="comp-jqc9cqa"] input, [id^="comp-jqc9cqa"] textarea { border-bottom-width: 1px !important; padding-left: 12px !important; }
+[id^="comp-jqc9cqa"] textarea, [id^="comp-jqc9cqa"] textarea::placeholder { font-size: 15px !important; }   /* desktop / iPad: = the inputs (was 12px) */
+.device-mobile-optimized [id^="comp-jqc9cqa"] input,
+.device-mobile-optimized [id^="comp-jqc9cqa"] textarea { font-size: 14px !important; }
+.device-mobile-optimized [id^="comp-jqc9cqa"] input::placeholder,
+.device-mobile-optimized [id^="comp-jqc9cqa"] textarea::placeholder { font-size: 14px !important; }
+[id^="comp-jqc9cqa"] input::placeholder, [id^="comp-jqc9cqa"] textarea::placeholder {   /* same look for every field's hint text */
+  color: #fff !important; opacity: 1 !important; font-family: inherit !important; font-weight: inherit !important;
+}
