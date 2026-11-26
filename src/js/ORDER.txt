@@ -30,5 +30,6 @@ home/end-to-end-slider.js
 about/signature-reveal.js
 about/portrait-swap.js
 product/guest-area-dialog.js
+product/defense-website.js
 global/one-tap-links.js
 global/ios-active.js

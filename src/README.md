@@ -28,7 +28,7 @@ Areas 分區: `global` = every page 全站 · `home` = home 首頁 · `about` = 
 | `home` | `design-approach-cards.css`, `cross-category-grid.css`, `works-grid-links.css`, `video-frame.css`, `works-category-buttons.css`, `end-to-end-text.css`, `selected-label.css`, `get-in-touch-breathing.css`, `works-grid-press.css`, `achievement-map.css`, `selected-grid.css`, `achievement-odometer.css`, `works-category-hover.css`, `design-approach-card1.css`, `video-glow.css`, `end-to-end-arrows.css`, `hero-no-counter.css`, `end-to-end-hover.css` |
 | `contact` | `form-status.css`, `field-colours.css`, `fields.css` |
 | `phone` | `mobile-fixes.css`, `menu-social.css`, `menu-layout.css` |
-| `product` | `ocean-series-creatures.css`, `ocean-series-seams.css`, `defense-guardian-no-go.css`, `guest-area-dialog.css` |
+| `product` | `ocean-series-creatures.css`, `ocean-series-seams.css`, `defense-guardian-no-go.css`, `guest-area-dialog.css`, `defense-website.css` |
 | `about` | `portrait-frame.css`, `believe-phone-text.css`, `recommendation-cards.css`, `grid-rows.css`, `signature-reveal.css`, `portrait-swap.css` |
 | `category` | `cards-linked.css`, `cards-ipad-sizes.css`, `go-hover-computer.css`, `cards-photo-zoom.css`, `cards-clickable.css` |
 
@@ -37,7 +37,7 @@ Areas 分區: `global` = every page 全站 · `home` = home 首頁 · `about` = 
 | area 分區 | files (in build order) 檔案（依合併順序） |
 |---|---|
 | `global` | `wix-fixed-backgrounds.js`, `lightbox.js`, `cursor-light.js`, `header-autohide.js`, `phone-menu-social.js`, `hero-height.js`, `page-background.js`, `header-no-drag.js`, `no-context-menu.js`, `no-tooltips.js`, `one-tap-links.js`, `ios-active.js` |
-| `product` | `closing-photo-reveal.js`, `guest-area-dialog.js` |
+| `product` | `closing-photo-reveal.js`, `guest-area-dialog.js`, `defense-website.js` |
 | `home` | `design-approach-cards.js`, `cross-category-grid.js`, `video-frame.js`, `achievement-map.js`, `selected-grid.js`, `achievement-odometer.js`, `end-to-end-slider.js` |
 | `contact` | `contact-form.js`, `iphone-no-zoom.js` |
 | `category` | `catalog-title-bars.js`, `frames-desktop.js`, `spacing-phone.js`, `cards-touch.js` |

@@ -11,6 +11,11 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Defense bottom: exhibitions + website image aligned to the frames; website caption + zoom 底部對齊、網站圖加標題與放大
+- Joel: "2025 taipei aerospace 的整個 section 跟下方的大圖按紐左右寬度要跟上面的產品白框對其" / "這張圖要 hover zoom in，且上方有一條線跟字，字寫 Website - Brand Visual Identity - 參與打磨建構". On computer + iPad the exhibition titles/photos and the Tron Future website image sat 13-14px left of the product frames; now the same left and right edges (phone already matched). The website image gets a caption bar like the exhibition titles: "Website | Brand Visual Identity | Design Refinement & Build" + line (phone sizes of the phone page; image moved down on the phone to fit), and its photo zooms in 6% inside the frame on hover (touch: while pressed).
+  展覽段落與網站大圖左右對齊產品白框；網站圖上方加標題列，滑過照片放大。
+- Files: `src/js/product/defense-website.js`, `src/css/product/defense-website.css` (new), `src/*/ORDER.txt` → built files, `?v=` in all page HTML.
+
 ### Guest Area: "Request access" emails Joel directly; larger on iPad 訪客區直接寄信、iPad 放大
 - Joel: "request the access 就直接寄信給我了，不要連到contact了" / "ipad 版的 request for access 的視窗太小了". The dialog now has Name, Email (required), Company / organization and a "REQUEST ACCESS" button: the request is emailed to Joel through Web3Forms (subject "T. Scope access request"), with the visitor's time zone and browser language as a rough region (no location service). "Request sent / Thank you" view after sending; error line with the fallback email if sending fails. Fields use the Contact underline style. iPad: dialog drawn 1.35x (landscape) / 1.8x (upright) → about half / two thirds of the screen width (`html.jcd-tablet`, new class from `site.js`).
   Request access 改成在視窗內填寫並直接寄給 Joel，附上對方時區與瀏覽器語言；iPad 視窗放大。

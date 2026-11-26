@@ -55,3 +55,4 @@ category/cards-clickable.css
 home/hero-no-counter.css
 home/end-to-end-hover.css
 product/guest-area-dialog.css
+product/defense-website.css

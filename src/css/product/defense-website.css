@@ -1,0 +1,26 @@
+/* Defense, bottom of the page (Joel 2026-11-27).
+   1. "2025 Taipei Aerospace ..." / "2026 Singapore AIRSHOW" section and the Tron Future website image: same left/right
+      edges as the product frames above (they sat 13-14px to the left on computer + iPad; the phone already lined up).
+   2. Website image: caption + line above it like the exhibition title bars (custom.js "Defense: Tron Future website"),
+      photo zooms in 6% inside its frame on hover (touch: while pressed). */
+body:not(.device-mobile-optimized) :is(#comp-mojwol67, #comp-mnplp0vp) { translate: 14px 0; }
+body:not(.device-mobile-optimized) :is(#comp-mojwork6, #comp-mojwmx3v, #comp-mojwq9as, #comp-mw0ptxhx) { translate: 13px 0; }
+
+#comp-mw0ptxhx { overflow: visible !important; }
+#comp-mw0ptxhx > a { display: block; overflow: hidden; }
+#comp-mw0ptxhx img { transform: scale(1); transform-origin: 50% 50%; transition: transform .8s cubic-bezier(.2, .7, .2, 1) !important; }
+@media (hover: hover) and (pointer: fine) { #comp-mw0ptxhx:hover img { transform: scale(1.06); } }
+#comp-mw0ptxhx:active img { transform: scale(1.06); }
+@media (prefers-reduced-motion: reduce) { #comp-mw0ptxhx img { transition: none !important; } }
+
+.jcd-webcap { position: absolute; left: 0; right: 0; bottom: calc(100% + 23px); pointer-events: none; }
+.jcd-webcap p { margin: 0 0 11px; color: #fff; font-size: 17px; line-height: 1.2;
+  font-family: wfont_3f090f_fbe2048d9f994d8c8d5073ed8164a33e, wf_fbe2048d9f994d8c8d5073ed8, orig_poppins_medium, Poppins, sans-serif; }
+.jcd-webcap i { font-style: normal; margin: 0 .7em; opacity: .45; }
+.jcd-webcap-line { display: block; height: 0; border-top: 2px solid #fff; }
+/* phone (320px page): title-bar sizes of the phone page, image moved down to make room */
+.device-mobile-optimized .jcd-webcap { bottom: calc(100% + 12px); }
+.device-mobile-optimized .jcd-webcap p { font-size: 9px; margin-bottom: 7px; }
+.device-mobile-optimized .jcd-webcap i { margin: 0 .5em; }
+.device-mobile-optimized .jcd-webcap-line { border-top-width: .67px; }
+.device-mobile-optimized #comp-mw0ptxhx { margin-top: 52px !important; }
