@@ -89,11 +89,12 @@ window.JCD_CONFIG = {
      the Wix design (mostly 20px = 6.25%). Not driven from here. 手機版由 Wix 手機排版決定（多為 20px），不從這裡控制。 */
   phone: { layoutWidth: 320,
     /* Smallest text on the phone pages, in layout px (Joel 2026-11-27, UI/UX review: body text was 6-7px = about 7-8.5pt
-       on a 390px iPhone; Apple's minimum is 11pt). The page is shown ×1.17-1.34, so 11px ≈ 13-15pt and 9.5px ≈ 11-12.7pt.
+       on a 390px iPhone; Apple's minimum is 11pt). The page is shown ×1.17-1.34, so 10px ≈ 12-13pt and 9px ≈ 10.5-12pt.
+       Joel then: "手機板字體可以小一級" -> one step smaller (was 11 / 9.5).
        `text`: paragraphs (more than 60 characters); `label`: short labels and captions. Larger Wix sizes stay as they are;
        a word never breaks: in a narrow column the text grows only as far as its longest word fits.
-       手機最小字級：段落 11px、短標籤 9.5px（約 13pt / 11pt）。 */
-    minText: 11, minLabel: 9.5 },
+       手機最小字級：段落 10px、短標籤 9px（約 12pt / 11pt）。 */
+    minText: 10, minLabel: 9 },
 };
 
 /* iPad layout width for a page slug ('' = home) and orientation.  某頁在 iPad 直／橫向的排版寬度。 */

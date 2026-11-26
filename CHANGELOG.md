@@ -11,6 +11,11 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Phone text one step smaller 手機字級小一級
+- Joel: "手機板字體可以小一級". Phone text minimum now 10px for paragraphs and 9px for short labels (was 11 / 9.5), about
+  12pt / 11pt on a 390px iPhone, still at Apple's 11pt minimum. Files: `site/assets/js/jcd-config.js` (`phone.minText` /
+  `minLabel`, + `?v=` in every page), `DESIGN-SYSTEM.md`. 手機最小字級改為段落 10px、標籤 9px（原 11 / 9.5）。
+
 ### UI/UX review fixes 1-3: readable phone text, 44px tap areas, text contrast UI/UX 審查第 1-3 項：手機字級、觸控範圍、文字對比
 Joel: "整個網站最好用我的 uiux skill 尋下" -> review (apple-design skill) -> "Fix 1-3 first".
 1. **Phone text**: Wix set descriptions at 6-7px (about 7-8.5pt on a 390px iPhone; Apple minimum 11pt). Now paragraphs at
