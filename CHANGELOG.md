@@ -11,6 +11,11 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### MoAI: hand photo from Joel's wider original, more of the hand MoAI 手部照片換更寬原圖
+- Joel: "moai 的這張圖，可以往右移嗎? 手想露多一點" (the Wix copy cut the hand at its own edge) → wider original `media-originals/moai-router/moai-router-13-4000x2053.jpg`. Computer/iPad `moai-router-13-2560x1314.webp` anchored left (whole hand, product right of centre); phone `moai-router-30-1120x575.webp` anchored 22% from the left (hand + whole product in the narrow box).
+  換成手比較完整的原圖；電腦／iPad 靠左顯示整隻手，手機調整位置讓產品完整。
+- Files: `site/moai-router/index.html`, `site/m/moai-router/index.html`, images, `reference/media-map.json`.
+
 ### About Work Experience: "Present" glows; "Remote MO, USA" 關於頁目前職位
 - Joel: "present 字體提亮，幫我上藍色呼吸發光。後面 USA 改成 MO, USA。Remote 後要空一格". "Present" (current job) is white Medium with a soft blue glow breathing in 3s (steady glow under reduced motion); the location reads "Remote MO, USA" with a fixed space after "Remote" (computer + phone pages).
   Present 提亮並加藍色呼吸光；地點改為 Remote MO, USA。

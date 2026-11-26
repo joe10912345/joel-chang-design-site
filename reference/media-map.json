@@ -10179,16 +10179,6 @@
   ],
   "original_name": "1e9c09_689330178c7f43e2b38a43f2f94eaf86_mv2.png"
  },
- "moai-router/moai-router-13-2560x1810.webp": {
-  "source": "export",
-  "wix_ops": null,
-  "replaces": [
-   "1e9c09_26493bd061364f8b852421cb84b8dddc_mv2_2560x1810_181471e2.jpg"
-  ],
-  "pages": [
-   "moai-router"
-  ]
- },
  "moai-router/moai-router-14-2288x900.webp": {
   "source": "media-originals/moai-router/moai-router-14-3116x1322.png",
   "wix_ops": {
@@ -10679,21 +10669,6 @@
   "pages": [
    "moai-router"
   ]
- },
- "moai-router/moai-router-30-640x528.webp": {
-  "source": "media-originals/moai-router/moai-router-30-3000x1338.jpg",
-  "wix_ops": {
-   "crop": null,
-   "mode": "fill",
-   "align": "b"
-  },
-  "replaces": [
-   "1e9c09_26493bd061364f8b852421cb84b8dddc_mv2_640x528_10d8f28d.jpg"
-  ],
-  "pages": [
-   "moai-router"
-  ],
-  "original_name": "1e9c09_26493bd061364f8b852421cb84b8dddc_mv2.jpg"
  },
  "moai-router/moai-router-31-444x1663.webp": {
   "source": "media-originals/moai-router/moai-router-31-2727x1663.png",
@@ -20396,5 +20371,27 @@
   ],
   "original_name": "1e9c09_f0569fdd3c044fe48dd59f081dab6c2f_mv2.jpg",
   "note": "T. Guardian (Joel 2026-11-27)"
+ },
+ "moai-router/moai-router-13-2560x1314.webp": {
+  "source": "media-originals/moai-router/moai-router-13-4000x2053.jpg",
+  "wix_ops": {
+   "crop": null
+  },
+  "replaces": [],
+  "pages": [
+   "moai-router"
+  ],
+  "note": "wider original: more of the hand (Joel 2026-11-27)"
+ },
+ "moai-router/moai-router-30-1120x575.webp": {
+  "source": "media-originals/moai-router/moai-router-13-4000x2053.jpg",
+  "wix_ops": {
+   "crop": null
+  },
+  "replaces": [],
+  "pages": [
+   "moai-router"
+  ],
+  "note": "wider original: more of the hand (Joel 2026-11-27)"
  }
 }
