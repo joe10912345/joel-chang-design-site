@@ -33,6 +33,23 @@ window.JCD_CONFIG = {
     homeLike: ['', 'contact', '1', '2', '3', '4'],   /* page slugs that use content.home  使用 home 寬度的頁面 */
   },
 
+  /* About "What I Believe" photo framing (Joel 2026-11-27, set with preview/mockups/believe-align.html).
+     關於頁 What I Believe 照片的取景（用 believe-align.html 對齊）。
+     The photo is drawn so that ITS point (fx, fy) — the speaker's face, as a share of the photo's width / height —
+     lands at (sx, sy) of the photo window (share of the window's width / height), `zoom` x larger than the smallest
+     size that fills the window. Worked out again from the real window size on every layout, so it holds whatever the
+     page around it does. Never leaves an empty edge (the photo is nudged back inside when needed).
+     照片上的點 (fx, fy)（講者臉部，佔照片寬高的比例）會對到視窗的 (sx, sy)；zoom = 比「剛好填滿」再放大幾倍。
+     每次排版都依實際視窗大小重算，所以頁面怎麼改都會維持；不會露出空白邊。
+     `height` (iPad upright only) = photo window height as a share of the screen height.  iPad 直向：視窗高度佔螢幕比例。
+     Phone: the photo window is the What I Believe section itself.  手機：照片視窗就是 What I Believe 這一段。
+     Computer: the whole photo, centred (no entry needed).  電腦版：完整照片置中，不需設定。 */
+  believe: {   /* aligned by Joel 2026-11-27 */
+    phone:         { fx: 0.26, fy: 0.62, sx: 0.182, sy: 0.475, zoom: 1.55 },
+    ipadPortrait:  { fx: 0.26, fy: 0.62, sx: 0.128, sy: 0.552, zoom: 1.34, height: 0.37 },
+    ipadLandscape: { fx: 0.26, fy: 0.62, sx: 0.113, sy: 0.579, zoom: 1.23 },
+  },
+
   /* Phone (m/ pages): Wix's own mobile layout, 320px wide (viewport width=320), side margins set per element in
      the Wix design (mostly 20px = 6.25%). Not driven from here. 手機版由 Wix 手機排版決定（多為 20px），不從這裡控制。 */
   phone: { layoutWidth: 320 },

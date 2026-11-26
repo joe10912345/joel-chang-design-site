@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What I Believe 對齊</title>
+<style>
+  :root { --jcd-blue: #0062d9; --mut: #8d8f99; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #0b0c10; color: #eee; font: 14px/1.5 system-ui, "Noto Sans TC", sans-serif; padding: 16px 18px 40px; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .note { color: var(--mut); margin: 0 0 14px; max-width: 1100px; }
+  .row { display: flex; gap: 28px; align-items: flex-start; flex-wrap: wrap; }
+  .dev { display: flex; flex-direction: column; gap: 8px; }
+  .dev h2 { font-size: 15px; margin: 0; } .dev h2 span { color: var(--mut); font-weight: 400; font-size: 12px; }
+  .screen { position: relative; overflow: hidden; border: 6px solid #22242b; border-radius: 22px; background: #000; }
+  .screen iframe { position: absolute; left: 0; top: 0; border: 0; transform-origin: 0 0; }
+  .grab { position: absolute; inset: 0; cursor: grab; touch-action: none; }
+  .grab:active { cursor: grabbing; }
+  .ctl { display: grid; grid-template-columns: 70px 1fr 44px; gap: 6px 10px; align-items: center; font-size: 13px; color: #cfd0d6; }
+  .ctl input[type=range] { width: 100%; accent-color: var(--jcd-blue); }
+  .ctl output { color: #fff; text-align: right; font-variant-numeric: tabular-nums; }
+  .btns { display: flex; gap: 8px; flex-wrap: wrap; }
+  button { background: #15161b; color: #eee; border: 1px solid #30313a; border-radius: 6px; padding: 7px 14px; font: inherit; cursor: pointer; }
+  button.main { background: var(--jcd-blue); border-color: var(--jcd-blue); color: #fff; }
+  #out { margin-top: 16px; background: #111218; border: 1px solid #2a2a30; border-radius: 6px; padding: 10px 14px; color: #c9cad2; white-space: pre; font: 12px/1.5 ui-monospace, Consolas, monospace; max-width: 1100px; }
+  .ok { color: #7fd18b; }
+</style>
+</head>
+<body>
+<h1>About「What I Believe」照片對齊</h1>
+<p class="note">下面是真實的 About 頁（手機、iPad 直向；也可以看 iPad 橫向）。<b>直接在畫面上拖曳照片</b>移動位置，用滑桿（或按住 Shift 滾滾輪）放大縮小；iPad 直向還可以調照片視窗的高度。
+  滾輪可以上下捲動頁面。調好後按「儲存」，然後跟我說一聲，我會把數值寫進網站設定（<code>jcd-config.js</code>），之後不管頁面怎麼改，都會維持你對好的位置。</p>
+<div class="row" id="row"></div>
+<div class="btns" style="margin-top:14px"><button class="main" id="save">儲存</button><button id="reset">全部還原</button></div>
+<div id="out"></div>
+<script>
+  var KEY = 'jcd-believe-align';
+  var DEVS = [
+    { k: 'phone', name: '手機', sub: '390 × 844', src: '../../site/m/about/index.html', w: 320, h: 693, show: 640, tablet: false },
+    { k: 'ipadPortrait', name: 'iPad 直向', sub: 'iPad Air 11 吋 820 × 1180', w: null, h: null, show: 640, tablet: true, portrait: true },
+    { k: 'ipadLandscape', name: 'iPad 橫向', sub: '1180 × 820', w: null, h: null, show: 440, tablet: true, portrait: false }
+  ];
+  var cfgScript = document.createElement('script'); cfgScript.src = '../../site/assets/js/jcd-config.js?t=' + Date.now();
+  cfgScript.onload = start; document.head.appendChild(cfgScript);
+  var vals = {}, frames = {};
+  function start() {
+    var base = JSON.parse(JSON.stringify(JCD_CONFIG.believe));
+    var saved = null; try { saved = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
+    DEVS.forEach(function (d) { vals[d.k] = Object.assign({}, base[d.k], saved && saved[d.k] || {}); });
+    document.getElementById('reset').onclick = function () { DEVS.forEach(function (d) { vals[d.k] = Object.assign({}, base[d.k]); sync(d); apply(d); }); show(); };
+    document.getElementById('save').onclick = function () {
+      try { localStorage.setItem(KEY, JSON.stringify(vals)); } catch (e) {}
+      show(true);
+    };
+    DEVS.forEach(build); show();
+  }
+  function build(d) {
+    if (d.tablet) { var W = JCD_CONFIG.tabletWidth('about', d.portrait); d.w = W; d.h = Math.round(W * (d.portrait ? 1180 / 820 : 820 / 1180)); d.src = '../../site/about/index.html?tablet=1'; }
+    var s = d.show / d.h, wrap = document.createElement('div'); wrap.className = 'dev';
+    wrap.innerHTML = '<h2>' + d.name + ' <span>' + d.sub + '</span></h2>';
+    var scr = document.createElement('div'); scr.className = 'screen'; scr.style.width = Math.round(d.w * s) + 12 + 'px'; scr.style.height = d.show + 12 + 'px';
+    var f = document.createElement('iframe'); f.width = d.w; f.height = d.h; f.style.transform = 'scale(' + s + ')';
+    f.src = d.src + (d.src.indexOf('?') < 0 ? '?' : '&') + 'pv=' + Date.now();
+    var grab = document.createElement('div'); grab.className = 'grab';
+    scr.appendChild(f); scr.appendChild(grab); wrap.appendChild(scr);
+    var ctl = document.createElement('div'); ctl.className = 'ctl';
+    var sliders = [['zoom', '縮放', 0.4, 3, 0.01]]; if (d.portrait) sliders.push(['height', '視窗高度', 0.25, 0.7, 0.01]);
+    sliders.forEach(function (sl) {
+      ctl.insertAdjacentHTML('beforeend', '<label>' + sl[1] + '</label><input type="range" min="' + sl[2] + '" max="' + sl[3] + '" step="' + sl[4] + '" data-k="' + sl[0] + '"><output></output>');
+    });
+    wrap.appendChild(ctl); document.getElementById('row').appendChild(wrap);
+    d.f = f; d.s = s; d.ctl = ctl;
+    [].forEach.call(ctl.querySelectorAll('input'), function (inp) {
+      inp.oninput = function () { vals[d.k][inp.dataset.k] = +inp.value; sync(d); apply(d); show(); };
+    });
+    sync(d);
+    f.onload = function () { var tries = 0; (function wait() { var w = f.contentWindow; if (w.__jcdBelieveLay || tries++ > 40) { apply(d); setTimeout(function () { toPhoto(d); }, 400); } else setTimeout(wait, 150); })(); };
+    /* drag = move the photo: the speaker's point follows the pointer */
+    var st = null;
+    grab.addEventListener('pointerdown', function (e) { grab.setPointerCapture(e.pointerId); var b = box(d); if (!b) return; st = { x: e.clientX, y: e.clientY, sx: vals[d.k].sx, sy: vals[d.k].sy, bw: b.w, bh: b.h }; });
+    grab.addEventListener('pointermove', function (e) { if (!st) return;
+      vals[d.k].sx = clamp(st.sx + (e.clientX - st.x) / d.s / st.bw, -1, 2); vals[d.k].sy = clamp(st.sy + (e.clientY - st.y) / d.s / st.bh, -1, 2); apply(d); show(); });
+    ['pointerup', 'pointercancel'].forEach(function (n) { grab.addEventListener(n, function () { st = null; tidy(d); show(); }); });
+    grab.addEventListener('wheel', function (e) { e.preventDefault();
+      if (e.shiftKey || e.ctrlKey) { var v = vals[d.k]; v.zoom = +clamp(v.zoom * (1 - (e.deltaY || e.deltaX) * 0.0015), 0.4, 3).toFixed(3); sync(d); apply(d); show(); return; }   /* Shift/Ctrl + wheel = zoom */
+      f.contentWindow.scrollBy(0, e.deltaY / d.s); }, { passive: false });
+  }
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+  function box(d) { try { var m = d.f.contentDocument.getElementById('bgMedia_comp-mujj9yyt'); var wi = m && m.querySelector('wow-image'); return wi ? { w: wi.clientWidth, h: wi.clientHeight } : null; } catch (e) { return null; } }
+  /* after a drag past the edge the photo stops moving; bring sx/sy back to where it really is so the next drag reacts at once */
+  function tidy(d) {
+    try {
+      var doc = d.f.contentDocument, m = doc.getElementById('bgMedia_comp-mujj9yyt'), wi = m.querySelector('wow-image'), img = wi.querySelector('img');
+      var v = vals[d.k], bw = wi.clientWidth, bh = wi.clientHeight, x = parseFloat(img.style.left) || 0, y = parseFloat(img.style.top) || 0;
+      v.sx = +((x + v.fx * img.offsetWidth) / bw).toFixed(3); v.sy = +((y + v.fy * img.offsetHeight) / bh).toFixed(3);
+    } catch (e) {}
+  }
+  function sync(d) { [].forEach.call(d.ctl.querySelectorAll('input'), function (inp) { inp.value = vals[d.k][inp.dataset.k]; inp.nextElementSibling.textContent = (+inp.value).toFixed(2); }); }
+  function apply(d) { try { var w = d.f.contentWindow; if (!w.JCD_CONFIG || !w.__jcdBelieveLay) return; w.JCD_CONFIG.believe[d.k] = Object.assign({}, vals[d.k]); w.__jcdBelieveLay(); } catch (e) {} }
+  function toPhoto(d) { try { var w = d.f.contentWindow, doc = d.f.contentDocument; var sec = doc.getElementById('bgMedia_comp-mujj9yyt').closest('section');
+    var r = sec.getBoundingClientRect(); w.scrollTo(0, w.scrollY + r.bottom - w.innerHeight); } catch (e) {} }
+  function show(saved) {
+    var t = 'believe: {\n'; DEVS.forEach(function (d) { var v = vals[d.k];
+      t += '  ' + (d.k + ':').padEnd(15) + '{ fx: ' + v.fx + ', fy: ' + v.fy + ', sx: ' + (+v.sx).toFixed(3) + ', sy: ' + (+v.sy).toFixed(3) + ', zoom: ' + (+v.zoom).toFixed(2) + (v.height != null ? ', height: ' + (+v.height).toFixed(2) : '') + ' },\n'; });
+    document.getElementById('out').innerHTML = (saved ? '<span class="ok">已儲存，跟我說一聲就好。</span>\n' : '目前數值（按「儲存」保存）：\n') + t + '}';
+  }
+</script>
+</body>
+</html>

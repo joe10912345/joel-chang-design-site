@@ -11,6 +11,13 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### About "What I Believe" photo: aligned by hand, framing kept in the config 照片手動對齊並寫入設定
+- Joel: "what i believe 的手機板、ipad版(直) 圖片跑掉了。能夠做給我一個mockup我手動對其嗎? 且不管我未來有沒有調整頁面，都已設定為主". Then: "手機板的至少讓我放大縮小上拖曳吧" / "手機板好像沒辦法往上托，上方會被遮到卡住".
+- New tool `preview/mockups/believe-align.html`: the real About page on phone, iPad portrait and landscape; drag the photo, zoom 0.4–3x (slider or Shift + wheel), iPad upright window height; Save. 對齊工具：拖曳、縮放、iPad 直向視窗高度。
+- The framing is now a rule in `jcd-config.js` `believe` (the speaker's face, point 0.26 / 0.62 of the photo, lands at a chosen place of the window, at a chosen zoom) and `believe-reveal.js` re-computes it from the real window size on every layout, so it holds whatever changes around it. Joel's values: phone sx .182 sy .475 zoom 1.55; iPad portrait sx .128 sy .552 zoom 1.34, window 37% of the screen; iPad landscape sx .113 sy .579 zoom 1.23. Phone photo window = the section itself (before: a full screen, the top half hidden under the page above). Computer unchanged (whole photo, centred).
+  取景改成設定檔裡的規則，每次排版依實際視窗重算，頁面以後怎麼改都維持；手機照片視窗改為段落本身。電腦版不變。
+- Files: `site/assets/js/jcd-config.js`, `src/js/about/believe-reveal.js` → built `custom.js`, `preview/mockups/believe-align.html` (new), `?v=` in all page HTML, `DESIGN-SYSTEM.md`.
+
 ### Home top slideshow: "1/10" counter hidden 首頁首圖不顯示張數
 - Joel: "首頁首圖右下角不要有 1/10 這種數量示意，直接隱藏". Hidden on phone, iPad and computer. 手機、iPad、電腦都隱藏。
 - Files: `src/css/home/hero-no-counter.css` (new), `src/css/ORDER.txt`, built `custom.css`, `?v=` in all page HTML, `src/README.md`, `DESIGN-SYSTEM.md`.

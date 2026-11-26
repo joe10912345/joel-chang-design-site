@@ -21,6 +21,7 @@ Last updated 最後更新: 2026-11-27.
 | Monitor base width 電腦螢幕基準寬度 | `jcd-config.js` → `desktopRef` (1536) | how wide screens zoom 大螢幕的放大倍率 |
 | **iPad side margins** **iPad 左右留白** | `jcd-config.js` → `ipad.margin.landscape / portrait` (5.35%) | iPad layout width of every page, and `preview/devices.html` iPad 各頁排版寬度＋三平台預覽 |
 | iPad content widths per page type 各類頁面的內容寬度 | `jcd-config.js` → `ipad.content` | same 同上 |
+| About "What I Believe" photo framing (phone, iPad portrait/landscape) 照片取景 | `jcd-config.js` → `believe` (set with `preview/mockups/believe-align.html`) | where the speaker sits in the photo window; re-computed from the real window size, so it holds when the page changes 講者在視窗中的位置，依實際視窗重算 |
 | Brand colours 品牌色 | `src/css/global/tokens.css` `--jcd-blue`, `--jcd-navy` | every blue on the site 全站所有藍色 |
 
 Never write one of these numbers a second time in another file; read it from the config / token instead.
@@ -116,6 +117,7 @@ Other rules 其他:
 
 - Scripts measuring with `getBoundingClientRect` divide by `window.__jcdZoom` before writing CSS px. 量位置的程式要除以 `__jcdZoom`。
 - Top image 首圖: phone 50% of screen height; portrait screens 50%; landscape exactly one screen (`100svh`). 手機與直向半個螢幕高、橫向剛好一個螢幕。
+- About "What I Believe" photo: framed by `jcd-config.js` `believe` (Joel aligned it by hand). Phone: the photo window is the section itself; iPad upright: 37% of the screen; computer: whole photo, centred. To re-align: open `preview/mockups/believe-align.html`, drag / zoom, save, copy the values into `jcd-config.js`. 照片取景由設定檔決定；要重新對齊就打開對齊工具。
 - Background photos are pinned to their section, never `overflow: clip/hidden` on a Wix `bgMedia_*` outside its section. 背景圖固定在所屬段落。
 - Closing photo of product pages: CSS-sticky scroll reveal (`.jcd-reveal`), full original photo. 產品頁最後一張圖：捲動揭幕（CSS sticky）。
 - Home slideshow always starts at slide 1, and shows no "1/10" counter. 首頁輪播每次從第一張開始，不顯示「1/10」張數。
