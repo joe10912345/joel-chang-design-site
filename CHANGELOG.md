@@ -9,6 +9,10 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-27
 
+### Home End-to-End: larger text in the squares
+- Joel: "end to end 圖片裡面的字體可以大些". Computer + iPad: title 28 → 34px, text 12 → 16px (line height 1.55); checked all 9 squares fit. Phone: title 12 → 13px, text 8 → 9.5px.
+- Files: `site/assets/css/custom.css`, `?v=` in all `site/**/index.html`.
+
 ### iPad: everything larger, landscape and upright
 - Joel: "ipad 直式的所有畫面要更大" / "ipad 橫式也是左右太多，整體可放大". Measured every desktop page: content that must stay whole spans at most ~1305px around the centre (wider items are bleeding photos). The iPad now lays the page out 1320px wide in both orientations (landscape was 1694 → 28% larger; upright was 1440 → 9% larger).
 - Files: `site/assets/js/site.js` (`TABLET_W`, `TABLET_W_PORTRAIT`), `preview/devices.html` (`TW`, `TWP`), `site/assets/css/custom.css` (comment), `DESIGN-SYSTEM.md`, `AGENTS.md`, `?v=` in all `site/**/index.html`.
