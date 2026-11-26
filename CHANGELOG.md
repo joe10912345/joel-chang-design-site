@@ -9,6 +9,11 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Category pages: cards with and without a product page now look different
+- Joel: cards without a link had the same 3D tilt + light + darkened name as linked ones; on the phone only ">>" told them apart. Study: `preview/category-links.html`.
+- Computer (mouse): a card without a product page no longer tilts and gets no light sheen (`tilt.js` skips hover boxes without a link), cursor stays the normal arrow; hovering still darkens it and shows its name. ">>" on linked cards only appears on hover (unchanged Wix hover state).
+- Touch (phone pages + iPads), option 3a: every card shows its product name at the bottom-left (brand small above, model; soft wide text shadow + faint bottom gradient); linked cards get a round frosted ">>" on the right on the same centre line, blue while pressed. Wix's centred captions and ">>" on the photo are hidden. Names are read from each card's own caption. `custom.js` (load), `custom.css` `.jcd-foot`, `.jcd-go`, `.jcd-cards-touch`. Checked all six category pages: every card has its name, every linked card its ">>", no old ">>" left.
+
 ### Home "Achievement" world map: glowing dots, light along the lines, hover on computers
 - Joel's design (study: `preview/achievement-glow.html`). All platforms: each map dot breathes with a soft spreading ring; a light that fades at head and tail runs along its line into the flag (4.8s cycle, the five countries in turn); on arrival the flag's round outline glows and a ring spreads out. Lines/glow never cover the flags (mask). Computer with a mouse only (not phone, not iPad): hovering a country's line, dot, flag or one of its products enlarges that country's products + captions (7%, cut from the same image into 10 tiles), lights its line, keeps its dot + flag outline lit without motion and fades the other countries' effects. USA: AT&T, Gfiber, Rigado, Ciena; Canada: Cogeco; Italy: Adant; Taiwan: Gemtek, Lionic, NCSIST; Japan: Genix. Paused while off screen; off under reduced motion.
 - Map image: Italy's dot moved up from north Africa to Italy (coast dots restored) -> `home/home-19-1908x858-v2.png` (desktop) and `home/home-19-1160x522-v2.png` (phone, 256-colour PNG, 82 KB instead of 234 KB). Old files removed.

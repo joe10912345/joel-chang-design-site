@@ -33,6 +33,9 @@
     all = all.filter(function (e) { return !pinned.some(function (f) { return f.contains(e); }); });
     [].slice.call(document.querySelectorAll('.gpDCD5')).forEach(function (hb) {
       var ph = hb.querySelector('.ih2JY1'); if (!ph) return;
+      /* Joel 2026-11-26: only cards that open a product page tilt (and get the light sheen); a card without a link
+         stays still, so the mouse tells at once what can be clicked */
+      if (!hb.querySelector('a[href]')) return;
       var im = ph.getBoundingClientRect();
       var frames = vecs.filter(function (v) {
         if (hb.contains(v)) return false; var f = v.getBoundingClientRect();

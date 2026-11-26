@@ -915,6 +915,56 @@
     });
   });
 
+  /* Category cards on touch screens (phone pages + iPads; Joel 2026-11-26, design study preview/category-links.html
+     option 3a): there is no hover, so every card shows its product name at the bottom-left (soft wide shadow + a
+     faint dark gradient) and a card that opens a product page has a round frosted ">>" on the right, on the same
+     centre line; it turns --jcd-blue while pressed. Wix's centred captions and ">>" on the photo are hidden.
+     Runs after the phone category spacing (same load event, registered later). Computers keep the hover version. */
+  window.addEventListener('load', function () {
+    var phone = document.body.classList.contains('device-mobile-optimized');
+    if (!phone && !window.__jcdTablet) return;
+    /* a card's photo is usually inside its hover box; on some phone cards (Airgain) Wix put it next to the box */
+    var photos = [].slice.call(document.querySelectorAll('#PAGES_CONTAINER .ih2JY1'));
+    function photoOf(hb) {
+      var p = hb.querySelector('.ih2JY1'); if (p) return p;
+      var r = hb.getBoundingClientRect();
+      return photos.filter(function (ph) { var q = ph.getBoundingClientRect();
+        return Math.abs(q.left - r.left) < 4 && Math.abs(q.top - r.top) < 4 && Math.abs(q.width - r.width) < 6 && Math.abs(q.height - r.height) < 6; })[0];
+    }
+    var boxes = [].filter.call(document.querySelectorAll('#PAGES_CONTAINER .gpDCD5'), function (hb) { return photoOf(hb); });
+    if (!boxes.length) return;
+    document.documentElement.classList.add('jcd-cards-touch');
+    function lines(el) {
+      var t = document.createElement('textarea');
+      t.innerHTML = el.innerHTML.replace(/<br\s*\/?>/gi, '\n').replace(/<\/(p|h\d|div|li)>/gi, '\n').replace(/<[^>]+>/g, '');
+      return t.value.split('\n').map(function (s) { return s.replace(/\s+/g, ' ').trim(); }).filter(Boolean);
+    }
+    boxes.forEach(function (hb) {
+      var photo = photoOf(hb), host = photo.querySelector('[data-testid="linkElement"]') || photo;
+      photo.classList.add('jcd-card-photo');
+      var pr = photo.getBoundingClientRect(), linked = !!hb.querySelector('a[href]'), name = null;
+      var scope = hb.parentElement || hb;
+      [].forEach.call(scope.querySelectorAll('[data-testid="richTextElement"]'), function (rt) {
+        var comp = rt.closest('[id^="comp-"]'); if (!comp) return;
+        var r = comp.getBoundingClientRect();
+        if (!(r.width && r.left >= pr.left - 2 && r.right <= pr.right + 2 && r.top >= pr.top - 2 && r.bottom <= pr.bottom + 2)) return;
+        var ls = lines(rt);
+        if (ls.join('') === '>>' || ls.join('') === '>') { comp.classList.add('jcd-cap-hide'); return; }
+        if (ls.length && !name) { name = ls; comp.classList.add('jcd-cap-hide'); }
+      });
+      if (!name && !linked) return;
+      var foot = document.createElement('div'); foot.className = 'jcd-foot';
+      var nm = document.createElement('span'); nm.className = 'jcd-nm';
+      if (name) {
+        if (name.length > 1) { var sm = document.createElement('small'); sm.textContent = name[0]; nm.appendChild(sm); }
+        nm.appendChild(document.createTextNode(name.length > 1 ? name.slice(1).join(' ') : name[0]));
+      }
+      foot.appendChild(nm);
+      if (linked) { var go = document.createElement('span'); go.className = 'jcd-go'; go.textContent = '>>'; foot.appendChild(go); }
+      host.appendChild(foot);
+    });
+  });
+
   // iOS Safari only applies :active (pressed states) when a touchstart listener exists.
   document.addEventListener('touchstart', function () {}, { passive: true });
 })();
