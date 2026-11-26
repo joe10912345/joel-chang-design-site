@@ -7,8 +7,12 @@
 <title>T. Scope | Joel Chang Design</title>
 <link rel="icon" href="../assets/files/favicon.ico">
 <!-- Black product page template (Joel 2026-11-27): one responsive page for phone, iPad and computer.
-     The content is encrypted in protected.json (made by tools/protect_page.js from private/t-scope/content.html). -->
-<link rel="stylesheet" href="../assets/css/product-page.css?v=1">
+     Locked shell: the whole T. Scope page (a copy of T. Interceptor MP's layout, private/t-scope/page.html) is encrypted in
+     protected.json; after the right password it replaces this shell. Phone: m/t-scope/. -->
+<link rel="stylesheet" href="../assets/css/product-page.css?v=dddea0ea">
+<!-- phone / computer routing like every page (site.js); the unlocked page brings its own scripts -->
+<script>window.__STATIC_MODE="desktop";window.__ALT_URL="../m/t-scope/index.html";</script>
+<script src="../assets/js/jcd-config.js?v=6a6dc18d"></script><script src="../assets/js/site.js?v=3358ef75"></script>
 </head>
 <body>
 <header class="pp-head">
@@ -32,6 +36,6 @@
 
 <main id="jcd-protected" data-src="protected.json" data-key="t-scope"></main>
 
-<script src="../assets/js/protected-page.js?v=1"></script>
+<script src="../assets/js/protected-page.js?v=b796fa7a"></script>
 </body>
 </html>

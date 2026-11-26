@@ -16,7 +16,7 @@ Joel Chang 的作品集網站。最初從 Wix 匯出（2026-11-23），之後都
 joel-chang-design-site/
 ├─ site/                      THE WEBSITE — the only folder that goes online 網站本體，唯一會上線的資料夾
 │  ├─ index.html              home, computer + iPad 首頁（電腦＋iPad）
-│  ├─ t-scope/                password-protected black product page (template) 受密碼保護的黑底產品頁
+│  ├─ t-scope/, m/t-scope/    T. Scope: locked shell + encrypted page (T. Interceptor MP layout) 受密碼保護
 │  ├─ <page>/index.html       one folder per page, computer + iPad (35 pages, list: PAGES.md) 每頁一個資料夾
 │  ├─ m/<page>/index.html     the same page for phones (Wix kept a separate phone design) 同一頁的手機版
 │  └─ assets/
@@ -46,6 +46,7 @@ joel-chang-design-site/
 │  └─ mockups/                design studies shown to Joel before building 設計提案
 ├─ tools/
 │  ├─ build_assets.py         joins src/ into custom.css + custom.js and bumps ?v= 組合 src/ 並更新 ?v=
+│  ├─ make_blank_page.py      copies a product page as a blank start for a new page (into private/) 複製空白版型
 │  ├─ protect_page.js         encrypts private/<page>/content.html → site/<page>/protected.json 加密受保護頁面
 │  ├─ clean_text.py           alt text / Wix labels / typo clean-up (safe to re-run) 文字清理
 │  ├─ seo_apply.py, seo_verify.py, siteconfig.py   SEO tags + sitemap from one SITE_BASE SEO 產生器

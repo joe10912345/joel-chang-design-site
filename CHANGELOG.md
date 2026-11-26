@@ -11,6 +11,11 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### T. Scope now uses T. Interceptor MP's layout (blank), whole page encrypted T. Scope 改用 T. Interceptor MP 版型
+- Joel: "t scope 的空白公版頁請按照 t.interceptor mp 的做法與排版，你可以拿他多複製出來清除內容即可". `tools/make_blank_page.py` copied T. Interceptor MP (computer + phone) into `private/t-scope/page.html` / `page-m.html`: name "T. Scope", category "Defense", Client / Year / Designer / Contribution labels kept (Tron Future, [Year], Joel Chang, [Contribution]), every other text "[Heading]" / "[Placeholder text …]", top image the T. Scope photo, all other images `shared-05-1600x1000.jpg` (new neutral placeholder), JSON-LD removed, noindex. Encrypted as whole pages into `site/t-scope/protected.json` and `site/m/t-scope/protected.json`; the locked shells route phone / computer like every page, and after the right password the whole page replaces the shell (all site effects run). Checked: wrong password rejected, right password opens the full page on the computer; the phone shell and the phone copy decrypt.
+  T. Scope 改用 T. Interceptor MP 的版型並清空內容；電腦與手機版整頁加密，輸入正確密碼後顯示完整頁面。
+- Files: `site/t-scope/index.html`, `site/t-scope/protected.json`, `site/m/t-scope/index.html` + `protected.json` (new), `site/assets/js/protected-page.js`, `site/assets/media/shared/shared-05-1600x1000.jpg` (new), `tools/make_blank_page.py` (new), `tools/protect_page.js`, AGENTS, README.
+
 ### Home End-to-End: black gradient strip under each arrow End-to-End 箭頭下方黑漸層
 - Joel: "這個左右邊箭頭下可以壓整長方形塊黑漸層嗎? 高度跟圖方塊一樣高". Under each arrow a strip as tall as the squares, black at the screen edge (78%) fading to clear toward the middle; shown only while its arrow is shown. Computer + iPad (the phone slider has no arrows).
   每個箭頭下方加一塊和方塊同高的黑色漸層，箭頭出現時才顯示。

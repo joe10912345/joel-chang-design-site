@@ -6,7 +6,8 @@
    not in this file or anywhere on the site: only the right password can decrypt the content.
    內容以密碼加密後存在 protected.json；網站上沒有密碼本身，只有輸入正確密碼才解得開。
 
-   window.JCDProtected.unlock(jsonUrl, password) -> Promise<html | null>   (also used by the Guest Area dialog)
+   window.JCDProtected.unlock(jsonUrl, password) -> Promise<html | {doc: html} | null>   (also used by the Guest Area dialog)
+   A whole-page source ({doc: true} in the json) replaces the page with document.write, so its own scripts run.
    A page using it: <main id="jcd-protected" data-src="protected.json" data-key="t-scope"> + a .jcd-gate form. */
 (function () {
   function b64(s) { var b = atob(s), u = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
@@ -18,7 +19,7 @@
           { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
       }).then(function (key) {
         return crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(p.iv) }, key, b64(p.ct));
-      }).then(function (buf) { return new TextDecoder().decode(buf); }, function () { return null; });   /* wrong password */
+      }).then(function (buf) { var h = new TextDecoder().decode(buf); return p.doc ? { doc: h } : h; }, function () { return null; });   /* wrong password */
     });
   }
   window.JCDProtected = { unlock: unlock, storeKey: function (k) { return 'jcd-unlock:' + k; } };
@@ -29,6 +30,7 @@
     var url = main.getAttribute('data-src'), sk = window.JCDProtected.storeKey(main.getAttribute('data-key'));
     var gate = document.querySelector('.jcd-gate'), form = gate && gate.querySelector('form'), msg = gate && gate.querySelector('.jcd-gate-msg');
     function open(html) {
+      if (html && html.doc) { document.open(); document.write(html.doc); document.close(); return; }   /* whole page: replace this one */
       main.innerHTML = html; document.documentElement.classList.add('jcd-unlocked');
       if (gate) gate.hidden = true; window.scrollTo(0, 0);
     }
