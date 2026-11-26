@@ -1,0 +1,89 @@
+/* product-page.css — black product page template (Joel 2026-11-27; first use: T. Scope, site/t-scope/).
+   黑底產品子頁範本。One responsive page (phone, iPad, computer), built on DESIGN-SYSTEM.md:
+   black canvas, --jcd-blue / --jcd-navy, Poppins, 1px white frames, content kept 5.35% from the screen edges
+   (same side-margin rule as jcd-config.js on iPad), frosted panels 8px.
+   Blocks (in private/<page>/content.html): .pp-hero, .pp-title, .pp-info, .pp-text, .pp-frame, .pp-pair, .pp-features, .pp-closing. */
+@font-face { font-family: "Poppins"; font-weight: 300; src: url("../fonts/poppins/poppins-light.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Poppins"; font-weight: 400; src: url("../fonts/poppins/poppins-regular.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Poppins"; font-weight: 500; src: url("../fonts/poppins/poppins-medium.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Poppins"; font-weight: 600; src: url("../fonts/poppins/poppins-semibold.woff2") format("woff2"); font-display: swap; }
+:root { --jcd-blue: #0062d9; --jcd-blue-rgb: 0, 98, 217; --jcd-navy: #00176c; --pp-w: min(1284px, 89.3vw); --pp-gap: clamp(16px, 2.4vw, 34px); }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: #000; color: #fff; font-family: "Poppins", "Helvetica Neue", Arial, sans-serif; -webkit-text-size-adjust: 100%; }
+body { -webkit-user-select: none; user-select: none; }
+img { display: block; max-width: 100%; -webkit-user-drag: none; }
+a { color: inherit; }
+
+/* header */
+.pp-head { position: fixed; z-index: 20; inset: 0 0 auto; display: flex; align-items: center; justify-content: space-between;
+  padding: clamp(14px, 2vw, 26px) calc((100vw - var(--pp-w)) / 2); background: linear-gradient(rgba(0, 0, 0, .55), transparent); }
+.pp-logo img { width: clamp(110px, 11vw, 150px); height: auto; transition: opacity .3s; }
+.pp-logo:hover img { opacity: .75; }
+.pp-nav { display: flex; gap: clamp(14px, 2.2vw, 34px); }
+.pp-nav a { text-decoration: none; font-size: clamp(12px, 1.05vw, 15px); font-weight: 500; transition: color .3s; -webkit-tap-highlight-color: transparent; }
+.pp-nav a:hover, .pp-nav a:active { color: var(--jcd-blue); }
+
+/* password gate (same language as the Guest Area dialog) */
+.jcd-gate { min-height: 100svh; display: grid; place-items: center; padding: 90px 20px 40px;
+  background: radial-gradient(60% 50% at 50% 40%, rgba(var(--jcd-blue-rgb), .18), transparent 70%), #000; }
+.jcd-gate[hidden] { display: none; }
+.jcd-gate-box { width: min(440px, 100%); padding: 44px 36px 36px; text-align: center; border-radius: 8px;
+  background: rgba(12, 14, 20, .82); border: 1px solid rgba(255, 255, 255, .16); box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+  -webkit-backdrop-filter: blur(20px) saturate(150%); backdrop-filter: blur(20px) saturate(150%); }
+.jcd-gate-ic { width: 44px; height: 44px; margin: 0 auto 16px; display: grid; place-items: center; border-radius: 50%; border: 1.5px solid var(--jcd-blue); color: var(--jcd-blue); }
+.jcd-gate-t { margin: 0; font-size: 22px; font-weight: 500; letter-spacing: .02em; }
+.jcd-gate-s { margin: 10px 0 0; font-size: 14px; font-weight: 300; line-height: 1.6; color: rgba(255, 255, 255, .7); }
+.jcd-gate form { display: flex; gap: 12px; align-items: flex-end; margin-top: 26px; }
+.jcd-gate input { flex: 1; min-width: 0; padding: 10px 2px 8px; border: 0; border-bottom: 1px solid rgba(255, 255, 255, .45); border-radius: 0;
+  background: transparent; color: #fff; font: 300 16px/1.3 "Poppins", Arial, sans-serif; outline: none; -webkit-user-select: text; user-select: text; transition: border-color .2s; }
+.jcd-gate input::placeholder { color: rgba(255, 255, 255, .45); }
+.jcd-gate input:hover, .jcd-gate input:focus { border-bottom-color: var(--jcd-blue); }
+.jcd-gate button { flex: none; padding: 11px 22px; background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, .5); cursor: pointer;
+  font: 13px/1 "Poppins", Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; transition: color .2s, border-color .2s, transform .12s; -webkit-tap-highlight-color: transparent; }
+.jcd-gate button:hover, .jcd-gate button:focus-visible { color: var(--jcd-blue); border-color: var(--jcd-blue); outline: none; }
+.jcd-gate button:active { color: var(--jcd-blue); border-color: var(--jcd-blue); transform: scale(.96); }
+.jcd-gate button:disabled { opacity: .55; cursor: progress; }
+.jcd-gate-msg { min-height: 1.5em; margin-top: 12px; font-size: 13px; color: rgba(255, 255, 255, .6); }
+.jcd-gate-msg.is-bad { color: #ff8a8a; }
+.jcd-gate-back { display: inline-block; margin-top: 4px; font-size: 12.5px; font-weight: 300; color: rgba(255, 255, 255, .55); text-underline-offset: 3px; }
+.jcd-gate-back:hover, .jcd-gate-back:active { color: var(--jcd-blue); }
+
+/* ---------- page blocks ---------- */
+.pp-hero { position: relative; height: 100svh; overflow: hidden; }
+@media (orientation: portrait) { .pp-hero { height: 50svh; } }
+.pp-hero img { width: 100%; height: 100%; object-fit: cover; }
+.pp-hero::after { content: ""; position: absolute; inset: auto 0 0; height: 35%; background: linear-gradient(transparent, #000); }
+.pp-wrap { width: var(--pp-w); margin: 0 auto; }
+.pp-title { padding: clamp(40px, 6vw, 96px) 0 clamp(24px, 3vw, 44px); }
+.pp-kicker { margin: 0 0 8px; font-size: clamp(12px, 1.1vw, 16px); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 255, 255, .6); }
+.pp-title h1 { margin: 0; font-size: clamp(34px, 5.2vw, 76px); font-weight: 600; line-height: 1.05; letter-spacing: -.01em; }
+.pp-lede { max-width: 860px; margin: clamp(14px, 1.6vw, 22px) 0 0; font-size: clamp(15px, 1.5vw, 22px); font-weight: 300; line-height: 1.55; color: rgba(255, 255, 255, .82); }
+.pp-info { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--pp-gap); padding: clamp(18px, 2vw, 28px) 0; border-top: 1px solid rgba(255, 255, 255, .5); border-bottom: 1px solid rgba(255, 255, 255, .18); }
+.pp-info dt { font-size: clamp(11px, .9vw, 13px); font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255, 255, 255, .5); }
+.pp-info dd { margin: 6px 0 0; font-size: clamp(13px, 1.1vw, 16px); font-weight: 300; line-height: 1.5; }
+@media (max-width: 700px) { .pp-info { grid-template-columns: repeat(2, 1fr); } }
+.pp-text { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: var(--pp-gap); padding: clamp(48px, 6vw, 110px) 0 clamp(28px, 3vw, 48px); }
+.pp-text h2 { margin: 0; font-size: clamp(20px, 2.2vw, 32px); font-weight: 500; line-height: 1.2; }
+.pp-text p { margin: 0 0 1em; font-size: clamp(14px, 1.15vw, 17px); font-weight: 300; line-height: 1.75; color: rgba(255, 255, 255, .82); }
+@media (max-width: 700px) { .pp-text { grid-template-columns: 1fr; gap: 14px; } }
+.pp-frame { position: relative; margin: 0 0 var(--pp-gap); border: 1px solid #fff; overflow: hidden; }
+.pp-frame img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; transition: transform .8s cubic-bezier(.2, .7, .2, 1); }
+@media (hover: hover) and (pointer: fine) { .pp-frame:hover img { transform: scale(1.04); } }
+.pp-frame figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px clamp(16px, 2vw, 26px) clamp(12px, 1.6vw, 20px);
+  font-size: clamp(12px, 1.1vw, 16px); font-weight: 500; background: linear-gradient(transparent, rgba(0, 0, 0, .7)); }
+.pp-pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--pp-gap); }
+.pp-pair .pp-frame img { aspect-ratio: 4 / 3; }
+@media (max-width: 700px) { .pp-pair { grid-template-columns: 1fr; } }
+.pp-placeholder { display: grid; place-items: center; width: 100%; aspect-ratio: 16 / 9; color: rgba(255, 255, 255, .45); font-size: clamp(12px, 1.1vw, 15px);
+  letter-spacing: .1em; text-transform: uppercase; background: repeating-linear-gradient(135deg, #0b0c10 0 18px, #101218 18px 36px); }
+.pp-pair .pp-placeholder { aspect-ratio: 4 / 3; }
+.pp-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--pp-gap); padding: clamp(40px, 5vw, 90px) 0; }
+.pp-features div { padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, .5); }
+.pp-features h3 { margin: 0 0 8px; font-size: clamp(15px, 1.4vw, 20px); font-weight: 500; }
+.pp-features p { margin: 0; font-size: clamp(13px, 1.05vw, 15px); font-weight: 300; line-height: 1.65; color: rgba(255, 255, 255, .72); }
+@media (max-width: 700px) { .pp-features { grid-template-columns: 1fr; } }
+.pp-closing { margin-top: clamp(20px, 3vw, 48px); height: 100svh; overflow: hidden; }
+@media (orientation: portrait) { .pp-closing { height: 50svh; } }
+.pp-closing img { width: 100%; height: 100%; object-fit: cover; }
+.pp-foot { width: var(--pp-w); margin: 0 auto; padding: 28px 0 40px; font-size: 12px; font-weight: 300; color: rgba(255, 255, 255, .45); }
+@media (prefers-reduced-motion: reduce) { .pp-frame img { transition: none; } }

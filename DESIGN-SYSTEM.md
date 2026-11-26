@@ -165,5 +165,6 @@ Other rules 其他:
 | About portrait tilt 大頭照傾斜 | `site/assets/js/tilt.js` |
 | Recommendation cards 推薦卡 | `src/js/about/recommendation-cards.js`, `src/css/about/recommendation-cards.css` |
 | Guest Area dialog (T. Scope, Defense) 訪客區視窗 | `src/js/product/guest-area-dialog.js`, `src/css/product/guest-area-dialog.css`: dark glass panel 8px, round blue lock icon, Poppins 22/14px (phone 14/9.5), outline button → blue; replaces the separate Wix password page |
+| Black product page template (T. Scope) 黑底產品子頁範本 | `site/assets/css/product-page.css` (blocks .pp-hero, .pp-title, .pp-info, .pp-text, .pp-frame, .pp-pair, .pp-features, .pp-closing), one responsive page; content 5.35% from the edges; password gate in the Guest Area style |
 | Footer 頁尾 | removed on every page (`#SITE_FOOTER { display: none }`) |
 | Three-device preview 三平台預覽 | `preview/devices.html`; design studies 設計提案 `preview/mockups/` |

@@ -7,3 +7,6 @@ media-new/*
 
 # Wix-export images no page uses (kept locally only, 2026-11-27)
 reference/archive/unused-wix-media/
+
+# Private page content (plain text of password-protected pages; only the encrypted site/<page>/protected.json is published)
+private/

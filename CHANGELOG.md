@@ -11,6 +11,14 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### T. Scope page (black product template) protected by a password; password field in the Guest Area dialog T. Scope 子頁與密碼
+- Joel: "先幫我準備一個黑底產品子頁 frame 頁充當 t.scope 子頁。然後一樣 get request access 要有輸入密碼的欄位".
+- New `site/t-scope/`: black product page template (hero, kicker + title + lede, Client / Year / Designer / Contribution row, overview text, 16:9 and 4:3 white-framed images with placeholders, design details, three features, closing image), one responsive page for phone / iPad / computer (`site/assets/css/product-page.css`). Hero/closing: the T. Scope photo (`defense-03`); the rest are placeholders for Joel's content.
+- Real protection: the content is encrypted (`site/t-scope/protected.json`, AES-256-GCM, key from the password via PBKDF2-SHA256 600k) by `tools/protect_page.js` from `private/t-scope/content.html` (git-ignored). The password is not on the site; `site/assets/js/protected-page.js` decrypts in the browser. Gate on the page itself; Guest Area dialog: password + ENTER (wrong → "Incorrect password."; right → opens T. Scope, unlocked for the browser session), then "No password? Request access" with the request form. `noindex`, not in the sitemap.
+  T. Scope 子頁內容加密後才上線，網站上沒有密碼；Guest Area 視窗可輸入密碼進入，或寄出申請。
+- Checked locally: wrong password rejected, right password opens the page (dialog and page gate).
+- Files: `site/t-scope/index.html`, `site/t-scope/protected.json`, `site/assets/css/product-page.css`, `site/assets/js/protected-page.js`, `tools/protect_page.js` (new), `src/js/product/guest-area-dialog.js`, `src/css/product/guest-area-dialog.css` → built files, `.gitignore` (`private/`), README, AGENTS, DESIGN-SYSTEM.
+
 ### AI Tool Kit: ParaVents image zooms on hover; separate "Try Now" button removed ParaVents 放大、移除 Try Now 按鈕
 - Joel: "paravents 的 hover 要 zoom in。然後下方的文字右邊的 try now 按鈕拿掉". The ParaVents image (link to the trial) zooms in 6% inside its frame on hover (touch: while pressed), with the existing "TRY NOW" overlay; the "Try Now" button beside the description is hidden on phone, iPad and computer.
   ParaVents 大圖滑過放大 6%；說明文字右邊的 Try Now 按鈕移除。

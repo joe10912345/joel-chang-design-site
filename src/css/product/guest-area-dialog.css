@@ -39,6 +39,16 @@ html.jcd-guest-lock { overflow: hidden; }
 .jcd-guest-done { display: none; }
 .jcd-guest.is-sent .jcd-guest-f, .jcd-guest.is-sent .jcd-guest-box > .jcd-guest-t, .jcd-guest.is-sent .jcd-guest-box > .jcd-guest-s { display: none; }
 .jcd-guest.is-sent .jcd-guest-done { display: block; }
+/* password row + "No password? Request access" divider (Joel 2026-11-27) */
+.jcd-guest-pw { display: flex; gap: 12px; align-items: flex-end; margin-top: 22px; }
+.jcd-guest-pw .jcd-guest-in { flex: 1; min-width: 0; }
+.jcd-guest-pw .jcd-guest-go { margin-top: 0; flex: none; background: transparent; cursor: pointer; }
+.jcd-guest-pw .jcd-guest-go:disabled { opacity: .55; cursor: progress; }
+.jcd-guest-pwmsg { min-height: 1.4em; margin-top: 8px; font-size: 12.5px; color: rgba(255, 255, 255, .6); }
+.jcd-guest-pwmsg.is-bad { color: #ff8a8a; }
+.jcd-guest-or { display: flex; align-items: center; gap: 12px; margin-top: 10px; font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255, 255, 255, .45); }
+.jcd-guest-or::before, .jcd-guest-or::after { content: ""; flex: 1; height: 1px; background: rgba(255, 255, 255, .18); }
+.jcd-guest.is-sent .jcd-guest-pw, .jcd-guest.is-sent .jcd-guest-pwmsg, .jcd-guest.is-sent .jcd-guest-or { display: none; }
 /* phone page (320px layout) */
 .device-mobile-optimized .jcd-guest { padding: 16px; }
 .device-mobile-optimized .jcd-guest-box { width: 260px; padding: 30px 20px 24px; }
@@ -51,6 +61,11 @@ html.jcd-guest-lock { overflow: hidden; }
 .device-mobile-optimized .jcd-guest-in { font-size: 16px; padding: 7px 2px 5px; transform: scale(.62); transform-origin: 0 100%; width: 161%; margin: -4px -61% 0 0; }   /* 16px stops the iPhone zoom, drawn at ~10px */
 .device-mobile-optimized .jcd-guest-f .jcd-guest-go { margin-top: 12px; }
 .device-mobile-optimized .jcd-guest-msg { font-size: 8.5px; margin-top: 6px; }
+.device-mobile-optimized .jcd-guest-pw { margin-top: 14px; gap: 8px; }
+.device-mobile-optimized .jcd-guest-pw .jcd-guest-in { margin-right: -61%; }
+.device-mobile-optimized .jcd-guest-pw .jcd-guest-go { margin-top: 0; }
+.device-mobile-optimized .jcd-guest-pwmsg { font-size: 8.5px; margin-top: 4px; }
+.device-mobile-optimized .jcd-guest-or { font-size: 7.5px; gap: 8px; margin-top: 6px; }
 .device-mobile-optimized .jcd-guest-x { top: 4px; right: 6px; width: 24px; height: 24px; font-size: 18px; }
 /* iPad (Joel 2026-11-27: "ipad 版的 request for access 的視窗太小了"): the desktop page is laid out ~1438px wide and scaled
    down to the iPad, so the dialog is drawn larger to come out at a comfortable size: landscape x1.35, upright x1.8 */

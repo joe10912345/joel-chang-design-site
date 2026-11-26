@@ -16,6 +16,7 @@ Joel Chang 的作品集網站。最初從 Wix 匯出（2026-11-23），之後都
 joel-chang-design-site/
 ├─ site/                      THE WEBSITE — the only folder that goes online 網站本體，唯一會上線的資料夾
 │  ├─ index.html              home, computer + iPad 首頁（電腦＋iPad）
+│  ├─ t-scope/                password-protected black product page (template) 受密碼保護的黑底產品頁
 │  ├─ <page>/index.html       one folder per page, computer + iPad (35 pages, list: PAGES.md) 每頁一個資料夾
 │  ├─ m/<page>/index.html     the same page for phones (Wix kept a separate phone design) 同一頁的手機版
 │  └─ assets/
@@ -35,6 +36,8 @@ joel-chang-design-site/
 │  ├─ css/<area>/<effect>.css  areas: global, home, about, category, product, contact, phone 分區
 │  ├─ js/<area>/<effect>.js
 │  └─ css/ORDER.txt, js/ORDER.txt   build order 合併順序
+├─ private/<page>/content.html   plain text of password-protected pages — git-ignored, never published
+│                             受密碼保護頁面的原稿（不上傳）；加密後的版本在 site/<page>/protected.json
 ├─ media-originals/<page>/    full-size originals, named like the site images: <page>-<nn>-<w>x<h>.jpg (not online)
 │                             原始大圖，一頁一個資料夾，和網站圖片同編號（不上線）；_unused/ = 沒有頁面使用
 ├─ media-new/                 drop new images here for the AI to process 新圖放這裡給 AI 處理
@@ -43,6 +46,7 @@ joel-chang-design-site/
 │  └─ mockups/                design studies shown to Joel before building 設計提案
 ├─ tools/
 │  ├─ build_assets.py         joins src/ into custom.css + custom.js and bumps ?v= 組合 src/ 並更新 ?v=
+│  ├─ protect_page.js         encrypts private/<page>/content.html → site/<page>/protected.json 加密受保護頁面
 │  ├─ clean_text.py           alt text / Wix labels / typo clean-up (safe to re-run) 文字清理
 │  ├─ seo_apply.py, seo_verify.py, siteconfig.py   SEO tags + sitemap from one SITE_BASE SEO 產生器
 │  ├─ i18n_apply.py, i18n/    unpublished translations 未上線的翻譯

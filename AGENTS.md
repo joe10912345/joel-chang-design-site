@@ -59,6 +59,17 @@ Several AIs work on this site. To stay in sync, follow these rules. Architecture
     `reference/archive/unused-wix-media/`. commit 並 push；告訴 Joel 要等部署後手機才看得到。上述檔案不可 commit。
 13. All `.md` files are bilingual (English + Traditional Chinese). 所有 md 檔都要中英對照。
 
+## Password-protected pages 受密碼保護的頁面
+
+- T. Scope (`site/t-scope/`) is a black product page template (`site/assets/css/product-page.css`). Its content lives in
+  `private/t-scope/content.html` (git-ignored, never committed) and is published only encrypted (`site/t-scope/protected.json`,
+  AES-256-GCM, PBKDF2-SHA256 600k). `site/assets/js/protected-page.js` decrypts it in the browser with the visitor's password
+  (gate on the page, or the password field in the Guest Area dialog on Defense).
+  T. Scope 內容原稿在 `private/`（不上傳），網站上只有加密版本，用訪客輸入的密碼在瀏覽器解密。
+- After editing the content: `$env:JCD_PAGE_PASSWORD = '<password>'; node tools/protect_page.js t-scope; Remove-Item Env:JCD_PAGE_PASSWORD`.
+  Never write the password into any file, commit message or doc. Ask Joel for it. 改完內容重新加密；密碼不可寫進任何檔案，向 Joel 詢問。
+- `private/` exists only on Joel's computer (Google Drive): keep it backed up. `private/` 只在 Joel 的電腦上，請保留備份。
+
 ## Don't 不要做
 
 - Don't run `tools/export-wix/*` (they rebuild from the raw Wix capture and would overwrite hand edits; paths are from

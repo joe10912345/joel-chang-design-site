@@ -18,6 +18,10 @@
         '<div class="jcd-guest-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="1.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg></div>' +
         '<div class="jcd-guest-t" id="jcd-guest-t">Guest Area</div>' +
         '<div class="jcd-guest-s">T. Scope is a confidential defense project, shared on request.</div>' +
+        '<form class="jcd-guest-pw" novalidate><input class="jcd-guest-in" name="password" type="password" placeholder="Password" autocomplete="current-password" aria-label="Password">' +
+        '<button type="submit" class="jcd-guest-go">Enter</button></form>' +
+        '<div class="jcd-guest-pwmsg" role="status" aria-live="polite"></div>' +
+        '<div class="jcd-guest-or">No password? Request access</div>' +
         '<form class="jcd-guest-f" novalidate>' +
         '<input class="jcd-guest-in" name="name" type="text" placeholder="Name" autocomplete="name" aria-label="Name">' +
         '<input class="jcd-guest-in" name="email" type="email" placeholder="Email *" autocomplete="email" aria-label="Email" required>' +
@@ -28,6 +32,24 @@
         '<div class="jcd-guest-done" role="status"><div class="jcd-guest-t">Request sent</div>' +
         '<div class="jcd-guest-s">Thank you. I will get back to you soon.</div></div></div>';
       document.body.appendChild(dlg);
+      /* Password (Joel 2026-11-27): opens the encrypted T. Scope page. The password is checked by trying to decrypt
+         t-scope/protected.json (assets/js/protected-page.js, loaded on demand); it is not stored on the site. */
+      var base = href.replace(/scope\/(index\.html)?$/, ''), pwf = dlg.querySelector('.jcd-guest-pw'), pwm = dlg.querySelector('.jcd-guest-pwmsg');
+      function lib() {
+        if (window.JCDProtected) return Promise.resolve(window.JCDProtected);
+        return new Promise(function (ok, no) { var sc = document.createElement('script'); sc.src = base + 'assets/js/protected-page.js';
+          sc.onload = function () { ok(window.JCDProtected); }; sc.onerror = no; document.head.appendChild(sc); });
+      }
+      pwf.addEventListener('submit', function (e) {
+        e.preventDefault(); var pw = pwf.elements.password.value, b = pwf.querySelector('button'); if (!pw) { pwf.elements.password.focus(); return; }
+        b.disabled = true; pwm.className = 'jcd-guest-pwmsg'; pwm.textContent = 'Checking...';
+        lib().then(function (P) { return P.unlock(base + 't-scope/protected.json', pw).then(function (html) {
+          if (!html) { pwm.className = 'jcd-guest-pwmsg is-bad'; pwm.textContent = 'Incorrect password.'; pwf.elements.password.select(); return; }
+          try { sessionStorage.setItem(P.storeKey('t-scope'), pw); } catch (er) {}
+          pwm.textContent = 'Opening...'; location.href = base + 't-scope/index.html';
+        }); }).catch(function () { pwm.className = 'jcd-guest-pwmsg is-bad'; pwm.textContent = 'Could not check the password. Please try again.'; })
+          .then(function () { b.disabled = false; });
+      });
       var form = dlg.querySelector('.jcd-guest-f'), msg = dlg.querySelector('.jcd-guest-msg'), btn = form.querySelector('.jcd-guest-go');
       var F = (window.JCD_CONFIG && JCD_CONFIG.forms) || {}, busy = false;
       form.addEventListener('submit', function (e) {
@@ -53,7 +75,7 @@
     function open(a) {
       if (!dlg) build(a.getAttribute('href'));
       last = document.activeElement; void dlg.offsetWidth; dlg.classList.add('is-open'); document.documentElement.classList.add('jcd-guest-lock');
-      dlg.classList.remove('is-sent'); setTimeout(function () { var x = dlg.querySelector('.jcd-guest-in'); if (x) x.focus({ preventScroll: true }); }, 60);
+      dlg.classList.remove('is-sent'); setTimeout(function () { var x = dlg.querySelector('.jcd-guest-pw .jcd-guest-in'); if (x) x.focus({ preventScroll: true }); }, 60);
     }
     function close() {
       if (!dlg) return; dlg.classList.remove('is-open'); document.documentElement.classList.remove('jcd-guest-lock');
