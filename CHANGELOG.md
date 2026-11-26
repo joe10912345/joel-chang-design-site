@@ -11,6 +11,11 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Home End-to-End: black gradient strip under each arrow End-to-End 箭頭下方黑漸層
+- Joel: "這個左右邊箭頭下可以壓整長方形塊黑漸層嗎? 高度跟圖方塊一樣高". Under each arrow a strip as tall as the squares, black at the screen edge (78%) fading to clear toward the middle; shown only while its arrow is shown. Computer + iPad (the phone slider has no arrows).
+  每個箭頭下方加一塊和方塊同高的黑色漸層，箭頭出現時才顯示。
+- Files: `src/js/home/end-to-end-slider.js`, `src/css/home/end-to-end-arrows.css` → built files, `?v=` in all page HTML.
+
 ### Fix: phone category pages — cards pushed out of their frames, bottom cut off 修正：手機類別頁卡片跑出白框、底部被裁
 - Joel: "電子產品類別頁 1. 筆電跑出上方白框了 2. 滾到下方被裁掉了" / "其他頁也有這問題". The phone spacing script (`category/spacing-phone.js`) treated the photo card inside a frame with a title bar (e.g. "Computer" → SAGITTARIUS) as a separate frame and pushed it below; the extra push made the content longer than its section, so the last cards were cut. Now a card inside an earlier frame moves with that frame, and the section follows the moved frames both ways. Checked all six category pages on the phone: no card outside its frame, nothing past the page end.
   卡片在有標題的白框內時會跟著白框移動；段落高度跟著調整，六個類別頁都檢查過。

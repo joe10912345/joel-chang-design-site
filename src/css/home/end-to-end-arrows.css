@@ -2,3 +2,8 @@
 .jcd-e2e-arrow { filter: drop-shadow(0 0 6px rgba(0, 0, 0, .75)); z-index: 3; }
 /* End-to-End arrows thicker, every platform (Joel 2026-11-27 "箭頭可以粗點"): the thin chevron gets a stroke in its own colour */
 #comp-mnfi6oqr .nav-arrows-container svg path { stroke: #fff; stroke-width: 2.2px; stroke-linejoin: round; paint-order: stroke; }
+/* black gradient strip under each arrow, as tall as the squares (Joel 2026-11-27; placed by custom.js) */
+.jcd-e2e-shade { position: absolute; z-index: 2; pointer-events: none; transition: opacity .3s ease;
+  background: linear-gradient(90deg, rgba(0, 0, 0, .78), rgba(0, 0, 0, .45) 45%, transparent); }
+.jcd-e2e-shade.is-right { background: linear-gradient(270deg, rgba(0, 0, 0, .78), rgba(0, 0, 0, .45) 45%, transparent); }
+#comp-mnfi6oqr .nav-arrows-container { z-index: 3; }
