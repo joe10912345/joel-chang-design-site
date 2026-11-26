@@ -1,4 +1,5 @@
 global/tokens.css
+global/text-contrast.css
 global/base.css
 global/menu-hover.css
 home/design-approach-cards.css
@@ -20,6 +21,7 @@ global/no-section-lines.css
 home/end-to-end-text.css
 global/menu-press.css
 phone/menu-layout.css
+phone/tap-targets.css
 global/page-background.css
 global/glass-menus.css
 about/portrait-frame.css
@@ -57,6 +59,7 @@ product/guest-area-dialog.css
 product/defense-website.css
 product/ai-tool-kit-paravents.css
 about/present-glow.css
+about/two-column-lists-phone.css
 product/t-interceptormp-award.css
 product/t-blade-stowage.css
 global/scroll-reveal.css

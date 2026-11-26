@@ -1,0 +1,5 @@
+/* Phone: invisible hit area around small links and buttons, at least 44 x 44 (Joel 2026-11-27, UI/UX review item 2;
+   sizes set per element by custom.js "phone-tap-targets"). Nothing visible changes. */
+.jcd-hit-a::after, .jcd-hit-b::before { content: ""; position: absolute; background: transparent;
+  top: calc(-1 * var(--jcd-hit-y, 0px)); bottom: calc(-1 * var(--jcd-hit-y, 0px));
+  left: calc(-1 * var(--jcd-hit-x, 0px)); right: calc(-1 * var(--jcd-hit-x, 0px)); }

@@ -3,9 +3,15 @@
 /* ===== Design tokens (see DESIGN-SYSTEM.md in the repo root) — Joel 2026-11-24 =====
    Every blue in custom.css uses these: change a colour here and it changes everywhere.
    --jcd-blue  #0062D9  interactive blue: menu hover/press, any pressed state, logo/icon hover, cursor light, glows, quote/LinkedIn accents
-   --jcd-navy  #00176C  deep blue-violet: second colour of gradients (recommendation card bottom-right glow, avatar) */
-:root { --jcd-blue: #0062d9; --jcd-blue-rgb: 0, 98, 217; --jcd-navy: #00176c; --jcd-navy-rgb: 0, 23, 108; }
+   --jcd-navy  #00176C  deep blue-violet: second colour of gradients (recommendation card bottom-right glow, avatar)
+   --jcd-blue-text-dark  #4F86CC  small blue TEXT on black pages (section labels such as "Key Ingredient"): 5.6:1 on
+                 black (Joel 2026-11-27, UI/UX review: Wix's #37659D was 3.5:1, below 4.5:1). Not for white pages (3.7:1 there). */
+:root { --jcd-blue: #0062d9; --jcd-blue-rgb: 0, 98, 217; --jcd-navy: #00176c; --jcd-navy-rgb: 0, 23, 108; --jcd-blue-text-dark: #4f86cc; }
 
+/* Readable small coloured text on black pages (Joel 2026-11-27, UI/UX review item 3). Wix set the section labels of
+   Interstellar 05, Wi-Fi 7 Gaming Home Gateway and Ocean Series ("Key Ingredient", "Project Background") in #37659D:
+   3.5:1 on black, below the 4.5:1 small text needs. Dark pages only (on white #37659D is fine, 6.0:1). */
+html.jcd-dark-canvas .wixui-rich-text [style*="color:#37659D" i] { color: var(--jcd-blue-text-dark) !important; }
 /* =====================================================================
    custom.css — Joel's own design tweaks on top of the Wix export.
    Edit freely; loaded last on every page (after Wix CSS + static-overrides.css).
@@ -302,6 +308,11 @@ li[data-item-depth="0"] > div > a:active, li[data-item-depth="0"] > div > a:acti
   font-family: wfont_459113_ebfb1394532347b3b7691d160bb35bd1, wf_ebfb1394532347b3b7691d160, orig_poppins_light, sans-serif !important; font-size: 13px !important; }
 #MENU_AS_CONTAINER_EXPANDABLE_MENU li[data-testid$="-7"] { margin-top: 26px !important; }
 
+/* Phone: invisible hit area around small links and buttons, at least 44 x 44 (Joel 2026-11-27, UI/UX review item 2;
+   sizes set per element by custom.js "phone-tap-targets"). Nothing visible changes. */
+.jcd-hit-a::after, .jcd-hit-b::before { content: ""; position: absolute; background: transparent;
+  top: calc(-1 * var(--jcd-hit-y, 0px)); bottom: calc(-1 * var(--jcd-hit-y, 0px));
+  left: calc(-1 * var(--jcd-hit-x, 0px)); right: calc(-1 * var(--jcd-hit-x, 0px)); }
 /* ---------- Page background: light pages stay light, dark pages get no hairlines (Joel 2026-11-24) ----------
    Wix paints every page's background layer white. On light pages (Wi-Fi 7 HGU/AP, MoAI, Extender, 2022, Airgain,
    Lionic, AI Tool Kit, NLG MMA200, Sagittarius, Assistive) some sections are transparent and that white IS the page
@@ -384,8 +395,8 @@ button.style-mp6qabp3__root, button.style-mp6qabp3__root:is(:hover, :focus, :foc
   font: 13px wfont_3f090f_fbe2048d9f994d8c8d5073ed8164a33e, wf_fbe2048d9f994d8c8d5073ed8, orig_poppins_medium, sans-serif;
   background: linear-gradient(135deg, rgba(var(--jcd-blue-rgb), .85), rgba(var(--jcd-navy-rgb), .95)); border: 1px solid rgba(255, 255, 255, .25); }
 .jcd-rec-nm { font: 15px/1.2 wfont_459113_5846594cb6ea4f43b8e132f9d1a29629, wf_5846594cb6ea4f43b8e132f9d, orig_poppins_semibold, sans-serif; color: #fff; }
-.jcd-rec-rl { margin-top: 3px; font: 11.5px/1.45 wfont_459113_ebfb1394532347b3b7691d160bb35bd1, wf_ebfb1394532347b3b7691d160, orig_poppins_light, sans-serif; color: rgba(255, 255, 255, .5); }
-.jcd-rec-rl i { color: rgba(255, 255, 255, .38); }
+.jcd-rec-rl { margin-top: 3px; font: 11.5px/1.45 wfont_459113_ebfb1394532347b3b7691d160bb35bd1, wf_ebfb1394532347b3b7691d160, orig_poppins_light, sans-serif; color: rgba(255, 255, 255, .6); }   /* .5 -> .6, 7.4:1 (Joel 2026-11-27, UI/UX review) */
+.jcd-rec-rl i { color: rgba(255, 255, 255, .5); }   /* "Former ...": .38 was 3.4:1 on black, now 5.3:1, still softer than the role (Joel 2026-11-27, UI/UX review) */
 .jcd-rec-li { width: 28px; height: 28px; margin-left: auto; flex: none; display: grid; place-items: center; border-radius: 4px; color: #fff;
   background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .18); transition: background-color .25s, border-color .25s; }
 .jcd-rec-li svg { width: 14px; height: 14px; fill: currentColor; }
@@ -817,6 +828,11 @@ body:not(.device-mobile-optimized) :is(#comp-mojwork6, #comp-mojwmx3v, #comp-moj
 /* with a 260% wide tile, 0% -> -162.5% moves the background right by exactly one tile (2.6 / 1.6 = 1.625): seamless */
 @keyframes jcdPresentSweep { from { background-position: 0 0; } to { background-position: -162.5% 0; } }
 @media (prefers-reduced-motion: reduce) { .jcd-present { animation: none; background: none; color: rgba(255, 255, 255, .5) !important; -webkit-text-fill-color: currentColor; } }
+/* About, phone: two-column lists as rows (Joel 2026-11-27; custom.js "two-column-lists-phone"). One row per entry,
+   date cell + text cell; the space between entries replaces the blank line Wix used. */
+.jcd-tc { display: grid; column-gap: 8px; row-gap: 10px; align-items: start; }
+.jcd-tc-cell { min-width: 0; }
+.jcd-tc-cell > * { margin: 0 !important; }
 /* T. Interceptor MP, Golden Pin badge (Joel 2026-11-27: "獎項標籤跟文字有歪掉，標章要裁切成正方(把圖片文字裁掉)，然後把
    下方的字移上去"). The badge is now only the square gold mark (t-interceptormp-04-120x120.webp, from the original logo).
    Computer/iPad: square 33px next to the text. Phone: square 26px, the award text moved up beside it, top-aligned. */

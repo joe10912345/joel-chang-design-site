@@ -25,6 +25,175 @@
     });
   });
 
+  /* About, phone: the five two-column lists (Work Experience, Education, Languages, Selected Awards, Patents) as real
+     rows (Joel 2026-11-27, UI/UX review item 1). In Wix each list is two separate text blocks, dates on the left, text
+     on the right, and the rows only lined up because both used the same tiny line spacing; with readable text sizes
+     (phone-text-size.js) the columns wrap differently and drift apart. Here each list becomes one grid: one row per
+     entry, date cell + text cell, so a row is as tall as its taller cell and the two always line up. The entries are
+     copied with their own markup (fonts, colours, the "Present" glow). Same look as before: dates left, text right.
+     Runs before phone-text-size.js. A list whose two sides don't split into the same number of entries is left as is. */
+  ready(function () {
+    if (!document.body.classList.contains('device-mobile-optimized') || !/\/about\//.test(location.pathname)) return;
+    var ZW = /^[\s​ ]*$/;
+    /* split a rich-text block into entries (separated by blank lines) and return each entry's content as a fragment */
+    function entries(rich) {
+      var block = rich.querySelector('h1, h2, h3, h4, h5, h6, p') || rich, lines = [[]], cur = lines[0];
+      var w = document.createTreeWalker(block, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT), n;
+      while ((n = w.nextNode())) {
+        if (n.nodeType === 1 && n.tagName === 'BR') { cur = []; lines.push(cur); }
+        else if (n.nodeType === 3) cur.push(n);
+      }
+      var out = [], group = null;
+      lines.forEach(function (ln) {
+        var txt = ln.map(function (t) { return t.textContent; }).join('');
+        if (ZW.test(txt)) { group = null; return; }
+        if (!group) { group = { first: ln[0], nodes: [] }; out.push(group); }
+        group.last = ln[ln.length - 1]; group.nodes = group.nodes.concat(ln);
+      });
+      return out.map(function (g) {
+        /* Wix scopes text colours and fonts to each block's own id, so they would be lost once moved: every piece of
+           text in the copy carries its original computed look inline */
+        var looks = g.nodes.map(function (t) { var cs = getComputedStyle(t.parentElement);
+          return { color: cs.color, 'font-family': cs.fontFamily, 'font-weight': cs.fontWeight, 'font-style': cs.fontStyle,
+                   'font-size': cs.fontSize, 'letter-spacing': cs.letterSpacing, 'text-transform': cs.textTransform }; });
+        var r = document.createRange(); r.setStart(g.first, 0); r.setEnd(g.last, g.last.textContent.length);
+        var shell = block.cloneNode(false); shell.removeAttribute('id'); shell.appendChild(r.cloneContents());
+        var tw = document.createTreeWalker(shell, NodeFilter.SHOW_TEXT), copies = [], t;
+        while ((t = tw.nextNode())) copies.push(t);
+        copies.forEach(function (c, i) {
+          var look = looks[i]; if (!look) return;
+          var s = document.createElement('span'); s.className = 'wixui-rich-text__text';
+          Object.keys(look).forEach(function (k) { s.style.setProperty(k, look[k]); });
+          c.parentNode.insertBefore(s, c); s.appendChild(c);
+        });
+        return shell;
+      });
+    }
+    var rich = [].filter.call(document.querySelectorAll('#PAGES_CONTAINER .wixui-rich-text'), function (t) { return t.getBoundingClientRect().width > 0; });
+    rich.forEach(function (L) {
+      var lr = L.getBoundingClientRect();
+      /* its partner: the text block starting on the same line, further right, in the same grid */
+      var R = rich.filter(function (t) { var r = t.getBoundingClientRect();
+        return t !== L && t.parentElement === L.parentElement && Math.abs(r.top - lr.top) < 3 && r.left > lr.left + 30; })[0];
+      if (!R || L.__jcdDone || R.__jcdDone) return;
+      var a = entries(L), b = entries(R);
+      if (a.length < 2 || a.length !== b.length) return;
+      var rr = R.getBoundingClientRect(), z = window.__jcdZoom || 1;
+      var grid = document.createElement('div'); grid.className = 'jcd-tc';
+      grid.style.gridTemplateColumns = ((rr.left - lr.left) / z - 8).toFixed(1) + 'px 1fr';
+      a.forEach(function (x, i) {
+        var c1 = document.createElement('div'); c1.className = 'jcd-tc-cell'; c1.appendChild(x);
+        var c2 = document.createElement('div'); c2.className = 'jcd-tc-cell'; c2.appendChild(b[i]);
+        grid.appendChild(c1); grid.appendChild(c2);
+      });
+      var host = L.closest('[id^="comp-"]') || L;
+      host.style.setProperty('width', ((rr.right - lr.left) / z).toFixed(1) + 'px', 'important');   /* now spans both columns */
+      while (L.firstChild) L.removeChild(L.firstChild);
+      L.appendChild(grid);
+      (R.closest('[id^="comp-"]') || R).style.setProperty('display', 'none', 'important');
+      L.__jcdDone = R.__jcdDone = true;
+    });
+  });
+  /* Phone: no text below a readable size (Joel 2026-11-27, UI/UX review item 1: "Fix 1-3 first"). The Wix phone
+     layout set descriptions at 6-7px, shown about ×1.22 = 7-8.5pt; Apple's minimum is 11pt. Every text smaller than
+     jcd-config.js phone.minText (paragraphs) / phone.minLabel (short labels) is raised to it, line height in step;
+     Wix's grid rows grow with the text, so nothing below is covered. A word is never broken: in a narrow column the
+     text grows only as far as its longest word still fits, and short labels of the same size in the same block stay
+     the same size as each other (table headers, captions). Larger text is left alone. Phone pages only. */
+  ready(function () {
+    if (!document.body.classList.contains('device-mobile-optimized')) return;
+    var P = (window.JCD_CONFIG && JCD_CONFIG.phone) || {}, minText = P.minText || 11, minLabel = P.minLabel || 9.5;
+    var cv = document.createElement('canvas').getContext('2d'), plan = [], groups = {};
+    [].forEach.call(document.querySelectorAll('#PAGES_CONTAINER .wixui-rich-text, #PAGES_CONTAINER .wixui-rich-text *'), function (e) {
+      var own = [].filter.call(e.childNodes, function (n) { return n.nodeType === 3; }).map(function (n) { return n.textContent; }).join(' ').trim();
+      if (!own) return;
+      var cs = getComputedStyle(e), fs = parseFloat(cs.fontSize);
+      var cell = e.closest('.jcd-tc-cell'), blk = cell || e.closest('.wixui-rich-text');   /* a list cell (About) counts on its own */
+      var para = cell ? [].indexOf.call(cell.parentElement.children, cell) % 2 === 1   /* lists: text column = text size, dates = label */
+                      : blk.textContent.trim().length > 60;
+      var want = para ? minText : minLabel;
+      if (!(fs < want)) return;
+      var bw = blk.getBoundingClientRect().width; if (!bw) return;
+      cv.font = cs.fontStyle + ' ' + cs.fontWeight + ' ' + fs + 'px ' + cs.fontFamily;
+      var ls = parseFloat(cs.letterSpacing) || 0;
+      var longest = own.split(/\s+/).reduce(function (a, t) { return Math.max(a, cv.measureText(t).width + ls * t.length); }, 0);
+      var fit = longest > 0 ? fs * bw / longest * 0.98 : want;   /* largest size at which the longest word still fits */
+      var nf = Math.min(want, Math.max(fs, fit));
+      if (nf - fs < 0.2) return;
+      var item = { e: e, fs: fs, nf: nf, lh: cs.lineHeight };
+      plan.push(item);
+      if (!para || bw < 130) {   /* short labels, and narrow columns (info tables: Client / Year / Designer / Contribution),
+                                    of one size in one block: one common size, so a table stays uniform */
+        var grid = blk.closest('[data-mesh-id$="gridContainer"], [data-testid="mesh-container-content"]');
+        var key = fs + '|' + (grid ? (grid.getAttribute('data-mesh-id') || grid.parentElement.id) : '');
+        (groups[key] = groups[key] || []).push(item); item.key = key;
+      }
+    });
+    Object.keys(groups).forEach(function (k) {
+      var m = Math.min.apply(null, groups[k].map(function (i) { return i.nf; }));
+      groups[k].forEach(function (i) { i.nf = m; });
+    });
+    plan = plan.filter(function (i) { return i.nf - i.fs >= 0.2; });
+    function size(i, f) {   /* f = 0: original, 1: planned size */
+      var s = i.fs + (i.nf - i.fs) * f;
+      if (!f) { i.e.style.removeProperty('font-size'); i.e.style.removeProperty('line-height'); return; }
+      i.e.style.setProperty('font-size', s.toFixed(2) + 'px', 'important');
+      if (/px$/.test(i.lh)) i.e.style.setProperty('line-height', (parseFloat(i.lh) * s / i.fs).toFixed(2) + 'px', 'important');
+    }
+    /* never run into something new (Joel 2026-11-27: "海洋系列文字好像有跟其他物件壓到了"): photos, videos, frames,
+       buttons and other text the block did not touch before. Text meant to lie on a photo touched it before too. */
+    var blocks = [];
+    plan.forEach(function (i) { var b = i.e.closest('.jcd-tc-cell') || i.e.closest('.wixui-rich-text'); if (blocks.indexOf(b) < 0) blocks.push(b); i.b = b; });
+    var others = [].filter.call(document.querySelectorAll('#PAGES_CONTAINER img, #PAGES_CONTAINER video, #PAGES_CONTAINER .wixui-vector-image, #PAGES_CONTAINER .wixui-rich-text, #PAGES_CONTAINER button, #PAGES_CONTAINER .jcd-tc-cell'),
+      function (o) { var r = o.getBoundingClientRect(); return r.width > 4 && r.height > 4; });
+    function box(b) {   /* the text itself (its lines), not the Wix box around it */
+      var r = { l: 1e9, t: 1e9, r: -1e9, b: -1e9 };
+      [].forEach.call(b.querySelectorAll('*'), function (e) { if (![].some.call(e.childNodes, function (n) { return n.nodeType === 3 && n.textContent.trim(); })) return;
+        [].forEach.call(e.getClientRects(), function (q) { if (!q.width) return; r.l = Math.min(r.l, q.left); r.t = Math.min(r.t, q.top); r.r = Math.max(r.r, q.right); r.b = Math.max(r.b, q.bottom); }); });
+      return r.l < 1e9 ? r : null;
+    }
+    function hits(b) {
+      var a = box(b); if (!a) return [];
+      return others.filter(function (o) {
+        if (o === b || o.contains(b) || b.contains(o)) return false;
+        var q = o.getBoundingClientRect(); if (q.width < 4 || q.height < 4) return false;
+        return q.left < a.r - 1 && q.right > a.l + 1 && q.top < a.b - 1 && q.bottom > a.t + 1;
+      });
+    }
+    var before = blocks.map(hits);
+    /* each section keeps the free space under its last item (Wix's grid gives the extra height to the text but takes it
+       from that space: Ocean Series' "Designed by" ended up against the wave below) */
+    var secs = [].filter.call(document.querySelectorAll('#PAGES_CONTAINER section'), function (s) { return !s.parentElement.closest('section'); });
+    function freeBelow(s) {
+      var low = -1e9;
+      [].forEach.call(s.querySelectorAll('.wixui-rich-text, img, video, .wixui-vector-image, button'), function (e) {
+        if (e.closest('[id^="bgMedia_"]')) return;
+        var r = e.getBoundingClientRect(); if (r.width > 4 && r.height > 4) low = Math.max(low, r.bottom);
+        if (e.classList.contains('wixui-rich-text')) { var b = box(e); if (b) low = Math.max(low, b.b); }
+      });
+      return low > -1e9 ? s.getBoundingClientRect().bottom - low : null;
+    }
+    var free0 = secs.map(freeBelow);
+    plan.forEach(function (i) { size(i, 1); });
+    /* a block that runs into something steps back (halfway, then its original size); labels that belong together
+       (one size, one block, e.g. a Client / Year / Designer table) step back together so they stay one size */
+    plan.forEach(function (i) { if (!i.key) i.key = 'b' + blocks.indexOf(i.b); });
+    var keyF = {};
+    for (var pass = 0; pass < 3; pass++) {
+      var bad = blocks.filter(function (b, k) { return hits(b).some(function (o) { return before[k].indexOf(o) < 0; }); });
+      var keys = [];
+      plan.forEach(function (i) { if (bad.indexOf(i.b) >= 0 && keyF[i.key] !== 0 && keys.indexOf(i.key) < 0) keys.push(i.key); });
+      if (!keys.length) break;
+      keys.forEach(function (k) { keyF[k] = keyF[k] == null ? 0.5 : 0; });
+      plan.forEach(function (i) { if (keys.indexOf(i.key) >= 0) size(i, keyF[i.key]); });
+    }
+    secs.forEach(function (s, k) {
+      var f1 = freeBelow(s); if (free0[k] == null || f1 == null || f1 >= free0[k] - 1) return;
+      var g = s.querySelector('[data-mesh-id$="inlineContent-gridContainer"]') || s;
+      g.style.setProperty('padding-bottom', ((parseFloat(getComputedStyle(g).paddingBottom) || 0) + free0[k] - f1).toFixed(1) + 'px', 'important');
+    });
+    window.dispatchEvent(new Event('resize'));   /* scripts that measure (spacing, bottom space, reveal) measure again */
+  });
   /* Closing photo of product pages: Wix-style scroll reveal (Joel 2026-11-26: "邊滾動揭露", like the Wix site).
      The last section of a product page is a photo with no text. It is now exactly as tall as the photo (width / photo
      ratio, at most one screen), so the whole photo (products included) is visible at the end of the page. While the
@@ -1016,6 +1185,49 @@
     ready(function () { setTimeout(fit, 0); });
     window.addEventListener('load', function () { setTimeout(fit, 300); });
     var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fit, 200); });
+  })();
+  /* Phone: every link and button can be pressed from at least 44 x 44 (Joel 2026-11-27, UI/UX review item 2: the menu
+     button was 20 x 20, Contact's SUBMIT 26px high, the e-mail link 10px; Apple: 44 pt default, 28 pt minimum).
+     The look does not change: an invisible hit area (custom.css .jcd-hit::after) reaches out around the control.
+     Where two controls are close, each reaches at most halfway towards the other, so no tap lands on the wrong one.
+     Measured once the page has settled (and again on resize); phone pages only. */
+  (function () {
+    var MIN = 44;
+    function freeSlot(el) {
+      return ['after', 'before'].filter(function (p) {
+        var c = getComputedStyle(el, '::' + p).content; return !c || c === 'none' || el.classList.contains('jcd-hit-' + p[0]); })[0];
+    }
+    function grow() {
+      if (!document.body.classList.contains('device-mobile-optimized')) return;
+      var els = [].filter.call(document.querySelectorAll('a[href], button, [role="button"], input[type="submit"]'), function (e) {
+        var r = e.getBoundingClientRect(), cs = getComputedStyle(e);
+        return r.width > 0 && r.height > 0 && cs.visibility !== 'hidden' && cs.display !== 'none' && !e.closest('[aria-hidden="true"]');
+      });
+      var rects = els.map(function (e) { return e.getBoundingClientRect(); });
+      els.forEach(function (e, i) {
+        var r = rects[i], ex = Math.max(0, (MIN - r.width) / 2), ey = Math.max(0, (MIN - r.height) / 2);
+        if (!ex && !ey) { e.classList.remove('jcd-hit'); return; }
+        rects.forEach(function (o, j) {   /* stay out of neighbours: at most half the gap */
+          if (j === i || els[j].contains(e) || e.contains(els[j])) return;
+          var overlapX = o.left < r.right + ex && o.right > r.left - ex, overlapY = o.top < r.bottom + ey && o.bottom > r.top - ey;
+          if (!(overlapX && overlapY)) return;
+          var gx = Math.max(o.left - r.right, r.left - o.right), gy = Math.max(o.top - r.bottom, r.top - o.bottom);
+          if (gy >= gx) ey = Math.max(0, Math.min(ey, gy / 2)); else ex = Math.max(0, Math.min(ex, gx / 2));
+        });
+        /* use whichever pseudo-element is free (Wix and our own CSS use some of them). None free (Wix buttons such as
+           Contact's SUBMIT): the area goes on the wrapper around it, and a tap there is passed on to the button. */
+        var host = e, free = freeSlot(e);
+        if (!free && e.parentElement && e.parentElement.children.length === 1) { host = e.parentElement; free = freeSlot(host);
+          if (free && !host.__jcdHitFwd) { host.__jcdHitFwd = true;
+            host.addEventListener('click', function (ev) { if (ev.target === host) e.click(); }); } }
+        if (!free) return;
+        host.classList.add('jcd-hit', 'jcd-hit-' + free[0]);
+        if (getComputedStyle(host).position === 'static') host.style.setProperty('position', 'relative');   /* anchor the area */
+        host.style.setProperty('--jcd-hit-x', ex.toFixed(1) + 'px'); host.style.setProperty('--jcd-hit-y', ey.toFixed(1) + 'px');
+      });
+    }
+    window.addEventListener('load', function () { setTimeout(grow, 400); });
+    var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(grow, 300); });
   })();
   /* Home "Selected" grid (12 works), Joel 2026-11-26, option B "spotlight" (design study preview/works-grid.html).
      Computer with a mouse: the tile under the mouse stays bright, its photo eases in 6% inside the frame, a thin white

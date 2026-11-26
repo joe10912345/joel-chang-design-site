@@ -37,11 +37,13 @@ Never write one of these numbers a second time in another file; read it from the
 | Black 黑 | #000 | Page canvas, dark pages (`.jcd-dark-canvas`). 頁面底色、深色頁 |
 | White page 白底頁 — **never change 不可更改** | #fff | **WHITE PAGES STAY WHITE** (checked by `tools/check_site.py`, AGENTS rule 9): light pages keep Wix's white background (Wi-Fi 7 HGU/AP, MoAI, Extender, 2022, Airgain, Lionic, AI Tool Kit, NLG MMA200, Sagittarius, Assistive) — never paint black. 淺色頁保留白底，不可改黑 |
 | Text on dark 深底文字 | #fff headings · rgba(255,255,255,.82–.9) body · .5 secondary · .38 tertiary | 標題白、內文 82–90%、次要 50%、第三層 38% |
+| `--jcd-blue-text-dark` | **#4F86CC** | Small blue TEXT on black pages (section labels such as "Key Ingredient"), 5.6:1. 黑底頁上的小藍字（段落標籤），對比 5.6:1 |
 
 Rules 規則
 - Use the tokens, never a hex blue: `color: var(--jcd-blue)`, `rgba(var(--jcd-blue-rgb), .45)`. 一律用變數，不可直接寫藍色色碼。
 - A glow keeps its own alpha; only the colour comes from the token. 光暈的透明度自己訂，顏色用變數。
 - On black, navy is very dark: use it at .85+ or as a gradient end next to blue. 黑底上深藍要用高透明度或當漸層尾端。
+- **Readable text (Joel 2026-11-27, UI/UX review)**: small text needs **4.5:1** against its background, large (18px+) or bold text 3:1. On black: white .5 = 5.3:1 is the lowest grey for small text (the old .38 = 3.4:1 is only for large text); `--jcd-blue` #0062D9 is 2.75:1 on black, so it is never used for small text there (use `--jcd-blue-text-dark`). Wix's #37659D labels are swapped on dark pages by `text-contrast.css`. 文字對比：小字至少 4.5:1；黑底上灰字最低白 50%；#0062D9 在黑底只有 2.75:1，黑底小藍字改用 --jcd-blue-text-dark。
 
 ## 2. Surfaces: frosted glass 表面：毛玻璃
 
@@ -66,7 +68,7 @@ Radii are layout px, so they scale with the page. 圓角是版面 px，會跟著
 Sizes (layout px; desktop page / phone 320px page) 字級（版面 px；電腦頁／手機 320px 頁）:
 - Recommendation card 推薦卡: featured 17 / 8.5, text 14 / 8, name SemiBold 15 / 9.5, role Light 11.5 / 6.5. A card is never louder than its section heading. 卡片不可比段落標題搶眼。
 - Phone menu 手機選單: Works / About / Contact SemiBold; product pages Light **13px**.
-- Phone body text never below ~8px in the 320px layout (≈10px on screen). 手機內文不小於 8px（螢幕上約 10px）。
+- **Phone text minimum (Joel 2026-11-27, UI/UX review; Apple: 11pt minimum)**: paragraphs **11px**, short labels **9.5px** in the 320px layout (≈13pt / 11.5pt on a 390px iPhone), `jcd-config.js` `phone.minText` / `minLabel`, applied by `phone-text-size.js`: smaller Wix text is raised, a word never breaks, text never grows into another item, sections keep their space below. About's two-column lists (Work Experience, Education, Languages, Awards, Patents) are real rows on the phone so dates and titles stay level. 手機最小字級：段落 11px、短標籤 9.5px；不會斷字、不會壓到其他物件；About 的雙欄清單在手機改成真正的列，日期與標題對齊。
 - End-to-End squares 方塊文字: computer/iPad title 40px, text 19px; phone 14 / 10px (phone text cut after 7 lines).
 - Quote mark 引號: Georgia, white 85% → `--jcd-blue` on hover/press.
 
@@ -130,6 +132,7 @@ Other rules 其他:
 |---|---|
 | Hover (mouse) 滑過 | Menu text → blue; icons cross-fade to blue; cards lift 4px; .35s `cubic-bezier(.2,.7,.2,1)`. 選單變藍、卡片上浮 4px |
 | Press (all) 按下 | Text → blue + `scale(.92)` in .12s; cards `scale(.99)`. 文字變藍並微縮 |
+| Tap area (phone) 觸控範圍 | Every link / button can be pressed from at least **44 × 44** (Apple 44pt); small controls get an invisible area around them (`phone-tap-targets.js`), never reaching into a neighbour. 每個連結與按鈕至少 44×44 可按（隱形範圍，不影響外觀）。 |
 | Touch 觸控 | Every hover effect also on press (`:active`); **one tap opens a link** (custom.js opens it at touchend; the top menu keeps its own behaviour). 滑過效果在按住時出現；**點一下就換頁** |
 | Linked category cards 有連結的類別卡 | Whole card is clickable (photo included) on every platform; photo zooms 1.06 inside its frame on hover/press; round frosted >> (40px) on hover (computer) / always (touch). 整張卡可點；照片在框內放大 1.06；圓形 >> |
 | Cards that are not links 無連結卡片 | Subtle hover only, default cursor, no >>. 只有低調滑過 |

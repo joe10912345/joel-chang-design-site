@@ -11,6 +11,26 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### UI/UX review fixes 1-3: readable phone text, 44px tap areas, text contrast UI/UX 審查第 1-3 項：手機字級、觸控範圍、文字對比
+Joel: "整個網站最好用我的 uiux skill 尋下" -> review (apple-design skill) -> "Fix 1-3 first".
+1. **Phone text**: Wix set descriptions at 6-7px (about 7-8.5pt on a 390px iPhone; Apple minimum 11pt). Now paragraphs at
+   least 11px and short labels 9.5px in the 320px layout (`jcd-config.js` `phone.minText` / `minLabel`,
+   `src/js/global/phone-text-size.js`). Words never break; text never grows into another item (Joel: "海洋系列文字好像
+   有跟其他物件壓到了，都要循一下": checked on all 31 phone pages against text, photos, frames and buttons); each section keeps
+   the free space under its last item. About's five two-column lists (Work Experience, Education, Languages, Awards,
+   Patents) are real rows on the phone (`src/js/about/two-column-lists-phone.js` + `.css`) so dates and titles stay level.
+   Product info tables (Client / Year / Designer / Contribution) stay one size per table; their four narrow columns only
+   allow about 6-8.5px (open: a 2 x 2 table on the phone would allow the full size). 產品資訊表每表字級一致（四欄太窄，待議改 2×2）。
+   手機字級：段落至少 11px、短標籤 9.5px；不斷字、不壓到其他物件、段落下方留白不變；About 雙欄清單改成真正的列。
+2. **Phone tap areas**: every link and button can be pressed from at least 44 x 44 (menu button was 20 x 20, Contact SUBMIT
+   26px high, e-mail link 10px). Invisible area, no visual change, never into a neighbour (`src/js/global/phone-tap-targets.js`,
+   `src/css/phone/tap-targets.css`). 手機每個連結／按鈕至少 44×44 可按（隱形範圍，外觀不變）。
+3. **Contrast**: About recommendation roles white .5 -> .6 (7.4:1), "Former ..." .38 -> .5 (5.3:1); blue section labels on
+   Interstellar 05, Wi-Fi 7 Gaming and Ocean Series #37659D (3.5:1) -> `--jcd-blue-text-dark` #4F86CC (5.6:1) on dark pages
+   (`src/css/global/tokens.css`, `text-contrast.css`, `src/css/about/recommendation-cards.css`). 對比：About 灰字提亮、黑底頁藍色標籤改亮藍。
+- Also: `DESIGN-SYSTEM.md` (contrast rule, phone text minimum, tap areas), `src/*/ORDER.txt`, `src/README.md`, built `custom.*`,
+  `?v=` of jcd-config.js in every page.
+
 ### Category pages: the same bottom space on every page; T. Blade text -> photo gaps all even 類別頁底部空間一致；T. Blade 文字到圖片間距全部一致
 - Joel: "defense 下方黑色空間再多點，太窄了，其他類別頁也是" + "手機下方的黑空間太多了，再縮點。其實每個平台的類別頁底下都要多一些空間".
   The black space under the last item was 92-277px (computer) and 9-258px (phone). Now the same on all six category

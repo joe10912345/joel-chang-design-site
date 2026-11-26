@@ -37,8 +37,8 @@
   font: 13px wfont_3f090f_fbe2048d9f994d8c8d5073ed8164a33e, wf_fbe2048d9f994d8c8d5073ed8, orig_poppins_medium, sans-serif;
   background: linear-gradient(135deg, rgba(var(--jcd-blue-rgb), .85), rgba(var(--jcd-navy-rgb), .95)); border: 1px solid rgba(255, 255, 255, .25); }
 .jcd-rec-nm { font: 15px/1.2 wfont_459113_5846594cb6ea4f43b8e132f9d1a29629, wf_5846594cb6ea4f43b8e132f9d, orig_poppins_semibold, sans-serif; color: #fff; }
-.jcd-rec-rl { margin-top: 3px; font: 11.5px/1.45 wfont_459113_ebfb1394532347b3b7691d160bb35bd1, wf_ebfb1394532347b3b7691d160, orig_poppins_light, sans-serif; color: rgba(255, 255, 255, .5); }
-.jcd-rec-rl i { color: rgba(255, 255, 255, .38); }
+.jcd-rec-rl { margin-top: 3px; font: 11.5px/1.45 wfont_459113_ebfb1394532347b3b7691d160bb35bd1, wf_ebfb1394532347b3b7691d160, orig_poppins_light, sans-serif; color: rgba(255, 255, 255, .6); }   /* .5 -> .6, 7.4:1 (Joel 2026-11-27, UI/UX review) */
+.jcd-rec-rl i { color: rgba(255, 255, 255, .5); }   /* "Former ...": .38 was 3.4:1 on black, now 5.3:1, still softer than the role (Joel 2026-11-27, UI/UX review) */
 .jcd-rec-li { width: 28px; height: 28px; margin-left: auto; flex: none; display: grid; place-items: center; border-radius: 4px; color: #fff;
   background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .18); transition: background-color .25s, border-color .25s; }
 .jcd-rec-li svg { width: 14px; height: 14px; fill: currentColor; }

@@ -1,6 +1,8 @@
 /* ===== Design tokens (see DESIGN-SYSTEM.md in the repo root) — Joel 2026-11-24 =====
    Every blue in custom.css uses these: change a colour here and it changes everywhere.
    --jcd-blue  #0062D9  interactive blue: menu hover/press, any pressed state, logo/icon hover, cursor light, glows, quote/LinkedIn accents
-   --jcd-navy  #00176C  deep blue-violet: second colour of gradients (recommendation card bottom-right glow, avatar) */
-:root { --jcd-blue: #0062d9; --jcd-blue-rgb: 0, 98, 217; --jcd-navy: #00176c; --jcd-navy-rgb: 0, 23, 108; }
+   --jcd-navy  #00176C  deep blue-violet: second colour of gradients (recommendation card bottom-right glow, avatar)
+   --jcd-blue-text-dark  #4F86CC  small blue TEXT on black pages (section labels such as "Key Ingredient"): 5.6:1 on
+                 black (Joel 2026-11-27, UI/UX review: Wix's #37659D was 3.5:1, below 4.5:1). Not for white pages (3.7:1 there). */
+:root { --jcd-blue: #0062d9; --jcd-blue-rgb: 0, 98, 217; --jcd-navy: #00176c; --jcd-navy-rgb: 0, 23, 108; --jcd-blue-text-dark: #4f86cc; }
 

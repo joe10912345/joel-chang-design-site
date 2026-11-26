@@ -1,0 +1,4 @@
+/* Readable small coloured text on black pages (Joel 2026-11-27, UI/UX review item 3). Wix set the section labels of
+   Interstellar 05, Wi-Fi 7 Gaming Home Gateway and Ocean Series ("Key Ingredient", "Project Background") in #37659D:
+   3.5:1 on black, below the 4.5:1 small text needs. Dark pages only (on white #37659D is fine, 6.0:1). */
+html.jcd-dark-canvas .wixui-rich-text [style*="color:#37659D" i] { color: var(--jcd-blue-text-dark) !important; }
