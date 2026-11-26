@@ -17,7 +17,8 @@
                       : blk.textContent.trim().length > 60;
       var want = para ? minText : minLabel;
       if (!(fs < want)) return;
-      var bw = blk.getBoundingClientRect().width; if (!bw) return;
+      var br = blk.getBoundingClientRect(), bt = box(blk);   /* width up to the page margin (see pageW below) */
+      var bw = Math.min(br.right, Math.max(document.documentElement.clientWidth - 20, bt ? bt.r : 0)) - br.left; if (!(bw > 0)) return;
       cv.font = cs.fontStyle + ' ' + cs.fontWeight + ' ' + fs + 'px ' + cs.fontFamily;
       var ls = parseFloat(cs.letterSpacing) || 0;
       var longest = own.split(/\s+/).reduce(function (a, t) { return Math.max(a, cv.measureText(t).width + ls * t.length); }, 0);
@@ -78,6 +79,15 @@
       return low > -1e9 ? s.getBoundingClientRect().bottom - low : null;
     }
     var free0 = secs.map(freeBelow);
+    /* a text box that reaches past the screen's right edge in Wix (Geometry Series' "Designed by" box ends at 334 of 320)
+       is narrowed to the page's 20px margin (or to where its text already ended), so larger text wraps there instead of
+       running off the screen (Joel 2026-11-27: "手機板字有卡到欸，全面檢視，該換行要換行") */
+    var pageW = document.documentElement.clientWidth;
+    blocks.forEach(function (b) {
+      var host = b.closest('[id^="comp-"]') || b, hr = host.getBoundingClientRect(), t = box(b);
+      var limit = Math.max(pageW - 20, t ? t.r : 0);
+      if (hr.right > limit + 0.5) host.style.setProperty('max-width', (limit - hr.left).toFixed(1) + 'px', 'important');
+    });
     plan.forEach(function (i) { size(i, 1); });
     /* a block that runs into something steps back (halfway, then its original size); labels that belong together
        (one size, one block, e.g. a Client / Year / Designer table) step back together so they stay one size */

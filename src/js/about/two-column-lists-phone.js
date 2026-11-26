@@ -60,7 +60,12 @@
         grid.appendChild(c1); grid.appendChild(c2);
       });
       var host = L.closest('[id^="comp-"]') || L;
-      host.style.setProperty('width', ((rr.right - lr.left) / z).toFixed(1) + 'px', 'important');   /* now spans both columns */
+      /* now spans both columns, but never past the page's right margin (= its left margin): the Patents text block was
+         wider than the screen in Wix and its titles ran off the edge; inside the page width they wrap instead
+         (Joel 2026-11-27: "手機板字有卡到欸，該換行要換行") */
+      var page = (L.closest('section') || document.body).getBoundingClientRect();
+      var right = Math.min(rr.right, page.right - (lr.left - page.left));
+      host.style.setProperty('width', ((right - lr.left) / z).toFixed(1) + 'px', 'important');
       while (L.firstChild) L.removeChild(L.firstChild);
       L.appendChild(grid);
       (R.closest('[id^="comp-"]') || R).style.setProperty('display', 'none', 'important');

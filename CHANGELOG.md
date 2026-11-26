@@ -11,6 +11,16 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Phone text no longer runs off the screen 手機文字不再超出畫面
+- Joel: "手機板字有卡到欸，全面檢視，該換行要換行" (About, Patents: the long titles ran past the right edge). The Patents list was
+  wider than the screen in Wix; the About two-column lists now stop at the page's right margin and the titles wrap. Every
+  phone page: a text box that reaches past the screen edge is narrowed to the 20px page margin before its text grows, so
+  it wraps instead (Geometry Series "Designed by"). Checked all 36 phone pages: no text past the screen, cut by its box or
+  wider than its column. Phone only. Files: `src/js/about/two-column-lists-phone.js`, `src/js/global/phone-text-size.js`,
+  `site/assets/js/custom.js`.
+- About 專利列表在 Wix 裡比螢幕還寬，長標題被切掉；現在列表停在頁面右側留白處，標題會換行。所有手機頁：超出螢幕的文字框先縮到 20px
+  頁邊，文字放大時改為換行（Geometry Series「Designed by」）。36 個手機頁全部檢查：沒有文字超出畫面、被框切掉或超出欄寬。只影響手機。
+
 ### Phone text one step smaller 手機字級小一級
 - Joel: "手機板字體可以小一級". Phone text minimum now 10px for paragraphs and 9px for short labels (was 11 / 9.5), about
   12pt / 11pt on a 390px iPhone, still at Apple's 11pt minimum. Files: `site/assets/js/jcd-config.js` (`phone.minText` /
