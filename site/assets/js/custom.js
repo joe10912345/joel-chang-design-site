@@ -1485,14 +1485,13 @@
   });
 
   /* Scroll reveal like the original Wix site (Joel 2026-11-27: "原本 wix 網站我設計每個 section (除了最上方、最下方的圖片外)，
-     其他都是滑鼠滾動時顯現"). The Wix export had the elements' "Float In" (most) / "Fade In" entrances; they were stripped
-     on export. Now: in every top-level section except the first (top image) and the last (closing image), each piece of
-     content fades in and floats up 40px when it scrolls into view, pieces of one section a little after each other.
-     Only content below the screen at load is hidden (nothing visible ever blinks). The movement is a keyframe animation
-     that exists only while it runs, so scripts measuring positions are not disturbed. Phone, iPad, computer; off under
-     reduced motion. CSS: src/css/global/scroll-reveal.css */
+     其他都是滑鼠滾動時顯現" — 2nd pass: "滾動動畫其實是 fade in，滾到畫面中央逐漸顯現，往上滾消失").
+     In every top-level section except the first (top image / page title) and a bottom image section, each piece of
+     content (big wrappers split into their parts) fades with the scroll position: invisible while its top is at the
+     bottom edge of the screen, fully visible once its top reaches the middle; scrolling back fades it out again.
+     Opacity only (no movement), so scripts measuring positions are not disturbed. Phone, iPad, computer; everything
+     visible under reduced motion and when printing. CSS: src/css/global/scroll-reveal.css */
   ready(function () {
-    if (!('IntersectionObserver' in window)) return;
     if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var secs = [].filter.call(document.querySelectorAll('#PAGES_CONTAINER section'), function (s) {
       return !(s.parentElement && s.parentElement.closest('section')) && s.getBoundingClientRect().height > 40; });
@@ -1518,23 +1517,31 @@
     }
     var use = secs.slice(1); if (use.length && imageSection(use[use.length - 1])) use.pop();
     use.forEach(function (s) { var g = grid(s); if (g) collect(g, 0); });
-    items = items.filter(function (e) { return e.getBoundingClientRect().top > vh * 0.92; });   /* already on screen: leave alone */
     if (!items.length) return;
     items.forEach(function (e) { e.classList.add('jcd-rv'); });
-    var io = new IntersectionObserver(function (entries) {
-      var shown = entries.filter(function (en) { return en.isIntersecting; }).map(function (en) { return en.target; })
-        .sort(function (a, b) { var ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect(); return (ra.top - rb.top) || (ra.left - rb.left); });
-      shown.forEach(function (e, i) {
-        io.unobserve(e);
-        e.style.animationDelay = Math.min(i * 0.09, 0.45).toFixed(2) + 's';
-        e.classList.add('jcd-rv-in');
-        e.addEventListener('animationend', function done(ev) { if (ev.target !== e) return;
-          e.removeEventListener('animationend', done); e.classList.remove('jcd-rv', 'jcd-rv-in'); e.style.animationDelay = ''; });
+    var raf = 0;
+    /* the element that really scrolls: body only when <html> clips (otherwise body's overflow moves to the window) */
+    function scroller() { var b = document.body, h = document.documentElement;
+      return getComputedStyle(h).overflowY !== 'visible' && /(auto|scroll)/.test(getComputedStyle(b).overflowY) && b.scrollHeight > b.clientHeight + 1
+        ? b : document.scrollingElement || h; }
+    function update() {
+      raf = 0; vh = window.innerHeight;
+      var sc = scroller();
+      var left = Math.max(0, sc.scrollHeight - sc.clientHeight - sc.scrollTop);   /* how far the page can still scroll down */
+      items.forEach(function (e) {
+        var top = e.getBoundingClientRect().top;
+        /* fully visible once the top reaches the middle — or, near the page end, where it stops at the last scroll */
+        var full = Math.min(Math.max(vh * 0.5, top - left), vh - 1);
+        var o = Math.max(0, Math.min(1, (vh - top) / (vh - full)));   /* top at the bottom edge -> 0 */
+        e.style.setProperty('opacity', o.toFixed(3));
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
-    items.forEach(function (e) { io.observe(e); });
-    /* printing shows everything */
-    window.addEventListener('beforeprint', function () { items.forEach(function (e) { e.classList.remove('jcd-rv', 'jcd-rv-in'); }); });
+    }
+    function soon() { if (!raf) raf = requestAnimationFrame(update); }
+    document.addEventListener('scroll', soon, { passive: true, capture: true });   /* capture: the phone page scrolls inside body */
+    window.addEventListener('resize', soon); window.addEventListener('load', soon);
+    update();
+    window.addEventListener('beforeprint', function () { items.forEach(function (e) { e.style.removeProperty('opacity'); }); });
+    window.addEventListener('afterprint', update);
   });
 
   // iOS Safari only applies :active (pressed states) when a touchstart listener exists.

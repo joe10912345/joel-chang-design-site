@@ -11,6 +11,16 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Scroll fade follows the scroll; new net photo on T. Interceptor MP; Gemtek photo at the bottom of home 捲動淡入跟著捲動；MP 換網子圖；首頁底圖換 Gemtek
+- Joel: "滾動動畫其實是 fade in，滾到畫面中央逐漸顯現，往上滾消失". The scroll reveal is now tied to the scroll position:
+  content fades in as it moves from the bottom edge to the middle of the screen and fades out again when scrolling back;
+  no float. Phone, iPad, computer. Files: `src/js/global/scroll-reveal.js`, `src/css/global/scroll-reveal.css`, built `custom.*`, `DESIGN-SYSTEM.md`.
+  捲動動畫改為跟著捲動位置：從畫面底部到中央逐漸顯現，往上捲再淡出，不再上浮。
+- T. Interceptor MP image 06 is now the drone net in the forest (`t-interceptormp-06-2560x1476.webp`, phone `-1120x646`).
+  Home bottom (GET IN TOUCH) image is now the Gemtek device in hand (`home-01-2560x1276.webp`, phone `home-32-960x478.webp`);
+  the social preview JPG is unchanged. Originals in `media-originals/`, recorded in `reference/media-map.json`.
+  MP 第 06 張換成森林中的捕捉網；首頁最下方 GET IN TOUCH 底圖換成手持 Gemtek（WebP 輕量檔）。
+
 ### Scroll reveal on every page, like the original Wix site 捲動顯現（仿原 Wix 網站）
 - Joel: "最後一步，原本 wix 網站我設計每個 section (除了最上方、最下方的圖片外)，其他都是滑鼠滾動時顯現。你能做到嗎? 你可以去爬原本是怎麼做的". The export had removed Wix's per-element entrances; the archived language copies still hold Wix's animation definitions: mostly "Float In" (60), "Fade In" (16), a few Fold / Slide In. Now, on phone, iPad and computer: in every top-level section except the first (top image / page title) and a bottom image section (photo background or photo only), each piece of content (big wrappers are split into their parts) fades in and floats up 40px (phone 24px) over 1.1s when it scrolls into view, pieces 0.09s apart. Content on screen at load is never hidden; the movement exists only while the animation runs (position-measuring effects unaffected); off under reduced motion; printing shows all.
   每頁除了最上方與最下方的大圖外，各段內容捲到時淡入上浮，同段依序出現；手機、iPad、電腦。

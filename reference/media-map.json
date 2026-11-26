@@ -15527,36 +15527,6 @@
   ],
   "original_name": "1e9c09_b1e606d8e4e747d6be7c8ab4b775b34b_mv2.jpg"
  },
- "t-interceptormp/t-interceptormp-06-2524x1418.webp": {
-  "source": "media-originals/t-interceptormp/t-interceptormp-06-2720x1568.jpg",
-  "wix_ops": {
-   "crop": null,
-   "mode": "fill",
-   "align": "c"
-  },
-  "replaces": [
-   "1e9c09_ffc82e355e1145c9a40d023fa020125e_mv2_2524x1418_27b47cf2.jpg"
-  ],
-  "pages": [
-   "t-interceptormp"
-  ],
-  "original_name": "1e9c09_ffc82e355e1145c9a40d023fa020125e_mv2.jpg"
- },
- "t-interceptormp/t-interceptormp-06-560x314.webp": {
-  "source": "media-originals/t-interceptormp/t-interceptormp-06-2720x1568.jpg",
-  "wix_ops": {
-   "crop": null,
-   "mode": "fill",
-   "align": "c"
-  },
-  "replaces": [
-   "1e9c09_ffc82e355e1145c9a40d023fa020125e_mv2_560x314_9d0efe84.jpg"
-  ],
-  "pages": [
-   "t-interceptormp"
-  ],
-  "original_name": "1e9c09_ffc82e355e1145c9a40d023fa020125e_mv2.jpg"
- },
  "t-interceptormp/t-interceptormp-07-2524x1238.webp": {
   "source": "media-originals/t-interceptormp/t-interceptormp-07-2827x1420.jpg",
   "wix_ops": {
@@ -20244,16 +20214,6 @@
   ],
   "note": "T. Xcalar (Joel 2026-11-27)"
  },
- "home/home-01-2560x1828.webp": {
-  "source": "media-originals/home/home-01-2560x1828.jpg",
-  "wix_ops": {
-   "crop": null
-  },
-  "replaces": [],
-  "pages": [
-   "home"
-  ]
- },
  "home/home-01-2560x1828.jpg": {
   "source": "media-originals/home/home-01-2560x1828.jpg",
   "wix_ops": {
@@ -20264,16 +20224,6 @@
    "home"
   ],
   "note": "JPEG kept for social previews"
- },
- "home/home-32-640x430.webp": {
-  "source": "media-originals/home/home-01-2560x1828.jpg",
-  "wix_ops": {
-   "crop": null
-  },
-  "replaces": [],
-  "pages": [
-   "home"
-  ]
  },
  "home/home-16-1440x810-v2.webp": {
   "source": "media-originals/home/home-16-2898x1628.jpg",
@@ -20371,5 +20321,49 @@
    "t-interceptormp"
   ],
   "note": "Golden Pin badge, text cropped off (Joel 2026-11-27)"
+ },
+ "t-interceptormp/t-interceptormp-06-2560x1476.webp": {
+  "source": "media-originals/t-interceptormp/t-interceptormp-06-2720x1568.jpg",
+  "wix_ops": {
+   "crop": null
+  },
+  "replaces": [],
+  "pages": [
+   "t-interceptormp"
+  ],
+  "note": "Joel 2026-11-27"
+ },
+ "t-interceptormp/t-interceptormp-06-1120x646.webp": {
+  "source": "media-originals/t-interceptormp/t-interceptormp-06-2720x1568.jpg",
+  "wix_ops": {
+   "crop": null
+  },
+  "replaces": [],
+  "pages": [
+   "t-interceptormp"
+  ],
+  "note": "Joel 2026-11-27"
+ },
+ "home/home-01-2560x1276.webp": {
+  "source": "media-originals/home/home-01-3134x1562.png",
+  "wix_ops": {
+   "crop": null
+  },
+  "replaces": [],
+  "pages": [
+   "home"
+  ],
+  "note": "Joel 2026-11-27"
+ },
+ "home/home-32-960x478.webp": {
+  "source": "media-originals/home/home-01-3134x1562.png",
+  "wix_ops": {
+   "crop": null
+  },
+  "replaces": [],
+  "pages": [
+   "home"
+  ],
+  "note": "Gemtek, GET IN TOUCH background (Joel 2026-11-27)"
  }
 }
