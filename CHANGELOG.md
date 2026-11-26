@@ -9,6 +9,10 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-25
 
+### Whole desktop/iPad page 15% smaller (UI_SCALE 0.85); top images still full screen
+- Joel: menu, category headings and white frames too big — "make every page smaller, keep the top images the same size". `site.js`: new `UI_SCALE = 0.85` (`window.__jcdUiScale`). Computers: CSS zoom = (window width / 1536, at least 1) x 0.85 (laptop 1536: 0.85, 1920: 1.063, 3440: 1.904); iPads: `TABLET_W` = 1440 / 0.85 = 1694. Phone (m/) unchanged. Top images keep filling the screen (heights computed from the screen / `__jcdZoom`).
+- Checked laptop, 1920, ultra-wide, iPad landscape + portrait: logo/menu/titles 15% smaller, home hero still 100% (iPad portrait 50%), category frames centred with more side space. `preview/devices.html` iPad width 1694.
+
 ### Bottom images no longer cut; no right-click / long-press / selection; Ocean wave seams
 - **Images cut at the bottom of many pages** (Joel: e.g. Wi-Fi 7 2022 "New Wi-Fi 7 Generation", all platforms): Wix "fixed" section backgrounds are sticky and screen-sized, so a section taller than the screen never showed the photo's bottom (desktop 1000px sections on an 864px screen), and phone sections (300px) showed less than half of a 693px photo. `custom.js` (first block) now pins every sticky/fixed section photo to its own section (`object-fit: cover`, media box unclipped for Safari). 30 photos on 21 pages (desktop + phone) checked: each covers exactly its section, none sticky. The parallax "fixed" feel is gone by design.
 - **No context menu, no text selection, no image dragging** (Joel: long presses on the phone kept selecting text; no "save image" menus): `custom.css` + `custom.js`, every platform. Contact form fields stay selectable/editable. Note: this deters casual saving; it cannot stop screenshots or developer tools.

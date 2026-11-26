@@ -30,7 +30,13 @@
      left:-140px etc.), so at 980 an iPad cut both sides off. 1366 shows every page whole; the browser rescales the same
      layout when the iPad turns, so portrait AND landscape both fit. Keep preview/devices.html (TW) in step with this. */
   window.__jcdTablet = mode === 'desktop' && touch;   /* read by custom.js (iPad landscape full-screen top image) */
-  var TABLET_W = 1440;   /* 1366 fitted the content but the category frames almost touched the edges; 1440 leaves ~50px each side */
+  /* UI_SCALE (Joel 2026-11-25: menu, category headings and frames looked too big — "make every page smaller, keep the
+     top images the same"): the whole desktop-layout page (computer + iPad) is drawn at this fraction of its previous
+     size. Top images still fill the screen (their height is computed from the screen, see custom.js). Phone (m/) is not
+     affected. 1 = previous size. */
+  var UI_SCALE = 0.85;
+  window.__jcdUiScale = UI_SCALE;
+  var TABLET_W = Math.round(1440 / UI_SCALE);   /* 1440 at full size (1366 let the category frames touch the edges) */
   if (mode === 'desktop' && touch) {
     var vp = document.querySelector('meta[name="viewport"]');
     if (vp) vp.setAttribute('content', 'width=' + TABLET_W + ', user-scalable=yes');
@@ -42,14 +48,14 @@
 
   /* Wide screens (Joel 2026-11-24): the Wix desktop layout is designed for a ~1300px stage, so on a 1920/2560px
      monitor at 100% it sat small in the middle with wide black bars. Like on his laptop (1920px @125% = 1536 CSS px),
-     scale the whole page with CSS zoom so 1536 CSS px of layout always fill the window (never shrink below 1).
+     scale the whole page with CSS zoom so 1536 CSS px of layout always fill the window, times UI_SCALE (above).
      Other scripts read window.__jcdZoom to convert screen px (clientX, getBoundingClientRect) into CSS px. */
   window.__jcdZoom = 1;
   if (mode === 'desktop' && !touch) {
     var ZOOM_REF = 1536, root = document.documentElement;
     var fitZoom = function () {
       var w = window.innerWidth || root.clientWidth || ZOOM_REF;
-      var z = w > ZOOM_REF ? Math.round(w / ZOOM_REF * 1000) / 1000 : 1;
+      var z = Math.round((w > ZOOM_REF ? w / ZOOM_REF : 1) * UI_SCALE * 1000) / 1000;   /* also below 1 now (UI_SCALE) */
       if (z !== window.__jcdZoom) { window.__jcdZoom = z; root.style.zoom = z === 1 ? '' : String(z); }
     };
     fitZoom(); window.addEventListener('resize', fitZoom);

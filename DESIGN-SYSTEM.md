@@ -72,9 +72,11 @@ Other rules
 | Device | Page | How it fits |
 |---|---|---|
 | Phone | `site/m/…` (320px layout) | scaled to the phone width by the viewport |
-| iPad (Air 11, Pro 11, Pro 13; portrait + landscape) | desktop page | laid out **1440px** wide (`TABLET_W` in `site.js`) and scaled |
-| Computer ≤ 1536px | desktop page | 1:1 (Joel's laptop: 1920 @125% = 1536) |
-| Computer > 1536px (1920, 2560, 3440 ultra-wide, 3840 4K) | desktop page | CSS zoom = width / 1536 (`window.__jcdZoom`) → always full width |
+| iPad (Air 11, Pro 11, Pro 13; portrait + landscape) | desktop page | laid out **1694px** wide (`TABLET_W` = 1440 / UI_SCALE) and scaled |
+| Computer ≤ 1536px | desktop page | zoom = UI_SCALE 0.85 (Joel's laptop: 1920 @125% = 1536) |
+| Computer > 1536px (1920, 2560, 3440 ultra-wide, 3840 4K) | desktop page | CSS zoom = width / 1536 x UI_SCALE (`window.__jcdZoom`) → always full width |
+
+**UI_SCALE = 0.85** (`site.js`): one knob for the size of everything on the desktop page (computer + iPad); 1 = the Wix size. Top images are not affected (always full screen / half on portrait).
 
 Top image ("hero", home slideshow + product pages): phone **50% of the screen height**; any portrait screen on the desktop page (iPad upright) **50%**; landscape (computers, iPad sideways) **exactly one screen** (`100svh`, divided by `__jcdZoom` on computers).
 Scripts measuring with `getBoundingClientRect` must divide by `window.__jcdZoom` before writing CSS px.
