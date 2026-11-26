@@ -22,6 +22,7 @@ Last updated 最後更新: 2026-11-27.
 | **iPad side margins** **iPad 左右留白** | `jcd-config.js` → `ipad.margin.landscape / portrait` (5.35%) | iPad layout width of every page, and `preview/devices.html` iPad 各頁排版寬度＋三平台預覽 |
 | iPad content widths per page type 各類頁面的內容寬度 | `jcd-config.js` → `ipad.content` | same 同上 |
 | About "What I Believe" photo framing (phone, iPad portrait/landscape) 照片取景 | `jcd-config.js` → `believe` (set with `preview/mockups/believe-align.html`) | where the speaker sits in the photo window; re-computed from the real window size, so it holds when the page changes 講者在視窗中的位置，依實際視窗重算 |
+| Photo framing in cards (T. Xcalar …) 卡片照片取景 | `jcd-config.js` → `photoFrames` (set with `preview/mockups/photo-align.html`) | which part of the photo shows + zoom, same on every device 照片顯示位置與放大，三平台共用 |
 | Brand colours 品牌色 | `src/css/global/tokens.css` `--jcd-blue`, `--jcd-navy` | every blue on the site 全站所有藍色 |
 
 Never write one of these numbers a second time in another file; read it from the config / token instead.

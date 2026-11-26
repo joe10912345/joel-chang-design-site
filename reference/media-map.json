@@ -19439,10 +19439,11 @@
   "note": "About intro hover/tap photo (Golden Pin 2025), Joel 2026-11-26 (phone)",
   "original_name": "jcd_about-portrait-golden-pin_2000x1425.jpg"
  },
- "defense/defense-09-2560x1404.jpg": {
+ "defense/defense-09-2560x1626-v2.jpg": {
   "source": "media-originals/defense/defense-09-5636x3580.jpg",
   "wix_ops": {
-   "crop": "card 1284:704, from 30% of the spare height"
+   "crop": null,
+   "note": "whole photo; framing in jcd-config.js photoFrames.xcalar"
   },
   "replaces": [],
   "pages": [
@@ -19450,10 +19451,11 @@
   ],
   "note": "T. Xcalar (Joel 2026-11-27)"
  },
- "defense/defense-09-560x307.jpg": {
+ "defense/defense-09-1120x711-v2.jpg": {
   "source": "media-originals/defense/defense-09-5636x3580.jpg",
   "wix_ops": {
-   "crop": "card 1284:704, from 30% of the spare height"
+   "crop": null,
+   "note": "whole photo; framing in jcd-config.js photoFrames.xcalar"
   },
   "replaces": [],
   "pages": [

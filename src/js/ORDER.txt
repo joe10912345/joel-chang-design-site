@@ -32,4 +32,5 @@ about/portrait-swap.js
 product/guest-area-dialog.js
 product/defense-website.js
 global/one-tap-links.js
+global/photo-frames.js
 global/ios-active.js

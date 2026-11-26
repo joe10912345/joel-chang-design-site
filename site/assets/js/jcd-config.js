@@ -50,6 +50,13 @@ window.JCD_CONFIG = {
     ipadLandscape: { fx: 0.26, fy: 0.62, sx: 0.113, sy: 0.579, zoom: 1.23 },
   },
 
+  /* Photo framing inside a card (Joel 2026-11-27, set with preview/mockups/photo-align.html): `x` / `y` = which point of
+     the photo stays in view (0-100%, like object-position), `zoom` = how much larger than just filling the card.
+     Same on every device. 卡片內照片取景：x / y 決定看哪個位置（0-100%），zoom 放大倍率；三平台共用。 */
+  photoFrames: {
+    xcalar: { img: '#img_comp-jcdxcal1', x: 50, y: 40, zoom: 1.2 },   /* Defense, T. Xcalar card */
+  },
+
   /* Forms (Contact page + Guest Area "Request access"): sent to Joel's mailbox through Web3Forms (no server on GitHub
      Pages; this key is public by design, it only allows sending to Joel). 表單寄信設定（Contact 與 Guest Area 共用）。 */
   forms: { endpoint: 'https://api.web3forms.com/submit', accessKey: '391de8ae-38e4-43c0-9d77-393d65c69402',

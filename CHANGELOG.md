@@ -11,6 +11,11 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### T. Xcalar photo larger + alignment tool T. Xcalar 照片放大與對齊工具
+- Joel: "Xcalar 圖片要放大點。做mockup 讓我調". The card now uses the whole photo (`defense-09-2560x1626-v2.jpg`, phone `defense-09-1120x711-v2.jpg`; the earlier pre-cropped files removed) framed by `jcd-config.js` `photoFrames.xcalar` (point x / y kept in view, zoom; start 50 / 40 / 1.2x), applied by `src/js/global/photo-frames.js` on every device. New tool `preview/mockups/photo-align.html`: the real Defense page on computer, iPad and phone; drag the photo, zoom slider or Shift + wheel; one setting for all devices.
+  T. Xcalar 改用完整照片並以設定檔控制取景，先放大 1.2 倍；新增對齊工具讓 Joel 自己調。
+- Files: `site/assets/js/jcd-config.js`, `src/js/global/photo-frames.js` (new), `src/js/ORDER.txt` → built `custom.js`, `site/defense/index.html`, `site/m/defense/index.html`, images, `reference/media-map.json`, `preview/mockups/photo-align.html` (new), `?v=` in all page HTML.
+
 ### Defense bottom: exhibitions + website image aligned to the frames; website caption + zoom 底部對齊、網站圖加標題與放大
 - Joel: "2025 taipei aerospace 的整個 section 跟下方的大圖按紐左右寬度要跟上面的產品白框對其" / "這張圖要 hover zoom in，且上方有一條線跟字，字寫 Website - Brand Visual Identity - 參與打磨建構". On computer + iPad the exhibition titles/photos and the Tron Future website image sat 13-14px left of the product frames; now the same left and right edges (phone already matched). The website image gets a caption bar like the exhibition titles: "Website | Brand Visual Identity | Design Refinement & Build" + line (phone sizes of the phone page; image moved down on the phone to fit), and its photo zooms in 6% inside the frame on hover (touch: while pressed).
   展覽段落與網站大圖左右對齊產品白框；網站圖上方加標題列，滑過照片放大。
