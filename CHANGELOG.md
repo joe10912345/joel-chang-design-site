@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Cross-Category: bigger glow behind the hovered tile
+- Joel: glow too small. The halo now reaches ~4 gutters out (was 1, clipped to the gutter) with a wider, stronger blue; the lifted crop grows 1.025 (was 1.012). `custom.css` section 4.
+
 ### Video glow: no turning ring
 - Joel: remove the ring that turns around the video. The light around the window is now a still blue blur that only breathes (4.5s). `custom.css` `.jcd-vglow`.
 

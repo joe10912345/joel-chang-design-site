@@ -55,16 +55,17 @@ li[data-item-depth="1"][aria-current="page"] .itemDepth12472627565__label { colo
 .jcd-tiles { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
 .jcd-tile { position: absolute; pointer-events: auto; z-index: 1; display: block; cursor: pointer; text-decoration: none; -webkit-tap-highlight-color: transparent; outline: none; }   /* links to the product page (only tiles that have one, Joel 2026-11-24) */
 .jcd-tile:hover, .jcd-tile.is-glow { z-index: 5; }
-.jcd-tile-halo { position: absolute; inset: calc(var(--jcd-g, 4px) * -1); overflow: hidden; pointer-events: none; z-index: 0;
+.jcd-tile-halo { position: absolute; inset: calc(var(--jcd-g, 4px) * -4); overflow: hidden; pointer-events: none; z-index: 0;
   opacity: 0; transition: opacity .6s var(--jcd-ease); }
-.jcd-tile-halo::before { content: ""; position: absolute; inset: var(--jcd-g, 4px);
-  box-shadow: 0 0 calc(var(--jcd-g, 4px) * 1.6) calc(var(--jcd-g, 4px) * .5) rgba(var(--jcd-blue-rgb), .75),
-              0 0 calc(var(--jcd-g, 4px) * .6) 0 rgba(var(--jcd-blue-rgb), .6); }
+/* Joel 2026-11-26: bigger glow - it now reaches ~4 gutters out (softly over the neighbours' edges) */
+.jcd-tile-halo::before { content: ""; position: absolute; inset: calc(var(--jcd-g, 4px) * 4);
+  box-shadow: 0 0 calc(var(--jcd-g, 4px) * 4) calc(var(--jcd-g, 4px) * 1.1) rgba(var(--jcd-blue-rgb), .8),
+              0 0 calc(var(--jcd-g, 4px) * 1.4) calc(var(--jcd-g, 4px) * .3) rgba(var(--jcd-blue-rgb), .75); }
 .jcd-tile-img { position: absolute; inset: 0; z-index: 1; background-repeat: no-repeat;
   opacity: 0; transform: none; transition: opacity .25s var(--jcd-ease) .45s, transform .6s var(--jcd-ease); }
 .jcd-tile:hover .jcd-tile-halo, .jcd-tile.is-glow .jcd-tile-halo { opacity: 1; }
 .jcd-tile:hover .jcd-tile-img, .jcd-tile.is-glow .jcd-tile-img {
-  opacity: 1; transform: scale(1.012); transition: opacity .2s var(--jcd-ease) 0s, transform .6s var(--jcd-ease); }
+  opacity: 1; transform: scale(1.025); transition: opacity .2s var(--jcd-ease) 0s, transform .6s var(--jcd-ease); }
 
 /* ---------- 5. Softer gallery hover overlays (site.js adds .jcd-ov / .jcd-ov-in) ---------- */
 /* Darkening fades in/out gradually; title then description fade in with a small rise (stagger). No idle motion. */
