@@ -3170,17 +3170,6 @@
    "home"
   ]
  },
- "home/home-04-2000x1167.jpg": {
-  "source": "media-originals/jcd_home-routers-black_2000x1167.jpg",
-  "wix_ops": null,
-  "replaces": [
-   "jcd_hero_c48ebd89cb37_2000x1167.jpg"
-  ],
-  "pages": [
-   "home"
-  ],
-  "note": "Joel's cleaner version 2026-11-26 (pasted, 2000px)"
- },
  "home/home-05-2400x1240.jpg": {
   "source": "export",
   "wix_ops": null,
@@ -18441,8 +18430,8 @@
   ],
   "note": "Joel's new render 2026-11-26 (T-Blade on its cart); also home slide 6 and the Defense tile"
  },
- "home/home-07-2000x1116.jpg": {
-  "source": "media-originals/jcd_home-tower-blue_2000x1116.jpg",
+ "home/home-07-2752x1536.jpg": {
+  "source": "media-originals/jcd_home-tower-blue_2752x1536.jpg",
   "wix_ops": null,
   "replaces": [
    "jcd_hero_14e7fcf7b751_3200x1644.jpg"
@@ -18450,6 +18439,17 @@
   "pages": [
    "home"
   ],
-  "note": "Joel's updated render 2026-11-26 (pasted, 2000px)"
+  "note": "Joel's enhanced render 2026-11-26 (full size from Downloads)"
+ },
+ "home/home-04-2000x1166.jpg": {
+  "source": "media-originals/jcd_home-routers-black-enhanced_2000x1166.jpg",
+  "wix_ops": null,
+  "replaces": [
+   "jcd_hero_c48ebd89cb37_2000x1167.jpg"
+  ],
+  "pages": [
+   "home"
+  ],
+  "note": "Joel's enhanced render 2026-11-26 (pasted, 2000px)"
  }
 }

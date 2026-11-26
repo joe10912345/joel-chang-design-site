@@ -9,6 +9,10 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Home slides 4 + 7: Joel's enhanced renders
+- Slide 4 (black routers): Joel's resolution-enhanced version (pasted, 2000x1166) -> `home/home-04-2000x1166.jpg` (263 KB).
+- Slide 7 (blue tower): the full-size enhanced file was in Downloads (2752x1536) -> `home/home-07-2752x1536.jpg` (459 KB), replacing the 2000px pasted copy from earlier today. Originals in `media-originals/jcd_home-*`. Desktop + phone.
+
 ### Home slide 7 (blue tower): Joel's updated render
 - Tighter framing and sharper (pasted, 2000x1116); `home/home-07-2000x1116.jpg` (desktop + phone), old 3200/2400 files removed; original kept as `media-originals/jcd_home-tower-blue_2000x1116.jpg`. Only used on the home slideshow.
 
