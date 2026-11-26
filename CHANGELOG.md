@@ -11,6 +11,13 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Cursor light in front of everything 滑鼠光暈放最前
+- Joel: "把滑鼠光暈放最前". The blue mouse glow is now one see-through layer in front of all page content (images,
+  video and text too), instead of on the background layers underneath. Clicks pass through; it still starts below the header
+  and stays under dialogs and the lightbox. Mouse only (computer; phone and iPad have no cursor). Files:
+  `src/css/global/cursor-light.css`, `src/js/global/cursor-light.js`, built `custom.*`, `DESIGN-SYSTEM.md`.
+  滑鼠藍色光暈改成一層透明圖層放在所有內容最前面（圖片、影片、文字上也看得到），不擋點擊，標題列與彈出視窗不受影響。
+
 ### Wi-Fi 7 Gaming Home Gateway: video without control bar 影片拿掉控制列
 - Joel: "最右邊的影片不要有底下的控制攔". The "Sculpted Light Flow" video plays by itself (muted, looping) with no control
   bar, computer + iPad + phone. Files: `site/wi-fi7-gaming-home-gateway/index.html`, `site/m/wi-fi7-gaming-home-gateway/index.html`.

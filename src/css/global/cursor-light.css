@@ -1,15 +1,11 @@
-/* ---------- 9. Cursor light: blue glow following the mouse, on the page BACKGROUND only (see custom.js) ---------- */
-/* Painted on Wix's background fill layers (colorUnderlay), which are below all images, video and text.
-   Only OPAQUE fills (+ the page background) get it - custom.js tags them .jcd-lit - so transparent layers stacked
-   in the header/columns never add a second copy: the light is one continuous circle at the same viewport
-   position (background-attachment: fixed) across header and sections. */
+/* ---------- 9. Cursor light: blue glow following the mouse (see custom.js "Cursor light") ---------- */
+/* In FRONT of everything on the page (Joel 2026-11-27: "把滑鼠光暈放最前"; before it was painted on the background
+   layers, under images and text). One see-through layer fixed over the window, clicks pass through it. It starts
+   below the header (--hb), so the header stays unlit as before, and stays under dialogs (10000) and the lightbox. */
 :root { --mx: -2000px; --my: -2000px; --hb: 0px; --jcd-light: 0; }
-html.jcd-light-on .jcd-lit[data-testid="colorUnderlay"] {
-  background-image: radial-gradient(200px circle at var(--mx) calc(var(--my) - var(--hb)),
+.jcd-cursor-light { position: fixed; left: 0; right: 0; bottom: 0; top: var(--hb); z-index: 9000; pointer-events: none;
+  background: radial-gradient(200px circle at var(--mx) calc(var(--my) - var(--hb)),
       rgba(var(--jcd-blue-rgb), calc(.18 * var(--jcd-light))) 0%,
       rgba(var(--jcd-blue-rgb), calc(.07 * var(--jcd-light))) 50%,
-      rgba(var(--jcd-blue-rgb), 0) 100%) !important;
-  background-attachment: fixed !important; background-repeat: no-repeat !important;
-  background-position: 0 var(--hb) !important; background-size: 100% calc(100% - var(--hb)) !important; }
-html.jcd-light-on #SITE_HEADER [data-testid="colorUnderlay"] { background-image: none !important; }   /* header: no light */
-
+      rgba(var(--jcd-blue-rgb), 0) 100%) no-repeat; }
+@media print { .jcd-cursor-light { display: none; } }

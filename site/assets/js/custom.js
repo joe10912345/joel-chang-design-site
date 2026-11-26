@@ -284,22 +284,16 @@
   });
 
   ready(function () {
-    /* Cursor light: a blue glow that follows the mouse and lights only the page BACKGROUND (desktop pointer only).
-       custom.css paints it on Wix's background fill layers ([data-testid="colorUnderlay"]), which sit below every
-       image, video and text, so content is never covered. We only move the CSS vars --mx/--my (eased each frame)
-       and fade --jcd-light in/out. */
+    /* Cursor light: a blue glow that follows the mouse (desktop pointer only). Since Joel 2026-11-27 ("把滑鼠光暈放最前")
+       it is one see-through layer IN FRONT of the page content (custom.css .jcd-cursor-light), clicks pass through.
+       We only move the CSS vars --mx/--my (eased each frame) and fade --jcd-light in/out. */
     var fine = window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches;
     var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (fine && !calm) {
       var rs = document.documentElement.style, hdrEl = document.getElementById('SITE_HEADER');
       document.documentElement.classList.add('jcd-light-on');
-      /* light only opaque background fills (and the page background), so stacked transparent layers don't double it */
-      Array.prototype.forEach.call(document.querySelectorAll('[data-testid="colorUnderlay"]'), function (u) {
-        var m = getComputedStyle(u).backgroundColor.match(/rgba?\(([^)]+)\)/), a = 1;
-        if (m) { var parts = m[1].split(','); a = parts.length > 3 ? parseFloat(parts[3]) : 1; }
-        if (u.closest('#SITE_HEADER')) return;   /* the header never gets the light (Joel) */
-        if (a >= 0.99 || u.closest('#BACKGROUND_GROUP, [id^="pageBackground"]')) u.classList.add('jcd-lit');
-      });
+      var layer = document.createElement('div'); layer.className = 'jcd-cursor-light'; layer.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(layer);
       var tx = 0, ty = 0, gx = 0, gy = 0, li = 0, lt = 0, raf = 0, seen = false;
       var step = function () {
         gx += (tx - gx) * 0.14; gy += (ty - gy) * 0.14; li += (lt - li) * 0.08;
