@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Fix: Achievements numbers cut at the right
+- The rolling digit boxes took their width from a measurement that could happen before the web font loaded (narrower fallback font) and clipped all four sides. Now each digit box holds an invisible copy of its final digit (exact width/height in the real font, also after the font arrives), the rolling strip sits on top, the roll distance is a percentage of the strip, and only the top/bottom are clipped. `custom.js`, `custom.css` `.jcd-odo*`.
+
 ### Home Selected grid: no flash in the gaps
 - Joel: moving the mouse through the gap between two tiles made everything bright for a moment. The spotlight now moves straight from tile to tile and stays on the last tile while the mouse is in a gap; it only clears when the mouse leaves the whole grid. `custom.js` "Home Selected grid".
 

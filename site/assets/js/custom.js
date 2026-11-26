@@ -1058,19 +1058,17 @@
     });
     if (!nums.length) return;
     nums.forEach(function (n) {
-      var h = n.probe.offsetHeight;   /* layout px: not changed by the page zoom or any scaling transform */
-      if (!h) return;
       var wrap = document.createElement('span'); wrap.className = 'jcd-odo'; wrap.setAttribute('aria-label', n.digits.join(''));
       n.digits.forEach(function (d, k) {
-        var od = document.createElement('span'); od.className = 'jcd-odo-d'; od.style.height = h + 'px';
-        /* each column is as wide as its final digit (a column holds all ten digits, and a wide 0 must not push
-           "10+" onto two lines) */
-        var pw = document.createElement('span'); pw.textContent = d; n.probe.parentNode.insertBefore(pw, n.probe);
-        od.style.width = pw.offsetWidth + 'px'; pw.parentNode.removeChild(pw);
+        /* an invisible copy of the final digit gives the column its exact width + height in the real font (also after
+           the web font arrives); the rolling strip sits on top and is clipped top/bottom only (2nd pass: digits were
+           cut at the right when the width was measured) */
+        var od = document.createElement('span'); od.className = 'jcd-odo-d';
+        var sz = document.createElement('span'); sz.className = 'jcd-odo-s'; sz.textContent = d; od.appendChild(sz);
         var col = document.createElement('span'); col.className = 'jcd-odo-c'; col.setAttribute('aria-hidden', 'true');
         var total = (n.digits.length - k) * 10 + (+d);
-        for (var j = 0; j <= total; j++) { var i = document.createElement('span'); i.textContent = j % 10; i.style.height = h + 'px'; i.style.lineHeight = h + 'px'; col.appendChild(i); }
-        od.appendChild(col); wrap.appendChild(od); n.cols.push({ col: col, total: total, h: h });
+        for (var j = 0; j <= total; j++) { var i = document.createElement('span'); i.textContent = j % 10; col.appendChild(i); }
+        od.appendChild(col); wrap.appendChild(od); n.cols.push({ col: col, total: total });
       });
       var blk = n.probe.closest('h1,h2,h3,h4,h5,h6,p') || n.probe.parentNode; blk.style.whiteSpace = 'nowrap';
       n.probe.parentNode.replaceChild(wrap, n.probe);
@@ -1079,7 +1077,7 @@
       nums.forEach(function (n, idx) {
         n.cols.forEach(function (c) {
           c.col.style.transitionDelay = (idx * 0.15) + 's';
-          c.col.style.transform = 'translateY(' + (-c.h * c.total) + 'px)';
+          c.col.style.transform = 'translateY(' + (-100 * c.total / (c.total + 1)).toFixed(4) + '%)';   /* % of the strip */
         });
       });
     }
