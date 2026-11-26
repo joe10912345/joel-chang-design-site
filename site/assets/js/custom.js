@@ -129,8 +129,9 @@
        site/index.html and site/m/index.html (the phone page links to the phone versions). */
     var W = 1192, H = 1259;
     var GRID = {   /* [x0,x1) and [y0,y1) of each tile column / row, in image pixels */
-      'comp-mv7qmnmm': { c: [[0, 390], [402, 795], [805, 1192]], r: [[0, 385], [394, 786], [800, 1190]] },
-      'comp-mv7qmnmr': { c: [[0, 391], [401, 794], [804, 1192]], r: [[0, 385], [394, 785], [800, 1190]] }
+      /* re-measured 2026-11-26 (Joel: black edges showed): exact photo areas between the black gutters */
+      'comp-mv7qmnmm': { c: [[1, 384], [405, 789], [809, 1192]], r: [[0, 380], [398, 781], [801, 1185]] },
+      'comp-mv7qmnmr': { c: [[3, 385], [405, 789], [808, 1191]], r: [[0, 380], [398, 782], [801, 1185]] }
     };
     var LINKS = {
       'comp-mv7qmnmm': [   /* Consumer Tech / Smart Home / Lifestyle & Wearable */
@@ -156,7 +157,7 @@
       GRID[id].r.forEach(function (r) { GRID[id].c.forEach(function (c) {
         var link = (LINKS[id] || [])[n++] || ['', ''];
         if (!link[0]) return;                                                /* no product page: no hotspot, no effect */
-        var x0 = c[0] + 1, x1 = c[1] - 1, y0 = r[0] + 1, y1 = r[1] - 1;            /* 1px inset */
+        var x0 = c[0] + 2, x1 = c[1] - 2, y0 = r[0] + 2, y1 = r[1] - 2;            /* 2px inset: never a black gutter in the lifted crop */
         var x = x0 / W, y = y0 / H, w = (x1 - x0) / W, h = (y1 - y0) / H;
         var t = document.createElement('a'); t.className = 'jcd-tile';
         t.href = link[0]; t.setAttribute('aria-label', link[1]);
@@ -190,12 +191,23 @@
         var s = Math.max(fr.width / 2734, fr.height / 1630);              /* object-fit: cover */
         var ox = fr.left + (fr.width - 2734 * s) / 2, oy = fr.top + (fr.height - 1630 * s) / 2;
         var bx = ox + 169 * s, by = oy + 137 * s, bw = 2407 * s, bh = 1354 * s;
-        var w = Math.max(bw, bh * 16 / 9) + 2, h = w * 9 / 16;            /* cover the window, 1px each side */
+        /* slight overscan (0.6% + 2px a side), then clipped back to the window: the player's own dark edge pixels never show
+           (Joel 2026-11-26: black edges around the video) */
+        var w = Math.max(bw, bh * 16 / 9) * 1.006 + 4, h = w * 9 / 16;
         var cx = bx + bw / 2, cy = by + bh / 2;
         var z = window.__jcdZoom || 1;   /* rects are screen px; styles are CSS px */
         vid.style.setProperty('width', w / z + 'px', 'important');
         vid.style.transform = 'translate(' + (cx - w / 2 - vr.left) / z + 'px,' + (cy - h / 2 - vr.top) / z + 'px)';
+        vid.style.clipPath = 'inset(' + ((h - bh) / 2 / z).toFixed(2) + 'px ' + ((w - bw) / 2 / z).toFixed(2) + 'px)';
+        /* moving glow: a blue ring that slowly turns around the window and breathes (custom.css .jcd-vglow) */
+        var host = vid.parentElement; if (!host) return;
+        if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
+        if (!glow) { glow = document.createElement('div'); glow.className = 'jcd-vglow'; host.insertBefore(glow, vid); }
+        var hr = host.getBoundingClientRect();
+        glow.style.left = ((bx - hr.left) / z).toFixed(1) + 'px'; glow.style.top = ((by - hr.top) / z).toFixed(1) + 'px';
+        glow.style.width = (bw / z).toFixed(1) + 'px'; glow.style.height = (bh / z).toFixed(1) + 'px';
       };
+      var glow = null;
       fit(); window.addEventListener('resize', fit); window.addEventListener('load', fit);
     }
 

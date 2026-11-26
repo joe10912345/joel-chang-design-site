@@ -9,6 +9,11 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Home: Cross-Category black edges, video black edges, moving glow around the video
+- Cross-Category: the tile crop rectangles were 3-6px off the real photo areas, so the lifted crop showed slices of the black gutter. Re-measured both images (photo areas between the gutters) and inset 2px. `custom.js` GRID.
+- Video: the Vimeo player's own dark edge pixels showed; it is now 0.6% (+2px a side) larger than the glow frame's window and clipped back to the window with `clip-path` (player buttons stay whole).
+- Moving glow (Joel): a blurred blue / navy / violet ring sits exactly under the video window and slowly turns around it (9s) while breathing (4.5s); off under reduced motion. `custom.js` (video fit), `custom.css` `.jcd-vglow` (@property --jcd-va).
+
 ### About signature reveal; Design Approach cards interactive; smaller hover grow on category words
 - About signature: hidden until it scrolls into view, then appears left to right with a soft edge (1.6s), once; all platforms (Joel chose this over stroke-by-stroke writing). CSS mask with `!important` (Wix's img rule sets mask-position/size and loads later); the transition only runs on the way in (no hide flash at load); a scroll check backs up the IntersectionObserver. `custom.js` "About signature", `custom.css` `.jcd-sig`.
 - Home Design Approach cards: all four react to the mouse (frame brightens, faint light fill). Card 1 (the link) also lifts 4px with a soft blue/navy glow; Wix's text ">>" is replaced by the round ">>" (40px, phone 26px) that fills `--jcd-blue` when the card is pressed, page opens 0.42s later. `custom.js` (Design Approach block), `custom.css` `.jcd-da-*`.
