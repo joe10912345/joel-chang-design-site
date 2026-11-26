@@ -1329,6 +1329,12 @@
       if (last && last.focus) last.focus({ preventScroll: true });
     }
     window.__jcdGuest = open;
+    /* /scope (old links, bookmarks, search results) now lands here with ?guest=1: show the dialog at once */
+    if (/[?&]guest=1(&|$)/.test(location.search)) {
+      var card = links[0].closest('.gpDCD5') || links[0];
+      setTimeout(function () { card.scrollIntoView({ block: 'center' }); open(links[0]); }, 400);
+      if (history.replaceState) history.replaceState(null, '', location.pathname + location.hash);
+    }
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && dlg && dlg.classList.contains('is-open')) close(); });
     /* capture phase: runs before the whole-card click handler, so the card never navigates to the old page */
     document.addEventListener('click', function (e) {

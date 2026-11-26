@@ -11,6 +11,10 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Old /scope address opens the Guest Area dialog 舊的 /scope 網址改為跳出視窗
+- Joel: "等等 我還是要改成彈出視窗". `/scope` (and `/m/scope`) no longer show the Wix password page: they forward to Defense with `?guest=1`, which opens the Guest Area dialog at once (also after the phone/computer switch: `site.js` now keeps the query when it redirects). `/scope` removed from `sitemap.xml` and marked `noindex`. 舊網址、書籤、搜尋結果打開 /scope 都會回到 Defense 並直接跳出視窗。
+- Files: `site/scope/index.html`, `site/m/scope/index.html`, `site/sitemap.xml`, `site/assets/js/site.js`, `src/js/product/guest-area-dialog.js` → built `custom.js`, `?v=` in all page HTML.
+
 ### T. Scope: Guest Area dialog instead of the separate password page 訪客區改為彈出視窗
 - Joel: "取消單獨的 Guest Area tab，跳像contact 寄出後的那種視窗，文字都要用我的design system". The Defense "T. SCOPE" card (photo, title, >>) no longer opens the separate Wix "Guest area" password page; it opens a dialog in the Contact "sent" style: dark glass panel (8px), round blue lock, "Guest Area", "T. Scope is a confidential defense project, shared on request.", "REQUEST ACCESS" → Contact (turns blue on hover/press), × / Esc / outside to close. The protected content was never on this site, so there is no password field. Phone, iPad and computer (one tap opens it). 點 T. SCOPE 改跳出設計系統樣式的視窗，按鈕連到 Contact；沒有密碼欄（受保護內容不在本站）。
 - Files: `src/js/product/guest-area-dialog.js`, `src/css/product/guest-area-dialog.css` (new), `src/js/global/one-tap-links.js`, `src/*/ORDER.txt` → built files, `?v=` in all page HTML, `src/README.md`, `DESIGN-SYSTEM.md`.

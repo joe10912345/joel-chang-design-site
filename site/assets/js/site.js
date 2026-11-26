@@ -23,7 +23,8 @@
     var phone = touch && shortSide < 600;
     var narrowWindow = !touch && (window.innerWidth || 9999) < 600;
     var want = pref || ((phone || narrowWindow) ? 'mobile' : 'desktop');
-    if (alt && want !== mode) { location.replace(alt + location.hash); return; }
+    /* keep ?guest=1 etc. (Joel 2026-11-27: /scope -> Defense opens the Guest Area dialog on phones too) */
+    if (alt && want !== mode) { var qs = location.search.replace(/[?&]layout=(desktop|mobile)/, '').replace(/^&/, '?'); location.replace(alt + (alt.indexOf('?') < 0 ? qs : '') + location.hash); return; }
   } catch (e) {}
   /* Tablets / touch devices on the desktop layout: the page is laid out a fixed width and scaled to the iPad screen.
      ALL the numbers (scale, iPad side margins, content widths) live in jcd-config.js (loaded before this file);
