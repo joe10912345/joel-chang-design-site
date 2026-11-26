@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Home Selected grid: no flash in the gaps
+- Joel: moving the mouse through the gap between two tiles made everything bright for a moment. The spotlight now moves straight from tile to tile and stays on the last tile while the mouse is in a gap; it only clears when the mouse leaves the whole grid. `custom.js` "Home Selected grid".
+
 ### Home Achievements numbers: odometer roll
 - Joel chose option A of `preview/achievement-counters.html`. 10+ / 15+ / 30+ / 8+ / 2+: each digit rolls up like an odometer (units more turns than tens, 1.8s fast-then-slow), the five numbers 0.15s apart, once, when they scroll into view. Wix's font and size kept (column height = measured digit height; each column as wide as its final digit, the line never wraps). All platforms; off under reduced motion. `custom.js`, `custom.css` `.jcd-odo*`.
 

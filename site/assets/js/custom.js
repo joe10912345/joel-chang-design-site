@@ -1006,8 +1006,16 @@
       fx.querySelector('.jcd-nm').appendChild(document.createTextNode(n[1]));
       item.appendChild(fx);
       if (touch) return;
-      a.addEventListener('mouseenter', function () { g.classList.add('jcd-hot'); a.classList.add('jcd-hot-tile'); });
-      a.addEventListener('mouseleave', function () { g.classList.remove('jcd-hot'); a.classList.remove('jcd-hot-tile'); });
+      /* the spotlight moves to the tile under the mouse; in the gaps between tiles it stays where it was
+         (Joel 2026-11-26: going through a gap made everything flash bright), and only leaving the grid clears it */
+      a.addEventListener('mouseenter', function () {
+        [].forEach.call(g.querySelectorAll('a.jcd-hot-tile'), function (o) { if (o !== a) o.classList.remove('jcd-hot-tile'); });
+        g.classList.add('jcd-hot'); a.classList.add('jcd-hot-tile');
+      });
+    });
+    if (!touch) g.addEventListener('mouseleave', function () {
+      g.classList.remove('jcd-hot');
+      [].forEach.call(g.querySelectorAll('a.jcd-hot-tile'), function (o) { o.classList.remove('jcd-hot-tile'); });
     });
   });
 
