@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Design Approach card 1: no lift, blue gradient slides in, small >> in the corner
+- Joel chose C + 1 of `preview/design-approach-card.html`: card 1 no longer moves on hover; a light blue gradient slides in from the left. The round >> is 30px (phone 20px) in the bottom-right corner, clear of the text; still fills blue when pressed. `custom.css` `.jcd-da-*`.
+
 ### Cross-Category: bigger glow behind the hovered tile
 - Joel: glow too small. The halo now reaches ~4 gutters out (was 1, clipped to the gutter) with a wider, stronger blue; the lifted crop grows 1.025 (was 1.012). `custom.css` section 4.
 
