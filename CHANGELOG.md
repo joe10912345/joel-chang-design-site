@@ -7,6 +7,18 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ---
 
+## 2026-11-26
+
+### Contact form: hover / focus underline in the site blue
+- Joel: the white line under each Contact field turned Wix's blue (#1A2DF3) on hover; now `--jcd-blue` #0062D9 on hover and while typing (also the field labels). `custom.css`, desktop + iPad + phone contact pages.
+
+### Product pages: closing photo revealed while scrolling (like Wix), whole photo shown
+- Joel: the bottom image of product pages should be "revealed while scrolling" like the Wix site (wi-fi7-2022), and it was still cut. Wix kept the photo fixed to the screen while the last section's top edge slid over it. `custom.js` (block after the photo pinning): the last section of a page, when it is a photo with no text, is now as tall as the photo (width / photo ratio, at most one screen); while it scrolls in, the photo stays still at the bottom of the screen and the section edge slides up over it. At the end of the page the whole photo is visible. Desktop, iPad and phone. Its empty Wix content box (1000px) is shrunk so no blank strip is left below.
+- The exported closing files were Wix crops (1.44:1 desktop, ~1:1 phone) that cut the products; 18 pages now use the full original from `media-originals/` -> `site/assets/media/jcd_closing_<page>_<w>x<h>.jpg` (desktop max 2560px, phone 1280px). Pages: moai-router, wi-fi7-extender, wi-fi7-hgu-ap, wi-fi7-gaming-home-gateway, wi-fi7-2022, airgain, lionic, interstellar05, jcg-tough-welding, t-blade, t-interceptor-cs, t-interceptormp, nlg-mma200, teana, speeder-pro, zenfone-9, sagittarius, assistive-products (desktop + m/). Interstellar and Assistive use the same photo in an earlier section too; that one is unchanged.
+
+### Home slideshow always starts at the first slide
+- Joel: coming back to the home page from any page must start the top slideshow at slide 1. `site.js` section 6: starts at index 0 (not the slide that happened to be in the export), and resets to slide 1 when the browser restores the page from its back/forward cache (`pageshow` persisted). All platforms.
+
 ## 2026-11-25
 
 ### Whole desktop/iPad page 15% smaller (UI_SCALE 0.85); top images still full screen

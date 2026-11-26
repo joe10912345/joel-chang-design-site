@@ -180,7 +180,7 @@
       var item = g.querySelector('[data-testid="gallery-item-item"]'), img = item && item.querySelector('img');
       var counter = g.querySelector('[data-testid="gallery-counter"]');
       if (!img || srcs.length < 2) return;
-      var n = srcs.length, idx = Math.max(0, srcs.indexOf(img.getAttribute('src'))), DUR = 1000, EVERY = 4000;
+      var n = srcs.length, idx = 0, DUR = 1000, EVERY = 4000;   /* always the first slide on arrival (Joel 2026-11-26) */
       var pos = img.style.objectPosition || '50% 50%';
       var view = document.createElement('div');
       view.className = 'jcd-slides';
@@ -224,6 +224,12 @@
         bt.addEventListener('click', function (e) { e.preventDefault(); go(/prev/i.test(bt.getAttribute('data-testid')) ? -1 : 1); restart(); });
       });
       document.addEventListener('visibilitychange', function () { if (document.hidden) clearInterval(timer); else restart(); });
+      /* Back to the home page (Joel 2026-11-26): always start again at the first slide. The back button restores the
+         page from the browser's page cache (bfcache) with the slideshow where it was left, so reset it here. */
+      window.addEventListener('pageshow', function (e) {
+        if (!e.persisted) return;
+        busy = false; idx = 0; setX(0, false); label(); restart();
+      });
     });
 
     /* 7. Header show/hide on scroll lives in custom.js (Joel's design). */

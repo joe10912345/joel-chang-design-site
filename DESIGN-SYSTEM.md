@@ -4,7 +4,7 @@ The visual rules Joel has set for this site. **Any person or AI changing the loo
 when Joel changes a rule.** Values are implemented in `site/assets/css/custom.css` (tokens at the very top) and
 `site/assets/js/custom.js`. History of each decision: `CHANGELOG.md`.
 
-Last updated: 2026-11-24.
+Last updated: 2026-11-26.
 
 ---
 
@@ -12,7 +12,7 @@ Last updated: 2026-11-24.
 
 | Token | Value | Use |
 |---|---|---|
-| `--jcd-blue` / `--jcd-blue-rgb` | **#0062D9** · rgb(0, 98, 217) | The one interactive blue: top-menu hover and press, dropdown press, phone-menu press, logo + LinkedIn/Behance icon hover, **every pressed state that turns blue**, cursor light, hover glows (Cross-Category tiles), pressed outline (Design Approach card 1), recommendation quote mark + LinkedIn tile + top-left glow, Contact "sent" tick |
+| `--jcd-blue` / `--jcd-blue-rgb` | **#0062D9** · rgb(0, 98, 217) | The one interactive blue: top-menu hover and press, dropdown press, phone-menu press, logo + LinkedIn/Behance icon hover, **every pressed state that turns blue**, cursor light, hover glows (Cross-Category tiles), pressed outline (Design Approach card 1), recommendation quote mark + LinkedIn tile + top-left glow, Contact "sent" tick, Contact field underline on hover/focus |
 | `--jcd-navy` / `--jcd-navy-rgb` | **#00176C** · rgb(0, 23, 108) | Deep blue-violet, second colour of gradients: recommendation card bottom-right glow, initials avatar gradient end |
 | Black | #000 | Page canvas (`html, body`), dark pages' background layer (`.jcd-dark-canvas`) |
 | White (page bg) | #fff | Light pages keep Wix's white page background (Wi-Fi 7 HGU/AP, MoAI, Extender, 2022, Airgain, Lionic, AI Tool Kit, NLG MMA200, Sagittarius, Assistive) — never paint it black |
@@ -81,6 +81,8 @@ Other rules
 Top image ("hero", home slideshow + product pages): phone **50% of the screen height**; any portrait screen on the desktop page (iPad upright) **50%**; landscape (computers, iPad sideways) **exactly one screen** (`100svh`, divided by `__jcdZoom` on computers).
 Scripts measuring with `getBoundingClientRect` must divide by `window.__jcdZoom` before writing CSS px.
 Background photos: Wix sticky/"fixed" section photos are pinned to their section by `custom.js` (no parallax). Never leave `overflow: clip/hidden` on a Wix `bgMedia_*` box that sits outside its section (iPad Safari hides the photo); sticky screen-sized Wix backgrounds crop products on tall screens — pin them to their section instead (About "What I Believe", Gaming gateway "Aerodynamic Concept").
+Closing photo of product pages (last section, photo only): Wix-style scroll reveal — section as tall as the whole photo (max one screen), photo stays still at the screen bottom while the section edge slides over it (`custom.js`, `.jcd-reveal`). Use the full original photo, never a Wix crop.
+Home slideshow: always starts at slide 1 when the page is shown (also after the back button).
 
 ## 6. Interaction states
 

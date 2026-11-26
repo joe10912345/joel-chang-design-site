@@ -24,6 +24,54 @@
     });
   });
 
+  /* Closing photo of product pages: Wix-style scroll reveal (Joel 2026-11-26: "邊滾動揭露", like the Wix site).
+     The last section of a product page is a photo with no text. It is now exactly as tall as the photo (width / photo
+     ratio, at most one screen), so the whole photo (products included) is visible at the end of the page. While the
+     page scrolls in, the photo stays still at the bottom of the screen and the section's top edge slides up over it,
+     the way Wix's "fixed" background did. Photo-only = no text in the section. Phone, iPad and computer alike. */
+  ready(function () {
+    var secs = [].filter.call(document.querySelectorAll('#PAGES_CONTAINER section'), function (s) {
+      return !s.parentElement.closest('section'); });
+    var sec = secs[secs.length - 1]; if (!sec) return;
+    /* the section's background photo (on the phone Wix did not make it sticky, so it may not be pinned above) */
+    var wi = sec.querySelector('[id^="bgMedia_"] > wow-image[id^="img_"]'); if (!wi) return;
+    if (sec.querySelector('[data-testid="richTextElement"]')) return;
+    var img = wi.querySelector('img'); if (!img) return;
+    var media = wi.parentElement;
+    media.style.setProperty('top', '0', 'important'); media.style.setProperty('height', '100%', 'important');
+    media.style.setProperty('overflow', 'visible', 'important');
+    ['position:absolute', 'top:0', 'left:0', 'width:100%', 'height:100%'].forEach(function (d) {
+      var kv = d.split(':'); wi.style.setProperty(kv[0], kv[1], 'important'); });
+    img.style.setProperty('width', '100%', 'important'); img.style.setProperty('height', '100%', 'important');
+    img.style.setProperty('object-fit', 'cover', 'important');
+    sec.classList.add('jcd-reveal');
+    /* Wix gives the section's empty content box its old height (e.g. 1000px): it would leave a blank strip below */
+    [].forEach.call(sec.querySelectorAll('[data-testid="inline-content"], [data-testid="mesh-container-content"]'), function (c) {
+      c.style.setProperty('height', '100%', 'important'); c.style.setProperty('min-height', '0', 'important'); });
+    function Z() { return window.__jcdZoom || 1; }
+    var ratio = 0;
+    function size() {
+      if (img.naturalWidth) ratio = img.naturalWidth / img.naturalHeight;
+      if (!ratio) return;
+      var w = sec.offsetWidth, vh = window.innerHeight / Z();
+      var h = Math.round(Math.min(w / ratio, vh));
+      sec.style.setProperty('height', h + 'px', 'important');
+      sec.style.setProperty('min-height', h + 'px', 'important');
+      move();
+    }
+    function move() {
+      var r = sec.getBoundingClientRect(), z = Z();
+      /* how far the section's bottom is below the screen bottom, in layout px; the photo is moved up by that much */
+      var d = Math.max(0, Math.min((r.bottom - window.innerHeight) / z, sec.offsetHeight));
+      wi.style.setProperty('transform', 'translate3d(0,' + (-d).toFixed(1) + 'px,0)', 'important');
+    }
+    window.addEventListener('scroll', move, { passive: true });   /* direct, not rAF: keeps the photo glued while scrolling */
+    window.addEventListener('resize', size);
+    window.addEventListener('orientationchange', function () { setTimeout(size, 300); });
+    if (img.complete) size(); img.addEventListener('load', size);
+    setTimeout(size, 600); setTimeout(size, 2000);
+  });
+
   ready(function () {
     /* Design Approach cards (home). Joel 2026-11-24: no glow and nothing to press on the cards, EXCEPT the first one
        (01 DISCOVERY, the one with the ">>" arrow): it is pressable — the whole card follows the arrow's link and gets a
