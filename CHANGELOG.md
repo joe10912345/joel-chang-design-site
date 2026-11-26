@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Round ">>": fill runs left to right
+- Joel: not from the centre - the blue now fills the circle from left to right (.45s). `custom.css` .jcd-go::before (scaleX, origin left; the round chip clips it).
+
 ### Round ">>": fills blue on hover, click opens at once
 - Joel: the round >> (home Selected tiles, category cards, Design Approach card 1) now fills with `--jcd-blue` from its centre (.45s) while the mouse is on its card (touch: while pressed). The "fill, then open 0.42s later" click handler was removed: a click opens the page at once. `custom.css` (.jcd-go::before), `custom.js`.
 

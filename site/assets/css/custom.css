@@ -643,12 +643,12 @@ img.jcd-sig.jcd-sig-in { -webkit-mask-position: 0 0 !important; mask-position: 0
 #comp-mp2fugu9 img { animation: jcdVFrame 4.5s ease-in-out infinite; }
 @keyframes jcdVFrame { 0%, 100% { filter: brightness(.35); } 50% { filter: brightness(1.15); } }
 @media (prefers-reduced-motion: reduce) { .jcd-vglow, #comp-mp2fugu9 img { animation: none; } }
-/* Round >> fills with --jcd-blue from its centre while the mouse is on its card (Joel 2026-11-26): home Selected
+/* Round >> fills with --jcd-blue from left to right while the mouse is on its card (Joel 2026-11-26): home Selected
    tiles, category cards (computer hover chip + touch chips while pressed), Design Approach card 1. */
 .jcd-go { isolation: isolate; overflow: hidden; }
 .jcd-go:not(.jcd-go-hover):not(.jcd-da-go) { position: relative; }
-.jcd-go::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 50%; background: var(--jcd-blue);
-  transform: scale(0); transition: transform .45s cubic-bezier(.2, .7, .2, 1); }
+.jcd-go::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--jcd-blue);   /* fills left -> right (Joel) */
+  transform: scaleX(0); transform-origin: 0 50%; transition: transform .45s cubic-bezier(.2, .7, .2, 1); }
 .jcd-spot a.jcd-hot-tile .jcd-go::before, .gpDCD5:hover .jcd-go::before, .jcd-da-link:hover .jcd-go::before,
 a.item-link-wrapper:active .jcd-go::before, .gpDCD5:active .jcd-go::before, .jcd-da-link:active .jcd-go::before { transform: scale(1); }
 .jcd-spot a.jcd-hot-tile .jcd-go, .gpDCD5:hover .jcd-go, .jcd-da-link:hover .jcd-go { border-color: var(--jcd-blue); background: rgba(20, 22, 28, .45); }
