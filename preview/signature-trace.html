@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>簽名手描</title>
+<style>
+  :root { --jcd-blue: #0062d9; --jcd-blue-rgb: 0, 98, 217; --mut: #8d8f99; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #000; color: #eee; font: 15px/1.55 system-ui, "Noto Sans TC", sans-serif; padding: 22px 16px 80px; }
+  h1 { font-size: 22px; margin: 0 0 6px; } .note { color: var(--mut); max-width: 980px; margin: 0 0 14px; }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; align-items: center; }
+  .bar button { background: #15161b; color: #eee; border: 1px solid #30313a; border-radius: 6px; padding: 8px 14px; font: inherit; cursor: pointer; }
+  .bar button.main { background: var(--jcd-blue); border-color: var(--jcd-blue); color: #fff; }
+  .bar label { color: var(--mut); font-size: 13px; display: flex; align-items: center; gap: 6px; }
+  .pad { position: relative; width: 100%; max-width: 1400px; background: #0b0c10; border: 1px solid #23242b; border-radius: 8px; touch-action: none; user-select: none; }
+  .pad img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .28; pointer-events: none; }
+  .pad canvas { position: relative; display: block; width: 100%; height: auto; cursor: crosshair; }
+  .stat { font-size: 13px; color: var(--mut); margin: 10px 0; } .stat b { color: #fff; }
+  .warn { color: #ffb454; } .good { color: #7fd18b; }
+  .play { margin-top: 14px; background: radial-gradient(90% 120% at 30% 40%, rgba(0, 60, 180, .55), transparent 60%), #000; border-radius: 8px; padding: 30px; }
+  .play svg { display: block; width: 100%; max-width: 752px; height: auto; }
+  .play .small svg { max-width: 376px; margin-top: 18px; }
+</style>
+</head>
+<body>
+<h1>About 簽名：手描筆跡</h1>
+<p class="note">在下面放大的簽名上，用滑鼠、觸控筆或手指<b>照你平常簽名的方式描一次</b>（順序、方向、快慢都會被記下來）。每次放開就是一筆。描完按「播放」看效果；有沒描到的地方，按「檢查覆蓋」會用橘色標出來，可以補描。滿意後按「存檔」（會下載 signature-trace.json 到「下載」資料夾），跟我說一聲就好。</p>
+<div class="bar">
+  <button class="main" id="play">播放 ▶</button>
+  <button id="check">檢查覆蓋</button>
+  <button id="undo">上一筆</button>
+  <button id="reset">全部重描</button>
+  <label>筆刷粗細 <input type="range" id="bw" min="4" max="14" value="8"> <span id="bwv">8</span></label>
+  <label><input type="checkbox" id="real" checked> 照我描的速度播放</label>
+  <button class="main" id="save">存檔</button>
+</div>
+<div class="pad" id="pad"><img id="ghost" alt=""><canvas id="cv"></canvas></div>
+<div class="stat" id="stat">還沒描。</div>
+<div class="play"><div id="pv"></div><div class="small" id="pv2"></div></div>
+<script>
+  var SRC = '../site/assets/media/about/about-01-376x96.png', W = 376, H = 96, K = 4;   /* drawing pad = 4x the signature */
+  var cv = document.getElementById('cv'), ctx = cv.getContext('2d'), ghost = document.getElementById('ghost');
+  ghost.src = SRC; cv.width = W * K; cv.height = H * K;
+  var strokes = [], cur = null, t0 = null, bw = 8, missMask = null;
+  var sig = new Image(); sig.src = SRC; var sigA = null;
+  sig.onload = function () { var c = document.createElement('canvas'); c.width = W; c.height = H; var x = c.getContext('2d'); x.drawImage(sig, 0, 0); sigA = x.getImageData(0, 0, W, H).data; redraw(); };
+  function pos(e) { var r = cv.getBoundingClientRect(); return { x: (e.clientX - r.left) / r.width * W, y: (e.clientY - r.top) / r.height * H }; }
+  cv.addEventListener('pointerdown', function (e) { e.preventDefault(); cv.setPointerCapture(e.pointerId); if (t0 === null) t0 = performance.now();
+    var p = pos(e); cur = [[+p.x.toFixed(2), +p.y.toFixed(2), Math.round(performance.now() - t0)]]; strokes.push(cur); missMask = null; redraw(); });
+  cv.addEventListener('pointermove', function (e) { if (!cur) return; var evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
+    evs.forEach(function (ev) { var p = pos(ev); cur.push([+p.x.toFixed(2), +p.y.toFixed(2), Math.round(performance.now() - t0)]); }); redraw(); });
+  ['pointerup', 'pointercancel'].forEach(function (n) { cv.addEventListener(n, function () { if (cur && cur.length < 2) strokes.pop(); cur = null; redraw(); stat(); }); });
+  function redraw() {
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    if (missMask) { ctx.fillStyle = '#ff9f1c'; missMask.forEach(function (m) { ctx.fillRect(m[0] * K, m[1] * K, K, K); }); }
+    strokes.forEach(function (s, i) {
+      ctx.strokeStyle = 'rgba(0, 98, 217, .55)'; ctx.lineWidth = bw * K; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      ctx.beginPath(); s.forEach(function (p, j) { j ? ctx.lineTo(p[0] * K, p[1] * K) : ctx.moveTo(p[0] * K, p[1] * K); }); ctx.stroke();
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+      ctx.fillStyle = '#3ddc84'; ctx.beginPath(); ctx.arc(s[0][0] * K, s[0][1] * K, 7, 0, 7); ctx.fill();
+      ctx.fillStyle = '#000'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center'; ctx.fillText(i + 1, s[0][0] * K, s[0][1] * K + 3.5);
+    });
+  }
+  function coverage() {   /* share of the signature's ink under the traced brush */
+    if (!sigA) return null;
+    var c = document.createElement('canvas'); c.width = W; c.height = H; var x = c.getContext('2d');
+    x.strokeStyle = '#fff'; x.lineWidth = bw; x.lineCap = 'round'; x.lineJoin = 'round';
+    strokes.forEach(function (s) { x.beginPath(); s.forEach(function (p, j) { j ? x.lineTo(p[0], p[1]) : x.moveTo(p[0], p[1]); }); x.stroke(); });
+    var m = x.getImageData(0, 0, W, H).data, ink = 0, hit = 0, miss = [];
+    for (var i = 0; i < W * H; i++) if (sigA[i * 4 + 3] > 90) { ink++; if (m[i * 4 + 3] > 60) hit++; else miss.push([i % W, Math.floor(i / W)]); }
+    return { pct: ink ? hit / ink * 100 : 0, miss: miss };
+  }
+  function stat() { var c = coverage(); var el = document.getElementById('stat');
+    if (!strokes.length) { el.textContent = '還沒描。'; return; }
+    el.innerHTML = '已描 <b>' + strokes.length + '</b> 筆，總時間 <b>' + (last() / 1000).toFixed(1) + ' 秒</b>' + (c ? '，蓋住簽名 <b class="' + (c.pct > 97 ? 'good' : 'warn') + '">' + c.pct.toFixed(1) + '%</b>' + (c.pct > 97 ? '（很好）' : '（按「檢查覆蓋」看漏掉的地方）') : ''); }
+  function last() { var s = strokes[strokes.length - 1]; return s ? s[s.length - 1][2] : 0; }
+  document.getElementById('check').addEventListener('click', function () { var c = coverage(); if (c) { missMask = c.miss; redraw(); stat(); } });
+  document.getElementById('undo').addEventListener('click', function () { strokes.pop(); missMask = null; if (!strokes.length) t0 = null; redraw(); stat(); });
+  document.getElementById('reset').addEventListener('click', function () { strokes = []; t0 = null; missMask = null; redraw(); stat(); });
+  document.getElementById('bw').addEventListener('input', function (e) { bw = +e.target.value; document.getElementById('bwv').textContent = bw; redraw(); stat(); });
+  function play() {
+    if (!strokes.length) return;
+    [['pv', 752], ['pv2', 376]].forEach(function (h) {
+      var NS = 'http://www.w3.org/2000/svg', id = 'm' + h[0] + Date.now();
+      var host = document.getElementById(h[0]); host.innerHTML = '';
+      var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+      svg.innerHTML = '<defs><mask id="' + id + '" maskUnits="userSpaceOnUse" x="-10" y="-10" width="' + (W + 20) + '" height="' + (H + 20) + '">' +
+        strokes.map(function (s) { return '<path d="' + s.map(function (p, j) { return (j ? 'L' : 'M') + p[0] + ' ' + p[1]; }).join(' ') + '" fill="none" stroke="#fff" stroke-width="' + bw + '" stroke-linecap="round" stroke-linejoin="round"/>'; }).join('') +
+        '</mask></defs><image href="' + SRC + '" width="' + W + '" height="' + H + '" mask="url(#' + id + ')"/>';
+      host.appendChild(svg);
+      var paths = [].slice.call(svg.querySelectorAll('mask path'));
+      var real = document.getElementById('real').checked, T = last() || 1, scale = real ? 1 : 2200 / T;
+      var segs = paths.map(function (p, i) { var L = p.getTotalLength(); p.style.strokeDasharray = L + ' ' + (L + 30); p.style.strokeDashoffset = L + 15;
+        /* cumulative length along the stroke for each recorded point, to follow the recorded timing */
+        var s = strokes[i], acc = [0]; for (var j = 1; j < s.length; j++) acc.push(acc[j - 1] + Math.hypot(s[j][0] - s[j - 1][0], s[j][1] - s[j - 1][1]));
+        var k = acc[acc.length - 1] ? L / acc[acc.length - 1] : 1; return { p: p, L: L, s: s, acc: acc.map(function (v) { return v * k; }) }; });
+      var start = null;
+      (function step(t) { if (!start) start = t; var el = (t - start) / scale;
+        segs.forEach(function (g) { var s = g.s, len;
+          if (el <= s[0][2]) len = 0; else if (el >= s[s.length - 1][2]) len = g.L;
+          else { var j = 1; while (j < s.length && s[j][2] < el) j++; var f = (el - s[j - 1][2]) / Math.max(1, s[j][2] - s[j - 1][2]); len = g.acc[j - 1] + (g.acc[j] - g.acc[j - 1]) * f; }
+          g.p.style.strokeDashoffset = (len <= 0 ? g.L + 15 : g.L - len).toFixed(2); });
+        if (el < T + 30) requestAnimationFrame(step); })(performance.now());
+    });
+  }
+  document.getElementById('play').addEventListener('click', play);
+  document.getElementById('save').addEventListener('click', function () {
+    var data = JSON.stringify({ src: SRC, w: W, h: H, brush: bw, strokes: strokes });
+    try { localStorage.setItem('jcd-signature-trace', data); } catch (e) {}
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([data], { type: 'application/json' })); a.download = 'signature-trace.json'; a.click();
+    document.getElementById('stat').innerHTML += ' <b class="good">已存檔（下載資料夾 signature-trace.json）</b>';
+  });
+  try { var saved = JSON.parse(localStorage.getItem('jcd-signature-trace') || 'null'); if (saved && saved.strokes) { strokes = saved.strokes; bw = saved.brush || 8; document.getElementById('bw').value = bw; document.getElementById('bwv').textContent = bw; t0 = performance.now() - last() - 400; redraw(); } } catch (e) {}
+  stat();
+</script>
+</body>
+</html>
