@@ -36,6 +36,7 @@
       var el = tgt; tgt = null;
       if (!el || moved || Date.now() - st > 700 || e.defaultPrevented) return;
       if (el.closest('header, #SITE_HEADER, #MENU_AS_CONTAINER, .jcd-lb, [data-jcd-full], form')) return;
+      if (el.hasAttribute('data-jcd-guest') && window.__jcdGuest) { e.preventDefault(); window.__jcdGuest(el); return; }   /* T. Scope: Guest Area dialog */
       if (el.tagName !== 'A') { e.preventDefault(); el.click(); return; }   /* role="link" card: its own click handler */
       var href = el.getAttribute('href') || '';
       if (!href || href.charAt(0) === '#' || /^(javascript|mailto|tel):/i.test(href)) return;

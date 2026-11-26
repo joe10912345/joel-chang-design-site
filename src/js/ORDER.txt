@@ -29,5 +29,6 @@ about/believe-reveal.js
 home/end-to-end-slider.js
 about/signature-reveal.js
 about/portrait-swap.js
+product/guest-area-dialog.js
 global/one-tap-links.js
 global/ios-active.js

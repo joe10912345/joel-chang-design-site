@@ -11,6 +11,10 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### T. Scope: Guest Area dialog instead of the separate password page 訪客區改為彈出視窗
+- Joel: "取消單獨的 Guest Area tab，跳像contact 寄出後的那種視窗，文字都要用我的design system". The Defense "T. SCOPE" card (photo, title, >>) no longer opens the separate Wix "Guest area" password page; it opens a dialog in the Contact "sent" style: dark glass panel (8px), round blue lock, "Guest Area", "T. Scope is a confidential defense project, shared on request.", "REQUEST ACCESS" → Contact (turns blue on hover/press), × / Esc / outside to close. The protected content was never on this site, so there is no password field. Phone, iPad and computer (one tap opens it). 點 T. SCOPE 改跳出設計系統樣式的視窗，按鈕連到 Contact；沒有密碼欄（受保護內容不在本站）。
+- Files: `src/js/product/guest-area-dialog.js`, `src/css/product/guest-area-dialog.css` (new), `src/js/global/one-tap-links.js`, `src/*/ORDER.txt` → built files, `?v=` in all page HTML, `src/README.md`, `DESIGN-SYSTEM.md`.
+
 ### Home End-to-End: text in the squares larger again End-to-End 方塊文字再放大
 - Joel: "end to end 的圖片內文字再放大". Computer + iPad: title 34 → 40px, text 16 → 19px (all 9 squares fit, ≥30px to the edges). Phone: title 13 → 14px, text 9.5 → 10px; on the ~149px phone squares the descriptions are cut after 7 lines ("…"). 電腦／iPad 標題 40、內文 19px；手機 14／10px，手機的說明文字超過 7 行會截斷。
 - Files: `src/css/home/end-to-end-text.css` → built `custom.css`, `?v=` in all page HTML, `DESIGN-SYSTEM.md`.

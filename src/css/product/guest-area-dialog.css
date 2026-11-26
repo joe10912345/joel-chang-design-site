@@ -1,0 +1,37 @@
+/* Guest Area dialog (Joel 2026-11-27; custom.js "Guest Area dialog"): replaces the separate Wix password page of T. Scope.
+   Same language as the Contact "sent" box: dark glass, thin white edge, Poppins, round blue icon, outline button that
+   turns --jcd-blue. Floating panel radius 8px (DESIGN-SYSTEM §2). Sizes in layout px: desktop page, then phone (320px page). */
+.jcd-guest { position: fixed; inset: 0; z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 24px;
+  background: rgba(0, 0, 0, .55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility 0s linear .35s; }
+.jcd-guest.is-open { opacity: 1; visibility: visible; transition: opacity .35s ease; }
+.jcd-guest-box { position: relative; width: 440px; max-width: 100%; padding: 44px 40px 40px; text-align: center; color: #fff;
+  font-family: "Poppins", "Helvetica Neue", Arial, sans-serif; border-radius: 8px;
+  background: rgba(12, 14, 20, .82); -webkit-backdrop-filter: blur(20px) saturate(150%); backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, .16); box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+  transform: translateY(10px) scale(.98); transition: transform .35s cubic-bezier(.2, .7, .2, 1); }
+.jcd-guest.is-open .jcd-guest-box { transform: none; }
+.jcd-guest-ic { width: 44px; height: 44px; margin: 0 auto 16px; display: grid; place-items: center; border-radius: 50%;
+  border: 1.5px solid var(--jcd-blue); color: var(--jcd-blue); }
+.jcd-guest-t { font-size: 22px; font-weight: 500; letter-spacing: .02em; }
+.jcd-guest-s { margin-top: 10px; font-size: 14px; font-weight: 300; line-height: 1.6; color: rgba(255, 255, 255, .7); }
+.jcd-guest-go { display: inline-block; margin-top: 24px; padding: 11px 24px; color: #fff !important; text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, .5); font: 13px/1 "Poppins", Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase;
+  transition: color .2s ease, border-color .2s ease, transform .12s ease; -webkit-tap-highlight-color: transparent; }
+.jcd-guest-go:hover, .jcd-guest-go:focus-visible { color: var(--jcd-blue) !important; border-color: var(--jcd-blue); outline: none; }
+.jcd-guest-go:active { color: var(--jcd-blue) !important; border-color: var(--jcd-blue); transform: scale(.96); }
+.jcd-guest-x { position: absolute; top: 10px; right: 12px; width: 32px; height: 32px; padding: 0; border: 0; background: none; cursor: pointer;
+  color: rgba(255, 255, 255, .6); font: 300 26px/1 "Poppins", Arial, sans-serif; transition: color .2s ease, transform .12s ease; }
+.jcd-guest-x:hover, .jcd-guest-x:focus-visible { color: var(--jcd-blue); outline: none; }
+.jcd-guest-x:active { color: var(--jcd-blue); transform: scale(.92); }
+html.jcd-guest-lock { overflow: hidden; }
+/* phone page (320px layout) */
+.device-mobile-optimized .jcd-guest { padding: 16px; }
+.device-mobile-optimized .jcd-guest-box { width: 260px; padding: 30px 20px 24px; }
+.device-mobile-optimized .jcd-guest-ic { width: 32px; height: 32px; margin-bottom: 10px; }
+.device-mobile-optimized .jcd-guest-ic svg { width: 15px; height: 15px; }
+.device-mobile-optimized .jcd-guest-t { font-size: 14px; }
+.device-mobile-optimized .jcd-guest-s { margin-top: 6px; font-size: 9.5px; }
+.device-mobile-optimized .jcd-guest-go { margin-top: 16px; padding: 8px 14px; font-size: 8.5px; }
+.device-mobile-optimized .jcd-guest-x { top: 4px; right: 6px; width: 24px; height: 24px; font-size: 18px; }
+@media (prefers-reduced-motion: reduce) { .jcd-guest, .jcd-guest-box { transition: none; } }
