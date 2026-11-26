@@ -11,6 +11,11 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### About Work Experience: "Present" glows; "Remote MO, USA" 關於頁目前職位
+- Joel: "present 字體提亮，幫我上藍色呼吸發光。後面 USA 改成 MO, USA。Remote 後要空一格". "Present" (current job) is white Medium with a soft blue glow breathing in 3s (steady glow under reduced motion); the location reads "Remote MO, USA" with a fixed space after "Remote" (computer + phone pages).
+  Present 提亮並加藍色呼吸光；地點改為 Remote MO, USA。
+- Files: `site/about/index.html`, `site/m/about/index.html`, `src/css/about/present-glow.css` (new) → built `custom.css`, `?v=` in all page HTML.
+
 ### T. Guardian photo moved to the Selected tile; GET IN TOUCH image restored; white-page rule enforced 圖片換位置、白底規則
 - Joel: "錯了，首頁最底下的圖要改回來，剛剛 t. guardian 的要更新替換在首頁 12 張小圖的其中一張" / "我注意到你又把我的某些產品子頁的白背景改掉了。應該寫進 md 裡，不然都被忽略".
 - Home "Let's Shape the Next Product Together / GET IN TOUCH" background: back to the original (`home-01-2560x1828`, as WebP; social preview JPEG and og size restored; phone `home-32-640x430.webp`).

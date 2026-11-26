@@ -29,7 +29,7 @@ Areas 分區: `global` = every page 全站 · `home` = home 首頁 · `about` = 
 | `contact` | `form-status.css`, `field-colours.css`, `fields.css` |
 | `phone` | `mobile-fixes.css`, `menu-social.css`, `menu-layout.css` |
 | `product` | `ocean-series-creatures.css`, `ocean-series-seams.css`, `defense-guardian-no-go.css`, `guest-area-dialog.css`, `defense-website.css`, `ai-tool-kit-paravents.css` |
-| `about` | `portrait-frame.css`, `believe-phone-text.css`, `recommendation-cards.css`, `grid-rows.css`, `signature-reveal.css`, `portrait-swap.css` |
+| `about` | `portrait-frame.css`, `believe-phone-text.css`, `recommendation-cards.css`, `grid-rows.css`, `signature-reveal.css`, `portrait-swap.css`, `present-glow.css` |
 | `category` | `cards-linked.css`, `cards-ipad-sizes.css`, `go-hover-computer.css`, `cards-photo-zoom.css`, `cards-clickable.css` |
 
 ## JS

@@ -820,3 +820,12 @@ body:not(.device-mobile-optimized) :is(#comp-mojwork6, #comp-mojwmx3v, #comp-moj
 #comp-mv7f65il:active #comp-mv7f65je img { transform: scale(1.06) !important; }
 @media (prefers-reduced-motion: reduce) { #comp-mv7f65je img { transition: none !important; } }
 #comp-mv67tka2 { display: none !important; }
+/* About, Work Experience: "Present" of the current job brighter, with a soft blue breathing glow
+   (Joel 2026-11-27: "present 字體提亮，幫我上藍色呼吸發光"). Phone, iPad, computer; still under reduced motion. */
+.jcd-present { color: #fff !important; font-weight: 500; text-shadow: 0 0 6px rgba(var(--jcd-blue-rgb), .55);
+  animation: jcdPresent 3s ease-in-out infinite; }
+@keyframes jcdPresent {
+  0%, 100% { text-shadow: 0 0 4px rgba(var(--jcd-blue-rgb), .35), 0 0 10px rgba(var(--jcd-blue-rgb), .2); }
+  50% { text-shadow: 0 0 8px rgba(var(--jcd-blue-rgb), .95), 0 0 22px rgba(var(--jcd-blue-rgb), .75), 0 0 40px rgba(var(--jcd-blue-rgb), .4); }
+}
+@media (prefers-reduced-motion: reduce) { .jcd-present { animation: none; text-shadow: 0 0 8px rgba(var(--jcd-blue-rgb), .7); } }

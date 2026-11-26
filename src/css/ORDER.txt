@@ -57,3 +57,4 @@ home/end-to-end-hover.css
 product/guest-area-dialog.css
 product/defense-website.css
 product/ai-tool-kit-paravents.css
+about/present-glow.css
