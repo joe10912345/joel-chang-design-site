@@ -11,6 +11,10 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Defense: "Admiral Li …" caption flush with the photo above 說明文字貼齊照片左緣
+- Joel: "這段文字要靠正上方圖的最左邊貼齊". On computer + iPad the caption under the Singapore Airshow photo sat 13px left of it (the photos had been moved to line up with the frames, the caption had not); now it starts at the photo's left edge (phone already did).
+- Files: `src/css/product/defense-website.css` → built `custom.css`, `?v=` in all page HTML.
+
 ### Touch card labels: smaller >> on the phone, larger product names; website caption wording 觸控卡片標籤與網站圖標題
 - Joel: "手機板的 >> 圓圈都太大了" / "手機版跟平板觸碰版的產品類別頁的名稱…字體都一樣大，把產品名稱字體加大" / "Design Refinement & Build 看起來沒有合力貢獻的感覺…這是團隊合作，我也協助打磨".
 - Phone circles: category cards 30 → 22px, home Selected grid 22 → 18px, Design Approach card 20 → 18px. Product names: phone 11 → 14px (brand line 9px), iPad 22 → 30px (brand 16px).

@@ -790,7 +790,7 @@ html.jcd-tablet.jcd-tab-portrait .jcd-guest-box { zoom: 1.8; }
    2. Website image: caption + line above it like the exhibition title bars (custom.js "Defense: Tron Future website"),
       photo zooms in 6% inside its frame on hover (touch: while pressed). */
 body:not(.device-mobile-optimized) :is(#comp-mojwol67, #comp-mnplp0vp) { translate: 14px 0; }
-body:not(.device-mobile-optimized) :is(#comp-mojwork6, #comp-mojwmx3v, #comp-mojwq9as, #comp-mw0ptxhx) { translate: 13px 0; }
+body:not(.device-mobile-optimized) :is(#comp-mojwork6, #comp-mojwmx3v, #comp-mojwq9as, #comp-mw0ptxhx, #comp-mor9xmzy) { translate: 13px 0; }   /* + the "Admiral Li ..." caption: flush with the left edge of the photo above it (Joel 2026-11-27) */
 
 #comp-mw0ptxhx { overflow: visible !important; }
 #comp-mw0ptxhx > a { display: block; overflow: hidden; }
