@@ -11,6 +11,14 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### T. Blade: even spacing between text and photos T. Blade 文字與圖片間距平均
+- Joel: "這段文字下的圖片靠太近了，拉遠點" + "我覺得都可以在平均點位置，整頁尋一下". Measured the whole page: photo -> title,
+  title -> text, the photo grid and the gaps between sections were already even; text -> next photo was not (computer 91px
+  and 42px with the tall photo overlapping the text; phone 10px / 3px). Now the same under "Compact Stowage" and
+  "In-Flight Deployment" (computer/iPad about 95px box gap, phone 16px clear); the gaps below stay as they were.
+  File: `src/css/product/t-blade-stowage.css` (renamed from `t-blade-stowage-phone.css`; `src/css/ORDER.txt`, `src/README.md`), built `custom.css`.
+  整頁量過：文字到下一張圖的距離原本不一致（電腦 91 / 42px、手機 10 / 3px），現在兩處一致，其他間距維持。
+
 ### T. Blade: top image framing set by Joel; last photo matches the ones above; phone stowage box taller T. Blade 首圖位置、最下方圖尺寸與間距、手機灰方塊加高
 - Top image framing per platform as Joel set it in the photo-align mockup (`jcd-config.js` `photoFrames.tBladeHero`).
   首圖位置套用 Joel 在 mockup 調好的各平台數值。

@@ -58,5 +58,5 @@ product/defense-website.css
 product/ai-tool-kit-paravents.css
 about/present-glow.css
 product/t-interceptormp-award.css
-product/t-blade-stowage-phone.css
+product/t-blade-stowage.css
 global/scroll-reveal.css
