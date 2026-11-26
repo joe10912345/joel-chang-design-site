@@ -9,6 +9,12 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### iPad upright: larger page + menu; About intro no longer far down
+- Joel: on an upright iPad the About intro had a huge empty band above it, and everything (menu too) was too small; landscape was fine. `site.js`: upright iPads are laid out 1440px wide (was 1694; landscape stays 1694), ~18% larger; the viewport switches when the iPad turns, and `.jcd-tab-portrait` draws the header's logo group and menu group 1.3x, each anchored to its own edge. `custom.js` About intro: centred below the menu but at most 260px below it. `preview/devices.html`: iPad portrait frame 1440 wide (`twp`).
+
+### No file-name tooltips; selection rules written down
+- Joel: resting the mouse on a photo (Cross-Category and elsewhere) showed its file name. 118 Wix `title` attributes removed from the HTML of all pages; `custom.js` removes any added later (gallery overlays, SVG titles). DESIGN-SYSTEM: new "Tooltips" rule; the no-selection / no-context-menu rule now spells out all platforms.
+
 ### Fix: Achievements numbers cut at the right
 - The rolling digit boxes took their width from a measurement that could happen before the web font loaded (narrower fallback font) and clipped all four sides. Now each digit box holds an invisible copy of its final digit (exact width/height in the real font, also after the font arrives), the rolling strip sits on top, the roll distance is a percentage of the strip, and only the top/bottom are clipped. `custom.js`, `custom.css` `.jcd-odo*`.
 

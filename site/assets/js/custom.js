@@ -532,7 +532,9 @@
       var hdr = document.getElementById('SITE_HEADER'), hb = hdr ? hdr.getBoundingClientRect().bottom + sy : 0;
       /* Joel 2026-11-26: centred in the space BELOW the menu (header bottom -> screen bottom), not on the whole
          screen: the menu takes the top band, so whole-screen centring left the block high with an empty band below */
-      var vh = window.innerHeight, want = Math.max(hb + 56 * Z, hb + (vh - hb - (bot - top)) / 2);
+      /* ...but on tall screens (iPad upright) not more than ~260px below the menu, or a huge empty band opens above
+         (Joel 2026-11-26) */
+      var vh = window.innerHeight, want = Math.max(hb + 56 * Z, hb + Math.min((vh - hb - (bot - top)) / 2, 260 * Z));
       var d = (top - want) / Z;                      /* CSS px to move up (negative: down) */
       if (Math.abs(d) < 2) return;
       applied = d;
@@ -1088,6 +1090,24 @@
     }, { threshold: 0.25 });
     nums.forEach(function (n) { if (n.cols[0]) io.observe(n.cols[0].col.closest('.jcd-odo')); });
   });
+
+  /* No hover tooltips (Joel 2026-11-26: resting the mouse on a photo showed its file name, e.g. "logo.png").
+     Wix's title attributes were removed from the HTML; this also strips any that appear later (gallery hover
+     overlays inserted by site.js, SVG <title>s) on every page. Form fields keep theirs. */
+  (function () {
+    function strip(root) {
+      if (!root || !root.querySelectorAll) return;
+      if (root.hasAttribute && root.hasAttribute('title') && !/^(INPUT|TEXTAREA|SELECT)$/.test(root.tagName)) root.removeAttribute('title');
+      [].forEach.call(root.querySelectorAll('[title]'), function (e) { if (!/^(INPUT|TEXTAREA|SELECT)$/.test(e.tagName)) e.removeAttribute('title'); });
+      [].forEach.call(root.querySelectorAll('svg title'), function (t) { t.parentNode.removeChild(t); });
+    }
+    ready(function () {
+      strip(document.body);
+      if ('MutationObserver' in window) new MutationObserver(function (ms) {
+        ms.forEach(function (m) { [].forEach.call(m.addedNodes, function (n) { if (n.nodeType === 1) strip(n); }); });
+      }).observe(document.body, { childList: true, subtree: true });
+    });
+  })();
 
   // iOS Safari only applies :active (pressed states) when a touchstart listener exists.
   document.addEventListener('touchstart', function () {}, { passive: true });

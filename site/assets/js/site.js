@@ -37,9 +37,23 @@
   var UI_SCALE = 0.85;
   window.__jcdUiScale = UI_SCALE;
   var TABLET_W = Math.round(1440 / UI_SCALE);   /* 1440 at full size (1366 let the category frames touch the edges) */
+  /* iPad upright (Joel 2026-11-26: "portrait is too small, the menu too"): laid out 1440 wide instead of 1694, i.e.
+     ~18% larger; 1440 is the narrowest width where every page still keeps a margin at the screen edges. Landscape
+     stays 1694. The viewport is switched again whenever the iPad turns. */
+  var TABLET_W_PORTRAIT = 1440;
+  function tabletPortrait() {
+    if (typeof window.orientation === 'number') return Math.abs(window.orientation) !== 90;
+    return window.matchMedia ? matchMedia('(orientation: portrait)').matches : false;
+  }
+  window.__jcdTabletW = function () { return tabletPortrait() ? TABLET_W_PORTRAIT : TABLET_W; };
   if (mode === 'desktop' && touch) {
     var vp = document.querySelector('meta[name="viewport"]');
-    if (vp) vp.setAttribute('content', 'width=' + TABLET_W + ', user-scalable=yes');
+    var setVp = function () {
+      if (vp) vp.setAttribute('content', 'width=' + window.__jcdTabletW() + ', user-scalable=yes');
+      document.documentElement.classList.toggle('jcd-tab-portrait', tabletPortrait());   /* custom.css: larger menu */
+    };
+    setVp();
+    window.addEventListener('orientationchange', function () { setTimeout(setVp, 50); });
     document.addEventListener('DOMContentLoaded', function () {
       document.body.classList.remove('device-mobile-optimized');
       document.body.classList.add('device-mobile-non-optimized');

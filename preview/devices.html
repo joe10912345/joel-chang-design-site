@@ -34,7 +34,8 @@
 <script>
 var SITE = location.origin + '/site';   /* same origin as this page (devices server serves the repo root), so the frames' scrollbars can be hidden */
 /* iPad: the desktop page laid out TW px wide and scaled to the iPad screen, as site.js does on real iPads. */
-var TW = +(new URLSearchParams(location.search).get('tw')) || 1694;   /* iPad layout width: keep equal to TABLET_W in site/assets/js/site.js (1440 / UI_SCALE 0.85) */
+var TW = +(new URLSearchParams(location.search).get('tw')) || 1694;   /* iPad landscape layout width: keep equal to TABLET_W in site/assets/js/site.js (1440 / UI_SCALE 0.85) */
+var TWP = +(new URLSearchParams(location.search).get('twp')) || 1440;   /* iPad portrait layout width: TABLET_W_PORTRAIT in site.js */
 var MODELS = {   /* portrait CSS px */
   air11: { name:'iPad Air 11 吋', w:820,  h:1180 },
   pro11: { name:'iPad Pro 11 吋', w:834,  h:1194 },
@@ -52,7 +53,7 @@ var S = SCREENS[new URLSearchParams(location.search).get('s')] ? new URLSearchPa
 var M = MODELS[new URLSearchParams(location.search).get('m')] ? new URLSearchParams(location.search).get('m') : 'air11', MD = MODELS[M];
 var DEV = {
   phone:   { name:'手機',      note:'390 × 844（手機版 m/，和真手機一樣排成 320 寬再放大）', w:320, h:693 },   /* m/ pages set viewport width=320: a 390x844 phone shows a 320x693 layout */
-  ipad:    { name:MD.name + ' 直向', note:MD.w + ' × ' + MD.h + '（桌機版排成 ' + TW + ' 寬再縮放）', w:TW, h:Math.round(TW * MD.h / MD.w) },
+  ipad:    { name:MD.name + ' 直向', note:MD.w + ' × ' + MD.h + '（桌機版排成 ' + TWP + ' 寬再縮放）', w:TWP, h:Math.round(TWP * MD.h / MD.w) },
   ipadl:   { name:MD.name + ' 橫向', note:MD.h + ' × ' + MD.w + '（桌機版排成 ' + TW + ' 寬再縮放）', w:TW, h:Math.round(TW * MD.w / MD.h) },
   desktop: { name:'桌機 ' + SD.name, note:'', w:SD.w, h:SD.h }
 };

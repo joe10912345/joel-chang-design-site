@@ -63,7 +63,7 @@ Main headings: WORK EXPERIENCE, SELECTED AWARDS, EXPERTISE, TRUSTED COLLABORATIO
 Other rules
 - Phone page side margins: **20px** each side (equal) in the 320px layout.
 - Category pages (desktop/iPad): white frames and the unframed tile rows share one left edge and are centred, equal space left/right (`custom.js` "Category pages").
-- About intro (desktop/iPad): text + portrait centred in the space between the header and the screen bottom, at least 56px below the header (`custom.js` "About, desktop layout").
+- About intro (desktop/iPad): text + portrait centred in the space between the header and the screen bottom, at least 56px and at most 260px below the header (`custom.js` "About, desktop layout").
 - Catalog title bars: every text centred vertically on the bar (`custom.js` "Catalog title bars").
 - Phone category pages: frames of one category 8px apart, 48px before the next category (`custom.js`).
 - Contact form fields: 1px white underline (hover/typing: same width, `--jcd-blue`), 12px indent; field names white Medium (phone 11px, desktop 15px); message hint Poppins Light white 45% (phone 9.5px, desktop 13px). iPhone tap-zoom is stopped by `custom.js` (viewport maximum-scale).
@@ -74,7 +74,7 @@ Other rules
 | Device | Page | How it fits |
 |---|---|---|
 | Phone | `site/m/…` (320px layout) | scaled to the phone width by the viewport |
-| iPad (Air 11, Pro 11, Pro 13; portrait + landscape) | desktop page | laid out **1694px** wide (`TABLET_W` = 1440 / UI_SCALE) and scaled |
+| iPad (Air 11, Pro 11, Pro 13) | desktop page | landscape laid out **1694px** wide (`TABLET_W` = 1440 / UI_SCALE), portrait **1440px** (`TABLET_W_PORTRAIT`, ~18% larger) and scaled; upright, the header logo and menu are drawn 1.3x (`.jcd-tab-portrait`) |
 | Computer ≤ 1536px | desktop page | zoom = UI_SCALE 0.85 (Joel's laptop: 1920 @125% = 1536) |
 | Computer > 1536px (1920, 2560, 3440 ultra-wide, 3840 4K) | desktop page | CSS zoom = width / 1536 x UI_SCALE (`window.__jcdZoom`) → always full width |
 
@@ -100,7 +100,8 @@ Home slideshow: always starts at slide 1 when the page is shown (also after the 
 | Touch reveal | Overlays that show on hover with a mouse show while a finger rests on the item (~0.06s), not after the tap; scrolling/swiping never triggers them. Tiles without a link (End-to-End) keep the overlay after the tap (60% on touch, 27% desktop hover) |
 | Round >> press | Clicking a card with a round >> fills it --jcd-blue, the page opens 0.42s later (every platform) |
 | Home Selected grid | Spotlight: hovered tile bright + photo 1.06 inside the frame + white 1px line + category/name + round >>; the others brightness .38. Touch: name + round >> always shown |
-| Selection / context menu | Disabled site-wide (no right-click / long-press menu, no text selection, no image drag); form fields excepted |
+| Selection / context menu | Disabled site-wide on phone, iPad and computer (`custom.css` + `custom.js`): no right-click / long-press menu, no text selection with the mouse or a long press, no image drag. Form fields (Contact) excepted |
+| Tooltips | None. No `title` attribute anywhere (resting the mouse on a photo must not show its file name); `custom.js` strips any that appear later. Form fields excepted |
 | Reduced motion | Every looping or moving effect is switched off under `prefers-reduced-motion: reduce` |
 
 ## 7. Motion
