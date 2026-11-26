@@ -57,7 +57,7 @@ window.JCD_CONFIG = {
      catch up with the scroll (0 = exactly with the scroll, larger = softer, lags more). Same on phone, iPad, computer.
      捲動淡入：start＝開始出現的位置、end＝完全顯現的位置（內容頂端在畫面高度的比例，1＝底部、0.5＝中央）；
      curve＝曲線；smooth＝跟上捲動的秒數（越大越柔、越慢）。三平台共用。 */
-  scrollReveal: { start: 1.0, end: 0.5, curve: 'linear', smooth: 0.12 },
+  scrollReveal: { start: 0.89, end: 0.5, curve: 'ease', smooth: 0.24 },   /* set by Joel 2026-11-27 */
 
   /* Photo framing inside a card (Joel 2026-11-27, set with preview/mockups/photo-align.html): `x` / `y` = which point of
      the photo stays in view (0-100%, like object-position), `zoom` = how much larger than just filling the card.

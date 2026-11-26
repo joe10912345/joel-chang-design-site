@@ -11,6 +11,11 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Scroll fade timing set by Joel 捲動淡入採用 Joel 調的數值
+- Set in `preview/mockups/scroll-fade.html`: starts appearing at 89% of the screen height, fully visible at the middle,
+  soft curve, 0.24s smoothing. Phone, iPad, computer. Files: `site/assets/js/jcd-config.js` (+ `?v=` in every page).
+  Joel 在 mockup 調好的數值：畫面 89% 處開始出現、到中央完全顯現、柔和曲線、0.24 秒順暢度，三平台套用。
+
 ### Mouse glow removed; scroll fade timing adjustable 取消滑鼠光暈；捲動淡入可調
 - Joel: "取消滑鼠光標". The blue mouse glow is gone (files deleted, out of `src/*/ORDER.txt` and `src/README.md`).
   滑鼠藍色光暈已取消。
