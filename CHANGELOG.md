@@ -9,6 +9,10 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Home slide 4 (black Wi-Fi 7 routers): Joel's cleaner version
+- Same size as before (2000x1167) but less noise; `home/home-04-2000x1167.jpg` re-made from it (256 KB), original kept as `media-originals/jcd_home-routers-black_2000x1167.jpg`. Only used on the home slideshow (desktop + phone).
+- New folder `media-new/` (not published, git-ignored except its README): images pasted into the chat arrive shrunk to 2000px wide, so full-size originals should be dropped there instead.
+
 ### T-Blade on its cart: Joel's new render
 - Joel's new image (2000x1147, 334 KB JPEG, kept as `media-originals/jcd_t-blade-on-cart_2000x1147.jpg`) replaces the old render everywhere it was used: T-Blade page (image 13), home slideshow slide 6, Defense category tile (desktop + phone). Files: `t-blade/t-blade-13-2000x1147.jpg` (326 KB, q88 4:4:4) and `t-blade/t-blade-13-560x321.jpg` (phone tiles, 31 KB); old `home-06-*`, `defense-02-*`, `t-blade-13-2283x1284/560x314` removed. Note: the pasted file is 2000px wide (the old original was 3325px) — fine on laptops, slightly soft as a full-screen slide on 2560+/4K; a larger export can replace it the same way.
 

@@ -3171,14 +3171,15 @@
   ]
  },
  "home/home-04-2000x1167.jpg": {
-  "source": "export",
+  "source": "media-originals/jcd_home-routers-black_2000x1167.jpg",
   "wix_ops": null,
   "replaces": [
    "jcd_hero_c48ebd89cb37_2000x1167.jpg"
   ],
   "pages": [
    "home"
-  ]
+  ],
+  "note": "Joel's cleaner version 2026-11-26 (pasted, 2000px)"
  },
  "home/home-05-2400x1240.jpg": {
   "source": "export",
