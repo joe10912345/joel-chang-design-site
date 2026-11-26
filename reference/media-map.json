@@ -3640,44 +3640,6 @@
    "home"
   ]
  },
- "home/home-19-1908x858.png": {
-  "source": "export",
-  "wix_ops": {
-   "crop": [
-    188,
-    0,
-    3128,
-    1406
-   ],
-   "mode": "fill",
-   "align": "c"
-  },
-  "replaces": [
-   "1e9c09_962436d0a5004ee5b1ce2fa13d902625_mv2_3128x1406_a99a25e5.png"
-  ],
-  "pages": [
-   "home"
-  ]
- },
- "home/home-19-580x270.png": {
-  "source": "export",
-  "wix_ops": {
-   "crop": [
-    188,
-    0,
-    3128,
-    1406
-   ],
-   "mode": "fill",
-   "align": "c"
-  },
-  "replaces": [
-   "1e9c09_962436d0a5004ee5b1ce2fa13d902625_mv2_3128x1406_4f65d1a7.png"
-  ],
-  "pages": [
-   "home"
-  ]
- },
  "home/home-20-1438x1438.jpg": {
   "source": "media-originals/1e9c09_b9baacf58876455f9bb82e1c581ef4af_mv2.jpg",
   "wix_ops": {
@@ -18453,5 +18415,29 @@
    "home"
   ],
   "note": "Joel's cleaner render 2026-11-26 (pasted, 2000px)"
+ },
+ "home/home-19-1908x858-v2.png": {
+  "source": "site/assets/media/home/home-19-1908x858.png (git history)",
+  "wix_ops": null,
+  "replaces": [
+   "1e9c09_962436d0a5004ee5b1ce2fa13d902625_mv2_3128x1406_4f65d1a7.png",
+   "1e9c09_962436d0a5004ee5b1ce2fa13d902625_mv2_3128x1406_a99a25e5.png"
+  ],
+  "pages": [
+   "home"
+  ],
+  "note": "Achievement world map; Italy's dot moved up from north Africa to Italy (Joel 2026-11-26); desktop"
+ },
+ "home/home-19-1160x522-v2.png": {
+  "source": "site/assets/media/home/home-19-1908x858.png (git history)",
+  "wix_ops": null,
+  "replaces": [
+   "1e9c09_962436d0a5004ee5b1ce2fa13d902625_mv2_3128x1406_4f65d1a7.png",
+   "1e9c09_962436d0a5004ee5b1ce2fa13d902625_mv2_3128x1406_a99a25e5.png"
+  ],
+  "pages": [
+   "home"
+  ],
+  "note": "Achievement world map; Italy's dot moved up from north Africa to Italy (Joel 2026-11-26); phone, 256-colour PNG"
  }
 }

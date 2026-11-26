@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Achievement 地圖動態 mockup</title>
+<style>
+  :root { --jcd-blue: #0062d9; --jcd-blue-rgb: 0, 98, 217; --bg: #0b0c10; --tx: #e9e9ee; --mut: #8d8f99; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--tx); font: 14px/1.5 system-ui, "Noto Sans TC", sans-serif; padding: 24px 16px 60px; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .note { color: var(--mut); margin: 0 0 16px; max-width: 900px; }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
+  .bar button { background: #1a1b22; color: var(--tx); border: 1px solid #30313a; border-radius: 6px; padding: 7px 14px; font: inherit; cursor: pointer; }
+  .bar button.on { border-color: var(--jcd-blue); color: #fff; background: rgba(var(--jcd-blue-rgb), .25); }
+  .desc { color: var(--mut); margin: -6px 0 16px; min-height: 1.5em; }
+
+  /* the Achievement section as on the site: gradient background + the map/products PNG */
+  .stage { position: relative; max-width: 1400px; margin: 0 auto; border-radius: 6px; overflow: hidden;
+           background: #141b3a url(../site/assets/media/shared/shared-04-2560x1259.png) center / cover no-repeat; }
+  .stage img { display: block; width: 100%; height: auto; }
+  .stage svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+
+  /* ---------- effects ---------- */
+  /* dots: breathing glow + an expanding ring (CSS, independent of the light) */
+  .ring { fill: none; stroke: #cfe3ff; stroke-width: 2; transform-box: fill-box; transform-origin: center; opacity: 0;
+          animation: ring 3.2s cubic-bezier(.2,.7,.3,1) infinite; animation-delay: var(--d); }
+  .core { fill: #fff; filter: url(#glow); animation: core 3.2s ease-in-out infinite; animation-delay: var(--d); }
+  @keyframes ring { 0% { opacity: 0; transform: scale(.6); } 10% { opacity: .45; } 70%,100% { opacity: 0; transform: scale(2.4); } }
+  @keyframes core { 0%,100% { opacity: .75; } 50% { opacity: 1; } }
+  /* light stream + flag glow are SVG animations (script below) so they stay in step */
+  .lit { fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; filter: url(#glow); }
+  .litSoft { fill: none; stroke: rgb(var(--jcd-blue-rgb)); stroke-width: 9; stroke-linecap: round; filter: url(#blur); opacity: .9; }
+  .flagGlow { fill: none; stroke: #fff; stroke-width: 2.5; filter: url(#glow); opacity: 0; }
+  .flagRing { fill: none; stroke: #cfe3ff; stroke-width: 2; opacity: 0; }
+  .stage[data-v="off"] svg { display: none; }
+  /* products: the row is cut out of the same PNG into one tile per product so each can grow on its own */
+  .stage img.base { clip-path: inset(0 0 30.3% 0); }   /* map + lines + flags only (rows above y 598 of 858) */
+  .tile { position: absolute; overflow: hidden; transform-origin: 50% 60%;
+          transition: transform .35s cubic-bezier(.2,.7,.2,1), filter .35s cubic-bezier(.2,.7,.2,1); }
+  .tile img { position: absolute; max-width: none; }
+  .tile.on { transform: scale(1.07); filter: brightness(1.12); }
+  .hit { fill: none; stroke: transparent; stroke-width: 28; pointer-events: stroke; }
+  .hitDot { fill: transparent; pointer-events: all; }
+  .hover .lit, .hover .litSoft { }
+  .hoverLine { fill: none; stroke: #fff; stroke-width: 2.5; filter: url(#glow); opacity: 0; transition: opacity .35s; pointer-events: none; }
+  .hoverLine.on { opacity: .55; }
+  .country { transition: opacity .35s cubic-bezier(.2,.7,.2,1); }
+  .country.dim { opacity: 0; }
+  /* the chosen country: no light stream, no breathing; dot and flag outline simply stay lit */
+  .steadyFlag { fill: none; stroke: #fff; stroke-width: 2.5; filter: url(#glow); opacity: 0; transition: opacity .35s; }
+  .country.sel .steadyFlag { opacity: 1; }
+  .country.sel .ring, .country.sel .anim { display: none; }
+  .country.sel .core { animation: none; opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { .ring, .core { animation: none; } .stage svg .anim { display: none; } }
+</style>
+</head>
+<body>
+<h1>首頁 Achievement：國旗連線、圓點閃亮動態（mockup）</h1>
+<p class="note">底下是網站上同一張地圖（同樣的背景和產品圖），上面疊一層動畫。確定後我再做進網站，電腦、iPad、手機三個版本都一樣。</p>
+<div class="bar">
+  <button data-v="a" class="on">新版（A 速度）</button>
+  <button data-v="off">原本（無動態）</button>
+</div>
+<p class="desc" id="desc"></p>
+
+<div class="stage" id="stage" data-v="a">
+  <img class="base" src="../site/assets/media/home/home-19-1908x858-v2.png" alt="">
+  <div id="tiles"></div>
+  <svg viewBox="0 0 1908 858" aria-hidden="true">
+    <defs>
+      <filter id="glow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="blur" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="6"/></filter>
+      <!-- soft spot that travels along each line: the line shows only inside it, so the light fades at head and tail -->
+      <radialGradient id="soft"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".45" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    </defs>
+    <g id="fx"></g>
+  </svg>
+</div>
+
+<script>
+  /* coordinates measured on home-19-1908x858.png (dot centre -> corner row y 514 -> flag centre) */
+  var Y = 514, FLAG_Y = 570, R_FLAG = 19;
+  var LINKS = [
+    { dot: [186, 331], flag: 366 },   /* USA (west)  */
+    { dot: [402, 271], flag: 834 },   /* Canada      */
+    { dot: [936, 300], flag: 1024 },  /* Italy (dot moved up from north Africa, image v2) */
+    { dot: [1632, 462], flag: 1446 }, /* Taiwan      */
+    { dot: [1756, 382], flag: 1794 }  /* Japan       */
+  ];
+  var NS = 'http://www.w3.org/2000/svg', fx = document.getElementById('fx');
+  var cur = null, groups = [];   /* one <g> per country holds its light effects */
+  function el(tag, attrs, style) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (style) e.setAttribute('style', style); (cur || fx).appendChild(e); return e; }
+  /* mask that keeps every drawn line (and its glow) off the flags */
+  var noflag = document.createElementNS(NS, 'mask');
+  [['id','noflag'],['maskUnits','userSpaceOnUse'],['x',0],['y',0],['width',1908],['height',858]].forEach(function (kv) { noflag.setAttribute(kv[0], kv[1]); });
+  noflag.innerHTML = '<rect width="1908" height="858" fill="#fff"/>' + LINKS.map(function (l) { return '<circle cx="' + l.flag + '" cy="' + FLAG_Y + '" r="' + (R_FLAG + 2) + '" fill="#000"/>'; }).join('');
+  document.querySelector('.stage svg defs').appendChild(noflag);
+  var DUR = 4.8, ARRIVE = 0.6;   /* one cycle 4.8s (speed A); the light reaches the flag at 60% */
+  function anim(parent, tag, attrs) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; }
+  LINKS.forEach(function (l, i) {
+    var x = l.dot[0], y = l.dot[1], fxp = l.flag;
+    var d = 'M' + x + ' ' + y + ' V' + Y + ' H' + fxp + ' V' + (FLAG_Y - R_FLAG - 2);   /* ends at the flag's top edge, never over the flag */
+    var begin = (i * 0.55).toFixed(2) + 's', delay = begin;
+    cur = document.createElementNS(NS, 'g'); cur.setAttribute('class', 'country'); fx.appendChild(cur); groups.push(cur);
+    /* dot */
+    el('circle', { cx: x, cy: y, r: 13, class: 'ring' }, '--d:' + delay);
+    el('circle', { cx: x, cy: y, r: 13, class: 'ring' }, '--d:calc(' + delay + ' + 1.6s)');
+    el('circle', { cx: x, cy: y, r: 11, class: 'core' }, '--d:' + delay);
+    /* light stream: the bright line, seen only through a soft spot moving along it */
+    var mask = el('mask', { id: 'm' + i, maskUnits: 'userSpaceOnUse', x: 0, y: 0, width: 1908, height: 858 });
+    var spot = anim(mask, 'circle', { r: 46, fill: 'url(#soft)', opacity: 0 });
+    anim(spot, 'animateMotion', { path: d, dur: DUR + 's', begin: begin, repeatCount: 'indefinite', keyPoints: '0;1;1', keyTimes: '0;' + ARRIVE + ';1', calcMode: 'linear' });
+    anim(spot, 'animate', { attributeName: 'opacity', dur: DUR + 's', begin: begin, repeatCount: 'indefinite', values: '0;1;1;0;0', keyTimes: '0;0.06;' + (ARRIVE - 0.04) + ';' + (ARRIVE + 0.03) + ';1' });
+    var g = anim(el('g', { mask: 'url(#noflag)', class: 'anim' }), 'g', { mask: 'url(#m' + i + ')' });
+    anim(g, 'path', { d: d, class: 'litSoft' });
+    anim(g, 'path', { d: d, class: 'lit' });
+    /* flag: its round outline glows like a dot, and a ring spreads out, when the light arrives */
+    var a1 = ARRIVE - 0.02, a2 = ARRIVE + 0.06, a3 = ARRIVE + 0.3;
+    var glow = el('circle', { cx: fxp, cy: FLAG_Y, r: R_FLAG + 1, class: 'flagGlow anim' });
+    anim(glow, 'animate', { attributeName: 'opacity', dur: DUR + 's', begin: begin, repeatCount: 'indefinite', values: '0;0;1;.8;0;0', keyTimes: '0;' + a1 + ';' + a2 + ';' + (a2 + .1) + ';' + a3 + ';1' });
+    el('circle', { cx: fxp, cy: FLAG_Y, r: R_FLAG + 1, class: 'steadyFlag' });
+    var ring = el('circle', { cx: fxp, cy: FLAG_Y, r: R_FLAG + 1, class: 'flagRing anim' });
+    anim(ring, 'animate', { attributeName: 'r', dur: DUR + 's', begin: begin, repeatCount: 'indefinite', values: (R_FLAG + 1) + ';' + (R_FLAG + 1) + ';' + (R_FLAG * 2.3) + ';' + (R_FLAG * 2.3), keyTimes: '0;' + a1 + ';' + (ARRIVE + 0.32) + ';1' });
+    anim(ring, 'animate', { attributeName: 'opacity', dur: DUR + 's', begin: begin, repeatCount: 'indefinite', values: '0;0;.6;0;0', keyTimes: '0;' + a1 + ';' + (ARRIVE + 0.03) + ';' + (ARRIVE + 0.32) + ';1' });
+  });
+  cur = null;
+  /* ---- products under each country (desktop with a mouse only) ---- */
+  var IW = 1908, IH = 858, ROW = [598, 842];
+  var COLS = [[33,181],[220,363],[405,540],[580,726],[789,891],[990,1068],[1192,1318],[1338,1481],[1512,1667],[1718,1887]];
+  var OF = [[0,1,2,3],[4],[5],[6,7,8],[9]];   /* USA: AT&T Gfiber Rigado Ciena | Canada: Cogeco | Italy: Adant | Taiwan: Gemtek Lionic NCSIST | Japan: Genix */
+  var tilesBox = document.getElementById('tiles'), tiles = [];
+  COLS.forEach(function (c) {
+    var x0 = c[0] - 12, x1 = c[1] + 12, y0 = ROW[0], y1 = ROW[1], w = x1 - x0, h = y1 - y0;
+    var t = document.createElement('div'); t.className = 'tile';
+    t.style.cssText = 'left:' + (x0 / IW * 100) + '%;top:' + (y0 / IH * 100) + '%;width:' + (w / IW * 100) + '%;height:' + (h / IH * 100) + '%';
+    var im = document.createElement('img'); im.src = '../site/assets/media/home/home-19-1908x858-v2.png'; im.alt = '';
+    im.style.cssText = 'width:' + (IW / w * 100) + '%;left:' + (-x0 / w * 100) + '%;top:' + (-y0 / h * 100) + '%';
+    t.appendChild(im); tilesBox.appendChild(t); tiles.push(t);
+  });
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    LINKS.forEach(function (l, i) {
+      var x = l.dot[0], y = l.dot[1], fxp = l.flag;
+      var d = 'M' + x + ' ' + y + ' V' + Y + ' H' + fxp + ' V' + (FLAG_Y - R_FLAG - 2);
+      var line = el('path', { d: d, class: 'hoverLine', mask: 'url(#noflag)' });
+      var parts = [el('path', { d: d, class: 'hit' }), el('circle', { cx: x, cy: y, r: 26, class: 'hitDot' }), el('circle', { cx: fxp, cy: FLAG_Y, r: 28, class: 'hitDot' })];
+      function set(on) {
+        OF[i].forEach(function (k) { tiles[k].classList.toggle('on', on); }); line.classList.toggle('on', on);
+        groups.forEach(function (g, k) { g.classList.toggle('dim', on && k !== i); g.classList.toggle('sel', on && k === i); });   /* others fade out; the chosen one stays lit, still */
+      }
+      /* the line, dot, flag AND the country's products all trigger the same highlight */
+      OF[i].forEach(function (k) { parts.push(tiles[k]); });
+      parts.forEach(function (p) { p.addEventListener('mouseenter', function () { set(true); }); p.addEventListener('mouseleave', function () { set(false); }); });
+    });
+  }
+  var DESC = { a: 'A 的速度：圓點慢慢呼吸、擴散光圈；一道頭尾漸淡的柔光沿線一路流進國旗，到達時國旗的圓形輪廓發光並擴散一圈光環（和圓點同一種做法），再慢慢退去。五條線依序輪流。滑鼠移到某國的線、圓點、國旗或任一個該國產品上，該國的產品和文字都會微微放大、連線亮起，其他國家的光效暫時淡出；選中的那一國不流動、不呼吸，圓點和國旗輪廓恆亮（僅電腦版）。',
+               off: '原本的靜態圖，方便比較。' };
+  var stage = document.getElementById('stage'), desc = document.getElementById('desc');
+  [].forEach.call(document.querySelectorAll('.bar button'), function (b) {
+    b.addEventListener('click', function () {
+      [].forEach.call(document.querySelectorAll('.bar button'), function (x) { x.classList.toggle('on', x === b); });
+      stage.setAttribute('data-v', b.dataset.v); desc.textContent = DESC[b.dataset.v];
+    });
+  });
+  desc.textContent = DESC.a;
+</script>
+</body>
+</html>

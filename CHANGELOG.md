@@ -9,6 +9,11 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Home "Achievement" world map: glowing dots, light along the lines, hover on computers
+- Joel's design (study: `preview/achievement-glow.html`). All platforms: each map dot breathes with a soft spreading ring; a light that fades at head and tail runs along its line into the flag (4.8s cycle, the five countries in turn); on arrival the flag's round outline glows and a ring spreads out. Lines/glow never cover the flags (mask). Computer with a mouse only (not phone, not iPad): hovering a country's line, dot, flag or one of its products enlarges that country's products + captions (7%, cut from the same image into 10 tiles), lights its line, keeps its dot + flag outline lit without motion and fades the other countries' effects. USA: AT&T, Gfiber, Rigado, Ciena; Canada: Cogeco; Italy: Adant; Taiwan: Gemtek, Lionic, NCSIST; Japan: Genix. Paused while off screen; off under reduced motion.
+- Map image: Italy's dot moved up from north Africa to Italy (coast dots restored) -> `home/home-19-1908x858-v2.png` (desktop) and `home/home-19-1160x522-v2.png` (phone, 256-colour PNG, 82 KB instead of 234 KB). Old files removed.
+- `custom.js` "Home Achievement world map", `custom.css` `.jcd-map*`.
+
 ### Home slide 9 (black tower): Joel's cleaner render
 - Same size (2000x1077), much less noise -> `home/home-09-2000x1077-v2.jpg` (desktop + phone); original in `media-originals/jcd_home-tower-black_2000x1077.jpg`. `-v2`: a replaced image of the same size gets a version suffix so browsers do not keep showing the cached old file.
 
