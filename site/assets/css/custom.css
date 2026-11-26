@@ -627,14 +627,11 @@ img.jcd-sig.jcd-sig-in { -webkit-mask-position: 0 0 !important; mask-position: 0
 .device-mobile-optimized .jcd-go.jcd-da-go { right: 12px; bottom: 12px; width: 26px; height: 26px; font-size: 10px; }
 .jcd-da-link:hover .jcd-da-go { background: rgba(var(--jcd-blue-rgb), .35); border-color: rgba(255, 255, 255, .6); }
 @media (hover: none) { .jcd-da-card:hover { background-color: transparent; box-shadow: none; } .jcd-da-link:hover { transform: none; } }
-/* Home video: a blue/navy light ring that slowly turns around the video window and breathes (Joel 2026-11-26).
-   custom.js places .jcd-vglow exactly on the window, under the video; only its blurred edge shows. */
-@property --jcd-va { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+/* Home video: a soft blue light around the video window that gently breathes (Joel 2026-11-26; the turning ring
+   was removed the same day). custom.js places .jcd-vglow exactly on the window, under the video. */
 .jcd-vglow { position: absolute; z-index: 0; pointer-events: none; animation: jcdVBreath 4.5s ease-in-out infinite; }
 .jcd-vglow::before { content: ""; position: absolute; inset: -8px; border-radius: 6px;
-  background: conic-gradient(from var(--jcd-va), #0062d9, #4cc9f0 20%, #00176c 45%, #6a5cff 65%, #0062d9 85%, #4cc9f0);
-  filter: blur(16px); opacity: .9; animation: jcdVSpin 9s linear infinite; }
+  background: linear-gradient(135deg, #0062d9, #3a5bff 50%, #00176c); filter: blur(16px); opacity: .85; }
 #comp-moybizuw { position: relative; z-index: 1; }
-@keyframes jcdVSpin { to { --jcd-va: 360deg; } }
 @keyframes jcdVBreath { 0%, 100% { opacity: .65; } 50% { opacity: 1; } }
-@media (prefers-reduced-motion: reduce) { .jcd-vglow, .jcd-vglow::before { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .jcd-vglow { animation: none; } }

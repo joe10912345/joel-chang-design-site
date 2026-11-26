@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Video glow: no turning ring
+- Joel: remove the ring that turns around the video. The light around the window is now a still blue blur that only breathes (4.5s). `custom.css` `.jcd-vglow`.
+
 ### Home: Cross-Category black edges, video black edges, moving glow around the video
 - Cross-Category: the tile crop rectangles were 3-6px off the real photo areas, so the lifted crop showed slices of the black gutter. Re-measured both images (photo areas between the gutters) and inset 2px. `custom.js` GRID.
 - Video: the Vimeo player's own dark edge pixels showed; it is now 0.6% (+2px a side) larger than the glow frame's window and clipped back to the window with `clip-path` (player buttons stay whole).

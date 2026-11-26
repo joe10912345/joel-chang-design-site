@@ -111,7 +111,7 @@ Home slideshow: always starts at slide 1 when the page is shown (also after the 
 - GET IN TOUCH (home): endless "balloon" breathing, scale 1 → 1.045 → 1, 2.8s; pauses on hover/press.
 - Ocean Series creature photos: dimmed 35% at rest; hover/tap = full brightness + the photo zooms 1.1 **inside its frame** (never covers text).
 - Category cards (desktop): 3D tilt following the mouse (`tilt.js`), max 3°.
-- Home video glow: blurred conic ring (blue #0062D9, light blue, navy, violet) turning around the video window in 9s, breathing .65-1 in 4.5s.
+- Home video glow: soft blue blur around the video window, breathing .65-1 in 4.5s (no rotation).
 - About signature: left-to-right soft-edge reveal on scroll-in, 1.6s, once.
 - Home Achievements numbers: odometer roll on scroll-in, 1.8s cubic-bezier(.2,.75,.15,1), numbers 0.15s apart, once.
 - Home Achievement map: dots breathe (3.2s) with a spreading ring; a soft light (fading head and tail) runs each line into its flag (4.8s, countries staggered 0.55s); flag outline glows on arrival. Computer hover: the country's products scale 1.07, its dot/flag stay lit without motion, other countries' effects fade out.
