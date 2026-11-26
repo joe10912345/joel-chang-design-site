@@ -25,7 +25,7 @@ Areas 分區: `global` = every page 全站 · `home` = home 首頁 · `about` = 
 | area 分區 | files (in build order) 檔案（依合併順序） |
 |---|---|
 | `global` | `tokens.css`, `base.css`, `menu-hover.css`, `header-autohide.css`, `gallery-overlays.css`, `lightbox.css`, `cursor-light.css`, `hidden-h1.css`, `header-icons-hover.css`, `no-footer.css`, `no-section-lines.css`, `menu-press.css`, `page-background.css`, `glass-menus.css`, `header-no-select.css`, `no-selection.css`, `ipad-portrait-header.css`, `round-go-fill.css` |
-| `home` | `design-approach-cards.css`, `cross-category-grid.css`, `works-grid-links.css`, `video-frame.css`, `works-category-buttons.css`, `end-to-end-text.css`, `selected-label.css`, `get-in-touch-breathing.css`, `works-grid-press.css`, `achievement-map.css`, `selected-grid.css`, `achievement-odometer.css`, `works-category-hover.css`, `design-approach-card1.css`, `video-glow.css`, `end-to-end-arrows.css`, `hero-no-counter.css` |
+| `home` | `design-approach-cards.css`, `cross-category-grid.css`, `works-grid-links.css`, `video-frame.css`, `works-category-buttons.css`, `end-to-end-text.css`, `selected-label.css`, `get-in-touch-breathing.css`, `works-grid-press.css`, `achievement-map.css`, `selected-grid.css`, `achievement-odometer.css`, `works-category-hover.css`, `design-approach-card1.css`, `video-glow.css`, `end-to-end-arrows.css`, `hero-no-counter.css`, `end-to-end-hover.css` |
 | `contact` | `form-status.css`, `field-colours.css`, `fields.css` |
 | `phone` | `mobile-fixes.css`, `menu-social.css`, `menu-layout.css` |
 | `product` | `ocean-series-creatures.css`, `ocean-series-seams.css`, `defense-guardian-no-go.css` |

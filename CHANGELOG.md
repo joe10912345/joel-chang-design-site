@@ -11,6 +11,11 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Home End-to-End squares: smooth darkening + zoom-in End-to-End 方塊壓黑變順＋放大
+- Joel: "end to end 的方塊hover 後壓黑動畫有點不順。然後我要加點zoom in". The darkening was on the overlay site.js inserts/removes on every hover, inside a layer that also faded (eased twice, restarted from zero). Now one dark layer stays on each square and only fades (.7s; 36% computer, 60% touch); the photo eases in 8% inside its frame (1.2s). Computer on hover, phone/iPad while the overlay shows; off under reduced motion.
+  壓黑改成每個方塊固定一層、只改透明度，不再每次重建；照片在框內放大 8%。
+- Files: `src/css/home/end-to-end-hover.css` (new), `src/css/ORDER.txt`, built `custom.css`, `?v=` in all page HTML, `src/README.md`, `DESIGN-SYSTEM.md`.
+
 ### About "What I Believe" photo: aligned by hand, framing kept in the config 照片手動對齊並寫入設定
 - Joel: "what i believe 的手機板、ipad版(直) 圖片跑掉了。能夠做給我一個mockup我手動對其嗎? 且不管我未來有沒有調整頁面，都已設定為主". Then: "手機板的至少讓我放大縮小上拖曳吧" / "手機板好像沒辦法往上托，上方會被遮到卡住".
 - New tool `preview/mockups/believe-align.html`: the real About page on phone, iPad portrait and landscape; drag the photo, zoom 0.4–3x (slider or Shift + wheel), iPad upright window height; Save. 對齊工具：拖曳、縮放、iPad 直向視窗高度。

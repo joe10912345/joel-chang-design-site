@@ -150,6 +150,7 @@ Other rules 其他:
 - About signature: left-to-right reveal on scroll-in, 1.6s. 簽名由左到右顯現。
 - Achievements numbers: odometer roll, 1.8s. 數字滾動。
 - Achievement map: dots breathe, light runs each line into its flag; computer hover enlarges that country's products. 地圖光點與光流。
+- End-to-End squares: on hover (touch: while the overlay shows) one dark layer fades to 36% (touch 60%) in .7s and the photo eases in 8% (1.2s). End-to-End 方塊：壓黑淡入、照片放大 8%。
 - End-to-End (iPad): arrows sit 14px inside the screen over the photos, with a soft shadow; arrows thicker on every platform. End-to-End 箭頭。
 
 ## 8. Components: where they live 元件位置
