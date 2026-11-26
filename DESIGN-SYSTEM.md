@@ -143,6 +143,7 @@ Other rules 其他:
 
 ## 7. Motion 動態
 
+- **Scroll reveal (every page)**: in every section except the first and a bottom image section, each piece of content fades in + floats up (40px, phone 24px, 1.1s, 0.09s apart) when it scrolls into view — like the original Wix "Float In". Content already on screen at load is never hidden. 捲動顯現：每段內容捲到時淡入上浮（首段與最下方大圖除外）。
 - Recommendation card hover: two corner glows drifting, 5s. 推薦卡角落光暈飄移。
 - GET IN TOUCH: breathing scale 1 → 1.045, 2.8s. 呼吸縮放。
 - Ocean Series creatures: dimmed 35% at rest; hover/tap = bright + zoom 1.1 inside the frame. 海洋系列小圖。

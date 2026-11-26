@@ -11,6 +11,12 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Scroll reveal on every page, like the original Wix site 捲動顯現（仿原 Wix 網站）
+- Joel: "最後一步，原本 wix 網站我設計每個 section (除了最上方、最下方的圖片外)，其他都是滑鼠滾動時顯現。你能做到嗎? 你可以去爬原本是怎麼做的". The export had removed Wix's per-element entrances; the archived language copies still hold Wix's animation definitions: mostly "Float In" (60), "Fade In" (16), a few Fold / Slide In. Now, on phone, iPad and computer: in every top-level section except the first (top image / page title) and a bottom image section (photo background or photo only), each piece of content (big wrappers are split into their parts) fades in and floats up 40px (phone 24px) over 1.1s when it scrolls into view, pieces 0.09s apart. Content on screen at load is never hidden; the movement exists only while the animation runs (position-measuring effects unaffected); off under reduced motion; printing shows all.
+  每頁除了最上方與最下方的大圖外，各段內容捲到時淡入上浮，同段依序出現；手機、iPad、電腦。
+- Checked: home (video frame / glow positions unchanged after the reveal), T. Interceptor MP phone page (all 43 waiting pieces appear), category pages, About, MoAI, Defense.
+- Files: `src/js/global/scroll-reveal.js`, `src/css/global/scroll-reveal.css` (new), `src/*/ORDER.txt` → built files, `?v=` in all page HTML, `src/README.md`, `DESIGN-SYSTEM.md`.
+
 ### Present: grey with a continuous blue sweep; MoAI hand framing per platform; T. Interceptor MP award badge 三項調整
 - Joel: "Present 我想改成原本的灰字，但可以從左到右循環填滿藍色，或是字體有跳動循環的感覺。可以先做 mockup" → picked C "藍光掃過…應該一直循環掃". "Present" is the original grey again with a blue light sweeping left to right without a break (repeating band moved one tile per 2.6s loop); plain grey under reduced motion. Mockup: `preview/mockups/present-options.html`.
 - MoAI hand photo: "摩艾頭手部那張也可以做出 mockup 讓我調整個平台的位置" → `preview/mockups/photo-align.html?key=moaiHand&p=/moai-router/` (one setting per platform); Joel's values in `jcd-config.js` `photoFrames.moaiHand`: computer x0 / 1.15x, iPad landscape x15 / 1.12x, iPad portrait x22 / 1.19x, phone x36 / 1.23x. `photo-frames.js` now reads per-platform values.
