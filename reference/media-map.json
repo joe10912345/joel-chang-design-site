@@ -3200,16 +3200,6 @@
    "home"
   ]
  },
- "home/home-09-2000x1077.jpg": {
-  "source": "export",
-  "wix_ops": null,
-  "replaces": [
-   "jcd_hero_de478cedd287_2000x1077.jpg"
-  ],
-  "pages": [
-   "home"
-  ]
- },
  "home/home-10-2400x1234.jpg": {
   "source": "export",
   "wix_ops": null,
@@ -18451,5 +18441,17 @@
    "home"
   ],
   "note": "Joel's enhanced render 2026-11-26 (pasted, 2000px)"
+ },
+ "home/home-09-2000x1077-v2.jpg": {
+  "source": "media-originals/jcd_home-tower-black_2000x1077.jpg",
+  "wix_ops": null,
+  "replaces": [
+   "jcd_hero_de478cedd287_2000x1077.jpg",
+   "home/home-09-2000x1077.jpg"
+  ],
+  "pages": [
+   "home"
+  ],
+  "note": "Joel's cleaner render 2026-11-26 (pasted, 2000px)"
  }
 }

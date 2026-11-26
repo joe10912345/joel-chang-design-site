@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Home slide 9 (black tower): Joel's cleaner render
+- Same size (2000x1077), much less noise -> `home/home-09-2000x1077-v2.jpg` (desktop + phone); original in `media-originals/jcd_home-tower-black_2000x1077.jpg`. `-v2`: a replaced image of the same size gets a version suffix so browsers do not keep showing the cached old file.
+
 ### Home slides 4 + 7: Joel's enhanced renders
 - Slide 4 (black routers): Joel's resolution-enhanced version (pasted, 2000x1166) -> `home/home-04-2000x1166.jpg` (263 KB).
 - Slide 7 (blue tower): the full-size enhanced file was in Downloads (2752x1536) -> `home/home-07-2752x1536.jpg` (459 KB), replacing the 2000px pasted copy from earlier today. Originals in `media-originals/jcd_home-*`. Desktop + phone.
