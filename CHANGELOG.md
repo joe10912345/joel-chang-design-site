@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Home "Selected" grid (12 works): spotlight
+- Joel chose option B of `preview/works-grid.html`. Computer with a mouse: the tile under the mouse stays bright, its photo eases in 6% inside the frame, a thin white line frames it and category + name + a round ">>" rise in at the bottom-left; the other 11 dim (brightness .38). Touch (phone + iPad): category + name always at the bottom-left with the round ">>" (same as the category pages), blue while pressed. Wix's 27% / 45% darkening overlay is off for this grid (`site.js` 5b skips it). Names per link in `custom.js` "Home Selected grid" (`NAMES`). `custom.css` `.jcd-spot*`.
+
 ### About: intro centred in the space below the menu
 - Joel: the first About section sat too high (the menu takes the top band, so whole-screen centring left an empty band below). `custom.js` "About, desktop layout": the text + portrait block is now centred between the header's bottom and the screen bottom (still at least 56px below the header), and may move down as well as up. Checked 1920x1080 (189px above = 189px below), iPad landscape (259 = 259) and portrait.
 

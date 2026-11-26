@@ -131,6 +131,7 @@
     var openItem = null;
     Array.prototype.forEach.call(document.querySelectorAll('.gallery-item-container'), function (item) {
       var tpl = item.querySelector('template[data-pg-hover]'); if (!tpl) return;
+      if (item.closest('#pro-gallery-container-comp-mnpgav5j')) return;   /* home Selected grid: custom.js "spotlight" (Joel 2026-11-26) */
       var wrapper = item.querySelector('.gallery-item-wrapper'), content = item.querySelector('.gallery-item-content');
       var baseItem = item.className, baseContent = content ? content.className : '';
       var shown = null, leaving = null;
