@@ -63,7 +63,7 @@ Main headings: WORK EXPERIENCE, SELECTED AWARDS, EXPERTISE, TRUSTED COLLABORATIO
 Other rules
 - Phone page side margins: **20px** each side (equal) in the 320px layout.
 - Category pages (desktop/iPad): white frames and the unframed tile rows share one left edge and are centred, equal space left/right (`custom.js` "Category pages").
-- About intro (desktop/iPad): text + portrait centred on the screen, at least 56px below the header (`custom.js` "About, desktop layout").
+- About intro (desktop/iPad): text + portrait centred in the space between the header and the screen bottom, at least 56px below the header (`custom.js` "About, desktop layout").
 - Catalog title bars: every text centred vertically on the bar (`custom.js` "Catalog title bars").
 - Phone category pages: frames of one category 8px apart, 48px before the next category (`custom.js`).
 - Contact form fields: 1px white underline (hover/typing: same width, `--jcd-blue`), 12px indent; field names white Medium (phone 11px, desktop 15px); message hint Poppins Light white 45% (phone 9.5px, desktop 13px). iPhone tap-zoom is stopped by `custom.js` (viewport maximum-scale).

@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### About: intro centred in the space below the menu
+- Joel: the first About section sat too high (the menu takes the top band, so whole-screen centring left an empty band below). `custom.js` "About, desktop layout": the text + portrait block is now centred between the header's bottom and the screen bottom (still at least 56px below the header), and may move down as well as up. Checked 1920x1080 (189px above = 189px below), iPad landscape (259 = 259) and portrait.
+
 ### Category pages: cards with and without a product page now look different
 - Joel: cards without a link had the same 3D tilt + light + darkened name as linked ones; on the phone only ">>" told them apart. Study: `preview/category-links.html`.
 - Computer (mouse): a card without a product page no longer tilts and gets no light sheen (`tilt.js` skips hover boxes without a link), cursor stays the normal arrow; hovering still darkens it and shows its name. ">>" on linked cards only appears on hover (unchanged Wix hover state).
