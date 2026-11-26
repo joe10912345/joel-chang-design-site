@@ -1206,6 +1206,21 @@
     window.addEventListener('scroll', chk, { passive: true }); setTimeout(chk, 600);
   });
 
+  /* About intro photo (Joel 2026-11-26): Joel at the material wall; with the mouse on it, it cross-fades to the
+     Golden Pin 2025 photo. Touch (phone, iPad): a tap switches to the second photo, another tap back. The frame
+     takes the photos' ratio (2000x1425) in custom.css. */
+  ready(function () {
+    var img = document.getElementById('img_comp-mujmtw8h'); if (!img || !img.getAttribute('data-jcd-alt')) return;
+    var comp = document.getElementById('comp-mujmtw8h');
+    img.loading = 'eager'; img.removeAttribute('loading');
+    var b = img.cloneNode(false); b.removeAttribute('id'); b.className = 'jcd-swap-b'; b.src = img.getAttribute('data-jcd-alt'); b.alt = '';
+    b.removeAttribute('data-jcd-alt'); b.removeAttribute('srcset');
+    var host = img.parentElement; if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
+    host.appendChild(b); comp.classList.add('jcd-swap');
+    var touch = document.body.classList.contains('device-mobile-optimized') || window.__jcdTablet || (window.matchMedia && matchMedia('(hover: none)').matches);
+    if (touch) { comp.classList.add('jcd-swap-touch'); comp.addEventListener('click', function () { comp.classList.toggle('jcd-on'); }); }
+  });
+
   // iOS Safari only applies :active (pressed states) when a touchstart listener exists.
   document.addEventListener('touchstart', function () {}, { passive: true });
 })();

@@ -652,3 +652,11 @@ img.jcd-sig.jcd-sig-in { -webkit-mask-position: 0 0 !important; mask-position: 0
 .jcd-spot a.jcd-hot-tile .jcd-go::before, .gpDCD5:hover .jcd-go::before, .jcd-da-link:hover .jcd-go::before,
 a.item-link-wrapper:active .jcd-go::before, .gpDCD5:active .jcd-go::before, .jcd-da-link:active .jcd-go::before { transform: scale(1); }
 .jcd-spot a.jcd-hot-tile .jcd-go, .gpDCD5:hover .jcd-go, .jcd-da-link:hover .jcd-go { border-color: var(--jcd-blue); background: rgba(20, 22, 28, .45); }
+/* About intro photo: frame in the photos' ratio (2000x1425) + second photo on hover / tap (custom.js, Joel 2026-11-26) */
+body:not(.device-mobile-optimized) #comp-mujmtw8h { height: 421px !important; }   /* 589 wide */
+.device-mobile-optimized #comp-mujmtw8h { height: 194px !important; }              /* 270 wide */
+.jcd-swap .jcd-swap-b { position: absolute; inset: 0; width: 100% !important; height: 100% !important; object-fit: cover;
+  opacity: 0; transition: opacity .6s ease; pointer-events: none; }
+@media (hover: hover) and (pointer: fine) { .jcd-swap:not(.jcd-swap-touch):hover .jcd-swap-b { opacity: 1; } }
+.jcd-swap.jcd-on .jcd-swap-b { opacity: 1; }
+.jcd-swap-touch { cursor: pointer; -webkit-tap-highlight-color: transparent; }

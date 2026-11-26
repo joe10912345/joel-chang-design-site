@@ -27,44 +27,6 @@
    "about"
   ]
  },
- "about/about-02-1174x918.jpg": {
-  "source": "media-originals/1e9c09_3d9d7c0e1ee74cc5ad48e6d78e2d8c38_mv2.jpg",
-  "wix_ops": {
-   "crop": [
-    667,
-    167,
-    1755,
-    1374
-   ],
-   "mode": "fill",
-   "align": "c"
-  },
-  "replaces": [
-   "1e9c09_3d9d7c0e1ee74cc5ad48e6d78e2d8c38_mv2_1755x1374_5b6ef704.jpg"
-  ],
-  "pages": [
-   "about"
-  ]
- },
- "about/about-02-536x348.jpg": {
-  "source": "media-originals/1e9c09_3d9d7c0e1ee74cc5ad48e6d78e2d8c38_mv2.jpg",
-  "wix_ops": {
-   "crop": [
-    264,
-    158,
-    1940,
-    1270
-   ],
-   "mode": "fill",
-   "align": "c"
-  },
-  "replaces": [
-   "1e9c09_3d9d7c0e1ee74cc5ad48e6d78e2d8c38_mv2_1940x1270_00c442e3.jpg"
-  ],
-  "pages": [
-   "about"
-  ]
- },
  "about/about-03-2151x1344.jpg": {
   "source": "export",
   "wix_ops": null,
@@ -18426,5 +18388,41 @@
    "home"
   ],
   "note": "Achievement world map; Italy's dot moved up from north Africa to Italy (Joel 2026-11-26); phone, 256-colour PNG"
+ },
+ "about/about-05-2000x1425.jpg": {
+  "source": "media-originals/jcd_about-portrait-materials_2000x1425.jpg",
+  "wix_ops": null,
+  "replaces": [],
+  "pages": [
+   "about"
+  ],
+  "note": "About intro photo (material wall), Joel 2026-11-26"
+ },
+ "about/about-05-1200x855.jpg": {
+  "source": "media-originals/jcd_about-portrait-materials_2000x1425.jpg",
+  "wix_ops": null,
+  "replaces": [],
+  "pages": [
+   "about"
+  ],
+  "note": "About intro photo (material wall), Joel 2026-11-26 (phone)"
+ },
+ "about/about-06-2000x1425.jpg": {
+  "source": "media-originals/jcd_about-portrait-golden-pin_2000x1425.jpg",
+  "wix_ops": null,
+  "replaces": [],
+  "pages": [
+   "about"
+  ],
+  "note": "About intro hover/tap photo (Golden Pin 2025), Joel 2026-11-26"
+ },
+ "about/about-06-1200x855.jpg": {
+  "source": "media-originals/jcd_about-portrait-golden-pin_2000x1425.jpg",
+  "wix_ops": null,
+  "replaces": [],
+  "pages": [
+   "about"
+  ],
+  "note": "About intro hover/tap photo (Golden Pin 2025), Joel 2026-11-26 (phone)"
  }
 }
