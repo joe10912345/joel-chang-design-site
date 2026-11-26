@@ -2,4 +2,5 @@
 __pycache__/
 tools/scrub_*.py
 tools/seo-report.json
-media-new/*\n!media-new/README.txt
+media-new/*
+!media-new/README.txt
