@@ -73,21 +73,8 @@
   ],
   "pages": [
    "about"
-  ]
- },
- "about/about-04-640x622.jpg": {
-  "source": "media-originals/1e9c09_7741cb3944ec407bbe66372b6dbd3a3e_mv2.jpg",
-  "wix_ops": {
-   "crop": null,
-   "mode": "fill",
-   "align": "c"
-  },
-  "replaces": [
-   "1e9c09_7741cb3944ec407bbe66372b6dbd3a3e_mv2_640x622_33e57f81.jpg"
   ],
-  "pages": [
-   "about"
-  ]
+  "note": "What I Believe photo, desktop + phone (reveal: one screen tall, phone needs the large file)"
  },
  "ai-tool-kit/ai-tool-kit-01-1672x941.jpg": {
   "source": "export",

@@ -1109,6 +1109,35 @@
     });
   })();
 
+  /* About "What I Believe": scroll reveal like the product pages (Joel 2026-11-26). The photo is one screen tall and
+     stays still on the screen while the section passes over it like a window (CSS sticky, no scroll script). Its box
+     reaches one screen above and below the section; the section's background box clips it ('clip', never 'hidden',
+     or the sticky would stop). Photo always loads at once. Phone, iPad, computer. */
+  ready(function () {
+    var media = document.getElementById('bgMedia_comp-mujj9yyt'); if (!media) return;
+    var sec = media.closest('section'), wi = media.querySelector('wow-image'), img = wi && wi.querySelector('img');
+    if (!sec || !wi || !img) return;
+    img.loading = 'eager'; img.removeAttribute('loading');
+    sec.classList.add('jcd-window');
+    function lay() {
+      var Z = window.__jcdZoom || 1, vh = Math.round(window.innerHeight / Z), H = sec.offsetHeight;
+      if (media.parentElement) media.parentElement.style.setProperty('overflow', 'clip', 'important');
+      [['position', 'absolute'], ['top', -vh + 'px'], ['left', '0'], ['width', '100%'], ['height', (H + 2 * vh) + 'px'],
+       ['margin', '0'], ['overflow', 'visible'], ['transform', 'none']].forEach(function (p) { media.style.setProperty(p[0], p[1], 'important'); });
+      [['position', 'sticky'], ['top', '0'], ['bottom', 'auto'], ['left', 'auto'], ['width', '100%'], ['height', vh + 'px'],
+       ['display', 'block'], ['transform', 'none'], ['margin', '0']].forEach(function (p) { wi.style.setProperty(p[0], p[1], 'important'); });
+      img.style.setProperty('width', '100%', 'important'); img.style.setProperty('height', '100%', 'important');
+      img.style.setProperty('object-fit', 'cover', 'important');
+      /* phone + iPad (Joel 2026-11-26): a tall screen shows only a slice of this wide photo; keep its left side,
+         where the speaker stands */
+      if (document.body.classList.contains('device-mobile-optimized') || window.__jcdTablet)
+        img.style.setProperty('object-position', '12% 60%', 'important');
+    }
+    lay();
+    var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(lay, 120); });
+    window.addEventListener('load', lay);
+  });
+
   // iOS Safari only applies :active (pressed states) when a touchstart listener exists.
   document.addEventListener('touchstart', function () {}, { passive: true });
 })();

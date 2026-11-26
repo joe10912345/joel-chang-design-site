@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### About "What I Believe": scroll reveal; speaker kept in view on phone/iPad
+- Joel: same reveal as the product pages. The photo is one screen tall and stays still while the section passes over it like a window (CSS sticky; its box reaches one screen above/below the section, the section's background box clips with `overflow: clip`). Loads at once (not lazy). Phone + iPad: the photo is anchored left (`object-position: 12% 60%`) so the speaker on the left shows. Phone now uses the large file (`about-03-2151x1344.jpg`; the 640px crop `about-04` removed) because the photo fills a whole tall screen. `custom.js` "About What I Believe".
+
 ### iPad upright: larger page + menu; About intro no longer far down
 - Joel: on an upright iPad the About intro had a huge empty band above it, and everything (menu too) was too small; landscape was fine. `site.js`: upright iPads are laid out 1440px wide (was 1694; landscape stays 1694), ~18% larger; the viewport switches when the iPad turns, and `.jcd-tab-portrait` draws the header's logo group and menu group 1.3x, each anchored to its own edge. `custom.js` About intro: centred below the menu but at most 260px below it. `preview/devices.html`: iPad portrait frame 1440 wide (`twp`).
 
