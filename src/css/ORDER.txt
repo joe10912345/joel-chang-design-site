@@ -8,7 +8,6 @@ global/gallery-overlays.css
 home/works-grid-links.css
 home/video-frame.css
 global/lightbox.css
-global/cursor-light.css
 global/hidden-h1.css
 global/header-icons-hover.css
 contact/form-status.css

@@ -1,5 +1,5 @@
 /* Scroll reveal (Joel 2026-11-27; custom.js "Scroll reveal"): the opacity of each piece follows the scroll position
-   (set by the script). A very short transition smooths jumps between scroll events. */
-.jcd-rv { transition: opacity .12s linear; }
+   (set by the script). The transition smooths it; its length is `smooth` in jcd-config.js scrollReveal. */
+.jcd-rv { transition: opacity var(--jcd-rv-smooth, .12s) linear; }
 @media (prefers-reduced-motion: reduce) { .jcd-rv { opacity: 1 !important; } }
 @media print { .jcd-rv { opacity: 1 !important; } }

@@ -143,9 +143,9 @@ Other rules 其他:
 
 ## 7. Motion 動態
 
-- **Scroll reveal (every page)**: in every section except the first and a bottom image section, each piece of content fades with the scroll position (opacity only, no movement): invisible while its top is at the bottom edge of the screen, fully visible when it reaches the middle, and it fades out again when scrolling back up. Near the page end, where content can't reach the middle, it is fully visible at the last scroll position. 捲動顯現：每段內容隨捲動位置淡入（不移動），頂端在畫面底部時看不見、到畫面中央時完全顯現，往上捲會再淡出（首段與最下方大圖除外）。
+- **Scroll reveal (every page)**: in every section except the first and a bottom image section, each piece of content fades with the scroll position (opacity only, no movement): invisible while its top is at the bottom edge of the screen, fully visible when it reaches the middle, and it fades out again when scrolling back up. Timing in `jcd-config.js` `scrollReveal`, tuned with `preview/mockups/scroll-fade.html`. Near the page end, where content can't reach the middle, it is fully visible at the last scroll position. 捲動顯現：每段內容隨捲動位置淡入（不移動），頂端在畫面底部時看不見、到畫面中央時完全顯現，往上捲會再淡出（首段與最下方大圖除外）。
 - Recommendation card hover: two corner glows drifting, 5s. 推薦卡角落光暈飄移。
-- Cursor light (mouse only): a 200px blue glow follows the mouse IN FRONT of all page content (images and text too), below the header, dialogs and lightbox; clicks pass through. 滑鼠光暈：200px 藍色光暈跟著滑鼠，放在所有內容最前面（標題列、彈出視窗之下），不擋點擊。
+- No cursor light: the mouse glow was removed (Joel 2026-11-27, "取消滑鼠光標"). 沒有滑鼠光暈（已取消）。
 - GET IN TOUCH: breathing scale 1 → 1.045, 2.8s. 呼吸縮放。
 - Ocean Series creatures: dimmed 35% at rest; hover/tap = bright + zoom 1.1 inside the frame. 海洋系列小圖。
 - 3D tilt (`tilt.js`, max 3°): About portrait only. 3D 傾斜只給大頭照。

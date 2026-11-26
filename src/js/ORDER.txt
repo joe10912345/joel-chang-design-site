@@ -4,7 +4,6 @@ home/design-approach-cards.js
 home/cross-category-grid.js
 home/video-frame.js
 global/lightbox.js
-global/cursor-light.js
 global/header-autohide.js
 contact/contact-form.js
 global/phone-menu-social.js

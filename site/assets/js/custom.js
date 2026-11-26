@@ -284,44 +284,6 @@
   });
 
   ready(function () {
-    /* Cursor light: a blue glow that follows the mouse (desktop pointer only). Since Joel 2026-11-27 ("把滑鼠光暈放最前")
-       it is one see-through layer IN FRONT of the page content (custom.css .jcd-cursor-light), clicks pass through.
-       We only move the CSS vars --mx/--my (eased each frame) and fade --jcd-light in/out. */
-    var fine = window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches;
-    var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (fine && !calm) {
-      var rs = document.documentElement.style, hdrEl = document.getElementById('SITE_HEADER');
-      document.documentElement.classList.add('jcd-light-on');
-      var layer = document.createElement('div'); layer.className = 'jcd-cursor-light'; layer.setAttribute('aria-hidden', 'true');
-      document.body.appendChild(layer);
-      var tx = 0, ty = 0, gx = 0, gy = 0, li = 0, lt = 0, raf = 0, seen = false;
-      var step = function () {
-        gx += (tx - gx) * 0.14; gy += (ty - gy) * 0.14; li += (lt - li) * 0.08;
-        var z = window.__jcdZoom || 1;   /* page zoom on wide screens: screen px -> CSS px */
-        rs.setProperty('--mx', (gx / z).toFixed(1) + 'px'); rs.setProperty('--my', (gy / z).toFixed(1) + 'px');
-        /* keep the header band free of light: the light image starts below the header (--hb) and fades out
-           as the cursor nears it, so no edge shows */
-        var hb = hdrEl ? Math.max(0, Math.round(hdrEl.getBoundingClientRect().bottom)) : 0;
-        var f = Math.min(1, Math.max(0, (gy - hb) / 200));
-        rs.setProperty('--hb', (hb / z).toFixed(1) + 'px');
-        rs.setProperty('--jcd-light', (li * f).toFixed(3));
-        raf = (Math.abs(tx - gx) + Math.abs(ty - gy) > 0.3 || Math.abs(lt - li) > 0.004) ? requestAnimationFrame(step) : 0;
-      };
-      var kick = function () { if (!raf) raf = requestAnimationFrame(step); };
-      document.addEventListener('pointermove', function (e) {
-        if (e.pointerType && e.pointerType !== 'mouse') return;
-        tx = e.clientX; ty = e.clientY;
-        if (!seen) { seen = true; gx = tx; gy = ty; }
-        lt = 1; kick();
-      }, { passive: true });
-      document.documentElement.addEventListener('mouseleave', function () { lt = 0; kick(); });
-      window.addEventListener('scroll', kick, { passive: true });
-      if (hdrEl) hdrEl.addEventListener('transitionend', kick);
-      window.addEventListener('blur', function () { lt = 0; kick(); });
-    }
-  });
-
-  ready(function () {
     /* Header: slide up out of view when scrolling down, slide back when scrolling up; always shown at top.
        (Joel's design; live Wix only fades it out.) Not hidden while the Works dropdown or mobile menu is open. */
     var hdr = document.getElementById('SITE_HEADER');
@@ -1518,18 +1480,26 @@
     function scroller() { var b = document.body, h = document.documentElement;
       return getComputedStyle(h).overflowY !== 'visible' && /(auto|scroll)/.test(getComputedStyle(b).overflowY) && b.scrollHeight > b.clientHeight + 1
         ? b : document.scrollingElement || h; }
+    /* timing from jcd-config.js scrollReveal (read on every update, so the mockup can change it live) */
+    var curves = { linear: function (t) { return t; }, ease: function (t) { return t * t * (3 - 2 * t); },
+                   easeOut: function (t) { return 1 - (1 - t) * (1 - t); } };
     function update() {
       raf = 0; vh = window.innerHeight;
+      /* positions and innerHeight are both in window pixels (no __jcdZoom division needed: nothing is set in CSS px) */
+      var C = (window.JCD_CONFIG && JCD_CONFIG.scrollReveal) || {};
+      var a = vh * (C.start != null ? C.start : 1), b = vh * (C.end != null ? C.end : 0.5), f = curves[C.curve] || curves.linear;
+      document.documentElement.style.setProperty('--jcd-rv-smooth', (C.smooth != null ? C.smooth : 0.12) + 's');
       var sc = scroller();
       var left = Math.max(0, sc.scrollHeight - sc.clientHeight - sc.scrollTop);   /* how far the page can still scroll down */
       items.forEach(function (e) {
         var top = e.getBoundingClientRect().top;
-        /* fully visible once the top reaches the middle — or, near the page end, where it stops at the last scroll */
-        var full = Math.min(Math.max(vh * 0.5, top - left), vh - 1);
-        var o = Math.max(0, Math.min(1, (vh - top) / (vh - full)));   /* top at the bottom edge -> 0 */
-        e.style.setProperty('opacity', o.toFixed(3));
+        /* fully visible at `end` — or, near the page end, where it stops at the last scroll */
+        var full = Math.min(Math.max(b, top - left), a - 1);
+        var t = Math.max(0, Math.min(1, (a - top) / (a - full)));   /* top at `start` -> 0 */
+        e.style.setProperty('opacity', f(t).toFixed(3));
       });
     }
+    window.__jcdScrollReveal = function () { soon(); };   /* for preview/mockups/scroll-fade.html */
     function soon() { if (!raf) raf = requestAnimationFrame(update); }
     document.addEventListener('scroll', soon, { passive: true, capture: true });   /* capture: the phone page scrolls inside body */
     window.addEventListener('resize', soon); window.addEventListener('load', soon);

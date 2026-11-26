@@ -50,6 +50,15 @@ window.JCD_CONFIG = {
     ipadLandscape: { fx: 0.26, fy: 0.62, sx: 0.113, sy: 0.579, zoom: 1.23 },
   },
 
+  /* Scroll fade of every page's content (Joel 2026-11-27: "滾到畫面中央逐漸顯現，往上滾消失"; tune with
+     preview/mockups/scroll-fade.html). Positions are the top of a piece of content as a share of the screen height
+     from the top (1 = bottom edge, 0.5 = middle). `start`: where it begins to appear; `end`: where it is fully visible;
+     `curve`: 'linear' | 'ease' (soft at both ends) | 'easeOut' (quick, then soft); `smooth`: seconds the opacity takes to
+     catch up with the scroll (0 = exactly with the scroll, larger = softer, lags more). Same on phone, iPad, computer.
+     捲動淡入：start＝開始出現的位置、end＝完全顯現的位置（內容頂端在畫面高度的比例，1＝底部、0.5＝中央）；
+     curve＝曲線；smooth＝跟上捲動的秒數（越大越柔、越慢）。三平台共用。 */
+  scrollReveal: { start: 1.0, end: 0.5, curve: 'linear', smooth: 0.12 },
+
   /* Photo framing inside a card (Joel 2026-11-27, set with preview/mockups/photo-align.html): `x` / `y` = which point of
      the photo stays in view (0-100%, like object-position), `zoom` = how much larger than just filling the card.
      Same on every device, unless the entry has per-platform values: desktop / ipadLandscape / ipadPortrait / phone. 卡片內照片取景：x / y 決定看哪個位置（0-100%），zoom 放大倍率；三平台共用。 */

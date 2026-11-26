@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>捲動淡入調整</title>
+<style>
+  /* Scroll fade tuning tool (Joel 2026-11-27: "fade in 給我 mockup，滾動顯現的不同時間順暢度讓我調整").
+     Real pages in frames; the values go live into each frame's JCD_CONFIG.scrollReveal. */
+  :root { --jcd-blue: #0062d9; --mut: #8d8f99; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #0b0c10; color: #eee; font: 14px/1.5 system-ui, "Noto Sans TC", sans-serif; padding: 16px 18px 40px; }
+  h1 { font-size: 20px; margin: 0 0 4px; } .note { color: var(--mut); margin: 0 0 14px; max-width: 1150px; }
+  .wrap { display: flex; gap: 26px; align-items: flex-start; flex-wrap: wrap; }
+  .panel { width: 330px; background: #111218; border: 1px solid #24252c; border-radius: 10px; padding: 14px 16px; }
+  .panel h2 { font-size: 15px; margin: 0 0 10px; }
+  .ctl { margin: 12px 0; } .ctl label { display: flex; justify-content: space-between; font-size: 13px; color: #cfd0d6; }
+  .ctl label output { color: #fff; } .ctl small { display: block; color: var(--mut); font-size: 12px; margin-top: 2px; }
+  .ctl input[type=range] { width: 100%; accent-color: var(--jcd-blue); }
+  .seg { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+  button { background: #15161b; color: #eee; border: 1px solid #30313a; border-radius: 6px; padding: 7px 12px; font: inherit; font-size: 13px; cursor: pointer; }
+  button.on, button.main { background: var(--jcd-blue); border-color: var(--jcd-blue); color: #fff; }
+  .devs { display: flex; gap: 22px; align-items: flex-start; position: sticky; top: 8px; }
+  .dev h3 { font-size: 14px; margin: 0 0 6px; } .dev h3 span { color: var(--mut); font-weight: 400; font-size: 12px; }
+  .screen { position: relative; overflow: hidden; border: 6px solid #22242b; border-radius: 16px; background: #000; }
+  .screen iframe { position: absolute; left: 0; top: 0; border: 0; transform-origin: 0 0; }
+  .line { position: absolute; left: 0; right: 0; height: 0; border-top: 1px dashed; pointer-events: none; z-index: 2; }
+  .line span { position: absolute; right: 4px; top: -16px; font-size: 11px; padding: 0 4px; border-radius: 3px; }
+  .l-start { border-color: #ff9a3c; } .l-start span { background: #ff9a3c; color: #000; }
+  .l-end { border-color: #4fd18b; } .l-end span { background: #4fd18b; color: #000; }
+  .grab { position: absolute; inset: 0; z-index: 3; }
+  #out { margin-top: 12px; background: #0b0c10; border: 1px solid #2a2a30; border-radius: 6px; padding: 8px 10px; white-space: pre-wrap; font: 12px/1.5 ui-monospace, Consolas, monospace; color: #c9cad2; }
+  .ok { color: #7fd18b; }
+  select { background: #15161b; color: #eee; border: 1px solid #30313a; border-radius: 6px; padding: 6px 8px; font: inherit; font-size: 13px; width: 100%; }
+</style>
+</head>
+<body>
+<h1>捲動淡入調整</h1>
+<p class="note">下面是真實頁面。<b>橘線</b>＝內容頂端到這裡開始出現，<b>綠線</b>＝到這裡完全顯現。在畫面上用滾輪捲動，或按「自動捲動示範」看效果。調好按「儲存」，跟我說一聲就好。</p>
+<div class="wrap">
+  <div class="panel">
+    <h2>設定</h2>
+    <div class="ctl"><label>頁面</label>
+      <select id="page"><option value="/">首頁</option><option value="/about/">About</option><option value="/wi-fi7-gaming-home-gateway/">Wi-Fi 7 Gaming Home Gateway</option><option value="/moai-router/">MoAI Router（白底）</option><option value="/t-interceptormp/">T. Interceptor MP</option></select></div>
+    <div class="ctl"><label>快速選擇</label><div class="seg" id="presets"></div></div>
+    <div class="ctl"><label>開始出現 <output id="o-start"></output></label><input id="start" type="range" min="0.6" max="1.1" step="0.01">
+      <small>內容頂端到畫面多高時開始出現（1＝畫面底部）</small></div>
+    <div class="ctl"><label>完全顯現 <output id="o-end"></output></label><input id="end" type="range" min="0.2" max="0.95" step="0.01">
+      <small>到這裡完全看得到（0.5＝畫面中央）。兩條線越近，淡入越快。</small></div>
+    <div class="ctl"><label>曲線</label><div class="seg" id="curves"></div>
+      <small>平均：等速變亮　柔和：頭尾都慢　先快後慢：一出現就亮得快</small></div>
+    <div class="ctl"><label>順暢度（延遲） <output id="o-smooth"></output></label><input id="smooth" type="range" min="0" max="1.2" step="0.02">
+      <small>透明度追上捲動要幾秒。0＝完全跟手，越大越柔順、但越慢跟上。</small></div>
+    <div class="seg"><button id="demo">自動捲動示範</button><button class="main" id="save">儲存</button><button id="reset">還原</button></div>
+    <div id="out"></div>
+  </div>
+  <div class="devs" id="devs"></div>
+</div>
+<script>
+  var SKEY = 'jcd-scroll-fade', base, v;
+  var DEVS = [{ k: 'desktop', name: '電腦', sub: '1536 × 864', w: 1536, h: 864, show: 470 },
+              { k: 'phone', name: '手機', sub: '390 × 844', w: 320, h: 693, show: 470 }];
+  var PRESETS = [['網站目前', null], ['輕快', { start: 0.95, end: 0.7, curve: 'easeOut', smooth: 0.1 }],
+                 ['標準', { start: 1.0, end: 0.5, curve: 'ease', smooth: 0.3 }], ['慢慢浮現', { start: 1.0, end: 0.35, curve: 'ease', smooth: 0.6 }]];
+  var CURVES = [['linear', '平均'], ['ease', '柔和'], ['easeOut', '先快後慢']];
+  var cfg = document.createElement('script'); cfg.src = '/site/assets/js/jcd-config.js?t=' + Date.now(); cfg.onload = start; document.head.appendChild(cfg);
+  function $(id) { return document.getElementById(id); }
+  function start() {
+    base = JSON.parse(JSON.stringify(JCD_CONFIG.scrollReveal));
+    var saved = null; try { saved = JSON.parse(localStorage.getItem(SKEY) || 'null'); } catch (e) {}
+    v = saved || JSON.parse(JSON.stringify(base));
+    $('presets').innerHTML = PRESETS.map(function (p, i) { return '<button data-i="' + i + '">' + p[0] + '</button>'; }).join('');
+    $('presets').onclick = function (e) { var i = e.target.dataset.i; if (i == null) return; v = JSON.parse(JSON.stringify(PRESETS[i][1] || base)); ui(); push(); };
+    $('curves').innerHTML = CURVES.map(function (c) { return '<button data-c="' + c[0] + '">' + c[1] + '</button>'; }).join('');
+    $('curves').onclick = function (e) { var c = e.target.dataset.c; if (!c) return; v.curve = c; ui(); push(); };
+    ['start', 'end', 'smooth'].forEach(function (k) { $(k).oninput = function () { v[k] = +this.value;
+      if (k === 'start' && v.end > v.start - 0.05) v.end = +(v.start - 0.05).toFixed(2);
+      if (k === 'end' && v.start < v.end + 0.05) v.start = +(v.end + 0.05).toFixed(2); ui(); push(); }; });
+    $('page').onchange = load;
+    $('save').onclick = function () { try { localStorage.setItem(SKEY, JSON.stringify(v)); } catch (e) {} ui(true); };
+    $('reset').onclick = function () { v = JSON.parse(JSON.stringify(base)); ui(); push(); };
+    $('demo').onclick = demo;
+    DEVS.forEach(build); load(); ui();
+  }
+  function build(d) {
+    /* frames as large as the window allows: next to the panel on a wide window, below it on a narrow one */
+    var avail = innerWidth >= 1100 ? innerWidth - 400 : innerWidth - 40;
+    d.show = Math.max(260, Math.floor(Math.min(560, innerHeight - (innerWidth >= 1100 ? 110 : 60), (avail - 70) / (1536 / 864 + 320 / 693))));
+    var s = d.show / d.h; d.s = s;
+    var wrap = document.createElement('div'); wrap.className = 'dev';
+    wrap.innerHTML = '<h3>' + d.name + ' <span>' + d.sub + '</span></h3>';
+    var scr = document.createElement('div'); scr.className = 'screen'; scr.style.width = Math.round(d.w * s) + 12 + 'px'; scr.style.height = d.show + 12 + 'px';
+    var f = document.createElement('iframe'); f.width = d.w; f.height = d.h; f.style.transform = 'scale(' + s + ')';
+    var ls = document.createElement('div'); ls.className = 'line l-start'; ls.innerHTML = '<span>開始出現</span>';
+    var le = document.createElement('div'); le.className = 'line l-end'; le.innerHTML = '<span>完全顯現</span>';
+    var g = document.createElement('div'); g.className = 'grab';
+    g.addEventListener('wheel', function (e) { e.preventDefault(); stopDemo(); try { f.contentWindow.scrollBy(0, e.deltaY / s); } catch (x) {} }, { passive: false });
+    scr.appendChild(f); scr.appendChild(ls); scr.appendChild(le); scr.appendChild(g); wrap.appendChild(scr); $('devs').appendChild(wrap);
+    d.f = f; d.ls = ls; d.le = le;
+    f.onload = function () { setTimeout(push, 700); };
+  }
+  function load() { stopDemo(); var P = $('page').value;
+    DEVS.forEach(function (d) { d.f.src = (d.k === 'phone' ? '/site/m' + P + 'index.html?layout=mobile' : '/site' + P + '?layout=desktop') + '&pv=' + Date.now(); }); }
+  function push() { DEVS.forEach(function (d) {
+    d.ls.style.top = Math.min(d.show - 1, d.show * v.start) + 'px'; d.le.style.top = d.show * v.end + 'px';
+    try { var w = d.f.contentWindow; if (!w.JCD_CONFIG) return; w.JCD_CONFIG.scrollReveal = JSON.parse(JSON.stringify(v)); w.__jcdScrollReveal && w.__jcdScrollReveal(); } catch (e) {} }); }
+  var demoRaf = 0;
+  function stopDemo() { if (demoRaf) cancelAnimationFrame(demoRaf); demoRaf = 0; $('demo').classList.remove('on'); }
+  function demo() { if (demoRaf) { stopDemo(); return; } $('demo').classList.add('on');
+    DEVS.forEach(function (d) { try { d.f.contentWindow.scrollTo(0, 0); } catch (e) {} });
+    var t0 = performance.now();
+    (function step(t) {   /* down at a calm reading speed, then back up, repeating */
+      var p = ((t - t0) / 1000) % 24, k = p < 16 ? p / 16 : 1 - (p - 16) / 8;
+      DEVS.forEach(function (d) { try { var w = d.f.contentWindow, sc = w.document.scrollingElement;
+        w.scrollTo(0, k * Math.min(sc.scrollHeight - w.innerHeight, d.h * 4)); } catch (e) {} });
+      demoRaf = requestAnimationFrame(step); })(t0);
+  }
+  function ui(saved) {
+    ['start', 'end', 'smooth'].forEach(function (k) { $(k).value = v[k]; });
+    $('o-start').textContent = (+v.start).toFixed(2); $('o-end').textContent = (+v.end).toFixed(2); $('o-smooth').textContent = (+v.smooth).toFixed(2) + ' 秒';
+    [].forEach.call($('curves').children, function (b) { b.classList.toggle('on', b.dataset.c === v.curve); });
+    var txt = "scrollReveal: { start: " + (+v.start).toFixed(2) + ", end: " + (+v.end).toFixed(2) + ", curve: '" + v.curve + "', smooth: " + (+v.smooth).toFixed(2) + " }";
+    $('out').innerHTML = (saved ? '<span class="ok">已儲存，跟我說一聲就好。</span>\n' : '目前數值：\n') + txt;
+  }
+</script>
+</body>
+</html>

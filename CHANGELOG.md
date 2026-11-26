@@ -11,6 +11,16 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Mouse glow removed; scroll fade timing adjustable 取消滑鼠光暈；捲動淡入可調
+- Joel: "取消滑鼠光標". The blue mouse glow is gone (files deleted, out of `src/*/ORDER.txt` and `src/README.md`).
+  滑鼠藍色光暈已取消。
+- Joel: "fade in 給我 mockup，滾動顯現的不同時間順暢度讓我調整". The scroll fade's numbers now live in
+  `jcd-config.js` `scrollReveal` (start / end position, curve, smooth seconds), and `preview/mockups/scroll-fade.html`
+  shows real pages (computer + phone) with sliders, presets and an auto-scroll demo. The site keeps today's values
+  until Joel picks new ones. Files: `site/assets/js/jcd-config.js` (+ `?v=` in every page), `src/js/global/scroll-reveal.js`,
+  `src/css/global/scroll-reveal.css`, built `custom.*`, `DESIGN-SYSTEM.md`.
+  捲動淡入的數值移到 jcd-config.js（開始／完全顯現位置、曲線、順暢度秒數），並做了 mockup 讓 Joel 調整；網站先維持目前數值。
+
 ### Cursor light in front of everything 滑鼠光暈放最前
 - Joel: "把滑鼠光暈放最前". The blue mouse glow is now one see-through layer in front of all page content (images,
   video and text too), instead of on the background layers underneath. Clicks pass through; it still starts below the header
