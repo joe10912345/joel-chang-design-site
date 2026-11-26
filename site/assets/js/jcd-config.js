@@ -52,9 +52,13 @@ window.JCD_CONFIG = {
 
   /* Photo framing inside a card (Joel 2026-11-27, set with preview/mockups/photo-align.html): `x` / `y` = which point of
      the photo stays in view (0-100%, like object-position), `zoom` = how much larger than just filling the card.
-     Same on every device. 卡片內照片取景：x / y 決定看哪個位置（0-100%），zoom 放大倍率；三平台共用。 */
+     Same on every device, unless the entry has per-platform values: desktop / ipadLandscape / ipadPortrait / phone. 卡片內照片取景：x / y 決定看哪個位置（0-100%），zoom 放大倍率；三平台共用。 */
   photoFrames: {
     xcalar: { img: '#img_comp-jcdxcal1', x: 46, y: 26, zoom: 1.19 },   /* Defense, T. Xcalar card — aligned by Joel 2026-11-27 */
+    /* MoAI hand photo: one setting per platform (Joel 2026-11-27: "做出 mockup 讓我調整個平台的位置") */
+    moaiHand: { img: 'img[src*="moai-router-13-2560x1314"], img[src*="moai-router-30-1120x575"]',
+      desktop: { x: 0, y: 100, zoom: 1 }, ipadLandscape: { x: 0, y: 100, zoom: 1 }, ipadPortrait: { x: 0, y: 100, zoom: 1 },
+      phone: { x: 22, y: 100, zoom: 1 } },
   },
 
   /* Forms (Contact page + Guest Area "Request access"): sent to Joel's mailbox through Web3Forms (no server on GitHub

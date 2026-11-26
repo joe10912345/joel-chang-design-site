@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Present 動態</title>
+<style>
+  @font-face { font-family: "Poppins"; font-weight: 300; src: url("../../site/assets/fonts/poppins/poppins-light.woff2") format("woff2"); }
+  @font-face { font-family: "Poppins"; font-weight: 600; src: url("../../site/assets/fonts/poppins/poppins-semibold.woff2") format("woff2"); }
+  :root { --jcd-blue: #0062d9; --jcd-blue-rgb: 0, 98, 217; --grey: rgba(255, 255, 255, .5); --mut: #8d8f99; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #000; color: #eee; font: 14px/1.5 system-ui, "Noto Sans TC", sans-serif; padding: 24px 22px 60px; }
+  h1 { font-size: 20px; margin: 0 0 4px; } .note { color: var(--mut); margin: 0 0 22px; max-width: 980px; }
+  .opt { display: grid; grid-template-columns: 220px 1fr; gap: 18px; align-items: center; padding: 22px 0; border-top: 1px solid #1d1e24; max-width: 1100px; }
+  .opt h2 { margin: 0; font-size: 16px; } .opt p { margin: 4px 0 0; color: var(--mut); font-size: 13px; }
+  .row { display: flex; gap: 60px; align-items: baseline; font-family: "Poppins", sans-serif; }
+  .date { font-weight: 300; color: var(--grey); white-space: nowrap; }
+  .job { font-weight: 600; color: #fff; } .job small { font-weight: 300; color: var(--grey); font-size: 1em; }
+  .big { font-size: 26px; } .real { font-size: 13px; margin-top: 10px; }
+  .p { display: inline-block; }
+  /* A: blue fills the grey word from left to right, holds, then starts again */
+  .A .p { background: linear-gradient(90deg, var(--jcd-blue) 0 50%, var(--grey) 50% 100%) 100% 0 / 200% 100% no-repeat;
+          -webkit-background-clip: text; background-clip: text; color: transparent; animation: fillA 3.2s cubic-bezier(.4,0,.2,1) infinite; }
+  @keyframes fillA { 0% { background-position: 100% 0; } 55%, 80% { background-position: 0 0; } 100% { background-position: 0 0; opacity: 1; } }
+  /* B: letters hop one after another (wave), grey with a blue tint while up */
+  .B .p span { display: inline-block; animation: hopB 2.4s ease-in-out infinite; }
+  @keyframes hopB { 0%, 40%, 100% { transform: translateY(0); color: var(--grey); } 20% { transform: translateY(-.28em); color: #4d8fe6; } }
+  /* C: a blue light sweeps across the grey word */
+  .C .p { background: linear-gradient(100deg, var(--grey) 0 35%, #5aa0ff 45%, var(--jcd-blue) 50%, var(--grey) 62% 100%) 120% 0 / 250% 100% no-repeat;
+          -webkit-background-clip: text; background-clip: text; color: transparent; animation: sweepC 2.6s linear infinite; }
+  @keyframes sweepC { 0% { background-position: 120% 0; } 100% { background-position: -20% 0; } }
+  /* D: A + B — the fill runs left to right while each letter lifts a little as the blue reaches it */
+  .D .p span { display: inline-block; animation: fillD 3.2s ease-in-out infinite; }
+  @keyframes fillD { 0% { color: var(--grey); transform: none; } 12% { color: var(--jcd-blue); transform: translateY(-.18em); } 22%, 70% { color: var(--jcd-blue); transform: none; } 85%, 100% { color: var(--grey); } }
+  @media (prefers-reduced-motion: reduce) { .p, .p span { animation: none !important; } }
+</style>
+</head>
+<body>
+<h1>About「Present」動態選項</h1>
+<p class="note">都從原本的灰字開始，循環播放。每個選項上面是放大版，下面是網站實際大小（13px）。選好告訴我是 A、B、C 或 D（也可以說「A 但慢一點」之類）。</p>
+<div id="opts"></div>
+<script>
+  var O = [['A', '由左到右填滿藍色', '灰字由左往右被藍色填滿，停一下再重來（3.2 秒）。'],
+           ['B', '字母跳動', '字母一個接一個輕輕跳起，跳起時帶一點藍（2.4 秒波浪）。'],
+           ['C', '藍光掃過', '一道藍光從左掃到右，字保持灰色（2.6 秒）。'],
+           ['D', '填滿＋跳動', '藍色由左到右填滿，填到的字母同時輕跳一下（3.2 秒）。']];
+  function word(k) { if (k === 'A' || k === 'C') return '<span class="p">Present</span>';
+    return '<span class="p">' + 'Present'.split('').map(function (c, i) { return '<span style="animation-delay:' + (k === 'B' ? i * .09 : i * .12) + 's">' + c + '</span>'; }).join('') + '</span>'; }
+  document.getElementById('opts').innerHTML = O.map(function (o) {
+    var row = function (cls) { return '<div class="row ' + cls + '"><span class="date">Aug 2026 - ' + word(o[0]) + '</span><span class="job">Principal Industrial Designer · Remote <small>MO, USA</small></span></div>'; };
+    return '<div class="opt ' + o[0] + '"><div><h2>' + o[0] + '　' + o[1] + '</h2><p>' + o[2] + '</p></div><div>' + row('big') + row('real') + '</div></div>'; }).join('');
+</script>
+</body>
+</html>

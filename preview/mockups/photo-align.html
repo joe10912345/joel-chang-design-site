@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>卡片照片對齊</title>
+<title>照片對齊</title>
 <style>
   :root { --jcd-blue: #0062d9; --mut: #8d8f99; }
   * { box-sizing: border-box; }
   body { margin: 0; background: #0b0c10; color: #eee; font: 14px/1.5 system-ui, "Noto Sans TC", sans-serif; padding: 16px 18px 40px; }
-  h1 { font-size: 20px; margin: 0 0 4px; } .note { color: var(--mut); margin: 0 0 14px; max-width: 1100px; }
-  .row { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+  h1 { font-size: 20px; margin: 0 0 4px; } .note { color: var(--mut); margin: 0 0 14px; max-width: 1150px; }
+  .row { display: flex; gap: 22px; align-items: flex-start; flex-wrap: wrap; }
   .dev h2 { font-size: 15px; margin: 0 0 6px; } .dev h2 span { color: var(--mut); font-weight: 400; font-size: 12px; }
-  .screen { position: relative; overflow: hidden; border: 6px solid #22242b; border-radius: 18px; background: #000; }
+  .screen { position: relative; overflow: hidden; border: 6px solid #22242b; border-radius: 16px; background: #000; }
   .screen iframe { position: absolute; left: 0; top: 0; border: 0; transform-origin: 0 0; }
   .grab { position: absolute; inset: 0; cursor: grab; touch-action: none; } .grab:active { cursor: grabbing; }
-  .ctl { display: grid; grid-template-columns: 60px 320px 44px; gap: 6px 10px; align-items: center; margin-top: 14px; }
+  .ctl { display: grid; grid-template-columns: 36px 1fr 40px; gap: 6px; align-items: center; margin-top: 8px; font-size: 13px; color: #cfd0d6; }
   .ctl input { width: 100%; accent-color: var(--jcd-blue); } .ctl output { text-align: right; color: #fff; }
   button { background: #15161b; color: #eee; border: 1px solid #30313a; border-radius: 6px; padding: 7px 14px; font: inherit; cursor: pointer; }
   button.main { background: var(--jcd-blue); border-color: var(--jcd-blue); color: #fff; }
@@ -23,52 +23,67 @@
 </style>
 </head>
 <body>
-<h1>T. Xcalar 照片對齊</h1>
-<p class="note">下面是真實的 Defense 頁（電腦、iPad 直向、手機），已經捲到 T. Xcalar 卡片。<b>在任一畫面上拖曳照片</b>移動位置，用「放大」滑桿（或 Shift＋滾輪）調大小，三個畫面會一起變（同一組設定）。調好按「儲存」，跟我說一聲就好。</p>
+<h1 id="h">照片對齊</h1>
+<p class="note" id="note"></p>
 <div class="row" id="row"></div>
-<div class="ctl"><label>放大</label><input type="range" id="zoom" min="1" max="2.5" step="0.01"><output id="zv"></output></div>
-<div style="margin-top:12px; display:flex; gap:8px"><button class="main" id="save">儲存</button><button id="reset">還原</button></div>
+<div style="margin-top:14px; display:flex; gap:8px"><button class="main" id="save">儲存</button><button id="reset">還原</button></div>
 <div id="out"></div>
 <script>
-  var KEY = 'jcd-photo-align-xcalar', P = '/site/defense/', CARD = 'comp-jcdxcal0';
-  var DEVS = [{ name: '電腦', sub: '1920 × 1080', src: P + '?layout=desktop', w: 1536, h: 864, show: 380 },
-              { name: 'iPad 直向', sub: '820 × 1180', src: P + '?tablet=1&layout=desktop', w: 1438, h: 2069, show: 520 },
-              { name: '手機', sub: '390 × 844', src: '/site/m/defense/index.html?layout=mobile', w: 320, h: 693, show: 520 }];
-  var s0 = document.createElement('script'); s0.src = '/site/assets/js/jcd-config.js?t=' + Date.now(); s0.onload = start; document.head.appendChild(s0);
-  var v, base;
+  /* Generic photo framing tool (Joel 2026-11-27). ?key=<jcd-config photoFrames key>&p=/<page>/&t=<title>
+     An entry with desktop / ipadLandscape / ipadPortrait / phone values is adjusted per platform; otherwise one setting for all. */
+  var Q = new URLSearchParams(location.search), KEY = Q.get('key') || 'xcalar', P = Q.get('p') || '/defense/', TITLE = Q.get('t') || KEY;
+  var SKEY = 'jcd-photo-align-' + KEY, DEVK = ['desktop', 'ipadLandscape', 'ipadPortrait', 'phone'];
+  var DEVS = [{ k: 'desktop', name: '電腦', sub: '1920 × 1080', show: 300 },
+              { k: 'ipadLandscape', name: 'iPad 橫向', sub: '1180 × 820', show: 300, tablet: true, portrait: false },
+              { k: 'ipadPortrait', name: 'iPad 直向', sub: '820 × 1180', show: 460, tablet: true, portrait: true },
+              { k: 'phone', name: '手機', sub: '390 × 844', show: 460 }];
+  var cfg = document.createElement('script'); cfg.src = '/site/assets/js/jcd-config.js?t=' + Date.now(); cfg.onload = start; document.head.appendChild(cfg);
+  var base, v, per;
   function start() {
-    base = Object.assign({}, JCD_CONFIG.photoFrames.xcalar);
-    try { v = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {} v = Object.assign({}, base, v || {});
-    DEVS.forEach(build); sync();
-    document.getElementById('zoom').oninput = function (e) { v.zoom = +e.target.value; sync(); push(); };
-    document.getElementById('save').onclick = function () { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (e) {} show(true); };
-    document.getElementById('reset').onclick = function () { v = Object.assign({}, base); sync(); push(); };
+    base = JSON.parse(JSON.stringify(JCD_CONFIG.photoFrames[KEY])); per = !!base.desktop;
+    var saved = null; try { saved = JSON.parse(localStorage.getItem(SKEY) || 'null'); } catch (e) {}
+    v = saved || JSON.parse(JSON.stringify(base));
+    document.getElementById('h').textContent = TITLE + ' 照片對齊';
+    document.getElementById('note').innerHTML = '下面是真實頁面' + (per ? '，<b>每個平台各自調整</b>' : '，四個畫面用同一組設定') +
+      '。在畫面上<b>拖曳照片</b>移動位置，滑桿（或 Shift＋滾輪）調放大，滾輪可捲動頁面。調好按「儲存」，跟我說一聲就好。';
+    DEVS.forEach(build); show();
+    document.getElementById('save').onclick = function () { try { localStorage.setItem(SKEY, JSON.stringify(v)); } catch (e) {} show(true); };
+    document.getElementById('reset').onclick = function () { v = JSON.parse(JSON.stringify(base)); DEVS.forEach(function (d) { sync(d); }); push(); show(); };
   }
+  function val(d) { return per ? v[d.k] : v; }
   function build(d) {
-    var s = d.show / d.h, wrap = document.createElement('div'); wrap.className = 'dev';
+    if (d.k === 'desktop') { d.w = 1536; d.h = 864; d.src = '/site' + P + '?layout=desktop'; }
+    else if (d.k === 'phone') { d.w = 320; d.h = 693; d.src = '/site/m' + P + 'index.html?layout=mobile'; }
+    else { d.w = JCD_CONFIG.tabletWidth(P.replace(/\//g, ''), d.portrait); d.h = Math.round(d.w * (d.portrait ? 1180 / 820 : 820 / 1180)); d.src = '/site' + P + '?tablet=1&layout=desktop'; }
+    var s = d.show / d.h; d.s = s;
+    var wrap = document.createElement('div'); wrap.className = 'dev'; wrap.style.width = Math.round(d.w * s) + 12 + 'px';
     wrap.innerHTML = '<h2>' + d.name + ' <span>' + d.sub + '</span></h2>';
     var scr = document.createElement('div'); scr.className = 'screen'; scr.style.width = Math.round(d.w * s) + 12 + 'px'; scr.style.height = d.show + 12 + 'px';
-    var f = document.createElement('iframe'); f.width = d.w; f.height = d.h; f.style.transform = 'scale(' + s + ')'; f.src = d.src + (d.src.indexOf('?') < 0 ? '?' : '&') + 'pv=' + Date.now();
+    var f = document.createElement('iframe'); f.width = d.w; f.height = d.h; f.style.transform = 'scale(' + s + ')'; f.src = d.src + '&pv=' + Date.now();
     var g = document.createElement('div'); g.className = 'grab'; scr.appendChild(f); scr.appendChild(g); wrap.appendChild(scr);
-    document.getElementById('row').appendChild(wrap); d.f = f; d.s = s;
-    f.onload = function () { setTimeout(function () { push(); try { var c = f.contentDocument.getElementById(CARD); c.scrollIntoView({ block: 'center' }); } catch (e) {} }, 900); };
+    var c = document.createElement('div'); c.className = 'ctl'; c.innerHTML = '<label>放大</label><input type="range" min="1" max="2.5" step="0.01"><output></output>';
+    wrap.appendChild(c); document.getElementById('row').appendChild(wrap); d.f = f; d.c = c;
+    c.querySelector('input').oninput = function (e) { setZoom(d, +e.target.value); };
+    sync(d);
+    f.onload = function () { setTimeout(function () { push(); try { var i = f.contentDocument.querySelector(JCD_CONFIG.photoFrames[KEY].img); i.loading = 'eager'; (i.closest('section') || i).scrollIntoView({ block: 'center' }); } catch (e) {} }, 900); };
     var st = null;
-    g.addEventListener('pointerdown', function (e) { g.setPointerCapture(e.pointerId); var c = card(d); if (!c) return; st = { x: e.clientX, y: e.clientY, vx: v.x, vy: v.y, w: c.w, h: c.h }; });
-    g.addEventListener('pointermove', function (e) { if (!st) return;
-      /* dragging the photo right shows more of its left side: x goes down (object-position semantics) */
-      var k = 100 / Math.max(1, v.zoom - 1 + 0.35);
-      v.x = clamp(st.vx - (e.clientX - st.x) / d.s / st.w * k, 0, 100); v.y = clamp(st.vy - (e.clientY - st.y) / d.s / st.h * k, 0, 100); sync(); push(); });
+    g.addEventListener('pointerdown', function (e) { g.setPointerCapture(e.pointerId); var r = box(d); if (!r) return; var o = val(d); st = { x: e.clientX, y: e.clientY, vx: o.x, vy: o.y, w: r.width, h: r.height }; });
+    g.addEventListener('pointermove', function (e) { if (!st) return; var o = val(d), k = 100 / Math.max(.35, o.zoom - 1 + .35);
+      o.x = clamp(st.vx - (e.clientX - st.x) / d.s / st.w * k, 0, 100); o.y = clamp(st.vy - (e.clientY - st.y) / d.s / st.h * k, 0, 100); push(); show(); });
     ['pointerup', 'pointercancel'].forEach(function (n) { g.addEventListener(n, function () { st = null; }); });
     g.addEventListener('wheel', function (e) { e.preventDefault();
-      if (e.shiftKey || e.ctrlKey) { v.zoom = +clamp(v.zoom * (1 - (e.deltaY || e.deltaX) * 0.0015), 1, 2.5).toFixed(3); sync(); push(); return; }
+      if (e.shiftKey || e.ctrlKey) { setZoom(d, +clamp(val(d).zoom * (1 - (e.deltaY || e.deltaX) * .0015), 1, 2.5).toFixed(3)); return; }
       f.contentWindow.scrollBy(0, e.deltaY / d.s); }, { passive: false });
   }
+  function setZoom(d, z) { val(d).zoom = z; DEVS.forEach(function (x) { if (!per || x === d) sync(x); }); push(); show(); }
   function clamp(a, lo, hi) { return Math.max(lo, Math.min(hi, a)); }
-  function card(d) { try { var r = d.f.contentDocument.getElementById(CARD).getBoundingClientRect(); return { w: r.width, h: r.height }; } catch (e) { return null; } }
-  function push() { DEVS.forEach(function (d) { try { var w = d.f.contentWindow; if (!w.JCD_CONFIG || !w.__jcdPhotoFrames) return; w.JCD_CONFIG.photoFrames.xcalar = Object.assign({}, v); w.__jcdPhotoFrames(); } catch (e) {} }); }
-  function sync() { var z = document.getElementById('zoom'); z.value = v.zoom; document.getElementById('zv').textContent = (+v.zoom).toFixed(2); show(); }
-  function show(saved) { document.getElementById('out').innerHTML = (saved ? '<span class="ok">已儲存，跟我說一聲就好。</span>\n' : '目前數值：\n') +
-    "xcalar: { img: '#img_comp-jcdxcal1', x: " + Math.round(v.x) + ', y: ' + Math.round(v.y) + ', zoom: ' + (+v.zoom).toFixed(2) + ' }'; }
+  function box(d) { try { var i = d.f.contentDocument.querySelector(JCD_CONFIG.photoFrames[KEY].img); return (i.closest('.ih2JY1, wow-image, [data-testid="linkElement"]') || i).getBoundingClientRect(); } catch (e) { return null; } }
+  function push() { DEVS.forEach(function (d) { try { var w = d.f.contentWindow; if (!w.JCD_CONFIG || !w.__jcdPhotoFrames) return;
+    w.JCD_CONFIG.photoFrames[KEY] = Object.assign({}, w.JCD_CONFIG.photoFrames[KEY], JSON.parse(JSON.stringify(v))); w.__jcdPhotoFrames(); } catch (e) {} }); }
+  function sync(d) { var i = d.c.querySelector('input'); i.value = val(d).zoom; d.c.querySelector('output').textContent = (+val(d).zoom).toFixed(2); }
+  function fmt(o) { return '{ x: ' + Math.round(o.x) + ', y: ' + Math.round(o.y) + ', zoom: ' + (+o.zoom).toFixed(2) + ' }'; }
+  function show(saved) { var t = KEY + ': ' + (per ? '{\n' + DEVK.map(function (k) { return '  ' + k + ': ' + fmt(v[k]); }).join(',\n') + '\n}' : fmt(v));
+    document.getElementById('out').innerHTML = (saved ? '<span class="ok">已儲存，跟我說一聲就好。</span>\n' : '目前數值：\n') + t; }
 </script>
 </body>
 </html>
