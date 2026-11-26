@@ -794,3 +794,13 @@ body:not(.device-mobile-optimized) :is(#comp-mojwork6, #comp-mojwmx3v, #comp-moj
 .device-mobile-optimized .jcd-webcap i { margin: 0 .5em; }
 .device-mobile-optimized .jcd-webcap-line { border-top-width: .67px; }
 .device-mobile-optimized #comp-mw0ptxhx { margin-top: 52px !important; }
+/* AI Tool Kit, ParaVents (Joel 2026-11-27: "paravents 的 hover 要 zoom in。然後下方的文字右邊的 try now 按鈕拿掉").
+   The big ParaVents image (hover box comp-mv7f65il, link to the trial) zooms in 6% inside its frame on hover
+   (touch: while pressed), like the other linked cards; the separate "Try Now" button beside the text is removed.
+   Phone, iPad and computer pages share the ids. */
+#comp-mv7f65je, #comp-mv7f65je .apPOZK { overflow: hidden !important; }
+#comp-mv7f65je img { transform: scale(1) !important; transform-origin: 50% 50%; transition: transform .8s cubic-bezier(.2, .7, .2, 1) !important; }
+@media (hover: hover) and (pointer: fine) { #comp-mv7f65il:hover #comp-mv7f65je img { transform: scale(1.06) !important; } }
+#comp-mv7f65il:active #comp-mv7f65je img { transform: scale(1.06) !important; }
+@media (prefers-reduced-motion: reduce) { #comp-mv7f65je img { transition: none !important; } }
+#comp-mv67tka2 { display: none !important; }

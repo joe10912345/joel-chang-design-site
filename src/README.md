@@ -28,7 +28,7 @@ Areas 分區: `global` = every page 全站 · `home` = home 首頁 · `about` = 
 | `home` | `design-approach-cards.css`, `cross-category-grid.css`, `works-grid-links.css`, `video-frame.css`, `works-category-buttons.css`, `end-to-end-text.css`, `selected-label.css`, `get-in-touch-breathing.css`, `works-grid-press.css`, `achievement-map.css`, `selected-grid.css`, `achievement-odometer.css`, `works-category-hover.css`, `design-approach-card1.css`, `video-glow.css`, `end-to-end-arrows.css`, `hero-no-counter.css`, `end-to-end-hover.css` |
 | `contact` | `form-status.css`, `field-colours.css`, `fields.css` |
 | `phone` | `mobile-fixes.css`, `menu-social.css`, `menu-layout.css` |
-| `product` | `ocean-series-creatures.css`, `ocean-series-seams.css`, `defense-guardian-no-go.css`, `guest-area-dialog.css`, `defense-website.css` |
+| `product` | `ocean-series-creatures.css`, `ocean-series-seams.css`, `defense-guardian-no-go.css`, `guest-area-dialog.css`, `defense-website.css`, `ai-tool-kit-paravents.css` |
 | `about` | `portrait-frame.css`, `believe-phone-text.css`, `recommendation-cards.css`, `grid-rows.css`, `signature-reveal.css`, `portrait-swap.css` |
 | `category` | `cards-linked.css`, `cards-ipad-sizes.css`, `go-hover-computer.css`, `cards-photo-zoom.css`, `cards-clickable.css` |
 

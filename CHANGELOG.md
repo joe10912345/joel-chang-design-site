@@ -11,6 +11,11 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### AI Tool Kit: ParaVents image zooms on hover; separate "Try Now" button removed ParaVents 放大、移除 Try Now 按鈕
+- Joel: "paravents 的 hover 要 zoom in。然後下方的文字右邊的 try now 按鈕拿掉". The ParaVents image (link to the trial) zooms in 6% inside its frame on hover (touch: while pressed), with the existing "TRY NOW" overlay; the "Try Now" button beside the description is hidden on phone, iPad and computer.
+  ParaVents 大圖滑過放大 6%；說明文字右邊的 Try Now 按鈕移除。
+- Files: `src/css/product/ai-tool-kit-paravents.css` (new), `src/css/ORDER.txt` → built `custom.css`, `?v=` in all page HTML, `src/README.md`.
+
 ### T. Xcalar photo: Joel's framing applied T. Xcalar 照片套用 Joel 的對齊
 - Joel aligned it in `preview/mockups/photo-align.html` ("搞定"): `photoFrames.xcalar` x 46, y 26, zoom 1.19 (computer, iPad, phone). 依 Joel 對齊的數值寫入設定。
 - Files: `site/assets/js/jcd-config.js`, `?v=` in all page HTML.
