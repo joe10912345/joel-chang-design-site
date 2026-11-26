@@ -163,9 +163,9 @@ html.jcd-light-on #SITE_HEADER [data-testid="colorUnderlay"] { background-image:
   content: ""; position: absolute; inset: 0; pointer-events: none; background: var(--jcd-blue); opacity: 0; transition: opacity .2s ease;
   -webkit-mask-position: center; mask-position: center; -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
-:has(> #img_comp-m26ho7tp)::after { -webkit-mask-image: url("../media/1e9c09_96f6bcd5dbc9424296b269813bc29e19_mv2_504x84_1723430a.png"); mask-image: url("../media/1e9c09_96f6bcd5dbc9424296b269813bc29e19_mv2_504x84_1723430a.png"); }
-:has(> :is(#img_0_comp-m26hqy39, #img_0_comp-m277hrti))::after { -webkit-mask-image: url("../media/11062b_b5690303a8ff470e9b1c03a24aff140b_mv2_54x54_875efeea.png"); mask-image: url("../media/11062b_b5690303a8ff470e9b1c03a24aff140b_mv2_54x54_875efeea.png"); }
-:has(> :is(#img_0_comp-m2768o98, #img_0_comp-m277hrto))::after { -webkit-mask-image: url("../media/1e9c09_03ad3edaacf84112ad4eba9cf5ad4caf_mv2_60x60_4c7bbc3e.png"); mask-image: url("../media/1e9c09_03ad3edaacf84112ad4eba9cf5ad4caf_mv2_60x60_4c7bbc3e.png"); }
+:has(> #img_comp-m26ho7tp)::after { -webkit-mask-image: url("../media/shared/shared-01-504x84.png"); mask-image: url("../media/shared/shared-01-504x84.png"); }
+:has(> :is(#img_0_comp-m26hqy39, #img_0_comp-m277hrti))::after { -webkit-mask-image: url("../media/shared/shared-02-54x54.png"); mask-image: url("../media/shared/shared-02-54x54.png"); }
+:has(> :is(#img_0_comp-m2768o98, #img_0_comp-m277hrto))::after { -webkit-mask-image: url("../media/shared/shared-03-60x60.png"); mask-image: url("../media/shared/shared-03-60x60.png"); }
 :is(a:hover, a:focus-visible):has(> :is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto))::after,
 :is(a:hover, a:focus-visible) :has(> :is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto))::after { opacity: 1; }
 :is(a:hover, a:focus-visible) :is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto) { opacity: 0 !important; }
@@ -218,7 +218,7 @@ html:has(> body.device-mobile-optimized), body.device-mobile-optimized { backgro
 #MENU_AS_CONTAINER_TOGGLE { transition: transform .12s ease, opacity .12s ease; outline: none; transform: scale(.78); opacity: .55; }
 #MENU_AS_CONTAINER_TOGGLE:active { transform: scale(.7); opacity: 1; }
 #MENU_AS_CONTAINER_TOGGLE.d0L2ow { opacity: 1; }
-.device-mobile-optimized :has(> #img_comp-m26ho7tp)::after { -webkit-mask-image: url("../media/1e9c09_96f6bcd5dbc9424296b269813bc29e19_mv2_300x38_3fb1d16b.png"); mask-image: url("../media/1e9c09_96f6bcd5dbc9424296b269813bc29e19_mv2_300x38_3fb1d16b.png"); }
+.device-mobile-optimized :has(> #img_comp-m26ho7tp)::after { -webkit-mask-image: url("../media/shared/shared-01-300x38.png"); mask-image: url("../media/shared/shared-01-300x38.png"); }
 a:active:has(> #img_comp-m26ho7tp)::after, a:active :has(> #img_comp-m26ho7tp)::after { opacity: 1; }
 a:active #img_comp-m26ho7tp { opacity: 0 !important; }
 /* 6: Works category buttons: no focus ring / tap flash; pressed = light-grey fill, white text, thin grey border */
@@ -456,3 +456,7 @@ input, textarea, select, [contenteditable="true"] { -webkit-user-select: text !i
   --txtlbl: var(--jcd-blue-rgb) !important;
   --txtlblrq: var(--jcd-blue-rgb) !important;
 }
+
+/* Defense "Field Protection" (T. Guardian) frame: no ">>" — it has no product page yet (Joel 2026-11-26).
+   Desktop, iPad and phone defense pages share the comp id. */
+#comp-mukou2e11 { display: none !important; }

@@ -19,6 +19,8 @@ Open items. When you finish one, move it to `CHANGELOG.md` with the date. Add ne
 - [ ] Wix scroll-parallax effects not reproduced.
 
 ## Workflow / housekeeping
+- [ ] Untracked leftover Wix images still sit loose in `site/assets/media/` (not used, never committed); can be deleted locally.
+- [ ] `tools/*.py` export scripts still expect the old flat Wix image names.
 - [ ] `tools/build.py` and other export scripts use `/workspace/...` paths from the environment they were made in; they do not run on Joel's PC as-is. Today all edits are made directly in `site/`. Do NOT re-run `build.py` without checking: it would regenerate HTML from the raw Wix capture and could overwrite hand edits.
 - [ ] `reference/asset-sources.json` differs from GitHub (same files, different original-name URLs); unclear which is newer, left uncommitted.
 - [ ] README "Known limitations" should be kept in sync with this file.

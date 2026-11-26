@@ -16,7 +16,7 @@ No Wix server is needed to view it.
 | `site/` | The website. Open with any static server. `site/index.html` = home. |
 | `site/<page>/index.html` | Desktop layout of each page (35 pages, see `PAGES.md`). |
 | `site/m/<page>/index.html` | Mobile layout of each page (Wix classic keeps a separate mobile design). |
-| `site/assets/media/` | Images exactly as displayed (sharpest size Wix served, i.e. the 2x variant). |
+| `site/assets/media/<page>/` | Images, one folder per page (`shared/` = several pages), named `<page>-<nn>-<w>x<h>.jpg`, made from `media-originals/`. Map: `reference/media-map.json`. |
 | `site/assets/fonts/`, `css/`, `video/`, `files/` | Fonts, stylesheets, background videos, favicon etc. |
 | `site/assets/js/site.js` | Small hand-written script that replaces the Wix runtime (see below). |
 | `site/assets/css/static-overrides.css` | Small CSS fixes for running without Wix. |

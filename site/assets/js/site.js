@@ -187,14 +187,21 @@
       view.style.cssText = 'position:absolute;inset:0;overflow:hidden;touch-action:pan-y;';
       var track = document.createElement('div');
       track.style.cssText = 'display:flex;height:100%;will-change:transform;';
-      srcs.concat([srcs[0]]).forEach(function (src) {
-        var im = document.createElement('img'); im.src = src; im.alt = ''; im.draggable = false;
+      /* Loading speed (Joel 2026-11-26): slides 1-2 (and the loop clone of slide 1) load at once, the others once the
+         page has finished loading, well before their turn (4s each). The hidden Wix "ghost" copies are lazy in the HTML. */
+      var later = [];
+      srcs.concat([srcs[0]]).forEach(function (src, k) {
+        var im = document.createElement('img'); im.alt = ''; im.draggable = false;
+        if (k < 2 || k === srcs.length) im.src = src; else later.push([im, src]);
         im.style.cssText = 'flex:0 0 100%;width:100%;height:100%;object-fit:cover;object-position:' + pos + ';display:block;';
         track.appendChild(im);
       });
       view.appendChild(track);
       item.parentNode.insertBefore(view, item.nextSibling);
       item.style.visibility = 'hidden';
+      var loadLater = function () { later.forEach(function (p) { if (!p[0].src) p[0].src = p[1]; }); later = []; };
+      if (document.readyState === 'complete') setTimeout(loadLater, 300); else window.addEventListener('load', loadLater);
+      setTimeout(loadLater, 3000);   /* in any case before slide 3 comes in (8s) */
       var setX = function (i, anim) {
         track.style.transition = anim ? 'transform ' + DUR + 'ms cubic-bezier(.87,0,.13,1)' : 'none';
         track.style.transform = 'translate3d(' + (-i * 100) + '%,0,0)';
