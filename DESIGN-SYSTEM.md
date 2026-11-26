@@ -74,7 +74,7 @@ Other rules
 | Device | Page | How it fits |
 |---|---|---|
 | Phone | `site/m/…` (320px layout) | scaled to the phone width by the viewport |
-| iPad (Air 11, Pro 11, Pro 13) | desktop page | laid out **1320px** wide in both orientations (`TABLET_W` / `TABLET_W_PORTRAIT`; the must-stay-whole content spans ≤ ~1305px, wider photos bleed by design — never go below ~1310) and scaled; upright, the header logo and menu are drawn 1.3x (`.jcd-tab-portrait`) |
+| iPad (Air 11, Pro 11, Pro 13) | desktop page | laid out **1320px** wide in both orientations on home / About / Contact, **1440px** on category and product pages (more margin at the iPad's edges; `TABLET_W` / `TABLET_W_PORTRAIT` + page rule in `site.js`; the must-stay-whole content spans ≤ ~1305px, wider photos bleed by design — never go below ~1310) and scaled; upright, the header logo and menu are drawn 1.3x (`.jcd-tab-portrait`) |
 | Computer ≤ 1536px | desktop page | zoom = UI_SCALE 0.85 (Joel's laptop: 1920 @125% = 1536) |
 | Computer > 1536px (1920, 2560, 3440 ultra-wide, 3840 4K) | desktop page | CSS zoom = width / 1536 x UI_SCALE (`window.__jcdZoom`) → always full width |
 

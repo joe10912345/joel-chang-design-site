@@ -9,6 +9,10 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-27
 
+### iPad: category + product pages smaller again (1440)
+- Joel: "Ipad 直跟橫的產品列別頁、產品介紹頁太貼左右邊了，整體縮小。其他頁面都不動". On iPad (both orientations) category and product pages are laid out 1440px wide (~65px margin each side); home, About, Contact and 1-4 stay 1320. The devices preview picks the same width per page.
+- Files: `site/assets/js/site.js`, `preview/devices.html`, `DESIGN-SYSTEM.md`, `AGENTS.md`, `?v=` in all `site/**/index.html`.
+
 ### Home End-to-End: larger text in the squares
 - Joel: "end to end 圖片裡面的字體可以大些". Computer + iPad: title 28 → 34px, text 12 → 16px (line height 1.55); checked all 9 squares fit. Phone: title 12 → 13px, text 8 → 9.5px.
 - Files: `site/assets/css/custom.css`, `?v=` in all `site/**/index.html`.

@@ -39,11 +39,16 @@
   /* Joel 2026-11-27 ("iPad landscape has too much space left and right, make everything bigger"): measured on every
      page, the content that must stay whole (category frames, product grids, text) spans at most ~1305px around the
      centre; wider elements are photos that bleed off the edge by design. So the iPad lays the page out 1320 wide
-     in BOTH orientations (landscape was 1694 = 28% larger now, portrait 1440 = 9% larger). Never below ~1310. */
+     in BOTH orientations (landscape was 1694 = 28% larger now, portrait 1440 = 9% larger). Never below ~1310. Category + product pages: 1440 (below). */
   var TABLET_W = 1320;
   /* iPad upright (Joel 2026-11-26/27: "portrait is too small"): same 1320 as landscape (see above); kept as its own
      constant because html.jcd-tab-portrait still adds upright-only tweaks. Re-set whenever the iPad turns. */
   var TABLET_W_PORTRAIT = 1320;
+  /* Joel 2026-11-27: on category and product pages the 1320 layout put the frames/photos too close to the iPad's
+     edges ("太貼左右邊了，整體縮小"), so those pages use 1440 (both orientations, ~65px margins); home, About,
+     Contact (and the hidden 1-4 pages) keep 1320. */
+  var pageSlug = (location.pathname.replace(/\/index\.html$/, '').replace(/\/+$/, '').split('/').pop() || '').toLowerCase();
+  if (!/^(|joel-chang-design-site|site|about|contact|[1-4])$/.test(pageSlug)) { TABLET_W = 1440; TABLET_W_PORTRAIT = 1440; }
   function tabletPortrait() {
     if (typeof window.orientation === 'number') return Math.abs(window.orientation) !== 90;
     return window.matchMedia ? matchMedia('(orientation: portrait)').matches : false;
