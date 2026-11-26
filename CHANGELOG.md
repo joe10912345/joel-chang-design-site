@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Category cards on computers: round ">>" like the other platforms
+- Joel: the computer ">>" should be circled, as on phone / iPad. Wix's text ">>" is hidden; linked cards get the same round frosted ">>" (40px) in the photo's bottom-right corner, shown only while the mouse is on the card. Big cards whose Wix link box is 0px tall now hang the overlay on the photo itself (also fixes their position on touch). Checked all six category pages, computer + phone: every linked card has its round ">>" in the bottom-right corner. `custom.js`, `custom.css` `.jcd-go-hover`, `.jcd-gg-hide`.
+
 ### Home "Selected" grid (12 works): spotlight
 - Joel chose option B of `preview/works-grid.html`. Computer with a mouse: the tile under the mouse stays bright, its photo eases in 6% inside the frame, a thin white line frames it and category + name + a round ">>" rise in at the bottom-left; the other 11 dim (brightness .38). Touch (phone + iPad): category + name always at the bottom-left with the round ">>" (same as the category pages), blue while pressed. Wix's 27% / 45% darkening overlay is off for this grid (`site.js` 5b skips it). Names per link in `custom.js` "Home Selected grid" (`NAMES`). `custom.css` `.jcd-spot*`.
 

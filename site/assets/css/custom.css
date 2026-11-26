@@ -579,3 +579,9 @@ body:not(.device-mobile-optimized) #pro-gallery-container-comp-mnpgav5j.jcd-spot
 body:not(.device-mobile-optimized) #pro-gallery-container-comp-mnpgav5j.jcd-spot-touch .jcd-nm small { font-size: 15px; }
 body:not(.device-mobile-optimized) #pro-gallery-container-comp-mnpgav5j.jcd-spot-touch .jcd-go { width: 46px; height: 46px; font-size: 17px; }
 @media (prefers-reduced-motion: reduce) { #pro-gallery-container-comp-mnpgav5j .gallery-item-container img { transform: none !important; } }
+/* computer: the round >> of a linked category card sits in the bottom-right corner and only shows on hover
+   (Joel 2026-11-26: "circled like the other platforms"); Wix's text >> is hidden */
+.jcd-gg-hide { visibility: hidden !important; }
+body:not(.device-mobile-optimized) .jcd-go.jcd-go-hover { position: absolute; right: 16px; bottom: 14px; z-index: 2; width: 40px; height: 40px; font-size: 15px;
+  opacity: 0; transition: opacity .35s, background .12s, border-color .12s; pointer-events: none; }
+.gpDCD5:hover .jcd-go-hover, .gpDCD5:focus-within .jcd-go-hover { opacity: 1; }
