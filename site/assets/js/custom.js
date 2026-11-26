@@ -660,7 +660,9 @@
         /* one card per vertical slot (Wix sometimes stacks two layers at the same place) */
         var slots = [];
         cards.forEach(function (c) {
-          var s = slots.filter(function (x) { return Math.abs(x.top - c.top) < 6; })[0];
+          /* also a card lying INSIDE an earlier frame (the photo card of a frame with a title bar) rides with that frame
+             (Joel 2026-11-27: on the phone the laptop card had been pushed out below the "Computer" frame) */
+          var s = slots.filter(function (x) { return Math.abs(x.top - c.top) < 6 || (c.top > x.top && c.top + c.h <= x.top + x.h + 4); })[0];
           if (s) { s.members.push(c); s.h = Math.max(s.h, c.h); } else slots.push({ top: c.top, h: c.h, members: [c] });
         });
         var hs = slots.map(function (s) { return s.h; }).sort(function (a, b) { return a - b; });
@@ -681,7 +683,8 @@
             o.e.style.setProperty('top', ((parseFloat(getComputedStyle(o.e).top) || 0) + shift).toFixed(1) + 'px');
           });
         });
-        if (shift < 0) sec.style.setProperty('margin-bottom', shift.toFixed(1) + 'px');
+        /* the section follows the moved frames both ways (a positive shift used to cut off the last cards) */
+        if (shift) sec.style.setProperty('margin-bottom', shift.toFixed(1) + 'px');
       });
     }
     if (document.readyState === 'complete') tighten(); else window.addEventListener('load', tighten);

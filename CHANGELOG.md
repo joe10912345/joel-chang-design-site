@@ -11,6 +11,11 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Fix: phone category pages — cards pushed out of their frames, bottom cut off 修正：手機類別頁卡片跑出白框、底部被裁
+- Joel: "電子產品類別頁 1. 筆電跑出上方白框了 2. 滾到下方被裁掉了" / "其他頁也有這問題". The phone spacing script (`category/spacing-phone.js`) treated the photo card inside a frame with a title bar (e.g. "Computer" → SAGITTARIUS) as a separate frame and pushed it below; the extra push made the content longer than its section, so the last cards were cut. Now a card inside an earlier frame moves with that frame, and the section follows the moved frames both ways. Checked all six category pages on the phone: no card outside its frame, nothing past the page end.
+  卡片在有標題的白框內時會跟著白框移動；段落高度跟著調整，六個類別頁都檢查過。
+- Files: `src/js/category/spacing-phone.js` → built `custom.js`, `?v=` in all page HTML.
+
 ### Defense: "Admiral Li …" caption flush with the photo above 說明文字貼齊照片左緣
 - Joel: "這段文字要靠正上方圖的最左邊貼齊". On computer + iPad the caption under the Singapore Airshow photo sat 13px left of it (the photos had been moved to line up with the frames, the caption had not); now it starts at the photo's left edge (phone already did).
 - Files: `src/css/product/defense-website.css` → built `custom.css`, `?v=` in all page HTML.
