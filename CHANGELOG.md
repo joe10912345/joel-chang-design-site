@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Closing-photo reveal: no more white gaps when scrolling fast
+- Joel: scrolling fast to the bottom of a product page made white areas pop up in the reveal. The photo was moved by a scroll script, one frame late. Now done with CSS `position: sticky` (the browser keeps the photo still at the screen bottom): the photo's box reaches one photo-height above the section, the photo sits at its bottom (flex, no margin) and sticks to the screen bottom; the section's background box clips it (`overflow: clip`, not `hidden`, which on the phone would stop the sticky). Wix's `margin-top: -1 screen` on that box removed. `custom.js`. Checked phone, iPad portrait + landscape, 1920 and 1536: photo still while the section edge slides; whole photo at the end.
+
 ### Contact form: hover / focus underline in the site blue
 - Joel: the white line under each Contact field turned Wix's blue (#1A2DF3) on hover; now `--jcd-blue` #0062D9 on hover and while typing (also the field labels). `custom.css`, desktop + iPad + phone contact pages.
 

@@ -81,7 +81,7 @@ Other rules
 Top image ("hero", home slideshow + product pages): phone **50% of the screen height**; any portrait screen on the desktop page (iPad upright) **50%**; landscape (computers, iPad sideways) **exactly one screen** (`100svh`, divided by `__jcdZoom` on computers).
 Scripts measuring with `getBoundingClientRect` must divide by `window.__jcdZoom` before writing CSS px.
 Background photos: Wix sticky/"fixed" section photos are pinned to their section by `custom.js` (no parallax). Never leave `overflow: clip/hidden` on a Wix `bgMedia_*` box that sits outside its section (iPad Safari hides the photo); sticky screen-sized Wix backgrounds crop products on tall screens — pin them to their section instead (About "What I Believe", Gaming gateway "Aerodynamic Concept").
-Closing photo of product pages (last section, photo only): Wix-style scroll reveal — section as tall as the whole photo (max one screen), photo stays still at the screen bottom while the section edge slides over it (`custom.js`, `.jcd-reveal`). Use the full original photo, never a Wix crop.
+Closing photo of product pages (last section, photo only): Wix-style scroll reveal — section as tall as the whole photo (max one screen), photo stays still at the screen bottom while the section edge slides over it (`custom.js`, `.jcd-reveal`; CSS sticky, never a scroll script — scripts lag and show gaps on fast scrolls). Use the full original photo, never a Wix crop.
 Home slideshow: always starts at slide 1 when the page is shown (also after the back button).
 
 ## 6. Interaction states

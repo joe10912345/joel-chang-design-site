@@ -38,9 +38,20 @@
     if (sec.querySelector('[data-testid="richTextElement"]')) return;
     var img = wi.querySelector('img'); if (!img) return;
     var media = wi.parentElement;
-    media.style.setProperty('top', '0', 'important'); media.style.setProperty('height', '100%', 'important');
-    media.style.setProperty('overflow', 'visible', 'important');
-    ['position:absolute', 'top:0', 'left:0', 'width:100%', 'height:100%'].forEach(function (d) {
+    /* Done with CSS sticky, not a scroll script (Joel 2026-11-26: with the script, fast scrolling showed white gaps
+       because the photo was moved a frame late). The media box reaches one photo-height above the section; the photo
+       sits at its bottom (= the section) and is sticky at the screen bottom, so the browser itself keeps it still
+       while the section's top edge (the section's background box clips it) slides up over it. */
+    /* the section's background box clips the photo; 'clip', not 'hidden' (phone): 'hidden' would make it the sticky
+       photo's scroll box and the photo would not stay still */
+    if (media.parentElement) media.parentElement.style.setProperty('overflow', 'clip', 'important');
+    media.style.setProperty('overflow', 'visible', 'important'); media.style.setProperty('margin', '0', 'important');   /* Wix: margin-top -1 screen */
+    media.style.setProperty('transform', 'none', 'important');
+    /* photo at the bottom of the box via flex (a margin above it would leave the sticky photo no room to move) */
+    media.style.setProperty('display', 'flex', 'important'); media.style.setProperty('flex-direction', 'column', 'important');
+    media.style.setProperty('justify-content', 'flex-end', 'important');
+    media.style.setProperty('left', '0', 'important'); media.style.setProperty('width', '100%', 'important');
+    ['position:sticky', 'top:auto', 'bottom:0', 'left:auto', 'width:100%', 'display:block', 'transform:none', 'flex:none', 'margin:0'].forEach(function (d) {
       var kv = d.split(':'); wi.style.setProperty(kv[0], kv[1], 'important'); });
     img.style.setProperty('width', '100%', 'important'); img.style.setProperty('height', '100%', 'important');
     img.style.setProperty('object-fit', 'cover', 'important');
@@ -57,15 +68,11 @@
       var h = Math.round(Math.min(w / ratio, vh));
       sec.style.setProperty('height', h + 'px', 'important');
       sec.style.setProperty('min-height', h + 'px', 'important');
-      move();
+      media.style.setProperty('position', 'absolute', 'important');
+      media.style.setProperty('top', -h + 'px', 'important');
+      media.style.setProperty('height', 2 * h + 'px', 'important');
+      wi.style.setProperty('height', h + 'px', 'important');
     }
-    function move() {
-      var r = sec.getBoundingClientRect(), z = Z();
-      /* how far the section's bottom is below the screen bottom, in layout px; the photo is moved up by that much */
-      var d = Math.max(0, Math.min((r.bottom - window.innerHeight) / z, sec.offsetHeight));
-      wi.style.setProperty('transform', 'translate3d(0,' + (-d).toFixed(1) + 'px,0)', 'important');
-    }
-    window.addEventListener('scroll', move, { passive: true });   /* direct, not rAF: keeps the photo glued while scrolling */
     window.addEventListener('resize', size);
     window.addEventListener('orientationchange', function () { setTimeout(size, 300); });
     if (img.complete) size(); img.addEventListener('load', size);
