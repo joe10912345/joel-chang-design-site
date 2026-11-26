@@ -66,7 +66,7 @@ Other rules
 - About intro (desktop/iPad): text + portrait centred on the screen, at least 56px below the header (`custom.js` "About, desktop layout").
 - Catalog title bars: every text centred vertically on the bar (`custom.js` "Catalog title bars").
 - Phone category pages: frames of one category 8px apart, 48px before the next category (`custom.js`).
-- Contact form fields: 1px white underline (hover/typing: same width, `--jcd-blue`), 12px indent, phone text 14px (never below: iPhone zooms in under 16px on screen), desktop 15px.
+- Contact form fields: 1px white underline (hover/typing: same width, `--jcd-blue`), 12px indent; field names white Medium (phone 11px, desktop 15px); message hint Poppins Light white 45% (phone 9.5px, desktop 13px). iPhone tap-zoom is stopped by `custom.js` (viewport maximum-scale).
 - Content never touches the screen edge on iPad (that is why the iPad layout is 1440px wide).
 
 ## 5. Devices & scaling (Joel's rule: phone, iPad and computer are always fixed together)

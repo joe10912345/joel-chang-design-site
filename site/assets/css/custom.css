@@ -462,10 +462,10 @@ input, textarea, select, [contenteditable="true"] { -webkit-user-select: text !i
 #comp-mukou2e11 { display: none !important; }
 
 /* Contact form, one style for every field (Joel 2026-11-26: on the phone the text was too big, the lines too thick
-   and not the same — inputs 20px text / thin line, message box 10px text / 2px line). All platforms: one 1px white
-   underline at rest, still 1px when hovered / typing (only the colour turns --jcd-blue), text starts at the same
-   12px indent. Phone: 14px text (20px before); 14px x the phone's 320px-page scale is still >= 16px on screen, so
-   iPhones do not zoom in when a field is tapped. */
+   and not the same). All platforms: one 1px white underline at rest, still 1px when hovered / typing (only the
+   colour turns --jcd-blue), text starts at the same 12px indent. Field names (First Name ... Phone) white Medium;
+   the message hint "Leave a message..." smaller, grey and Light (second pass, Joel: "smaller, greyer, thinner").
+   Phone: 11px text, hint 9.5px. That is below what iPhones read without zooming, so custom.js stops the zoom on tap. */
 [id^="comp-jqc9cqa"] {
   --brw: 0px 0px 1px 0px !important;
   --brwh: 0px 0px 1px 0px !important;
@@ -473,11 +473,16 @@ input, textarea, select, [contenteditable="true"] { -webkit-user-select: text !i
   --brd: 255, 255, 255 !important;
 }
 [id^="comp-jqc9cqa"] input, [id^="comp-jqc9cqa"] textarea { border-bottom-width: 1px !important; padding-left: 12px !important; }
-[id^="comp-jqc9cqa"] textarea, [id^="comp-jqc9cqa"] textarea::placeholder { font-size: 15px !important; }   /* desktop / iPad: = the inputs (was 12px) */
-.device-mobile-optimized [id^="comp-jqc9cqa"] input,
-.device-mobile-optimized [id^="comp-jqc9cqa"] textarea { font-size: 14px !important; }
-.device-mobile-optimized [id^="comp-jqc9cqa"] input::placeholder,
-.device-mobile-optimized [id^="comp-jqc9cqa"] textarea::placeholder { font-size: 14px !important; }
-[id^="comp-jqc9cqa"] input::placeholder, [id^="comp-jqc9cqa"] textarea::placeholder {   /* same look for every field's hint text */
+[id^="comp-jqc9cqa"] input::placeholder {
   color: #fff !important; opacity: 1 !important; font-family: inherit !important; font-weight: inherit !important;
 }
+[id^="comp-jqc9cqa"] textarea { font-size: 15px !important; }                 /* desktop / iPad: typed text = the inputs */
+[id^="comp-jqc9cqa"] textarea::placeholder {
+  font-size: 13px !important; color: rgba(255, 255, 255, .45) !important; opacity: 1 !important;
+  font-family: wfont_459113_ebfb1394532347b3b7691d160bb35bd1, wf_ebfb1394532347b3b7691d160, orig_poppins_light, sans-serif !important;
+  font-weight: 300 !important;
+}
+.device-mobile-optimized [id^="comp-jqc9cqa"] input,
+.device-mobile-optimized [id^="comp-jqc9cqa"] textarea,
+.device-mobile-optimized [id^="comp-jqc9cqa"] input::placeholder { font-size: 11px !important; }
+.device-mobile-optimized [id^="comp-jqc9cqa"] textarea::placeholder { font-size: 9.5px !important; }

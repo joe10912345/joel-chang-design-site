@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Contact form, second pass: smaller text, quiet message hint
+- Joel: phone text still too big; "Leave a message..." smaller, greyer, thinner. Phone: field text 14 -> 11px, message hint 9.5px; all platforms: message hint Poppins Light, white 45% (desktop/iPad 13px). Field names stay white Medium. iPhones would zoom in on tap below 16px on screen, so `custom.js` caps the phone page's viewport `maximum-scale` at its fit-to-width scale on iPhones with a form (pinch-zoom by hand still works). `custom.css`, `custom.js`.
+
 ### Phone category pages: frames of one category closer, clear gap between categories
 - Joel: on the phone the frames were too spread out and the gaps inside a category looked like the gaps between categories. `custom.js` (phone, networking / defense / electronics / industrial / lifestyle / experimental): frames of one group 8px apart (was 15px), a new group (frame with a title bar) 48px below (was 40px); captions/overlay layers move with their frame; the section is shortened by the space saved.
 
