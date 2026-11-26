@@ -11,6 +11,14 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### All site photos WebP (~46% lighter); new T. Guardian image behind "GET IN TOUCH" 照片全部轉 WebP；首頁 T. Guardian 換圖
+- Joel: "Yes, convert them" (JPG photos → WebP) / "我放了一張圖在 media new 裡，可換掉首頁圖的 t.guardian。你可以轉檔跟重新命名，符合你剛剛 webp 的作法".
+- 988 JPEG photos → WebP q86 (`tools/jpg_to_webp.py`): 123.5 MB → 67.1 MB; with the PNG change before, the site's images went from ~180 MB to 82 MB. JPEG copies kept only for social / search previews (og:image, twitter:image, JSON-LD), which don't reliably show WebP. Old → new: `reference/jpg-to-webp-2026-11-27.json`. All references checked.
+  988 張照片轉成 WebP，從 123.5 MB 降到 67.1 MB；社群分享預覽仍用 JPG。
+- Home "Let's Shape the Next Product Together / GET IN TOUCH" background (the T. Guardian image): new photo `media-originals/home/home-01-2898x1628.jpg` → computer `home-01-2898x1628.webp` (q90), phone `home-32-960x539.webp`, social preview `home-01-2898x1628.jpg` (og:image size updated). Checked on phone, iPad, computer.
+- Image rule updated (AGENTS, DESIGN-SYSTEM): WebP for every site image (q86, top images q90), JPEG only as social-preview copy.
+- Files: `site/assets/media/**`, all page HTML, `src/**` → built files, `reference/media-map.json`, `tools/jpg_to_webp.py` (new), AGENTS, DESIGN-SYSTEM.
+
 ### Images load faster: PNG → WebP / JPEG; End-to-End arrow gradient removed 圖片變輕；取消箭頭漸層
 - Joel: "好像很多圖片讀取很慢" / "取消剛剛箭頭下的方塊漸層". 191 site images were PNG (lossless, 56 MB). The 183 with transparency (cut-out products, logos, icons) are now WebP with transparency (q86; small ones lossless): 55.8 MB → 7.6 MB; the 8 opaque ones JPEG q86 4:4:4. All references updated (pages, CSS masks, built files, `reference/media-map.json`); list of old → new in `reference/png-to-web-2026-11-27.json`; tool `tools/png_to_web.py`. Checked: 4,690 references resolve; WebP images load on phone, iPad, computer; home logo / Cross-Category grid unchanged.
   191 張 PNG 改成 WebP（透明）或 JPG，圖片總量從 56 MB 降到約 8 MB。
