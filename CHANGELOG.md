@@ -11,6 +11,10 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Fix: photo framing zoom was ignored 修正：照片放大沒有作用
+- Joel: "沒辦法放大欸". A site rule that forbids transforms inside category tiles (`static-overrides.css`) overrode the zoom; `photo-frames.js` now sets it with priority. Checked on computer, iPad and phone in the tool. 照片放大被既有規則蓋掉，已修正。
+- Files: `src/js/global/photo-frames.js` → built `custom.js`, `?v=` in all page HTML.
+
 ### T. Xcalar photo larger + alignment tool T. Xcalar 照片放大與對齊工具
 - Joel: "Xcalar 圖片要放大點。做mockup 讓我調". The card now uses the whole photo (`defense-09-2560x1626-v2.jpg`, phone `defense-09-1120x711-v2.jpg`; the earlier pre-cropped files removed) framed by `jcd-config.js` `photoFrames.xcalar` (point x / y kept in view, zoom; start 50 / 40 / 1.2x), applied by `src/js/global/photo-frames.js` on every device. New tool `preview/mockups/photo-align.html`: the real Defense page on computer, iPad and phone; drag the photo, zoom slider or Shift + wheel; one setting for all devices.
   T. Xcalar 改用完整照片並以設定檔控制取景，先放大 1.2 倍；新增對齊工具讓 Joel 自己調。
