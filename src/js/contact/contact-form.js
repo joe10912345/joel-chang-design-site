@@ -3,7 +3,7 @@
        Pages; the access key is public by design). Validates email + message, disables SUBMIT while sending, shows "sent" / error in the page style. */
     var form = document.getElementById('comp-jqc9copb');
     if (form && form.tagName === 'FORM') {
-      var ENDPOINT = 'https://api.web3forms.com/submit', ACCESS_KEY = '391de8ae-38e4-43c0-9d77-393d65c69402', TIMEOUT = 5000;
+      var FC = (window.JCD_CONFIG && JCD_CONFIG.forms) || {}, ENDPOINT = FC.endpoint || 'https://api.web3forms.com/submit', ACCESS_KEY = FC.accessKey || '391de8ae-38e4-43c0-9d77-393d65c69402', TIMEOUT = FC.timeoutMs || 5000;   /* settings: jcd-config.js forms */
       var q = function (sel) { return form.querySelector(sel); };
       var fFirst = q('[name="first-name"]'), fLast = q('[name="last-name"]'), fEmail = q('[name="email"]'),
           fPhone = q('[name="phone"]'), fMsg = q('textarea'), btn = q('button');

@@ -50,6 +50,11 @@ window.JCD_CONFIG = {
     ipadLandscape: { fx: 0.26, fy: 0.62, sx: 0.113, sy: 0.579, zoom: 1.23 },
   },
 
+  /* Forms (Contact page + Guest Area "Request access"): sent to Joel's mailbox through Web3Forms (no server on GitHub
+     Pages; this key is public by design, it only allows sending to Joel). 表單寄信設定（Contact 與 Guest Area 共用）。 */
+  forms: { endpoint: 'https://api.web3forms.com/submit', accessKey: '391de8ae-38e4-43c0-9d77-393d65c69402',
+           fallbackEmail: 'joe10912345@gmail.com', timeoutMs: 5000 },
+
   /* Phone (m/ pages): Wix's own mobile layout, 320px wide (viewport width=320), side margins set per element in
      the Wix design (mostly 20px = 6.25%). Not driven from here. 手機版由 Wix 手機排版決定（多為 20px），不從這裡控制。 */
   phone: { layoutWidth: 320 },

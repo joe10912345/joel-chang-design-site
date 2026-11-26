@@ -11,6 +11,12 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Guest Area: "Request access" emails Joel directly; larger on iPad 訪客區直接寄信、iPad 放大
+- Joel: "request the access 就直接寄信給我了，不要連到contact了" / "ipad 版的 request for access 的視窗太小了". The dialog now has Name, Email (required), Company / organization and a "REQUEST ACCESS" button: the request is emailed to Joel through Web3Forms (subject "T. Scope access request"), with the visitor's time zone and browser language as a rough region (no location service). "Request sent / Thank you" view after sending; error line with the fallback email if sending fails. Fields use the Contact underline style. iPad: dialog drawn 1.35x (landscape) / 1.8x (upright) → about half / two thirds of the screen width (`html.jcd-tablet`, new class from `site.js`).
+  Request access 改成在視窗內填寫並直接寄給 Joel，附上對方時區與瀏覽器語言；iPad 視窗放大。
+- The Web3Forms settings moved to `jcd-config.js` `forms` (Contact form and Guest Area share them).
+- Files: `site/assets/js/jcd-config.js`, `site/assets/js/site.js`, `src/js/product/guest-area-dialog.js`, `src/css/product/guest-area-dialog.css`, `src/js/contact/contact-form.js` → built files, `?v=` in all page HTML.
+
 ### Defense: new "T. Xcalar" card in the T. Guardian group 新增 T. Xcalar 白框
 - Joel: "T. Guardian 下方新增一個白框可跟 guardian 視為一組。叫做 T. Xcalar" (photo: `Xcalar+Guardian(Final).jpg`). A photo card under the "Field Protection" frame, spaced like the Airspace Protection group (computer 34px, phone 8px), caption "Tron Future / T. Xcalar", no ">>" (no product page yet). Made by cloning the T. Guardian photo card (new ids `comp-jcdxcal0-4`) with its Wix layout rules in a `<style id="jcd-xcalar">` block on each page; phone, iPad and computer checked (same size as the Guardian card).
   T. Guardian 下方新增 T. Xcalar 照片卡，和 Guardian 同組；手機、iPad、電腦都確認過。

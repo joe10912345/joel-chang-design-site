@@ -45,6 +45,7 @@
     var setVp = function () {
       if (vp) vp.setAttribute('content', 'width=' + window.__jcdTabletW() + ', user-scalable=yes');
       document.documentElement.classList.toggle('jcd-tab-portrait', tabletPortrait());   /* custom.css: larger menu */
+      document.documentElement.classList.add('jcd-tablet');   /* any iPad / tablet on the desktop page (custom.css: larger dialogs) */
     };
     setVp();
     window.addEventListener('orientationchange', function () { setTimeout(setVp, 50); });

@@ -25,6 +25,20 @@
 .jcd-guest-x:hover, .jcd-guest-x:focus-visible { color: var(--jcd-blue); outline: none; }
 .jcd-guest-x:active { color: var(--jcd-blue); transform: scale(.92); }
 html.jcd-guest-lock { overflow: hidden; }
+/* Request access form (Joel 2026-11-27): underline fields like the Contact form, outline button; "sent" view swaps in */
+.jcd-guest-f { display: flex; flex-direction: column; gap: 6px; margin-top: 20px; text-align: left; }
+.jcd-guest-in { width: 100%; padding: 10px 2px 8px; border: 0; border-bottom: 1px solid rgba(255, 255, 255, .45); border-radius: 0;
+  background: transparent; color: #fff; font: 300 14px/1.3 "Poppins", Arial, sans-serif; letter-spacing: .02em; outline: none;
+  transition: border-color .2s ease; -webkit-user-select: text; user-select: text; }
+.jcd-guest-in::placeholder { color: rgba(255, 255, 255, .45); }
+.jcd-guest-in:hover, .jcd-guest-in:focus { border-bottom-color: var(--jcd-blue); }
+.jcd-guest-f .jcd-guest-go { align-self: center; margin-top: 18px; background: transparent; cursor: pointer; }
+.jcd-guest-f .jcd-guest-go:disabled { opacity: .55; cursor: progress; }
+.jcd-guest .jcd-honey { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; opacity: 0; }
+.jcd-guest-msg { min-height: 1.4em; margin-top: 8px; font-size: 12.5px; color: #ff8a8a; text-align: center; }
+.jcd-guest-done { display: none; }
+.jcd-guest.is-sent .jcd-guest-f, .jcd-guest.is-sent .jcd-guest-box > .jcd-guest-t, .jcd-guest.is-sent .jcd-guest-box > .jcd-guest-s { display: none; }
+.jcd-guest.is-sent .jcd-guest-done { display: block; }
 /* phone page (320px layout) */
 .device-mobile-optimized .jcd-guest { padding: 16px; }
 .device-mobile-optimized .jcd-guest-box { width: 260px; padding: 30px 20px 24px; }
@@ -33,5 +47,13 @@ html.jcd-guest-lock { overflow: hidden; }
 .device-mobile-optimized .jcd-guest-t { font-size: 14px; }
 .device-mobile-optimized .jcd-guest-s { margin-top: 6px; font-size: 9.5px; }
 .device-mobile-optimized .jcd-guest-go { margin-top: 16px; padding: 8px 14px; font-size: 8.5px; }
+.device-mobile-optimized .jcd-guest-f { margin-top: 12px; gap: 2px; }
+.device-mobile-optimized .jcd-guest-in { font-size: 16px; padding: 7px 2px 5px; transform: scale(.62); transform-origin: 0 100%; width: 161%; margin: -4px -61% 0 0; }   /* 16px stops the iPhone zoom, drawn at ~10px */
+.device-mobile-optimized .jcd-guest-f .jcd-guest-go { margin-top: 12px; }
+.device-mobile-optimized .jcd-guest-msg { font-size: 8.5px; margin-top: 6px; }
 .device-mobile-optimized .jcd-guest-x { top: 4px; right: 6px; width: 24px; height: 24px; font-size: 18px; }
+/* iPad (Joel 2026-11-27: "ipad 版的 request for access 的視窗太小了"): the desktop page is laid out ~1438px wide and scaled
+   down to the iPad, so the dialog is drawn larger to come out at a comfortable size: landscape x1.35, upright x1.8 */
+html.jcd-tablet .jcd-guest-box { zoom: 1.35; }
+html.jcd-tablet.jcd-tab-portrait .jcd-guest-box { zoom: 1.8; }
 @media (prefers-reduced-motion: reduce) { .jcd-guest, .jcd-guest-box { transition: none; } }
