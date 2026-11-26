@@ -3201,26 +3201,6 @@
    "home"
   ]
  },
- "home/home-07-2400x1233.jpg": {
-  "source": "export",
-  "wix_ops": null,
-  "replaces": [
-   "jcd_hero_14e7fcf7b751_3200x1644.jpg"
-  ],
-  "pages": [
-   "home"
-  ]
- },
- "home/home-07-3200x1644.jpg": {
-  "source": "export",
-  "wix_ops": null,
-  "replaces": [
-   "jcd_hero_14e7fcf7b751_3200x1644.jpg"
-  ],
-  "pages": [
-   "home"
-  ]
- },
  "home/home-08-2000x896.jpg": {
   "source": "export",
   "wix_ops": null,
@@ -18460,5 +18440,16 @@
    "defense"
   ],
   "note": "Joel's new render 2026-11-26 (T-Blade on its cart); also home slide 6 and the Defense tile"
+ },
+ "home/home-07-2000x1116.jpg": {
+  "source": "media-originals/jcd_home-tower-blue_2000x1116.jpg",
+  "wix_ops": null,
+  "replaces": [
+   "jcd_hero_14e7fcf7b751_3200x1644.jpg"
+  ],
+  "pages": [
+   "home"
+  ],
+  "note": "Joel's updated render 2026-11-26 (pasted, 2000px)"
  }
 }

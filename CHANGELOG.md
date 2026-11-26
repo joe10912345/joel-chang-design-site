@@ -9,6 +9,9 @@ Entries before 2026-11-24 evening were reconstructed from code comments and READ
 
 ## 2026-11-26
 
+### Home slide 7 (blue tower): Joel's updated render
+- Tighter framing and sharper (pasted, 2000x1116); `home/home-07-2000x1116.jpg` (desktop + phone), old 3200/2400 files removed; original kept as `media-originals/jcd_home-tower-blue_2000x1116.jpg`. Only used on the home slideshow.
+
 ### Home slide 4 (black Wi-Fi 7 routers): Joel's cleaner version
 - Same size as before (2000x1167) but less noise; `home/home-04-2000x1167.jpg` re-made from it (256 KB), original kept as `media-originals/jcd_home-routers-black_2000x1167.jpg`. Only used on the home slideshow (desktop + phone).
 - New folder `media-new/` (not published, git-ignored except its README): images pasted into the chat arrive shrunk to 2000px wide, so full-size originals should be dropped there instead.
