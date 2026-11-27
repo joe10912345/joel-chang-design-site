@@ -2137,7 +2137,10 @@
         ['translate', 'width', 'max-width', 'margin-bottom'].forEach(function (p) {
           var cur = e.style.getPropertyValue(p); t.was[p] = cur ? { v: cur, pr: e.style.getPropertyPriority(p) } : null; });
         touched.push(t);
-        if (v.x || v.y) e.style.setProperty('translate', (v.x || 0) + 'px ' + (v.y || 0) + 'px');
+        if (v.x || v.y) {   /* on top of any shift the tidy-up already gave it */
+          var b = ((t.was.translate && t.was.translate.v) || '0px 0px').split(' ').map(parseFloat);
+          e.style.setProperty('translate', ((b[0] || 0) + (v.x || 0)) + 'px ' + ((b[1] || 0) + (v.y || 0)) + 'px');
+        }
         if (v.w) { e.style.setProperty('width', v.w + 'px', 'important'); e.style.setProperty('max-width', 'none', 'important'); }
         if (v.below) e.style.setProperty('margin-bottom', ((parseFloat(t.was['margin-bottom'] && t.was['margin-bottom'].v) || 0) + v.below) + 'px', 'important');
       });
