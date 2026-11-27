@@ -104,7 +104,8 @@ out at the width from `jcd-config.js` and scaled; computers → the desktop page
    "Saved, apply it": the AI reads the saved values (the tool's localStorage) and writes them into `jcd-config.js`.
    Joel 的調整工具：調好按「儲存」，再跟 AI 說「Saved, apply it」，AI 讀取存好的數值寫進 jcd-config.js。
    - **Phone layout 手機版排版** — `http://localhost:8766/preview/mockups/phone-layout.html?p=<page>`: click a text or photo
-     on the real phone page, Shift-click to select more, drag / arrow keys to move, width, space under a section, align to
+     on the real phone page, Shift-click to select more, drag / arrow keys to move, width, space ABOVE an item (it and
+     everything below it move, the following sections follow), space under a section, align to
      the page (20px edges, centre) or to each other. Saved key `jcd-phone-layout` → `jcd-config.js` `phone.layout`
      (applied by `src/js/global/phone-layout.js`). After applying, the AI aligns the values (20px edges, centre, edges of
      neighbours, at least 20px under each section) and clears the tool's saved copy so it starts from the site again.

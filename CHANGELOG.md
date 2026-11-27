@@ -11,6 +11,14 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Phone layout tool: "space above" 手機排版工具：上方空間
+- Joel: "是不是要有個功能可以讓我調整空間?" (the gap between "Integrated Ventilation Detail" and "UX-Driven Architecture").
+  New slider 上方空間 (`gap` in `jcd-config.js` `phone.layout`): select the item under a gap and drag it; that item and
+  everything below it in its section move, and the section grows or shrinks by the same amount so every later section
+  follows (no overlap). Files: `src/js/global/phone-layout.js` (rewritten: moves are collected first, then applied once),
+  `preview/mockups/phone-layout.html`, `README.md`, built `custom.js`.
+- 新增「上方空間」：選空白下方的項目拉滑桿，它和下面所有東西一起移動，後面的段落也跟著走。
+
 ### Phone layout tool: buttons not reacting 手機排版工具按鈕沒反應
 - Joel: "我按置中與頁彼此對齊都沒及時反應". A test the AI ran in the tool's tab overwrote one of the tool's variables, so
   changes went to a page called "undefined". Fixed in Joel's open tab (his two changes moved back to Wi-Fi 7 HGU/AP) and the
