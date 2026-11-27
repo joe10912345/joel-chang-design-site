@@ -11,6 +11,16 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### About dates on two lines, lists aligned; logo press 關於頁時間分行與對齊、Logo 點擊感
+- Joel: "時間段都要分行，不要有月份跟年被拆成不同段，還有 education 的年份跟右邊 master of design 沒有對齊". Phone About lists:
+  a month and its year never part, each period breaks after its dash ("Jul 2025 -" / "Aug 2026"); dates sit on the baseline
+  of their title; every list's text column starts at the same place (96px) and ends at the 20px page margin.
+  Files: `src/js/about/two-column-lists-phone.js`, `src/css/about/two-column-lists-phone.css`.
+- Joel: "joel chang logo 點下去要有點擊感，跟隔壁菜單作法一樣". The header logo, every page and platform, turns blue and presses
+  in (scale .92) like the menu items. Files: `src/css/global/menu-press.css`, `src/js/global/logo-press.js` (new),
+  `src/js/ORDER.txt`, `src/README.md`.
+- 手機 About：月份與年份不拆開、每段時間在「-」後換行；日期與標題基線對齊；各清單右欄起點一致。Logo 按下變藍並縮一下，與菜單相同（全平台）。
+
 ### MoAI Detail Design photo without the black frame MoAI 細節照片拿掉黑框
 - Joel: "這張圖不能有黑框". The frame was a separate Wix outline shape over the photo (`comp-mosh8egr`, 1px black on the
   phone); hidden on every platform. File: `src/css/product/moai-detail-frame.css` (new), `src/css/ORDER.txt`, `src/README.md`.

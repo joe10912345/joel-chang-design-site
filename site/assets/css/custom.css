@@ -316,6 +316,16 @@ li[data-item-depth="0"] > div > a:active, li[data-item-depth="0"] > div > a:acti
 .jcd-menu-social-a:active::after { opacity: 1; }
 .jcd-menu-social-a:active img { opacity: 0; }
 
+/* "JOEL CHANG" logo (header, every page and platform): pressed like the menu items next to it, blue + a small press
+   (Joel 2026-11-27: "joel chang logo 點下去要有點擊感，跟隔壁菜單作法一樣"). The logo is a white image, so a blue copy of it
+   (the image used as a mask) fades in while pressed. */
+#SITE_HEADER a:has(> img[src*="shared-01-"]) { position: relative; display: block; -webkit-tap-highlight-color: transparent; transition: transform .12s ease; }
+#SITE_HEADER a:has(> img[src*="shared-01-"])::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: var(--jcd-blue);
+  opacity: 0; transition: opacity .12s ease; -webkit-mask: var(--jcd-mask) center / contain no-repeat; mask: var(--jcd-mask) center / contain no-repeat; }
+#SITE_HEADER a:has(> img[src*="shared-01-"]) img { transition: opacity .12s ease; }
+#SITE_HEADER a:has(> img[src*="shared-01-"]):active { transform: scale(.92); }
+#SITE_HEADER a:has(> img[src*="shared-01-"]):active::after { opacity: 1; }
+#SITE_HEADER a:has(> img[src*="shared-01-"]):active img { opacity: 0; }
 /* ---------- Phone menu layout (Joel 2026-11-24): the six product pages in a lighter weight, About / Contact moved down ---------- */
 #MENU_AS_CONTAINER_EXPANDABLE_MENU li:is([data-testid$="-1"], [data-testid$="-2"], [data-testid$="-3"], [data-testid$="-4"], [data-testid$="-5"], [data-testid$="-6"]) a {
   font-family: wfont_459113_ebfb1394532347b3b7691d160bb35bd1, wf_ebfb1394532347b3b7691d160, orig_poppins_light, sans-serif !important; font-size: 13px !important; }
@@ -855,7 +865,7 @@ body:not(.device-mobile-optimized) :is(#comp-mojwork6, #comp-mojwmx3v, #comp-moj
 @media (prefers-reduced-motion: reduce) { .jcd-present { animation: none; background: none; color: rgba(255, 255, 255, .5) !important; -webkit-text-fill-color: currentColor; } }
 /* About, phone: two-column lists as rows (Joel 2026-11-27; custom.js "two-column-lists-phone"). One row per entry,
    date cell + text cell; the space between entries replaces the blank line Wix used. */
-.jcd-tc { display: grid; column-gap: 8px; row-gap: 10px; align-items: start; }
+.jcd-tc { display: grid; column-gap: 8px; row-gap: 10px; align-items: baseline; }   /* baseline: each date sits on the line of its title, whatever the sizes (Joel 2026-11-27: Education years were not level with "Master of Design") */
 .jcd-tc-cell { min-width: 0; }
 .jcd-tc-cell > * { margin: 0 !important; }
 /* T. Interceptor MP, Golden Pin badge (Joel 2026-11-27: "獎項標籤跟文字有歪掉，標章要裁切成正方(把圖片文字裁掉)，然後把

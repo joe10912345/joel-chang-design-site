@@ -1,5 +1,5 @@
 /* About, phone: two-column lists as rows (Joel 2026-11-27; custom.js "two-column-lists-phone"). One row per entry,
    date cell + text cell; the space between entries replaces the blank line Wix used. */
-.jcd-tc { display: grid; column-gap: 8px; row-gap: 10px; align-items: start; }
+.jcd-tc { display: grid; column-gap: 8px; row-gap: 10px; align-items: baseline; }   /* baseline: each date sits on the line of its title, whatever the sizes (Joel 2026-11-27: Education years were not level with "Master of Design") */
 .jcd-tc-cell { min-width: 0; }
 .jcd-tc-cell > * { margin: 0 !important; }

@@ -42,6 +42,24 @@
         return shell;
       });
     }
+    /* date cells: a month and its year never part ("Jul 2025" stays whole), and each period breaks after its dash, so
+       "Jul 2025 -" / "Aug 2026" are two lines (Joel 2026-11-27: "時間段都要分行，不要有月份跟年被拆成不同段") */
+    function dates(frag) {
+      var tw = document.createTreeWalker(frag, NodeFilter.SHOW_TEXT), t, list = [];
+      while ((t = tw.nextNode())) list.push(t);
+      list.forEach(function (n) {
+        var s = n.textContent.replace(/([A-Za-z]{3,9}\.?) (\d{4})/g, '$1 $2');
+        var parts = s.split(/\s+[-–—]\s+/);
+        if (parts.length < 2) { n.textContent = s; return; }
+        var p = n.parentNode;
+        parts.forEach(function (part, i) {
+          p.insertBefore(document.createTextNode(i < parts.length - 1 ? part + ' -' : part), n);
+          if (i < parts.length - 1) p.insertBefore(document.createElement('br'), n);
+        });
+        p.removeChild(n);
+      });
+      return frag;
+    }
     var rich = [].filter.call(document.querySelectorAll('#PAGES_CONTAINER .wixui-rich-text'), function (t) { return t.getBoundingClientRect().width > 0; });
     rich.forEach(function (L) {
       var lr = L.getBoundingClientRect();
@@ -55,7 +73,7 @@
       var grid = document.createElement('div'); grid.className = 'jcd-tc';
       grid.style.gridTemplateColumns = ((rr.left - lr.left) / z - 8).toFixed(1) + 'px 1fr';
       a.forEach(function (x, i) {
-        var c1 = document.createElement('div'); c1.className = 'jcd-tc-cell'; c1.appendChild(x);
+        var c1 = document.createElement('div'); c1.className = 'jcd-tc-cell jcd-tc-date'; c1.appendChild(dates(x));
         var c2 = document.createElement('div'); c2.className = 'jcd-tc-cell'; c2.appendChild(b[i]);
         grid.appendChild(c1); grid.appendChild(c2);
       });
@@ -71,4 +89,12 @@
       (R.closest('[id^="comp-"]') || R).style.setProperty('display', 'none', 'important');
       L.__jcdDone = R.__jcdDone = true;
     });
+    /* every list's text column starts at the same place (they differed by a few px in Wix) */
+    var grids = [].slice.call(document.querySelectorAll('.jcd-tc'));
+    var col = Math.max.apply(null, grids.map(function (g) { return parseFloat(g.style.gridTemplateColumns) || 0; }));
+    if (col > 0) grids.forEach(function (g) { g.style.gridTemplateColumns = col.toFixed(1) + 'px 1fr'; });
+    /* ...and ends at the same right edge (the page's 20px margin) */
+    var pw = document.documentElement.clientWidth, zz = window.__jcdZoom || 1;
+    grids.forEach(function (g) { var h = g.closest('[id^="comp-"]'); if (!h) return; var r = h.getBoundingClientRect();
+      h.style.setProperty('width', ((pw - 20 - r.left) / zz).toFixed(1) + 'px', 'important'); });
   });
