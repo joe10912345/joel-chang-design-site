@@ -11,6 +11,15 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### White pages white on the phone again 手機白底頁恢復白底
+- Joel: "摩艾有些頁面是白底欸，目前都是黑的" / "Sense of Roundness and Joy 到 Pursue the smooth transition effect of curved surfaces
+  and achieve G2 continuity 的背景都要是白色". On the phone, `mobile-fixes.css` painted the site frames (`#SITE_CONTAINER`,
+  `#site-root`, `#masterPage`) black; they sit above the page's white background layer, so every transparent section of the
+  white pages showed black. On white pages (no `.jcd-dark-canvas`) these frames are now see-through. Checked all 10 white
+  pages on the phone: every transparent section white (Lionic's one black band is Wix's own colour); dark pages unchanged.
+  Computer and iPad were not affected. File: `src/css/phone/mobile-fixes.css`, built `custom.css`.
+- 手機版有一條規則把網站外框塗黑，蓋住白色頁面底層，白底頁的透明段落因此變黑。白底頁的外框改成透明；10 個白底頁手機版都已檢查，深色頁不變。
+
 ### Phone info table 2 × 2, About grey text smaller, About equal side margins 手機資訊表 2×2、About 灰字縮小、About 左右留白相等
 - Joel: "手機版產品資訊表改成 2×2" → mockup `preview/mockups/info-table-phone.html` (A-D on real pages) → "B 2×2，但要注意下方
   文字與黑底要留有空間" → "產品資訊表文字可以字體縮小變灰色". On every phone product page (22) the Client / Year / Designer /

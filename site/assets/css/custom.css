@@ -197,6 +197,10 @@ html.jcd-lb-lock, html.jcd-lb-lock body { overflow: hidden !important; }
 /* 1 + 4: page canvas black, so nothing white shows below the footer or through sub-pixel seams between sections */
 html:has(> body.device-mobile-optimized), body.device-mobile-optimized { background-color: #000 !important; }
 .device-mobile-optimized #SITE_CONTAINER, .device-mobile-optimized #site-root, .device-mobile-optimized #masterPage { background-color: #000; }
+/* ...but on the WHITE pages (no .jcd-dark-canvas) these frames sit above the page's white background layer and turned
+   every transparent section black on the phone (Joel 2026-11-27, MoAI: "Sense of Roundness and Joy 到 ... G2 continuity
+   的背景都要是白色"). There they stay see-through, so the white shows. WHITE PAGES STAY WHITE (AGENTS.md rule 9). */
+html:not(.jcd-dark-canvas) .device-mobile-optimized :is(#SITE_CONTAINER, #site-root, #masterPage) { background-color: transparent !important; }
 .device-mobile-optimized #SITE_FOOTER :is(.CmHRsG, .EaoiSu) { background-color: #000 !important; }
 /* (removed 2026-11-24: painting every phone page background black turned the light pages (Wi-Fi 7 HGU/AP, MoAI ...) dark; see "Page background" at the end) */
 /* 2: white frames / lines at half thickness */
