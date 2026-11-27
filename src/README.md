@@ -30,7 +30,7 @@ Areas 分區: `global` = every page 全站 · `home` = home 首頁 · `about` = 
 | `phone` | `mobile-fixes.css`, `menu-social.css`, `menu-layout.css`, `tap-targets.css` |
 | `product` | `info-table-phone.css`, `moai-detail-frame.css`, `ocean-series-creatures.css`, `ocean-series-seams.css`, `defense-guardian-no-go.css`, `guest-area-dialog.css`, `defense-website.css`, `ai-tool-kit-paravents.css`, `t-interceptormp-award.css`, `t-blade-stowage.css` |
 | `about` | `portrait-frame.css`, `believe-phone-text.css`, `recommendation-cards.css`, `grid-rows.css`, `signature-reveal.css`, `portrait-swap.css`, `present-glow.css`, `two-column-lists-phone.css` |
-| `category` | `catalog-title-bars.css`, `cards-linked.css`, `cards-ipad-sizes.css`, `go-hover-computer.css`, `cards-photo-zoom.css`, `cards-clickable.css` |
+| `category` | `catalog-title-bars.css`, `defense-airshow-caption.css`, `cards-linked.css`, `cards-ipad-sizes.css`, `go-hover-computer.css`, `cards-photo-zoom.css`, `cards-clickable.css` |
 
 ## JS
 

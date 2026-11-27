@@ -131,8 +131,8 @@ window.JCD_CONFIG = {
       'airgain-fwa-easy-installation-kit': { 'bg:comp-movk68a01': {px: 58, py: 50} },
       'wi-fi7-2022': { 'comp-m6aebfzi': {y: 53}, 'comp-m67x4dyl1': {below: 47} },
       'wi-fi7-extender': { 'comp-m5zjcnux': {y: -47}, 'comp-m5zjcnus': {y: -43}, 'comp-m5zjcnuv2': {y: -48}, 'comp-m5zjz3hr': {y: 195, w: 94}, 'comp-m5zk2kbe': {x: -15, y: -6}, 'comp-m5zl3gwq': {x: -30, y: -4}, 'comp-m5zl3gy0': {x: -30, y: -2, w: 179}, 'comp-m5zl4an11': {x: -30, y: -12}, 'comp-m5zl4an3': {x: -30, y: -9, w: 230}, 'comp-m5xxnjl9': {below: 41}, 'comp-mown5o4p': {y: 21, x: 7}, 'comp-m5xxnj4z': {below: 15}, 'comp-m5xxnjf9': {below: 14}, 'comp-m5zmq4x2': {below: 7}, 'bg:comp-mowh2qkn2': {px: 62, py: 50} },
-      '': { 'comp-moybizuw': {y: -4}, 'comp-moybfmu0': {below: 10} },   /* home: same 55px above and below the video (Joel 2026-11-27: "影片下方跟最下方的圖的間距要大點，不然就是把影片的位置上移") */
-      'defense': { 'comp-mor9xmzy': {y: -43} },   /* Airshow caption right under its photo; it sat 43px lower, under the next section (Joel 2026-11-27: "被壓到兩個 company website") */
+      '': { 'comp-moybizuw': {y: -4}, 'bg:comp-m5k5qs39': {px: 53, py: 50}, 'comp-m5p2b7oz': {below: -14}, 'comp-moybfmu0': {below: 4}, 'comp-m6busgt3': {below: -12}, 'comp-m276lfoi': {below: -7}, 'comp-m276lw99': {w: 272, x: 4} },   /* home, set by Joel 2026-11-27 with phone-layout.html */
+      'defense': { 'comp-mor9xmzy': {y: -66}, 'comp-mojwmx3v': {gap: 74, y: -21}, 'comp-mojworka': {y: -67}, 'comp-mojworkg2': {y: -67}, 'comp-mojwq9as': {y: -23}, 'comp-mnfzhopv': {below: -4} },   /* set by Joel 2026-11-27 with phone-layout.html; his +2px to the right taken back to the 20px page edge, level with the cards */
     },
     /* `scale`: one heading scale on the work pages (Joel 2026-11-27: "全面檢視手機版的排版，一團亂"): Wix had page titles
        at 18-21px and section headings at 12-16px depending on the page. Text Wix set in a band is drawn at that band's

@@ -11,6 +11,17 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Phone home + Defense layout by Joel; Airshow caption light and smaller 首頁與 Defense 手機排版、航展說明改細體縮小
+- Joel: "給我首頁跟 defense 的調整器，我來自己調" → "改好了". His `phone-layout.html` values for home (space between
+  sections, the video, the intro text width, the last section's photo framing) and Defense (the Airshow block) are in
+  `jcd-config.js` `phone.layout`; the Defense photos he moved 2px right were set back on the 20px page edge, level with the
+  cards (20-300). Checked: nothing covered, no text overlaps, the caption 35px clear of the next section.
+- Joel: "這段字體不要粗體，可縮小" (the Airshow caption). Poppins Light (was Medium), computer + iPad 11px (was 12),
+  phone 7.5px (was 8). New general switch: a CSS rule can set `--jcd-keep-size` on text so `phone-text-size.js` leaves
+  its size alone. Files: `src/css/category/defense-airshow-caption.css` (new), `src/js/global/phone-text-size.js`,
+  `src/css/ORDER.txt`, `src/README.md`, `site/assets/js/jcd-config.js` (`?v=` bumped), built `custom.css` / `custom.js`.
+- 套用 Joel 調整的手機首頁與 Defense 排版（Defense 照片回到 20px 頁邊）；航展說明改 Poppins Light、電腦 11px、手機 7.5px。
+
 ### Phone Defense: Airshow caption no longer over "Company Website" 手機 Defense 航展說明不再壓到 Company Website
 - Joel: "手機版這邊被壓到兩個 company website 欸". The caption "Admiral Li Shih-chiang … 2026 Singapore Airshow" sits 43px
   lower in Wix's phone layout than its photo, inside the space the next section overlaps (category spacing), so it was always

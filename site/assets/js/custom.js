@@ -271,6 +271,7 @@
     [].forEach.call(document.querySelectorAll('#PAGES_CONTAINER .wixui-rich-text, #PAGES_CONTAINER .wixui-rich-text *'), function (e) {
       var own = [].filter.call(e.childNodes, function (n) { return n.nodeType === 3; }).map(function (n) { return n.textContent; }).join(' ').trim();
       if (!own || e.closest('.jcd-info2x2')) return;   /* product info table: sized by info-table-phone.js */
+      if (getComputedStyle(e).getPropertyValue('--jcd-keep-size').trim()) return;   /* a CSS rule chose this size on purpose (e.g. a photo caption) */
       var cs = getComputedStyle(e), fs = parseFloat(cs.fontSize);
       var cell = e.closest('.jcd-tc-cell'), blk = cell || e.closest('.wixui-rich-text');   /* a list cell (About) counts on its own */
       var para = cell ? [].indexOf.call(cell.parentElement.children, cell) % 2 === 1   /* lists: text column = text size, dates = label */

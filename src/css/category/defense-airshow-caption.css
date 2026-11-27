@@ -1,0 +1,7 @@
+/* Defense: the Singapore Airshow photo caption ("Admiral Li Shih-chiang, Chairman of Taiwan's NCSIST, visited the booth…")
+   is a light caption, not bold, a step smaller (Joel 2026-11-27: "這段字體不要粗體，可縮小"): Poppins Light like body
+   text; computer + iPad 12 -> 11px, phone 8 -> 7.5px. */
+#comp-mor9xmzy, #comp-mor9xmzy * { font-family: wfont_459113_ebfb1394532347b3b7691d160bb35bd1, wf_ebfb1394532347b3b7691d160, orig_poppins_light, sans-serif !important; font-weight: normal !important; }
+body:not(.device-mobile-optimized) #comp-mor9xmzy :is(p, span) { font-size: 11px !important; }
+.device-mobile-optimized #comp-mor9xmzy, .device-mobile-optimized #comp-mor9xmzy * { --jcd-keep-size: 1; }   /* phone-text-size.js leaves it at 7.5px */
+.device-mobile-optimized #comp-mor9xmzy :is(p, span) { font-size: 7.5px !important; }

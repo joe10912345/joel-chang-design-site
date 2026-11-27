@@ -67,3 +67,4 @@ global/scroll-reveal.css
 product/info-table-phone.css
 product/moai-detail-frame.css
 category/catalog-title-bars.css
+category/defense-airshow-caption.css
