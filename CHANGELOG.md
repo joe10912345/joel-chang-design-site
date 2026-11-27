@@ -11,6 +11,15 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Phone Defense: Airshow caption no longer over "Company Website" 手機 Defense 航展說明不再壓到 Company Website
+- Joel: "手機版這邊被壓到兩個 company website 欸". The caption "Admiral Li Shih-chiang … 2026 Singapore Airshow" sits 43px
+  lower in Wix's phone layout than its photo, inside the space the next section overlaps (category spacing), so it was always
+  hidden under that section; the new "text above photos" rule brought it up over the "Company Website" heading. It now sits
+  right under its photo, 16px clear of the next section (`jcd-config.js` `phone.layout.defense`, tunable in
+  `phone-layout.html`). A site-wide text-over-text scan (phone + computer) finds nothing else (MoAI's title lines touch by
+  3px of line spacing only). File: `site/assets/js/jcd-config.js` (`?v=` bumped).
+- 航展說明文字移到照片正下方，不再疊在下一段標題上；全站文字重疊掃描無其他問題。
+
 ### Phone home: even space around the video 手機首頁影片上下間距一致
 - Joel: "手機版首頁影片下方跟最下方的圖的間距要大點，不然就是把影片的位置上移". The video had 59px above it and 41px below
   (to "Let's Shape the Next Product Together"); now 55px on both sides: the video moves up 4px and its section gets 10px
