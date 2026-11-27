@@ -50,6 +50,9 @@
       <h2>用法</h2>
       <p class="note">在手機畫面上<b>點一下</b>文字或圖片來選取（藍框），<b>按住 Shift 點</b>可以多選（再點一次取消），<b>拖曳</b>就能一起移動；
         也可以用方向鍵每次移 1px（按住 Shift 移 10px）。對齊按鈕會對齊所有選取的項目。
+        <b>方塊</b>：點有底色方塊露出的邊緣就能選取，或選取照片後按「選後方方塊」；選到後拉「上方空間」可在它上面加空間。
+        <b>段落高度</b>：段落的虛線框底邊中央有控制點，直接上下拖；點段落裡的空白處可以選取整個段落。
+        <b>首圖取景</b>：點照片背景的空白處（不是文字），拖曳讓照片在框內左右、上下移動。<b>Ctrl+Z</b> 復原、<b>Ctrl+Shift+Z</b> 重做。
         <b>拖外框的控制點縮放</b>（像 Illustrator）：文字拖左右兩邊改寬度（文字重新換行）；圖片拖四個角等比例縮放，對角固定不動。
         「左右 x／上下 y」只移動選取的項目，不會推開旁邊的東西；<b>要縮小或拉開兩段之間的空白，選空白下方的那個項目，拉「上方空間」</b>：
         它和下面所有東西一起移動，後面的段落也跟著走。「這段下方間距」調整整段最下面的空間。調好按「儲存」，再跟 AI 說「Saved, apply it」。</p>
@@ -68,7 +71,7 @@
       <div class="row"><label>彼此對齊</label>
         <button data-al="L" title="左緣對齊最左的項目">左緣</button><button data-al="C" title="中線對齊第一個選取的項目">中線</button><button data-al="R" title="右緣對齊最右的項目">右緣</button>
         <button data-al="T" title="上緣對齊最上面的項目">上緣</button><button data-al="M" title="垂直中線對齊第一個選取的項目">垂直中線</button><button data-al="B" title="下緣對齊最下面的項目">下緣</button></div>
-      <div class="row"><button id="resetItem">還原選取的項目</button><button id="resetSec">還原這段間距</button></div>
+      <div class="row"><button id="parentBox" title="選取它後面（或外面）有底色的方塊，例如照片後面的灰方塊">選後方方塊</button><button id="resetItem">還原選取的項目</button><button id="resetSec">還原這段間距</button></div>
     </div>
     <div class="card">
       <h2>這頁的調整</h2>
@@ -88,7 +91,8 @@
   try { state = JSON.parse(localStorage.getItem(SKEY) || '{}'); } catch (e) {}
   PAGES.forEach(function (p) { var o = document.createElement('option'); o.value = p; o.textContent = p || 'home'; sel.appendChild(o); });
   sel.value = Q.get('p') != null ? Q.get('p') : 'wi-fi7-hgu-ap';
-  var picked = [], W = null, D = null;   /* picked[0] = the item the panel shows (Shift-click adds more) */
+  var picked = [], W = null, D = null, bgSel = null, secSel = null;   /* secSel: a section picked by its empty space */   /* bgSel: { el: background media, key: 'bg:<section id>' } */
+  var hist = [], redo = [], lastT = 0;   /* undo: snapshots of this page's values (a drag or one slider pull = one step) */   /* picked[0] = the item the panel shows (Shift-click adds more) */
   function cur() { return picked[0] || null; }
   function page() { return sel.value; }
   function data() { if (!state[page()]) state[page()] = {}; return state[page()]; }
@@ -97,7 +101,7 @@
     document.body.appendChild(d); var w = d.offsetWidth - d.clientWidth; d.remove(); return w; })();
   f.style.width = (320 + SBW) + 'px';
   function load() {
-    picked = []; showSel();
+    picked = []; bgSel = null; secSel = null; hist = []; redo = []; showSel();
     f.src = '/site/m/' + page() + (page() ? '/' : '') + '?layout=mobile&tool=' + Date.now();
   }
   f.onload = function () {
@@ -119,9 +123,31 @@
   function pick(t) {
     var e = t.nodeType === 1 ? t : t.parentElement; if (!e || e.closest('#SITE_HEADER, #SITE_FOOTER')) return null;
     var rt = e.closest('[data-testid="richTextElement"]'); if (rt) return rt.closest('[id^="comp-"]') || rt;
+    if (e.closest('[id^="bgMedia_"]')) return null;   /* a background photo: framed, not moved (bgPick) */
     var img = e.closest('wow-image, .wixui-image, [data-testid="imageX"]') || (e.tagName === 'IMG' ? e : null) || e.closest('.wixui-vector-image, video');
     if (img) return img.closest('[id^="comp-"]');
+    return boxOf(e);   /* a box with its own colour (e.g. the grey panel behind a photo) */
+  }
+  function alpha(c) { var m = (c || '').match(/[\d.]+/g); return !m ? 0 : (m.length > 3 ? +m[3] : 1); }
+  /* a component that paints a coloured box: its own colour, a colour layer, a Wix box shape (.wixui-box) or a frame */
+  function painted(c) {
+    var cs = W.getComputedStyle(c); if (alpha(cs.backgroundColor) > 0.05 || parseFloat(cs.borderTopWidth) > 0) return true;
+    return [].some.call(c.querySelectorAll(':scope > [data-testid="colorUnderlay"], :scope > div > [data-testid="colorUnderlay"], :scope > [data-hook="bgLayers"] [data-testid="colorUnderlay"], :scope > .wixui-box, :scope > div.wixui-box'),
+      function (u) { var q = W.getComputedStyle(u); return alpha(q.backgroundColor) > 0.05 || parseFloat(q.borderTopWidth) > 0; });
+  }
+  function boxOf(e) {
+    for (var c = e && e.closest('[id^="comp-"]'); c && c.tagName !== 'SECTION'; c = c.parentElement && c.parentElement.closest('[id^="comp-"]')) if (painted(c)) return c;
     return null;
+  }
+  /* the smallest coloured box behind (or around) an item: a parent, or a separate box laid under it */
+  function boxBehind(item) {
+    var r = item.getBoundingClientRect(), sec = section(item), best = null, area = 1e12;
+    [].forEach.call((sec || D).querySelectorAll('[id^="comp-"]'), function (c) {
+      if (c === item || item.contains(c) || !painted(c)) return;
+      var q = c.getBoundingClientRect(); if (q.left > r.left + 2 || q.right < r.right - 2 || q.top > r.top + 2 || q.bottom < r.bottom - 2) return;
+      var a = q.width * q.height; if (a < area) { area = a; best = c; }
+    });
+    return best;
   }
   function section(e) { var s = e && e.closest('section'); while (s && s.parentElement && s.parentElement.closest('section')) s = s.parentElement.closest('section'); return s; }
   /* what the eye sees: a text block's lines, a photo's frame */
@@ -139,7 +165,12 @@
     D.addEventListener('click', function (ev) { ev.preventDefault(); ev.stopPropagation(); }, true);
     D.addEventListener('pointerdown', function (ev) {
       if (ev.target.classList && ev.target.classList.contains('jcd-pl-h')) return;
-      var p = pick(ev.target); if (!p) return; ev.preventDefault(); ev.stopPropagation();
+      var p = pick(ev.target);
+      if (!p) { if (bgPick(ev)) return; }
+      if (!p) { var sc = section(ev.target.nodeType === 1 ? ev.target : ev.target.parentElement);
+        if (sc) { ev.preventDefault(); ev.stopPropagation(); picked = []; bgSel = null; secSel = sc; mark(); showSel(); } return; }
+      ev.preventDefault(); ev.stopPropagation();
+      bgSel = null; secSel = null;
       if (ev.shiftKey) { var i = picked.indexOf(p); if (i >= 0) { picked.splice(i, 1); mark(); showSel(); return; } picked.push(p); }
       else if (picked.indexOf(p) < 0) picked = [p];
       else { picked.splice(picked.indexOf(p), 1); picked.unshift(p); }   /* dragging one of several: they all move */
@@ -153,7 +184,7 @@
       drag.base.forEach(function (b) { put(b.id, { x: b.x + dx, y: b.y + dy }); }); done();
     }, true);
     D.addEventListener('pointerup', function () { drag = null; }, true);
-    D.addEventListener('keydown', key, true); document.addEventListener('keydown', key);
+    D.addEventListener('keydown', key, true); document.addEventListener('keydown', key); D.addEventListener('keydown', undoKey, true);
     W.addEventListener('scroll', handles, { passive: true }); W.addEventListener('resize', handles);
   }
   function key(ev) {
@@ -162,13 +193,58 @@
     if (!m) return; ev.preventDefault();
     picked.forEach(function (c) { var v = data()[c.id] || {}; put(c.id, { x: (v.x || 0) + m[0], y: (v.y || 0) + m[1] }); }); done();
   }
+  /* the top image (a section's background photo): drag it inside its frame (object-position %) */
+  function bgPick(ev) {
+    var t = ev.target.nodeType === 1 ? ev.target : ev.target.parentElement;
+    /* the background photo under the pointer: the one clicked, else the section's own */
+    var m = t.closest('[id^="bgMedia_"]'), sec = section(t);
+    if (!m && sec) m = [].filter.call(sec.querySelectorAll('[id^="bgMedia_"]'), function (b) { var q = b.getBoundingClientRect();
+      return ev.clientX >= q.left && ev.clientX <= q.right && ev.clientY >= q.top && ev.clientY <= q.bottom; })[0];
+    var im = m && m.querySelector('img'); if (!im) return false;
+    var owner = m.id.replace(/^bgMedia_/, '');
+    var r = im.getBoundingClientRect(); if (ev.clientY < r.top || ev.clientY > r.bottom) return false;
+    ev.preventDefault(); ev.stopPropagation();
+    picked = []; secSel = null; bgSel = { el: m, im: im, key: 'bg:' + owner }; mark(); showSel();
+    var v = data()[bgSel.key] || {}, op = W.getComputedStyle(im).objectPosition.split(' ').map(parseFloat);
+    var nw = im.naturalWidth || r.width, nh = im.naturalHeight || r.height, k = Math.max(r.width / nw, r.height / nh);
+    var g = { x0: ev.clientX, y0: ev.clientY, px: v.px != null ? v.px : (op[0] || 50), py: v.py != null ? v.py : (op[1] || 50),
+              ex: nw * k - r.width, ey: nh * k - r.height };
+    function move(e2) {
+      e2.preventDefault();
+      var o = {};
+      if (g.ex > 1) o.px = Math.max(0, Math.min(100, Math.round(g.px - (e2.clientX - g.x0) / g.ex * 100)));
+      if (g.ey > 1) o.py = Math.max(0, Math.min(100, Math.round(g.py - (e2.clientY - g.y0) / g.ey * 100)));
+      var d = data(); snapshot(); d[bgSel.key] = Object.assign({ px: g.px, py: g.py }, d[bgSel.key] || {}, o); done();
+    }
+    function up() { D.removeEventListener('pointermove', move, true); D.removeEventListener('pointerup', up, true); }
+    D.addEventListener('pointermove', move, true); D.addEventListener('pointerup', up, true);
+    return true;
+  }
+  function curSec() { return secSel || (bgSel && section(bgSel.el)) || section(cur()); }
   function mark() {
     [].forEach.call(D.querySelectorAll('.jcd-pl-sel, .jcd-pl-sel2, .jcd-pl-sec'), function (e) { e.classList.remove('jcd-pl-sel', 'jcd-pl-sel2', 'jcd-pl-sec'); });
+    if (bgSel) bgSel.el.classList.add('jcd-pl-sel');
     picked.forEach(function (c, i) { c.classList.add(i ? 'jcd-pl-sel2' : 'jcd-pl-sel'); });
-    var s = section(cur()); if (s) s.classList.add('jcd-pl-sec');
+    var s = curSec(); if (s) s.classList.add('jcd-pl-sec');
     handles();
   }
+  function snapshot() {
+    var now = Date.now(); if (now - lastT > 450) { hist.push(JSON.stringify(data())); if (hist.length > 300) hist.shift(); redo = []; }
+    lastT = now;
+  }
+  function restore(from, to) {
+    if (!from.length) return; to.push(JSON.stringify(data())); state[page()] = JSON.parse(from.pop()); lastT = 0;
+    applyAll(); showSel(); list(); status('未儲存'); handles();
+  }
+  function undoKey(ev) {
+    if (!(ev.ctrlKey || ev.metaKey) || /INPUT|SELECT/.test((ev.target || {}).tagName && ev.target.type !== 'range' ? ev.target.tagName : '')) return;
+    var k = ev.key.toLowerCase();
+    if (k === 'z' && !ev.shiftKey) { ev.preventDefault(); restore(hist, redo); }
+    else if ((k === 'z' && ev.shiftKey) || k === 'y') { ev.preventDefault(); restore(redo, hist); }
+  }
+  document.addEventListener('keydown', undoKey);
   function put(id, v) {   /* change one item's values (no redraw) */
+    snapshot();
     var d = data(); d[id] = Object.assign({}, d[id] || {}, v);
     Object.keys(d[id]).forEach(function (k) { if (!d[id][k]) delete d[id][k]; }); if (!Object.keys(d[id]).length) delete d[id];
   }
@@ -179,6 +255,13 @@
   function handles() {
     if (!D) return;
     [].forEach.call(D.querySelectorAll('.jcd-pl-h'), function (h) { h.remove(); });
+    var sc = curSec();
+    if (sc) {   /* the section's bottom edge: drag its height */
+      var sr = sc.getBoundingClientRect(), hb = D.createElement('div'); hb.className = 'jcd-pl-h'; hb.setAttribute('data-h', 'sb');
+      hb.style.left = (sr.left + sr.width / 2) + 'px'; hb.style.top = sr.bottom + 'px'; hb.style.width = '26px'; hb.style.height = '9px';
+      hb.style.margin = '-4.5px 0 0 -13px'; hb.style.cursor = 'ns-resize'; hb.style.background = '#0062D9'; hb.title = '拖曳調整這段的高度';
+      hb.addEventListener('pointerdown', grabSec); D.body.appendChild(hb);
+    }
     var c = cur(); if (!c) return;
     var r = c.getBoundingClientRect(), pts = isPhoto(c)
       ? [['nw', r.left, r.top], ['ne', r.right, r.top], ['sw', r.left, r.bottom], ['se', r.right, r.bottom]]
@@ -190,6 +273,13 @@
       h.addEventListener('pointerdown', grab);
       D.body.appendChild(h);
     });
+  }
+  function grabSec(ev) {
+    ev.preventDefault(); ev.stopPropagation();
+    var sc = curSec(), b0 = (data()[sc.id] || {}).below || 0, y0 = ev.clientY;
+    function move(e2) { e2.preventDefault(); put(sc.id, { below: Math.round(b0 + e2.clientY - y0) }); done(); }
+    function up() { D.removeEventListener('pointermove', move, true); D.removeEventListener('pointerup', up, true); }
+    D.addEventListener('pointermove', move, true); D.addEventListener('pointerup', up, true);
   }
   function grab(ev) {
     ev.preventDefault(); ev.stopPropagation();
@@ -215,9 +305,12 @@
   }
   function showSel() {
     var box = document.getElementById('sel'), c = cur();
+    if (secSel) { var sv0 = data()[secSel.id] || {}; box.textContent = '段落（拖虛線框底邊的控制點調整高度）  下方間距 ' + (sv0.below || 0) + 'px';
+      document.getElementById('b').value = document.getElementById('bn').value = sv0.below || 0; return; }
+    if (bgSel) { var bv = data()[bgSel.key] || {}; box.textContent = '首圖取景（拖曳照片左右、上下移動）  左右 ' + (bv.px != null ? bv.px : 50) + '%  上下 ' + (bv.py != null ? bv.py : 50) + '%'; return; }
     if (!c) { box.textContent = '還沒選取'; return; }
     var v = data()[c.id] || {}, s = section(c), sv = s ? (data()[s.id] || {}) : {};
-    var txt = (c.textContent || '').trim().slice(0, 40) || '（圖片）';
+    var txt = (c.textContent || '').trim().slice(0, 40) || (painted(c) ? '（方塊）' : '（圖片）');
     box.innerHTML = '<b></b> <span style="color:#9a9a9a"></span>'; box.querySelector('b').textContent = txt;
     box.querySelector('span').textContent = c.id + (picked.length > 1 ? '（共選取 ' + picked.length + ' 個）' : '');
     var w = v.w || Math.round(c.getBoundingClientRect().width);
@@ -225,8 +318,8 @@
   }
   /* sliders: x / y move every selected item by the same amount; width sets them all; space below = the shown item's section */
   [['x', 'x'], ['y', 'y'], ['w', 'w'], ['s', 's'], ['g', 'gap'], ['b', 'below']].forEach(function (p) {
-    function go(val) { var c = cur(); if (!c) return; val = +val;
-      if (p[0] === 'b') { var s = section(c); if (s) put(s.id, { below: val }); }
+    function go(val) { var c = cur(); if (!c && !(p[0] === 'b' && curSec())) return; val = +val;
+      if (p[0] === 'b') { var s = curSec(); if (s) put(s.id, { below: val }); }
       else if (p[0] === 'w') picked.forEach(function (e) { put(e.id, { w: val }); });
       else if (p[0] === 's') picked.forEach(function (e) { put(e.id, { s: Math.abs(val - 100) < 0.5 ? 0 : +(val / 100).toFixed(3) }); });
       else if (p[0] === 'g') put(c.id, { gap: val });   /* space above: the shown item (and everything under it) */
@@ -253,9 +346,14 @@
       done();
     };
   });
-  document.getElementById('resetItem').onclick = function () { picked.forEach(function (c) { delete data()[c.id]; }); done(); };
-  document.getElementById('resetSec').onclick = function () { var s = section(cur()); if (s && data()[s.id]) { delete data()[s.id].below; if (!Object.keys(data()[s.id]).length) delete data()[s.id]; } done(); };
-  document.getElementById('resetPage').onclick = function () { state[page()] = {}; done(); };
+  document.getElementById('parentBox').onclick = function () {
+    var c = cur(); if (!c || !c.parentElement) return;
+    var b = boxBehind(c); if (!b) { status('後面沒有方塊'); return; }
+    picked = [b]; bgSel = null; secSel = null; mark(); showSel();
+  };
+  document.getElementById('resetItem').onclick = function () { snapshot(); if (bgSel) delete data()[bgSel.key]; picked.forEach(function (c) { delete data()[c.id]; }); done(); };
+  document.getElementById('resetSec').onclick = function () { snapshot(); var s = curSec(); if (s && data()[s.id]) { delete data()[s.id].below; if (!Object.keys(data()[s.id]).length) delete data()[s.id]; } done(); };
+  document.getElementById('resetPage').onclick = function () { snapshot(); state[page()] = {}; done(); };
   document.getElementById('save').onclick = function () {
     Object.keys(state).forEach(function (k) { if (!Object.keys(state[k] || {}).length) delete state[k]; });
     try { localStorage.setItem(SKEY, JSON.stringify(state)); status('已儲存 ✓（跟 AI 說 Saved, apply it）'); } catch (e) { status('無法儲存'); }

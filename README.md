@@ -106,7 +106,8 @@ out at the width from `jcd-config.js` and scaled; computers → the desktop page
    - **Phone layout 手機版排版** — `http://localhost:8766/preview/mockups/phone-layout.html?p=<page>`: click a text or photo
      on the real phone page, Shift-click to select more, drag / arrow keys to move, width, space ABOVE an item (it and
      everything below it move, the following sections follow), space under a section, Illustrator-like handles (text:
-     left / right edge = width; photo: corners = scale), align to
+     left / right edge = width; photo: corners = scale), a section's height (handle on its bottom edge), coloured boxes
+     (click their edge, or 選後方方塊), the top image's framing (drag the photo background), Ctrl+Z / Ctrl+Shift+Z, align to
      the page (20px edges, centre) or to each other. Saved key `jcd-phone-layout` → `jcd-config.js` `phone.layout`
      (applied by `src/js/global/phone-layout.js`). After applying, the AI aligns the values (20px edges, centre, edges of
      neighbours, at least 20px under each section) and clears the tool's saved copy so it starts from the site again.

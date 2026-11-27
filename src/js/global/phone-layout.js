@@ -5,6 +5,8 @@
        corner (photos, the tool's corner handles; Joel 2026-11-27: "選取後的方塊縮放拖曳，跟 illustrator 作法一樣");
      - gap changes the space ABOVE an item: it and everything below it in its section move by gap, and the section grows or
        shrinks by the same amount, so the sections after it follow (Joel 2026-11-27: "是不是要有個功能可以讓我調整空間");
+     - 'bg:<comp id>': { px, py } frames that component's background photo (the top image of a work page), as object-position
+       % (Joel 2026-11-27: "也要支援子頁最上方首圖的左右移動功能");
      - below changes the space under a section (added inside it, so its colour or photo grows with it; negative pulls the
        next section up).
      Runs last on load, after the text sizing and tidy-up, and again whenever the tool calls window.__jcdPhoneLayout().
@@ -12,7 +14,7 @@
   ready(function () {
     if (!document.body.classList.contains('device-mobile-optimized')) return;
     var slug = location.pathname.replace(/^.*\/m\//, '').replace(/\/(index\.html)?$/, '').split('/')[0];
-    var touched = [], PROPS = ['translate', 'width', 'max-width', 'padding-bottom', 'margin-bottom', 'scale', 'transform-origin'];
+    var touched = [], PROPS = ['translate', 'width', 'max-width', 'padding-bottom', 'margin-bottom', 'scale', 'transform-origin', 'object-position', 'clip-path'];
     function keep(e) {   /* remember an element's own inline values once, to restore them on the next run */
       for (var i = 0; i < touched.length; i++) if (touched[i].e === e) return touched[i];
       var t = { e: e, was: {} };
@@ -20,14 +22,11 @@
       touched.push(t); return t;
     }
     function topSection(e) { var s = e.closest('section'); while (s && s.parentElement && s.parentElement.closest('section')) s = s.parentElement.closest('section'); return s; }
-    /* the items of a section that can move: each text block and photo as its Wix component (innermost ones only) */
-    function items(sec) {
-      var list = [];
-      [].forEach.call(sec.querySelectorAll('[data-testid="richTextElement"], img, video, .wixui-vector-image, .wixui-button'), function (x) {
-        if (x.closest('[id^="bgMedia_"]')) return;
-        var c = x.closest('[id^="comp-"]'); if (c && c !== sec && list.indexOf(c) < 0) list.push(c);
+    /* the components directly inside a container (a section or a box), not the ones inside those */
+    function kids(container) {
+      return [].filter.call(container.querySelectorAll('[id^="comp-"]'), function (c) {
+        return c !== container && c.parentElement && c.parentElement.closest('[id^="comp-"]') === container && c.getBoundingClientRect().height > 0;
       });
-      return list.filter(function (c) { return !list.some(function (o) { return o !== c && c.contains(o); }); });
     }
     function apply() {
       touched.forEach(function (t) { Object.keys(t.was).forEach(function (p) {
@@ -41,10 +40,21 @@
         var e = document.getElementById(id), v = all[id]; if (!e || !v || !v.gap) return;
         var sec = topSection(e); if (!sec) return;
         var top = e.getBoundingClientRect().top - 1;
-        items(sec).forEach(function (c) { if (c === e || c.getBoundingClientRect().top >= top) add(shift, c, 0, v.gap); });
+        /* what moves: the items that sit beside it in its own container (a box moves with everything inside it), and,
+           when it is inside a box, the section's items below that box */
+        var box = e.parentElement && e.parentElement.closest('[id^="comp-"]');
+        kids(box || sec).forEach(function (c) { if (c === e || c.getBoundingClientRect().top >= top) add(shift, c, 0, v.gap); });
+        if (box && box !== sec) { var bb = box.getBoundingClientRect().bottom - 1;
+          kids(sec).forEach(function (c) { if (c !== box && !c.contains(box) && c.getBoundingClientRect().top >= bb) add(shift, c, 0, v.gap); }); }
         add(secGrow, sec, v.gap);
       });
       Object.keys(all).forEach(function (id) {
+        if (id.indexOf('bg:') === 0) {   /* background photo framing */
+          var bm = document.getElementById('bgMedia_' + id.slice(3)), bv = all[id];   /* the component's own background photo */
+          var im = bm && bm.querySelector('img'); if (!im || !bv) return;
+          keep(im); im.style.setProperty('object-position', (bv.px != null ? bv.px : 50) + '% ' + (bv.py != null ? bv.py : 50) + '%', 'important');
+          return;
+        }
         var e = document.getElementById(id), v = all[id]; if (!e || !v) return;
         if (v.x || v.y) add(shift, e, v.x || 0, v.y || 0);
         if (v.w) { keep(e); e.style.setProperty('width', v.w + 'px', 'important'); e.style.setProperty('max-width', 'none', 'important'); }
@@ -58,7 +68,10 @@
       secGrow.forEach(function (g) {
         var e = g[0], t = keep(e), pb0 = parseFloat(t.was['padding-bottom'] && t.was['padding-bottom'].v) || parseFloat(getComputedStyle(e).paddingBottom) || 0;
         e.style.setProperty('padding-bottom', Math.max(0, pb0 + g[1]) + 'px', 'important');
-        if (pb0 + g[1] < 0) e.style.setProperty('margin-bottom', (pb0 + g[1]) + 'px', 'important');
+        /* shorter than it was: the next section moves up and the section's own bottom (its colour) is cut off, so it
+           really gets shorter instead of showing under the next one (Joel 2026-11-27: grey box height) */
+        if (pb0 + g[1] < 0) { e.style.setProperty('margin-bottom', (pb0 + g[1]) + 'px', 'important');
+          e.style.setProperty('clip-path', 'inset(0 0 ' + (-(pb0 + g[1])) + 'px 0)'); }
       });
     }
     window.__jcdPhoneLayout = function () { apply(); window.dispatchEvent(new Event('resize')); };

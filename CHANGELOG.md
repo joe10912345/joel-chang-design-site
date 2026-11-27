@@ -11,6 +11,20 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Phone layout tool: top image framing, Ctrl+Z, section height, boxes 手機排版工具：首圖取景、復原、段落高度、方塊
+- Joel: "也要支援子頁最上方首圖的左右移動功能" / "需要支援 ctrl+z 返回" / "我沒辦法調整背後的灰方塊高度，能讓我直接拖嗎" /
+  "後方的方塊我選不到，我想要方塊之上增加空間".
+  - Top image: click the photo background (not text) and drag; the photo moves inside its frame (`'bg:<comp id>': { px, py }`
+    in `phone.layout`, object-position %).
+  - Ctrl+Z undoes, Ctrl+Shift+Z / Ctrl+Y redoes (a drag or one slider pull is one step).
+  - Section height: a handle on the bottom edge of the section's dashed outline; clicking empty space selects the section.
+    A shorter section now really loses its bottom (clipped) and the next section moves up.
+  - Coloured boxes (e.g. T. Blade's grey panel behind a photo, a separate Wix box shape) can be selected by clicking them or
+    with 選後方方塊; "space above" on a box moves the box, what is inside it and everything below.
+  Files: `preview/mockups/phone-layout.html`, `src/js/global/phone-layout.js` (background framing, clipped shorter sections,
+  "space above" moves a container's direct items so boxes move with their contents), `README.md`, built `custom.js`.
+- 工具新增：首圖拖曳取景、Ctrl+Z 復原／重做、拖段落底邊調高度、可選取有底色的方塊並在其上方加空間。
+
 ### Phone layout tool: resize handles, scrollbar out of the way 手機排版工具：縮放控制點、捲軸不壓畫面
 - Joel: "能不能也支援選取後的方塊縮放拖曳功能?，跟 illustrator 作法一樣" / "右邊的視窗滾輪不要壓到畫面". The selected item gets
   handles: a text block's left / right edges change its width (the text re-wraps; the left handle keeps the right edge
