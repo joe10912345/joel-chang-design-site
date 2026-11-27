@@ -1536,7 +1536,7 @@
   /* Round ">>" (Joel 2026-11-26, 2nd pass): it fills blue gradually while the mouse is on its card (CSS); a click
      opens the page at once (the earlier "fill, then open 0.42s later" was dropped). */
 
-  /* Home "Achievements" numbers (10+, 15+, 30+, 8+, 2+): odometer roll (Joel 2026-11-26, option A of
+  /* Home "Achievements" numbers (10+, 15+, 30+, 8+, 3+): odometer roll (Joel 2026-11-26, option A of
      preview/achievement-counters.html). Each digit is a column that rolls up like a clock / odometer (units roll
      more turns than tens), fast then slow, and all stop on the real number; numbers start 0.15s apart, once, when
      they scroll into view. The digits keep Wix's font and size (column height = the measured digit height).
@@ -1574,7 +1574,7 @@
     function run() {
       nums.forEach(function (n, idx) {
         n.cols.forEach(function (c) {
-          c.col.style.transitionDelay = (idx * 0.15) + 's';
+          c.col.style.transitionDelay = (idx * 0.25) + 's';   /* 0.15 -> 0.25s apart, with the slower roll */
           c.col.style.transform = 'translateY(' + (-100 * c.total / (c.total + 1)).toFixed(4) + '%)';   /* % of the strip */
         });
       });

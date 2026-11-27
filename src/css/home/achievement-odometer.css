@@ -4,5 +4,5 @@
 .jcd-odo-d { position: relative; display: inline-block; clip-path: inset(0 -0.5em); }
 .jcd-odo-s { visibility: hidden; display: inline-block; }
 .jcd-odo-c { position: absolute; left: 0; right: 0; top: 0; display: block; text-align: center;
-             transition: transform 1.8s cubic-bezier(.2, .75, .15, 1); will-change: transform; }
+             transition: transform 3.2s cubic-bezier(.2, .75, .15, 1);   /* 1.8 -> 3.2s (Joel 2026-11-27: "數字轉動速度可以慢點") */ will-change: transform; }
 .jcd-odo-c > span { display: block; white-space: nowrap; }

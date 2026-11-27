@@ -9,3 +9,7 @@
    stays invisible until it is in place, then fades in (Joel 2026-11-27: no flash of the top of the page). */
 html.jcd-anchoring body { opacity: 0; }
 html body { transition: opacity .25s ease; }
+/* Text and divider lines always lie above photos (Joel 2026-11-27: phone Defense "2026 Singapore AIRSHOW" and its white
+   line were drawn under the photo that follows them in the page). A full scan of every page (phone + computer; iPad uses
+   the computer page) found only that place; everywhere else text was already on top, so nothing else changes. */
+#PAGES_CONTAINER .wixui-rich-text, #PAGES_CONTAINER .wixui-horizontal-line { z-index: 1; }

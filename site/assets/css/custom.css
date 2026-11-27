@@ -46,6 +46,10 @@ html.jcd-dark-canvas .wixui-rich-text [style*="color:#37659D" i] { color: var(--
    stays invisible until it is in place, then fades in (Joel 2026-11-27: no flash of the top of the page). */
 html.jcd-anchoring body { opacity: 0; }
 html body { transition: opacity .25s ease; }
+/* Text and divider lines always lie above photos (Joel 2026-11-27: phone Defense "2026 Singapore AIRSHOW" and its white
+   line were drawn under the photo that follows them in the page). A full scan of every page (phone + computer; iPad uses
+   the computer page) found only that place; everywhere else text was already on top, so nothing else changes. */
+#PAGES_CONTAINER .wixui-rich-text, #PAGES_CONTAINER .wixui-horizontal-line { z-index: 1; }
 /* ---------- 1. Navigation hover states (desktop) ---------- */
 /* Top level: Works / About / Contact - no underline (Joel 2026-11-23); hover dims the other items */
 .itemDepth02233374943__label::after { content: none !important; display: none !important; }
@@ -621,7 +625,7 @@ body:not(.device-mobile-optimized) .gpDCD5:hover .jcd-go-hover, body:not(.device
 .jcd-odo-d { position: relative; display: inline-block; clip-path: inset(0 -0.5em); }
 .jcd-odo-s { visibility: hidden; display: inline-block; }
 .jcd-odo-c { position: absolute; left: 0; right: 0; top: 0; display: block; text-align: center;
-             transition: transform 1.8s cubic-bezier(.2, .75, .15, 1); will-change: transform; }
+             transition: transform 3.2s cubic-bezier(.2, .75, .15, 1);   /* 1.8 -> 3.2s (Joel 2026-11-27: "數字轉動速度可以慢點") */ will-change: transform; }
 .jcd-odo-c > span { display: block; white-space: nowrap; }
 /* iPad upright (Joel 2026-11-26: menu too small): the header's left group (logo) and right group (menu + LinkedIn /
    Behance) are drawn 1.3x, anchored to their own screen edge so they never meet. site.js sets .jcd-tab-portrait. */

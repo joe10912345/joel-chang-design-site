@@ -11,6 +11,18 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Text above photos; achievements 3+, slower roll; About "10+ products" 文字不被照片蓋住、成就 3+ 與轉動放慢、About 10+
+- Joel: "手機板 defense 頁面的新加坡 airshow 跟白襯線被圖片蓋到了，處理下，同時也巡一下其他平台". The "2026 Singapore AIRSHOW"
+  text and its white line came before the photo in the page, so the photo was drawn over them. Text and divider lines now
+  always lie above photos (`src/css/global/base.css`; the sticky header stays above them). A scan of every page on phone and
+  computer (iPad uses the computer page) found only that place covered; now none.
+- Joel: "數字轉動速度可以慢點，然後產品家族可以改成 3+". Home Achievements: the roll takes 3.2 s (was 1.8 s), numbers start
+  0.25 s apart (was 0.15); "Product Family Languages" 2+ -> 3+. Files: `src/css/home/achievement-odometer.css`,
+  `src/js/home/achievement-odometer.js`, `site/index.html`, `site/m/index.html`.
+- Joel: "自介這段的 8+ 改成 10". About intro: "launched 10+ products" (was 8+), computer and phone.
+  Files: `site/about/index.html`, `site/m/about/index.html`.
+- 文字與分隔線一律在照片上層（修正手機 Defense 新加坡航展）；首頁成就數字轉動放慢、產品家族 3+；About 自介改 10+ products。
+
 ### ">>" in Poppins Medium, smaller phone / iPad card text, no old ">>" anywhere >> 改 Medium、手機與 iPad 卡片字縮小、舊 >> 全移除
 - Joel: ">> 改 medium" / "手機板的首頁 12 張圖＋產品類別頁的字體還是太大" / "ipad 版的圖卡產品名字尺寸也要縮小一點" / "t interceptor CS 下方有一個舊的
   >> 掉落在外面" / "舊 >> 應該都要移除了。我們有新的 >> 設計了".
