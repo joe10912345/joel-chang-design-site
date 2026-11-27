@@ -11,6 +11,12 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Phone home layout and title sizes by Joel 手機首頁排版與標題字級
+- Joel: "首頁下的標題字體讓我調整(手機板)" → "搞定，推". His `phone-layout.html` values for the phone home: the opening title
+  16.5px and wider (299px), the intro 9px, their positions, the space between sections and the last photo's framing, in
+  `jcd-config.js` `phone.layout['']`. Checked: both texts centred on the page, no overlaps, nothing off the screen.
+- 套用 Joel 調整的手機首頁：開頭標題 16.5px、介紹文字 9px、位置與段落間距；已檢查置中、無重疊。
+
 ### Phone layout tool: text size slider works 手機排版工具：字級滑桿修正
 - Joel: "字體無法調整欸". The new 字級 slider had the same id ("f") as the tool's phone frame, so dragging it did nothing
   (only the number box worked). Renamed (`fz`); Joel's unsaved home changes were saved first. File:
