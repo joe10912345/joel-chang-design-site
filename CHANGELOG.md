@@ -11,6 +11,12 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Phone layout tool: text size slider works 手機排版工具：字級滑桿修正
+- Joel: "字體無法調整欸". The new 字級 slider had the same id ("f") as the tool's phone frame, so dragging it did nothing
+  (only the number box worked). Renamed (`fz`); Joel's unsaved home changes were saved first. File:
+  `preview/mockups/phone-layout.html`.
+- 字級滑桿和手機畫面框用了同一個名稱，拖動沒反應；已改名修正，Joel 未存的首頁調整已先儲存。
+
 ### Phone layout tool: text size 手機排版工具：字級
 - Joel: "首頁下的標題字體讓我調整(手機板)". New 字級 slider in `phone-layout.html`: select a text block (Shift-click to select
   several titles) and set its size in phone layout px; line height follows. Saved as `fs` in `jcd-config.js`
