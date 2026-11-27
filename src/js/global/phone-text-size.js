@@ -8,13 +8,23 @@
     if (!document.body.classList.contains('device-mobile-optimized')) return;
     var P = (window.JCD_CONFIG && JCD_CONFIG.phone) || {}, minText = P.minText || 11, minLabel = P.minLabel || 9.5;
     var cv = document.createElement('canvas').getContext('2d'), plan = [], groups = {};
+    var aboutPage = /\/about\//.test(location.pathname);
+    function greyLight(cs) {   /* grey (no hue, not white or see-through) and light / regular weight */
+      var m = /rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)(?:,\s*([\d.]+))?/.exec(cs.color); if (!m) return false;
+      var r = +m[1], g = +m[2], b = +m[3], a = m[4] == null ? 1 : +m[4];
+      var grey = Math.max(r, g, b) - Math.min(r, g, b) < 12 && (Math.max(r, g, b) < 215 || a < 0.85);
+      return grey && (parseInt(cs.fontWeight, 10) || 400) <= 400;
+    }
     [].forEach.call(document.querySelectorAll('#PAGES_CONTAINER .wixui-rich-text, #PAGES_CONTAINER .wixui-rich-text *'), function (e) {
       var own = [].filter.call(e.childNodes, function (n) { return n.nodeType === 3; }).map(function (n) { return n.textContent; }).join(' ').trim();
-      if (!own) return;
+      if (!own || e.closest('.jcd-info2x2')) return;   /* product info table: sized by info-table-phone.js */
       var cs = getComputedStyle(e), fs = parseFloat(cs.fontSize);
       var cell = e.closest('.jcd-tc-cell'), blk = cell || e.closest('.wixui-rich-text');   /* a list cell (About) counts on its own */
       var para = cell ? [].indexOf.call(cell.parentElement.children, cell) % 2 === 1   /* lists: text column = text size, dates = label */
                       : blk.textContent.trim().length > 60;
+      /* About: the grey light lines (patent numbers, roles, "Advanced & efficient in Creo") stay a step smaller than the
+         white text they belong to (Joel 2026-11-27: "about 的灰細文字的尺寸跟其他是一樣的，應該要縮小") */
+      if (para && aboutPage && greyLight(cs)) para = false;
       var want = para ? minText : minLabel;
       if (!(fs < want)) return;
       var br = blk.getBoundingClientRect(), bt = box(blk);   /* width up to the page margin (see pageW below) */

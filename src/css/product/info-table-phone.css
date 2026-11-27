@@ -1,0 +1,5 @@
+/* Phone product info table as 2 x 2 (Joel 2026-11-27; custom.js "info-table-phone"): Client | Year, Designer |
+   Contribution. Label and content 9px, content grey (set by the script from jcd-config.js). */
+.jcd-info2x2 { display: grid; grid-template-columns: 1fr 1fr; column-gap: 18px; row-gap: 18px; }
+.jcd-info2x2 .jcd-info-lab { line-height: 1.5; margin-bottom: 4px; }
+.jcd-info2x2 .jcd-info-val { line-height: 1.55; }

@@ -28,7 +28,7 @@ Areas 分區: `global` = every page 全站 · `home` = home 首頁 · `about` = 
 | `home` | `design-approach-cards.css`, `cross-category-grid.css`, `works-grid-links.css`, `video-frame.css`, `works-category-buttons.css`, `end-to-end-text.css`, `selected-label.css`, `get-in-touch-breathing.css`, `works-grid-press.css`, `achievement-map.css`, `selected-grid.css`, `achievement-odometer.css`, `works-category-hover.css`, `design-approach-card1.css`, `video-glow.css`, `end-to-end-hint.css`, `hero-no-counter.css`, `end-to-end-hover.css` |
 | `contact` | `form-status.css`, `field-colours.css`, `fields.css` |
 | `phone` | `mobile-fixes.css`, `menu-social.css`, `menu-layout.css`, `tap-targets.css` |
-| `product` | `ocean-series-creatures.css`, `ocean-series-seams.css`, `defense-guardian-no-go.css`, `guest-area-dialog.css`, `defense-website.css`, `ai-tool-kit-paravents.css`, `t-interceptormp-award.css`, `t-blade-stowage.css` |
+| `product` | `info-table-phone.css`, `ocean-series-creatures.css`, `ocean-series-seams.css`, `defense-guardian-no-go.css`, `guest-area-dialog.css`, `defense-website.css`, `ai-tool-kit-paravents.css`, `t-interceptormp-award.css`, `t-blade-stowage.css` |
 | `about` | `portrait-frame.css`, `believe-phone-text.css`, `recommendation-cards.css`, `grid-rows.css`, `signature-reveal.css`, `portrait-swap.css`, `present-glow.css`, `two-column-lists-phone.css` |
 | `category` | `cards-linked.css`, `cards-ipad-sizes.css`, `go-hover-computer.css`, `cards-photo-zoom.css`, `cards-clickable.css` |
 
@@ -37,9 +37,9 @@ Areas 分區: `global` = every page 全站 · `home` = home 首頁 · `about` = 
 | area 分區 | files (in build order) 檔案（依合併順序） |
 |---|---|
 | `global` | `wix-fixed-backgrounds.js`, `phone-text-size.js`, `phone-tap-targets.js`, `lightbox.js`, `header-autohide.js`, `phone-menu-social.js`, `hero-height.js`, `page-background.js`, `header-no-drag.js`, `no-context-menu.js`, `no-tooltips.js`, `one-tap-links.js`, `photo-frames.js`, `scroll-reveal.js`, `ios-active.js` |
-| `product` | `closing-photo-reveal.js`, `guest-area-dialog.js`, `defense-website.js`, `t-blade-last-photo.js` |
+| `product` | `info-table-phone.js`, `closing-photo-reveal.js`, `guest-area-dialog.js`, `defense-website.js`, `t-blade-last-photo.js` |
 | `home` | `design-approach-cards.js`, `cross-category-grid.js`, `video-frame.js`, `achievement-map.js`, `selected-grid.js`, `achievement-odometer.js`, `end-to-end-slider.js`, `end-to-end-hint.js` |
 | `contact` | `contact-form.js`, `iphone-no-zoom.js` |
 | `category` | `catalog-title-bars.js`, `frames-desktop.js`, `spacing-phone.js`, `bottom-space.js`, `cards-touch.js` |
-| `about` | `intro-layout-desktop.js`, `recommendation-cards.js`, `heading-spacing.js`, `believe-centre.js`, `believe-reveal.js`, `signature-reveal.js`, `portrait-swap.js`, `two-column-lists-phone.js` |
+| `about` | `intro-layout-desktop.js`, `even-margins-desktop.js`, `recommendation-cards.js`, `heading-spacing.js`, `believe-centre.js`, `believe-reveal.js`, `signature-reveal.js`, `portrait-swap.js`, `two-column-lists-phone.js` |
 

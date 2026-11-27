@@ -1,5 +1,6 @@
 global/wix-fixed-backgrounds.js
 about/two-column-lists-phone.js
+product/info-table-phone.js
 global/phone-text-size.js
 product/closing-photo-reveal.js
 home/design-approach-cards.js
@@ -17,6 +18,7 @@ category/frames-desktop.js
 contact/iphone-no-zoom.js
 category/spacing-phone.js
 about/recommendation-cards.js
+about/even-margins-desktop.js
 about/heading-spacing.js
 global/header-no-drag.js
 about/believe-centre.js

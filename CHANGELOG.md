@@ -11,6 +11,22 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Phone info table 2 × 2, About grey text smaller, About equal side margins 手機資訊表 2×2、About 灰字縮小、About 左右留白相等
+- Joel: "手機版產品資訊表改成 2×2" → mockup `preview/mockups/info-table-phone.html` (A-D on real pages) → "B 2×2，但要注意下方
+  文字與黑底要留有空間" → "產品資訊表文字可以字體縮小變灰色". On every phone product page (22) the Client / Year / Designer /
+  Contribution table is a 2 × 2 grid at the 20px page margins (was four 20-63px columns with 6-9px text): label and content
+  9px, content grey, at least 28px of black box below the table (measured 28-68px). Files: `src/js/product/info-table-phone.js`,
+  `src/css/product/info-table-phone.css` (new), `src/js/global/phone-text-size.js` (skips the table).
+- Joel: "about 的灰細文字的尺寸跟其他是一樣的，應該要縮小". Phone About: grey light lines (patent numbers, roles, notes) now use
+  the label size 9px, a step below the white 10px text. File: `src/js/global/phone-text-size.js`.
+- Joel: "ipad 版的 about 左邊跟右邊空間沒有一樣，右邊比較窄…內容應該要窄點讓右邊有一樣的空間". The Trusted Collaboration cards
+  ended 12px past the mirrored edge and Expertise's Branding column 25px (iPad layout; the computer had the same). Now the card
+  block ends at the mirror of the page's left text edge and the Branding column moves left until its longest line ends
+  there, the divider before it halfway between the columns. Left = right on iPad and on 1536 / 1920 / 3440 screens. File:
+  `src/js/about/even-margins-desktop.js` (new). `DESIGN-SYSTEM.md`, `src/README.md`, `src/js/ORDER.txt`, `src/css/ORDER.txt`.
+- 手機 22 個產品頁的資訊表改成 2×2（頁面 20px 邊界），標題與內容 9px、內容灰色，表格下方至少留 28px 黑底。手機 About 灰色細字改 9px，
+  比白字小一級。About（iPad 與電腦）推薦卡片與 Expertise 的 Branding 欄往內收，右側留白與左側相等。
+
 ### Menu no longer flashes a serif font 菜單不再先閃襯線體
 - Joel: "為甚麼我剛進到網站時，菜單的文字會是襯線體，然後才變回我的字體". Poppins loads with `font-display: swap` and Wix's font
   lists end in names that don't exist (`orig_poppins_*`) with no generic family, so until Poppins arrived the browser drew

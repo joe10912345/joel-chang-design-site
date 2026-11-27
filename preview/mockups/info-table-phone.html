@@ -1,0 +1,117 @@
+<!doctype html>
+<!-- Phone product info table (Client / Year / Designer / Contribution): today four narrow columns with 6-9px text.
+     Mockup of other layouts on the real phone pages (Joel 2026-11-27: "手機版產品資訊表改成 2×2 這個可以做 mockup 讓我看下嗎").
+     Open on the devices server: http://localhost:8766/preview/mockups/info-table-phone.html -->
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Info Table Phone</title>
+<style>
+  :root { --jcd-blue: #0062D9; --bg: #111; --panel: #1b1b1b; --line: #2c2c2c; --text: #eee; --dim: #9a9a9a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.5 system-ui, sans-serif; }
+  header { position: sticky; top: 0; z-index: 5; background: rgba(17,17,17,.95); border-bottom: 1px solid var(--line);
+    padding: 12px 20px; display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+  h1 { font-size: 16px; margin: 0 8px 0 0; font-weight: 600; }
+  select, button { font: inherit; font-size: 13px; color: var(--text); background: var(--panel); border: 1px solid var(--line);
+    border-radius: 8px; padding: 6px 10px; }
+  .note { color: var(--dim); font-size: 13px; padding: 12px 20px 0; max-width: 1200px; }
+  .row { display: flex; flex-wrap: wrap; gap: 26px; padding: 18px 20px 60px; }
+  .v h2 { font-size: 13px; font-weight: 600; margin: 0 0 4px; }
+  .v p { margin: 0 0 10px; color: var(--dim); font-size: 12px; max-width: 375px; min-height: 36px; }
+  .phone { width: 375px; height: 560px; overflow: hidden; border: 1px solid var(--line); border-radius: 22px; background: #000; position: relative; }
+  .phone iframe { width: 320px; height: 478px; border: 0; transform: scale(1.1719); transform-origin: 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>手機產品資訊表</h1>
+  <label>頁面 <select id="page">
+    <option value="moai-router">MoAI Router（白底頁）</option>
+    <option value="t-blade">T. Blade</option>
+    <option value="ocean-series">Ocean Series（3 位設計師）</option>
+    <option value="wi-fi7-extender">Wi-Fi 7 Extender（1 位設計師）</option>
+    <option value="speeder-pro-earbuds">Speeder Pro Earbuds</option>
+    <option value="zenfone-9">Zenfone 9</option>
+  </select></label>
+  <button id="reload">重新載入</button>
+</header>
+<p class="note">四個畫面都是真實的手機頁（375 寬 iPhone 大小），只改資訊表的排法，文字樣式（字體、顏色、粗細）沿用原本的。
+  2×2 之後每格約 130px 寬，內容可放大到 10px（標題 9px），和全站手機最小字級一致。</p>
+<div class="row" id="row"></div>
+<script>
+  /* the four variants */
+  var V = [
+    { k: 'A', name: 'A 現況：四欄', d: '每欄 20–63px 寬，文字 6–9px。' },
+    { k: 'B', name: 'B 2×2', d: 'Client｜Year / Designer｜Contribution。每格 130px，內容 10px。' },
+    { k: 'C', name: 'C 2×2＋細分隔線', d: '同 B，每格上方一條淡線，標題改淡灰，表格感更清楚。' },
+    { k: 'D', name: 'D 一列一項', d: '標題在左、內容在右，四列。最好讀，但比較高。' }];
+  var row = document.getElementById('row'), sel = document.getElementById('page');
+  function build() {
+    row.innerHTML = '';
+    V.forEach(function (v) {
+      var box = document.createElement('div'); box.className = 'v';
+      box.innerHTML = '<h2>' + v.name + '</h2><p>' + v.d + '</p><div class="phone"><iframe></iframe></div>';
+      row.appendChild(box);
+      var f = box.querySelector('iframe');
+      f.onload = function () { setTimeout(function () { apply(f, v.k); }, 2600); };
+      f.src = '/site/m/' + sel.value + '/?layout=mobile&mk=' + v.k + Date.now();
+    });
+  }
+  /* rearrange the table inside a loaded phone page */
+  function apply(f, k) {
+    var d = f.contentDocument, w = f.contentWindow; if (!d) return;
+    var st = d.createElement('style'); st.textContent = '.jcd-rv{opacity:1!important}'; d.head.appendChild(st);
+    var rich = [].slice.call(d.querySelectorAll('#PAGES_CONTAINER .wixui-rich-text'));
+    var lab = rich.filter(function (x) { return /^\s*Contribution/.test(x.textContent); })[0]; if (!lab) return;
+    var lt = lab.getBoundingClientRect().top;
+    var cells = rich.filter(function (x) { return Math.abs(x.getBoundingClientRect().top - lt) < 4; })
+      .sort(function (a, b) { return a.getBoundingClientRect().left - b.getBoundingClientRect().left; })
+      .map(function (x) { return x.closest('[id^="comp-"]'); });
+    var top0 = cells[0].getBoundingClientRect().top + w.scrollY;
+    if (k !== 'A') {
+      var first = cells[0], cs = w.getComputedStyle(first), wrap = d.createElement('div');
+      ['gridArea', 'marginTop', 'marginLeft', 'alignSelf', 'justifySelf', 'position'].forEach(function (p) { wrap.style[p] = cs[p]; });
+      wrap.style.width = '280px';
+      wrap.style.display = 'grid';
+      if (k === 'D') { wrap.style.gridTemplateColumns = '1fr'; wrap.style.rowGap = '0'; }
+      else { wrap.style.gridTemplateColumns = '1fr 1fr'; wrap.style.columnGap = '18px'; wrap.style.rowGap = k === 'C' ? '0' : '18px'; }
+      first.parentElement.insertBefore(wrap, first);
+      cells.forEach(function (c, i) {
+        wrap.appendChild(c);
+        c.style.setProperty('max-width', 'none', 'important');
+        ['grid-area', 'margin', 'width', 'height', 'min-height', 'left', 'top', 'position', 'transform'].forEach(function (p) {
+          c.style.setProperty(p, p === 'grid-area' ? 'auto' : p === 'position' ? 'relative' : p === 'margin' ? '0' : p === 'left' || p === 'top' ? 'auto' : p === 'transform' ? 'none' : 'auto', 'important'); });
+        var rt = c.matches('.wixui-rich-text') ? c : c.querySelector('.wixui-rich-text'); rt.style.setProperty('width', 'auto', 'important');
+        /* every non-empty line of text, with its own look (Wix's markup differs from page to page): the first line is
+           the label, the rest the content */
+        var tw = d.createTreeWalker(rt, NodeFilter.SHOW_TEXT), t, lines = [];
+        while ((t = tw.nextNode())) { var s = t.textContent.replace(/[​\s]+/g, ' ').trim(); if (!s) continue;
+          var q = w.getComputedStyle(t.parentElement);
+          lines.push({ s: s, look: 'font-family:' + q.fontFamily + ';font-weight:' + q.fontWeight + ';font-style:' + q.fontStyle + ';color:' + q.color }); }
+        if (!lines.length) return;
+        var lab = lines[0], val = lines.slice(1);
+        var labCol = k === 'C' || k === 'D' ? 'color:rgba(255,255,255,.6)' : '';
+        rt.innerHTML = '<div style="' + lab.look + ';' + labCol + ';font-size:9px;line-height:1.5;margin-bottom:' + (k === 'D' ? 0 : 4) + 'px">' + lab.s + '</div>' +
+          '<div>' + val.map(function (l) { return '<div style="' + l.look + ';font-size:10px;line-height:1.55">' + l.s + '</div>'; }).join('') + '</div>';
+        if (k === 'C') { c.style.setProperty('border-top', '1px solid rgba(255,255,255,.16)', 'important'); c.style.setProperty('padding', '10px 0 14px', 'important'); }
+        if (k === 'D') {
+          rt.style.display = 'grid'; rt.style.gridTemplateColumns = '92px 1fr'; rt.style.columnGap = '10px'; rt.style.alignItems = 'baseline';
+          c.style.setProperty('border-top', '1px solid rgba(255,255,255,.16)', 'important'); c.style.setProperty('padding', '9px 0', 'important');
+        }
+      });
+    }
+    if (wrap) {   /* same left edge as the page text (20px) */
+      var dx = 20 - wrap.getBoundingClientRect().left;
+      wrap.style.marginLeft = ((parseFloat(w.getComputedStyle(wrap).marginLeft) || 0) + dx) + 'px';
+    }
+    w.dispatchEvent(new Event('resize'));
+    /* scroll the phone to the table (again a moment later: the page may still be settling) */
+    var go = function () { var t = cells[0].getBoundingClientRect().top + w.scrollY; w.scrollTo(0, Math.max(0, t - 150)); };
+    go(); setTimeout(go, 600); setTimeout(go, 1500);
+  }
+  sel.onchange = build; document.getElementById('reload').onclick = build; build();
+</script>
+</body>
+</html>

@@ -99,6 +99,68 @@
       L.__jcdDone = R.__jcdDone = true;
     });
   });
+  /* Phone product pages: the info table (Client / Year / Designer / Contribution) as 2 x 2 (Joel 2026-11-27: chose B of
+     preview/mockups/info-table-phone.html, "但要注意下方文字與黑底要留有空間"). In Wix it is four text blocks side by side,
+     20-63px wide, so its text could only be 6-9px. Here the four blocks move into one grid the page's width (20px
+     margins): Client | Year, Designer | Contribution, each cell ~130px; label and content 9px (jcd-config.js phone.minLabel), the
+     content grey (Joel: "產品資訊表文字可以字體縮小變灰色"). Each line keeps its own font, weight and colour (copied from the page, because
+     Wix scopes them to the block's id). The black box below keeps at least the space it had under the table, never less
+     than 28px. Runs before phone-text-size.js. */
+  ready(function () {
+    if (!document.body.classList.contains('device-mobile-optimized')) return;
+    var P = (window.JCD_CONFIG && JCD_CONFIG.phone) || {}, fLab = P.minLabel || 9;
+    var rich = [].slice.call(document.querySelectorAll('#PAGES_CONTAINER .wixui-rich-text'));
+    var lab = rich.filter(function (x) { return /^\s*Contribution\b/.test(x.textContent) && x.getBoundingClientRect().width > 0; })[0];
+    if (!lab) return;
+    var lt = lab.getBoundingClientRect().top;
+    var cells = rich.filter(function (x) { return Math.abs(x.getBoundingClientRect().top - lt) < 4 && x.parentElement && x.getBoundingClientRect().width > 0; })
+      .sort(function (a, b) { return a.getBoundingClientRect().left - b.getBoundingClientRect().left; })
+      .map(function (x) { return x.closest('[id^="comp-"]') || x; });
+    if (cells.length !== 4 || !/^\s*Client/.test(cells[0].textContent)) return;
+    /* the box around the table (its grid) and the free space under the table's lowest text */
+    var grid = cells[0].parentElement, box = grid.closest('[id^="comp-"]') || grid;
+    function lowest() { return Math.max.apply(null, cells.map(function (c) { return c.getBoundingClientRect().bottom; })); }
+    var free0 = box.getBoundingClientRect().bottom - lowest();
+    var first = cells[0], cs = getComputedStyle(first), wrap = document.createElement('div');
+    wrap.className = 'jcd-info2x2';
+    ['gridArea', 'marginTop', 'marginLeft', 'alignSelf', 'justifySelf'].forEach(function (p) { wrap.style[p] = cs[p]; });
+    first.parentElement.insertBefore(wrap, first);
+    cells.forEach(function (c) {
+      wrap.appendChild(c);
+      c.style.setProperty('max-width', 'none', 'important');
+      var reset = { 'grid-area': 'auto', margin: '0', width: 'auto', height: 'auto', 'min-height': '0', left: 'auto', top: 'auto', position: 'relative', transform: 'none' };
+      Object.keys(reset).forEach(function (p) { c.style.setProperty(p, reset[p], 'important'); });
+      var rt = c.matches('.wixui-rich-text') ? c : c.querySelector('.wixui-rich-text'); if (!rt) return;
+      rt.style.setProperty('width', 'auto', 'important');
+      /* every non-empty line with its own look; the first is the label */
+      var tw = document.createTreeWalker(rt, NodeFilter.SHOW_TEXT), t, lines = [];
+      while ((t = tw.nextNode())) {
+        var s = t.textContent.replace(/[​\s]+/g, ' ').trim(); if (!s) continue;
+        var q = getComputedStyle(t.parentElement);
+        lines.push({ s: s, look: { 'font-family': q.fontFamily, 'font-weight': q.fontWeight, 'font-style': q.fontStyle, color: q.color, 'letter-spacing': q.letterSpacing } });
+      }
+      if (!lines.length) return;
+      while (rt.firstChild) rt.removeChild(rt.firstChild);
+      lines.forEach(function (l, i) {
+        var d = document.createElement('div'); d.className = i ? 'jcd-info-val' : 'jcd-info-lab'; d.textContent = l.s;
+        Object.keys(l.look).forEach(function (k) { d.style.setProperty(k, l.look[k]); });
+        d.style.setProperty('font-size', fLab + 'px', 'important');
+        if (i) d.style.setProperty('color', 'rgba(255, 255, 255, .6)', 'important');   /* content grey (7.4:1 on black) */
+        rt.appendChild(d);
+      });
+    });
+    /* the same 20px margins as the page text */
+    var pw = document.documentElement.clientWidth, dx = 20 - wrap.getBoundingClientRect().left;
+    wrap.style.marginLeft = ((parseFloat(getComputedStyle(wrap).marginLeft) || 0) + dx) + 'px';
+    wrap.style.width = (pw - 40) + 'px';
+    /* room under the table inside its black box */
+    var want = Math.max(free0, 28), free1 = box.getBoundingClientRect().bottom - lowest();
+    if (free1 < want - 0.5) {
+      var g = box.querySelector('[data-mesh-id$="inlineContent-gridContainer"]') || grid;
+      g.style.setProperty('padding-bottom', ((parseFloat(getComputedStyle(g).paddingBottom) || 0) + want - free1).toFixed(1) + 'px', 'important');
+    }
+    window.dispatchEvent(new Event('resize'));
+  });
   /* Phone: no text below a readable size (Joel 2026-11-27, UI/UX review item 1: "Fix 1-3 first"). The Wix phone
      layout set descriptions at 6-7px, shown about ×1.22 = 7-8.5pt; Apple's minimum is 11pt. Every text smaller than
      jcd-config.js phone.minText (paragraphs) / phone.minLabel (short labels) is raised to it, line height in step;
@@ -109,13 +171,23 @@
     if (!document.body.classList.contains('device-mobile-optimized')) return;
     var P = (window.JCD_CONFIG && JCD_CONFIG.phone) || {}, minText = P.minText || 11, minLabel = P.minLabel || 9.5;
     var cv = document.createElement('canvas').getContext('2d'), plan = [], groups = {};
+    var aboutPage = /\/about\//.test(location.pathname);
+    function greyLight(cs) {   /* grey (no hue, not white or see-through) and light / regular weight */
+      var m = /rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)(?:,\s*([\d.]+))?/.exec(cs.color); if (!m) return false;
+      var r = +m[1], g = +m[2], b = +m[3], a = m[4] == null ? 1 : +m[4];
+      var grey = Math.max(r, g, b) - Math.min(r, g, b) < 12 && (Math.max(r, g, b) < 215 || a < 0.85);
+      return grey && (parseInt(cs.fontWeight, 10) || 400) <= 400;
+    }
     [].forEach.call(document.querySelectorAll('#PAGES_CONTAINER .wixui-rich-text, #PAGES_CONTAINER .wixui-rich-text *'), function (e) {
       var own = [].filter.call(e.childNodes, function (n) { return n.nodeType === 3; }).map(function (n) { return n.textContent; }).join(' ').trim();
-      if (!own) return;
+      if (!own || e.closest('.jcd-info2x2')) return;   /* product info table: sized by info-table-phone.js */
       var cs = getComputedStyle(e), fs = parseFloat(cs.fontSize);
       var cell = e.closest('.jcd-tc-cell'), blk = cell || e.closest('.wixui-rich-text');   /* a list cell (About) counts on its own */
       var para = cell ? [].indexOf.call(cell.parentElement.children, cell) % 2 === 1   /* lists: text column = text size, dates = label */
                       : blk.textContent.trim().length > 60;
+      /* About: the grey light lines (patent numbers, roles, "Advanced & efficient in Creo") stay a step smaller than the
+         white text they belong to (Joel 2026-11-27: "about 的灰細文字的尺寸跟其他是一樣的，應該要縮小") */
+      if (para && aboutPage && greyLight(cs)) para = false;
       var want = para ? minText : minLabel;
       if (!(fs < want)) return;
       var br = blk.getBoundingClientRect(), bt = box(blk);   /* width up to the page margin (see pageW below) */
@@ -878,6 +950,55 @@
     }
     document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', build) : build();
   })();
+  /* About, desktop layout (computer + iPad): the same empty space left and right of the content (Joel 2026-11-27: "ipad
+     版的 about 左邊跟右邊空間沒有一樣，右邊比較窄。應該要相等，如果左邊空間是共用的數據，那內容應該要窄點讓右邊有一樣的
+     空間"). The left edge stays (it is the page's shared text edge, e.g. "EXPERTISE"); content that reaches further right
+     than the mirror of it is pulled in:
+     - Trusted Collaboration cards: the card block ends at the mirrored edge;
+     - Expertise: the Branding column moves left until its longest line ends there, and the divider before it sits
+       halfway between the Engineering text and the Branding column.
+     Measured again on resize (window, zoom, iPad turning). Not on the phone. */
+  ready(function () {
+    if (document.body.classList.contains('device-mobile-optimized') || !/\/about\//.test(location.pathname)) return;
+    var z = function () { return window.__jcdZoom || 1; };
+    function textBox(e) {   /* the text itself, not its Wix box */
+      var r = { l: 1e9, r: -1e9 }, tw = document.createTreeWalker(e, NodeFilter.SHOW_TEXT), t;
+      while ((t = tw.nextNode())) { if (!t.textContent.trim()) continue;
+        var rg = document.createRange(); rg.selectNodeContents(t);
+        [].forEach.call(rg.getClientRects(), function (q) { if (q.width > 0) { r.l = Math.min(r.l, q.left); r.r = Math.max(r.r, q.right); } }); }
+      return r.l < 1e9 ? r : null;
+    }
+    var $ = function (id) { return document.getElementById(id); };
+    function even() {
+      var head = $('comp-mujj9yxk'); if (!head) return;   /* "EXPERTISE": the page's left text edge */
+      var brandParts = [$('comp-mujnhrtl'), $('comp-mujnglui')], divider = $('comp-mujnu0tu'), eng = $('comp-mujngiyo');
+      var moved = brandParts.concat([divider]).filter(Boolean);
+      moved.forEach(function (e) { e.style.transform = ''; });
+      var rec = document.querySelector('.jcd-rec'); if (rec) { rec.style.width = ''; rec.style.marginLeft = ''; rec.style.marginRight = ''; rec.style.removeProperty('transform'); }   /* heading-spacing.js nudges it with a transform; the margin below places it exactly */
+      var vw = document.documentElement.clientWidth, hb = textBox(head); if (!hb) return;
+      var right = vw - hb.l;   /* the mirrored edge, window px */
+      /* cards */
+      if (rec) {
+        var rr = rec.getBoundingClientRect(), pr = rec.parentElement.getBoundingClientRect();
+        rec.style.marginLeft = ((hb.l - pr.left) / z()).toFixed(1) + 'px';
+        rec.style.marginRight = '0';
+        rec.style.width = ((right - hb.l) / z()).toFixed(1) + 'px';
+      }
+      /* Expertise: Branding column */
+      var bt = brandParts[1] && textBox(brandParts[1]), et = eng && textBox(eng);
+      if (bt && bt.r > right + 0.5) {
+        var dx = bt.r - right;
+        brandParts.forEach(function (e) { if (e) e.style.transform = 'translateX(' + (-dx / z()).toFixed(1) + 'px)'; });
+        if (divider && et) {
+          var dr = divider.getBoundingClientRect(), mid = (et.r + bt.l - dx) / 2;
+          divider.style.transform = 'translateX(' + ((mid - (dr.left + dr.width / 2)) / z()).toFixed(1) + 'px)';
+        }
+      }
+    }
+    var t; function soon() { clearTimeout(t); t = setTimeout(even, 150); }
+    even(); window.addEventListener('load', even); window.addEventListener('resize', soon); setTimeout(even, 1500);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(even);
+  });
   /* About page: one spacing rule for every section heading (Joel 2026-11-24: "SELECTED AWARDS, EXPERTISE and TRUSTED
      COLLABORATION are not spaced the same"). Wix had fixed pixel row heights, so the gaps were 76-116px (desktop) and
      6-76px (phone). CSS makes the rows of these sections size to their content (.jcd-about-flow), then each heading
