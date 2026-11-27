@@ -11,6 +11,16 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Home "Buildable Execution Mindset" card opens Wi-Fi 7 HGU/AP "cutting costs" 首頁 04 卡片連到 HGU/AP 降低成本段落
+- Joel: "首頁的這張 buildable mindset 請連到 wifi7 ap 的這張 cutting cost". The 04 REALIZATION card is now a link like
+  01 DISCOVERY (whole card, blue outline on hover, the plain >> in its corner) to `wi-fi7-hgu-ap/index.html#dfm-cost`; the
+  phone home opens the phone page. That page scrolls to "Balancing Design Intent and DFM Optimization / Preserving the design
+  intent while cutting costs in half", just under the header (computer, iPad, phone). The link and the anchor live in
+  `jcd-config.js` `links` (designApproach: words on a card -> page#anchor; anchors: #name -> heading). Files:
+  `src/js/home/design-approach-cards.js` (one function for every linked card), `src/js/global/text-anchors.js` (new),
+  `src/js/ORDER.txt`, `site/assets/js/jcd-config.js` (`?v=` bumped), built `custom.js`.
+- 首頁 Design Approach「04 BUILDABLE EXECUTION MINDSET」卡片可點，連到 Wi-Fi 7 HGU/AP 的「cutting costs in half」段落並自動捲到該處（三平台）。
+
 ### Card ">>" without the circle (G2), card text sizes by Joel; second new hover portrait 卡片 >> 去掉圓圈、卡片字級；第二張新大頭照
 - Joel: "圓圈版 >> 跟我的方正瑞士國際風格不搭" → `preview/mockups/go-button-styles.html` (A-G) → "G2" (>> alone, Poppins Regular)
   → sizes set with `preview/mockups/go-size.html` ("搞定"). Every card (home Works grid, category cards on touch and the

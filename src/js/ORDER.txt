@@ -45,3 +45,4 @@ global/scroll-reveal.js
 global/ios-active.js
 global/logo-press.js
 global/phone-layout.js
+global/text-anchors.js
