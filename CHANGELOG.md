@@ -11,6 +11,12 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Zenfone 9 top image framing 首圖取景
+- Joel: "zenfone 9 讓我調整首圖位置" → set per platform with `preview/mockups/photo-align.html?key=zenfoneHero`: computer
+  46% 10% ×1.02, iPad landscape 20% 20%, iPad upright 18% 53%, phone 15% 48% (was 50% 50%). File: `site/assets/js/jcd-config.js`
+  (`photoFrames.zenfoneHero`, `?v=` bumped in every page).
+- Zenfone 9 首圖依 Joel 在各平台調整的位置顯示（電腦、iPad 橫／直、手機分別設定）。
+
 ### End-to-End slider without arrows 首頁 End-to-End 不用箭頭
 - Joel: "end to end 是不是不用箭頭? 只要畫面被切到或是左右動一下人家就知道是要左滑?" → mockup `preview/mockups/end-to-end-hint.html`
   (variants A-D, phone / iPad / computer) → Joel chose C on every platform; then "輪播往右滑後，最左邊被切到的也要有漸層消失".

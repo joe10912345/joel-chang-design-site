@@ -78,6 +78,10 @@ window.JCD_CONFIG = {
     tBladeHero: { img: 'img[src*="t-blade-02-2000x1500"]',
       desktop: { x: 50, y: 45, zoom: 1 }, ipadLandscape: { x: 48, y: 45, zoom: 1 }, ipadPortrait: { x: 37, y: 51, zoom: 1.06 },
       phone: { x: 12, y: 57, zoom: 1 } },   /* aligned by Joel 2026-11-27 */
+    /* Zenfone 9 top image, per platform (Joel 2026-11-27: "zenfone 9 讓我調整首圖位置"); was Wix's centre 50% 50% */
+    zenfoneHero: { img: 'img[src*="zenfone-9-02-"]',
+      desktop: { x: 46, y: 10, zoom: 1.02 }, ipadLandscape: { x: 20, y: 20, zoom: 1 }, ipadPortrait: { x: 18, y: 53, zoom: 1 },
+      phone: { x: 15, y: 48, zoom: 1 } },   /* aligned by Joel 2026-11-27 */
   },
 
   /* Forms (Contact page + Guest Area "Request access"): sent to Joel's mailbox through Web3Forms (no server on GitHub
