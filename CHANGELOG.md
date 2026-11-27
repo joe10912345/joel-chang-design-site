@@ -11,6 +11,15 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Phone home: larger opening title; Design Approach cards one size, smaller titles 手機首頁：開頭標題加大；Design Approach 方塊統一、標題縮小
+- Joel: "手機板首頁 designing memorable…這個標題字要加大。下方 design approach 4 個方塊尺寸要統一，且內文標題字縮小一點，
+  目前 Rapid validation 太大了". Phone: the opening title 16.5 → 19px; the four card titles (INSIGHT FIRST…, RAPID
+  VALIDATION, DISCIPLINED AESTHETIC, BUILT FOR PRODUCTION) 17 → 14px — both in `jcd-config.js` `phone.layout['']` (`fs`).
+  The four cards now share the tallest card's height (phone 196px; they were 196 / 183 / 176 / 196), the cards below move
+  down with it; computer + iPad were already equal and stay so (`src/js/home/design-approach-cards.js`). Checked: title
+  centred, 16px above the intro; all card text inside its card.
+- 手機首頁開頭標題 16.5 → 19px；Design Approach 四個方塊統一高度（取最高的），方塊標題 17 → 14px。
+
 ### End-to-End: frame kept, 1.5 squares at the end, no nudge, smooth wheel; menu "Works" opens its list End-to-End 白框、到底剩 1 個半、取消示意動態、滾動順暢；菜單 Works
 - Joel: "end to end 圖片 hover 時，白框都還要保留。滑到底時要剩 1 個半。然後取消左滑來回的示意動態效果。滑動不太順，感覺一格格的很明顯".
   - The white frame is part of each photo, so the hover zoom pushed it out: a 1px white line is now drawn above photo,

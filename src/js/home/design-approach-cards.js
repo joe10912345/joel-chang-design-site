@@ -5,6 +5,11 @@
     var ids = ['comp-mnfjmw0p', 'comp-mnfjoibv', 'comp-mnfjomf4', 'comp-mnfjomey'];
     var cards = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
     cards.forEach(function (c) { c.classList.add('jcd-da-card'); });
+    /* the four cards are one size (Joel 2026-11-28: "design approach 4 個方塊尺寸要統一"): each gets the tallest one's
+       height; the cards below move down with it (they sit in rows of the section's grid). Every platform. */
+    var tallest = 0;
+    cards.forEach(function (c) { tallest = Math.max(tallest, c.offsetHeight); });
+    if (tallest) cards.forEach(function (c) { c.style.setProperty('min-height', tallest + 'px'); });
     /* a card that opens a page: the whole card is the link, blue outline on hover, the plain ">>" in its corner
        (round-go-fill.css), pressing it turns the >> blue and the page opens */
     function linkCard(card, href, wixArrow) {
