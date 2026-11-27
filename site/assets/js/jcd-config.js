@@ -97,8 +97,10 @@ window.JCD_CONFIG = {
        Joel then: "手機板字體可以小一級" -> one step smaller (was 11 / 9.5).
        `text`: paragraphs (more than 60 characters); `label`: short labels and captions. Larger Wix sizes stay as they are;
        a word never breaks: in a narrow column the text grows only as far as its longest word fits.
-       手機最小字級：段落 10px、短標籤 9px（約 12pt / 11pt）。 */
-    minText: 10, minLabel: 9 },
+       手機最小字級：段落 10px、短標籤 9px（約 12pt / 11pt）。
+       `subText`: paragraphs on the work pages and category pages (every page except home, About, Contact), Joel
+       2026-11-27: "這些內文小字都太大了，子頁的內文小字都要縮小成 9px". 作品頁、類別頁內文 9px。 */
+    minText: 10, minLabel: 9, subText: 9, subTextExcept: ['', 'about', 'contact', '1', '2', '3', '4'] },
 };
 
 /* iPad layout width for a page slug ('' = home) and orientation.  某頁在 iPad 直／橫向的排版寬度。 */

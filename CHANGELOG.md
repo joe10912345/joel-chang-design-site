@@ -11,6 +11,14 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Phone work pages: body text 9px 手機作品頁內文 9px
+- Joel: "這些內文小字都太大了，我覺得子頁的內文小字都要縮小成 9px". Phone paragraphs that the text minimum raised were 10px; on
+  the work and category pages they are now 9px (`jcd-config.js` `phone.subText: 9`, `phone.subTextExcept` = home, About,
+  Contact, 1-4, which keep 10px). Text Wix already set larger (bold taglines such as "Technology that feels human") is left
+  as is. Checked 28 phone pages: body text 9px, nothing off the screen. Files: `site/assets/js/jcd-config.js` (`?v=` bumped),
+  `src/js/global/phone-text-size.js`, `DESIGN-SYSTEM.md`, built `custom.js`.
+- 手機作品頁與類別頁的內文由 10px 改 9px（設定在 jcd-config.js `phone.subText`）；首頁、About、Contact 維持 10px；Wix 原本較大的粗體副標不變。
+
 ### White pages white on the phone again 手機白底頁恢復白底
 - Joel: "摩艾有些頁面是白底欸，目前都是黑的" / "Sense of Roundness and Joy 到 Pursue the smooth transition effect of curved surfaces
   and achieve G2 continuity 的背景都要是白色". On the phone, `mobile-fixes.css` painted the site frames (`#SITE_CONTAINER`,

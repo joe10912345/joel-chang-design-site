@@ -7,6 +7,9 @@
   ready(function () {
     if (!document.body.classList.contains('device-mobile-optimized')) return;
     var P = (window.JCD_CONFIG && JCD_CONFIG.phone) || {}, minText = P.minText || 11, minLabel = P.minLabel || 9.5;
+    /* work + category pages: paragraphs at jcd-config phone.subText (Joel 2026-11-27: "子頁的內文小字都要縮小成 9px") */
+    var slug = location.pathname.replace(/^.*\/m\//, '').replace(/\/(index\.html)?$/, '').split('/')[0];
+    if (P.subText && (P.subTextExcept || []).indexOf(slug) < 0) minText = P.subText;
     var cv = document.createElement('canvas').getContext('2d'), plan = [], groups = {};
     var aboutPage = /\/about\//.test(location.pathname);
     function greyLight(cs) {   /* grey (no hue, not white or see-through) and light / regular weight */
