@@ -11,6 +11,21 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### One set of sizes for cards, ">>" and category title bars 卡片、>>、類別標題列統一數據
+- Joel: "手機版產品類別頁的字體太大了 / 要跟首頁 12 張圖的做法統一，還有 >> 也是 / 這些都要成為統一數據" and "premium… 跟 material & CMF…
+  的字體不統一，且因為 material… 的字太大，導致白框尺寸變高 … 要成為統一規則". New tokens in `src/css/global/tokens.css`
+  (`--jcd-card-name`, `--jcd-card-brand`, `--jcd-card-go`, `--jcd-card-go-font`, `--jcd-bar-title`, `--jcd-bar-sub`), one value
+  per platform = the home Works grid's (phone 11 / 9.5px names, 18px ">>"; iPad 20 / 15, 34; computer 15 / 11.5, 26). Every
+  category card, the home grid, the Design Approach ">>" and the computer hover ">>" (was 40px) read them; the per-page
+  numbers were removed. Category title bars: the left text is the title, the right the description, sized by the bar tokens
+  (phone 10 / 8px, computer + iPad 30 / 17px); the description stays on one line, growing leftwards (Electronics "Material &
+  CMF Exploration" no longer makes its bar taller). Checked all six category pages on phone and computer, iPad and home.
+  Files: `src/css/global/tokens.css`, `src/css/home/selected-grid.css`, `src/css/home/design-approach-card1.css`,
+  `src/css/category/cards-linked.css`, `cards-ipad-sizes.css`, `go-hover-computer.css`, `catalog-title-bars.css` (new),
+  `src/js/category/catalog-title-bars.js`, `src/css/ORDER.txt`, `src/README.md`, `DESIGN-SYSTEM.md`.
+- 卡片名稱、品牌小字、>> 圓圈、類別標題列字級改成 tokens.css 的一組統一數據（以首頁 12 張圖為準），三平台各一組，不再各頁分別設定；
+  標題列右側說明維持一行，白框不再被撐高。
+
 ### Logo no longer disappears on hover Logo 滑過不再消失
 - Joel: "現在 logo hover 後是消失欸". The new press layer locked the logo's blue hover copy at 0 while the white logo faded
   out. The press now reuses the hover layer (`header-icons-hover.css` shows it on hover, keyboard focus and while pressed,

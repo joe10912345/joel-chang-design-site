@@ -1,0 +1,5 @@
+/* Category title bars: one size for every bar's title (left) and description (right), from tokens.css
+   --jcd-bar-title / --jcd-bar-sub (Joel 2026-11-27: "要成為統一規則，而不是每個地方都分別改參數"). The texts are tagged by
+   custom.js "Catalog title bars"; the description stays on one line. */
+[data-jcd-bar-size="title"], [data-jcd-bar-size="title"] * { font-size: var(--jcd-bar-title) !important; line-height: 1.25 !important; }
+[data-jcd-bar-size="sub"], [data-jcd-bar-size="sub"] * { font-size: var(--jcd-bar-sub) !important; line-height: 1.25 !important; }

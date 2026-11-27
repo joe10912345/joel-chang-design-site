@@ -6,3 +6,16 @@
                  black (Joel 2026-11-27, UI/UX review: Wix's #37659D was 3.5:1, below 4.5:1). Not for white pages (3.7:1 there). */
 :root { --jcd-blue: #0062d9; --jcd-blue-rgb: 0, 98, 217; --jcd-navy: #00176c; --jcd-navy-rgb: 0, 23, 108; --jcd-blue-text-dark: #4f86cc; }
 
+
+/* ===== Cards and title bars: ONE set of sizes (Joel 2026-11-27: "要跟首頁 12 張圖的做法統一，還有 >> 也是。這些都要成為統一
+   數據" / "premium… 跟 material & CMF… 的字體不統一 … 要成為統一規則，而不是每個地方都分別改參數"). Used by the home Works grid
+   (12 photos), every category-page card, the Design Approach card ">>" and the category title bars. Values = the home grid's.
+   卡片與標題列字級只在這裡設定，三平台各一組。
+   --jcd-card-name   product name on a card            --jcd-card-brand  small line above it (brand / category)
+   --jcd-card-go     round ">>" diameter               --jcd-card-go-font  its ">>" size
+   --jcd-bar-title   category title bar, left title    --jcd-bar-sub     category title bar, right description (one line) */
+:root { --jcd-card-name: 15px; --jcd-card-brand: 11.5px; --jcd-card-go: 26px; --jcd-card-go-font: 10px;
+        --jcd-bar-title: 30px; --jcd-bar-sub: 17px; }                                   /* computer */
+html.jcd-tablet { --jcd-card-name: 20px; --jcd-card-brand: 15px; --jcd-card-go: 34px; --jcd-card-go-font: 13px; }   /* iPad */
+html:has(> body.device-mobile-optimized) { --jcd-card-name: 11px; --jcd-card-brand: 9.5px; --jcd-card-go: 18px; --jcd-card-go-font: 7.5px;
+        --jcd-bar-title: 10px; --jcd-bar-sub: 8px; }                                    /* phone */

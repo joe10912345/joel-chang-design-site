@@ -9,10 +9,8 @@
 .jcd-spot-ring { position: absolute; inset: 0; border: 1px solid rgba(255, 255, 255, .55); opacity: 0; transition: opacity .35s; }
 #pro-gallery-container-comp-mnpgav5j .jcd-foot { left: 14px; right: 12px; bottom: 12px; gap: 10px; opacity: 0; transform: translateY(8px);
   transition: opacity .35s, transform .35s cubic-bezier(.2, .7, .2, 1); }
-#pro-gallery-container-comp-mnpgav5j .jcd-nm { font-size: 15px; }
-#pro-gallery-container-comp-mnpgav5j .jcd-nm small { font-size: 11.5px; }
+/* sizes: tokens.css --jcd-card-* (one set for every card, Joel 2026-11-27) */
 /* round >> smaller (Joel 2026-11-27 "圓圈太大"): computer 34 -> 26px, iPad 46 -> 34px, phone 30 -> 22px */
-#pro-gallery-container-comp-mnpgav5j .jcd-go { width: 26px; height: 26px; font-size: 10px; }
 .jcd-spot a.jcd-hot-tile .jcd-spot-grad, .jcd-spot a.jcd-hot-tile .jcd-spot-ring { opacity: 1; }
 #pro-gallery-container-comp-mnpgav5j.jcd-spot a.jcd-hot-tile .jcd-foot { opacity: 1; transform: none; }
 /* touch: always show the name + >> */
@@ -21,11 +19,5 @@
 .jcd-spot a.item-link-wrapper:active .jcd-go { background: var(--jcd-blue); border-color: var(--jcd-blue); }
 /* phone page (320px layout, tiles ~280px) */
 .device-mobile-optimized #pro-gallery-container-comp-mnpgav5j .jcd-foot { left: 10px; right: 8px; bottom: 8px; gap: 8px; }
-.device-mobile-optimized #pro-gallery-container-comp-mnpgav5j .jcd-nm { font-size: 11px; }
-.device-mobile-optimized #pro-gallery-container-comp-mnpgav5j .jcd-nm small { font-size: 9.5px; }
-.device-mobile-optimized #pro-gallery-container-comp-mnpgav5j .jcd-go { width: 18px; height: 18px; font-size: 7.5px; }   /* Joel 2026-11-27: smaller on the phone */
 /* iPad (desktop page at the jcd-config.js width, scaled down): larger */
-body:not(.device-mobile-optimized) #pro-gallery-container-comp-mnpgav5j.jcd-spot-touch .jcd-nm { font-size: 20px; }
-body:not(.device-mobile-optimized) #pro-gallery-container-comp-mnpgav5j.jcd-spot-touch .jcd-nm small { font-size: 15px; }
-body:not(.device-mobile-optimized) #pro-gallery-container-comp-mnpgav5j.jcd-spot-touch .jcd-go { width: 34px; height: 34px; font-size: 13px; }
 @media (prefers-reduced-motion: reduce) { #pro-gallery-container-comp-mnpgav5j .gallery-item-container img { transform: none !important; } }
