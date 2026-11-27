@@ -13,6 +13,10 @@ Several AIs work on this site. To stay in sync, follow these rules. Architecture
    own checks and mockups in other tabs; bring another tab to the front only to show Joel a mockup.
    **三平台預覽在整個工作期間都要開著**（Joel 從那裡看進度）：啟動 site 與 devices 伺服器，在獨立分頁開
    `devices.html?d=all&p=/`，不可切走或關閉；自己的檢查與 mockup 用其他分頁，只有給 Joel 看 mockup 時才切到前面。
+   **Also open the phone layout tool and keep it open the whole session** (Joel 2026-11-28: "phone layout 預設都要打開與常駐"):
+   `http://localhost:8766/preview/mockups/phone-layout.html?p=` in its own tab — Joel tunes phone positions and text sizes
+   there himself. Never navigate, reload or close it (it may hold his unsaved edits).
+   **手機排版工具也要預設打開並常駐**：在獨立分頁開 `phone-layout.html?p=`，Joel 自己在裡面調位置與字級；不可切走、重新整理或關閉（可能有他未存的調整）。
 3. Joel writes in Traditional Chinese; reply in Traditional Chinese. Joel 用繁體中文，請用繁體中文回覆。
 
 ## While working 工作中
