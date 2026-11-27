@@ -11,6 +11,22 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Copy review: whole site 全站文案修訂
+- Joel: "幫我重新尋下我所有的文案。避免 AI 感，或是不自然、不順、錯誤文法的說法。" All English copy on 29 pages was read
+  for AI-sounding phrases (seamless, elevate, not only…but also, dashes), awkward wording, grammar, typos and consistency
+  (title case, product names). 316 suggestions were shown in the new review tool `preview/mockups/copy-review.html`. Joel
+  kept every suggestion except one (the home intro sentence stays as written). He also asked to keep the lines that
+  deliberately have no subject ("不想讀者一直看到 I, He"), so those lines were fixed without adding I / He / We. About:
+  "High-Fidelity Mockup" (he meant a high-fidelity appearance model). 314 edits, each written into both the computer and
+  phone HTML. The home Design Approach card is now "BUILT FOR PRODUCTION", so its link key in `jcd-config.js`
+  `links.designApproach` was renamed to match; the card still opens HGU/AP at "Cutting Cost". Open items: the Gaming Home
+  Gateway intro sentence that appears twice, and the LionFilter 200 base material (stainless steel or aluminium), are in
+  `TODO.md`. Files: 58 page HTML files, `jcd-config.js` (+ `?v=`), `preview/mockups/copy-review.html`.
+- 全站 29 頁英文文案檢查（AI 感用語、不通順、文法、錯字、一致性），共 316 條建議，用新的 `copy-review.html` 讓 Joel 逐條確認。
+  採用 314 條（首頁開頭那句保留原文），電腦版與手機版一起改。Joel 刻意省略主詞的句子保持不寫 I／He／We，只修文法。
+  About 改為「High-Fidelity Mockup」。首頁卡片改名「BUILT FOR PRODUCTION」，連結設定同步更新，仍連到 HGU/AP。
+  Gaming Home Gateway 重複的句子、LionFilter 200 底座材質待 Joel 決定（已記在 TODO）。
+
 ### Phone home layout and title sizes by Joel 手機首頁排版與標題字級
 - Joel: "首頁下的標題字體讓我調整(手機板)" → "搞定，推". His `phone-layout.html` values for the phone home: the opening title
   16.5px and wider (299px), the intro 9px, their positions, the space between sections and the last photo's framing, in

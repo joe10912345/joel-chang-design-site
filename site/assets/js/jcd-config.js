@@ -84,12 +84,12 @@ window.JCD_CONFIG = {
       phone: { x: 15, y: 48, zoom: 1 } },   /* aligned by Joel 2026-11-27 */
   },
 
-  /* Links between pages (Joel 2026-11-27: "首頁的這張 buildable mindset 請連到 wifi7 ap 的這張 cutting cost").
+  /* Links between pages (Joel 2026-11-27: "首頁的這張 buildable mindset 請連到 wifi7 ap 的這張 cutting cost"; card renamed BUILT FOR PRODUCTION in the copy review).
      designApproach: a home Design Approach card (found by words on it) -> page#anchor (relative to the home page, so the
      phone home opens the phone page). anchors: #anchor -> words of the heading to land on (the page scrolls there).
      頁面之間的連結：首頁 Design Approach 卡片 → 指定頁面的指定段落。 */
   links: {
-    designApproach: { 'BUILDABLE EXECUTION': 'wi-fi7-hgu-ap/index.html#dfm-cost' },
+    designApproach: { 'BUILT FOR PRODUCTION': 'wi-fi7-hgu-ap/index.html#dfm-cost' },
     anchors: { 'dfm-cost': 'Balancing Design Intent and DFM Optimization' },
   },
 
