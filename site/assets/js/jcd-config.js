@@ -102,7 +102,20 @@ window.JCD_CONFIG = {
        2026-11-27: "這些內文小字都太大了，子頁的內文小字都要縮小成 9px", then "內文改 8px 好了". 作品頁、類別頁內文 8px。 */
     /* `layout`: phone layout set by Joel with preview/mockups/phone-layout.html, per page: { '<comp id>': { x, y, w },
        '<section id>': { below } } (layout px). 手機版排版微調（用 phone-layout.html 調整）。 */
-    layout: {},
+    layout: {   /* set by Joel 2026-11-27 with phone-layout.html, then aligned to the 20px page edges / centre / each other */
+      'wi-fi7-hgu-ap': { 'comp-m5t74yz1': {x: -41, y: -39, w: 118}, 'comp-m5t5qc84': {y: 8}, 'comp-m5t5srru': {w: 156, y: -35}, 'comp-m5t5uose': {w: 144, y: -41}, 'comp-m5t5ujd5': {w: 153}, 'comp-m5t5rqg5': {w: 155}, 'comp-m5t0533s': {y: 19, x: 3}, 'comp-m5t0fi44': {w: 259, x: 4}, 'comp-m5t0f0an': {y: 27}, 'comp-m5t0f0ap': {y: 29}, 'comp-mowgzb02': {w: 109, y: 8, x: 34}, 'comp-m6a2wkwg': {y: -64, x: -9}, 'comp-m5t6aknw': {x: 18, y: 3}, 'comp-m5t6aknz': {x: 9, y: -1}, 'comp-m5t0e2fh': {below: 29} },
+      'moai-router': { 'comp-mosh8egj': {below: 11}, 'comp-m5pqpw7z': {y: -35, x: 8}, 'comp-m5pqszuf': {y: -4}, 'comp-m5nzjic6': {w: 152}, 'comp-m5nzpbmo': {w: 189}, 'comp-m5nzqgsa2': {w: 195}, 'comp-m5nzn49b': {y: 15}, 'comp-m5nzn498': {y: 16}, 'comp-m5qhdij1': {y: 13, x: -2}, 'comp-m5qhb3oz': {below: 13} },
+      'wi-fi7-extender': { 'comp-m5zjcnux': {y: -47}, 'comp-m5zjcnus': {y: -43}, 'comp-m5zjcnuv2': {y: -48}, 'comp-m5zjz3hr': {y: 195, w: 94}, 'comp-m5zk2kbe': {x: -15, y: -6}, 'comp-m5zl3gwq': {x: -30, y: -4}, 'comp-m5zl3gy0': {x: -30, y: -2, w: 179}, 'comp-m5zl4an11': {x: -30, y: -12}, 'comp-m5zl4an3': {x: -30, y: -9, w: 230}, 'comp-m5xxnjl9': {below: 41}, 'comp-mown5o4p': {y: 21, x: 7}, 'comp-m5xxnj4z': {below: 15}, 'comp-m5xxnjf9': {below: 14}, 'comp-m5zmq4x2': {below: 7} },
+      'wi-fi7-2022': { 'comp-m6aebfzi': {y: 53}, 'comp-m67x4dyl1': {below: 47} },
+      'lionic-lionfilter-200': { 'comp-m662zy44': {y: 11}, 'comp-m65xz0ft': {below: 31} },
+      'ocean-series': { 'comp-mosf3kmy': {x: -3, y: -21, w: 122}, 'comp-mosf3kn5': {x: -3, y: -22, w: 116}, 'comp-mosba1jm7': {x: -29, y: 17}, 'comp-mosba1jl17': {below: 17} },
+    },
+    /* `scale`: one heading scale on the work pages (Joel 2026-11-27: "全面檢視手機版的排版，一團亂"): Wix had page titles
+       at 18-21px and section headings at 12-16px depending on the page. Text Wix set in a band is drawn at that band's
+       size: [from, to) px -> size. Above the last band (decorative display type) and below the first is left alone.
+       作品頁標題字級統一：大標題 20px、章節標題 12px。 */
+    scale: [{ from: 12.5, to: 17, size: 12 }, { from: 17, to: 24, size: 20 }],
+    catScale: [{ from: 17, to: 24, size: 21 }],   /* category pages: the page title (Defense was 22, the others 21)  類別頁標題 21px */
     minText: 10, minLabel: 9, subText: 8, subTextExcept: ['', 'about', 'contact', '1', '2', '3', '4'] },
 };
 

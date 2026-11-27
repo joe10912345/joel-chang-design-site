@@ -11,6 +11,24 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Phone layout applied and aligned; phone heading scale; layout tool multi-select 手機排版套用與對齊、標題字級階層、工具多選
+- Joel: "我大概都排好了，請再幫我微調。尤其是對齊(貼邊、置中、下方空間等)". Joel's layout for Wi-Fi 7 HGU/AP, MoAI, Wi-Fi 7
+  Extender, Wi-Fi 7 2022, Lionic LionFilter 200 and Ocean Series is in `jcd-config.js` `phone.layout`, then aligned: items
+  within ~7px snapped to the 20px page edges (e.g. Extender's four text blocks, HGU/AP and MoAI texts and photos), centred
+  texts on the centre line, HGU/AP's two side-by-side photos centred as a pair, and every section keeps at least 20px under
+  its last item (content moved down had run 9-27px past its section: HGU/AP, Extender, 2022, Lionic, Ocean). The space under a
+  section is now added inside it, so its own colour or photo grows with it (`src/js/global/phone-layout.js`).
+- Full phone review ("Yes, review all"): no text off the screen or wider than its box on any of the 31 phone pages. Work
+  pages had page titles at 18-21px and section headings at 12-16px depending on the page; now one scale (`phone.scale`:
+  title 20px, headings 12px; decorative display type left alone), category page titles 21px (`phone.catScale`; Defense
+  was 22). Files: `site/assets/js/jcd-config.js` (`?v=` bumped), `src/js/global/phone-text-size.js`.
+- Joel: "手機版工具要支援 shift 多點選，這個工具要存起來方便我未來使用". `preview/mockups/phone-layout.html`: Shift-click
+  selects more items (they move together, sliders move / size them together), align buttons (page left / centre / right,
+  each other's left / centre / right / top / middle / bottom), starts from the site's saved layout. Documented in
+  `README.md` §3 item 5 and `AGENTS.md` ("Saved, apply it"). `DESIGN-SYSTEM.md` updated.
+- 套用 Joel 6 頁的手機排版並微調對齊（貼 20px 邊、置中、與相鄰對齊、每段下方至少 20px）。全面檢視：31 頁無文字超出；作品頁標題統一 20px、
+  章節標題 12px，類別頁標題 21px。排版工具支援 Shift 多選與對齊按鈕，並寫進 README 與 AGENTS 方便以後使用。
+
 ### Phone layout tool 手機版排版調整工具
 - Joel: "你能不能把 wifi7 ap 跟摩艾的手機版頁面做出 mockup，我來調整 layout". New `preview/mockups/phone-layout.html?p=<page>`:
   the real phone page; click a text or photo to select it, drag (or arrow keys) to move it, set its width, or the space

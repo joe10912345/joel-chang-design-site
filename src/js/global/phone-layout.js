@@ -15,7 +15,7 @@
       Object.keys(all).forEach(function (id) {
         var e = document.getElementById(id), v = all[id]; if (!e || !v) return;
         var t = { e: e, was: {} };
-        ['translate', 'width', 'max-width', 'margin-bottom'].forEach(function (p) {
+        ['translate', 'width', 'max-width', 'padding-bottom', 'margin-bottom'].forEach(function (p) {
           var cur = e.style.getPropertyValue(p); t.was[p] = cur ? { v: cur, pr: e.style.getPropertyPriority(p) } : null; });
         touched.push(t);
         if (v.x || v.y) {   /* on top of any shift the tidy-up already gave it */
@@ -23,7 +23,10 @@
           e.style.setProperty('translate', ((b[0] || 0) + (v.x || 0)) + 'px ' + ((b[1] || 0) + (v.y || 0)) + 'px');
         }
         if (v.w) { e.style.setProperty('width', v.w + 'px', 'important'); e.style.setProperty('max-width', 'none', 'important'); }
-        if (v.below) e.style.setProperty('margin-bottom', ((parseFloat(t.was['margin-bottom'] && t.was['margin-bottom'].v) || 0) + v.below) + 'px', 'important');
+        /* space under a section: added inside it (its own colour or photo grows with it) */
+        if (v.below) { var pb0 = parseFloat(t.was['padding-bottom'] && t.was['padding-bottom'].v) || parseFloat(getComputedStyle(e).paddingBottom) || 0;
+          e.style.setProperty('padding-bottom', Math.max(0, pb0 + v.below) + 'px', 'important');
+          if (pb0 + v.below < 0) e.style.setProperty('margin-bottom', (pb0 + v.below) + 'px', 'important'); }
       });
     }
     window.__jcdPhoneLayout = function () { apply(); window.dispatchEvent(new Event('resize')); };

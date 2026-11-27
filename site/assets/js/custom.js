@@ -247,6 +247,19 @@
     /* work + category pages: paragraphs at jcd-config phone.subText (Joel 2026-11-27: "子頁的內文小字都要縮小成 9px") */
     var slug = location.pathname.replace(/^.*\/m\//, '').replace(/\/(index\.html)?$/, '').split('/')[0];
     if (P.subText && (P.subTextExcept || []).indexOf(slug) < 0) minText = P.subText;
+    /* work pages: headings on one scale (jcd-config phone.scale; Joel 2026-11-27 "全面檢視手機版的排版，一團亂") */
+    var CATS = ['defense', 'networking', 'electronics', 'industrial', 'lifestyle', 'experimental'];
+    var SCALE = CATS.indexOf(slug) >= 0 ? P.catScale : ((P.subTextExcept || []).indexOf(slug) < 0 ? P.scale : null);   /* category pages: their own scale */
+    if (SCALE) {
+      [].forEach.call(document.querySelectorAll('#PAGES_CONTAINER .wixui-rich-text *'), function (e) {
+        if (e.closest('.jcd-info2x2, .jcd-tc, [id^="bgMedia_"]')) return;
+        if (![].some.call(e.childNodes, function (n) { return n.nodeType === 3 && n.textContent.trim(); })) return;
+        var cs = getComputedStyle(e), fs = parseFloat(cs.fontSize);
+        var band = SCALE.filter(function (b) { return fs >= b.from && fs < b.to; })[0]; if (!band || Math.abs(band.size - fs) < 0.2) return;
+        e.style.setProperty('font-size', band.size + 'px', 'important');
+        if (/px$/.test(cs.lineHeight)) e.style.setProperty('line-height', (parseFloat(cs.lineHeight) * band.size / fs).toFixed(2) + 'px', 'important');
+      });
+    }
     var cv = document.createElement('canvas').getContext('2d'), plan = [], groups = {};
     var aboutPage = /\/about\//.test(location.pathname);
     function greyLight(cs) {   /* grey (no hue, not white or see-through) and light / regular weight */
@@ -2134,7 +2147,7 @@
       Object.keys(all).forEach(function (id) {
         var e = document.getElementById(id), v = all[id]; if (!e || !v) return;
         var t = { e: e, was: {} };
-        ['translate', 'width', 'max-width', 'margin-bottom'].forEach(function (p) {
+        ['translate', 'width', 'max-width', 'padding-bottom', 'margin-bottom'].forEach(function (p) {
           var cur = e.style.getPropertyValue(p); t.was[p] = cur ? { v: cur, pr: e.style.getPropertyPriority(p) } : null; });
         touched.push(t);
         if (v.x || v.y) {   /* on top of any shift the tidy-up already gave it */
@@ -2142,7 +2155,10 @@
           e.style.setProperty('translate', ((b[0] || 0) + (v.x || 0)) + 'px ' + ((b[1] || 0) + (v.y || 0)) + 'px');
         }
         if (v.w) { e.style.setProperty('width', v.w + 'px', 'important'); e.style.setProperty('max-width', 'none', 'important'); }
-        if (v.below) e.style.setProperty('margin-bottom', ((parseFloat(t.was['margin-bottom'] && t.was['margin-bottom'].v) || 0) + v.below) + 'px', 'important');
+        /* space under a section: added inside it (its own colour or photo grows with it) */
+        if (v.below) { var pb0 = parseFloat(t.was['padding-bottom'] && t.was['padding-bottom'].v) || parseFloat(getComputedStyle(e).paddingBottom) || 0;
+          e.style.setProperty('padding-bottom', Math.max(0, pb0 + v.below) + 'px', 'important');
+          if (pb0 + v.below < 0) e.style.setProperty('margin-bottom', (pb0 + v.below) + 'px', 'important'); }
       });
     }
     window.__jcdPhoneLayout = function () { apply(); window.dispatchEvent(new Event('resize')); };

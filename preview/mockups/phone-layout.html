@@ -46,7 +46,8 @@
   <div class="side">
     <div class="card">
       <h2>用法</h2>
-      <p class="note">在手機畫面上<b>點一下</b>文字或圖片來選取（藍框），<b>拖曳</b>就能移動；也可以用方向鍵每次移 1px（按住 Shift 移 10px）。
+      <p class="note">在手機畫面上<b>點一下</b>文字或圖片來選取（藍框），<b>按住 Shift 點</b>可以多選（再點一次取消），<b>拖曳</b>就能一起移動；
+        也可以用方向鍵每次移 1px（按住 Shift 移 10px）。對齊按鈕會對齊所有選取的項目。
         移動不會推開旁邊的東西；要讓下面整段往上或往下，用「這段下方間距」。調好按「儲存」，再跟 AI 說「Saved, apply it」。</p>
     </div>
     <div class="card">
@@ -56,7 +57,12 @@
       <div class="row"><label>上下 y</label><input type="range" id="y" min="-300" max="300" step="1"><input type="number" id="yn"></div>
       <div class="row"><label>寬度</label><input type="range" id="w" min="30" max="320" step="1"><input type="number" id="wn"></div>
       <div class="row"><label>這段下方間距</label><input type="range" id="b" min="-300" max="300" step="1"><input type="number" id="bn"></div>
-      <div class="row"><button id="resetItem">還原這個項目</button><button id="resetSec">還原這段間距</button></div>
+      <div class="row"><label>對齊頁面</label>
+        <button data-al="pageL" title="左緣貼齊頁面 20px 邊界">貼左邊</button><button data-al="pageC" title="以頁面中線置中">頁面置中</button><button data-al="pageR" title="右緣貼齊頁面 20px 邊界">貼右邊</button></div>
+      <div class="row"><label>彼此對齊</label>
+        <button data-al="L" title="左緣對齊最左的項目">左緣</button><button data-al="C" title="中線對齊第一個選取的項目">中線</button><button data-al="R" title="右緣對齊最右的項目">右緣</button>
+        <button data-al="T" title="上緣對齊最上面的項目">上緣</button><button data-al="M" title="垂直中線對齊第一個選取的項目">垂直中線</button><button data-al="B" title="下緣對齊最下面的項目">下緣</button></div>
+      <div class="row"><button id="resetItem">還原選取的項目</button><button id="resetSec">還原這段間距</button></div>
     </div>
     <div class="card">
       <h2>這頁的調整</h2>
@@ -74,11 +80,12 @@
   try { state = JSON.parse(localStorage.getItem(SKEY) || '{}'); } catch (e) {}
   PAGES.forEach(function (p) { var o = document.createElement('option'); o.value = p; o.textContent = p || 'home'; sel.appendChild(o); });
   sel.value = Q.get('p') != null ? Q.get('p') : 'wi-fi7-hgu-ap';
-  var cur = null, W = null, D = null;
+  var picked = [], W = null, D = null;   /* picked[0] = the item the panel shows (Shift-click adds more) */
+  function cur() { return picked[0] || null; }
   function page() { return sel.value; }
   function data() { if (!state[page()]) state[page()] = {}; return state[page()]; }
   function load() {
-    cur = null; showSel();
+    picked = []; showSel();
     f.src = '/site/m/' + page() + (page() ? '/' : '') + '?layout=mobile&tool=' + Date.now();
   }
   f.onload = function () {
@@ -86,9 +93,9 @@
     setTimeout(function () {
       var st = D.createElement('style');
       st.textContent = '.jcd-rv{opacity:1!important;transition:none!important}.jcd-pl-sel{outline:2px solid #0062D9!important;outline-offset:1px;cursor:move!important}' +
-        '.jcd-pl-sec{outline:1px dashed rgba(0,98,217,.7)!important;outline-offset:-1px}';
+        '.jcd-pl-sel2{outline:2px dashed #0062D9!important;outline-offset:1px;cursor:move!important}.jcd-pl-sec{outline:1px dashed rgba(0,98,217,.7)!important;outline-offset:-1px}';
       D.head.appendChild(st);
-      /* the tool's values go into the page's config, then the site's own code applies them */
+      /* the page's saved layout (jcd-config.js) is the starting point; drafts saved in this browser win */
       try { var base = (W.JCD_CONFIG.phone.layout || {})[page()]; if (base && !state[page()]) state[page()] = JSON.parse(JSON.stringify(base)); } catch (e) {}
       applyAll(); hook(); list();
     }, 2600);
@@ -104,57 +111,93 @@
     return null;
   }
   function section(e) { var s = e && e.closest('section'); while (s && s.parentElement && s.parentElement.closest('section')) s = s.parentElement.closest('section'); return s; }
+  /* what the eye sees: a text block's lines, a photo's frame */
+  function vbox(c) {
+    if (c.querySelector('[data-testid="richTextElement"]') || c.matches('[data-testid="richTextElement"]')) {
+      var r = { l: 1e9, t: 1e9, r: -1e9, b: -1e9 }, tw = D.createTreeWalker(c, NodeFilter.SHOW_TEXT), n;
+      while ((n = tw.nextNode())) { if (!n.textContent.trim()) continue; var g = D.createRange(); g.selectNodeContents(n);
+        [].forEach.call(g.getClientRects(), function (q) { if (q.width > 0.5) { r.l = Math.min(r.l, q.left); r.t = Math.min(r.t, q.top); r.r = Math.max(r.r, q.right); r.b = Math.max(r.b, q.bottom); } }); }
+      if (r.l < 1e9) return r;
+    }
+    var q = c.getBoundingClientRect(); return { l: q.left, t: q.top, r: q.right, b: q.bottom };
+  }
   function hook() {
     var drag = null;
     D.addEventListener('click', function (ev) { ev.preventDefault(); ev.stopPropagation(); }, true);
     D.addEventListener('pointerdown', function (ev) {
       var p = pick(ev.target); if (!p) return; ev.preventDefault(); ev.stopPropagation();
-      select(p);
-      var v = data()[p.id] || {};
-      drag = { x0: ev.clientX, y0: ev.clientY, vx: v.x || 0, vy: v.y || 0, moved: false };
+      if (ev.shiftKey) { var i = picked.indexOf(p); if (i >= 0) { picked.splice(i, 1); mark(); showSel(); return; } picked.push(p); }
+      else if (picked.indexOf(p) < 0) picked = [p];
+      else { picked.splice(picked.indexOf(p), 1); picked.unshift(p); }   /* dragging one of several: they all move */
+      mark(); showSel();
+      drag = { x0: ev.clientX, y0: ev.clientY, base: picked.map(function (c) { var v = data()[c.id] || {}; return { id: c.id, x: v.x || 0, y: v.y || 0 }; }), moved: false };
     }, true);
     D.addEventListener('pointermove', function (ev) {
-      if (!drag || !cur) return; ev.preventDefault();
+      if (!drag) return; ev.preventDefault();
       var dx = Math.round(ev.clientX - drag.x0), dy = Math.round(ev.clientY - drag.y0);
       if (Math.abs(dx) + Math.abs(dy) < 2 && !drag.moved) return; drag.moved = true;
-      set(cur.id, { x: drag.vx + dx, y: drag.vy + dy });
+      drag.base.forEach(function (b) { put(b.id, { x: b.x + dx, y: b.y + dy }); }); done();
     }, true);
     D.addEventListener('pointerup', function () { drag = null; }, true);
     D.addEventListener('keydown', key, true); document.addEventListener('keydown', key);
   }
   function key(ev) {
-    if (!cur || /INPUT|SELECT/.test((ev.target || {}).tagName)) return;
-    var s = ev.shiftKey ? 10 : 1, v = data()[cur.id] || {}, m = { ArrowLeft: [-s, 0], ArrowRight: [s, 0], ArrowUp: [0, -s], ArrowDown: [0, s] }[ev.key];
-    if (!m) return; ev.preventDefault(); set(cur.id, { x: (v.x || 0) + m[0], y: (v.y || 0) + m[1] });
+    if (!picked.length || /INPUT|SELECT/.test((ev.target || {}).tagName)) return;
+    var s = ev.shiftKey ? 10 : 1, m = { ArrowLeft: [-s, 0], ArrowRight: [s, 0], ArrowUp: [0, -s], ArrowDown: [0, s] }[ev.key];
+    if (!m) return; ev.preventDefault();
+    picked.forEach(function (c) { var v = data()[c.id] || {}; put(c.id, { x: (v.x || 0) + m[0], y: (v.y || 0) + m[1] }); }); done();
   }
-  function select(p) {
-    if (cur) { cur.classList.remove('jcd-pl-sel'); var s0 = section(cur); if (s0) s0.classList.remove('jcd-pl-sec'); }
-    cur = p; cur.classList.add('jcd-pl-sel'); var s = section(cur); if (s) s.classList.add('jcd-pl-sec');
-    showSel();
+  function mark() {
+    [].forEach.call(D.querySelectorAll('.jcd-pl-sel, .jcd-pl-sel2, .jcd-pl-sec'), function (e) { e.classList.remove('jcd-pl-sel', 'jcd-pl-sel2', 'jcd-pl-sec'); });
+    picked.forEach(function (c, i) { c.classList.add(i ? 'jcd-pl-sel2' : 'jcd-pl-sel'); });
+    var s = section(cur()); if (s) s.classList.add('jcd-pl-sec');
   }
-  function set(id, v) {
+  function put(id, v) {   /* change one item's values (no redraw) */
     var d = data(); d[id] = Object.assign({}, d[id] || {}, v);
     Object.keys(d[id]).forEach(function (k) { if (!d[id][k]) delete d[id][k]; }); if (!Object.keys(d[id]).length) delete d[id];
-    applyAll(); showSel(); list(); status('未儲存');
   }
+  function done() { applyAll(); showSel(); list(); status('未儲存'); }
   function showSel() {
-    var box = document.getElementById('sel');
-    if (!cur) { box.textContent = '還沒選取'; return; }
-    var v = data()[cur.id] || {}, s = section(cur), sv = s ? (data()[s.id] || {}) : {};
-    var txt = (cur.textContent || '').trim().slice(0, 40) || '（圖片）';
-    box.innerHTML = '<b></b> <span style="color:#9a9a9a"></span>'; box.querySelector('b').textContent = txt; box.querySelector('span').textContent = cur.id;
-    var w = v.w || Math.round(cur.getBoundingClientRect().width);
+    var box = document.getElementById('sel'), c = cur();
+    if (!c) { box.textContent = '還沒選取'; return; }
+    var v = data()[c.id] || {}, s = section(c), sv = s ? (data()[s.id] || {}) : {};
+    var txt = (c.textContent || '').trim().slice(0, 40) || '（圖片）';
+    box.innerHTML = '<b></b> <span style="color:#9a9a9a"></span>'; box.querySelector('b').textContent = txt;
+    box.querySelector('span').textContent = c.id + (picked.length > 1 ? '（共選取 ' + picked.length + ' 個）' : '');
+    var w = v.w || Math.round(c.getBoundingClientRect().width);
     [['x', v.x || 0], ['y', v.y || 0], ['w', w], ['b', sv.below || 0]].forEach(function (p) { document.getElementById(p[0]).value = p[1]; document.getElementById(p[0] + 'n').value = p[1]; });
   }
+  /* sliders: x / y move every selected item by the same amount; width sets them all; space below = the shown item's section */
   [['x', 'x'], ['y', 'y'], ['w', 'w'], ['b', 'below']].forEach(function (p) {
-    function go(val) { if (!cur) return; val = +val;
-      if (p[0] === 'b') { var s = section(cur); if (s) set(s.id, { below: val }); } else { var o = {}; o[p[1]] = val; set(cur.id, o); } }
+    function go(val) { var c = cur(); if (!c) return; val = +val;
+      if (p[0] === 'b') { var s = section(c); if (s) put(s.id, { below: val }); }
+      else if (p[0] === 'w') picked.forEach(function (e) { put(e.id, { w: val }); });
+      else { var d0 = val - ((data()[c.id] || {})[p[1]] || 0); picked.forEach(function (e) { var o = {}; o[p[1]] = ((data()[e.id] || {})[p[1]] || 0) + d0; put(e.id, o); }); }
+      done(); }
     document.getElementById(p[0]).oninput = function () { go(this.value); };
     document.getElementById(p[0] + 'n').onchange = function () { go(this.value); };
   });
-  document.getElementById('resetItem').onclick = function () { if (!cur) return; delete data()[cur.id]; applyAll(); showSel(); list(); status('未儲存'); };
-  document.getElementById('resetSec').onclick = function () { if (!cur) return; var s = section(cur); if (s && data()[s.id]) { delete data()[s.id].below; if (!Object.keys(data()[s.id]).length) delete data()[s.id]; } applyAll(); showSel(); list(); status('未儲存'); };
-  document.getElementById('resetPage').onclick = function () { state[page()] = {}; applyAll(); showSel(); list(); status('未儲存'); };
+  /* alignment: to the page (20px margins, centre line) or to each other, by what the eye sees */
+  [].forEach.call(document.querySelectorAll('[data-al]'), function (bt) {
+    bt.onclick = function () {
+      if (!picked.length) return;
+      var how = bt.getAttribute('data-al'), pw = D.documentElement.clientWidth, bx = picked.map(vbox);
+      var minL = Math.min.apply(null, bx.map(function (b) { return b.l; })), maxR = Math.max.apply(null, bx.map(function (b) { return b.r; }));
+      var minT = Math.min.apply(null, bx.map(function (b) { return b.t; })), maxB = Math.max.apply(null, bx.map(function (b) { return b.b; }));
+      var c0 = bx[0];
+      picked.forEach(function (c, i) {
+        var b = bx[i], v = data()[c.id] || {}, dx = 0, dy = 0;
+        if (how === 'pageL') dx = 20 - b.l; else if (how === 'pageR') dx = pw - 20 - b.r; else if (how === 'pageC') dx = pw / 2 - (b.l + b.r) / 2;
+        else if (how === 'L') dx = minL - b.l; else if (how === 'R') dx = maxR - b.r; else if (how === 'C') dx = (c0.l + c0.r) / 2 - (b.l + b.r) / 2;
+        else if (how === 'T') dy = minT - b.t; else if (how === 'B') dy = maxB - b.b; else if (how === 'M') dy = (c0.t + c0.b) / 2 - (b.t + b.b) / 2;
+        put(c.id, { x: Math.round((v.x || 0) + dx), y: Math.round((v.y || 0) + dy) });
+      });
+      done();
+    };
+  });
+  document.getElementById('resetItem').onclick = function () { picked.forEach(function (c) { delete data()[c.id]; }); done(); };
+  document.getElementById('resetSec').onclick = function () { var s = section(cur()); if (s && data()[s.id]) { delete data()[s.id].below; if (!Object.keys(data()[s.id]).length) delete data()[s.id]; } done(); };
+  document.getElementById('resetPage').onclick = function () { state[page()] = {}; done(); };
   document.getElementById('save').onclick = function () {
     Object.keys(state).forEach(function (k) { if (!Object.keys(state[k] || {}).length) delete state[k]; });
     try { localStorage.setItem(SKEY, JSON.stringify(state)); status('已儲存 ✓（跟 AI 說 Saved, apply it）'); } catch (e) { status('無法儲存'); }

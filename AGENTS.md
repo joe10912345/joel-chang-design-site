@@ -65,6 +65,15 @@ Several AIs work on this site. To stay in sync, follow these rules. Architecture
     `reference/archive/unused-wix-media/`. commit 並 push；告訴 Joel 要等部署後手機才看得到。上述檔案不可 commit。
 13. All `.md` files are bilingual (English + Traditional Chinese). 所有 md 檔都要中英對照。
 
+## "Saved, apply it" 套用 Joel 存好的調整
+
+- Joel tunes with the tools listed in `README.md` §3.5 and says "Saved, apply it". Read the saved values from the tool's
+  tab (localStorage, e.g. `jcd-phone-layout`), write them into `jcd-config.js` (never per-page CSS), bump `?v=`, check all
+  devices, then clear that saved copy so the tool starts from the site's values next time.
+  Phone layout: also align what Joel moved (snap within ~7px to the 20px edges, the centre line, a neighbour's edge; keep
+  at least 20px under each section) and report what was snapped. Joel 說「Saved, apply it」時：讀取工具存的數值寫進
+  jcd-config.js、檢查三平台、清掉工具的暫存；手機排版另做貼邊／置中／對齊與下方間距的微調。
+
 ## Password-protected pages 受密碼保護的頁面
 
 - T. Scope (`site/t-scope/`, phone `site/m/t-scope/`) uses T. Interceptor MP's layout: `tools/make_blank_page.py` copied that

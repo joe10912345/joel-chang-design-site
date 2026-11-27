@@ -100,6 +100,18 @@ out at the width from `jcd-config.js` and scaled; computers → the desktop page
 4. Edit in `site/`, check phone + iPad (both orientations) + computer, then record it (see `AGENTS.md`), commit, push.
    在 `site/` 修改，三平台（iPad 直橫）都檢查，記錄後 commit、push。
 
+5. **Joel's tuning tools** (devices server, port 8766). Joel adjusts, presses 儲存 (saved in his browser), then tells the AI
+   "Saved, apply it": the AI reads the saved values (the tool's localStorage) and writes them into `jcd-config.js`.
+   Joel 的調整工具：調好按「儲存」，再跟 AI 說「Saved, apply it」，AI 讀取存好的數值寫進 jcd-config.js。
+   - **Phone layout 手機版排版** — `http://localhost:8766/preview/mockups/phone-layout.html?p=<page>`: click a text or photo
+     on the real phone page, Shift-click to select more, drag / arrow keys to move, width, space under a section, align to
+     the page (20px edges, centre) or to each other. Saved key `jcd-phone-layout` → `jcd-config.js` `phone.layout`
+     (applied by `src/js/global/phone-layout.js`). After applying, the AI aligns the values (20px edges, centre, edges of
+     neighbours, at least 20px under each section) and clears the tool's saved copy so it starts from the site again.
+     點選文字或圖片（Shift 多選）、拖曳或方向鍵移動、調寬度與段落下方間距、對齊頁面或彼此。
+   - Photo framing 照片取景 — `preview/mockups/photo-align.html?key=<photoFrames key>&p=/<page>/` → `photoFrames`.
+   - Scroll fade 捲動淡入 — `preview/mockups/scroll-fade.html` → `scrollReveal`.
+
 Without the servers: `cd site && python -m http.server 8000`, or double-click `site/index.html`. 沒有伺服器也可直接開。
 
 ## 4. Publishing 上線

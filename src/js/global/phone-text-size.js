@@ -10,6 +10,19 @@
     /* work + category pages: paragraphs at jcd-config phone.subText (Joel 2026-11-27: "子頁的內文小字都要縮小成 9px") */
     var slug = location.pathname.replace(/^.*\/m\//, '').replace(/\/(index\.html)?$/, '').split('/')[0];
     if (P.subText && (P.subTextExcept || []).indexOf(slug) < 0) minText = P.subText;
+    /* work pages: headings on one scale (jcd-config phone.scale; Joel 2026-11-27 "全面檢視手機版的排版，一團亂") */
+    var CATS = ['defense', 'networking', 'electronics', 'industrial', 'lifestyle', 'experimental'];
+    var SCALE = CATS.indexOf(slug) >= 0 ? P.catScale : ((P.subTextExcept || []).indexOf(slug) < 0 ? P.scale : null);   /* category pages: their own scale */
+    if (SCALE) {
+      [].forEach.call(document.querySelectorAll('#PAGES_CONTAINER .wixui-rich-text *'), function (e) {
+        if (e.closest('.jcd-info2x2, .jcd-tc, [id^="bgMedia_"]')) return;
+        if (![].some.call(e.childNodes, function (n) { return n.nodeType === 3 && n.textContent.trim(); })) return;
+        var cs = getComputedStyle(e), fs = parseFloat(cs.fontSize);
+        var band = SCALE.filter(function (b) { return fs >= b.from && fs < b.to; })[0]; if (!band || Math.abs(band.size - fs) < 0.2) return;
+        e.style.setProperty('font-size', band.size + 'px', 'important');
+        if (/px$/.test(cs.lineHeight)) e.style.setProperty('line-height', (parseFloat(cs.lineHeight) * band.size / fs).toFixed(2) + 'px', 'important');
+      });
+    }
     var cv = document.createElement('canvas').getContext('2d'), plan = [], groups = {};
     var aboutPage = /\/about\//.test(location.pathname);
     function greyLight(cs) {   /* grey (no hue, not white or see-through) and light / regular weight */
