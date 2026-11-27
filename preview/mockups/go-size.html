@@ -57,10 +57,12 @@
 <div id="plats"></div>
 <script>
   /* starting values = the site's ">>" today (tokens.css --jcd-card-go-font, the corner padding of the card footer) */
-  var DEF = { weight: 'r', phone: { size: 9, edge: 10 }, ipad: { size: 16, edge: 22 }, desk: { size: 13, edge: 18 } };
+  /* name / brand = tokens.css --jcd-card-name / --jcd-card-brand today (Joel 2026-11-27: "左邊的字體整體尺寸我想調整") */
+  var DEF = { weight: 'r', phone: { size: 9, edge: 10, name: 11, brand: 9.5 }, ipad: { size: 16, edge: 22, name: 20, brand: 15 }, desk: { size: 13, edge: 18, name: 15, brand: 11.5 } };
   var KEY = 'jcd-go-size', v;
   try { v = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
   v = v || JSON.parse(JSON.stringify(DEF));
+  ['phone', 'ipad', 'desk'].forEach(function (k) { ['name', 'brand'].forEach(function (f) { if (v[k][f] == null) v[k][f] = DEF[k][f]; }); });
   var P = [['phone', '手機（320 版面，卡片約 280 寬）', ['../../site/assets/media/electronics/electronics-04-552x342.webp', 'Earbuds', 'TEANA']],
            ['ipad', 'iPad（桌面版面縮放到 iPad，卡片字 20px）', ['../../site/assets/media/electronics/electronics-01-2560x1400.webp', 'Plant X Dehumidifier', 'AIRMP']],
            ['desk', '電腦（1536 版面）', ['../../site/assets/media/electronics/electronics-01-2560x1400.webp', 'Plant X Dehumidifier', 'AIRMP']]];
@@ -69,7 +71,9 @@
     var k = p[0], s = document.createElement('section'); s.className = 'plat ' + k;
     s.innerHTML = '<h2>' + p[1] + '</h2><div class="ctl">' +
       '<label>>> 大小 <input type="range" min="5" max="32" step="0.5" data-k="' + k + '" data-f="size"><output></output></label>' +
-      '<label>離角落 <input type="range" min="4" max="40" step="1" data-k="' + k + '" data-f="edge"><output></output></label></div><div class="row"></div>';
+      '<label>離角落 <input type="range" min="4" max="40" step="1" data-k="' + k + '" data-f="edge"><output></output></label>' +
+      '<label>名稱 <input type="range" min="6" max="40" step="0.5" data-k="' + k + '" data-f="name"><output></output></label>' +
+      '<label>上方小字 <input type="range" min="5" max="30" step="0.5" data-k="' + k + '" data-f="brand"><output></output></label></div><div class="row"></div>';
     var row = s.querySelector('.row');
     [['r', 'G2 Regular'], ['m', 'G3 Medium']].forEach(function (w) {
       var d = document.createElement('div'); d.setAttribute('data-wbox', w[0]);
@@ -83,6 +87,7 @@
     P.forEach(function (p) {
       var k = p[0], s = document.querySelector('.plat.' + k);
       s.style.setProperty('--size', v[k].size + 'px'); s.style.setProperty('--edge', v[k].edge + 'px');
+      [].forEach.call(s.querySelectorAll('.card'), function (c) { c.style.setProperty('--name', v[k].name + 'px'); c.style.setProperty('--brand', v[k].brand + 'px'); });
       [].forEach.call(s.querySelectorAll('input'), function (i) { i.value = v[k][i.getAttribute('data-f')]; i.nextElementSibling.textContent = i.value + 'px'; });
     });
     [].forEach.call(document.querySelectorAll('[data-w]'), function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-w') === v.weight); });

@@ -20346,28 +20346,28 @@
   ],
   "note": "Gemtek, GET IN TOUCH background (Joel 2026-11-27)"
  },
- "about/about-06-2238x1595.webp": {
+ "about/about-06-2238x1595-v2.webp": {
   "source": "media-originals/about/about-06-2238x1595.jpg",
   "wix_ops": null,
   "replaces": [
-   "about/about-06-2000x1425.webp"
+   "about/about-06-2238x1595.webp"
   ],
   "pages": [
    "about"
   ],
-  "note": "About intro hover/tap photo, new portrait from Joel 2026-11-27 (replaces the Golden Pin 2025 photo)",
+  "note": "About intro hover/tap photo, new portrait from Joel 2026-11-27 (second version)",
   "original_name": "個人 - 裁切 -換方向.jpg"
  },
- "about/about-06-1200x855-v2.webp": {
+ "about/about-06-1200x855-v3.webp": {
   "source": "media-originals/about/about-06-2238x1595.jpg",
   "wix_ops": null,
   "replaces": [
-   "about/about-06-1200x855.webp"
+   "about/about-06-1200x855-v2.webp"
   ],
   "pages": [
    "about"
   ],
-  "note": "About intro hover/tap photo, new portrait from Joel 2026-11-27 (phone)",
+  "note": "About intro hover/tap photo, new portrait from Joel 2026-11-27 (second version, phone)",
   "original_name": "個人 - 裁切 -換方向.jpg"
  }
 }

@@ -11,6 +11,20 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Card ">>" without the circle (G2), card text sizes by Joel; second new hover portrait 卡片 >> 去掉圓圈、卡片字級；第二張新大頭照
+- Joel: "圓圈版 >> 跟我的方正瑞士國際風格不搭" → `preview/mockups/go-button-styles.html` (A-G) → "G2" (>> alone, Poppins Regular)
+  → sizes set with `preview/mockups/go-size.html` ("搞定"). Every card (home Works grid, category cards on touch and the
+  computer hover, Design Approach card 1): the ">>" is plain text, no circle / frame / blur; hovered or pressed card: blue and
+  3px to the right (also while the page changes). Tokens: phone name 15 / small line 10 / >> 17 / corner 10px; iPad 18.5 /
+  11 / 21 / 12px; computer 21 / 11.5 / 23 / 14px (`--jcd-card-edge` new, `--jcd-card-go` removed). The per-file corner
+  distances were removed. Files: `src/css/global/tokens.css`, `src/css/global/round-go-fill.css` (now the plain >>),
+  `src/css/category/cards-linked.css`, `cards-ipad-sizes.css`, `go-hover-computer.css`, `src/css/home/selected-grid.css`,
+  `design-approach-card1.css`, `DESIGN-SYSTEM.md`, built `custom.css`.
+- Joel: "我又放了新的大頭照在 media new 裡，幫我換上原本 hover 會出現的照片". Same size as the last one (2238 x 1595), so the
+  site files are `about-06-2238x1595-v2.webp` / `about-06-1200x855-v3.webp` (original replaced in `media-originals/about/`);
+  `reference/media-map.json` updated, old files removed, `media-new/` emptied.
+- 卡片 >> 改成無框的 Poppins Regular 文字，字級與離角落距離依 Joel 調整寫入 tokens.css；About 滑過的大頭照換成第二張新照片。
+
 ### About: new hover portrait 關於頁滑過時的新大頭照
 - Joel: "我放了新的大頭照在 media new 裡，幫我換上原本 hover 會出現的照片". The photo that appears on hover (computer) / while
   pressed (phone, iPad) is Joel's new portrait (2238 x 1595, same ratio as the frame): original

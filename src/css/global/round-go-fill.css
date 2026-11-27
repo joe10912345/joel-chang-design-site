@@ -1,9 +1,10 @@
-/* Round >> fills with --jcd-blue from left to right while the mouse is on its card (Joel 2026-11-26): home Selected
-   tiles, category cards (computer hover chip + touch chips while pressed), Design Approach card 1. */
-.jcd-go { isolation: isolate; overflow: hidden; }
-.jcd-go:not(.jcd-go-hover):not(.jcd-da-go) { position: relative; }
-.jcd-go::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--jcd-blue);   /* fills left -> right (Joel) */
-  transform: scaleX(0); transform-origin: 0 50%; transition: transform .9s cubic-bezier(.4, 0, .2, 1); }
-.jcd-spot a.jcd-hot-tile .jcd-go::before, .gpDCD5:hover .jcd-go::before, .jcd-da-link:hover .jcd-go::before,
-a.item-link-wrapper:active .jcd-go::before, .gpDCD5:active .jcd-go::before, .jcd-da-link:active .jcd-go::before { transform: scale(1); }
-.jcd-spot a.jcd-hot-tile .jcd-go, .gpDCD5:hover .jcd-go, .jcd-da-link:hover .jcd-go { border-color: var(--jcd-blue); background: rgba(20, 22, 28, .45); }
+/* Card ">>" (Joel 2026-11-27: "我覺得圓圈版 >> 按鈕，跟我的方正瑞士國際風格不搭" -> chose G2 in preview/mockups/go-size.html):
+   the ">>" alone in Poppins Regular, no circle, no frame. Pressed / hovered card: it turns --jcd-blue and moves 3px right.
+   Home Works grid, category cards (computer hover + touch), Design Approach card 1. Size: tokens.css --jcd-card-go-font. */
+.jcd-go, body:not(.device-mobile-optimized) .jcd-go.jcd-go-hover, body:not(.device-mobile-optimized) .jcd-go.jcd-da-go {
+  flex: none; width: auto; height: auto; border: 0; border-radius: 0; background: none; -webkit-backdrop-filter: none; backdrop-filter: none;
+  display: block; color: #fff; font: var(--jcd-card-go-font)/1 wfont_3f090f_d2b74fa2704044fa98373433c883f8ed, wf_d2b74fa2704044fa98373433c, orig_poppins_regular, sans-serif;
+  letter-spacing: -.02em; text-shadow: 0 1px 10px rgba(0, 0, 0, .45);
+  transition: color .15s ease, transform .2s cubic-bezier(.2, .7, .2, 1), opacity .35s; }
+.jcd-spot a.jcd-hot-tile .jcd-go, .gpDCD5:hover .jcd-go, .jcd-da-link:hover .jcd-go,
+a.item-link-wrapper:active .jcd-go, .gpDCD5:active .jcd-go, .jcd-da-link:active .jcd-go { color: var(--jcd-blue); transform: translateX(3px); }

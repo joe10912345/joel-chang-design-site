@@ -12,10 +12,11 @@
    (12 photos), every category-page card, the Design Approach card ">>" and the category title bars. Values = the home grid's.
    卡片與標題列字級只在這裡設定，三平台各一組。
    --jcd-card-name   product name on a card            --jcd-card-brand  small line above it (brand / category)
-   --jcd-card-go     round ">>" diameter               --jcd-card-go-font  its ">>" size
+   --jcd-card-go-font  the ">>" (plain Poppins Regular, no frame)   --jcd-card-edge  distance of name and ">>" from the card's corner
+   Card values set by Joel with preview/mockups/go-size.html (2026-11-27: "採 G2" + name sizes).
    --jcd-bar-title   category title bar, left title    --jcd-bar-sub     category title bar, right description (one line) */
-:root { --jcd-card-name: 15px; --jcd-card-brand: 11.5px; --jcd-card-go: 26px; --jcd-card-go-font: 10px;
+:root { --jcd-card-name: 21px; --jcd-card-brand: 11.5px; --jcd-card-go-font: 23px; --jcd-card-edge: 14px;
         --jcd-bar-title: 30px; --jcd-bar-sub: 17px; }                                   /* computer */
-html.jcd-tablet { --jcd-card-name: 20px; --jcd-card-brand: 15px; --jcd-card-go: 34px; --jcd-card-go-font: 13px; }   /* iPad */
-html:has(> body.device-mobile-optimized) { --jcd-card-name: 11px; --jcd-card-brand: 9.5px; --jcd-card-go: 18px; --jcd-card-go-font: 7.5px;
+html.jcd-tablet { --jcd-card-name: 18.5px; --jcd-card-brand: 11px; --jcd-card-go-font: 21px; --jcd-card-edge: 12px; }   /* iPad */
+html:has(> body.device-mobile-optimized) { --jcd-card-name: 15px; --jcd-card-brand: 10px; --jcd-card-go-font: 17px; --jcd-card-edge: 10px;
         --jcd-bar-title: 10px; --jcd-bar-sub: 8px; }                                    /* phone */

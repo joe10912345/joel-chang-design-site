@@ -7,17 +7,15 @@
 .jcd-spot-fx { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
 .jcd-spot-grad { position: absolute; inset: 0; background: linear-gradient(transparent 45%, rgba(0, 0, 0, .65)); opacity: 0; transition: opacity .35s; }
 .jcd-spot-ring { position: absolute; inset: 0; border: 1px solid rgba(255, 255, 255, .55); opacity: 0; transition: opacity .35s; }
-#pro-gallery-container-comp-mnpgav5j .jcd-foot { left: 14px; right: 12px; bottom: 12px; gap: 10px; opacity: 0; transform: translateY(8px);
+#pro-gallery-container-comp-mnpgav5j .jcd-foot { gap: 10px; opacity: 0; transform: translateY(8px);   /* distance: tokens.css --jcd-card-edge */
   transition: opacity .35s, transform .35s cubic-bezier(.2, .7, .2, 1); }
 /* sizes: tokens.css --jcd-card-* (one set for every card, Joel 2026-11-27) */
-/* round >> smaller (Joel 2026-11-27 "圓圈太大"): computer 34 -> 26px, iPad 46 -> 34px, phone 30 -> 22px */
 .jcd-spot a.jcd-hot-tile .jcd-spot-grad, .jcd-spot a.jcd-hot-tile .jcd-spot-ring { opacity: 1; }
 #pro-gallery-container-comp-mnpgav5j.jcd-spot a.jcd-hot-tile .jcd-foot { opacity: 1; transform: none; }
 /* touch: always show the name + >> */
 .jcd-spot-touch .jcd-spot-grad { opacity: .85; }
 #pro-gallery-container-comp-mnpgav5j.jcd-spot-touch .jcd-foot { opacity: 1; transform: none; }
-.jcd-spot a.item-link-wrapper:active .jcd-go { background: var(--jcd-blue); border-color: var(--jcd-blue); }
 /* phone page (320px layout, tiles ~280px) */
-.device-mobile-optimized #pro-gallery-container-comp-mnpgav5j .jcd-foot { left: 10px; right: 8px; bottom: 8px; gap: 8px; }
+.device-mobile-optimized #pro-gallery-container-comp-mnpgav5j .jcd-foot { gap: 8px; }
 /* iPad (desktop page at the jcd-config.js width, scaled down): larger */
 @media (prefers-reduced-motion: reduce) { #pro-gallery-container-comp-mnpgav5j .gallery-item-container img { transform: none !important; } }

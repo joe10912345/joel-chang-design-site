@@ -8,7 +8,5 @@
 .jcd-da-link:hover > .wixui-box, .jcd-da-link:focus-visible > .wixui-box { border-color: var(--jcd-blue) !important; }   /* the white frame itself turns blue */
 .jcd-da-link:hover, .jcd-da-link:focus-visible { box-shadow: 0 0 0 1px var(--jcd-blue), 0 0 34px rgba(var(--jcd-blue-rgb), .45); }
 .jcd-da-link:active, .jcd-da-link.is-pressed { transform: none; }
-.jcd-da-go, body:not(.device-mobile-optimized) .jcd-go.jcd-da-go { position: absolute; right: 16px; bottom: 14px; z-index: 3; width: var(--jcd-card-go); height: var(--jcd-card-go); font-size: var(--jcd-card-go-font); pointer-events: none; }   /* tokens.css */
-.device-mobile-optimized .jcd-go.jcd-da-go { right: 8px; bottom: 7px; }
-.jcd-da-link:hover .jcd-da-go { background: rgba(var(--jcd-blue-rgb), .35); border-color: rgba(255, 255, 255, .6); }
+.jcd-da-go, body:not(.device-mobile-optimized) .jcd-go.jcd-da-go { position: absolute; right: var(--jcd-card-edge); bottom: var(--jcd-card-edge); z-index: 3; pointer-events: none; }   /* tokens.css */
 @media (hover: none) { .jcd-da-card:hover { background-color: transparent; box-shadow: none; } }

@@ -1,4 +1,4 @@
 /* iPad: the desktop page is laid out at the width from jcd-config.js (1320-1438) and scaled down to the screen, so everything is set larger */
-body:not(.device-mobile-optimized) .jcd-foot { left: 22px; right: 18px; bottom: 18px; gap: 16px; }
+body:not(.device-mobile-optimized) .jcd-foot { gap: 16px; }   /* distance: tokens.css --jcd-card-edge */
 body:not(.device-mobile-optimized) .jcd-nm small { margin-bottom: 2px; }   /* sizes: tokens.css --jcd-card-* (Joel 2026-11-27) */
 
