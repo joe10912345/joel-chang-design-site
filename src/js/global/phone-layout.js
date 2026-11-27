@@ -14,7 +14,7 @@
      Phone pages only. */
   ready(function () {
     if (!document.body.classList.contains('device-mobile-optimized')) return;
-    var slug = location.pathname.replace(/^.*\/m\//, '').replace(/\/(index\.html)?$/, '').split('/')[0];
+    var slug = location.pathname.replace(/^.*\/m\//, '').replace(/(^|\/)index\.html$/, '').replace(/\/$/, '').split('/')[0];   /* "/m/index.html" is the home page too (Joel 2026-11-28: it was read as a page called "index.html", so the phone layout and sizes were skipped) */
     var touched = [], PROPS = ['translate', 'width', 'max-width', 'padding-bottom', 'margin-bottom', 'scale', 'transform-origin', 'object-position', 'clip-path'];
     function keep(e) {   /* remember an element's own inline values once, to restore them on the next run */
       for (var i = 0; i < touched.length; i++) if (touched[i].e === e) return touched[i];

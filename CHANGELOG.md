@@ -11,6 +11,20 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### iPad About photo after turning; phone home layout on "/m/index.html" iPad 旋轉後 About 照片；手機首頁排版
+- Joel: "我在 iPad 上的 What I Believe 那張圖，當我從橫變成直，圖片尺寸與高度會跑掉，都要我空滑個三下才會閃跳回設定的比例".
+  site.js sets the iPad's new page width 50ms after the turn and iOS reports the new window height later still, so the
+  single re-layout at resize + 120ms used the old numbers; only a later resize (scrolling) fixed it. The photo is now laid
+  out again until the size, zoom and upright/sideways class have settled (after the turn at 150–2000ms, on visual-viewport
+  resize, and when that class changes). Checked with a simulated late turn both ways. File: `src/js/about/believe-reveal.js`.
+- Joel: "design approach 的圖片內標題字還是太大欸，在縮小". The 14px from the last change never showed when the phone home was
+  opened as `/m/index.html` (the three-device preview, and a redirect there): the page was read as a page called
+  "index.html", so none of `phone.layout['']` (Joel's positions and text sizes) applied and the sub-page text scale made
+  the card titles 20px. Fixed in `src/js/global/phone-layout.js` and `phone-text-size.js`; the card titles are now 14px,
+  the opening title 19px, the four cards 196px, no overlaps on the phone home.
+- iPad 由橫轉直後 What I Believe 照片尺寸會跑掉（要滑幾下才恢復）：改為旋轉後持續重算直到數值穩定。手機首頁網址為 `/m/index.html` 時
+  原本認不出是首頁，Joel 調的排版與字級都沒套用（方塊標題變 20px）；已修正，方塊標題 14px。
+
 ### Phone home: larger opening title; Design Approach cards one size, smaller titles 手機首頁：開頭標題加大；Design Approach 方塊統一、標題縮小
 - Joel: "手機板首頁 designing memorable…這個標題字要加大。下方 design approach 4 個方塊尺寸要統一，且內文標題字縮小一點，
   目前 Rapid validation 太大了". Phone: the opening title 16.5 → 19px; the four card titles (INSIGHT FIRST…, RAPID

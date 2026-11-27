@@ -65,5 +65,17 @@
     lay();
     var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(lay, 120); });
     window.addEventListener('load', lay);
+    /* iPad turned upright / sideways (Joel 2026-11-28: "從橫變成直，圖片尺寸與高度會跑掉，都要我空滑個三下才會閃跳回
+       設定的比例"): site.js sets the new page width 50ms after the turn and iOS reports the new window height later
+       still, so the one pass at resize + 120ms read the old height; only the next resize (scrolling) fixed it. Now it is
+       laid out again until the numbers have settled, and whenever the upright/sideways class or the visible area changes. */
+    var lastKey = '';
+    function relayIfChanged() {
+      var key = [window.innerWidth, window.innerHeight, window.__jcdZoom, document.documentElement.className.indexOf('jcd-tab-portrait') >= 0].join('|');
+      if (key !== lastKey) { lastKey = key; lay(); }
+    }
+    window.addEventListener('orientationchange', function () { [150, 400, 800, 1300, 2000].forEach(function (ms) { setTimeout(relayIfChanged, ms); }); });
+    if (window.visualViewport) visualViewport.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(relayIfChanged, 120); });
+    if ('MutationObserver' in window) new MutationObserver(relayIfChanged).observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'style'] });
   });
 

@@ -8,7 +8,7 @@
     if (!document.body.classList.contains('device-mobile-optimized')) return;
     var P = (window.JCD_CONFIG && JCD_CONFIG.phone) || {}, minText = P.minText || 11, minLabel = P.minLabel || 9.5;
     /* work + category pages: paragraphs at jcd-config phone.subText (Joel 2026-11-27: "子頁的內文小字都要縮小成 9px") */
-    var slug = location.pathname.replace(/^.*\/m\//, '').replace(/\/(index\.html)?$/, '').split('/')[0];
+    var slug = location.pathname.replace(/^.*\/m\//, '').replace(/(^|\/)index\.html$/, '').replace(/\/$/, '').split('/')[0];   /* "/m/index.html" is the home page too (Joel 2026-11-28: it was read as a page called "index.html", so the phone layout and sizes were skipped) */
     if (P.subText && (P.subTextExcept || []).indexOf(slug) < 0) minText = P.subText;
     /* work pages: headings on one scale (jcd-config phone.scale; Joel 2026-11-27 "全面檢視手機版的排版，一團亂") */
     var CATS = ['defense', 'networking', 'electronics', 'industrial', 'lifestyle', 'experimental'];

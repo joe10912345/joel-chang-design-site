@@ -245,7 +245,7 @@
     if (!document.body.classList.contains('device-mobile-optimized')) return;
     var P = (window.JCD_CONFIG && JCD_CONFIG.phone) || {}, minText = P.minText || 11, minLabel = P.minLabel || 9.5;
     /* work + category pages: paragraphs at jcd-config phone.subText (Joel 2026-11-27: "子頁的內文小字都要縮小成 9px") */
-    var slug = location.pathname.replace(/^.*\/m\//, '').replace(/\/(index\.html)?$/, '').split('/')[0];
+    var slug = location.pathname.replace(/^.*\/m\//, '').replace(/(^|\/)index\.html$/, '').replace(/\/$/, '').split('/')[0];   /* "/m/index.html" is the home page too (Joel 2026-11-28: it was read as a page called "index.html", so the phone layout and sizes were skipped) */
     if (P.subText && (P.subTextExcept || []).indexOf(slug) < 0) minText = P.subText;
     /* work pages: headings on one scale (jcd-config phone.scale; Joel 2026-11-27 "全面檢視手機版的排版，一團亂") */
     var CATS = ['defense', 'networking', 'electronics', 'industrial', 'lifestyle', 'experimental'];
@@ -1678,6 +1678,18 @@
     lay();
     var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(lay, 120); });
     window.addEventListener('load', lay);
+    /* iPad turned upright / sideways (Joel 2026-11-28: "從橫變成直，圖片尺寸與高度會跑掉，都要我空滑個三下才會閃跳回
+       設定的比例"): site.js sets the new page width 50ms after the turn and iOS reports the new window height later
+       still, so the one pass at resize + 120ms read the old height; only the next resize (scrolling) fixed it. Now it is
+       laid out again until the numbers have settled, and whenever the upright/sideways class or the visible area changes. */
+    var lastKey = '';
+    function relayIfChanged() {
+      var key = [window.innerWidth, window.innerHeight, window.__jcdZoom, document.documentElement.className.indexOf('jcd-tab-portrait') >= 0].join('|');
+      if (key !== lastKey) { lastKey = key; lay(); }
+    }
+    window.addEventListener('orientationchange', function () { [150, 400, 800, 1300, 2000].forEach(function (ms) { setTimeout(relayIfChanged, ms); }); });
+    if (window.visualViewport) visualViewport.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(relayIfChanged, 120); });
+    if ('MutationObserver' in window) new MutationObserver(relayIfChanged).observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'style'] });
   });
 
   /* Home "End-to-End Expertise" slider, computer + iPad (Joel 2026-11-26: squares too small, the text in them
@@ -2236,7 +2248,7 @@
      Phone pages only. */
   ready(function () {
     if (!document.body.classList.contains('device-mobile-optimized')) return;
-    var slug = location.pathname.replace(/^.*\/m\//, '').replace(/\/(index\.html)?$/, '').split('/')[0];
+    var slug = location.pathname.replace(/^.*\/m\//, '').replace(/(^|\/)index\.html$/, '').replace(/\/$/, '').split('/')[0];   /* "/m/index.html" is the home page too (Joel 2026-11-28: it was read as a page called "index.html", so the phone layout and sizes were skipped) */
     var touched = [], PROPS = ['translate', 'width', 'max-width', 'padding-bottom', 'margin-bottom', 'scale', 'transform-origin', 'object-position', 'clip-path'];
     function keep(e) {   /* remember an element's own inline values once, to restore them on the next run */
       for (var i = 0; i < touched.length; i++) if (touched[i].e === e) return touched[i];
