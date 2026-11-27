@@ -71,6 +71,8 @@
   </div>
 </div>
 <script>
+/* everything inside one function: nothing else on the page (or typed in the console) can overwrite the tool's variables */
+(function () {
   var PAGES = ['wi-fi7-hgu-ap', 'moai-router', 'wi-fi7-extender', 'wi-fi7-2022', 'wi-fi7-gaming-home-gateway', 'airgain-fwa-easy-installation-kit',
     'lionic-lionfilter-200', 'ai-tool-kit', 'nlg-mma200', 'sagittarius-laptop', 'assistive-products', 'interstellar05', 'zenfone-9', 'teana-earbuds',
     'speeder-pro-earbuds', 't-blade', 't-interceptormp', 't-interceptor-cs', 'ocean-series', 'geometry-series', 'parametric-pattern-design', 'jcg-tough-welding',
@@ -212,6 +214,7 @@
   sel.onchange = function () { history.replaceState(null, '', '?p=' + page()); load(); };
   document.getElementById('reload').onclick = load;
   load();
+})();
 </script>
 </body>
 </html>

@@ -11,6 +11,12 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Phone layout tool: buttons not reacting 手機排版工具按鈕沒反應
+- Joel: "我按置中與頁彼此對齊都沒及時反應". A test the AI ran in the tool's tab overwrote one of the tool's variables, so
+  changes went to a page called "undefined". Fixed in Joel's open tab (his two changes moved back to Wi-Fi 7 HGU/AP) and the
+  tool's code now sits inside one function so nothing outside can overwrite it. File: `preview/mockups/phone-layout.html`.
+- AI 測試時誤蓋了工具的變數，導致按鈕沒反應；已在開著的分頁修好並保留調整，工具程式改包在函式內，避免再發生。
+
 ### Phone layout applied and aligned; phone heading scale; layout tool multi-select 手機排版套用與對齊、標題字級階層、工具多選
 - Joel: "我大概都排好了，請再幫我微調。尤其是對齊(貼邊、置中、下方空間等)". Joel's layout for Wi-Fi 7 HGU/AP, MoAI, Wi-Fi 7
   Extender, Wi-Fi 7 2022, Lionic LionFilter 200 and Ocean Series is in `jcd-config.js` `phone.layout`, then aligned: items
