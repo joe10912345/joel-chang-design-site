@@ -1,0 +1,126 @@
+<!doctype html>
+<!-- Card ">>" button styles (Joel 2026-11-27: "我覺得圓圈版 >> 按鈕，跟我的方正瑞士國際風格不搭，能不能給我幾個選項看看").
+     Each option on a phone-size card and a computer-size card, with the real photos, names and type of the site.
+     Hover / press a card to see its pressed state. Open: http://localhost:8766/preview/mockups/go-button-styles.html -->
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Card Button Styles</title>
+<style>
+  @font-face { font-family: PSB; src: url("../../site/assets/fonts/poppins/poppins-semibold.woff2") format("woff2"); }
+  @font-face { font-family: PR; src: url("../../site/assets/fonts/poppins/poppins-regular.woff2") format("woff2"); }
+  @font-face { font-family: PL; src: url("../../site/assets/fonts/poppins/poppins-light.woff2") format("woff2"); }
+  @font-face { font-family: PM; src: url("../../site/assets/fonts/poppins/poppins-medium.woff2") format("woff2"); }
+  :root { --jcd-blue: #0062D9; --bg: #000; --text: #eee; --dim: #8d8d8d; --line: #262626; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.5 system-ui, sans-serif; }
+  header { padding: 20px 24px 6px; } h1 { margin: 0 0 6px; font-size: 18px; }
+  .note { color: var(--dim); font-size: 13px; margin: 0; max-width: 1100px; }
+  .opt { border-top: 1px solid var(--line); padding: 22px 24px 26px; }
+  .opt h2 { margin: 0 0 4px; font-size: 15px; } .opt p { margin: 0 0 14px; color: var(--dim); font-size: 13px; max-width: 900px; }
+  .row { display: flex; gap: 24px; align-items: flex-end; flex-wrap: wrap; }
+  .lab { color: var(--dim); font-size: 11px; margin-bottom: 6px; }
+  /* a card, as on the site: photo, soft dark gradient at the bottom, name bottom-left, button bottom-right */
+  .card { position: relative; overflow: hidden; display: block; color: #fff; text-decoration: none; cursor: pointer; background: #111; }
+  .card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+  .card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 45%, rgba(0,0,0,.6)); pointer-events: none; }
+  .card:hover img { transform: scale(1.04); }
+  .foot { position: absolute; left: var(--pad); right: var(--pad); bottom: var(--pad); z-index: 2; display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; }
+  .nm { font: var(--name)/1.2 PSB, sans-serif; text-shadow: 0 1px 14px rgba(0,0,0,.55); }
+  .nm small { display: block; font: var(--brand)/1.3 PR, sans-serif; color: rgba(255,255,255,.85); margin-bottom: 1px; }
+  .phone { width: 280px; height: 176px; --pad: 10px; --name: 11px; --brand: 9.5px; --go: 18px; --gf: 7.5px; }
+  .desk { width: 520px; height: 300px; --pad: 18px; --name: 15px; --brand: 11.5px; --go: 26px; --gf: 10px; }
+
+  /* the options */
+  .g { flex: none; display: grid; place-items: center; transition: background .15s, color .15s, border-color .15s, transform .15s; }
+  /* A: today — round frosted */
+  .A .g { width: var(--go); height: var(--go); border-radius: 50%; font: var(--gf)/1 PSB, sans-serif; letter-spacing: -1px;
+          background: rgba(20,22,28,.45); border: 1px solid rgba(255,255,255,.35); backdrop-filter: blur(8px); }
+  .A .card:hover .g, .A .card:active .g { background: var(--jcd-blue); border-color: var(--jcd-blue); }
+  /* B: square, 1px white line, thin arrow */
+  .B .g { width: var(--go); height: var(--go); border: 1px solid rgba(255,255,255,.75); }
+  .B .g svg { width: 52%; height: 52%; }
+  .B .card:hover .g, .B .card:active .g { background: #fff; color: #000; border-color: #fff; }
+  /* C: solid blue square flush in the bottom-right corner */
+  .C .foot { right: 0; bottom: 0; align-items: flex-end; }
+  .C .nm { margin-bottom: var(--pad); }
+  .C .g { width: calc(var(--go) * 1.35); height: calc(var(--go) * 1.35); background: var(--jcd-blue); }
+  .C .g svg { width: 44%; height: 44%; }
+  .C .card:hover .g, .C .card:active .g { background: #fff; color: var(--jcd-blue); }
+  /* D: no box — a long thin arrow that runs out on hover */
+  .D .g { height: var(--go); width: calc(var(--go) * 1.4); justify-items: end; }
+  .D .g svg { width: 100%; height: 40%; transition: transform .25s cubic-bezier(.2,.7,.2,1); }
+  .D .card:hover .g svg, .D .card:active .g svg { transform: translateX(4px); color: #fff; }
+  .D .card .g { color: rgba(255,255,255,.85); }
+  /* E: a word — VIEW + arrow, small capitals, wide spacing, rule underneath */
+  .E .g { font: calc(var(--gf) * 1.05)/1 PM, sans-serif; letter-spacing: .16em; text-transform: uppercase; display: flex; gap: .6em; align-items: center;
+          padding-bottom: 3px; border-bottom: 1px solid rgba(255,255,255,.7); }
+  .E .g svg { width: 1.3em; height: .8em; }
+  .E .card:hover .g, .E .card:active .g { color: var(--jcd-blue); border-color: var(--jcd-blue); }
+  /* E1 / E2 / G (Joel 2026-11-27: "給我 E 改成斜下, G 是 >> 看看"): the E look with a diagonal arrow or >> */
+  /* Joel: "不要寫 view, 不要有下方的襯線" -> the sign alone: no word, no rule, no frame */
+  /* G in each Poppins weight (Joel: "G 不錯，但字體換成 poppins 看看" — it was Poppins SemiBold; here every weight) */
+  :is(.G1, .G2, .G3, .G4) .g { width: var(--go); height: var(--go); display: grid; place-items: center; }
+  :is(.G1, .G2, .G3, .G4) .g b { font-size: calc(var(--go) * .62); line-height: 1; font-weight: normal; letter-spacing: -.02em; transition: transform .2s cubic-bezier(.2,.7,.2,1); }
+  .G1 .g b { font-family: PL; } .G2 .g b { font-family: PR; } .G3 .g b { font-family: PM; } .G4 .g b { font-family: PSB; }
+  :is(.G1, .G2, .G3, .G4) .card:hover .g, :is(.G1, .G2, .G3, .G4) .card:active .g { color: var(--jcd-blue); }
+  :is(.G1, .G2, .G3, .G4) .card:hover .g b { transform: translateX(3px); }
+  :is(.E1, .E2, .G) .g { width: var(--go); height: var(--go); display: grid; place-items: center; }
+  :is(.E1, .E2) .g svg { width: 78%; height: 78%; transition: transform .2s cubic-bezier(.2,.7,.2,1); }
+  .G .g b { font: calc(var(--go) * .62)/1 PSB, sans-serif; letter-spacing: -.06em; transition: transform .2s cubic-bezier(.2,.7,.2,1); }
+  :is(.E1, .E2, .G) .card:hover .g, :is(.E1, .E2, .G) .card:active .g { color: var(--jcd-blue); border-color: var(--jcd-blue); }
+  .E1 .card:hover .g svg { transform: translate(2px, 2px); } .E2 .card:hover .g svg { transform: translate(2px, -2px); } .G .card:hover .g b { transform: translateX(3px); }
+  /* F: diagonal arrow, no box, top-right of the card (the "open" sign of grid layouts) */
+  .F .foot { top: var(--pad); }
+  .F .g { position: absolute; top: 0; right: 0; width: var(--go); height: var(--go); }
+  .F .g svg { width: 70%; height: 70%; }
+  .F .card:hover .g, .F .card:active .g { color: var(--jcd-blue); }
+</style>
+</head>
+<body>
+<header>
+  <h1>卡片按鈕樣式 Card button</h1>
+  <p class="note">每個選項都用網站的真實照片、字體、大小（手機 280 寬、電腦 520 寬）。滑鼠移上去或按住看按下的狀態。
+    選好告訴我代號，我會改成統一數據套用到首頁 12 張圖、類別頁卡片、Design Approach 卡片。</p>
+</header>
+<div id="opts"></div>
+<template id="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"><path d="M4 12h15M13 6l6 6-6 6"/></svg></template>
+<template id="arrowLong"><svg viewBox="0 0 48 12" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"><path d="M1 6h44M40 1l5 5-5 5"/></svg></template>
+<template id="diagDown"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"><path d="M7 7l10 10M17 8v9H8"/></svg></template>
+<template id="diag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"><path d="M7 17L17 7M8 7h9v9"/></svg></template>
+<script>
+  var OPTS = [
+    ['A', 'A 現況：圓形毛玻璃 >>', '圓角、半透明毛玻璃，按下變藍。', function () { return '&gt;&gt;'; }],
+    ['B', 'B 方形細框＋箭頭', '直角正方形、1px 白線框、細線箭頭；按下變白底黑箭頭。方正、克制，最接近瑞士風格的「格線」感。', 'arrow'],
+    ['C', 'C 角落實心藍方塊', '貼齊卡片右下角的實心藍色正方形＋白箭頭，像索引標籤；品牌藍成為唯一重點色，按下變白底藍箭頭。', 'arrow'],
+    ['D', 'D 無框細長箭頭', '沒有外框，只有一條細長箭頭；滑過時往右推一點。最輕、最少裝飾。', 'arrowLong'],
+    ['E', 'E 文字＋箭頭（VIEW →）', '小字全大寫、加寬字距、底下一條細線；按下變藍。用字取代圖示，排版感強。', 'arrow'],
+    ['E1', 'E1 斜下箭頭 ↘', '只有往右下的細線斜箭頭，沒有字、沒有底線、沒有框；滑過時往右下推一點，按下變藍。', 'diagDown'],
+    ['E2', 'E2 斜上箭頭 ↗', '只有往右上的細線斜箭頭（作品集常用的「打開」符號），沒有字、沒有底線、沒有框；滑過時往右上推一點，按下變藍。', 'diag'],
+    ['G', 'G 只有 >>', '只有網站原本的 >>，沒有字、沒有底線、沒有框；滑過時往右推一點，按下變藍。', function () { return '<b>&gt;&gt;</b>'; }],
+    ['G1', 'G1 >>（Poppins Light 細）', '和網站內文同一種細體 Poppins。', function () { return '<b>&gt;&gt;</b>'; }],
+    ['G2', 'G2 >>（Poppins Regular 一般）', '一般粗細的 Poppins。', function () { return '<b>&gt;&gt;</b>'; }],
+    ['G3', 'G3 >>（Poppins Medium 中）', '和選單文字同一種中等粗細。', function () { return '<b>&gt;&gt;</b>'; }],
+    ['G4', 'G4 >>（Poppins SemiBold 半粗，即原本的 G）', '和卡片名稱同一種半粗體。', function () { return '<b>&gt;&gt;</b>'; }],
+    ['F', 'F 右上角斜箭頭 ↗', '卡片右上角一個無框斜箭頭，名稱仍在左下；按下變藍。網格式作品集常見的「打開」符號。', 'diag']];
+  var CARDS = [['phone', '../../site/assets/media/electronics/electronics-04-552x342.webp', 'Earbuds', 'TEANA'],
+               ['desk', '../../site/assets/media/electronics/electronics-01-2560x1400.webp', 'Plant X Dehumidifier', 'AIRMP']];
+  var box = document.getElementById('opts');
+  OPTS.forEach(function (o) {
+    var sec = document.createElement('section'); sec.className = 'opt ' + o[0];
+    sec.innerHTML = '<h2>' + o[1] + '</h2><p>' + o[2] + '</p><div class="row"></div>';
+    var row = sec.querySelector('.row');
+    CARDS.forEach(function (c) {
+      var g = typeof o[3] === 'function' ? o[3]() : document.getElementById(o[3]).innerHTML;
+      if (o[0] === 'E') g = '<span>View</span>' + g;
+      var w = document.createElement('div');
+      w.innerHTML = '<div class="lab">' + (c[0] === 'phone' ? '手機' : '電腦 / iPad') + '</div>' +
+        '<a class="card ' + c[0] + '"><img alt="" src="' + c[1] + '"><div class="foot"><span class="nm"><small>' + c[2] + '</small>' + c[3] + '</span><span class="g">' + g + '</span></div></a>';
+      row.appendChild(w);
+    });
+    box.appendChild(sec);
+  });
+</script>
+</body>
+</html>
