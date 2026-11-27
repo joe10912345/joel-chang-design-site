@@ -105,7 +105,8 @@ out at the width from `jcd-config.js` and scaled; computers → the desktop page
    Joel 的調整工具：調好按「儲存」，再跟 AI 說「Saved, apply it」，AI 讀取存好的數值寫進 jcd-config.js。
    - **Phone layout 手機版排版** — `http://localhost:8766/preview/mockups/phone-layout.html?p=<page>`: click a text or photo
      on the real phone page, Shift-click to select more, drag / arrow keys to move, width, space ABOVE an item (it and
-     everything below it move, the following sections follow), space under a section, Illustrator-like handles (text:
+     everything below it move, the following sections follow), space under a section, text size (字級, also for several
+     selected titles at once), Illustrator-like handles (text:
      left / right edge = width; photo: corners = scale), a section's height (handle on its bottom edge), coloured boxes
      (click their edge, 選後方方塊, or Ctrl / Alt + click to pick the next item behind, like Illustrator), the top image's framing (drag the photo background), Ctrl+Z / Ctrl+Shift+Z, align to
      the page (20px edges, centre) or to each other. Saved key `jcd-phone-layout` → `jcd-config.js` `phone.layout`

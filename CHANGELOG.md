@@ -11,6 +11,13 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Phone layout tool: text size 手機排版工具：字級
+- Joel: "首頁下的標題字體讓我調整(手機板)". New 字級 slider in `phone-layout.html`: select a text block (Shift-click to select
+  several titles) and set its size in phone layout px; line height follows. Saved as `fs` in `jcd-config.js`
+  `phone.layout`; `src/js/global/phone-layout.js` applies it (and restores it when the value changes or is undone).
+  Files: those two, `README.md`, built `custom.js`.
+- 排版工具新增「字級」：選取文字（可 Shift 多選）調整大小，行高等比例；存為 phone.layout 的 fs。
+
 ### Phone home + Defense layout by Joel; Airshow caption light and smaller 首頁與 Defense 手機排版、航展說明改細體縮小
 - Joel: "給我首頁跟 defense 的調整器，我來自己調" → "改好了". His `phone-layout.html` values for home (space between
   sections, the video, the intro text width, the last section's photo framing) and Defense (the Airshow block) are in

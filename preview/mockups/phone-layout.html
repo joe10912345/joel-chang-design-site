@@ -52,6 +52,7 @@
         也可以用方向鍵每次移 1px（按住 Shift 移 10px）。對齊按鈕會對齊所有選取的項目。
         <b>選後方物件</b>（像 Illustrator）：<b>按住 Ctrl（或 Alt）點</b>，選游標下、目前選取項目後面的那一個；同一點繼續 Ctrl＋點，會依序往後換（照片 → 灰方塊 → 段落 → 回到最上面）。
         <b>方塊</b>：點有底色方塊露出的邊緣就能選取，或選取照片後按「選後方方塊」；選到後拉「上方空間」可在它上面加空間。
+        <b>字級</b>：選取文字後拉「字級」，Shift 多選可把幾個標題一起改成同一個大小。
         <b>段落高度</b>：段落的虛線框底邊中央有控制點，直接上下拖；點段落裡的空白處可以選取整個段落。
         <b>首圖取景</b>：點照片背景的空白處（不是文字），拖曳讓照片在框內左右、上下移動。<b>Ctrl+Z</b> 復原、<b>Ctrl+Shift+Z</b> 重做。
         <b>拖外框的控制點縮放</b>（像 Illustrator）：文字拖左右兩邊改寬度（文字重新換行）；圖片拖四個角等比例縮放，對角固定不動。
@@ -64,6 +65,7 @@
       <div class="row"><label>左右 x</label><input type="range" id="x" min="-160" max="160" step="1"><input type="number" id="xn"></div>
       <div class="row"><label>上下 y</label><input type="range" id="y" min="-300" max="300" step="1"><input type="number" id="yn"></div>
       <div class="row"><label>寬度</label><input type="range" id="w" min="30" max="320" step="1"><input type="number" id="wn"></div>
+      <div class="row"><label title="文字大小（手機版面 px），行高跟著等比例；Shift 多選可一起改">字級（文字）</label><input type="range" id="f" min="6" max="48" step="0.5"><input type="number" id="fn" step="0.5"></div>
       <div class="row"><label>縮放 %（圖片）</label><input type="range" id="s" min="30" max="200" step="1"><input type="number" id="sn"></div>
       <div class="row"><label title="這個項目和它下面的所有東西一起上下移，後面的段落也跟著移">上方空間</label><input type="range" id="g" min="-400" max="300" step="1"><input type="number" id="gn"></div>
       <div class="row"><label>這段下方間距</label><input type="range" id="b" min="-300" max="300" step="1"><input type="number" id="bn"></div>
@@ -335,13 +337,17 @@
     box.innerHTML = '<b></b> <span style="color:#9a9a9a"></span>'; box.querySelector('b').textContent = txt;
     box.querySelector('span').textContent = c.id + (picked.length > 1 ? '（共選取 ' + picked.length + ' 個）' : '');
     var w = v.w || Math.round(c.getBoundingClientRect().width);
-    [['x', v.x || 0], ['y', v.y || 0], ['w', w], ['s', Math.round((v.s || 1) * 100)], ['g', v.gap || 0], ['b', sv.below || 0]].forEach(function (p) { document.getElementById(p[0]).value = p[1]; document.getElementById(p[0] + 'n').value = p[1]; });
+    /* the text size shown: the saved one, else the size of the block's first text */
+    var tx = [c].concat([].slice.call(c.querySelectorAll('*'))).filter(function (e) { return [].some.call(e.childNodes, function (n) { return n.nodeType === 3 && n.textContent.trim(); }); })[0];
+    var fsNow = v.fs || (tx ? Math.round(parseFloat(W.getComputedStyle(tx).fontSize) * 2) / 2 : 0);
+    [['x', v.x || 0], ['y', v.y || 0], ['w', w], ['f', fsNow], ['s', Math.round((v.s || 1) * 100)], ['g', v.gap || 0], ['b', sv.below || 0]].forEach(function (p) { document.getElementById(p[0]).value = p[1]; document.getElementById(p[0] + 'n').value = p[1]; });
   }
   /* sliders: x / y move every selected item by the same amount; width sets them all; space below = the shown item's section */
-  [['x', 'x'], ['y', 'y'], ['w', 'w'], ['s', 's'], ['g', 'gap'], ['b', 'below']].forEach(function (p) {
+  [['x', 'x'], ['y', 'y'], ['w', 'w'], ['f', 'fs'], ['s', 's'], ['g', 'gap'], ['b', 'below']].forEach(function (p) {
     function go(val) { var c = cur(); if (!c && !(p[0] === 'b' && curSec())) return; val = +val;
       if (p[0] === 'b') { var s = curSec(); if (s) put(s.id, { below: val }); }
       else if (p[0] === 'w') picked.forEach(function (e) { put(e.id, { w: val }); });
+      else if (p[0] === 'f') picked.forEach(function (e) { put(e.id, { fs: val }); });   /* every selected text block */
       else if (p[0] === 's') picked.forEach(function (e) { put(e.id, { s: Math.abs(val - 100) < 0.5 ? 0 : +(val / 100).toFixed(3) }); });
       else if (p[0] === 'g') put(c.id, { gap: val });   /* space above: the shown item (and everything under it) */
       else { var d0 = val - ((data()[c.id] || {})[p[1]] || 0); picked.forEach(function (e) { var o = {}; o[p[1]] = ((data()[e.id] || {})[p[1]] || 0) + d0; put(e.id, o); }); }

@@ -1,6 +1,7 @@
   /* Phone layout set by Joel (2026-11-27: "把 wifi7 ap 跟摩艾的手機版頁面做出 mockup，我來調整 layout"), with
      preview/mockups/phone-layout.html. jcd-config.js phone.layout[<page>] = { '<comp id>': { x, y, w, gap }, '<section id>':
      { below } } in layout px:
+     - fs sets a text block's size in px, line height in step (Joel 2026-11-27: "首頁下的標題字體讓我調整");
      - x / y move one item (it does not push the items around it), w sets its width, s scales it from its top-left
        corner (photos, the tool's corner handles; Joel 2026-11-27: "選取後的方塊縮放拖曳，跟 illustrator 作法一樣");
      - gap changes the space ABOVE an item: it and everything below it in its section move by gap, and the section grows or
@@ -21,6 +22,18 @@
       PROPS.forEach(function (p) { var c = e.style.getPropertyValue(p); t.was[p] = c ? { v: c, pr: e.style.getPropertyPriority(p) } : null; });
       touched.push(t); return t;
     }
+    /* text size: every element with text in the block; their own inline size / line height are kept to restore later */
+    var fsWas = [];
+    function setFs(c, px) {
+      var els = [c].concat([].slice.call(c.querySelectorAll('*'))).filter(function (e) {
+        return [].some.call(e.childNodes, function (n) { return n.nodeType === 3 && n.textContent.trim(); }); });
+      els.forEach(function (e) {
+        var cs = getComputedStyle(e), f0 = parseFloat(cs.fontSize), lh = parseFloat(cs.lineHeight);
+        fsWas.push([e, e.style.getPropertyValue('font-size'), e.style.getPropertyPriority('font-size'), e.style.getPropertyValue('line-height'), e.style.getPropertyPriority('line-height')]);
+        e.style.setProperty('font-size', px + 'px', 'important');
+        if (lh && f0) e.style.setProperty('line-height', (lh * px / f0).toFixed(2) + 'px', 'important');
+      });
+    }
     function topSection(e) { var s = e.closest('section'); while (s && s.parentElement && s.parentElement.closest('section')) s = s.parentElement.closest('section'); return s; }
     /* the components directly inside a container (a section or a box), not the ones inside those */
     function kids(container) {
@@ -32,6 +45,10 @@
       touched.forEach(function (t) { Object.keys(t.was).forEach(function (p) {
         if (t.was[p]) t.e.style.setProperty(p, t.was[p].v, t.was[p].pr); else t.e.style.removeProperty(p); }); });
       touched = [];
+      for (var k = fsWas.length - 1; k >= 0; k--) { var w = fsWas[k];
+        if (w[1]) w[0].style.setProperty('font-size', w[1], w[2]); else w[0].style.removeProperty('font-size');
+        if (w[3]) w[0].style.setProperty('line-height', w[3], w[4]); else w[0].style.removeProperty('line-height'); }
+      fsWas = [];
       var all = ((window.JCD_CONFIG && JCD_CONFIG.phone && JCD_CONFIG.phone.layout) || {})[slug] || {};
       var shift = [], secGrow = [];   /* [element, dx, dy], [section, px] */
       function add(list, e, a, b) { for (var i = 0; i < list.length; i++) if (list[i][0] === e) { list[i][1] += a; if (b != null) list[i][2] += b; return; } list.push(b != null ? [e, a, b] : [e, a]); }
@@ -58,6 +75,7 @@
         var e = document.getElementById(id), v = all[id]; if (!e || !v) return;
         if (v.x || v.y) add(shift, e, v.x || 0, v.y || 0);
         if (v.w) { keep(e); e.style.setProperty('width', v.w + 'px', 'important'); e.style.setProperty('max-width', 'none', 'important'); }
+        if (v.fs) setFs(e, v.fs);
         if (v.s && v.s !== 1) { keep(e); e.style.setProperty('transform-origin', '0 0'); e.style.setProperty('scale', String(v.s)); }
         if (v.below) add(secGrow, e, v.below);
       });
