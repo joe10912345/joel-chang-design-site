@@ -6,8 +6,6 @@ Open items. When you finish one, move it to `CHANGELOG.md` with the date. Add ne
 ## Waiting on Joel's decision 等 Joel 決定
 - [ ] **Gaming Home Gateway: the same sentence twice** — the intro's first paragraph is word for word the first sentence of "Project Background". Which one goes?
       **Gaming Home Gateway 同一句出現兩次**：開頭第一段和 Project Background 第一句相同，要刪哪一處？
-- [ ] **LionFilter 200 base material** — the intro says "stainless steel base", a later paragraph says aluminium. Which is right?
-      **LionFilter 200 底座材質**：開頭寫不鏽鋼，後文寫鋁，哪個正確？
 - [ ] **Phone: Wi-Fi 7 2022 + T-Blade top images** are trimmed at the sides. Options: a square phone crop, or the whole 4:3 image (shorter hero).
       **手機版 Wi-Fi 7 2022 與 T-Blade 首圖**左右被裁。選項：做方形手機裁切，或完整顯示 4:3 圖（首圖變矮）。
 - [ ] **Same "dim at rest, bright + zoom on hover" on other pages?** Wix's MouseOverPhoto skin is also used on Airgain (8), MoAI (3), Industrial (2), Defense, Electronics, Networking (1 each).

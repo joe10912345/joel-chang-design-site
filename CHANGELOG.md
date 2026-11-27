@@ -9,6 +9,20 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ---
 
+## 2026-11-28
+
+### Copy review round 2: professional tone 文案第二輪：專業語氣
+- Joel: "不是要改成太口語。是要專業、客觀、可信賴，讓設計師／設計總監面試官、客戶看了覺得你有點東西，值得信任跟見面看看。"
+  The 314 published edits were re-read for register. 29 lines that had become casual ("hard to ignore", "less of a hassle",
+  "So I…", "a real step up", "I’m") or had lost a professional detail (end-to-end, mass-production cost, product language,
+  high-mobility, manufacturing feasibility, proactively) were rewritten. Lines without a subject stay without one. Joel
+  approved them in `preview/mockups/copy-review.html`.
+- LionFilter 200: Joel: "機身都是鍍鋅鋼板，板金彎折" / "拋光鋁腳／鋁底座 這是正確的". The intro now says "the rounded corners of the
+  bent galvanized-steel enclosure and the aluminum base" (it said stainless steel).
+- Files: 32 page HTML files (computer + phone), `preview/mockups/copy-review.html`, `TODO.md`.
+- 已上線的 314 條重新檢查語氣，29 條太口語或少了專業細節的句子改成專業、客觀的寫法（無主詞的句子保持無主詞），Joel 確認後套用。
+  LionFilter 200 開頭改為「鍍鋅鋼板板金彎折的圓角機身＋鋁底座」（原誤寫不鏽鋼）。
+
 ## 2026-11-27
 
 ### Copy review: whole site 全站文案修訂
