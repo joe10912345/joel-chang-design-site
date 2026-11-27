@@ -7,6 +7,15 @@
        next square shows at the screen edge, as in preview/mockups/end-to-end-hint.html (variant C) */
     var phone = document.body.classList.contains('device-mobile-optimized');
     var comp = document.getElementById('comp-mnfi6oqr'); if (!comp) return;
+    /* no endless loop (Joel 2026-11-28: "end to end 的方塊不要無限來回"): the export holds the 9 squares 4 times over;
+       every repeat is removed, so the row ends at the last square. Every platform. */
+    var seen = {};
+    [].forEach.call(comp.querySelectorAll('.gallery-item-container'), function (it) {
+      /* a square is known by its title (the phone's repeats have no photo of their own yet) */
+      var tpl = it.querySelector('template[data-pg-hover]'), h = tpl && tpl.content && tpl.content.querySelector('[data-hook="item-title"]');
+      var img = it.querySelector('img'), k = h ? h.textContent.trim() : img ? img.getAttribute('src') : null; if (!k) return;
+      if (seen[k]) (it.closest('.gallery-horizontal-scroll-inner > *') || it).remove(); else seen[k] = 1;   /* with its group box */
+    });
     var S = phone ? 1.45 : 1.35, items = [].slice.call(comp.querySelectorAll('.gallery-item-container')); if (items.length < 2) return;
     var sec = comp.closest('section'), H0 = comp.offsetHeight, secH0 = sec ? sec.offsetHeight : 0;
     function px(v) { var m = /^([\d.]+)px$/.exec(v || ''); return m ? +m[1] : null; }
@@ -27,6 +36,12 @@
         scaleStyle(n, ['width', 'height']); [].forEach.call(n.querySelectorAll('[style]'), function (d) { scaleStyle(d, ['width', 'height']); });
       }); });
     }).observe(comp, { childList: true, subtree: true });
+    /* the row's inner box kept the width of all 36 squares (CSS); it now ends after the last real square */
+    var inner = comp.querySelector('.gallery-horizontal-scroll-inner');
+    if (inner) {
+      var end = 0; items.forEach(function (it) { end = Math.max(end, it.offsetLeft + it.offsetWidth + (parseFloat(getComputedStyle(it).marginLeft) || 0)); });
+      if (end > 0) inner.style.setProperty('width', end.toFixed(1) + 'px', 'important');
+    }
     var grow = comp.scrollHeight - H0;
     comp.style.setProperty('height', (H0 * S).toFixed(1) + 'px', 'important');
     if (sec && grow > 0) sec.style.setProperty('min-height', (secH0 + H0 * (S - 1)).toFixed(1) + 'px', 'important');

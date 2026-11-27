@@ -11,6 +11,24 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Home End-to-End strip: smaller text, wheel, click to centre, no loop 首頁 End-to-End：字縮小、滾輪、點擊置中、不無限輪播
+- Joel: "end to end 的方塊內的文字太大了，整體縮小。方塊要支援滑鼠往下滾=往右滑。如果我點擊任何方塊圖，圖片要自動拉到中間與壓黑顯示字"
+  + "方塊不要無限來回" + "滾到底應該至少留兩個圖，然後到底後頁面可下滑" + "羅技的拇指輪目前滾動時方向是相反，改過來".
+  - Text in the squares: computer + iPad 40 / 19 → 30 / 15px, phone 14 / 10 → 12 / 8.5px, set once as `--jcd-e2e-title` /
+    `--jcd-e2e-text` (`src/css/home/end-to-end-text.css`).
+  - No loop: the export held the 9 squares 4 times (phone: 21 copies); the repeats are removed and the row ends after the
+    last square, which comes to rest whole at the right edge (`end-to-end-slider.js`, `end-to-end-hint.js`).
+  - Mouse wheel down = row moves right, up = left; at either end the page scrolls again. A side thumb wheel (Logitech)
+    is turned round; trackpads and Shift + wheel keep the browser's direction (`end-to-end-hint.js`).
+  - Click / tap a square: it slides to the middle of the visible row and stays dark with its text until another square
+    is clicked or the visitor clicks elsewhere / moves the row. Every platform.
+- Card ">>" turns blue on hover (Joel: "design approach 這邊 hover 時，>> 箭頭要填滿藍色"): the rule keeping it white on
+  computer + iPad was more specific than the hover rule; fixed for Design Approach and the category cards
+  (`src/css/global/round-go-fill.css`).
+- Files: those, built `custom.css` / `custom.js`.
+- End-to-End 方塊文字縮小（電腦／iPad 30／15px、手機 12／8.5px）；拿掉無限輪播（原本 9 張重複 4 次），到底停在最後一張、可繼續往下捲頁面；
+  滑鼠滾輪往下＝往右；羅技拇指輪方向反轉；點方塊會移到中間並壓黑顯示文字。Design Approach 與產品列表卡片滑過時 >> 變藍。
+
 ### Copy review round 2: professional tone 文案第二輪：專業語氣
 - Joel: "不是要改成太口語。是要專業、客觀、可信賴，讓設計師／設計總監面試官、客戶看了覺得你有點東西，值得信任跟見面看看。"
   The 314 published edits were re-read for register. 29 lines that had become casual ("hard to ignore", "less of a hassle",

@@ -8,3 +8,7 @@
   transition: color .15s ease, transform .2s cubic-bezier(.2, .7, .2, 1), opacity .35s; }
 .jcd-spot a.jcd-hot-tile .jcd-go, .gpDCD5:hover .jcd-go, .jcd-da-link:hover .jcd-go,
 a.item-link-wrapper:active .jcd-go, .gpDCD5:active .jcd-go, .jcd-da-link:active .jcd-go { color: var(--jcd-blue); transform: translateX(3px); }
+/* Hovered / pressed card: the ">>" really turns blue (Joel 2026-11-28: "design approach 這邊 hover 時，>> 箭頭要填滿藍色").
+   The rule above that keeps it white on computer + iPad (body:not(.device-mobile-optimized) .jcd-go.jcd-da-go / .jcd-go-hover)
+   was more specific than the hover rule, so the blue never showed on Design Approach or the category cards. */
+body .jcd-da-link:is(:hover, :active) .jcd-go.jcd-da-go, body .gpDCD5:is(:hover, :active) .jcd-go.jcd-go-hover { color: var(--jcd-blue); transform: translateX(3px); }
