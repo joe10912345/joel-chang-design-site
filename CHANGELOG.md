@@ -11,6 +11,18 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Phone layout applied (19 pages) 手機排版套用（19 頁）
+- Joel: "Saved, apply it" (twice). His layout from `phone-layout.html` is in `jcd-config.js` `phone.layout` for 19 pages: top
+  image framing on 13 work pages (Airgain, AI Tool Kit, Geometry Series, HGU/AP, Interstellar 05, Lionic, MoAI, NLG,
+  Parametric, Sagittarius, Speeder Pro, T. Interceptor CS, Teana, Extender), moves / widths / scale / space above and below
+  on Wi-Fi 7 HGU/AP, MoAI, T. Blade, Assistive Products, Zenfone 9, Speeder Pro, Geometry Series, Ocean Series, Lionic,
+  Wi-Fi 7 2022 and Extender. Then aligned: within ~7px snapped to the 20px page edges (HGU/AP, Assistive, MoAI), a photo
+  that ran 6px off the left edge set flush with it (MoAI), a centred text kept centred (HGU/AP "Designed to harmonize");
+  where a shortened section cut its last item (MoAI Display Stand Kit, T. Blade) or left it 2px from the bottom (MoAI grey
+  section), 12px kept under it. Deliberate bleeds and overlays stay. The tool's saved copy now holds these final values
+  (so a later save does not bring back the unaligned ones). File: `site/assets/js/jcd-config.js` (`?v=` bumped).
+- 套用 Joel 19 頁的手機排版（13 頁首圖取景＋多頁位置、寬度、縮放、間距），並微調貼邊、置中與段落底部至少 12px；工具暫存已換成最終數值。
+
 ### Phone layout tool: Ctrl + click selects what is behind 手機排版工具：Ctrl＋點選後方物件
 - Joel: "背景的灰方塊還是不能選欸，我想像是 illustrator 的選法". The photo covers the grey box completely, so a click always hit
   the photo. Ctrl (or Alt / Cmd) + click now picks the next item behind the current one under the pointer, and keeps cycling
