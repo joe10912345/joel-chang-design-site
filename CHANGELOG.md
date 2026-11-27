@@ -11,6 +11,14 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Phone layout tool 手機版排版調整工具
+- Joel: "你能不能把 wifi7 ap 跟摩艾的手機版頁面做出 mockup，我來調整 layout". New `preview/mockups/phone-layout.html?p=<page>`:
+  the real phone page; click a text or photo to select it, drag (or arrow keys) to move it, set its width, or the space
+  under its section; "儲存" keeps the values. They go into `jcd-config.js` `phone.layout[<page>]` (empty for now), which
+  the site applies with the same code: `src/js/global/phone-layout.js` (new, last on load). Every phone page can be adjusted.
+  Files: those, `src/js/ORDER.txt`, `src/README.md`, `site/assets/js/jcd-config.js` (`?v=` bumped).
+- 新增手機版排版工具：在真實手機頁面上點選文字或圖片後拖曳移動、調寬度、調段落下方間距；儲存後由 AI 寫入 jcd-config.js，網站用同一支程式套用。
+
 ### One set of sizes for cards, ">>" and category title bars 卡片、>>、類別標題列統一數據
 - Joel: "手機版產品類別頁的字體太大了 / 要跟首頁 12 張圖的做法統一，還有 >> 也是 / 這些都要成為統一數據" and "premium… 跟 material & CMF…
   的字體不統一，且因為 material… 的字太大，導致白框尺寸變高 … 要成為統一規則". New tokens in `src/css/global/tokens.css`
