@@ -11,6 +11,18 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Phone work pages: body text 8px, text beside photos tidied 手機作品頁內文 8px、圖文排版整理
+- Joel: "內文改 8px 好了，且排版要調整，圖與字與間距怪怪的" (MoAI materials, HGU/AP). Body text on the phone work and category pages
+  is now 8px (`jcd-config.js` `phone.subText: 8`). New `phone-layout-tidy.js`, before the text sizing: (1) a short title right
+  above its paragraph gets the paragraph's width (MoAI "Pebble Gray" no longer breaks onto two lines); (2) left-aligned text
+  beside a photo keeps at least 12px from it (HGU/AP "Minimal UI" / "Integrated Ventilation" ran 30px into the router photo,
+  the "Form follows flow" quote touched the sea anemone); text more than a third over a photo (a deliberate overlay, e.g.
+  MoAI "Speckled Effect Texture") and centred text are left alone. 31 phone pages: no text off the screen or wider than its
+  box. Files: `src/js/global/phone-layout-tidy.js` (new), `src/js/ORDER.txt`, `site/assets/js/jcd-config.js` (`?v=` bumped),
+  `DESIGN-SYSTEM.md`, `src/README.md`, built `custom.js`.
+- 手機作品頁與類別頁內文改 8px。新增圖文整理：短標題與下方內文同寬（不再無故換行）；靠左文字與旁邊照片至少留 12px（HGU/AP 文字不再壓進路由器照片、
+  引言不再貼著海葵圖）；刻意疊在照片上的文字與置中文字不動。
+
 ### Phone work pages: body text 9px 手機作品頁內文 9px
 - Joel: "這些內文小字都太大了，我覺得子頁的內文小字都要縮小成 9px". Phone paragraphs that the text minimum raised were 10px; on
   the work and category pages they are now 9px (`jcd-config.js` `phone.subText: 9`, `phone.subTextExcept` = home, About,
