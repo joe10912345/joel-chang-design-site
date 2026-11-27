@@ -11,6 +11,13 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Logo no longer disappears on hover Logo 滑過不再消失
+- Joel: "現在 logo hover 後是消失欸". The new press layer locked the logo's blue hover copy at 0 while the white logo faded
+  out. The press now reuses the hover layer (`header-icons-hover.css` shows it on hover, keyboard focus and while pressed,
+  with the page's own logo file as its mask) and `menu-press.css` only adds the small press. Files: those two,
+  `src/js/global/logo-press.js`.
+- 按壓效果改用原本滑過變藍的圖層，滑過變藍、按下變藍並縮一下。
+
 ### About dates on two lines, lists aligned; logo press 關於頁時間分行與對齊、Logo 點擊感
 - Joel: "時間段都要分行，不要有月份跟年被拆成不同段，還有 education 的年份跟右邊 master of design 沒有對齊". Phone About lists:
   a month and its year never part, each period breaks after its dash ("Jul 2025 -" / "Aug 2026"); dates sit on the baseline

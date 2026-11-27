@@ -20,12 +20,7 @@ li[data-item-depth="0"] > div > a:active, li[data-item-depth="0"] > div > a:acti
 .jcd-menu-social-a:active img { opacity: 0; }
 
 /* "JOEL CHANG" logo (header, every page and platform): pressed like the menu items next to it, blue + a small press
-   (Joel 2026-11-27: "joel chang logo 點下去要有點擊感，跟隔壁菜單作法一樣"). The logo is a white image, so a blue copy of it
-   (the image used as a mask) fades in while pressed. */
-#SITE_HEADER a:has(> img[src*="shared-01-"]) { position: relative; display: block; -webkit-tap-highlight-color: transparent; transition: transform .12s ease; }
-#SITE_HEADER a:has(> img[src*="shared-01-"])::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: var(--jcd-blue);
-  opacity: 0; transition: opacity .12s ease; -webkit-mask: var(--jcd-mask) center / contain no-repeat; mask: var(--jcd-mask) center / contain no-repeat; }
-#SITE_HEADER a:has(> img[src*="shared-01-"]) img { transition: opacity .12s ease; }
+   (Joel 2026-11-27: "joel chang logo 點下去要有點擊感，跟隔壁菜單作法一樣"). The blue comes from the logo's own hover layer
+   (header-icons-hover.css, which now also shows it while pressed); here only the press. */
+#SITE_HEADER a:has(> img[src*="shared-01-"]) { display: block; -webkit-tap-highlight-color: transparent; transition: transform .12s ease; }
 #SITE_HEADER a:has(> img[src*="shared-01-"]):active { transform: scale(.92); }
-#SITE_HEADER a:has(> img[src*="shared-01-"]):active::after { opacity: 1; }
-#SITE_HEADER a:has(> img[src*="shared-01-"]):active img { opacity: 0; }

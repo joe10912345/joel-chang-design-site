@@ -166,12 +166,12 @@ html.jcd-lb-lock, html.jcd-lb-lock body { overflow: hidden !important; }
   content: ""; position: absolute; inset: 0; pointer-events: none; background: var(--jcd-blue); opacity: 0; transition: opacity .2s ease;
   -webkit-mask-position: center; mask-position: center; -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
-:has(> #img_comp-m26ho7tp)::after { -webkit-mask-image: url("../media/shared/shared-01-504x84.webp"); mask-image: url("../media/shared/shared-01-504x84.webp"); }
+:has(> #img_comp-m26ho7tp)::after { -webkit-mask-image: var(--jcd-mask, url("../media/shared/shared-01-504x84.webp")); mask-image: var(--jcd-mask, url("../media/shared/shared-01-504x84.webp")); }   /* --jcd-mask: the page's own logo file (phone 300x38), set by logo-press.js */
 :has(> :is(#img_0_comp-m26hqy39, #img_0_comp-m277hrti))::after { -webkit-mask-image: url("../media/shared/shared-02-54x54.webp"); mask-image: url("../media/shared/shared-02-54x54.webp"); }
 :has(> :is(#img_0_comp-m2768o98, #img_0_comp-m277hrto))::after { -webkit-mask-image: url("../media/shared/shared-03-60x60.webp"); mask-image: url("../media/shared/shared-03-60x60.webp"); }
-:is(a:hover, a:focus-visible):has(> :is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto))::after,
-:is(a:hover, a:focus-visible) :has(> :is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto))::after { opacity: 1; }
-:is(a:hover, a:focus-visible) :is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto) { opacity: 0 !important; }
+:is(a:hover, a:focus-visible, a:active):has(> :is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto))::after,
+:is(a:hover, a:focus-visible, a:active) :has(> :is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto))::after { opacity: 1; }
+:is(a:hover, a:focus-visible, a:active) :is(#img_comp-m26ho7tp, #img_0_comp-m26hqy39, #img_0_comp-m2768o98, #img_0_comp-m277hrti, #img_0_comp-m277hrto) { opacity: 0 !important; }
 
 /* ---------- Contact form: status + "sent" confirmation (custom.js) ---------- */
 #comp-jqc9copb .jcd-honey { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; opacity: 0; }
@@ -317,15 +317,10 @@ li[data-item-depth="0"] > div > a:active, li[data-item-depth="0"] > div > a:acti
 .jcd-menu-social-a:active img { opacity: 0; }
 
 /* "JOEL CHANG" logo (header, every page and platform): pressed like the menu items next to it, blue + a small press
-   (Joel 2026-11-27: "joel chang logo 點下去要有點擊感，跟隔壁菜單作法一樣"). The logo is a white image, so a blue copy of it
-   (the image used as a mask) fades in while pressed. */
-#SITE_HEADER a:has(> img[src*="shared-01-"]) { position: relative; display: block; -webkit-tap-highlight-color: transparent; transition: transform .12s ease; }
-#SITE_HEADER a:has(> img[src*="shared-01-"])::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: var(--jcd-blue);
-  opacity: 0; transition: opacity .12s ease; -webkit-mask: var(--jcd-mask) center / contain no-repeat; mask: var(--jcd-mask) center / contain no-repeat; }
-#SITE_HEADER a:has(> img[src*="shared-01-"]) img { transition: opacity .12s ease; }
+   (Joel 2026-11-27: "joel chang logo 點下去要有點擊感，跟隔壁菜單作法一樣"). The blue comes from the logo's own hover layer
+   (header-icons-hover.css, which now also shows it while pressed); here only the press. */
+#SITE_HEADER a:has(> img[src*="shared-01-"]) { display: block; -webkit-tap-highlight-color: transparent; transition: transform .12s ease; }
 #SITE_HEADER a:has(> img[src*="shared-01-"]):active { transform: scale(.92); }
-#SITE_HEADER a:has(> img[src*="shared-01-"]):active::after { opacity: 1; }
-#SITE_HEADER a:has(> img[src*="shared-01-"]):active img { opacity: 0; }
 /* ---------- Phone menu layout (Joel 2026-11-24): the six product pages in a lighter weight, About / Contact moved down ---------- */
 #MENU_AS_CONTAINER_EXPANDABLE_MENU li:is([data-testid$="-1"], [data-testid$="-2"], [data-testid$="-3"], [data-testid$="-4"], [data-testid$="-5"], [data-testid$="-6"]) a {
   font-family: wfont_459113_ebfb1394532347b3b7691d160bb35bd1, wf_ebfb1394532347b3b7691d160, orig_poppins_light, sans-serif !important; font-size: 13px !important; }
