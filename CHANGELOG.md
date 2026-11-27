@@ -11,6 +11,33 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### End-to-End slider without arrows 首頁 End-to-End 不用箭頭
+- Joel: "end to end 是不是不用箭頭? 只要畫面被切到或是左右動一下人家就知道是要左滑?" → mockup `preview/mockups/end-to-end-hint.html`
+  (variants A-D, phone / iPad / computer) → Joel chose C on every platform; then "輪播往右滑後，最左邊被切到的也要有漸層消失".
+  Arrows hidden everywhere. The next square is cut at the edge with a soft fade to black (phone: the strip now runs to the
+  screen edge and the squares are 218px instead of 150, so about a third of the next one shows; computer: cut at the
+  content margin; iPad: by the screen). A matching fade on the left while a square is cut there. The row slides left a
+  little once when it comes into view (not with reduced motion). It always comes to rest with a square at its start: Wix's
+  own CSS snapping used the squares' places from before they were enlarged and stopped between them, so it is turned off.
+  Computer: drag with the mouse; arrow keys when focused. Phone overlay text keeps 10 lines. Files:
+  `src/js/home/end-to-end-hint.js` (new), `src/js/home/end-to-end-slider.js`, `src/css/home/end-to-end-hint.css` (was
+  `end-to-end-arrows.css`), `src/*/ORDER.txt`, `src/README.md`, `DESIGN-SYSTEM.md`, built `custom.css` / `custom.js`.
+- 首頁 End-to-End：全平台拿掉箭頭；下一張在邊緣被切到並漸暗（手機輪播延伸到螢幕邊、方塊 150→218px，露出約 1/3；電腦切在內容邊界；iPad 由螢幕切）；
+  左邊有方塊被切到時也漸暗；進入畫面時往左晃一下（減少動態效果時不晃）；停下時一定對齊方塊（Wix 原本的對齊用放大前的位置，會停在中間，已關閉）；
+  電腦可用滑鼠拖曳、鍵盤左右鍵。
+
+### About: no huge empty space after reloading 關於頁重新整理後上方不再出現大空白
+- Joel: "電腦版有時候重新整理到 about 時，第一個 section 上方會有超大的空間". When the page was reloaded while scrolled down,
+  the browser restored that position and the intro-centring script added the scroll distance to the (sticky) header's
+  place, pushing the intro thousands of px down. It now uses the header's height. Computer + iPad. File:
+  `src/js/about/intro-layout-desktop.js`.
+- 在頁面中段重新整理時，置中開場的程式把捲動距離算進置頂選單的位置，開場被推下幾千 px；改用選單高度計算。電腦與 iPad。
+
+### media-new cleaned 清理 media-new
+- Joel: "media new 資料夾的檔案若不再用到可以刪掉". Its 5 images were exact copies of originals already in `media-originals/`
+  (defense-09, t-interceptormp-06, moai-router-13, home-16, home-01); deleted, README kept (folder not in git).
+- 5 張圖都已有相同的原始檔在 media-originals，已刪除，保留 README（此資料夾不進 git）。
+
 ### Phone text no longer runs off the screen 手機文字不再超出畫面
 - Joel: "手機板字有卡到欸，全面檢視，該換行要換行" (About, Patents: the long titles ran past the right edge). The Patents list was
   wider than the screen in Wix; the About two-column lists now stop at the page's right margin and the titles wrap. Every

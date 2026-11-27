@@ -1,0 +1,182 @@
+<!doctype html>
+<!-- End-to-End slider: how to show "there is more, swipe" without (or with) arrows, on phone / iPad / computer
+     (Joel 2026-11-27: "end to end 是不是不用箭頭? 只要畫面被切到或是左右動一下人家就知道是要左滑? 可以做 mockup 給我看嗎? 不同平台").
+     Open on the devices server: http://localhost:8766/preview/mockups/end-to-end-hint.html -->
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>End-to-End Hint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --jcd-blue: #0062D9; --bg: #111; --panel: #1b1b1b; --line: #2c2c2c; --text: #eee; --dim: #9a9a9a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.5 Poppins, system-ui, sans-serif; }
+  header { position: sticky; top: 0; z-index: 10; background: rgba(17,17,17,.94); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line); padding: 14px 20px; display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; }
+  header h1 { font-size: 16px; margin: 0 10px 0 0; font-weight: 600; }
+  .opts { display: flex; flex-wrap: wrap; gap: 6px; }
+  .opts button, .act { font: inherit; font-size: 13px; color: var(--text); background: var(--panel); border: 1px solid var(--line);
+    border-radius: 999px; padding: 7px 14px; cursor: pointer; }
+  .opts button[aria-pressed="true"] { background: var(--jcd-blue); border-color: var(--jcd-blue); color: #fff; }
+  .act:hover, .opts button:hover { border-color: #555; }
+  label.peek { font-size: 13px; color: var(--dim); display: flex; gap: 8px; align-items: center; }
+  .note { padding: 14px 20px 0; color: var(--dim); font-size: 13px; max-width: 1100px; }
+  .note b { color: var(--text); font-weight: 600; }
+  main { padding: 18px 20px 60px; display: grid; gap: 34px; }
+  .dev h2 { font-size: 13px; font-weight: 600; color: var(--dim); margin: 0 0 10px; letter-spacing: .02em; }
+  .frame { background: #000; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; position: relative; }
+  .row { display: flex; flex-wrap: wrap; gap: 34px; align-items: flex-start; }
+
+  /* a device screen drawn at its real CSS width, then scaled to fit (--s) */
+  .screen { width: var(--w); transform: scale(var(--s)); transform-origin: 0 0; padding: var(--pad-top) 0 40px; }
+  .holder { width: calc(var(--w) * var(--s)); height: calc(var(--h) * var(--s)); overflow: hidden; }
+  .eyebrow { margin: 0 var(--gut) 6px; font-weight: 700; font-size: var(--h2); letter-spacing: -.01em; }
+  .lead { margin: 0 var(--gut) var(--gap-below); color: #bdbdbd; font-weight: 300; font-size: var(--p); max-width: 60em; }
+
+  /* the strip */
+  .strip { position: relative; }
+  .track { display: flex; gap: var(--card-gap); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+    padding: 0 var(--gut); scroll-padding: 0 var(--gut); overscroll-behavior-x: contain; cursor: grab; }
+  .track::-webkit-scrollbar { display: none; }
+  .track.drag { cursor: grabbing; scroll-snap-type: none; }
+  .inner { display: flex; gap: var(--card-gap); }
+  .card { flex: 0 0 var(--card); aspect-ratio: 1; position: relative; overflow: hidden; scroll-snap-align: start; background: #222; }
+  .card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); pointer-events: none; }
+  .card::after { content: ""; position: absolute; inset: 0; background: #000; opacity: 0; transition: opacity .7s; }
+  .card .cap { position: absolute; inset: 0; z-index: 1; padding: 9%; opacity: 0; transition: opacity .5s; }
+  .card .cap b { display: block; font-weight: 700; font-size: var(--cap-t); line-height: 1.2; margin-bottom: .4em; }
+  .card .cap span { font-weight: 300; font-size: var(--cap-p); line-height: 1.45; color: #e6e6e6; }
+  .card.on::after { opacity: .6; } .card.on .cap { opacity: 1; } .card.on img { transform: scale(1.08); }
+  @media (hover: hover) { .card:hover::after { opacity: .6; } .card:hover .cap { opacity: 1; } .card:hover img { transform: scale(1.08); } }
+
+  /* arrows (variant A always, D: computer only, appears when the pointer is over the strip) */
+  .arrow { position: absolute; top: 50%; transform: translateY(-50%); width: var(--arrow); height: var(--arrow); border: 0;
+    background: none; color: #fff; cursor: pointer; display: none; padding: 0; z-index: 2;
+    filter: drop-shadow(0 0 6px rgba(0,0,0,.75)); transition: opacity .3s; }
+  .arrow svg { width: 100%; height: 100%; }
+  .arrow.next { right: calc(var(--gut) * .35); } .arrow.prev { left: calc(var(--gut) * .35); }
+  .arrow[hidden] { display: none !important; }
+  [data-v="A"] .arrow { display: block; }
+  [data-v="D"] .dev-desk .arrow { display: block; opacity: 0; }
+  [data-v="D"] .dev-desk .strip:hover .arrow { opacity: 1; }
+
+  /* the right edge: C and D fade the last visible photo into the page, so the cut reads as "continues" */
+  [data-v="C"] .strip::after, [data-v="D"] .strip::after { content: ""; position: absolute; top: 0; bottom: 0; right: 0;
+    width: calc(var(--gut) * 2.4); background: linear-gradient(90deg, transparent, #000); pointer-events: none; transition: opacity .4s; }
+  .strip.end::after { opacity: 0; }
+
+  /* the nudge: the row slides left a little and settles back, once, when it scrolls into view (B, C, D) */
+  @keyframes nudge { 0% { transform: translateX(0); } 38% { transform: translateX(calc(var(--card) * -.22)); }
+    62% { transform: translateX(calc(var(--card) * -.22)); } 100% { transform: translateX(0); } }
+  .inner.nudge { animation: nudge 1.3s cubic-bezier(.45,0,.2,1) 1; }
+  @media (prefers-reduced-motion: reduce) { .inner.nudge { animation: none; } }
+
+  /* the three devices (real CSS widths, as the site lays them out) */
+  .dev-phone { --w: 320px; --h: 600px; --s: 1.2; --gut: 20px; --pad-top: 40px; --h2: 22px; --p: 11px; --gap-below: 20px;
+    --card-gap: 10px; --cap-t: 14px; --cap-p: 10px; --arrow: 26px; }
+  .dev-pad  { --w: 1320px; --h: 920px; --s: .5; --gut: 70px; --pad-top: 70px; --h2: 44px; --p: 18px; --gap-below: 40px;
+    --card-gap: 22px; --cap-t: 26px; --cap-p: 16px; --arrow: 52px; }
+  .dev-desk { --w: 1536px; --h: 920px; --s: .5; --gut: 120px; --pad-top: 70px; --h2: 44px; --p: 18px; --gap-below: 40px;
+    --card-gap: 22px; --cap-t: 26px; --cap-p: 16px; --arrow: 52px; }
+  .dev-phone .holder { height: calc(var(--h) * var(--s)); }
+  .dev-phone .strip { --card: calc((320px - 20px) / var(--peek-phone)); }
+  .dev-pad   .strip { --card: calc((1320px - 70px) / var(--peek-wide)); }
+  .dev-desk  .strip { --card: calc((1536px - 120px) / var(--peek-wide)); }
+  .strip .card { flex-basis: var(--card); }
+  body { --peek-phone: 1.35; --peek-wide: 3.35; }
+  .frame.fit { width: max-content; }
+</style>
+</head>
+<body data-v="C">
+<header>
+  <h1>End-to-End：怎麼讓人知道可以左滑</h1>
+  <div class="opts" role="group" aria-label="Variant">
+    <button data-v="A">A 現況：箭頭</button>
+    <button data-v="B">B 無箭頭：只露出下一張＋晃一下</button>
+    <button data-v="C">C 無箭頭：露出＋晃一下＋右緣漸暗</button>
+    <button data-v="D">D 同 C，電腦滑鼠移上去才出現箭頭</button>
+  </div>
+  <label class="peek">露出多少
+    <input id="peek" type="range" min="0" max="100" value="35"> <span id="peekv"></span></label>
+  <button class="act" id="replay">再晃一次</button>
+</header>
+<p class="note">手機與 iPad 用手指滑；電腦可以拖曳、觸控板左右滑，或按住 Shift 滾滾輪。下一張被畫面切到，是最主要的提示；
+  「晃一下」只在區塊捲進畫面時出現一次，開啟「減少動態效果」的訪客不會晃。<br>
+  <b>建議：手機和 iPad 用 C（觸控的人本來就會滑）；電腦用 D</b>：滑鼠用戶不一定會想到左右拖或用觸控板，所以箭頭在滑鼠移上去時出現，平常畫面保持乾淨。</p>
+<main>
+  <div class="row">
+    <section class="dev dev-phone"><h2>手機（320 版面 ×1.2，約 iPhone 寬）</h2><div class="frame fit"><div class="holder"><div class="screen"></div></div></div></section>
+    <section class="dev dev-pad"><h2>iPad 橫向（1320 版面）</h2><div class="frame fit"><div class="holder"><div class="screen"></div></div></div></section>
+  </div>
+  <section class="dev dev-desk"><h2>電腦（1536 版面）</h2><div class="frame fit"><div class="holder"><div class="screen"></div></div></div></section>
+</main>
+<script>
+  /* the nine squares, same photos and text as the home page */
+  var ITEMS = [
+    ['Industrial Design', 'With refined aesthetics and a solid foundation in industrial design, I create distinctive products that address real user needs and generate business value.'],
+    ['Rapid 2D Design', 'The 2D rapid design approach enables multiple proposals to be explored during the early discussion phase, then refined in 3D.'],
+    ['CMF Design', 'Sensitivity to color and material trends drives the exploration of innovative CMF concepts.'],
+    ['Design Validation', 'Through rapid prototyping and sample production, design directions can be quickly validated.'],
+    ['Design Innovation', 'Design innovation begins with real problems: research, clear problem definition and needs analysis.'],
+    ['Solid 3D Modeling', 'Advanced and precise 3D modeling enables rapid adjustments and high-fidelity output.'],
+    ['Parametric Texture Design', 'Parametric texture design gives precise control of form and surface quality.'],
+    ['Production Ready', 'Mass-production experience: DFM, engineering, prototyping and manufacturing with suppliers.'],
+    ['Production Inspection', 'Systematic trial-run inspections validate surface details and color accuracy.']];
+  var CHEV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>';
+  document.querySelectorAll('.screen').forEach(function (s) {
+    var cards = ITEMS.map(function (it, i) {
+      return '<div class="card"><img alt="" src="../../site/assets/media/home/home-' + (20 + i) + '-356x356.webp"><div class="cap"><b>' + it[0] + '</b><span>' + it[1] + '</span></div></div>';
+    }).join('');
+    s.innerHTML = '<p class="eyebrow">End-to-End Expertise</p><p class="lead">Possessing comprehensive end-to-end design skills to realize product vision via a complete workflow.</p>' +
+      '<div class="strip"><div class="track"><div class="inner">' + cards + '</div></div>' +
+      '<button class="arrow prev" aria-label="Previous" style="transform:translateY(-50%) scaleX(-1)">' + CHEV + '</button>' +
+      '<button class="arrow next" aria-label="Next">' + CHEV + '</button></div>';
+  });
+  function strips() { return [].slice.call(document.querySelectorAll('.strip')); }
+  strips().forEach(function (st) {
+    var tr = st.querySelector('.track'), card = function () { return st.querySelector('.card').getBoundingClientRect().width / scaleOf(st); };
+    function scaleOf(e) { return parseFloat(getComputedStyle(e.closest('.dev')).getPropertyValue('--s')) || 1; }
+    function edges() { var max = tr.scrollWidth - tr.clientWidth - 2;
+      st.querySelector('.prev').hidden = tr.scrollLeft < 2; st.querySelector('.next').hidden = tr.scrollLeft > max;
+      st.classList.toggle('end', tr.scrollLeft > max); }
+    tr.addEventListener('scroll', edges, { passive: true }); edges();
+    st.querySelector('.next').onclick = function () { tr.scrollBy({ left: card() + 22, behavior: 'smooth' }); };
+    st.querySelector('.prev').onclick = function () { tr.scrollBy({ left: -card() - 22, behavior: 'smooth' }); };
+    /* drag with the mouse (computer), like a touch swipe */
+    var x0 = null, l0 = 0, moved = false;
+    tr.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse') return; x0 = e.clientX; l0 = tr.scrollLeft; moved = false; tr.classList.add('drag'); });
+    window.addEventListener('pointermove', function (e) { if (x0 === null) return; var d = (e.clientX - x0) / scaleOf(st); if (Math.abs(d) > 3) moved = true; tr.scrollLeft = l0 - d; });
+    window.addEventListener('pointerup', function () { if (x0 === null) return; x0 = null; tr.classList.remove('drag');
+      var c = card() + 22, i = Math.round(tr.scrollLeft / c); tr.scrollTo({ left: i * c, behavior: 'smooth' }); });
+    /* touch: a tap shows the caption (as on the site) */
+    st.addEventListener('click', function (e) { var c = e.target.closest('.card'); if (!c || moved) return;
+      st.querySelectorAll('.card.on').forEach(function (o) { if (o !== c) o.classList.remove('on'); }); c.classList.toggle('on'); });
+  });
+  function nudge() {
+    if (document.body.dataset.v === 'A') return;
+    document.querySelectorAll('.inner').forEach(function (i) { i.classList.remove('nudge'); void i.offsetWidth; i.classList.add('nudge'); });
+  }
+  /* once when the strip comes into view, as it would on the page */
+  var seen = new WeakSet();
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) {
+    if (e.isIntersecting && !seen.has(e.target) && document.body.dataset.v !== 'A') { seen.add(e.target);
+      var i = e.target.querySelector('.inner'); setTimeout(function () { i.classList.remove('nudge'); void i.offsetWidth; i.classList.add('nudge'); }, 450); }
+  }); }, { threshold: .6 });
+  strips().forEach(function (s) { io.observe(s); });
+  document.querySelectorAll('.opts button').forEach(function (b) {
+    b.onclick = function () { document.body.dataset.v = b.dataset.v; sync(); nudge(); };
+  });
+  function sync() { document.querySelectorAll('.opts button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.v === document.body.dataset.v); }); }
+  document.getElementById('replay').onclick = nudge;
+  var peek = document.getElementById('peek');
+  function setPeek() { var p = peek.value / 100;   /* share of the next square shown */
+    document.body.style.setProperty('--peek-phone', (1 + p).toFixed(2)); document.body.style.setProperty('--peek-wide', (3 + p).toFixed(2));
+    document.getElementById('peekv').textContent = Math.round(p * 100) + '%'; }
+  /* each device frame is as tall as its scaled content */
+  function fit() { document.querySelectorAll('.dev').forEach(function (d) { var s = parseFloat(getComputedStyle(d).getPropertyValue('--s'));
+    d.querySelector('.holder').style.height = (d.querySelector('.screen').offsetHeight * s) + 'px'; }); }
+  peek.oninput = function () { setPeek(); fit(); }; setPeek(); sync(); fit(); window.addEventListener('load', fit);
+</script>
+</body>

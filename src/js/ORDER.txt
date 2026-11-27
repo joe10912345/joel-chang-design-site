@@ -30,6 +30,7 @@ home/achievement-odometer.js
 global/no-tooltips.js
 about/believe-reveal.js
 home/end-to-end-slider.js
+home/end-to-end-hint.js
 about/signature-reveal.js
 about/portrait-swap.js
 product/guest-area-dialog.js

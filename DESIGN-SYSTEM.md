@@ -157,7 +157,7 @@ Other rules 其他:
 - Achievements numbers: odometer roll, 1.8s. 數字滾動。
 - Achievement map: dots breathe, light runs each line into its flag; computer hover enlarges that country's products. 地圖光點與光流。
 - End-to-End squares: on hover (touch: while the overlay shows) one dark layer fades to 36% (touch 60%) in .7s and the photo eases in 8% (1.2s). End-to-End 方塊：壓黑淡入、照片放大 8%。
-- End-to-End (iPad): arrows sit 14px inside the screen over the photos, with a soft shadow; arrows thicker on every platform. End-to-End 箭頭。
+- End-to-End slider: no arrows on any platform. The next square is cut at the edge (phone: by the screen, squares 218px; computer: at the content margin; iPad: by the screen) with a soft fade to black there, and at the left edge while a square is cut there; the row nudges left once when it comes into view (not with reduced motion) and always comes to rest with a square at its start. Computer: drag with the mouse. End-to-End 輪播：全平台不用箭頭，靠下一張被切到＋邊緣漸暗＋進入畫面時晃一下提示可左滑；左邊有方塊被切到時也漸暗；停下時對齊方塊；電腦可用滑鼠拖曳。
 
 ## 8. Components: where they live 元件位置
 

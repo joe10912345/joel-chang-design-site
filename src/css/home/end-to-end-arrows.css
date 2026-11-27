@@ -1,4 +1,0 @@
-/* iPad End-to-End arrows pulled inside the screen sit over the photos: a soft shadow keeps them readable (Joel 2026-11-27) */
-.jcd-e2e-arrow { filter: drop-shadow(0 0 6px rgba(0, 0, 0, .75)); z-index: 3; }
-/* End-to-End arrows thicker, every platform (Joel 2026-11-27 "箭頭可以粗點"): the thin chevron gets a stroke in its own colour */
-#comp-mnfi6oqr .nav-arrows-container svg path { stroke: #fff; stroke-width: 2.2px; stroke-linejoin: round; paint-order: stroke; }

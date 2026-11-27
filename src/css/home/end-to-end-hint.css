@@ -1,0 +1,16 @@
+/* Home End-to-End: no arrows on any platform; the cut square at the screen edge, a soft fade there and one nudge say
+   "swipe" instead (Joel 2026-11-27, variant C of preview/mockups/end-to-end-hint.html; custom.js "end-to-end-hint").
+   Replaces the arrow styling (thicker chevrons, iPad arrows inside the screen). */
+#comp-mnfi6oqr .nav-arrows-container { display: none !important; }
+/* the fades over the strip's edges (placed by end-to-end-hint.js); the left one only once the row has moved
+   (Joel 2026-11-27: "輪播往右滑後，最左邊被切到的也要有漸層消失") */
+.jcd-e2e-fade { position: absolute; z-index: 3; pointer-events: none; background: linear-gradient(90deg, rgba(0, 0, 0, 0), #000); }
+.jcd-e2e-fade-l { background: linear-gradient(270deg, rgba(0, 0, 0, 0), #000); opacity: 0; transition: opacity .35s ease; }
+.jcd-e2e-fade-l.jcd-on { opacity: 1; }
+/* computer: the strip can be dragged with the mouse */
+@media (hover: hover) and (pointer: fine) { #comp-mnfi6oqr .gallery-horizontal-scroll { cursor: grab; } }
+#comp-mnfi6oqr .gallery-horizontal-scroll.jcd-e2e-drag { cursor: grabbing; scroll-snap-type: none !important; scroll-behavior: auto !important; user-select: none; }
+#comp-mnfi6oqr .gallery-horizontal-scroll:focus-visible { outline: 2px solid var(--jcd-blue); outline-offset: 4px; }
+/* phone: the squares are 218px now (was 150), so the overlay text keeps more lines */
+.device-mobile-optimized #pro-gallery-container-comp-mnfi6oqr .jcd-ov .gallery-item-hover { padding: 14px !important; }
+.device-mobile-optimized #pro-gallery-container-comp-mnfi6oqr .jcd-ov .info-element-description { -webkit-line-clamp: 10 !important; }

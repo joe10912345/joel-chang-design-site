@@ -16,7 +16,11 @@
       if (!els.length) return;
       var sy = window.scrollY, rs = els.map(function (e) { return e.getBoundingClientRect(); });
       var top = Math.min.apply(null, rs.map(function (r) { return r.top + sy; })), bot = Math.max.apply(null, rs.map(function (r) { return r.bottom + sy; }));
-      var hdr = document.getElementById('SITE_HEADER'), hb = hdr ? hdr.getBoundingClientRect().bottom + sy : 0;
+      /* the header's bottom with the page at its top = its height (it starts the page). Not its on-screen place + scroll:
+         the header is sticky, so after a reload that restores a scrolled position it sits at the top of the screen and
+         that sum pushed the intro thousands of px down (Joel 2026-11-27: "重新整理到 about 時，第一個 section 上方會有
+         超大的空間") */
+      var hdr = document.getElementById('SITE_HEADER'), hb = hdr ? hdr.offsetHeight * Z : 0;
       /* Joel 2026-11-26: centred in the space BELOW the menu (header bottom -> screen bottom), not on the whole
          screen: the menu takes the top band, so whole-screen centring left the block high with an empty band below */
       /* ...but on tall screens (iPad upright) not more than ~260px below the menu, or a huge empty band opens above
