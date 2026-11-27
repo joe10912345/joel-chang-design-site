@@ -39,10 +39,15 @@
   .g { font-size: var(--size); line-height: 1; letter-spacing: -.02em; transition: color .15s, transform .2s cubic-bezier(.2,.7,.2,1); }
   .g.r { font-family: PR; } .g.m { font-family: PM; }
   .card:hover .g, .card:active .g { color: var(--jcd-blue); } .card:hover .g { transform: translateX(3px); }
-  /* the site's card sizes (tokens.css): phone 280px cards, iPad and computer layouts */
-  .phone .card { width: 280px; height: 176px; --name: 11px; --brand: 9.5px; }
-  .ipad .card { width: 420px; height: 250px; --name: 20px; --brand: 15px; }
-  .desk .card { width: 520px; height: 300px; --name: 15px; --brand: 11.5px; }
+  /* the home Works grid tile at its real layout size, drawn at the size it really has on screen (Joel 2026-11-27: the
+     values chosen here looked too big on the phone — the first version drew every card at 1:1 and too large):
+     phone 281 x 158 layout px x 1.22 (a 390px-wide iPhone shows the 320px layout 1.22x),
+     iPad 398 x 224 x 0.89 (the 1320px layout on an 1180px iPad), computer 398 x 224 x 0.85 (a 1536px laptop window).
+     The sliders are layout px, the same numbers as tokens.css. */
+  .card { width: 398px; height: 224px; }
+  .phone .card { width: 281px; height: 158px; zoom: 1.22; }
+  .ipad .card { zoom: .894; }
+  .desk .card { zoom: .85; }
   .pick { outline: 2px solid var(--jcd-blue); outline-offset: 4px; }
 </style>
 </head>
@@ -63,9 +68,9 @@
   try { v = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
   v = v || JSON.parse(JSON.stringify(DEF));
   ['phone', 'ipad', 'desk'].forEach(function (k) { ['name', 'brand'].forEach(function (f) { if (v[k][f] == null) v[k][f] = DEF[k][f]; }); });
-  var P = [['phone', '手機（320 版面，卡片約 280 寬）', ['../../site/assets/media/electronics/electronics-04-552x342.webp', 'Earbuds', 'TEANA']],
-           ['ipad', 'iPad（桌面版面縮放到 iPad，卡片字 20px）', ['../../site/assets/media/electronics/electronics-01-2560x1400.webp', 'Plant X Dehumidifier', 'AIRMP']],
-           ['desk', '電腦（1536 版面）', ['../../site/assets/media/electronics/electronics-01-2560x1400.webp', 'Plant X Dehumidifier', 'AIRMP']]];
+  var P = [['phone', '手機（iPhone 390 寬的實際大小：首頁卡片 281×158 放大 1.22 倍）', ['../../site/assets/media/electronics/electronics-04-552x342.webp', 'Earbuds', 'TEANA']],
+           ['ipad', 'iPad 橫向（實際大小：首頁卡片 398×224 縮成 0.89 倍）', ['../../site/assets/media/electronics/electronics-01-2560x1400.webp', 'Plant X Dehumidifier', 'AIRMP']],
+           ['desk', '電腦（1536 筆電視窗的實際大小：首頁卡片 398×224 縮成 0.85 倍）', ['../../site/assets/media/electronics/electronics-01-2560x1400.webp', 'Plant X Dehumidifier', 'AIRMP']]];
   var box = document.getElementById('plats');
   P.forEach(function (p) {
     var k = p[0], s = document.createElement('section'); s.className = 'plat ' + k;

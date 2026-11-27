@@ -11,6 +11,14 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Card size tuner shows the real size 卡片尺寸工具改成實際大小
+- Joel: "手機板的首頁 12 張圖的字體太大了，你難道沒有套用剛剛的尺寸嗎?". The values were applied (phone name 15px), but the
+  tuner drew every card 1:1 and at the wrong size: on a 390px iPhone the 320px layout is shown 1.22x, the computer and iPad
+  tiles are 398 x 224 drawn at 0.85 / 0.89 (the tuner had 520 / 420px cards), so sizes chosen there came out larger on the
+  site. `preview/mockups/go-size.html` now draws the home tile at its real size on each device; the sliders are still the
+  tokens.css numbers.
+- 工具原本用 1:1 且尺寸不同的卡片顯示，導致調出的字在網站上偏大；現在三平台都用實際卡片尺寸與顯示比例。
+
 ### Opening a page at a section: no flash of the top 開到指定段落時不再先閃頁首
 - Joel: "當我按下 buildable 的卡片時，是先跳到產品頁最上面，閃一下後才到我要的頁面". The page waits for its layout scripts
   before it can scroll to the right place (~0.7 s). Now `site.js` (runs before the first paint) hides the page when the
