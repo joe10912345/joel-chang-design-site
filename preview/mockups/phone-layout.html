@@ -19,7 +19,9 @@
   button { cursor: pointer; } button.main { background: var(--jcd-blue); border-color: var(--jcd-blue); color: #fff; }
   .wrap { display: flex; gap: 22px; padding: 16px 18px; align-items: flex-start; flex-wrap: wrap; }
   .phone { width: 400px; height: calc(100vh - 110px); min-height: 520px; overflow: hidden; border: 1px solid var(--line); border-radius: 26px; background: #000; flex: none; }
-  .phone iframe { width: 320px; height: calc((100vh - 110px) / 1.25); min-height: 416px; border: 0; transform: scale(1.25); transform-origin: 0 0; }
+  /* 320px of page + the scrollbar, which falls outside the frame (hidden): the page is exactly a phone's width and the
+     scrollbar never covers it (Joel 2026-11-27: "右邊的視窗滾輪不要壓到畫面"); the wheel still scrolls */
+  .phone iframe { width: 337px; height: calc((100vh - 110px) / 1.25); min-height: 416px; border: 0; transform: scale(1.25); transform-origin: 0 0; }
   .side { flex: 1; min-width: 300px; max-width: 520px; }
   .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px; margin-bottom: 14px; }
   .card h2 { font-size: 13px; margin: 0 0 8px; color: var(--dim); font-weight: 600; }
@@ -48,6 +50,7 @@
       <h2>用法</h2>
       <p class="note">在手機畫面上<b>點一下</b>文字或圖片來選取（藍框），<b>按住 Shift 點</b>可以多選（再點一次取消），<b>拖曳</b>就能一起移動；
         也可以用方向鍵每次移 1px（按住 Shift 移 10px）。對齊按鈕會對齊所有選取的項目。
+        <b>拖外框的控制點縮放</b>（像 Illustrator）：文字拖左右兩邊改寬度（文字重新換行）；圖片拖四個角等比例縮放，對角固定不動。
         「左右 x／上下 y」只移動選取的項目，不會推開旁邊的東西；<b>要縮小或拉開兩段之間的空白，選空白下方的那個項目，拉「上方空間」</b>：
         它和下面所有東西一起移動，後面的段落也跟著走。「這段下方間距」調整整段最下面的空間。調好按「儲存」，再跟 AI 說「Saved, apply it」。</p>
     </div>
@@ -57,6 +60,7 @@
       <div class="row"><label>左右 x</label><input type="range" id="x" min="-160" max="160" step="1"><input type="number" id="xn"></div>
       <div class="row"><label>上下 y</label><input type="range" id="y" min="-300" max="300" step="1"><input type="number" id="yn"></div>
       <div class="row"><label>寬度</label><input type="range" id="w" min="30" max="320" step="1"><input type="number" id="wn"></div>
+      <div class="row"><label>縮放 %（圖片）</label><input type="range" id="s" min="30" max="200" step="1"><input type="number" id="sn"></div>
       <div class="row"><label title="這個項目和它下面的所有東西一起上下移，後面的段落也跟著移">上方空間</label><input type="range" id="g" min="-400" max="300" step="1"><input type="number" id="gn"></div>
       <div class="row"><label>這段下方間距</label><input type="range" id="b" min="-300" max="300" step="1"><input type="number" id="bn"></div>
       <div class="row"><label>對齊頁面</label>
@@ -88,6 +92,10 @@
   function cur() { return picked[0] || null; }
   function page() { return sel.value; }
   function data() { if (!state[page()]) state[page()] = {}; return state[page()]; }
+  /* the scrollbar's width on this computer, so the page inside is exactly 320px and the bar falls outside the frame */
+  var SBW = (function () { var d = document.createElement('div'); d.style.cssText = 'position:absolute;top:-999px;width:100px;height:100px;overflow:scroll';
+    document.body.appendChild(d); var w = d.offsetWidth - d.clientWidth; d.remove(); return w; })();
+  f.style.width = (320 + SBW) + 'px';
   function load() {
     picked = []; showSel();
     f.src = '/site/m/' + page() + (page() ? '/' : '') + '?layout=mobile&tool=' + Date.now();
@@ -96,7 +104,8 @@
     W = f.contentWindow; D = f.contentDocument;
     setTimeout(function () {
       var st = D.createElement('style');
-      st.textContent = '.jcd-rv{opacity:1!important;transition:none!important}.jcd-pl-sel{outline:2px solid #0062D9!important;outline-offset:1px;cursor:move!important}' +
+      st.textContent = '.jcd-pl-h{position:fixed;z-index:2147483647;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;background:#fff;border:1.5px solid #0062D9;box-sizing:border-box;touch-action:none}' +
+        '.jcd-rv{opacity:1!important;transition:none!important}.jcd-pl-sel{outline:2px solid #0062D9!important;outline-offset:1px;cursor:move!important}' +
         '.jcd-pl-sel2{outline:2px dashed #0062D9!important;outline-offset:1px;cursor:move!important}.jcd-pl-sec{outline:1px dashed rgba(0,98,217,.7)!important;outline-offset:-1px}';
       D.head.appendChild(st);
       /* the page's saved layout (jcd-config.js) is the starting point; drafts saved in this browser win */
@@ -129,6 +138,7 @@
     var drag = null;
     D.addEventListener('click', function (ev) { ev.preventDefault(); ev.stopPropagation(); }, true);
     D.addEventListener('pointerdown', function (ev) {
+      if (ev.target.classList && ev.target.classList.contains('jcd-pl-h')) return;
       var p = pick(ev.target); if (!p) return; ev.preventDefault(); ev.stopPropagation();
       if (ev.shiftKey) { var i = picked.indexOf(p); if (i >= 0) { picked.splice(i, 1); mark(); showSel(); return; } picked.push(p); }
       else if (picked.indexOf(p) < 0) picked = [p];
@@ -144,6 +154,7 @@
     }, true);
     D.addEventListener('pointerup', function () { drag = null; }, true);
     D.addEventListener('keydown', key, true); document.addEventListener('keydown', key);
+    W.addEventListener('scroll', handles, { passive: true }); W.addEventListener('resize', handles);
   }
   function key(ev) {
     if (!picked.length || /INPUT|SELECT/.test((ev.target || {}).tagName)) return;
@@ -155,12 +166,53 @@
     [].forEach.call(D.querySelectorAll('.jcd-pl-sel, .jcd-pl-sel2, .jcd-pl-sec'), function (e) { e.classList.remove('jcd-pl-sel', 'jcd-pl-sel2', 'jcd-pl-sec'); });
     picked.forEach(function (c, i) { c.classList.add(i ? 'jcd-pl-sel2' : 'jcd-pl-sel'); });
     var s = section(cur()); if (s) s.classList.add('jcd-pl-sec');
+    handles();
   }
   function put(id, v) {   /* change one item's values (no redraw) */
     var d = data(); d[id] = Object.assign({}, d[id] || {}, v);
     Object.keys(d[id]).forEach(function (k) { if (!d[id][k]) delete d[id][k]; }); if (!Object.keys(d[id]).length) delete d[id];
   }
-  function done() { applyAll(); showSel(); list(); status('未儲存'); }
+  function done() { applyAll(); showSel(); list(); status('未儲存'); handles(); }
+  function isPhoto(c) { return !(c.querySelector('[data-testid="richTextElement"]') || c.matches('[data-testid="richTextElement"]')); }
+  /* Illustrator-like handles: text = left / right edge (width, the text re-wraps); photo = the 4 corners (scale, the
+     opposite corner stays put) */
+  function handles() {
+    if (!D) return;
+    [].forEach.call(D.querySelectorAll('.jcd-pl-h'), function (h) { h.remove(); });
+    var c = cur(); if (!c) return;
+    var r = c.getBoundingClientRect(), pts = isPhoto(c)
+      ? [['nw', r.left, r.top], ['ne', r.right, r.top], ['sw', r.left, r.bottom], ['se', r.right, r.bottom]]
+      : [['w', r.left, r.top + r.height / 2], ['e', r.right, r.top + r.height / 2]];
+    pts.forEach(function (p) {
+      var h = D.createElement('div'); h.className = 'jcd-pl-h'; h.setAttribute('data-h', p[0]);
+      h.style.left = p[1] + 'px'; h.style.top = p[2] + 'px';
+      h.style.cursor = { w: 'ew-resize', e: 'ew-resize', nw: 'nwse-resize', se: 'nwse-resize', ne: 'nesw-resize', sw: 'nesw-resize' }[p[0]];
+      h.addEventListener('pointerdown', grab);
+      D.body.appendChild(h);
+    });
+  }
+  function grab(ev) {
+    ev.preventDefault(); ev.stopPropagation();
+    var c = cur(), which = this.getAttribute('data-h'), v = data()[c.id] || {}, r = c.getBoundingClientRect();
+    var g = { x0: ev.clientX, y0: ev.clientY, vx: v.x || 0, vy: v.y || 0, s: v.s || 1, w: v.w || Math.round(c.offsetWidth), vw: r.width, vh: r.height };
+    function move(e2) {
+      e2.preventDefault();
+      var dx = e2.clientX - g.x0, dy = e2.clientY - g.y0;
+      if (which === 'e') put(c.id, { w: Math.max(30, Math.round(g.w + dx)) });
+      else if (which === 'w') { var nw = Math.max(30, Math.round(g.w - dx)); put(c.id, { w: nw, x: Math.round(g.vx + (g.w - nw)) }); }
+      else {   /* corners: scale by the larger of the two drags, keeping the opposite corner fixed */
+        var sx = (which === 'se' || which === 'ne' ? dx : -dx) / g.vw, sy = (which === 'se' || which === 'sw' ? dy : -dy) / g.vh;
+        var k = Math.max(0.2, 1 + (Math.abs(sx) > Math.abs(sy) ? sx : sy)), ns = +(g.s * k).toFixed(3);
+        var nx = g.vx, ny = g.vy;
+        if (which === 'nw' || which === 'sw') nx = Math.round(g.vx + g.vw * (1 - k));
+        if (which === 'nw' || which === 'ne') ny = Math.round(g.vy + g.vh * (1 - k));
+        put(c.id, { s: Math.abs(ns - 1) < 0.005 ? 0 : ns, x: nx, y: ny });
+      }
+      done();
+    }
+    function up() { D.removeEventListener('pointermove', move, true); D.removeEventListener('pointerup', up, true); }
+    D.addEventListener('pointermove', move, true); D.addEventListener('pointerup', up, true);
+  }
   function showSel() {
     var box = document.getElementById('sel'), c = cur();
     if (!c) { box.textContent = '還沒選取'; return; }
@@ -169,13 +221,14 @@
     box.innerHTML = '<b></b> <span style="color:#9a9a9a"></span>'; box.querySelector('b').textContent = txt;
     box.querySelector('span').textContent = c.id + (picked.length > 1 ? '（共選取 ' + picked.length + ' 個）' : '');
     var w = v.w || Math.round(c.getBoundingClientRect().width);
-    [['x', v.x || 0], ['y', v.y || 0], ['w', w], ['g', v.gap || 0], ['b', sv.below || 0]].forEach(function (p) { document.getElementById(p[0]).value = p[1]; document.getElementById(p[0] + 'n').value = p[1]; });
+    [['x', v.x || 0], ['y', v.y || 0], ['w', w], ['s', Math.round((v.s || 1) * 100)], ['g', v.gap || 0], ['b', sv.below || 0]].forEach(function (p) { document.getElementById(p[0]).value = p[1]; document.getElementById(p[0] + 'n').value = p[1]; });
   }
   /* sliders: x / y move every selected item by the same amount; width sets them all; space below = the shown item's section */
-  [['x', 'x'], ['y', 'y'], ['w', 'w'], ['g', 'gap'], ['b', 'below']].forEach(function (p) {
+  [['x', 'x'], ['y', 'y'], ['w', 'w'], ['s', 's'], ['g', 'gap'], ['b', 'below']].forEach(function (p) {
     function go(val) { var c = cur(); if (!c) return; val = +val;
       if (p[0] === 'b') { var s = section(c); if (s) put(s.id, { below: val }); }
       else if (p[0] === 'w') picked.forEach(function (e) { put(e.id, { w: val }); });
+      else if (p[0] === 's') picked.forEach(function (e) { put(e.id, { s: Math.abs(val - 100) < 0.5 ? 0 : +(val / 100).toFixed(3) }); });
       else if (p[0] === 'g') put(c.id, { gap: val });   /* space above: the shown item (and everything under it) */
       else { var d0 = val - ((data()[c.id] || {})[p[1]] || 0); picked.forEach(function (e) { var o = {}; o[p[1]] = ((data()[e.id] || {})[p[1]] || 0) + d0; put(e.id, o); }); }
       done(); }

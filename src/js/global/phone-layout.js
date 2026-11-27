@@ -1,7 +1,8 @@
   /* Phone layout set by Joel (2026-11-27: "把 wifi7 ap 跟摩艾的手機版頁面做出 mockup，我來調整 layout"), with
      preview/mockups/phone-layout.html. jcd-config.js phone.layout[<page>] = { '<comp id>': { x, y, w, gap }, '<section id>':
      { below } } in layout px:
-     - x / y move one item (it does not push the items around it), w sets its width;
+     - x / y move one item (it does not push the items around it), w sets its width, s scales it from its top-left
+       corner (photos, the tool's corner handles; Joel 2026-11-27: "選取後的方塊縮放拖曳，跟 illustrator 作法一樣");
      - gap changes the space ABOVE an item: it and everything below it in its section move by gap, and the section grows or
        shrinks by the same amount, so the sections after it follow (Joel 2026-11-27: "是不是要有個功能可以讓我調整空間");
      - below changes the space under a section (added inside it, so its colour or photo grows with it; negative pulls the
@@ -11,7 +12,7 @@
   ready(function () {
     if (!document.body.classList.contains('device-mobile-optimized')) return;
     var slug = location.pathname.replace(/^.*\/m\//, '').replace(/\/(index\.html)?$/, '').split('/')[0];
-    var touched = [], PROPS = ['translate', 'width', 'max-width', 'padding-bottom', 'margin-bottom'];
+    var touched = [], PROPS = ['translate', 'width', 'max-width', 'padding-bottom', 'margin-bottom', 'scale', 'transform-origin'];
     function keep(e) {   /* remember an element's own inline values once, to restore them on the next run */
       for (var i = 0; i < touched.length; i++) if (touched[i].e === e) return touched[i];
       var t = { e: e, was: {} };
@@ -47,6 +48,7 @@
         var e = document.getElementById(id), v = all[id]; if (!e || !v) return;
         if (v.x || v.y) add(shift, e, v.x || 0, v.y || 0);
         if (v.w) { keep(e); e.style.setProperty('width', v.w + 'px', 'important'); e.style.setProperty('max-width', 'none', 'important'); }
+        if (v.s && v.s !== 1) { keep(e); e.style.setProperty('transform-origin', '0 0'); e.style.setProperty('scale', String(v.s)); }
         if (v.below) add(secGrow, e, v.below);
       });
       shift.forEach(function (s) {   /* on top of any shift the tidy-up already gave it */

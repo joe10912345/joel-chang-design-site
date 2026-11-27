@@ -11,6 +11,15 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Phone layout tool: resize handles, scrollbar out of the way 手機排版工具：縮放控制點、捲軸不壓畫面
+- Joel: "能不能也支援選取後的方塊縮放拖曳功能?，跟 illustrator 作法一樣" / "右邊的視窗滾輪不要壓到畫面". The selected item gets
+  handles: a text block's left / right edges change its width (the text re-wraps; the left handle keeps the right edge
+  still), a photo's four corners scale it with the opposite corner fixed (new `s` in `phone.layout`, also a 縮放 % field).
+  The phone frame is 320px + this computer's scrollbar width, so the page inside is exactly a phone's width and the
+  scrollbar sits outside the frame. Files: `preview/mockups/phone-layout.html`, `src/js/global/phone-layout.js` (`s` =
+  CSS scale from the top-left), `README.md`, built `custom.js`.
+- 選取後出現控制點：文字拖左右邊改寬度，圖片拖四角等比例縮放（對角固定）。手機畫面正好 320px，捲軸移到畫框外不壓畫面。
+
 ### Phone layout tool: "space above" 手機排版工具：上方空間
 - Joel: "是不是要有個功能可以讓我調整空間?" (the gap between "Integrated Ventilation Detail" and "UX-Driven Architecture").
   New slider 上方空間 (`gap` in `jcd-config.js` `phone.layout`): select the item under a gap and drag it; that item and
