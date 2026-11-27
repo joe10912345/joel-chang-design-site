@@ -50,6 +50,7 @@
       <h2>用法</h2>
       <p class="note">在手機畫面上<b>點一下</b>文字或圖片來選取（藍框），<b>按住 Shift 點</b>可以多選（再點一次取消），<b>拖曳</b>就能一起移動；
         也可以用方向鍵每次移 1px（按住 Shift 移 10px）。對齊按鈕會對齊所有選取的項目。
+        <b>選後方物件</b>（像 Illustrator）：<b>按住 Ctrl（或 Alt）點</b>，選游標下、目前選取項目後面的那一個；同一點繼續 Ctrl＋點，會依序往後換（照片 → 灰方塊 → 段落 → 回到最上面）。
         <b>方塊</b>：點有底色方塊露出的邊緣就能選取，或選取照片後按「選後方方塊」；選到後拉「上方空間」可在它上面加空間。
         <b>段落高度</b>：段落的虛線框底邊中央有控制點，直接上下拖；點段落裡的空白處可以選取整個段落。
         <b>首圖取景</b>：點照片背景的空白處（不是文字），拖曳讓照片在框內左右、上下移動。<b>Ctrl+Z</b> 復原、<b>Ctrl+Shift+Z</b> 重做。
@@ -149,6 +150,16 @@
     });
     return best;
   }
+  function stackAt(x, y) {
+    var out = [];
+    D.elementsFromPoint(x, y).forEach(function (el) {
+      if (el.classList && el.classList.contains('jcd-pl-h')) return;
+      var c = pick(el); if (!c) { var b = el.closest && el.closest('[id^="comp-"]'); c = b && b.tagName !== 'SECTION' && painted(b) ? b : null; }
+      if (c && out.indexOf(c) < 0) out.push(c);
+    });
+    var sc = section(D.elementFromPoint(x, y)); if (sc && out.indexOf(sc) < 0) out.push(sc);
+    return out;
+  }
   function section(e) { var s = e && e.closest('section'); while (s && s.parentElement && s.parentElement.closest('section')) s = s.parentElement.closest('section'); return s; }
   /* what the eye sees: a text block's lines, a photo's frame */
   function vbox(c) {
@@ -165,6 +176,16 @@
     D.addEventListener('click', function (ev) { ev.preventDefault(); ev.stopPropagation(); }, true);
     D.addEventListener('pointerdown', function (ev) {
       if (ev.target.classList && ev.target.classList.contains('jcd-pl-h')) return;
+      if (ev.ctrlKey || ev.altKey || ev.metaKey) {   /* select the next one behind (Illustrator: Ctrl / Cmd + click) */
+        ev.preventDefault(); ev.stopPropagation();
+        var st = stackAt(ev.clientX, ev.clientY); if (!st.length) return;
+        var now = secSel || cur(), i = st.indexOf(now), nx = st[(i + 1) % st.length];
+        bgSel = null;
+        if (nx.tagName === 'SECTION') { picked = []; secSel = nx; } else { secSel = null; picked = [nx]; }
+        mark(); showSel();
+        if (nx.tagName !== 'SECTION') drag = { x0: ev.clientX, y0: ev.clientY, base: [{ id: nx.id, x: (data()[nx.id] || {}).x || 0, y: (data()[nx.id] || {}).y || 0 }], moved: false };
+        return;
+      }
       var p = pick(ev.target);
       if (!p) { if (bgPick(ev)) return; }
       if (!p) { var sc = section(ev.target.nodeType === 1 ? ev.target : ev.target.parentElement);

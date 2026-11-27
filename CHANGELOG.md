@@ -11,6 +11,12 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Phone layout tool: Ctrl + click selects what is behind 手機排版工具：Ctrl＋點選後方物件
+- Joel: "背景的灰方塊還是不能選欸，我想像是 illustrator 的選法". The photo covers the grey box completely, so a click always hit
+  the photo. Ctrl (or Alt / Cmd) + click now picks the next item behind the current one under the pointer, and keeps cycling
+  (photo → grey box → section → photo), like Illustrator. File: `preview/mockups/phone-layout.html`, `README.md`.
+- 照片完全蓋住灰方塊，所以點不到；現在按住 Ctrl（或 Alt）點，會依序選到後面的物件（照片 → 灰方塊 → 段落）。
+
 ### Phone layout tool: top image framing, Ctrl+Z, section height, boxes 手機排版工具：首圖取景、復原、段落高度、方塊
 - Joel: "也要支援子頁最上方首圖的左右移動功能" / "需要支援 ctrl+z 返回" / "我沒辦法調整背後的灰方塊高度，能讓我直接拖嗎" /
   "後方的方塊我選不到，我想要方塊之上增加空間".
