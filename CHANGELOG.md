@@ -11,6 +11,12 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Phone home: even space around the video 手機首頁影片上下間距一致
+- Joel: "手機版首頁影片下方跟最下方的圖的間距要大點，不然就是把影片的位置上移". The video had 59px above it and 41px below
+  (to "Let's Shape the Next Product Together"); now 55px on both sides: the video moves up 4px and its section gets 10px
+  more at the bottom. In `jcd-config.js` `phone.layout['']` (home), so it can be tuned in `phone-layout.html`. Phone only.
+- 手機首頁影片上方 59px、下方 41px，改成上下都 55px（影片上移 4px、段落底部加 10px），寫在 phone.layout。
+
 ### Text above photos; achievements 3+, slower roll; About "10+ products" 文字不被照片蓋住、成就 3+ 與轉動放慢、About 10+
 - Joel: "手機板 defense 頁面的新加坡 airshow 跟白襯線被圖片蓋到了，處理下，同時也巡一下其他平台". The "2026 Singapore AIRSHOW"
   text and its white line came before the photo in the page, so the photo was drawn over them. Text and divider lines now
