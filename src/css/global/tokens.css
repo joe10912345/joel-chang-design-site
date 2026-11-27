@@ -12,11 +12,11 @@
    (12 photos), every category-page card, the Design Approach card ">>" and the category title bars. Values = the home grid's.
    卡片與標題列字級只在這裡設定，三平台各一組。
    --jcd-card-name   product name on a card            --jcd-card-brand  small line above it (brand / category)
-   --jcd-card-go-font  the ">>" (plain Poppins Regular, no frame)   --jcd-card-edge  distance of name and ">>" from the card's corner
+   --jcd-card-go-font  the ">>" (plain Poppins Medium, no frame)   --jcd-card-edge  distance of name and ">>" from the card's corner
    Card values set by Joel with preview/mockups/go-size.html (2026-11-27: "採 G2" + name sizes).
    --jcd-bar-title   category title bar, left title    --jcd-bar-sub     category title bar, right description (one line) */
 :root { --jcd-card-name: 21px; --jcd-card-brand: 11.5px; --jcd-card-go-font: 23px; --jcd-card-edge: 14px;
         --jcd-bar-title: 30px; --jcd-bar-sub: 17px; }                                   /* computer */
-html.jcd-tablet { --jcd-card-name: 18.5px; --jcd-card-brand: 11px; --jcd-card-go-font: 21px; --jcd-card-edge: 12px; }   /* iPad */
-html:has(> body.device-mobile-optimized) { --jcd-card-name: 15px; --jcd-card-brand: 10px; --jcd-card-go-font: 17px; --jcd-card-edge: 10px;
+html.jcd-tablet { --jcd-card-name: 16px; --jcd-card-brand: 11px; --jcd-card-go-font: 21px; --jcd-card-edge: 12px; }   /* iPad (name 18.5 -> 16, Joel: "ipad 版的圖卡產品名字尺寸也要縮小一點") */
+html:has(> body.device-mobile-optimized) { --jcd-card-name: 12.5px; --jcd-card-brand: 9px; --jcd-card-go-font: 14px; --jcd-card-edge: 9px;   /* Joel: phone still too big (was 15 / 10 / 17 / 10) */
         --jcd-bar-title: 10px; --jcd-bar-sub: 8px; }                                    /* phone */

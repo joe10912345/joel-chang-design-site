@@ -46,3 +46,4 @@ global/ios-active.js
 global/logo-press.js
 global/phone-layout.js
 global/text-anchors.js
+global/old-arrows-off.js

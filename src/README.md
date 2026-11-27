@@ -36,7 +36,7 @@ Areas 分區: `global` = every page 全站 · `home` = home 首頁 · `about` = 
 
 | area 分區 | files (in build order) 檔案（依合併順序） |
 |---|---|
-| `global` | `wix-fixed-backgrounds.js`, `phone-layout-tidy.js`, `phone-layout.js`, `phone-text-size.js`, `phone-tap-targets.js`, `lightbox.js`, `header-autohide.js`, `phone-menu-social.js`, `hero-height.js`, `page-background.js`, `header-no-drag.js`, `no-context-menu.js`, `no-tooltips.js`, `one-tap-links.js`, `photo-frames.js`, `scroll-reveal.js`, `ios-active.js`, `logo-press.js`, `text-anchors.js` |
+| `global` | `wix-fixed-backgrounds.js`, `phone-layout-tidy.js`, `phone-layout.js`, `phone-text-size.js`, `phone-tap-targets.js`, `lightbox.js`, `header-autohide.js`, `phone-menu-social.js`, `hero-height.js`, `page-background.js`, `header-no-drag.js`, `no-context-menu.js`, `no-tooltips.js`, `one-tap-links.js`, `photo-frames.js`, `scroll-reveal.js`, `ios-active.js`, `logo-press.js`, `text-anchors.js`, `old-arrows-off.js` |
 | `product` | `info-table-phone.js`, `closing-photo-reveal.js`, `guest-area-dialog.js`, `defense-website.js`, `t-blade-last-photo.js` |
 | `home` | `design-approach-cards.js`, `cross-category-grid.js`, `video-frame.js`, `achievement-map.js`, `selected-grid.js`, `achievement-odometer.js`, `end-to-end-slider.js`, `end-to-end-hint.js` |
 | `contact` | `contact-form.js`, `iphone-no-zoom.js` |

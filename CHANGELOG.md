@@ -11,6 +11,18 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### ">>" in Poppins Medium, smaller phone / iPad card text, no old ">>" anywhere >> 改 Medium、手機與 iPad 卡片字縮小、舊 >> 全移除
+- Joel: ">> 改 medium" / "手機板的首頁 12 張圖＋產品類別頁的字體還是太大" / "ipad 版的圖卡產品名字尺寸也要縮小一點" / "t interceptor CS 下方有一個舊的
+  >> 掉落在外面" / "舊 >> 應該都要移除了。我們有新的 >> 設計了".
+  - The ">>" is Poppins Medium (was Regular). Tokens: phone name 12.5 / small line 9 / >> 14 / corner 9px (was 15 / 10 / 17 / 10);
+    iPad name 16px (was 18.5). Home Works grid and every category card follow.
+  - Phone Defense: T. Interceptor CS's Wix ">>" had wrapped onto two lines, one ">" below the card; Wix's ">>" is now hidden
+    whenever it touches a card's photo (`cards-touch.js`), and a new site-wide rule hides every Wix ">>" / ">" text on every
+    page and platform (`src/js/global/old-arrows-off.js`); the Wix links stay in the page so the card links keep working.
+  Files: `src/css/global/tokens.css`, `src/css/global/round-go-fill.css`, `src/js/category/cards-touch.js`,
+  `src/js/global/old-arrows-off.js` (new), `src/js/ORDER.txt`, `src/README.md`, `DESIGN-SYSTEM.md`, built `custom.css` / `custom.js`.
+- >> 改 Poppins Medium；手機卡片字縮小（名稱 12.5、小字 9、>> 14、離角落 9），iPad 名稱 16；Wix 舊 >> 全站隱藏（含 T. Interceptor CS 掉出卡片的那個）。
+
 ### Card size tuner shows the real size 卡片尺寸工具改成實際大小
 - Joel: "手機板的首頁 12 張圖的字體太大了，你難道沒有套用剛剛的尺寸嗎?". The values were applied (phone name 15px), but the
   tuner drew every card 1:1 and at the wrong size: on a 390px iPhone the 320px layout is shown 1.22x, the computer and iPad

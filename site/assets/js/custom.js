@@ -1392,10 +1392,12 @@
       var scope = hb.parentElement || hb;
       [].forEach.call(scope.querySelectorAll('[data-testid="richTextElement"]'), function (rt) {
         var comp = rt.closest('[id^="comp-"]'); if (!comp) return;
-        var r = comp.getBoundingClientRect();
+        var r = comp.getBoundingClientRect(), ls = lines(rt);
+        /* Wix's own ">>": hidden when it touches the photo at all (Joel 2026-11-27: on the phone T. Interceptor CS's ">>"
+           wrapped onto two lines and one ">" hung below the card, outside the photo, so it was missed) */
+        if ((ls.join('') === '>>' || ls.join('') === '>') && r.width && r.left < pr.right && r.right > pr.left && r.top < pr.bottom + 4 && r.bottom > pr.top) {
+          comp.classList.add('jcd-cap-hide', 'jcd-gg-hide'); return; }
         if (!(r.width && r.left >= pr.left - 2 && r.right <= pr.right + 2 && r.top >= pr.top - 2 && r.bottom <= pr.bottom + 2)) return;
-        var ls = lines(rt);
-        if (ls.join('') === '>>' || ls.join('') === '>') { comp.classList.add('jcd-cap-hide', 'jcd-gg-hide'); return; }
         if (touch && ls.length && !name) { name = ls; comp.classList.add('jcd-cap-hide'); }
       });
       if (!touch) {                                  /* computer: round >> in the corner, on hover only */
@@ -2239,4 +2241,14 @@
     var run = function () { setTimeout(go, 700); setTimeout(go, 1600); };
     document.readyState === 'complete' ? run() : window.addEventListener('load', run);
   })();
+  /* No old ">>" anywhere (Joel 2026-11-27: "舊 >> 應該都要移除了。我們有新的 >> 設計了"). Wix's own ">>" / ">" text blocks are
+     hidden on every page and platform; the new plain ">>" (round-go-fill.css, .jcd-go) is the only one left. The Wix link
+     elements stay in the page (hidden), so scripts that read their address (the cards, Design Approach) still work.
+     Every page, phone + iPad + computer. */
+  ready(function () {
+    [].forEach.call(document.querySelectorAll('#PAGES_CONTAINER [data-testid="richTextElement"]'), function (t) {
+      if (!/^>{1,2}$/.test(t.textContent.replace(/[\s​]/g, ''))) return;
+      (t.closest('[id^="comp-"]') || t).classList.add('jcd-gg-hide');
+    });
+  });
 })();

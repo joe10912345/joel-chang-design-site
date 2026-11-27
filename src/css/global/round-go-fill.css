@@ -1,9 +1,9 @@
 /* Card ">>" (Joel 2026-11-27: "我覺得圓圈版 >> 按鈕，跟我的方正瑞士國際風格不搭" -> chose G2 in preview/mockups/go-size.html):
-   the ">>" alone in Poppins Regular, no circle, no frame. Pressed / hovered card: it turns --jcd-blue and moves 3px right.
+   the ">>" alone in Poppins Medium (was Regular, Joel: ">> 改 medium"), no circle, no frame. Pressed / hovered card: it turns --jcd-blue and moves 3px right.
    Home Works grid, category cards (computer hover + touch), Design Approach card 1. Size: tokens.css --jcd-card-go-font. */
 .jcd-go, body:not(.device-mobile-optimized) .jcd-go.jcd-go-hover, body:not(.device-mobile-optimized) .jcd-go.jcd-da-go {
   flex: none; width: auto; height: auto; border: 0; border-radius: 0; background: none; -webkit-backdrop-filter: none; backdrop-filter: none;
-  display: block; color: #fff; font: var(--jcd-card-go-font)/1 wfont_3f090f_d2b74fa2704044fa98373433c883f8ed, wf_d2b74fa2704044fa98373433c, orig_poppins_regular, sans-serif;
+  display: block; color: #fff; font: var(--jcd-card-go-font)/1 wfont_3f090f_fbe2048d9f994d8c8d5073ed8164a33e, wf_fbe2048d9f994d8c8d5073ed8, orig_poppins_medium, sans-serif;   /* Poppins Medium (Joel 2026-11-27: ">> 改 medium") */
   letter-spacing: -.02em; text-shadow: 0 1px 10px rgba(0, 0, 0, .45);
   transition: color .15s ease, transform .2s cubic-bezier(.2, .7, .2, 1), opacity .35s; }
 .jcd-spot a.jcd-hot-tile .jcd-go, .gpDCD5:hover .jcd-go, .jcd-da-link:hover .jcd-go,
