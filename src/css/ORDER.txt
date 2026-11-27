@@ -65,3 +65,4 @@ product/t-interceptormp-award.css
 product/t-blade-stowage.css
 global/scroll-reveal.css
 product/info-table-phone.css
+product/moai-detail-frame.css

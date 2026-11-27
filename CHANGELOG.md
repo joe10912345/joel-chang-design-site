@@ -11,6 +11,11 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### MoAI Detail Design photo without the black frame MoAI 細節照片拿掉黑框
+- Joel: "這張圖不能有黑框". The frame was a separate Wix outline shape over the photo (`comp-mosh8egr`, 1px black on the
+  phone); hidden on every platform. File: `src/css/product/moai-detail-frame.css` (new), `src/css/ORDER.txt`, `src/README.md`.
+- MoAI「Detail Design」照片的黑框是另一個 Wix 外框元件，三平台都隱藏。
+
 ### Phone work pages: body text 8px, text beside photos tidied 手機作品頁內文 8px、圖文排版整理
 - Joel: "內文改 8px 好了，且排版要調整，圖與字與間距怪怪的" (MoAI materials, HGU/AP). Body text on the phone work and category pages
   is now 8px (`jcd-config.js` `phone.subText: 8`). New `phone-layout-tidy.js`, before the text sizing: (1) a short title right

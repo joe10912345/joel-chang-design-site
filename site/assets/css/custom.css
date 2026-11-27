@@ -898,3 +898,6 @@ body:not(.device-mobile-optimized) :has(> #comp-mojvq8rn) { min-height: 0 !impor
 .jcd-info2x2 { display: grid; grid-template-columns: 1fr 1fr; column-gap: 18px; row-gap: 18px; }
 .jcd-info2x2 .jcd-info-lab { line-height: 1.5; margin-bottom: 4px; }
 .jcd-info2x2 .jcd-info-val { line-height: 1.55; }
+/* MoAI "Detail Design" photo (moai-router-11): no black frame (Joel 2026-11-27: "這張圖不能有黑框"). The frame is a separate
+   Wix outline shape laid over the photo (1px black on the phone, 0 on the computer); it is hidden on every platform. */
+#comp-mosh8egr { display: none !important; }
