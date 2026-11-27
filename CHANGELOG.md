@@ -11,6 +11,15 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Menu no longer flashes a serif font 菜單不再先閃襯線體
+- Joel: "為甚麼我剛進到網站時，菜單的文字會是襯線體，然後才變回我的字體". Poppins loads with `font-display: swap` and Wix's font
+  lists end in names that don't exist (`orig_poppins_*`) with no generic family, so until Poppins arrived the browser drew
+  the text in its default serif. Now every page (computer + phone, 70 files) preloads Poppins Light / Medium / SemiBold
+  right after `<meta charset>`, and the `orig_poppins_*` names point to a plain sans-serif, so the brief stand-in is never
+  serif. Files: `src/css/global/font-fallback.css` (new), `src/css/ORDER.txt`, `src/README.md`, every page `index.html`,
+  built `custom.css`.
+- Poppins 載入前，瀏覽器用預設襯線體暫代。現在每頁一開始就預先下載 Poppins（Light／Medium／SemiBold），暫代字體也改成無襯線體。
+
 ### Zenfone 9 top image framing 首圖取景
 - Joel: "zenfone 9 讓我調整首圖位置" → set per platform with `preview/mockups/photo-align.html?key=zenfoneHero`: computer
   46% 10% ×1.02, iPad landscape 20% 20%, iPad upright 18% 53%, phone 15% 48% (was 50% 50%). File: `site/assets/js/jcd-config.js`

@@ -1,3 +1,4 @@
+global/font-fallback.css
 global/tokens.css
 global/text-contrast.css
 global/base.css
