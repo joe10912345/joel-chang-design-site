@@ -1,5 +1,5 @@
   /* About intro photo (Joel 2026-11-26): Joel at the material wall; with the mouse on it, it cross-fades to the
-     Golden Pin 2025 photo. Touch (phone, iPad): a tap switches to the second photo, another tap back. The frame
+     second portrait (about-06; new photo from Joel 2026-11-27, was the Golden Pin 2025 photo). Touch (phone, iPad): a tap switches to the second photo, another tap back. The frame
      takes the photos' ratio (2000x1425) in custom.css. */
   ready(function () {
     var img = document.getElementById('img_comp-mujmtw8h'); if (!img || !img.getAttribute('data-jcd-alt')) return;

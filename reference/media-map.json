@@ -20170,26 +20170,6 @@
   "note": "About intro photo (material wall), Joel 2026-11-26 (phone) JPEG kept for social previews",
   "original_name": "jcd_about-portrait-materials_2000x1425.jpg"
  },
- "about/about-06-2000x1425.webp": {
-  "source": "media-originals/about/about-06-2000x1425.jpg",
-  "wix_ops": null,
-  "replaces": [],
-  "pages": [
-   "about"
-  ],
-  "note": "About intro hover/tap photo (Golden Pin 2025), Joel 2026-11-26",
-  "original_name": "jcd_about-portrait-golden-pin_2000x1425.jpg"
- },
- "about/about-06-1200x855.webp": {
-  "source": "media-originals/about/about-06-2000x1425.jpg",
-  "wix_ops": null,
-  "replaces": [],
-  "pages": [
-   "about"
-  ],
-  "note": "About intro hover/tap photo (Golden Pin 2025), Joel 2026-11-26 (phone)",
-  "original_name": "jcd_about-portrait-golden-pin_2000x1425.jpg"
- },
  "defense/defense-09-2560x1626-v2.webp": {
   "source": "media-originals/defense/defense-09-5636x3580.jpg",
   "wix_ops": {
@@ -20365,5 +20345,29 @@
    "home"
   ],
   "note": "Gemtek, GET IN TOUCH background (Joel 2026-11-27)"
+ },
+ "about/about-06-2238x1595.webp": {
+  "source": "media-originals/about/about-06-2238x1595.jpg",
+  "wix_ops": null,
+  "replaces": [
+   "about/about-06-2000x1425.webp"
+  ],
+  "pages": [
+   "about"
+  ],
+  "note": "About intro hover/tap photo, new portrait from Joel 2026-11-27 (replaces the Golden Pin 2025 photo)",
+  "original_name": "個人 - 裁切 -換方向.jpg"
+ },
+ "about/about-06-1200x855-v2.webp": {
+  "source": "media-originals/about/about-06-2238x1595.jpg",
+  "wix_ops": null,
+  "replaces": [
+   "about/about-06-1200x855.webp"
+  ],
+  "pages": [
+   "about"
+  ],
+  "note": "About intro hover/tap photo, new portrait from Joel 2026-11-27 (phone)",
+  "original_name": "個人 - 裁切 -換方向.jpg"
  }
 }

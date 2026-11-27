@@ -11,6 +11,15 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### About: new hover portrait 關於頁滑過時的新大頭照
+- Joel: "我放了新的大頭照在 media new 裡，幫我換上原本 hover 會出現的照片". The photo that appears on hover (computer) / while
+  pressed (phone, iPad) is Joel's new portrait (2238 x 1595, same ratio as the frame): original
+  `media-originals/about/about-06-2238x1595.jpg`, site `about-06-2238x1595.webp` (computer + iPad) and `about-06-1200x855-v2.webp`
+  (phone), WebP q86. The old Golden Pin photo's two site files are removed (its original stays). `reference/media-map.json`
+  updated; `media-new/` emptied again. Files: `site/about/index.html`, `site/m/about/index.html`, `src/js/about/portrait-swap.js`
+  (comment), built `custom.js`.
+- About 大頭照滑過（手機、iPad 按住）時出現的照片換成新照片；依圖片規則存原檔、產生 WebP 與手機版，記錄於 media-map。
+
 ### Phone layout applied (19 pages) 手機排版套用（19 頁）
 - Joel: "Saved, apply it" (twice). His layout from `phone-layout.html` is in `jcd-config.js` `phone.layout` for 19 pages: top
   image framing on 13 work pages (Airgain, AI Tool Kit, Geometry Series, HGU/AP, Interstellar 05, Lionic, MoAI, NLG,
