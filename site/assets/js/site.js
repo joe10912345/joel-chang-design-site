@@ -104,6 +104,13 @@
       tog.addEventListener('click', function () { setOpen(!isOpen()); });
       if (ov) ov.addEventListener('click', function () { setOpen(false); });
       box.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('a')) setOpen(false); });
+      /* phone menu: "Works" is the heading of the category list under it, not a way back to the home page (Joel
+         2026-11-28: "菜單上我選 works 時不要跳到主畫面"); tapping it does nothing and the menu stays open */
+      Array.prototype.forEach.call(box.querySelectorAll('.wixui-vertical-menu__item-label'), function (a) {
+        if (a.textContent.trim() !== 'Works') return;
+        a.style.cursor = 'default';
+        a.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); });
+      });
     }
 
     /* 4. Desktop menu (Wix horizontal menu): hover state on every top-level item, dropdown for "Works" */
@@ -113,6 +120,15 @@
       var off = function () { li.removeAttribute('data-hovered'); li.removeAttribute('data-shown'); if (sub && a) a.setAttribute('aria-expanded', 'false'); };
       li.addEventListener('mouseenter', on); li.addEventListener('mouseleave', off);
       li.addEventListener('focusin', on); li.addEventListener('focusout', function (e) { if (!li.contains(e.relatedTarget)) off(); });
+      /* "Works" itself no longer goes to the home page (Joel 2026-11-28: "菜單上我選 works 時不要跳到主畫面，要跳出菜單就好"):
+         a click / tap only opens its list (a second tap on touch closes it); a click elsewhere closes it. Computer + iPad. */
+      if (sub && a) {
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          if (li.hasAttribute('data-shown') && !(window.matchMedia && matchMedia('(hover: hover)').matches)) off(); else on();
+        });
+        document.addEventListener('click', function (e) { if (li.hasAttribute('data-shown') && !li.contains(e.target)) off(); });
+      }
     });
 
     /* 5. Pro Gallery sliders: arrows scroll the strip one card at a time, prev arrow appears once scrolled

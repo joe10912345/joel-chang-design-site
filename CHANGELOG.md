@@ -11,6 +11,21 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### End-to-End: frame kept, 1.5 squares at the end, no nudge, smooth wheel; menu "Works" opens its list End-to-End 白框、到底剩 1 個半、取消示意動態、滾動順暢；菜單 Works
+- Joel: "end to end 圖片 hover 時，白框都還要保留。滑到底時要剩 1 個半。然後取消左滑來回的示意動態效果。滑動不太順，感覺一格格的很明顯".
+  - The white frame is part of each photo, so the hover zoom pushed it out: a 1px white line is now drawn above photo,
+    dark layer and text (`src/css/home/end-to-end-hover.css`).
+  - The row can go on until the last square stands half a square in from the left: 1.5 squares left in view at the end
+    (phone: the last square whole plus part of the one before; the screen is too narrow for 1.5).
+  - The one-time "swipe" nudge is removed.
+  - Wheel / thumb wheel: each step adds to a target the row eases towards frame by frame, and it no longer snaps to a
+    square afterwards (only a finger swipe settles on a square). Files: `src/js/home/end-to-end-hint.js`.
+- Joel: "菜單上我選 works 時不要跳到主畫面，要跳出菜單就好". Computer + iPad: clicking Works opens its category list instead of
+  going to the home page (touch: a second tap closes it, a click elsewhere closes it). Phone menu: Works is the heading of
+  the categories under it; tapping it does nothing. File: `site/assets/js/site.js` (+ `?v=`).
+- End-to-End 白框 hover 時保留；到底剩 1 個半（手機螢幕太窄，為最後一張加前一張的一部分）；取消示意動態；滾輪改為連續滑動、不再一格格對齊。
+  菜單點 Works 只打開分類列表，不回首頁（手機版點 Works 不動作）。
+
 ### Home End-to-End strip: smaller text, wheel, click to centre, no loop 首頁 End-to-End：字縮小、滾輪、點擊置中、不無限輪播
 - Joel: "end to end 的方塊內的文字太大了，整體縮小。方塊要支援滑鼠往下滾=往右滑。如果我點擊任何方塊圖，圖片要自動拉到中間與壓黑顯示字"
   + "方塊不要無限來回" + "滾到底應該至少留兩個圖，然後到底後頁面可下滑" + "羅技的拇指輪目前滾動時方向是相反，改過來".

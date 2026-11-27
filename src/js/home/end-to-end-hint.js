@@ -5,8 +5,7 @@
          (computer: cut at the content margin, iPad: by the screen).
      (2) A soft fade to black at the right edge; at the left edge too while a square is cut there (Joel 2026-11-27:
          "輪播往右滑後，最左邊被切到的也要有漸層消失").
-     (3) Once, when the strip comes into view, the row slides left a little and settles back (not with reduced motion,
-         not after the visitor has moved it).
+     (3) (removed 2026-11-28: the nudge, Joel "取消左滑來回的示意動態效果")
      (4) The row always comes to rest with a square at its start. Wix's own CSS snapping used the squares' places from
          before they were enlarged and stopped between them, so it is off; we settle after every swipe / drag / scroll.
      (5) Computer: drag with the mouse (trackpad / Shift + wheel scroll natively); arrow keys when focused.
@@ -45,7 +44,18 @@
         p[0].style.left = p[1].toFixed(1) + 'px'; p[0].style.width = w + 'px';
         p[0].style.top = ((sr.top - cr.top) / z()).toFixed(1) + 'px'; p[0].style.height = (sr.height / z()).toFixed(1) + 'px';
       });
+      ending();
       edges();
+    }
+    /* (8) the end of the row (Joel 2026-11-28: "滑到底時要剩 1 個半"): the row can go on until the last square stands
+       half a square in from the left edge, so one and a half squares are left in view; the inner box gets that width */
+    var inner = strip.querySelector('.gallery-horizontal-scroll-inner');
+    function ending() {
+      var cs = [].slice.call(strip.querySelectorAll('.gallery-item-container')); if (!inner || cs.length < 2) return;
+      var first = cs[0], last = cs[cs.length - 1], step = cs[1].offsetLeft - first.offsetLeft;
+      var natural = last.offsetLeft + last.offsetWidth + first.offsetLeft;
+      var want = last.offsetLeft - first.offsetLeft - step / 2 + strip.clientWidth;
+      inner.style.setProperty('width', Math.max(natural, want).toFixed(1) + 'px', 'important');
     }
     layout(); window.addEventListener('load', layout); window.addEventListener('resize', layout); setTimeout(layout, 1500);
     /* the left fade only while a square is actually cut there (while moving; on the iPad also at rest) */
@@ -55,23 +65,8 @@
       fadeL.classList.toggle('jcd-on', cut);
     }
     strip.addEventListener('scroll', edges, { passive: true }); edges();
-    /* (3) one nudge when the strip is first well in view */
-    var used = false;
-    ['pointerdown', 'touchstart', 'wheel', 'keydown'].forEach(function (t) { strip.addEventListener(t, function () { used = true; }, { passive: true }); });
+    /* (3) the one-time nudge is gone (Joel 2026-11-28: "取消左滑來回的示意動態效果"); the cut square and the fade say "swipe" */
     var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!calm && 'IntersectionObserver' in window && strip.firstElementChild && strip.firstElementChild.animate) {
-      var io = new IntersectionObserver(function (es) {
-        if (!es[0].isIntersecting) return; io.disconnect();
-        setTimeout(function () {
-          if (used || strip.scrollLeft > 2) return;
-          var card = strip.querySelector('.gallery-item-container'), d = (card ? card.offsetWidth : 300) * 0.22;
-          strip.firstElementChild.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(' + -d + 'px)', offset: 0.38 },
-            { transform: 'translateX(' + -d + 'px)', offset: 0.62 }, { transform: 'translateX(0)' }],
-            { duration: 1300, easing: 'cubic-bezier(.45, 0, .2, 1)' });
-        }, 450);
-      }, { threshold: 0.6 });
-      io.observe(strip);
-    }
     /* (4) settle on the nearest square. A square's place in the row = its offset on screen + how far the row is
        scrolled; every square comes to rest where the first one starts. */
     strip.style.setProperty('scroll-snap-type', 'none', 'important');
@@ -92,7 +87,12 @@
     /* a finger on the screen holds the row; it settles once the swipe's own glide has ended */
     strip.addEventListener('touchstart', function () { held = true; clearTimeout(settleT); }, { passive: true });
     strip.addEventListener('touchend', function () { held = false; settleSoon(180); }, { passive: true });
-    strip.addEventListener('scroll', function () { settleSoon(180); }, { passive: true });
+    /* only a finger swipe settles on a square; the wheel, trackpad and thumb wheel glide freely and stop where they
+       stop (Joel 2026-11-28: "滑動不太順，感覺一格格的很明顯") */
+    var lastInput = '';
+    strip.addEventListener('touchstart', function () { lastInput = 'touch'; }, { passive: true });
+    strip.addEventListener('wheel', function () { lastInput = 'wheel'; }, { passive: true });
+    strip.addEventListener('scroll', function () { if (lastInput === 'touch') settleSoon(180); }, { passive: true });
     /* (7) click / tap a square: to the middle of the visible row, dark with its text. site.js 5b shows the overlay on
        mouse-enter (computer) / tap (touch) and hides it on mouse-leave; the pinned square's mouse-leave is held back
        here, and sent once it lets go (unless the mouse is still on it). */
@@ -125,10 +125,23 @@
       else return;
       var max = strip.scrollWidth - strip.clientWidth;
       if ((d > 0 && strip.scrollLeft >= max - 1) || (d < 0 && strip.scrollLeft <= 1)) return;   /* at the end: the page scrolls */
-      e.preventDefault(); unpin();
-      strip.style.scrollBehavior = 'auto'; strip.scrollLeft += d / z(); strip.style.scrollBehavior = '';
-      settleSoon(260);
+      e.preventDefault(); unpin(); clearTimeout(settleT);
+      glideTo((gliding ? goal : strip.scrollLeft) + d / z());
     }, { passive: false });
+    /* each wheel step adds to a goal the row eases towards, frame by frame, so steps run into one smooth movement */
+    var goal = 0, gliding = false;
+    function glideTo(x) {
+      goal = Math.max(0, Math.min(strip.scrollWidth - strip.clientWidth, x));
+      if (calm) { strip.scrollLeft = goal; return; }
+      if (gliding) return; gliding = true; strip.style.scrollBehavior = 'auto';
+      (function tick() {
+        var d = goal - strip.scrollLeft;
+        if (Math.abs(d) < 0.6) { strip.scrollLeft = goal; gliding = false; strip.style.scrollBehavior = ''; return; }
+        var before = strip.scrollLeft; strip.scrollLeft += Math.sign(d) * Math.max(Math.abs(d) * 0.16, 1);
+        if (strip.scrollLeft === before) { strip.scrollLeft = goal; gliding = false; strip.style.scrollBehavior = ''; return; }   /* rounded away: finish */
+        requestAnimationFrame(tick);
+      })();
+    }
     /* (5) computer: drag with the mouse; keyboard */
     strip.setAttribute('tabindex', '0'); strip.setAttribute('aria-label', 'End-to-End Expertise, scroll sideways');
     if (phone) return;
