@@ -2231,9 +2231,12 @@
       if (!t) return;
       var hdr = document.getElementById('SITE_HEADER'), hb = hdr ? hdr.getBoundingClientRect().height : 0;
       window.scrollTo(0, Math.max(0, t.getBoundingClientRect().top + window.scrollY - hb - 24));
+      document.documentElement.classList.remove('jcd-anchoring');   /* site.js hid the page until now: fade it in here */
     }
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    var run = function () { setTimeout(go, 700); setTimeout(go, 1600); };   /* again once late layout changes have settled */
+    /* the page stays hidden (site.js) until the layout scripts have settled, then lands and fades in; a second pass
+       catches any later shift */
+    var run = function () { setTimeout(go, 700); setTimeout(go, 1600); };
     document.readyState === 'complete' ? run() : window.addEventListener('load', run);
   })();
 })();

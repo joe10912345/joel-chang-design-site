@@ -11,6 +11,14 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-27
 
+### Opening a page at a section: no flash of the top 開到指定段落時不再先閃頁首
+- Joel: "當我按下 buildable 的卡片時，是先跳到產品頁最上面，閃一下後才到我要的頁面". The page waits for its layout scripts
+  before it can scroll to the right place (~0.7 s). Now `site.js` (runs before the first paint) hides the page when the
+  address names a section from `jcd-config.js` `links.anchors`, and `text-anchors.js` fades it in once it is there (never
+  hidden longer than 3 s). Files: `site/assets/js/site.js` (`?v=` bumped), `src/js/global/text-anchors.js`,
+  `src/css/global/base.css`, built `custom.css` / `custom.js`.
+- 從首頁卡片開到指定段落時，頁面先隱藏、捲到位置後才淡入，不再先看到頁首。
+
 ### Home "Buildable Execution Mindset" card opens Wi-Fi 7 HGU/AP "cutting costs" 首頁 04 卡片連到 HGU/AP 降低成本段落
 - Joel: "首頁的這張 buildable mindset 請連到 wifi7 ap 的這張 cutting cost". The 04 REALIZATION card is now a link like
   01 DISCOVERY (whole card, blue outline on hover, the plain >> in its corner) to `wi-fi7-hgu-ap/index.html#dfm-cost`; the

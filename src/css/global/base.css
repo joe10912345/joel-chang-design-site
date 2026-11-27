@@ -5,3 +5,7 @@
 
 :root { --jcd-ease: cubic-bezier(.22, .61, .36, 1); }
 
+/* Opened at a section (site.js adds .jcd-anchoring, custom.js "text-anchors" removes it once scrolled there): the page
+   stays invisible until it is in place, then fades in (Joel 2026-11-27: no flash of the top of the page). */
+html.jcd-anchoring body { opacity: 0; }
+html body { transition: opacity .25s ease; }

@@ -9,6 +9,16 @@
         - tablets (iPad etc.) get the desktop layout, laid out the width jcd-config.js gives (per page type) and scaled to fit;
         - desktop browsers get the desktop layout (a window narrower than 600px gets mobile).
         Add ?layout=desktop or ?layout=mobile to a URL to force one for this tab. */
+  /* 0. Opened at a section (page.html#name from jcd-config.js links.anchors, e.g. home "Buildable Execution Mindset"):
+        keep the page hidden until custom.js "text-anchors" has scrolled there, so the top of the page never flashes first
+        (Joel 2026-11-27: "先跳到產品頁最上面，閃一下後才到我要的頁面"). Never longer than 3 s. */
+  try {
+    var an = decodeURIComponent((location.hash || '').slice(1));
+    if (an && window.JCD_CONFIG && JCD_CONFIG.links && JCD_CONFIG.links.anchors && JCD_CONFIG.links.anchors[an]) {
+      document.documentElement.classList.add('jcd-anchoring');
+      setTimeout(function () { document.documentElement.classList.remove('jcd-anchoring'); }, 3000);
+    }
+  } catch (e) {}
   var touch = false;
   try {
     /* "touch device" = the PRIMARY pointer is a finger. A Windows laptop with a touch screen reports
