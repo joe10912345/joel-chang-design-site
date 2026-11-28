@@ -11,6 +11,12 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### About section headings one size 關於頁各段標題字級一致
+- Joel: "expertise 字體好像沒有跟 patents 一樣大" / "三個平台都要一致". On the phone EXPERTISE and TRUSTED COLLABORATION were 10px,
+  the other headings (WORK EXPERIENCE, EDUCATION, LANGUAGES, SELECTED AWARDS, PATENTS) 11px; both now 11px
+  (`jcd-config.js` `phone.layout.about`, `fs`). Checked: phone all 11px, iPad and computer all 20px; no text overlaps.
+- 手機 About 的 EXPERTISE、TRUSTED COLLABORATION 改成 11px，與其他段標題一致；iPad 與電腦本來就都是 20px。
+
 ### Phone About Expertise: room around the rules 手機 About Expertise 分隔線上下留白
 - Joel: "距離太近了，能不能有呼吸的空間". The Engineering and Branding groups moved down 26px each (`jcd-config.js`
   `phone.layout.about`, `gap`), so each rule now has 20px above and below (was about 7px); the rules are placed again after
