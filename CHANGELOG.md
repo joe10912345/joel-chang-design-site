@@ -11,6 +11,15 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Phone Lifestyle by Joel, aligned 手機 Lifestyle（Joel 排版＋對齊）
+- Joel: "lifestyle 改好了，幫微調". His placement (each first card moved up under its group's title bar) kept, aligned in
+  `jcd-config.js` `phone.layout.lifestyle`: frames and cards on the 20px edges (Phantom Lamp and MG-522 were 1px off);
+  every card flush with its frame's bottom under a 25px bar (Smoky Trace was 2px low); Alian and Water Bucket 10px under
+  the card above (13 / 16px); 54px between the three groups (Lamp → Humidifier was 237px); bar labels 10px inside the
+  frame and centred in the bar; the cards' click areas moved with them (Alian's had been dragged off screen to the right).
+  The section ends 42px under the last card. No overlaps, nothing off screen.
+- 套用 Joel 的 Lifestyle 手機排版並照規範對齊：白框與卡片對齊 20px 邊界、標題列 25px、卡片間距 10px、各組間距 54px、標籤距框內 10px。
+
 ### Phone layout tool: box selection with the left button 排版工具：框選改左鍵
 - Joel: "手機板調整器，圈選改成左鍵". Box selection now starts with a left-button drag from empty space (like Illustrator);
   a plain click there still picks the section; Shift adds to the selection. The right-button version is gone.
