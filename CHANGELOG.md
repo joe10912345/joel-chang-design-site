@@ -11,6 +11,14 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Category pages: the same space under the last card 類別頁最後一張卡片下方空間一致
+- Joel: "Yes, make it equal". Measured to the real end of the page (the earlier 20–135px came from the section boxes,
+  not the page end): every page already had Joel's `categoryBottom` (phone 80px, computer + iPad 280px) except Electronics
+  (phone 102 / computer 297.5px). Cause: `bottom-space.js` counted Wix's old see-through card overlay that hangs below the
+  last card, and ran before the title bars' last layout. It now skips invisible items and measures again after 2.6s.
+  Checked: phone 79.4–80.5px, computer 279.5–280.7px on all six pages.
+- 類別頁最下方空白：除 Electronics 外原本就一致（手機 80px、電腦 280px）；修正 Electronics 多算了隱形的舊圖層，現在六頁都一樣。
+
 ### Phone category pages: 10px between the cards of a group 手機類別頁同組卡片間距 10px
 - Joel: "Yes, make them 10px". Inside a group the cards were 8–15px apart (Networking, Defense, Electronics). Each card's box
   gets the difference as `gap` in `jcd-config.js` `phone.layout`; the group gaps were re-set to 54px with exact (decimal)

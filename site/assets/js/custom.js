@@ -1501,7 +1501,11 @@
       for (var k = 0; k < 3; k++) {   /* measure, correct, measure again (the page end can shift with the change) */
         var bottom = -1e9;
         [].forEach.call(document.querySelectorAll('#PAGES_CONTAINER img, #PAGES_CONTAINER .wixui-rich-text, #PAGES_CONTAINER .wixui-vector-image'), function (e) {
-          if (e.closest('[id^="bgMedia_"]')) return;
+          if (e.closest('[id^="bgMedia_"], .jcd-gg-hide')) return;
+          /* only what is seen: Wix's old card overlays are vector images whose drawing is see-through (static-overrides.css)
+             and hung below the last card on Electronics (Joel 2026-11-28) */
+          var sv = e.querySelector && e.querySelector('svg'); if (sv && getComputedStyle(sv).opacity === '0') return;
+          if (getComputedStyle(e).opacity === '0') return;
           var r = e.getBoundingClientRect(); if (r.width > 20 && r.height > 5 && getComputedStyle(e).visibility !== 'hidden') bottom = Math.max(bottom, r.bottom);
         });
         if (bottom < -1e8) return;
@@ -1515,7 +1519,7 @@
       }
     }
     ready(function () { setTimeout(fit, 0); });
-    window.addEventListener('load', function () { setTimeout(fit, 300); });
+    window.addEventListener('load', function () { setTimeout(fit, 300); setTimeout(fit, 2600); });   /* again after the title bars' last layout (catalog-title-bars.js, 2.2s) */
     var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fit, 200); });
   })();
   /* Phone: every link and button can be pressed from at least 44 x 44 (Joel 2026-11-27, UI/UX review item 2: the menu
