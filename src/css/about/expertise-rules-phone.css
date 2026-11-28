@@ -1,0 +1,6 @@
+/* Phone About "Expertise": thin rule above "Engineering" and "Branding" (Joel 2026-11-28: "手機版的 engineering 上、Branding
+   上也要加入襯線"); the same 1px grey as the column dividers on the computer, across the content width (20px page margins).
+   Placed by expertise-rules-phone.js. */
+.jcd-rule-above { position: relative; overflow: visible !important; }
+.jcd-rule-above::before { content: ""; position: absolute; left: 0; top: var(--jcd-rule-top, -14px); width: calc(100vw - 40px);
+  border-top: 1px solid #7b7b7b; pointer-events: none; }

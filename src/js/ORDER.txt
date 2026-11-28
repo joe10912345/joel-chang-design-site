@@ -1,5 +1,6 @@
 global/wix-fixed-backgrounds.js
 about/two-column-lists-phone.js
+about/expertise-rules-phone.js
 product/info-table-phone.js
 global/phone-layout-tidy.js
 global/phone-text-size.js

@@ -11,6 +11,16 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### About Expertise dividers 關於頁 Expertise 分隔線
+- Joel: "電腦版的 about 技能的襯線出問題了！" / "ipad 版". The divider between Engineering and Branding lay flat across "Product
+  Design Strategy": `even-margins-desktop.js` nudged it with `transform: translateX(…)`, which replaced the rotation that
+  turns the Wix line upright (it only kicked in once the Branding text grew, "Design Guidelines · System"). It now uses the
+  separate `translate` property, so the line stays upright and sits between the two columns (computer 1536 / 1920, iPad).
+- Joel: "手機板的 engineering 上、Branding 上也要加入襯線". New thin rules above "Engineering" and "Branding" on the phone, the same
+  1px grey (#7b7b7b) as the computer dividers, across the content width, halfway between the groups
+  (`src/js/about/expertise-rules-phone.js`, `src/css/about/expertise-rules-phone.css`).
+- 電腦與 iPad 版 Expertise 第二條直線被轉成橫線壓在文字上，已修正；手機版 Engineering、Branding 上方新增細線。
+
 ### Phone Wi-Fi 7 HGU/AP by Joel; final hand-over check 手機 Wi-Fi 7 HGU/AP（Joel 排版）；交接前總檢查
 - Joel: "wifi 7 ap 手機板我有修改排版，請更新". His saved values in `jcd-config.js` `phone.layout['wi-fi7-hgu-ap']` (one photo
   moved, three photos a little larger); snapped: `comp-m5t5qc84` to the 20px right edge (was 13px). Two product photos run

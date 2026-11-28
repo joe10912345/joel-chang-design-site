@@ -125,6 +125,34 @@
     grids.forEach(function (g) { var h = g.closest('[id^="comp-"]'); if (!h) return; var r = h.getBoundingClientRect();
       h.style.setProperty('width', ((pw - 20 - r.left) / zz).toFixed(1) + 'px', 'important'); });
   });
+  /* Phone About "Expertise": a thin rule above "Engineering" and above "Branding", like the dividers between the three
+     columns on the computer (Joel 2026-11-28: "手機版的 engineering 上、Branding 上也要加入襯線"). The rule sits halfway
+     between the group above and the heading, across the content width; drawn by expertise-rules-phone.css. Phone only. */
+  ready(function () {
+    if (!document.body.classList.contains('device-mobile-optimized') || !/\/about\//.test(location.pathname)) return;
+    var heads = ['comp-mujnicqn', 'comp-mujnhrtl'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+    function glyphs(e) {
+      var g = document.createRange(); g.selectNodeContents(e);
+      return [].filter.call(g.getClientRects(), function (q) { return q.width > 1 && q.height > 1; });
+    }
+    function place() {
+      heads.forEach(function (h) {
+        var hr = glyphs(h); if (!hr.length) return;
+        var top = Math.min.apply(null, hr.map(function (q) { return q.top; }));
+        var sec = h.closest('section') || document.body, above = -1e9;
+        /* the lowest text of the group above (its last line) */
+        [].forEach.call(sec.querySelectorAll('[data-testid="richTextElement"]'), function (t) {
+          if (h.contains(t) || t.contains(h)) return;
+          glyphs(t).forEach(function (q) { if (q.bottom <= top + 1 && q.bottom > above) above = q.bottom; });
+        });
+        if (above < -1e8) return;
+        h.classList.add('jcd-rule-above');
+        h.style.setProperty('--jcd-rule-top', ((above + top) / 2 - h.getBoundingClientRect().top).toFixed(1) + 'px');
+      });
+    }
+    place(); window.addEventListener('load', function () { setTimeout(place, 300); setTimeout(place, 2600); });
+    var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(place, 200); });
+  });
   /* Phone product pages: the info table (Client / Year / Designer / Contribution) as 2 x 2 (Joel 2026-11-27: chose B of
      preview/mockups/info-table-phone.html, "但要注意下方文字與黑底要留有空間"). In Wix it is four text blocks side by side,
      20-63px wide, so its text could only be 6-9px. Here the four blocks move into one grid the page's width (20px
@@ -1163,7 +1191,7 @@
       var head = $('comp-mujj9yxk'); if (!head) return;   /* "EXPERTISE": the page's left text edge */
       var brandParts = [$('comp-mujnhrtl'), $('comp-mujnglui')], divider = $('comp-mujnu0tu'), eng = $('comp-mujngiyo');
       var moved = brandParts.concat([divider]).filter(Boolean);
-      moved.forEach(function (e) { e.style.transform = ''; });
+      moved.forEach(function (e) { e.style.removeProperty('translate'); });
       var rec = document.querySelector('.jcd-rec'); if (rec) { rec.style.width = ''; rec.style.marginLeft = ''; rec.style.marginRight = ''; rec.style.removeProperty('transform'); }   /* heading-spacing.js nudges it with a transform; the margin below places it exactly */
       var vw = document.documentElement.clientWidth, hb = textBox(head); if (!hb) return;
       var right = vw - hb.l;   /* the mirrored edge, window px */
@@ -1178,10 +1206,12 @@
       var bt = brandParts[1] && textBox(brandParts[1]), et = eng && textBox(eng);
       if (bt && bt.r > right + 0.5) {
         var dx = bt.r - right;
-        brandParts.forEach(function (e) { if (e) e.style.transform = 'translateX(' + (-dx / z()).toFixed(1) + 'px)'; });
+        /* the CSS translate property, not transform: the divider is a Wix line turned upright with a transform, and
+           replacing it laid the line flat across "Product Design Strategy" (Joel 2026-11-28: "about 技能的襯線出問題了") */
+        brandParts.forEach(function (e) { if (e) e.style.setProperty('translate', (-dx / z()).toFixed(1) + 'px 0'); });
         if (divider && et) {
           var dr = divider.getBoundingClientRect(), mid = (et.r + bt.l - dx) / 2;
-          divider.style.transform = 'translateX(' + ((mid - (dr.left + dr.width / 2)) / z()).toFixed(1) + 'px)';
+          divider.style.setProperty('translate', ((mid - (dr.left + dr.width / 2)) / z()).toFixed(1) + 'px 0');
         }
       }
     }

@@ -61,6 +61,7 @@ product/defense-website.css
 product/ai-tool-kit-paravents.css
 about/present-glow.css
 about/two-column-lists-phone.css
+about/expertise-rules-phone.css
 product/t-interceptormp-award.css
 product/t-blade-stowage.css
 global/scroll-reveal.css

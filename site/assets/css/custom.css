@@ -889,6 +889,12 @@ body:not(.device-mobile-optimized) :is(#comp-mojwork6, #comp-mojwmx3v, #comp-moj
 .jcd-tc { display: grid; column-gap: 8px; row-gap: 10px; align-items: baseline; }   /* baseline: each date sits on the line of its title, whatever the sizes (Joel 2026-11-27: Education years were not level with "Master of Design") */
 .jcd-tc-cell { min-width: 0; }
 .jcd-tc-cell > * { margin: 0 !important; }
+/* Phone About "Expertise": thin rule above "Engineering" and "Branding" (Joel 2026-11-28: "手機版的 engineering 上、Branding
+   上也要加入襯線"); the same 1px grey as the column dividers on the computer, across the content width (20px page margins).
+   Placed by expertise-rules-phone.js. */
+.jcd-rule-above { position: relative; overflow: visible !important; }
+.jcd-rule-above::before { content: ""; position: absolute; left: 0; top: var(--jcd-rule-top, -14px); width: calc(100vw - 40px);
+  border-top: 1px solid #7b7b7b; pointer-events: none; }
 /* T. Interceptor MP, Golden Pin badge (Joel 2026-11-27: "獎項標籤跟文字有歪掉，標章要裁切成正方(把圖片文字裁掉)，然後把
    下方的字移上去"). The badge is now only the square gold mark (t-interceptormp-04-120x120.webp, from the original logo).
    Computer/iPad: square 33px next to the text. Phone: square 26px, the award text moved up beside it, top-aligned. */

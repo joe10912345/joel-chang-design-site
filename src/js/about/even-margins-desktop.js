@@ -21,7 +21,7 @@
       var head = $('comp-mujj9yxk'); if (!head) return;   /* "EXPERTISE": the page's left text edge */
       var brandParts = [$('comp-mujnhrtl'), $('comp-mujnglui')], divider = $('comp-mujnu0tu'), eng = $('comp-mujngiyo');
       var moved = brandParts.concat([divider]).filter(Boolean);
-      moved.forEach(function (e) { e.style.transform = ''; });
+      moved.forEach(function (e) { e.style.removeProperty('translate'); });
       var rec = document.querySelector('.jcd-rec'); if (rec) { rec.style.width = ''; rec.style.marginLeft = ''; rec.style.marginRight = ''; rec.style.removeProperty('transform'); }   /* heading-spacing.js nudges it with a transform; the margin below places it exactly */
       var vw = document.documentElement.clientWidth, hb = textBox(head); if (!hb) return;
       var right = vw - hb.l;   /* the mirrored edge, window px */
@@ -36,10 +36,12 @@
       var bt = brandParts[1] && textBox(brandParts[1]), et = eng && textBox(eng);
       if (bt && bt.r > right + 0.5) {
         var dx = bt.r - right;
-        brandParts.forEach(function (e) { if (e) e.style.transform = 'translateX(' + (-dx / z()).toFixed(1) + 'px)'; });
+        /* the CSS translate property, not transform: the divider is a Wix line turned upright with a transform, and
+           replacing it laid the line flat across "Product Design Strategy" (Joel 2026-11-28: "about 技能的襯線出問題了") */
+        brandParts.forEach(function (e) { if (e) e.style.setProperty('translate', (-dx / z()).toFixed(1) + 'px 0'); });
         if (divider && et) {
           var dr = divider.getBoundingClientRect(), mid = (et.r + bt.l - dx) / 2;
-          divider.style.transform = 'translateX(' + ((mid - (dr.left + dr.width / 2)) / z()).toFixed(1) + 'px)';
+          divider.style.setProperty('translate', ((mid - (dr.left + dr.width / 2)) / z()).toFixed(1) + 'px 0');
         }
       }
     }
