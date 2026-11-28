@@ -11,6 +11,14 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Phone category pages: 54px between groups everywhere 手機類別頁各組間距統一 54px
+- Joel: "這張圖上方與其他圖的空間好像沒有照規範" (Experimental, Assistive Devices). Measured the space above every group (title
+  frame) on the phone: Experimental 14 / 10px, Defense 31 / 10px, Networking 52 / 50px, Lifestyle / Industrial 55px
+  (the rule from Industrial / Lifestyle and Electronics: 54px). Each group's box now gets the difference as `gap` in
+  `jcd-config.js` `phone.layout` (experimental, defense, networking, lifestyle, industrial); every group now starts 54px
+  under the card above, title bars still 25px with the cards flush, no overlaps.
+- 手機類別頁每一組上方的間距統一為 54px（Experimental、Defense、Networking、Lifestyle、Industrial）。
+
 ### Category frames white at rest on the computer 電腦版類別頁白框平常就顯示
 - Joel: "桌機版的類別頁產品圖框始終都要顯示白色，你現在是 hover 才有白框". The new frame line sat on the card's ::after, which on
   the computer is the hover shade (static-overrides.css, opacity 0 until hover); ::before is the tilt sheen, and the
