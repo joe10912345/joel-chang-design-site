@@ -1590,15 +1590,18 @@
       fx.querySelector('small').textContent = n[0];
       fx.querySelector('.jcd-nm').appendChild(document.createTextNode(n[1]));
       item.appendChild(fx);
-      if (touch) return;
       /* the spotlight moves to the tile under the mouse; in the gaps between tiles it stays where it was
-         (Joel 2026-11-26: going through a gap made everything flash bright), and only leaving the grid clears it */
-      a.addEventListener('mouseenter', function () {
+         (Joel 2026-11-26: going through a gap made everything flash bright), and only leaving the grid clears it.
+         On every platform for a mouse or trackpad, as on the category pages (Joel 2026-11-28: "手機板、平板的首頁 12 張圖，
+         若我滑鼠 hover 後沒效果"); a finger never sets it, so nothing stays lit after a tap. */
+      a.addEventListener('pointerenter', function (e) {
+        if (e.pointerType !== 'mouse') return;
         [].forEach.call(g.querySelectorAll('a.jcd-hot-tile'), function (o) { if (o !== a) o.classList.remove('jcd-hot-tile'); });
         g.classList.add('jcd-hot'); a.classList.add('jcd-hot-tile');
       });
     });
-    if (!touch) g.addEventListener('mouseleave', function () {
+    g.addEventListener('pointerleave', function (e) {
+      if (e.pointerType !== 'mouse') return;
       g.classList.remove('jcd-hot');
       [].forEach.call(g.querySelectorAll('a.jcd-hot-tile'), function (o) { o.classList.remove('jcd-hot-tile'); });
     });

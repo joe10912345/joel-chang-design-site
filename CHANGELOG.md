@@ -11,6 +11,13 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Home Works grid: mouse hover on phone and iPad too 首頁 12 張圖：手機與平板也有滑鼠 hover
+- Joel: "手機板、平板的首頁 12 張圖，若我滑鼠 hover 後沒效果，但他們的類別頁 hover 有效果". The grid's spotlight (tile under the
+  mouse bright and zoomed with its white line, the others dimmed) only listened to the mouse on the computer layout. It now
+  follows a mouse or trackpad on every platform (pointer events, `pointerType === 'mouse'`); a finger never sets it, so
+  nothing stays lit after a tap. The touch layout keeps its always-visible names. File: `src/js/home/selected-grid.js`.
+- 首頁 12 張圖的滑鼠聚光效果，手機與平板版面也會跟著滑鼠或觸控板；手指觸控不會觸發。
+
 ### Phone Lifestyle: Drone photo fades in again 手機 Lifestyle：Drone 圖片恢復顯示
 - Joel: "drone 圖片不見了". The scroll fade-in (`scroll-reveal.js`) used the top of each piece's own box. Lifestyle's Drone card
   was moved up into its frame by the phone layout, but its outer box stayed where Wix put it — below the end of the
