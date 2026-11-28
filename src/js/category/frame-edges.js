@@ -8,7 +8,7 @@
   ready(function () {
     if (!/\/(networking|defense|electronics|industrial|lifestyle|experimental)\//.test(location.pathname)) return;
     /* Joel's own placements win (Joel 2026-11-28: "我親自調整"): not in his phone layout tool (?tool=), and on the phone
-       a component he moved or sized there (jcd-config.js phone.layout) is left alone */
+       a component he set there (jcd-config.js phone.layout), or one inside / around it, is left alone */
     if (/[?&]tool=/.test(location.search)) return;
     var phone = document.body.classList.contains('device-mobile-optimized');
     var slug = location.pathname.replace(/^.*\/m\//, '').replace(/(^|\/)index\.html$/, '').replace(/\/$/, '').split('/')[0];
@@ -62,7 +62,7 @@
         });
       });
       moves.forEach(function (m, c) {
-        var o = own[c.id]; if (o && (o.x || o.w)) return;
+        if (own[c.id] || [].some.call(Object.keys(own), function (id) { var e = document.getElementById(id); return e && (e.contains(c) || c.contains(e)); })) return;   /* anything Joel placed (or inside / around it) */
         var cs = getComputedStyle(c);
         done.push([c, c.style.getPropertyValue('left'), c.style.getPropertyValue('width')]);
         if (cs.position === 'static') c.style.position = 'relative';

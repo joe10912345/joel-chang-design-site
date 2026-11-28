@@ -11,6 +11,19 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Phone Industrial by Joel, aligned 手機 Industrial（Joel 排版＋對齊）
+- Joel: "industrial 頁面我排好了，位置相對正確，但我排的很 rough，再幫我照規範調整看看". His placement (each card moved up under
+  its group's title bar, 2×2 photos under the Advantech card) kept; aligned to the rules in `jcd-config.js`
+  `phone.layout.industrial`: both title frames, the three cards and the 2×2 photos on the 20px page edges (they were 1–6px
+  off; the Welding frame had Wix's 1px offset); "Welding Machine" / "Accessories Design" 10px inside the frame's left edge,
+  "Power Tools" / "Business Hardware Solutions" 10px inside its right edge, labels centred in the bar; both bars 25px
+  (Welding frame 199 → 200px); cards flush with the frame bottom; JCG card 10px under its group; photos on a 10px grid; the
+  Advantech group pulled up to 54px under the JCG card (as between groups on the other category pages; it was 236px);
+  the section ends 33px under the last photo. The cards' click areas moved with them. No overlaps, nothing off screen.
+- `src/js/category/frame-edges.js`: on the phone it leaves alone everything Joel set in the tool and what is inside /
+  around it.
+- 套用 Joel 的 Industrial 手機排版並照規範對齊：白框、卡片、2×2 圖片對齊左右 20px 邊界，標籤距框內 10px，兩組間距 54px，最後一張圖下方 33px。
+
 ### Phone layout tool: right-drag box selection; Joel's placements win over frame alignment 排版工具：右鍵框選
 - Joel: "你能不能在排版調整器加入右鍵拖曳多選，我親自調整" (the Lamp group still looked 1px off on his phone; in layout px
   every frame there is at 20–300, so the difference is sub-pixel drawing). `preview/mockups/phone-layout.html`: hold the
