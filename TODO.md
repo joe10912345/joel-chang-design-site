@@ -4,6 +4,8 @@ Open items. When you finish one, move it to `CHANGELOG.md` with the date. Add ne
 未完成事項。完成後移到 `CHANGELOG.md` 並註明日期；新事項加在這裡（中英對照）。
 
 ## Waiting on Joel's decision 等 Joel 決定
+- [ ] **More interaction ideas**: `preview/mockups/interaction-ideas.html` has 7 more proposals (detail loupe, hero depth, heading reveal, photo reveal, design hotspots, magnetic >>, reading progress); the logo marquee (08) is built. Which next?
+      **其他互動提案**：interaction-ideas.html 還有 7 個提案（放大鏡、首圖景深、標題揭示、照片揭幕、設計重點標註、磁吸 >>、閱讀進度），跑馬燈（08）已完成，下一個做哪個？
 - [ ] **Gaming Home Gateway: the same sentence twice** — the intro's first paragraph is word for word the first sentence of "Project Background". Which one goes?
       **Gaming Home Gateway 同一句出現兩次**：開頭第一段和 Project Background 第一句相同，要刪哪一處？
 - [ ] **Phone: Wi-Fi 7 2022 + T-Blade top images** are trimmed at the sides. Options: a square phone crop, or the whole 4:3 image (shorter hero).

@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>首頁 合作品牌跑馬燈</title>
+<!-- Mockup only (Joel 2026-11-28: "合作跑馬燈好像蠻有意思的，請做一張完整首頁的mockup"): the real home page in phone / iPad / computer frames,
+     with the client logo wall (comp-mv6mx9mx, home-18) swapped for a moving marquee inside each frame. Nothing on the live site changes.
+     Open http://localhost:8766/preview/mockups/home-marquee.html ?d=all|phone|ipad|ipadl|desktop &v=now|box|wide -->
+<style>
+  :root { color-scheme: dark; --bg:#111; --fg:#ddd; --mut:#888; --jcd-blue:#0062D9; --jcd-blue-rgb:0,98,217; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--fg); font:13px/1.4 system-ui, "Microsoft JhengHei", sans-serif; }
+  header { display:flex; flex-wrap:wrap; gap:8px; align-items:center; padding:8px 12px; border-bottom:1px solid #222; }
+  header a, header button { background:#1c1c1c; color:var(--fg); border:1px solid #333; border-radius:4px; padding:5px 10px; font:inherit; text-decoration:none; cursor:pointer; }
+  header a.on, header button.on { border-color:var(--jcd-blue); background:rgba(var(--jcd-blue-rgb),.22); color:#fff; }
+  header .lab { color:var(--mut); margin-left:6px; }
+  header .sp { flex:1; }
+  #desc { padding:6px 12px 0; color:#c9cad2; font-size:12.5px; min-height:24px; }
+  main { display:flex; gap:16px; justify-content:center; align-items:flex-start; padding:12px; height:calc(100% - 84px); overflow:auto; }
+  .dev { display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .dev b { font-weight:600; } .dev span { color:var(--mut); }
+  .box { position:relative; overflow:hidden; border:1px solid #333; border-radius:10px; background:#000; }
+  .box iframe { position:absolute; left:0; top:0; border:0; transform-origin:0 0; background:#000; }
+</style>
+</head>
+<body>
+<header>
+  <a data-d="all">全部並排</a><a data-d="phone">手機</a><a data-d="ipad">iPad 直</a><a data-d="ipadl">iPad 橫</a><a data-d="desktop">電腦</a>
+  <span class="lab">方案</span>
+  <button data-v="now">現況（靜態）</button>
+  <button data-v="box">A 原位置流動</button>
+  <button data-v="wide">B 延伸到畫面邊緣</button>
+  <span class="sp"></span>
+  <button id="toLogos">捲到 logo 區</button>
+  <button id="reload">重新整理</button>
+</header>
+<div id="desc"></div>
+<main id="main"></main>
+<script src="../../site/assets/js/jcd-config.js"></script>
+<script>
+/* Frame sizes as preview/devices.html (Joel 2026-11-28): iPad widths read from jcd-config.js, desktop 1920x1080, phone 320x693. */
+var SITE = location.origin + '/site';
+var qs = new URLSearchParams(location.search);
+var TW = JCD_CONFIG.tabletWidth('', false), TWP = JCD_CONFIG.tabletWidth('', true);
+var DEV = {
+  phone:   { name:'手機', note:'320 版面', w:320, h:693 },
+  ipad:    { name:'iPad Air 11 直向', note:'排成 ' + TWP + ' 寬', w:TWP, h:Math.round(TWP * 1180 / 820) },
+  ipadl:   { name:'iPad Air 11 橫向', note:'排成 ' + TW + ' 寬', w:TW, h:Math.round(TW * 820 / 1180) },
+  desktop: { name:'電腦 1920×1080', note:'', w:1920, h:1080 }
+};
+var d = DEV[qs.get('d')] ? qs.get('d') : 'all';
+var V = /^(now|box|wide)$/.test(qs.get('v')) ? qs.get('v') : 'box';
+var DESC = {
+  now:  '<b>現況</b>：3 排 × 6 個 logo 的靜態磚牆。手機上每個 logo 只有約 47px 寬，字很難看清楚。',
+  box:  '<b>A 原位置流動</b>：磚牆位置、大小不變，三排交錯方向慢慢流動，左右兩端淡出。捲動頁面時會加快，停下來就回到慢速；電腦滑過某一排會暫停，觸控可以左右拖動。三個平台都是 3 排；每塊 logo 依原圖精準裁切，間距一致，接縫不會出現大空隙。',
+  wide: '<b>B 延伸到畫面邊緣</b>：和 A 一樣，但流動帶從磚牆左緣一路延伸到螢幕右緣（手機是左右滿版），logo 從畫面外流進來，感覺更開闊；左側的成就數字不受影響。'
+};
+var frames = [];
+
+function setV(v) {
+  V = v;
+  document.querySelectorAll('header button[data-v]').forEach(function (b) { b.classList.toggle('on', b.dataset.v === v); });
+  document.getElementById('desc').innerHTML = DESC[v];
+  frames.forEach(function (f) { try { f.contentWindow.__jcdMq && f.contentWindow.__jcdMq(v); } catch (e) {} });
+  history.replaceState(null, '', '?d=' + d + '&v=' + v);
+}
+document.querySelectorAll('header button[data-v]').forEach(function (b) { b.onclick = function () { setV(b.dataset.v); }; });
+document.querySelectorAll('header a').forEach(function (a) {
+  a.href = '?d=' + a.dataset.d + '&v=' + V; if (a.dataset.d === d) a.className = 'on';
+  a.onclick = function () { a.href = '?d=' + a.dataset.d + '&v=' + V; };
+});
+document.getElementById('reload').onclick = function () { build(); };
+document.getElementById('toLogos').onclick = function () { frames.forEach(scrollToLogos); };
+
+function scrollToLogos(f) {
+  try { var w = f.contentWindow, c = w.document.getElementById('comp-mv6mx9mx'); if (!c) return;
+    var r = c.getBoundingClientRect(), z = w.__jcdZoom || 1;   /* rect already on screen px with CSS zoom applied in Chromium */
+    w.scrollTo({ top: w.scrollY + r.top + r.height / 2 - w.innerHeight / 2, behavior: 'smooth' }); } catch (e) {}
+}
+
+/* ---- Runs INSIDE each site frame: replaces the logo image with the marquee ---- */
+function marqueeInFrame(start) {
+  var doc = document, comp = doc.getElementById('comp-mv6mx9mx'), img = doc.getElementById('img_comp-mv6mx9mx');
+  if (!comp || !img || window.__jcdMq) return;
+  var phone = /\/m\//.test(location.pathname);
+  var SRC = new URL('/site/assets/media/home/home-18-1908x528.webp', location.href).href;
+  var RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* the image is a 6 x 3 grid of logo tiles; phone: 2 rows of 9 so each logo is ~1.5x larger */
+  var LOGOS = []; for (var r = 0; r < 3; r++) for (var c = 0; c < 6; c++) LOGOS.push([c, r]);
+  var st = doc.createElement('style');
+  st.textContent =
+    '.jmq{position:absolute;top:0;height:100%;display:flex;flex-direction:column;justify-content:space-between;z-index:2;' +
+    '-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}' +
+    '.jmq.wide{-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}' +
+    '.jmq-row{position:relative;overflow:hidden;touch-action:pan-y;cursor:grab;flex:none}' +
+    '.jmq-row.drag{cursor:grabbing}' +
+    '.jmq-track{position:absolute;left:0;top:0;height:100%;display:flex;will-change:transform}' +
+    '.jmq-t{flex:none;height:100%;background-repeat:no-repeat;background-size:600% 300%;transition:filter .35s cubic-bezier(.2,.7,.2,1)}' +
+    '.jmq-row:hover .jmq-t{filter:brightness(.8)} .jmq-row:hover .jmq-t:hover{filter:brightness(1.35)}' +
+    '@media (hover:none){.jmq-row:hover .jmq-t{filter:none}}';
+  doc.head.appendChild(st);
+
+  var box = doc.createElement('div'); box.className = 'jmq'; comp.appendChild(box);
+  var rows = [], boost = 0, lastY = scrollY, mode = start;
+
+  /* Exact tile boxes measured in home-18-1908x528 (Joel 2026-11-28: "有些接縫空間很大"): the tiles are not evenly placed in the
+     image (left margin 7px, right 15px, rows start at 12 / 183 / 354), so each tile is cropped to its own box and every gap is the same. */
+  var TX = [7, 324, 641, 958, 1274, 1590], TY = [12, 183, 354], TWI = 303, THI = 158, GAP = 13.5 / 158;
+  function tileEl(t, h) {
+    var e = doc.createElement('div'); e.className = 'jmq-t';
+    e.style.width = (h * TWI / THI) + 'px'; e.style.marginRight = (h * GAP) + 'px';
+    e.style.backgroundImage = 'url("' + SRC + '")';
+    e.style.backgroundSize = (1908 / TWI * 100) + '% ' + (528 / THI * 100) + '%';
+    e.style.backgroundPosition = (TX[t[0]] / (1908 - TWI) * 100) + '% ' + (TY[t[1]] / (528 - THI) * 100) + '%';
+    return e;
+  }
+  function layout() {
+    box.innerHTML = ''; rows = [];
+    var H = comp.offsetHeight, W = comp.offsetWidth, z = window.__jcdZoom || 1;
+    var left = 0, width = W;
+    if (mode === 'wide') {
+      var cr = comp.getBoundingClientRect(), vw = doc.documentElement.clientWidth;
+      if (phone) { left = -cr.left / z; width = vw / z; } else { width = (vw - cr.left) / z; }
+    }
+    box.className = 'jmq' + (mode === 'wide' ? ' wide' : '');
+    box.style.left = left + 'px'; box.style.width = width + 'px';
+    /* 3 rows of 6 on every device (Joel 2026-11-28: phone also three rows); rows fill the box with the same gap between rows as between tiles */
+    var groups = [LOGOS.slice(0, 6), LOGOS.slice(6, 12), LOGOS.slice(12)];
+    var rh = H / (3 + 2 * GAP);
+    box.style.justifyContent = 'space-between';
+    groups.forEach(function (g, i) {
+      var row = doc.createElement('div'); row.className = 'jmq-row'; row.style.height = rh + 'px';
+      var tr = doc.createElement('div'); tr.className = 'jmq-track';
+      var one = g.length * rh * (TWI / THI + GAP);   /* one set incl. gaps = seamless loop length */
+      var copies = Math.ceil(width / one) + 2;
+      for (var k = 0; k < copies; k++) g.forEach(function (t) { tr.appendChild(tileEl(t, rh)); });
+      row.appendChild(tr); box.appendChild(row);
+      var R = { el: row, tr: tr, len: one, off: -one * (i % 2 ? .5 : 0), dir: i % 2 ? 1 : -1, v: 0, hold: false, drag: false };
+      row.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') R.hold = true; });
+      row.addEventListener('pointerleave', function () { if (!R.drag) R.hold = false; });
+      row.addEventListener('pointerdown', function (e) { R.drag = true; R.hold = true; R.px = e.clientX; R.v = 0; row.classList.add('drag'); try { row.setPointerCapture(e.pointerId); } catch (x) {} });
+      row.addEventListener('pointermove', function (e) { if (!R.drag) return; var dx = (e.clientX - R.px) / z; R.px = e.clientX; R.off += dx; R.v = dx * 60; });
+      function up(e) { if (!R.drag) return; R.drag = false; R.hold = e.pointerType === 'mouse' && row.matches(':hover'); row.classList.remove('drag'); }
+      row.addEventListener('pointerup', up); row.addEventListener('pointercancel', up);
+      rows.push(R);
+    });
+  }
+  function apply(m) {
+    mode = m;
+    if (m === 'now') { box.style.display = 'none'; img.style.visibility = ''; return; }
+    box.style.display = ''; img.style.visibility = 'hidden'; layout();
+  }
+  addEventListener('scroll', function () { boost = Math.min(160, boost + Math.abs(scrollY - lastY) * .6); lastY = scrollY; }, { passive: true });
+  var t0 = performance.now(), rz;
+  addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(function () { if (mode !== 'now') layout(); }, 150); });
+  (function tick(now) {
+    var dt = Math.min(.05, (now - t0) / 1000); t0 = now; boost *= Math.pow(.05, dt);
+    var base = RM ? 0 : (phone ? 14 : 20) + boost;   /* layout px per second */
+    if (mode !== 'now') rows.forEach(function (R) {
+      if (!R.drag) { R.v *= Math.pow(.02, dt); R.off += (R.hold ? 0 : base * R.dir) * dt + R.v * dt; }
+      R.off = ((R.off % R.len) - R.len) % R.len;   /* keep within one set: seamless loop */
+      R.tr.style.transform = 'translate3d(' + R.off + 'px,0,0)';
+    });
+    requestAnimationFrame(tick);
+  })(t0);
+  window.__jcdMq = apply;
+  apply(start);
+}
+
+var main = document.getElementById('main');
+function build() {
+  main.innerHTML = ''; frames = [];
+  var list = d === 'all' ? ['phone', 'ipad', 'ipadl', 'desktop'] : [d];
+  var W = main.clientWidth - 24 - 16 * (list.length - 1), H = main.clientHeight - 24 - 40;
+  var ratio = list.reduce(function (s, k) { return s + DEV[k].w / DEV[k].h; }, 0);
+  var h = Math.min(H, W / ratio);
+  list.forEach(function (k) {
+    var v = DEV[k], s = h / v.h;
+    var wrap = document.createElement('div'); wrap.className = 'dev';
+    wrap.innerHTML = '<div><b>' + v.name + '</b> <span>' + v.note + '</span></div>';
+    var box = document.createElement('div'); box.className = 'box';
+    box.style.width = Math.round(v.w * s) + 'px'; box.style.height = Math.round(v.h * s) + 'px';
+    var f = document.createElement('iframe');
+    f.width = v.w; f.height = v.h; f.style.transform = 'scale(' + s + ')';
+    f.src = SITE + '/?' + (k === 'ipad' || k === 'ipadl' ? 'tablet=1&' : '') + 'pv=' + Date.now();
+    f.addEventListener('load', function () {
+      try {
+        var cd = f.contentDocument, st = cd.createElement('style');
+        st.textContent = 'html{scrollbar-width:none}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}'; cd.head.appendChild(st);
+        var go = function () { f.contentWindow.eval('(' + marqueeInFrame.toString() + ')(' + JSON.stringify(V) + ')'); scrollToLogos(f); };
+        setTimeout(go, 900);   /* after site.js has laid out the page (zoom, phone layout) */
+      } catch (e) {}
+    });
+    box.appendChild(f); wrap.appendChild(box); main.appendChild(wrap); frames.push(f);
+  });
+}
+setV(V); build();
+var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(build, 200); });
+</script>
+</body>
+</html>

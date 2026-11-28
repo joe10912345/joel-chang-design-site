@@ -11,6 +11,19 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Home client logos move (marquee) 首頁合作品牌 logo 跑馬燈
+- Joel: "有沒有甚麼有趣的互動感可以增加到網站上? 提案mockup給我" → picked the logo marquee ("合作跑馬燈好像蠻有意思的"), option A
+  ("A可以，但手機板要變三排，然後我發現有些接縫空間很大") → "做進網站". The client logo wall on the home page (AT&T, Google Fiber, Ciena…)
+  is now 3 slowly moving rows in the same box on phone, iPad and computer: alternate directions, faded ends, faster while the
+  page scrolls, a row pauses under the mouse (computer), drag / fling with a finger or mouse (vertical swipes still scroll).
+  Each logo tile is cropped to its exact box in `home-18-1908x528.webp` (the tiles are unevenly placed in the image, which made
+  big seams), so every gap is the same and the loop is seamless. Reduced motion keeps the still image. Checked: phone 320,
+  iPad portrait + landscape (1320), computer 1536 / 1920 / 3840.
+  Files: `src/js/home/logo-marquee.js`, `src/css/home/logo-marquee.css`, `src/*/ORDER.txt`, built `custom.css` / `custom.js`;
+  mockups `preview/mockups/interaction-ideas.html` (8 interaction proposals) and `preview/mockups/home-marquee.html`.
+- 首頁合作品牌 logo 牆改成跑馬燈（方案 A）：三個平台都是 3 排，在原位置交錯方向慢慢流動、兩端淡出；捲動頁面時加快，電腦滑鼠停在某排會暫停，
+  手指或滑鼠可以左右拖動。每塊 logo 依原圖精準裁切，間距一致，接縫不再有大空隙；開啟「減少動態效果」時維持原本的靜態圖。
+
 ### Folder clean-up 資料夾清理
 - Joel: "資料夾可以把不需要的清乾淨了…以這版為主" → "你建議的刪除". Removed from the repo (still in git history): `reference/archive/`
   (export-era screenshots and comparisons, 126 MB; the local-only `unused-wix-media/` stays), `i18n-archive/` (the old,

@@ -9,7 +9,7 @@ Joel 為這個網站定下的視覺規則。**任何人（或 AI）改外觀都�
 版面數字在 `site/assets/js/jcd-config.js`；顏色等數值在 `src/css/`（顏色變數在 `src/css/global/tokens.css`）；互動行為在
 `src/js/`，一個效果一個檔，由 `tools/build_assets.py` 組合成 custom.css / custom.js。每條規則的來由寫在 `CHANGELOG.md`。
 
-Last updated 最後更新: 2026-11-27.
+Last updated 最後更新: 2026-11-28.
 
 ---
 
@@ -144,6 +144,7 @@ Other rules 其他:
 | Round >> 圓形 >> | Fills blue left → right (.9s) while hovered / pressed; click opens at once. 滑過／按住時由左到右填藍 |
 | Home category words 首頁類別字 | Computer/iPad: scale 1.05 on hover, pressed = blue, no fill. Phone: grey press fill. |
 | Home Selected grid 精選 12 格 | Spotlight: hovered tile bright + photo 1.06 + white line + name + >>; others brightness .38. Touch: name + >> always. Round >> 26px computer / 34px iPad / 22px phone 圓圈尺寸. |
+| Home client logos 首頁合作品牌 logo | Marquee: 3 rows on every device in the wall's box, alternate directions, ends faded, ~20 px/s (phone 14) + faster while scrolling; mouse over a row = pause (hovered logo brighter); drag / fling sideways (touch-action pan-y); every tile gap equal; reduced motion = still image (`home/logo-marquee`). 跑馬燈：三平台 3 排、交錯流動、兩端淡出；捲動加快；滑鼠停留暫停；可左右拖動；減少動態時靜止 |
 | About portrait 大頭照 | Black-and-white; hover (computer) / press-and-hold (touch) shows the colour photo. 黑白，滑過或按住變彩色 |
 | Selection / context menu 選字與右鍵 | Disabled site-wide (form fields excepted). 全站禁止（表單除外） |
 | Tooltips 提示框 | None: no `title` attributes (no file names on hover). 不顯示任何 title |
