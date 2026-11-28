@@ -50,6 +50,7 @@
       <h2>用法</h2>
       <p class="note">在手機畫面上<b>點一下</b>文字或圖片來選取（藍框），<b>按住 Shift 點</b>可以多選（再點一次取消），<b>拖曳</b>就能一起移動；
         也可以用方向鍵每次移 1px（按住 Shift 移 10px）。對齊按鈕會對齊所有選取的項目。
+        <b>框選</b>（像 Illustrator）：<b>按住滑鼠右鍵拖出一個框</b>，框碰到的文字、圖片、方塊都會被選取（按住 Shift 右鍵拖曳可加選），再一起拖曳或對齊。
         <b>選後方物件</b>（像 Illustrator）：<b>按住 Ctrl（或 Alt）點</b>，選游標下、目前選取項目後面的那一個；同一點繼續 Ctrl＋點，會依序往後換（照片 → 灰方塊 → 段落 → 回到最上面）。
         <b>方塊</b>：點有底色方塊露出的邊緣就能選取，或選取照片後按「選後方方塊」；選到後拉「上方空間」可在它上面加空間。
         <b>字級</b>：選取文字後拉「字級」，Shift 多選可把幾個標題一起改成同一個大小。
@@ -133,6 +134,12 @@
     if (img) return img.closest('[id^="comp-"]');
     return boxOf(e);   /* a box with its own colour (e.g. the grey panel behind a photo) */
   }
+  /* a component the marquee can select: a text block, a photo, or a coloured box (as pick() would return it) */
+  function pickable(c) {
+    var rt = c.querySelector('[data-testid="richTextElement"]'); if (rt && rt.closest('[id^="comp-"]') === c) return true;
+    var im = c.querySelector('wow-image, .wixui-image, [data-testid="imageX"], img, video'); if (im && im.closest('[id^="comp-"]') === c) return true;
+    return painted(c);
+  }
   function alpha(c) { var m = (c || '').match(/[\d.]+/g); return !m ? 0 : (m.length > 3 ? +m[3] : 1); }
   /* a component that paints a coloured box: its own colour, a colour layer, a Wix box shape (.wixui-box) or a frame */
   function painted(c) {
@@ -178,7 +185,36 @@
   function hook() {
     var drag = null;
     D.addEventListener('click', function (ev) { ev.preventDefault(); ev.stopPropagation(); }, true);
+    /* right-button drag: a selection box, like Illustrator's marquee (Joel 2026-11-28: "排版調整器加入右鍵拖曳多選");
+       every text / photo / box it touches is selected (Shift: added to the selection); no context menu */
+    D.addEventListener('contextmenu', function (ev) { ev.preventDefault(); }, true);
     D.addEventListener('pointerdown', function (ev) {
+      if (ev.button !== 2) return;
+      ev.preventDefault(); ev.stopPropagation();
+      var x0 = ev.clientX, y0 = ev.clientY, add = ev.shiftKey, mq = D.createElement('div');
+      mq.className = 'jcd-pl-mq'; mq.style.cssText = 'position:fixed;z-index:2147483647;border:1px dashed #0062D9;background:rgba(0,98,217,.12);pointer-events:none;margin:0;width:0;height:0;left:' + x0 + 'px;top:' + y0 + 'px';
+      D.body.appendChild(mq);
+      function mv(e2) { e2.preventDefault();
+        mq.style.left = Math.min(x0, e2.clientX) + 'px'; mq.style.top = Math.min(y0, e2.clientY) + 'px';
+        mq.style.width = Math.abs(e2.clientX - x0) + 'px'; mq.style.height = Math.abs(e2.clientY - y0) + 'px'; }
+      function up(e2) {
+        D.removeEventListener('pointermove', mv, true); D.removeEventListener('pointerup', up, true); mq.remove();
+        var L = Math.min(x0, e2.clientX), R = Math.max(x0, e2.clientX), T = Math.min(y0, e2.clientY), B = Math.max(y0, e2.clientY);
+        if (R - L < 3 && B - T < 3) return;
+        var hit = [].filter.call(D.querySelectorAll('#PAGES_CONTAINER [id^="comp-"]'), function (c) {
+          if (c.tagName === 'SECTION' || c.getBoundingClientRect().height <= 0 || c.closest('[id^="bgMedia_"]') || !pickable(c)) return false;
+          var b = vbox(c); return b.r > L && b.l < R && b.b > T && b.t < B;
+        });
+        /* an item inside a selected box moves with the box: only the box is kept */
+        hit = hit.filter(function (c) { return !hit.some(function (o) { return o !== c && o.contains(c); }); });
+        bgSel = null; secSel = null;
+        picked = add ? picked.concat(hit.filter(function (c) { return picked.indexOf(c) < 0; })) : hit;
+        mark(); showSel(); status(hit.length ? '框選了 ' + hit.length + ' 個' : '框內沒有可選的項目');
+      }
+      D.addEventListener('pointermove', mv, true); D.addEventListener('pointerup', up, true);
+    }, true);
+    D.addEventListener('pointerdown', function (ev) {
+      if (ev.button === 2) return;
       if (ev.target.classList && ev.target.classList.contains('jcd-pl-h')) return;
       if (ev.ctrlKey || ev.altKey || ev.metaKey) {   /* select the next one behind (Illustrator: Ctrl / Cmd + click) */
         ev.preventDefault(); ev.stopPropagation();

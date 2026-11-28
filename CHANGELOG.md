@@ -11,6 +11,15 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Phone layout tool: right-drag box selection; Joel's placements win over frame alignment 排版工具：右鍵框選
+- Joel: "你能不能在排版調整器加入右鍵拖曳多選，我親自調整" (the Lamp group still looked 1px off on his phone; in layout px
+  every frame there is at 20–300, so the difference is sub-pixel drawing). `preview/mockups/phone-layout.html`: hold the
+  right mouse button and drag a box; every text / photo / box it touches is selected (Shift: added); items inside a
+  selected box move with the box; no context menu.
+- `src/js/category/frame-edges.js` now stays out of the way: it does not run inside the tool (Joel sees and moves the
+  real positions), and on the phone a component he moved or sized (`phone.layout` x / w) is left as he set it.
+- 排版工具新增右鍵拖曳框選（Shift 加選）。自動對齊白框的程式在工具裡不執行，手機上 Joel 調過的項目以他的設定為準。
+
 ### Category frames on one line 類別頁白框對齊
 - Joel (screenshots: Industrial, Advantech, Lamp, Drone, Laptop, Dehumidifier): "這都沒修阿，筆電那張有凸出" / "這張也有凸出".
   The real cause: the Wix export put a group's title frame, its product cards and the small 2-up photos 1–4px apart, so
