@@ -11,6 +11,16 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Category frames on one line 類別頁白框對齊
+- Joel (screenshots: Industrial, Advantech, Lamp, Drone, Laptop, Dehumidifier): "這都沒修阿，筆電那張有凸出" / "這張也有凸出".
+  The real cause: the Wix export put a group's title frame, its product cards and the small 2-up photos 1–4px apart, so
+  a card or photo stuck out past the frame above / around it. New `src/js/category/frame-edges.js`: white frames that
+  touch or sit within 40px of each other form a group; left edges within 8px of each other go onto one line (the one
+  most of them use, a tie goes to the widest frame), the same for right edges; the frame's component is shifted /
+  resized by the difference. Runs on load and after a resize. Checked on all six category pages, phone + iPad +
+  computer: no edge differences left, nothing off screen.
+- 類別頁的標題白框、產品卡片、兩欄小圖原本左右差 1–4px，看起來凸出白框；新增程式讓同一組白框的左右邊對齊同一條線，各平台已檢查。
+
 ### Category photos stay inside their white frame 類別頁圖片不再超出白框
 - Joel: "手機板 industrial 跟 lifestyle 的圖片有掉出白框…有些類別頁面的圖片左右有超出白框". At rest every photo sits inside its
   frame (checked on all six category pages); the photo zooms 6% while a card is pressed, and iPhone Safari does not always

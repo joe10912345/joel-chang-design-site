@@ -45,5 +45,6 @@ global/scroll-reveal.js
 global/ios-active.js
 global/logo-press.js
 global/phone-layout.js
+category/frame-edges.js
 global/text-anchors.js
 global/old-arrows-off.js
