@@ -25,4 +25,5 @@
     }
     place(); window.addEventListener('load', function () { setTimeout(place, 300); setTimeout(place, 2600); });
     var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(place, 200); });
+    window.addEventListener('jcd:phone-layout', function () { setTimeout(place, 50); });   /* after the phone layout moves the groups */
   });

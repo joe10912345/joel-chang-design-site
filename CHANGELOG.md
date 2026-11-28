@@ -11,6 +11,12 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Phone About Expertise: room around the rules 手機 About Expertise 分隔線上下留白
+- Joel: "距離太近了，能不能有呼吸的空間". The Engineering and Branding groups moved down 26px each (`jcd-config.js`
+  `phone.layout.about`, `gap`), so each rule now has 20px above and below (was about 7px); the rules are placed again after
+  the phone layout runs. No overlaps.
+- 手機 About Expertise 的 Engineering、Branding 各往下移，分隔線上下各留 20px。
+
 ### About Expertise dividers 關於頁 Expertise 分隔線
 - Joel: "電腦版的 about 技能的襯線出問題了！" / "ipad 版". The divider between Engineering and Branding lay flat across "Product
   Design Strategy": `even-margins-desktop.js` nudged it with `transform: translateX(…)`, which replaced the rotation that

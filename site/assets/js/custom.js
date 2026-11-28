@@ -152,6 +152,7 @@
     }
     place(); window.addEventListener('load', function () { setTimeout(place, 300); setTimeout(place, 2600); });
     var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(place, 200); });
+    window.addEventListener('jcd:phone-layout', function () { setTimeout(place, 50); });   /* after the phone layout moves the groups */
   });
   /* Phone product pages: the info table (Client / Year / Designer / Contribution) as 2 x 2 (Joel 2026-11-27: chose B of
      preview/mockups/info-table-phone.html, "但要注意下方文字與黑底要留有空間"). In Wix it is four text blocks side by side,
