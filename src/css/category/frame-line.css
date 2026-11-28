@@ -1,0 +1,12 @@
+/* One white frame line on the category pages (Joel 2026-11-28: "確認類別圖的白框都是一致的尺寸粗細"): the cards and photos
+   (a Wix border) and the title frames (an SVG outline, its line hidden by frame-edges.js, which tags the frame
+   .jcd-frame-box) are all drawn with tokens.css --jcd-frame-line, inside their edges. Phone 1px, computer + iPad 1.5px. */
+/* cards and photos: their Wix border is replaced by the same inside line as the title frames (a border is snapped to whole
+   screen pixels, the line is not, so the two looked different at some zoom levels) */
+html.jcd-catpage .ih2JY1 > .BprtEa, html.jcd-catpage .hhxEkR > .v9ZE1l { border-style: none !important; }
+html.jcd-catpage .hhxEkR > .v9ZE1l { position: relative; }   /* was static: the line is placed on its own box */
+html.jcd-catpage .ih2JY1 > .BprtEa::after, html.jcd-catpage .hhxEkR > .v9ZE1l::after { content: ""; position: absolute; inset: 0; z-index: 1;
+  pointer-events: none; box-shadow: inset 0 0 0 var(--jcd-frame-line) #fff; }
+/* drawn above the SVG (its black fill would cover a background line) */
+html.jcd-catpage .jcd-frame-box::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  box-shadow: inset 0 0 0 var(--jcd-frame-line) #fff; }

@@ -40,6 +40,6 @@ Areas 分區: `global` = every page 全站 · `home` = home 首頁 · `about` = 
 | `product` | `info-table-phone.js`, `closing-photo-reveal.js`, `guest-area-dialog.js`, `defense-website.js`, `t-blade-last-photo.js` |
 | `home` | `design-approach-cards.js`, `cross-category-grid.js`, `video-frame.js`, `achievement-map.js`, `selected-grid.js`, `achievement-odometer.js`, `end-to-end-slider.js`, `end-to-end-hint.js` |
 | `contact` | `contact-form.js`, `iphone-no-zoom.js` |
-| `category` | `catalog-title-bars.js`, `frames-desktop.js`, `spacing-phone.js`, `bottom-space.js`, `cards-touch.js`, `frame-edges.js` (a group's white frames on one left / right line 白框左右對齊) |
+| `category` | `catalog-title-bars.js`, `frames-desktop.js`, `spacing-phone.js`, `bottom-space.js`, `cards-touch.js`, `frame-edges.js` (marks category pages, hides SVG frame outlines; a group's white frames on one left / right line 白框左右對齊) |
 | `about` | `intro-layout-desktop.js`, `even-margins-desktop.js`, `recommendation-cards.js`, `heading-spacing.js`, `believe-centre.js`, `believe-reveal.js`, `signature-reveal.js`, `portrait-swap.js`, `two-column-lists-phone.js` |
 

@@ -11,6 +11,21 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### One white frame line; frames wrap their cards; Defense caption back; Design Approach shorter 白框粗細統一、框貼齊卡片、Defense 標題回來、Approach 方塊再縮
+- Joel: "確認類別圖的白框都是一致的尺寸粗細". The title frames (an SVG outline) and the cards / photos (a Wix border) were
+  1 / 0.67 / 1.33px on the phone and 2 / 1.57px on a computer. Now one token, `tokens.css` `--jcd-frame-line` (phone 1px,
+  computer + iPad 1.5px), drawn the same way for all (an inside line above the photo; a border was snapped to whole
+  screen pixels): new `src/css/category/frame-line.css`; `frame-edges.js` marks category pages (`jcd-catpage`) and hides
+  the SVG's own outline.
+- Joel: "圖 1-3 的內圖要跟外白框下緣對齊". The frame now wraps its card: top the bar height above it, bottom and sides on the
+  card's edges (a frame around several photos keeps its own bottom). Checked on every bar, phone + computer: 0px.
+- Joel: "圖 4 上面的 website 文字跟襯線消失了": Defense's "Company Website | Brand Visual Identity…" line lives just
+  outside its photo, in the box the iPhone clip (cards-photo-zoom.css) was set on; only the frame itself is clipped now.
+- Joel: "approach 的白色框高度可以再縮": phone Design Approach cards 176 → 159px (12px under the text, as above it).
+- No overlaps, nothing off screen on the six category pages (phone + computer).
+- 類別頁白框粗細統一（手機 1px、電腦與 iPad 1.5px）；白框上緣、下緣與左右都貼齊卡片；Defense「Company Website」文字與線恢復；
+  手機 Design Approach 方塊縮成 159px。
+
 ### Category title bars one spec; phone home photo under the header; thumb wheel back 類別標題列統一；手機首頁首圖延伸到最上方；拇指輪方向改回
 - Joel: "experimental 改好了，幫微調。還有確認我的產品列別頁的文字框高度，各文字的對齊／同類別尺寸都要一致". Measured every bar
   on the six category pages: sizes were already one (phone 10 / 7px, computer + iPad 30 / 17px), but bar heights were

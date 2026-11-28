@@ -7,6 +7,17 @@
      computer; again after a resize. */
   ready(function () {
     if (!/\/(networking|defense|electronics|industrial|lifestyle|experimental)\//.test(location.pathname)) return;
+    /* one frame line (frame-line.css): the page is marked, and each white SVG title frame loses its own outline and is
+       drawn by the same CSS line as the cards (Joel 2026-11-28: "白框都是一致的尺寸粗細") */
+    document.documentElement.classList.add('jcd-catpage');
+    [].forEach.call(document.querySelectorAll('#PAGES_CONTAINER .wixui-vector-image svg'), function (svg) {
+      var white = [].filter.call(svg.querySelectorAll('path, rect, polygon, polyline, line, ellipse, circle'), function (sh) {
+        var m = /rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)/.exec(getComputedStyle(sh).stroke); return m && +m[1] > 200 && +m[2] > 200 && +m[3] > 200; });
+      if (!white.length || svg.getBoundingClientRect().width < 100) return;
+      white.forEach(function (sh) { sh.style.setProperty('stroke-width', '0', 'important'); });
+      var comp = svg.closest('.wixui-vector-image'); if (!comp) return;
+      comp.classList.add('jcd-frame-box'); if (getComputedStyle(comp).position === 'static') comp.style.position = 'relative';
+    });
     /* Joel's own placements win (Joel 2026-11-28: "我親自調整"): not in his phone layout tool (?tool=), and on the phone
        a component he set there (jcd-config.js phone.layout), or one inside / around it, is left alone */
     if (/[?&]tool=/.test(location.search)) return;

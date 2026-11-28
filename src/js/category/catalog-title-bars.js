@@ -66,11 +66,19 @@
            edge moves so the bar (frame top .. photo top) has the set height; its bottom stays. Not inside Joel's phone
            layout tool, where he sees the real positions. */
         if (B && !inTool) {
-          var dlt = (pr.top - fr.top) - B.bar * Z();
-          if (Math.abs(dlt) > 0.3 && Math.abs(dlt) < 20 * Z()) {
-            if (getComputedStyle(frEl).position === 'static') setp(frEl, 'position', 'relative');
-            setp(frEl, 'top', ((parseFloat(getComputedStyle(frEl).top) || 0) + dlt / Z()).toFixed(2) + 'px');
-            setp(frEl, 'height', ((fr.height - dlt) / Z()).toFixed(2) + 'px', true);
+          /* the frame wraps its card: its top the bar's height above the card, its bottom and sides on the card's edges
+             (Joel 2026-11-28: "內圖要跟外白框下緣對齊"; a frame around more than one photo keeps its own bottom) */
+          var pb = ph.getBoundingClientRect();
+          var nt = pb.top - B.bar * Z();
+          var nb = Math.abs(pb.bottom - fr.bottom) < 20 * Z() ? pb.bottom : fr.bottom;
+          var nl = Math.abs(pb.left - fr.left) < 8 * Z() ? pb.left : fr.left, nr = Math.abs(pb.right - fr.right) < 8 * Z() ? pb.right : fr.right;
+          if (Math.abs(nt - fr.top) < 20 * Z() && (Math.abs(nt - fr.top) > 0.3 || Math.abs(nb - fr.bottom) > 0.3 || Math.abs(nl - fr.left) > 0.3 || Math.abs(nr - fr.right) > 0.3)) {
+            var cs0 = getComputedStyle(frEl);
+            if (cs0.position === 'static') setp(frEl, 'position', 'relative');
+            setp(frEl, 'top', ((parseFloat(cs0.top) || 0) + (nt - fr.top) / Z()).toFixed(2) + 'px');
+            setp(frEl, 'left', ((parseFloat(cs0.left) || 0) + (nl - fr.left) / Z()).toFixed(2) + 'px');
+            setp(frEl, 'height', ((nb - nt) / Z()).toFixed(2) + 'px', true);
+            setp(frEl, 'width', ((nr - nl) / Z()).toFixed(2) + 'px', true);
             fr = frEl.getBoundingClientRect();
           }
         }

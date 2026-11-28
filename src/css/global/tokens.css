@@ -14,9 +14,11 @@
    --jcd-card-name   product name on a card            --jcd-card-brand  small line above it (brand / category)
    --jcd-card-go-font  the ">>" (plain Poppins Medium, no frame)   --jcd-card-edge  distance of name and ">>" from the card's corner
    Card values set by Joel with preview/mockups/go-size.html (2026-11-27: "採 G2" + name sizes).
-   --jcd-bar-title   category title bar, left title    --jcd-bar-sub     category title bar, right description (one line) */
+   --jcd-bar-title   category title bar, left title    --jcd-bar-sub     category title bar, right description (one line)
+   --jcd-frame-line  the white frame line on the category pages: title frames, cards and photos alike (Joel 2026-11-28:
+                     "確認類別圖的白框都是一致的尺寸粗細"; they were 1 / 0.67 / 1.33px on the phone, 2 / 1.57px on a computer) */
 :root { --jcd-card-name: 21px; --jcd-card-brand: 11.5px; --jcd-card-go-font: 23px; --jcd-card-edge: 14px;
-        --jcd-bar-title: 30px; --jcd-bar-sub: 17px; }                                   /* computer */
+        --jcd-bar-title: 30px; --jcd-bar-sub: 17px; --jcd-frame-line: 1.5px; }          /* computer + iPad */
 html.jcd-tablet { --jcd-card-name: 16px; --jcd-card-brand: 11px; --jcd-card-go-font: 21px; --jcd-card-edge: 12px; }   /* iPad (name 18.5 -> 16, Joel: "ipad 版的圖卡產品名字尺寸也要縮小一點") */
 html:has(> body.device-mobile-optimized) { --jcd-card-name: 12.5px; --jcd-card-brand: 9px; --jcd-card-go-font: 14px; --jcd-card-edge: 9px;   /* Joel: phone still too big (was 15 / 10 / 17 / 10) */
-        --jcd-bar-title: 10px; --jcd-bar-sub: 7px; }   /* phone (bar description 8 -> 7px, Joel 2026-11-28: "我把小字改成 7px 了，手機板規範要改") */
+        --jcd-bar-title: 10px; --jcd-bar-sub: 7px; --jcd-frame-line: 1px; }   /* phone (bar description 8 -> 7px, Joel 2026-11-28: "我把小字改成 7px 了，手機板規範要改") */

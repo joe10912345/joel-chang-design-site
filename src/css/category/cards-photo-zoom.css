@@ -12,5 +12,7 @@
    左右有超出白框"): the frame (a.BprtEa) and its box clip the photo with overflow: hidden, which iPhone Safari does not
    always apply to a photo that is being scaled (the press zoom, a layer of its own), so it spilled past the frame. A hard
    clip on both, plus its own layer, keeps it inside on every platform.
-   Both Wix framed-photo kinds: .ih2JY1 > .BprtEa (the cards) and .hhxEkR > .v9ZE1l (the small framed photos). */
-.ih2JY1, .ih2JY1 > .BprtEa, .hhxEkR, .hhxEkR > .v9ZE1l { clip-path: inset(0) !important; isolation: isolate; }
+   Both Wix framed-photo kinds: .ih2JY1 > .BprtEa (the cards) and .hhxEkR > .v9ZE1l (the small framed photos).
+   Only the frame itself is clipped, not its outer box: a caption placed just outside the photo lives in that box (Defense's
+   "Company Website" line, cut off on 2026-11-28). */
+.ih2JY1 > .BprtEa, .hhxEkR > .v9ZE1l { clip-path: inset(0) !important; isolation: isolate; }

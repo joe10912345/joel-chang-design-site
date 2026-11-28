@@ -25,12 +25,14 @@
    --jcd-card-name   product name on a card            --jcd-card-brand  small line above it (brand / category)
    --jcd-card-go-font  the ">>" (plain Poppins Medium, no frame)   --jcd-card-edge  distance of name and ">>" from the card's corner
    Card values set by Joel with preview/mockups/go-size.html (2026-11-27: "採 G2" + name sizes).
-   --jcd-bar-title   category title bar, left title    --jcd-bar-sub     category title bar, right description (one line) */
+   --jcd-bar-title   category title bar, left title    --jcd-bar-sub     category title bar, right description (one line)
+   --jcd-frame-line  the white frame line on the category pages: title frames, cards and photos alike (Joel 2026-11-28:
+                     "確認類別圖的白框都是一致的尺寸粗細"; they were 1 / 0.67 / 1.33px on the phone, 2 / 1.57px on a computer) */
 :root { --jcd-card-name: 21px; --jcd-card-brand: 11.5px; --jcd-card-go-font: 23px; --jcd-card-edge: 14px;
-        --jcd-bar-title: 30px; --jcd-bar-sub: 17px; }                                   /* computer */
+        --jcd-bar-title: 30px; --jcd-bar-sub: 17px; --jcd-frame-line: 1.5px; }          /* computer + iPad */
 html.jcd-tablet { --jcd-card-name: 16px; --jcd-card-brand: 11px; --jcd-card-go-font: 21px; --jcd-card-edge: 12px; }   /* iPad (name 18.5 -> 16, Joel: "ipad 版的圖卡產品名字尺寸也要縮小一點") */
 html:has(> body.device-mobile-optimized) { --jcd-card-name: 12.5px; --jcd-card-brand: 9px; --jcd-card-go-font: 14px; --jcd-card-edge: 9px;   /* Joel: phone still too big (was 15 / 10 / 17 / 10) */
-        --jcd-bar-title: 10px; --jcd-bar-sub: 7px; }   /* phone (bar description 8 -> 7px, Joel 2026-11-28: "我把小字改成 7px 了，手機板規範要改") */
+        --jcd-bar-title: 10px; --jcd-bar-sub: 7px; --jcd-frame-line: 1px; }   /* phone (bar description 8 -> 7px, Joel 2026-11-28: "我把小字改成 7px 了，手機板規範要改") */
 /* Readable small coloured text on black pages (Joel 2026-11-27, UI/UX review item 3). Wix set the section labels of
    Interstellar 05, Wi-Fi 7 Gaming Home Gateway and Ocean Series ("Key Ingredient", "Project Background") in #37659D:
    3.5:1 on black, below the 4.5:1 small text needs. Dark pages only (on white #37659D is fine, 6.0:1). */
@@ -712,8 +714,10 @@ body:not(.device-mobile-optimized) #comp-mujmtw8h { height: 421px !important; } 
    左右有超出白框"): the frame (a.BprtEa) and its box clip the photo with overflow: hidden, which iPhone Safari does not
    always apply to a photo that is being scaled (the press zoom, a layer of its own), so it spilled past the frame. A hard
    clip on both, plus its own layer, keeps it inside on every platform.
-   Both Wix framed-photo kinds: .ih2JY1 > .BprtEa (the cards) and .hhxEkR > .v9ZE1l (the small framed photos). */
-.ih2JY1, .ih2JY1 > .BprtEa, .hhxEkR, .hhxEkR > .v9ZE1l { clip-path: inset(0) !important; isolation: isolate; }
+   Both Wix framed-photo kinds: .ih2JY1 > .BprtEa (the cards) and .hhxEkR > .v9ZE1l (the small framed photos).
+   Only the frame itself is clipped, not its outer box: a caption placed just outside the photo lives in that box (Defense's
+   "Company Website" line, cut off on 2026-11-28). */
+.ih2JY1 > .BprtEa, .hhxEkR > .v9ZE1l { clip-path: inset(0) !important; isolation: isolate; }
 /* Home End-to-End: no arrows on any platform; the cut square at the screen edge, a soft fade there and one nudge say
    "swipe" instead (Joel 2026-11-27, variant C of preview/mockups/end-to-end-hint.html; custom.js "end-to-end-hint").
    Replaces the arrow styling (thicker chevrons, iPad arrows inside the screen). */
@@ -936,6 +940,18 @@ body:not(.device-mobile-optimized) :has(> #comp-mojvq8rn) { min-height: 0 !impor
 /* these sizes are the rule: the phone's minimum text size (phone-text-size.js, 9px labels) does not raise them
    (Joel 2026-11-28: phone bar description 7px) */
 [data-jcd-bar-size] { --jcd-keep-size: 1; }
+/* One white frame line on the category pages (Joel 2026-11-28: "確認類別圖的白框都是一致的尺寸粗細"): the cards and photos
+   (a Wix border) and the title frames (an SVG outline, its line hidden by frame-edges.js, which tags the frame
+   .jcd-frame-box) are all drawn with tokens.css --jcd-frame-line, inside their edges. Phone 1px, computer + iPad 1.5px. */
+/* cards and photos: their Wix border is replaced by the same inside line as the title frames (a border is snapped to whole
+   screen pixels, the line is not, so the two looked different at some zoom levels) */
+html.jcd-catpage .ih2JY1 > .BprtEa, html.jcd-catpage .hhxEkR > .v9ZE1l { border-style: none !important; }
+html.jcd-catpage .hhxEkR > .v9ZE1l { position: relative; }   /* was static: the line is placed on its own box */
+html.jcd-catpage .ih2JY1 > .BprtEa::after, html.jcd-catpage .hhxEkR > .v9ZE1l::after { content: ""; position: absolute; inset: 0; z-index: 1;
+  pointer-events: none; box-shadow: inset 0 0 0 var(--jcd-frame-line) #fff; }
+/* drawn above the SVG (its black fill would cover a background line) */
+html.jcd-catpage .jcd-frame-box::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  box-shadow: inset 0 0 0 var(--jcd-frame-line) #fff; }
 /* Defense: the Singapore Airshow photo caption ("Admiral Li Shih-chiang, Chairman of Taiwan's NCSIST, visited the booth…")
    is a light caption, not bold, a step smaller (Joel 2026-11-27: "這段字體不要粗體，可縮小"): Poppins Light like body
    text; computer + iPad 12 -> 11px, phone 8 -> 7.5px. */
