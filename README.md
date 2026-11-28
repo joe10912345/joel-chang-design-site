@@ -43,21 +43,20 @@ joel-chang-design-site/
 ├─ media-new/                 drop new images here for the AI to process 新圖放這裡給 AI 處理
 ├─ preview/
 │  ├─ devices.html            ★ three-device preview (phone / iPad / computer side by side) 三平台預覽
-│  └─ mockups/                design studies shown to Joel before building 設計提案
+│  └─ mockups/                design studies shown to Joel (the code comments point to them) + Joel's tuning tools 設計提案與調整工具
 ├─ tools/
 │  ├─ build_assets.py         joins src/ into custom.css + custom.js and bumps ?v= 組合 src/ 並更新 ?v=
 │  ├─ make_blank_page.py      copies a product page as a blank start for a new page (into private/) 複製空白版型
 │  ├─ protect_page.js         encrypts private/<page>/content.html → site/<page>/protected.json 加密受保護頁面
 │  ├─ clean_text.py           alt text / Wix labels / typo clean-up (safe to re-run) 文字清理
 │  ├─ seo_apply.py, seo_verify.py, siteconfig.py   SEO tags + sitemap from one SITE_BASE SEO 產生器
-│  ├─ i18n_apply.py, i18n/    unpublished translations 未上線的翻譯
-│  └─ export-wix/             the original Wix export scripts (history; do not run) 當初匯出 Wix 的腳本（僅存檔）
+│  ├─ check_site.py           run before every commit 每次 commit 前執行
+│  └─ i18n_apply.py, i18n/    unpublished translations (writes i18n-archive/ when run) 未上線的翻譯
 ├─ reference/
 │  ├─ media-map.json          every image: new name → original, crop, pages 圖片對照表
 │  ├─ asset-sources.json      Wix source URL of every file Wix 來源網址
-│  └─ archive/                export-era screenshots, comparisons, unused Wix images 匯出時期的截圖與舊圖
+│  └─ archive/unused-wix-media/  old Wix images no page uses — local only, git-ignored 沒用到的 Wix 舊圖（只在本機）
 ├─ content/                   page text snapshot from the export (2026-11-23; not updated) 匯出時的文字快照
-├─ i18n-archive/              zh-hant / zh-cn / ar versions, built but not published 中簡阿語版（未上線）
 ├─ .github/workflows/pages.yml   publishes site/ to GitHub Pages 自動部署
 ├─ .claude/launch.json        local preview servers ("site" 8765, "devices" 8766) 本機預覽伺服器
 └─ *.md                       README, AGENTS, DESIGN-SYSTEM, TODO, CHANGELOG, PAGES, ASSETS; CLAUDE.md just points to AGENTS.md

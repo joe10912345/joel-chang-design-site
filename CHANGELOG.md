@@ -11,6 +11,15 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Folder clean-up 資料夾清理
+- Joel: "資料夾可以把不需要的清乾淨了…以這版為主" → "你建議的刪除". Removed from the repo (still in git history): `reference/archive/`
+  (export-era screenshots and comparisons, 126 MB; the local-only `unused-wix-media/` stays), `i18n-archive/` (the old,
+  unpublished multilingual build, 61 MB; `tools/i18n_apply.py` can rebuild it) and `tools/export-wix/` (the original export
+  scripts that must never be run). Kept on purpose: `content/` (read by `tools/seo_apply.py`), `preview/mockups/` (the
+  design studies the code comments point to, plus Joel's tuning tools), `media-originals/` (originals for future images).
+  README, AGENTS, TODO, `tools/README.md`, `reference/README.md` updated. The site itself is unchanged.
+- 清理資料夾：刪除匯出時期的截圖比對、舊的未上線多語版、Wix 匯出腳本（Git 歷史仍可找回）；保留 content（SEO 工具會讀）、設計提案與調整工具、原始圖檔。網站本身不變。
+
 ### About section headings one size 關於頁各段標題字級一致
 - Joel: "expertise 字體好像沒有跟 patents 一樣大" / "三個平台都要一致". On the phone EXPERTISE and TRUSTED COLLABORATION were 10px,
   the other headings (WORK EXPERIENCE, EDUCATION, LANGUAGES, SELECTED AWARDS, PATENTS) 11px; both now 11px

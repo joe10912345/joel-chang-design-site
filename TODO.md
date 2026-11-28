@@ -14,8 +14,8 @@ Open items. When you finish one, move it to `CHANGELOG.md` with the date. Add ne
       **Search Console**：網域已由 GitHub Pages 提供（2026-11-28 確認）；請 Joel 到 Google Search Console 提交 sitemap.xml。
 - [ ] **T. Scope content**: the protected page still has placeholder text and the stand-in photo `shared-05` (5 places in `private/t-scope/page.html`). Joel fills it in, then re-encrypt (AGENTS.md, password from Joel).
       **T. Scope 內容**：受保護頁面仍是佔位文字與代用照片，Joel 填好後重新加密（密碼向 Joel 詢問）。
-- [ ] **Languages**: zh-hant / zh-cn / ar are built but not published (`i18n-archive/README.md`); built before the 11-24 changes, rebuild first.
-      **多語版**：已做好未上線，上線前要重建。
+- [ ] **Languages**: the old zh-hant / zh-cn / ar build (from before the 11-24 changes) was removed on 2026-11-28; if wanted, rebuild with `tools/i18n_apply.py` (translations in `tools/i18n/`, output in `i18n-archive/`).
+      **多語版**：舊的未上線多語版已於 2026-11-28 刪除；需要時用 `tools/i18n_apply.py` 重新產生。
 - [ ] **iPad on a real device**: check the new layout widths (product pages 1438, About 1356, home/Contact 1320) and one-tap links on a real iPad, portrait + landscape.
       **實機 iPad 檢查**：新的排版寬度與「點一下換頁」在實機直橫向都確認。
 - [ ] **Alt text detail**: most images now read "<Product> design detail <n>" (clean, but generic). Joel can give short descriptions for key images; edit `SPECIAL` in `tools/clean_text.py` or the HTML.

@@ -93,7 +93,7 @@ Several AIs work on this site. To stay in sync, follow these rules. Architecture
 
 ## Don't 不要做
 
-- Don't run `tools/export-wix/*` (they rebuild from the raw Wix capture and would overwrite hand edits; paths are from
-  another machine). 不要執行 `tools/export-wix/` 裡的腳本，會覆蓋手改內容。
+- The Wix export scripts were removed on 2026-11-28 (they would have overwritten hand edits); the site is edited only
+  by hand here. Old versions are in git history. Wix 匯出腳本已於 2026-11-28 刪除；網站只在這裡手改，舊版本可從 git 歷史找回。
 - Don't edit the Wix CSS in `site/assets/wix/`. 不要改 `site/assets/wix/` 裡的 Wix 原生 CSS。
 - Don't paste tokens or passwords in chat; pushes use Git Credential Manager. 不要在對話中貼 token 或密碼。
