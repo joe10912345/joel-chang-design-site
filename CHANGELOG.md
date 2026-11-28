@@ -11,6 +11,14 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Category photos stay inside their white frame 類別頁圖片不再超出白框
+- Joel: "手機板 industrial 跟 lifestyle 的圖片有掉出白框…有些類別頁面的圖片左右有超出白框". At rest every photo sits inside its
+  frame (checked on all six category pages); the photo zooms 6% while a card is pressed, and iPhone Safari does not always
+  clip a scaled photo with overflow: hidden, so it spilled past the frame. Both Wix framed-photo kinds (.ih2JY1 > .BprtEa,
+  .hhxEkR > .v9ZE1l) now also clip with clip-path and get their own layer; nothing that sits inside a card is cut
+  (checked phone + computer). File: `src/css/category/cards-photo-zoom.css`. Not seen on a real iPhone yet.
+- 類別頁卡片按下時照片會放大，iPhone Safari 有時不裁切而超出白框；改用 clip-path 強制裁切，所有類別頁、各平台。
+
 ### Phone home by Joel + box height in the phone layout tool 手機首頁（Joel 調整）＋排版工具可調方塊高度
 - Joel: "已儲存，但是 design approach 的方塊我沒辦法縮矮，幫我縮。另外也把此功能加出來".
   - Joel's saved home values in `jcd-config.js` `phone.layout['']`: opening title 18.5px, Design Approach card titles
