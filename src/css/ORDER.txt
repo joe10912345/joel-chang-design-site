@@ -44,7 +44,7 @@ category/cards-ipad-sizes.css
 home/selected-grid.css
 category/go-hover-computer.css
 home/achievement-odometer.css
-global/ipad-portrait-header.css
+global/header-scale.css
 home/works-category-hover.css
 about/signature-reveal.css
 home/design-approach-card1.css

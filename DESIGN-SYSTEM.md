@@ -119,7 +119,7 @@ Other rules 其他:
 | Device 裝置 | Page 頁面 | How it fits 如何適配 |
 |---|---|---|
 | Phone 手機 | `site/m/…` (320px layout) | viewport width=320, scaled to the phone 縮放到手機寬 |
-| iPad (Air 11, Pro 11, Pro 13) | desktop page 電腦版頁 | laid out at the width `jcd-config.js` gives (side-margin rule above), scaled; upright the header logo/menu are 1.3x (`.jcd-tab-portrait`) 依留白規則排版再縮放；直放時 logo 與選單 1.3 倍 |
+| iPad (Air 11, Pro 11, Pro 13) | desktop page 電腦版頁 | laid out at the width `jcd-config.js` gives (side-margin rule above), scaled; header logo/menu size and lift from `jcd-config.js` `headerScale` / `headerLift` (computer + iPad landscape 0.85, iPad upright 1.1, phone 0.85; lift 20px, phone 4px) 依留白規則排版再縮放；頁首 logo 與選單大小與上移量見 jcd-config.js |
 | Computer ≤ 1536px 電腦 | desktop page | zoom = `uiScale` 0.85 |
 | Computer > 1536px (1920, 2560, 3440, 3840) | desktop page | CSS zoom = width / `desktopRef` × `uiScale` (`window.__jcdZoom`) → always full width 永遠滿版 |
 

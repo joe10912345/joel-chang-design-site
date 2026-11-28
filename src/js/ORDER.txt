@@ -50,3 +50,4 @@ category/frame-edges.js
 global/text-anchors.js
 global/old-arrows-off.js
 home/logo-marquee.js
+global/header-scale.js

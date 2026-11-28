@@ -92,6 +92,13 @@ window.JCD_CONFIG = {
      一致"): bar = frame top .. photo top, title this far from the frame's left edge, description this far from its right
      edge, in layout px (the values most bars already had). Applied by src/js/category/catalog-title-bars.js.
      類別頁標題列：高度、左標題與右說明距白框的距離（版面 px）。 */
+  /* Top header: size of the logo and of the menu (Works / About / Contact + LinkedIn / Behance; phone: the menu button),
+     as a scale of the Wix size, per platform (Joel 2026-11-28: "三個平台的頂部菜單與 logo 再縮小" -> 15% smaller; the iPad held
+     upright had them 1.3x, now 1.1x). Applied by src/js/global/header-scale.js. 頁首 logo 與選單大小（相對 Wix 原尺寸）。 */
+  headerScale: { desktop: 0.85, ipadLandscape: 0.85, ipadPortrait: 1.1, phone: 0.85 },
+  /* ...and moved up by this many px (Joel 2026-11-28: "能再靠上一點嗎"). 頁首 logo 與選單往上移的距離（px）。 */
+  headerLift: { desktop: 20, ipadLandscape: 20, ipadPortrait: 20, phone: 4 },
+
   catalogBars: { phone: { bar: 25, left: 10, right: 10 }, desktop: { bar: 68.5, left: 15, right: 20 } },   /* desktop = computer + iPad */
 
   links: {

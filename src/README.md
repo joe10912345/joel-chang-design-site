@@ -24,7 +24,7 @@ Areas 分區: `global` = every page 全站 · `home` = home 首頁 · `about` = 
 
 | area 分區 | files (in build order) 檔案（依合併順序） |
 |---|---|
-| `global` | `font-fallback.css`, `tokens.css`, `text-contrast.css`, `base.css`, `menu-hover.css`, `header-autohide.css`, `gallery-overlays.css`, `lightbox.css`, `hidden-h1.css`, `header-icons-hover.css`, `no-footer.css`, `no-section-lines.css`, `menu-press.css`, `page-background.css`, `glass-menus.css`, `header-no-select.css`, `no-selection.css`, `ipad-portrait-header.css`, `round-go-fill.css`, `scroll-reveal.css` |
+| `global` | `font-fallback.css`, `tokens.css`, `text-contrast.css`, `base.css`, `menu-hover.css`, `header-autohide.css`, `gallery-overlays.css`, `lightbox.css`, `hidden-h1.css`, `header-icons-hover.css`, `no-footer.css`, `no-section-lines.css`, `menu-press.css`, `page-background.css`, `glass-menus.css`, `header-no-select.css`, `no-selection.css`, `header-scale.css` (logo + menu size and lift per platform, numbers in jcd-config.js headerScale / headerLift), `round-go-fill.css`, `scroll-reveal.css` |
 | `home` | `design-approach-cards.css`, `cross-category-grid.css`, `works-grid-links.css`, `video-frame.css`, `works-category-buttons.css`, `end-to-end-text.css`, `selected-label.css`, `get-in-touch-breathing.css`, `works-grid-press.css`, `achievement-map.css`, `selected-grid.css`, `achievement-odometer.css`, `works-category-hover.css`, `design-approach-card1.css`, `video-glow.css`, `end-to-end-hint.css`, `hero-no-counter.css`, `end-to-end-hover.css`, `logo-marquee.css` |
 | `contact` | `form-status.css`, `field-colours.css`, `fields.css` |
 | `phone` | `mobile-fixes.css`, `menu-social.css`, `menu-layout.css`, `tap-targets.css` |
@@ -36,7 +36,7 @@ Areas 分區: `global` = every page 全站 · `home` = home 首頁 · `about` = 
 
 | area 分區 | files (in build order) 檔案（依合併順序） |
 |---|---|
-| `global` | `wix-fixed-backgrounds.js`, `phone-layout-tidy.js`, `phone-layout.js`, `phone-text-size.js`, `phone-tap-targets.js`, `lightbox.js`, `header-autohide.js`, `phone-menu-social.js`, `hero-height.js`, `page-background.js`, `header-no-drag.js`, `no-context-menu.js`, `no-tooltips.js`, `one-tap-links.js`, `photo-frames.js`, `scroll-reveal.js`, `ios-active.js`, `logo-press.js`, `text-anchors.js`, `old-arrows-off.js` |
+| `global` | `wix-fixed-backgrounds.js`, `phone-layout-tidy.js`, `phone-layout.js`, `phone-text-size.js`, `phone-tap-targets.js`, `lightbox.js`, `header-autohide.js`, `phone-menu-social.js`, `hero-height.js`, `page-background.js`, `header-no-drag.js`, `no-context-menu.js`, `no-tooltips.js`, `one-tap-links.js`, `photo-frames.js`, `scroll-reveal.js`, `ios-active.js`, `logo-press.js`, `text-anchors.js`, `old-arrows-off.js`, `header-scale.js` |
 | `product` | `info-table-phone.js`, `closing-photo-reveal.js`, `guest-area-dialog.js`, `defense-website.js`, `t-blade-last-photo.js` |
 | `home` | `design-approach-cards.js`, `cross-category-grid.js`, `video-frame.js`, `achievement-map.js`, `selected-grid.js`, `achievement-odometer.js`, `end-to-end-slider.js`, `end-to-end-hint.js`, `logo-marquee.js` (client logo wall marquee 合作品牌跑馬燈) |
 | `contact` | `contact-form.js`, `iphone-no-zoom.js` |

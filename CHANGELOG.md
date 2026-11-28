@@ -11,6 +11,14 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Smaller header logo + menu, sitting higher 頁首 logo 與選單縮小並上移
+- Joel: "我想把三個平台的頂部菜單與logo 再縮小" → "能再靠上一點嗎". Logo and menu (Works / About / Contact, LinkedIn, Behance; phone:
+  the menu button) are 15% smaller on all platforms and moved up (computer + iPad 20px, phone 4px). Computer logo 252→214px wide;
+  iPad upright 1.3x→1.1x; phone logo 150→128px. Numbers: `jcd-config.js` `headerScale` / `headerLift`.
+  三個平台的頁首 logo 與選單縮小 15% 並往上移（電腦／iPad 20px、手機 4px）；iPad 直放由 1.3 倍改 1.1 倍；數值在 jcd-config.js。
+- Files 檔案: `site/assets/js/jcd-config.js`, `src/js/global/header-scale.js`, `src/css/global/header-scale.css` (new 新增),
+  `src/css/global/ipad-portrait-header.css` (removed, replaced 已由上者取代), `src/*/ORDER.txt`, `src/README.md`, `DESIGN-SYSTEM.md`.
+
 ### Home client logos move (marquee) 首頁合作品牌 logo 跑馬燈
 - Joel: "有沒有甚麼有趣的互動感可以增加到網站上? 提案mockup給我" → picked the logo marquee ("合作跑馬燈好像蠻有意思的"), option A
   ("A可以，但手機板要變三排，然後我發現有些接縫空間很大") → "做進網站". The client logo wall on the home page (AT&T, Google Fiber, Ciena…)
