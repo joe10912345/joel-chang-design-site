@@ -11,6 +11,17 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Phone category bars: description 7px as the rule 手機類別標題列說明文字 7px（規範）
+- Joel: "我把小字改成 7px 了，手機板規範要改" (he set Industrial's "Power Tools" / "Business Hardware Solutions" to 7px in the
+  tool). Made it the rule instead of per item: `tokens.css` phone `--jcd-bar-sub` 8 → 7px; the bar sizes are no longer
+  raised by the phone's 9px label minimum (`--jcd-keep-size` in `catalog-title-bars.css`). DESIGN-SYSTEM updated.
+- Industrial (cards moved into their frames by the phone layout) is now recognised as title bars: `catalog-title-bars.js`
+  measures the photo where it is seen, adds its widening and centring to the offsets that are already there (it replaced
+  them, which threw "Business Hardware Solutions" 178px out of its bar). Joel's Industrial save applied without the
+  per-item 7px. Checked: every bar's title and description centred together (±1px) on all six category pages, no overlaps,
+  nothing off screen; computer + iPad unchanged (30 / 17px).
+- 手機類別標題列右側說明改為 7px（tokens.css 統一規範，不受手機最小字級限制）。Industrial 也套用標題列規則，修正說明文字被推出標題列的問題。
+
 ### Phone Industrial by Joel, aligned 手機 Industrial（Joel 排版＋對齊）
 - Joel: "industrial 頁面我排好了，位置相對正確，但我排的很 rough，再幫我照規範調整看看". His placement (each card moved up under
   its group's title bar, 2×2 photos under the Advantech card) kept; aligned to the rules in `jcd-config.js`

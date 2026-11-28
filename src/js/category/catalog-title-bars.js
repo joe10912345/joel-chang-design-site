@@ -6,11 +6,13 @@
   (function () {
     function Z() { return window.__jcdZoom || 1; }
     function centreBars() {
-      var photos = document.querySelectorAll('.gpDCD5');
+      /* the photo box where it is seen (.ih2JY1 moves with the card when the phone layout moves it, e.g. Industrial,
+         Joel 2026-11-28); the card's own box stays where Wix put it */
+      var photos = [].map.call(document.querySelectorAll('.gpDCD5'), function (g) { return g.querySelector('.ih2JY1') || g; });
       if (!photos.length) return;
       var texts = [].slice.call(document.querySelectorAll('#PAGES_CONTAINER [data-testid="richTextElement"]'));
       var frames = [].slice.call(document.querySelectorAll('#PAGES_CONTAINER .wixui-vector-image'));
-      texts.forEach(function (t) { if (t.hasAttribute('data-jcd-bar')) { t.style.top = ''; } });
+      texts.forEach(function (t) { if (t.hasAttribute('data-jcd-bar')) { t.style.top = t.getAttribute('data-jcd-bar'); } });
       [].forEach.call(photos, function (ph) {
         var pr = ph.getBoundingClientRect(); if (!pr.width) return;
         var fr = null;
@@ -39,7 +41,9 @@
             var grow = need - hr.width + 2;
             host.style.setProperty('width', ((hr.width + grow) / Z()).toFixed(1) + 'px', 'important');
             host.style.setProperty('max-width', 'none', 'important');
-            host.style.setProperty('translate', (-grow / Z()).toFixed(1) + 'px 0');
+            /* added to any offset the phone layout already gave it (it was replaced, which undid Joel's placement) */
+            var tr = (getComputedStyle(host).translate || '').split(' ').map(parseFloat);
+            host.style.setProperty('translate', (((tr[0] || 0) - grow / Z())).toFixed(1) + 'px ' + (tr[1] || 0) + 'px');
           }
         });
         pr = ph.getBoundingClientRect();
@@ -50,7 +54,10 @@
           if (tc <= fr.top || tc >= pr.top || r.left < fr.left - 4 || r.right > fr.right + 4) return;
           var d = (c - tc) / Z();
           if (Math.abs(d) < 0.5 || Math.abs(d) > 30) return;
-          t.setAttribute('data-jcd-bar', ''); t.style.top = d.toFixed(2) + 'px';
+          /* added to the top it already has (spacing-phone.js moves whole groups with top; replacing it put Industrial's
+             "Business Hardware Solutions" 178px above its bar, Joel 2026-11-28) */
+          if (!t.hasAttribute('data-jcd-bar')) t.setAttribute('data-jcd-bar', t.style.top || '');
+          t.style.top = ((parseFloat(t.getAttribute('data-jcd-bar')) || 0) + d).toFixed(2) + 'px';
         });
       });
     }

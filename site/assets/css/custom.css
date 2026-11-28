@@ -30,7 +30,7 @@
         --jcd-bar-title: 30px; --jcd-bar-sub: 17px; }                                   /* computer */
 html.jcd-tablet { --jcd-card-name: 16px; --jcd-card-brand: 11px; --jcd-card-go-font: 21px; --jcd-card-edge: 12px; }   /* iPad (name 18.5 -> 16, Joel: "ipad 版的圖卡產品名字尺寸也要縮小一點") */
 html:has(> body.device-mobile-optimized) { --jcd-card-name: 12.5px; --jcd-card-brand: 9px; --jcd-card-go-font: 14px; --jcd-card-edge: 9px;   /* Joel: phone still too big (was 15 / 10 / 17 / 10) */
-        --jcd-bar-title: 10px; --jcd-bar-sub: 8px; }                                    /* phone */
+        --jcd-bar-title: 10px; --jcd-bar-sub: 7px; }   /* phone (bar description 8 -> 7px, Joel 2026-11-28: "我把小字改成 7px 了，手機板規範要改") */
 /* Readable small coloured text on black pages (Joel 2026-11-27, UI/UX review item 3). Wix set the section labels of
    Interstellar 05, Wi-Fi 7 Gaming Home Gateway and Ocean Series ("Key Ingredient", "Project Background") in #37659D:
    3.5:1 on black, below the 4.5:1 small text needs. Dark pages only (on white #37659D is fine, 6.0:1). */
@@ -933,6 +933,9 @@ body:not(.device-mobile-optimized) :has(> #comp-mojvq8rn) { min-height: 0 !impor
    custom.js "Catalog title bars"; the description stays on one line. */
 [data-jcd-bar-size="title"], [data-jcd-bar-size="title"] * { font-size: var(--jcd-bar-title) !important; line-height: 1.25 !important; }
 [data-jcd-bar-size="sub"], [data-jcd-bar-size="sub"] * { font-size: var(--jcd-bar-sub) !important; line-height: 1.25 !important; }
+/* these sizes are the rule: the phone's minimum text size (phone-text-size.js, 9px labels) does not raise them
+   (Joel 2026-11-28: phone bar description 7px) */
+[data-jcd-bar-size] { --jcd-keep-size: 1; }
 /* Defense: the Singapore Airshow photo caption ("Admiral Li Shih-chiang, Chairman of Taiwan's NCSIST, visited the booth…")
    is a light caption, not bold, a step smaller (Joel 2026-11-27: "這段字體不要粗體，可縮小"): Poppins Light like body
    text; computer + iPad 12 -> 11px, phone 8 -> 7.5px. */

@@ -19,4 +19,4 @@
         --jcd-bar-title: 30px; --jcd-bar-sub: 17px; }                                   /* computer */
 html.jcd-tablet { --jcd-card-name: 16px; --jcd-card-brand: 11px; --jcd-card-go-font: 21px; --jcd-card-edge: 12px; }   /* iPad (name 18.5 -> 16, Joel: "ipad 版的圖卡產品名字尺寸也要縮小一點") */
 html:has(> body.device-mobile-optimized) { --jcd-card-name: 12.5px; --jcd-card-brand: 9px; --jcd-card-go-font: 14px; --jcd-card-edge: 9px;   /* Joel: phone still too big (was 15 / 10 / 17 / 10) */
-        --jcd-bar-title: 10px; --jcd-bar-sub: 8px; }                                    /* phone */
+        --jcd-bar-title: 10px; --jcd-bar-sub: 7px; }   /* phone (bar description 8 -> 7px, Joel 2026-11-28: "我把小字改成 7px 了，手機板規範要改") */

@@ -3,3 +3,6 @@
    custom.js "Catalog title bars"; the description stays on one line. */
 [data-jcd-bar-size="title"], [data-jcd-bar-size="title"] * { font-size: var(--jcd-bar-title) !important; line-height: 1.25 !important; }
 [data-jcd-bar-size="sub"], [data-jcd-bar-size="sub"] * { font-size: var(--jcd-bar-sub) !important; line-height: 1.25 !important; }
+/* these sizes are the rule: the phone's minimum text size (phone-text-size.js, 9px labels) does not raise them
+   (Joel 2026-11-28: phone bar description 7px) */
+[data-jcd-bar-size] { --jcd-keep-size: 1; }
