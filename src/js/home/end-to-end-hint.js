@@ -11,7 +11,7 @@
      (5) Computer: drag with the mouse (trackpad / Shift + wheel scroll natively); arrow keys when focused.
      (6) Mouse wheel: scrolling down moves the row right, up moves it left (Joel 2026-11-28: "方塊要支援滑鼠往下滾=往右滑").
          The row has an end (no loop): it stops with the last squares in view, and at either end the wheel scrolls the
-         page again ("滾到底…到底後頁面可下滑"), so the visitor is never stuck in the strip. Side thumb wheels: see below.
+         page again ("滾到底…到底後頁面可下滑"), so the visitor is never stuck in the strip. Side thumb wheels: the browser's own direction.
      (7) Clicking / tapping a square brings it to the middle of the view and keeps it dark with its text shown (Joel
          2026-11-28: "如果我點擊任何方塊圖，圖片要自動拉到中間與壓黑顯示字"), until another square is clicked or the
          visitor clicks elsewhere. Every platform. */
@@ -117,11 +117,9 @@
     if (!phone) strip.addEventListener('wheel', function (e) {
       if (e.ctrlKey) return;
       var unit = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? strip.clientWidth : 1, d;
-      /* a side (thumb) wheel, e.g. Logitech MX: whole steps on the x axis only. Its direction felt reversed (Joel
-         2026-11-28: "羅技的拇指輪目前滾動時方向是相反，改過來"), so it is turned round here. Trackpads (small, uneven
-         steps) and Shift + wheel keep the browser's own direction. */
-      if (!e.shiftKey && e.deltaY === 0 && Math.abs(e.deltaX) >= 40 && e.deltaX === Math.round(e.deltaX)) d = -e.deltaX * unit;
-      else if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) d = e.deltaY * unit;
+      /* a side (thumb) wheel scrolls the row in the browser's own direction (Joel 2026-11-28: turned round, then
+         "拇指輪滾動方向要改回去"); only the up / down wheel is taken over here */
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) d = e.deltaY * unit;
       else return;
       var max = strip.scrollWidth - strip.clientWidth;
       if ((d > 0 && strip.scrollLeft >= max - 1) || (d < 0 && strip.scrollLeft <= 1)) return;   /* at the end: the page scrolls */

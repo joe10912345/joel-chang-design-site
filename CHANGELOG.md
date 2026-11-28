@@ -11,6 +11,25 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Category title bars one spec; phone home photo under the header; thumb wheel back 類別標題列統一；手機首頁首圖延伸到最上方；拇指輪方向改回
+- Joel: "experimental 改好了，幫微調。還有確認我的產品列別頁的文字框高度，各文字的對齊／同類別尺寸都要一致". Measured every bar
+  on the six category pages: sizes were already one (phone 10 / 7px, computer + iPad 30 / 17px), but bar heights were
+  21.8–27.5px (phone) / 65–70.5px, and the texts 6–16px from the frame edges. Now one spec, `jcd-config.js` `catalogBars`
+  (the values most bars had): phone bar 25px, title and description 10px from the frame edges; computer + iPad bar
+  68.5px, title 15px from the left, description 20px from the right. `catalog-title-bars.js` moves the frame's top edge
+  (bottom stays) and nudges the two texts; it lays the bars out again after the other phone scripts have finished (Defense's
+  photos moved after load), handles each frame once with its topmost photo, finds the bar's texts before resizing it, and
+  skips empty text blocks. Not inside the phone layout tool. Checked: every bar on all six pages at the spec on phone,
+  iPad and computer, no overlaps, nothing off screen. Experimental: Joel's "Assistive Devices" title adjustment kept.
+  DESIGN-SYSTEM updated.
+- Joel: "手機版首頁上方不能有黑方塊，圖片上方要增加高度". The slideshow already reached up under the header, but the section's
+  clip (phone layout, shortened section) also cut its top. The clip now cuts only the bottom
+  (`src/js/global/phone-layout.js`); checked the other pages that shorten a section (one MoAI photo shows 2px more).
+- Joel: "首頁的 end to end 的拇指輪滾動方向要改回去": the side thumb wheel scrolls the row in the browser's own direction
+  again (`src/js/home/end-to-end-hint.js`).
+- 類別頁標題列統一規格（手機高 25px、文字距框 10px；電腦與 iPad 高 68.5px、左 15px／右 20px），各平台檢查無重疊。手機首頁首圖延伸到頁首下方，
+  不再有黑色區塊。End-to-End 拇指輪恢復原本方向。
+
 ### Phone Lifestyle by Joel, aligned 手機 Lifestyle（Joel 排版＋對齊）
 - Joel: "lifestyle 改好了，幫微調". His placement (each first card moved up under its group's title bar) kept, aligned in
   `jcd-config.js` `phone.layout.lifestyle`: frames and cards on the 20px edges (Phantom Lamp and MG-522 were 1px off);

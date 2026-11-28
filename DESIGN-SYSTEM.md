@@ -110,7 +110,7 @@ About page headings 關於頁標題（`custom.js` "About page: one spacing rule"
 Other rules 其他:
 - Category pages: frames and unframed rows share one left edge, centred. 類別頁白框與無框列同一左緣、置中。
 - About intro: text + portrait centred between header and screen bottom, 56–260px below the header. About 開頭在 header 與螢幕底之間置中。
-- Catalog title bars: text centred vertically. 標題列文字垂直置中。
+- Catalog title bars: text centred vertically; **one bar for every category page** (Joel 2026-11-28: "文字框高度，各文字的對齊／同類別尺寸都要一致"): bar height phone 25px / computer + iPad 68.5px, title 10px (phone) / 15px from the frame's left edge, description 10px / 20px from its right edge, sizes from tokens.css (phone 10 / 7px, computer + iPad 30 / 17px). Numbers in `jcd-config.js` `catalogBars`, applied by `catalog-title-bars.js`. 標題列文字垂直置中；所有類別頁同一規格：標題列高度手機 25px、電腦與 iPad 68.5px；左標題距框手機 10px／電腦 15px，右說明距框 10px／20px；數字在 jcd-config.js catalogBars。
 - Phone category pages: frames 8px apart, 48px before the next category. 手機類別頁框距 8px、類別間 48px。
 - Contact fields: 1px white underline (hover/typing `--jcd-blue`), 12px indent; names Medium (phone 11 / desktop 15px); hint Light 45%. Contact 欄位規格。
 

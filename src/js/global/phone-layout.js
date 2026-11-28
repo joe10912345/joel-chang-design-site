@@ -92,7 +92,9 @@
         /* shorter than it was: the next section moves up and the section's own bottom (its colour) is cut off, so it
            really gets shorter instead of showing under the next one (Joel 2026-11-27: grey box height) */
         if (pb0 + g[1] < 0) { e.style.setProperty('margin-bottom', (pb0 + g[1]) + 'px', 'important');
-          e.style.setProperty('clip-path', 'inset(0 0 ' + (-(pb0 + g[1])) + 'px 0)'); }
+          /* only the bottom is cut: the top and sides stay open, so a photo that reaches up under the header (the phone
+             home's slideshow) is not cut at the section's top (Joel 2026-11-28: "手機版首頁上方不能有黑方塊") */
+          e.style.setProperty('clip-path', 'inset(-100vh -100vw ' + (-(pb0 + g[1])) + 'px -100vw)'); }
       });
     }
     window.__jcdPhoneLayout = function () { apply(); window.dispatchEvent(new Event('resize')); };
