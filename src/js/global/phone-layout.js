@@ -97,7 +97,7 @@
           e.style.setProperty('clip-path', 'inset(-100vh -100vw ' + (-(pb0 + g[1])) + 'px -100vw)'); }
       });
     }
-    window.__jcdPhoneLayout = function () { apply(); window.dispatchEvent(new Event('resize')); };
+    window.__jcdPhoneLayout = function () { apply(); window.dispatchEvent(new Event('resize')); window.dispatchEvent(new Event('jcd:phone-layout')); };   /* the title bars follow (catalog-title-bars.js) */
     if (document.readyState === 'complete') setTimeout(window.__jcdPhoneLayout, 0);
     else window.addEventListener('load', function () { setTimeout(window.__jcdPhoneLayout, 0); });
   });

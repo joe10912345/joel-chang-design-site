@@ -11,6 +11,13 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Phone layout tool shows the title bars as the site does 排版工具裡的標題列與網站一致
+- Joel (screenshots of the phone layout tool): "這些還有重疊的" — "這是截圖排版器的". In the tool the bar layout was switched off,
+  so each frame showed Wix's raw edges next to its card (two lines a few px apart). `catalog-title-bars.js` now runs in
+  the tool too and again after every change made there (`phone-layout.js` sends `jcd:phone-layout`), so the frames wrap
+  their cards there as on the site (checked: 0px, also right after a change).
+- 排版工具裡也套用標題列規則，白框貼齊卡片；每次在工具裡調整後也會即時重新貼齊。
+
 ### One white frame line; frames wrap their cards; Defense caption back; Design Approach shorter 白框粗細統一、框貼齊卡片、Defense 標題回來、Approach 方塊再縮
 - Joel: "確認類別圖的白框都是一致的尺寸粗細". The title frames (an SVG outline) and the cards / photos (a Wix border) were
   1 / 0.67 / 1.33px on the phone and 2 / 1.57px on a computer. Now one token, `tokens.css` `--jcd-frame-line` (phone 1px,

@@ -802,7 +802,9 @@
      (the texts are position:relative), so tilt.js transforms are untouched. */
   (function () {
     function Z() { return window.__jcdZoom || 1; }
-    var inTool = /[?&]tool=/.test(location.search);
+    /* also in Joel's phone layout tool, so it shows what the site shows (Joel 2026-11-28: the frames looked doubled there),
+       and laid out again after every change he makes in it */
+    var inTool = false;
     var B = null;   /* jcd-config.js catalogBars for this platform, read when the bars are laid out */
     var undo = [];  /* [element, property, its own inline value, priority]: put back before every new layout */
     function setp(el, prop, val, imp) {
@@ -911,6 +913,8 @@
     /* laid out again once the other phone layout scripts have finished moving things (Defense's photos move after load) */
     var go = function () { (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () { setTimeout(run, 50); setTimeout(run, 900); setTimeout(run, 2200); }); };
     document.readyState === 'complete' ? go() : window.addEventListener('load', go);
+    var again = 0;
+    window.addEventListener('jcd:phone-layout', function () { clearTimeout(again); again = setTimeout(run, 30); });
   })();
   /* Page background (Joel 2026-11-24): if every top-level section is covered by its own opaque colour or image, the
      page's white background layer can only show through seams (thin white lines) -> tag the page so CSS paints that
@@ -2386,7 +2390,7 @@
           e.style.setProperty('clip-path', 'inset(-100vh -100vw ' + (-(pb0 + g[1])) + 'px -100vw)'); }
       });
     }
-    window.__jcdPhoneLayout = function () { apply(); window.dispatchEvent(new Event('resize')); };
+    window.__jcdPhoneLayout = function () { apply(); window.dispatchEvent(new Event('resize')); window.dispatchEvent(new Event('jcd:phone-layout')); };   /* the title bars follow (catalog-title-bars.js) */
     if (document.readyState === 'complete') setTimeout(window.__jcdPhoneLayout, 0);
     else window.addEventListener('load', function () { setTimeout(window.__jcdPhoneLayout, 0); });
   });
