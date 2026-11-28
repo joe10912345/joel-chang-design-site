@@ -60,7 +60,7 @@ joel-chang-design-site/
 ├─ i18n-archive/              zh-hant / zh-cn / ar versions, built but not published 中簡阿語版（未上線）
 ├─ .github/workflows/pages.yml   publishes site/ to GitHub Pages 自動部署
 ├─ .claude/launch.json        local preview servers ("site" 8765, "devices" 8766) 本機預覽伺服器
-└─ *.md                       README, AGENTS, DESIGN-SYSTEM, TODO, CHANGELOG, PAGES, ASSETS
+└─ *.md                       README, AGENTS, DESIGN-SYSTEM, TODO, CHANGELOG, PAGES, ASSETS; CLAUDE.md just points to AGENTS.md
 ```
 
 Each sub-folder with its own rules has a short `README.md` (`src/`, `preview/`, `tools/`, `reference/`, `content/`, `media-originals/`).

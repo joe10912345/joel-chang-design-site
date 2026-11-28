@@ -3,7 +3,7 @@
 | File 檔案 | What 內容 |
 |---|---|
 | `devices.html` | **Three-device preview**: phone, iPad portrait, iPad landscape and a computer monitor side by side, all showing the real site. Keep it open while working (see `AGENTS.md`). **三平台預覽**：手機、iPad 直、iPad 橫與電腦螢幕並排，顯示真實網站；工作時一直開著。 |
-| `mockups/` | Design studies shown to Joel before building (not part of the site). 開發前給 Joel 選的設計提案（不屬於網站）。 |
+| `mockups/` | Design studies shown to Joel before building (not part of the site), and **Joel's tuning tools** (README §3, item 5): `phone-layout.html` (phone layout: positions, sizes, text sizes, box heights, spacing; keep it open while working), `photo-align.html`, `believe-align.html`, `scroll-fade.html`, `go-size.html`, `copy-review.html` (copy edits for Joel to approve). 開發前給 Joel 選的設計提案（不屬於網站），以及 **Joel 的調整工具**：手機排版、照片取景、About 照片、捲動淡入、卡片字級、文案確認。 |
 
 Open 開啟: start the "devices" server (`.claude/launch.json`, port 8766), then
 `http://localhost:8766/preview/devices.html?d=all&p=/`

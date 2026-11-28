@@ -10,8 +10,10 @@ Open items. When you finish one, move it to `CHANGELOG.md` with the date. Add ne
       **手機版 Wi-Fi 7 2022 與 T-Blade 首圖**左右被裁。選項：做方形手機裁切，或完整顯示 4:3 圖（首圖變矮）。
 - [ ] **Same "dim at rest, bright + zoom on hover" on other pages?** Wix's MouseOverPhoto skin is also used on Airgain (8), MoAI (3), Industrial (2), Defense, Electronics, Networking (1 each).
       **其他頁面要不要也用「平常微暗、滑過變亮放大」？**
-- [ ] **Domain cut-over**: point `www.joel-chang-design.com` at GitHub Pages (or Cloudflare in front); keep `SITE_BASE`; submit the sitemap in Search Console.
-      **網域切換**：把網域指到 GitHub Pages，SITE_BASE 不變，再到 Search Console 提交 sitemap。
+- [ ] **Search Console**: the domain already serves the site from GitHub Pages (checked 2026-11-28); submit `sitemap.xml` in Google Search Console (Joel's account).
+      **Search Console**：網域已由 GitHub Pages 提供（2026-11-28 確認）；請 Joel 到 Google Search Console 提交 sitemap.xml。
+- [ ] **T. Scope content**: the protected page still has placeholder text and the stand-in photo `shared-05` (5 places in `private/t-scope/page.html`). Joel fills it in, then re-encrypt (AGENTS.md, password from Joel).
+      **T. Scope 內容**：受保護頁面仍是佔位文字與代用照片，Joel 填好後重新加密（密碼向 Joel 詢問）。
 - [ ] **Languages**: zh-hant / zh-cn / ar are built but not published (`i18n-archive/README.md`); built before the 11-24 changes, rebuild first.
       **多語版**：已做好未上線，上線前要重建。
 - [ ] **iPad on a real device**: check the new layout widths (product pages 1438, About 1356, home/Contact 1320) and one-tap links on a real iPad, portrait + landscape.
@@ -24,9 +26,7 @@ Open items. When you finish one, move it to `CHANGELOG.md` with the date. Add ne
       原圖只有約 2000px 的首圖，Joel 可提供 3000px 以上版本。
 - [ ] Desktop windows narrower than ~1340px: the layout is wider than the window. Could zoom below 1440 like the wide-screen zoom.
       電腦視窗窄於約 1340px 時版面比視窗寬。
-- [ ] Two images broken on Wix too (403): `wi-fi7-hgu-ap`, `electronics` (`data-live-src-missing`). Need replacements. 兩張圖在 Wix 上就壞了，需要替換。
-- [ ] Site-wide social share image (og:image) missing. 缺全站分享圖。
-- [ ] `/scope` is password-protected on Wix; only the gate was exported. `/scope` 只有密碼頁。
+- [ ] One image broken on Wix too (403): `wi-fi7-hgu-ap` (`data-live-src-missing`, computer + phone; Electronics' is fixed). Needs a replacement from Joel. 一張圖在 Wix 上就壞了（Wi-Fi 7 HGU/AP），需要 Joel 提供替換圖。
 - [ ] Wix scroll-parallax effects not reproduced. Wix 捲動視差未重現。
 
 ## Housekeeping 整理

@@ -11,6 +11,22 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Phone Wi-Fi 7 HGU/AP by Joel; final hand-over check 手機 Wi-Fi 7 HGU/AP（Joel 排版）；交接前總檢查
+- Joel: "wifi 7 ap 手機板我有修改排版，請更新". His saved values in `jcd-config.js` `phone.layout['wi-fi7-hgu-ap']` (one photo
+  moved, three photos a little larger); snapped: `comp-m5t5qc84` to the 20px right edge (was 13px). Two product photos run
+  past the screen edge on purpose (clipped by the page, no sideways scroll). No text overlaps, nothing off screen.
+- Joel: "完工！最終確認設計是否部屬正確，資料夾都有清乾淨、檔名都沒亂碼正確，資料結構清楚，架構 md 等都有正確。未來讓其他人能直接接手。"
+  - Deployment: the live site serves the same `custom.js` / `jcd-config.js` / `site.js` versions as `main` (computer and
+    phone pages); the GitHub Pages workflow succeeded for every recent commit.
+  - Files: every tracked file name is plain ASCII, no stray copies or temp files; `media-new/` holds only its README;
+    `private/` and the unused Wix media stay git-ignored.
+  - Docs brought up to date: `tools/README.md` (check_site, image tools, protected-page tools; scrub_ai is local only),
+    `preview/README.md` (Joel's tuning tools in `mockups/`), `src/README.md` (`frame-line.css`), `README.md` (CLAUDE.md),
+    `TODO.md` (domain already on GitHub Pages → only the Search Console step is left; share image exists; T. Scope content
+    still placeholder; one broken Wix image left). Every `src/` file is in its ORDER.txt and its README.
+- 套用 Joel 的 Wi-Fi 7 HGU/AP 手機排版（一張圖對齊右側 20px）。交接總檢查：線上版本與 main 一致、部署成功、檔名皆正常、資料夾乾淨；
+  更新 tools／preview／src README、README、TODO。
+
 ### Home Works grid: mouse hover on phone and iPad too 首頁 12 張圖：手機與平板也有滑鼠 hover
 - Joel: "手機板、平板的首頁 12 張圖，若我滑鼠 hover 後沒效果，但他們的類別頁 hover 有效果". The grid's spotlight (tile under the
   mouse bright and zoomed with its white line, the others dimmed) only listened to the mouse on the computer layout. It now
