@@ -11,6 +11,13 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Phone category pages: 10px between the cards of a group 手機類別頁同組卡片間距 10px
+- Joel: "Yes, make them 10px". Inside a group the cards were 8–15px apart (Networking, Defense, Electronics). Each card's box
+  gets the difference as `gap` in `jcd-config.js` `phone.layout`; the group gaps were re-set to 54px with exact (decimal)
+  values. Now every page: 10px between cards, 54px between groups (±0.6px, screen pixels), bars 25px with the cards flush,
+  no overlaps.
+- 手機類別頁同一組卡片之間統一 10px，各組之間 54px。
+
 ### Phone category pages: 54px between groups everywhere 手機類別頁各組間距統一 54px
 - Joel: "這張圖上方與其他圖的空間好像沒有照規範" (Experimental, Assistive Devices). Measured the space above every group (title
   frame) on the phone: Experimental 14 / 10px, Defense 31 / 10px, Networking 52 / 50px, Lifestyle / Industrial 55px
