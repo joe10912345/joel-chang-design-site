@@ -94,7 +94,15 @@
         if (pb0 + g[1] < 0) { e.style.setProperty('margin-bottom', (pb0 + g[1]) + 'px', 'important');
           /* only the bottom is cut: the top and sides stay open, so a photo that reaches up under the header (the phone
              home's slideshow) is not cut at the section's top (Joel 2026-11-28: "手機版首頁上方不能有黑方塊") */
-          e.style.setProperty('clip-path', 'inset(-100vh -100vw ' + (-(pb0 + g[1])) + 'px -100vw)'); }
+          /* never into the section's own content: the cut stops 1px under its lowest visible item (Joel 2026-11-28: a
+             category page's last section, which bottom-space.js keeps long, cut off Lifestyle's Drone card) */
+          var cut = -(pb0 + g[1]), sb = e.getBoundingClientRect().bottom, low = -1e9;
+          [].forEach.call(e.querySelectorAll('img, svg, [data-testid="richTextElement"], .ih2JY1, .jcd-frame-box'), function (c) {
+            var q = c.getBoundingClientRect(); if (!q.height || c.closest('.jcd-gg-hide')) return;
+            var cs = getComputedStyle(c); if (cs.visibility === 'hidden' || cs.display === 'none' || cs.opacity === '0') return;   /* Wix's see-through overlays don't count */
+            low = Math.max(low, q.bottom); });
+          var z = window.__jcdZoom || 1; if (low > -1e8) cut = Math.max(0, Math.min(cut, (sb - low) / z - 1));
+          e.style.setProperty('clip-path', 'inset(-100vh -100vw ' + cut.toFixed(1) + 'px -100vw)'); }
       });
     }
     window.__jcdPhoneLayout = function () { apply(); window.dispatchEvent(new Event('resize')); window.dispatchEvent(new Event('jcd:phone-layout')); };   /* the title bars follow (catalog-title-bars.js) */

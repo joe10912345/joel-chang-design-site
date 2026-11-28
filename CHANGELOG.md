@@ -11,6 +11,14 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Phone Lifestyle: Drone card shown again 手機 Lifestyle：Drone 卡片恢復顯示
+- Joel: "drone toy 有像沒有正確顯示". Lifestyle's section was set 185.6px shorter (the 54px group gaps) by cutting its bottom
+  off, but as the page's last section `bottom-space.js` keeps it long, so the cut fell on the Drone card. `phone-layout.js`
+  now never cuts a shortened section into its own visible content (it stops 1px under the lowest visible item; Wix's
+  see-through overlays don't count). Checked every page with a shortened section: nothing cut off; MoAI's and the other
+  pages' cuts unchanged where they only hid empty space.
+- 手機 Lifestyle 最後一組 Drone 被段落裁切切掉；改為裁切不會切到段落內看得到的內容，所有頁面已檢查。
+
 ### Category pages: the same space under the last card 類別頁最後一張卡片下方空間一致
 - Joel: "Yes, make it equal". Measured to the real end of the page (the earlier 20–135px came from the section boxes,
   not the page end): every page already had Joel's `categoryBottom` (phone 80px, computer + iPad 280px) except Electronics
