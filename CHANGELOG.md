@@ -11,6 +11,14 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Category frames white at rest on the computer 電腦版類別頁白框平常就顯示
+- Joel: "桌機版的類別頁產品圖框始終都要顯示白色，你現在是 hover 才有白框". The new frame line sat on the card's ::after, which on
+  the computer is the hover shade (static-overrides.css, opacity 0 until hover); ::before is the tilt sheen, and the
+  photo's hover-zoom transform drew it over a border or outline. The line is now an element of its own on top of every
+  frame (`.jcd-frame-line`, added by `frame-edges.js`, styled in `frame-line.css`), the same for cards, photos and title
+  frames, phone + iPad + computer and in the phone layout tool. Checked: every frame drawn at rest.
+- 電腦版類別頁的白框原本只在滑過時出現（被滑過陰影層蓋住）；改為獨立的白線元素疊在最上層，平常就顯示，各平台一致。
+
 ### Phone layout tool shows the title bars as the site does 排版工具裡的標題列與網站一致
 - Joel (screenshots of the phone layout tool): "這些還有重疊的" — "這是截圖排版器的". In the tool the bar layout was switched off,
   so each frame showed Wix's raw edges next to its card (two lines a few px apart). `catalog-title-bars.js` now runs in

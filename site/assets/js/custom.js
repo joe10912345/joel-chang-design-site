@@ -2414,6 +2414,14 @@
       var comp = svg.closest('.wixui-vector-image'); if (!comp) return;
       comp.classList.add('jcd-frame-box'); if (getComputedStyle(comp).position === 'static') comp.style.position = 'relative';
     });
+    /* the line itself is a small element of its own on top of each frame (the photo inside a card has a transform for its
+       hover zoom, so it is drawn over the card's own border / outline; its ::before / ::after are taken by the hover
+       sheen and shade) — frame-line.css */
+    [].forEach.call(document.querySelectorAll('#PAGES_CONTAINER .ih2JY1 > .BprtEa, #PAGES_CONTAINER .hhxEkR > .v9ZE1l, #PAGES_CONTAINER .jcd-frame-box'), function (el) {
+      if (el.querySelector(':scope > .jcd-frame-line')) return;
+      if (getComputedStyle(el).position === 'static') el.style.position = 'relative';
+      var ln = document.createElement('span'); ln.className = 'jcd-frame-line'; ln.setAttribute('aria-hidden', 'true'); el.appendChild(ln);
+    });
     /* Joel's own placements win (Joel 2026-11-28: "我親自調整"): not in his phone layout tool (?tool=), and on the phone
        a component he set there (jcd-config.js phone.layout), or one inside / around it, is left alone */
     if (/[?&]tool=/.test(location.search)) return;

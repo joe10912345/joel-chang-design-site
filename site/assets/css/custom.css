@@ -942,15 +942,14 @@ body:not(.device-mobile-optimized) :has(> #comp-mojvq8rn) { min-height: 0 !impor
 [data-jcd-bar-size] { --jcd-keep-size: 1; }
 /* One white frame line on the category pages (Joel 2026-11-28: "確認類別圖的白框都是一致的尺寸粗細"): the cards and photos
    (a Wix border) and the title frames (an SVG outline, its line hidden by frame-edges.js, which tags the frame
-   .jcd-frame-box) are all drawn with tokens.css --jcd-frame-line, inside their edges. Phone 1px, computer + iPad 1.5px. */
-/* cards and photos: their Wix border is replaced by the same inside line as the title frames (a border is snapped to whole
-   screen pixels, the line is not, so the two looked different at some zoom levels) */
+   .jcd-frame-box) are all drawn the same way, with tokens.css --jcd-frame-line, inside their edges. Phone 1px,
+   computer + iPad 1.5px.
+   The line is an element of its own on top of each frame (.jcd-frame-line, added by frame-edges.js): the card's photo has
+   a transform for its hover zoom and was drawn over a border or outline, and the cards' ::before / ::after are the hover
+   sheen and shade (static-overrides.css, opacity 0 until hover), so a line there only showed on hover (Joel 2026-11-28:
+   "桌機版的類別頁產品圖框始終都要顯示白色"). */
 html.jcd-catpage .ih2JY1 > .BprtEa, html.jcd-catpage .hhxEkR > .v9ZE1l { border-style: none !important; }
-html.jcd-catpage .hhxEkR > .v9ZE1l { position: relative; }   /* was static: the line is placed on its own box */
-html.jcd-catpage .ih2JY1 > .BprtEa::after, html.jcd-catpage .hhxEkR > .v9ZE1l::after { content: ""; position: absolute; inset: 0; z-index: 1;
-  pointer-events: none; box-shadow: inset 0 0 0 var(--jcd-frame-line) #fff; }
-/* drawn above the SVG (its black fill would cover a background line) */
-html.jcd-catpage .jcd-frame-box::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+html.jcd-catpage .jcd-frame-line { position: absolute; inset: 0; z-index: 3; pointer-events: none;
   box-shadow: inset 0 0 0 var(--jcd-frame-line) #fff; }
 /* Defense: the Singapore Airshow photo caption ("Admiral Li Shih-chiang, Chairman of Taiwan's NCSIST, visited the booth…")
    is a light caption, not bold, a step smaller (Joel 2026-11-27: "這段字體不要粗體，可縮小"): Poppins Light like body
