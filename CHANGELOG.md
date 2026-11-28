@@ -16,6 +16,8 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
   the menu button) are 15% smaller on all platforms and moved up (computer + iPad 20px, phone 4px). Computer logo 252→214px wide;
   iPad upright 1.3x→1.1x; phone logo 150→128px. Numbers: `jcd-config.js` `headerScale` / `headerLift`.
   三個平台的頁首 logo 與選單縮小 15% 並往上移（電腦／iPad 20px、手機 4px）；iPad 直放由 1.3 倍改 1.1 倍；數值在 jcd-config.js。
+- Then "電腦跟平板橫式要再上": computer + iPad landscape lifted 36px (logo top 41→25px); iPad upright stays 20px, phone 4px.
+  接著「電腦跟平板橫式要再上」：電腦與 iPad 橫放上移改為 36px（logo 頂端 41→25px）；iPad 直放 20px、手機 4px 不變。
 - Files 檔案: `site/assets/js/jcd-config.js`, `src/js/global/header-scale.js`, `src/css/global/header-scale.css` (new 新增),
   `src/css/global/ipad-portrait-header.css` (removed, replaced 已由上者取代), `src/*/ORDER.txt`, `src/README.md`, `DESIGN-SYSTEM.md`.
 
