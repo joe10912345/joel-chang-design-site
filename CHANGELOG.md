@@ -11,6 +11,19 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Phone home by Joel + box height in the phone layout tool 手機首頁（Joel 調整）＋排版工具可調方塊高度
+- Joel: "已儲存，但是 design approach 的方塊我沒辦法縮矮，幫我縮。另外也把此功能加出來".
+  - Joel's saved home values in `jcd-config.js` `phone.layout['']`: opening title 18.5px, Design Approach card titles
+    16.5px, card text 8.5px, the section headings / intros re-centred. Snapped: the opening title's block 299 → 280px so
+    its lines keep the 20px page edges (they were 10px from the edge); everything else was already centred (±0.5px).
+  - Design Approach cards 196 → 176px, all four the same (`h`): as short as the text allows (card 01's last line runs
+    under its ">>", which keeps 4px clear). Gaps between cards (15–16px) unchanged, no overlaps.
+  - New `h` (box height) in `src/js/global/phone-layout.js`; `preview/mockups/phone-layout.html`: a box / card gets a
+    bottom-edge handle (height) besides its left / right edges, and a 高度 slider that sets every selected box to one
+    height. `README.md` updated.
+- 套用 Joel 存的首頁調整（開頭標題 18.5px、方塊標題 16.5px、內文 8.5px、置中）；開頭標題寬度縮到 280px，維持左右 20px 邊界。
+  Design Approach 四個方塊統一縮成 176px。排版工具新增方塊高度：方塊下緣控制點可拖、「高度」滑桿可把多選的方塊設成一樣高。
+
 ### iPad About photo after turning; phone home layout on "/m/index.html" iPad 旋轉後 About 照片；手機首頁排版
 - Joel: "我在 iPad 上的 What I Believe 那張圖，當我從橫變成直，圖片尺寸與高度會跑掉，都要我空滑個三下才會閃跳回設定的比例".
   site.js sets the iPad's new page width 50ms after the turn and iOS reports the new window height later still, so the

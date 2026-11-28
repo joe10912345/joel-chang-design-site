@@ -8,6 +8,8 @@
        shrinks by the same amount, so the sections after it follow (Joel 2026-11-27: "是不是要有個功能可以讓我調整空間");
      - 'bg:<comp id>': { px, py } frames that component's background photo (the top image of a work page), as object-position
        % (Joel 2026-11-27: "也要支援子頁最上方首圖的左右移動功能");
+     - h sets a box's height (a card, a coloured panel); the items below it in its section's grid move with it (Joel
+       2026-11-28: "design approach 的方塊我沒辦法縮矮…也把此功能加出來" -> the tool's bottom handle on a box);
      - below changes the space under a section (added inside it, so its colour or photo grows with it; negative pulls the
        next section up).
      Runs last on load, after the text sizing and tidy-up, and again whenever the tool calls window.__jcdPhoneLayout().
@@ -15,7 +17,7 @@
   ready(function () {
     if (!document.body.classList.contains('device-mobile-optimized')) return;
     var slug = location.pathname.replace(/^.*\/m\//, '').replace(/(^|\/)index\.html$/, '').replace(/\/$/, '').split('/')[0];   /* "/m/index.html" is the home page too (Joel 2026-11-28: it was read as a page called "index.html", so the phone layout and sizes were skipped) */
-    var touched = [], PROPS = ['translate', 'width', 'max-width', 'padding-bottom', 'margin-bottom', 'scale', 'transform-origin', 'object-position', 'clip-path'];
+    var touched = [], PROPS = ['translate', 'width', 'max-width', 'height', 'min-height', 'padding-bottom', 'margin-bottom', 'scale', 'transform-origin', 'object-position', 'clip-path'];
     function keep(e) {   /* remember an element's own inline values once, to restore them on the next run */
       for (var i = 0; i < touched.length; i++) if (touched[i].e === e) return touched[i];
       var t = { e: e, was: {} };
@@ -76,6 +78,7 @@
         if (v.x || v.y) add(shift, e, v.x || 0, v.y || 0);
         if (v.w) { keep(e); e.style.setProperty('width', v.w + 'px', 'important'); e.style.setProperty('max-width', 'none', 'important'); }
         if (v.fs) setFs(e, v.fs);
+        if (v.h) { keep(e); e.style.setProperty('height', v.h + 'px', 'important'); e.style.setProperty('min-height', v.h + 'px', 'important'); }
         if (v.s && v.s !== 1) { keep(e); e.style.setProperty('transform-origin', '0 0'); e.style.setProperty('scale', String(v.s)); }
         if (v.below) add(secGrow, e, v.below);
       });

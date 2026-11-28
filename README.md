@@ -107,11 +107,14 @@ out at the width from `jcd-config.js` and scaled; computers → the desktop page
      on the real phone page, Shift-click to select more, drag / arrow keys to move, width, space ABOVE an item (it and
      everything below it move, the following sections follow), space under a section, text size (字級, also for several
      selected titles at once), Illustrator-like handles (text:
-     left / right edge = width; photo: corners = scale), a section's height (handle on its bottom edge), coloured boxes
+     left / right edge = width; photo: corners = scale; box / card: bottom edge = height `h`, 高度 slider sets several selected
+     boxes to one height), a section's height (handle on its bottom edge), coloured boxes
      (click their edge, 選後方方塊, or Ctrl / Alt + click to pick the next item behind, like Illustrator), the top image's framing (drag the photo background), Ctrl+Z / Ctrl+Shift+Z, align to
      the page (20px edges, centre) or to each other. Saved key `jcd-phone-layout` → `jcd-config.js` `phone.layout`
      (applied by `src/js/global/phone-layout.js`). After applying, the AI aligns the values (20px edges, centre, edges of
      neighbours, at least 20px under each section) and clears the tool's saved copy so it starts from the site again.
+     **Before clearing, read the saved copy again and check the tool tab is not showing unsaved work** (2026-11-28: a
+     clear + reload while Joel was editing another page lost that work). 清除前要再讀一次存檔、確認工具沒有未存的調整。
      點選文字或圖片（Shift 多選）、拖曳或方向鍵移動、調寬度與段落下方間距、對齊頁面或彼此。
    - Photo framing 照片取景 — `preview/mockups/photo-align.html?key=<photoFrames key>&p=/<page>/` → `photoFrames`.
    - Scroll fade 捲動淡入 — `preview/mockups/scroll-fade.html` → `scrollReveal`.
