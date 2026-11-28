@@ -33,6 +33,19 @@
     use.forEach(function (s) { var g = grid(s); if (g) collect(g, 0); });
     if (!items.length) return;
     items.forEach(function (e) { e.classList.add('jcd-rv'); });
+    /* where the content really is: a piece whose parts were moved (phone layout, e.g. Lifestyle's Drone card moved up
+       into its frame) keeps its own box where Wix put it — below the page end there, so it never faded in (Joel
+       2026-11-28: "drone 圖片不見了"). Each piece fades by the top of its highest part; measured again after layout changes. */
+    function measure() {
+      items.forEach(function (e) {
+        var t0 = e.getBoundingClientRect().top, m = t0;
+        [].forEach.call(e.querySelectorAll('[id^="comp-"]'), function (c) { var r = c.getBoundingClientRect(); if (r.height > 0 && r.width > 0) m = Math.min(m, r.top); });
+        e.__jcdDy = m - t0;
+      });
+    }
+    measure();
+    window.addEventListener('jcd:phone-layout', function () { measure(); soon(); });
+    window.addEventListener('load', function () { setTimeout(function () { measure(); soon(); }, 2600); });
     var raf = 0;
     /* the element that really scrolls: body only when <html> clips (otherwise body's overflow moves to the window) */
     function scroller() { var b = document.body, h = document.documentElement;
@@ -50,7 +63,7 @@
       var sc = scroller();
       var left = Math.max(0, sc.scrollHeight - sc.clientHeight - sc.scrollTop);   /* how far the page can still scroll down */
       items.forEach(function (e) {
-        var top = e.getBoundingClientRect().top;
+        var top = e.getBoundingClientRect().top + (e.__jcdDy || 0);
         /* fully visible at `end` — or, near the page end, where it stops at the last scroll */
         var full = Math.min(Math.max(b, top - left), a - 1);
         var t = Math.max(0, Math.min(1, (a - top) / (a - full)));   /* top at `start` -> 0 */

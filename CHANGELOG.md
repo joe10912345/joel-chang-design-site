@@ -11,6 +11,13 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Phone Lifestyle: Drone photo fades in again 手機 Lifestyle：Drone 圖片恢復顯示
+- Joel: "drone 圖片不見了". The scroll fade-in (`scroll-reveal.js`) used the top of each piece's own box. Lifestyle's Drone card
+  was moved up into its frame by the phone layout, but its outer box stayed where Wix put it — below the end of the
+  (now shorter) page — so it never reached the fade point and stayed invisible. Each piece now fades by the top of its
+  highest visible part, measured again after the phone layout and after load (2.6s).
+- 捲動淡入原本依照外框的位置判斷；Drone 卡片被移進白框後，外框還留在頁面底部以下，所以永遠不會淡入。改為依實際內容位置判斷。
+
 ### Phone Lifestyle: Drone card shown again 手機 Lifestyle：Drone 卡片恢復顯示
 - Joel: "drone toy 有像沒有正確顯示". Lifestyle's section was set 185.6px shorter (the 54px group gaps) by cutting its bottom
   off, but as the page's last section `bottom-space.js` keeps it long, so the cut fell on the Drone card. `phone-layout.js`
