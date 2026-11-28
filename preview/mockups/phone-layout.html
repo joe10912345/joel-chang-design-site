@@ -50,7 +50,7 @@
       <h2>用法</h2>
       <p class="note">在手機畫面上<b>點一下</b>文字或圖片來選取（藍框），<b>按住 Shift 點</b>可以多選（再點一次取消），<b>拖曳</b>就能一起移動；
         也可以用方向鍵每次移 1px（按住 Shift 移 10px）。對齊按鈕會對齊所有選取的項目。
-        <b>框選</b>（像 Illustrator）：<b>按住滑鼠右鍵拖出一個框</b>，框碰到的文字、圖片、方塊都會被選取（按住 Shift 右鍵拖曳可加選），再一起拖曳或對齊。
+        <b>框選</b>（像 Illustrator）：<b>從空白處按住左鍵拖出一個框</b>，框碰到的文字、圖片、方塊都會被選取（按住 Shift 拖曳可加選），再一起拖曳或對齊；在空白處只點一下則是選取整個段落。
         <b>選後方物件</b>（像 Illustrator）：<b>按住 Ctrl（或 Alt）點</b>，選游標下、目前選取項目後面的那一個；同一點繼續 Ctrl＋點，會依序往後換（照片 → 灰方塊 → 段落 → 回到最上面）。
         <b>方塊</b>：點有底色方塊露出的邊緣就能選取，或選取照片後按「選後方方塊」；選到後拉「上方空間」可在它上面加空間。
         <b>字級</b>：選取文字後拉「字級」，Shift 多選可把幾個標題一起改成同一個大小。
@@ -185,22 +185,21 @@
   function hook() {
     var drag = null;
     D.addEventListener('click', function (ev) { ev.preventDefault(); ev.stopPropagation(); }, true);
-    /* right-button drag: a selection box, like Illustrator's marquee (Joel 2026-11-28: "排版調整器加入右鍵拖曳多選");
-       every text / photo / box it touches is selected (Shift: added to the selection); no context menu */
-    D.addEventListener('contextmenu', function (ev) { ev.preventDefault(); }, true);
-    D.addEventListener('pointerdown', function (ev) {
-      if (ev.button !== 2) return;
-      ev.preventDefault(); ev.stopPropagation();
-      var x0 = ev.clientX, y0 = ev.clientY, add = ev.shiftKey, mq = D.createElement('div');
-      mq.className = 'jcd-pl-mq'; mq.style.cssText = 'position:fixed;z-index:2147483647;border:1px dashed #0062D9;background:rgba(0,98,217,.12);pointer-events:none;margin:0;width:0;height:0;left:' + x0 + 'px;top:' + y0 + 'px';
+    /* left-button drag on empty space: a selection box, like Illustrator's marquee (Joel 2026-11-28: "排版調整器加入右鍵
+       拖曳多選" -> "圈選改成左鍵"); every text / photo / box it touches is selected (Shift: added to the selection). A click
+       without dragging still picks the section, as before. */
+    function marquee(ev, onClick) {
+      var x0 = ev.clientX, y0 = ev.clientY, add = ev.shiftKey, mq = D.createElement('div'), moved = false;
+      mq.className = 'jcd-pl-mq'; mq.style.cssText = 'position:fixed;z-index:2147483647;border:1px dashed #0062D9;background:rgba(0,98,217,.12);pointer-events:none;margin:0;width:0;height:0;left:' + x0 + 'px;top:' + y0 + 'px;display:none';
       D.body.appendChild(mq);
       function mv(e2) { e2.preventDefault();
+        if (!moved && Math.abs(e2.clientX - x0) + Math.abs(e2.clientY - y0) < 4) return; moved = true; mq.style.display = 'block';
         mq.style.left = Math.min(x0, e2.clientX) + 'px'; mq.style.top = Math.min(y0, e2.clientY) + 'px';
         mq.style.width = Math.abs(e2.clientX - x0) + 'px'; mq.style.height = Math.abs(e2.clientY - y0) + 'px'; }
       function up(e2) {
         D.removeEventListener('pointermove', mv, true); D.removeEventListener('pointerup', up, true); mq.remove();
+        if (!moved) { onClick(); return; }
         var L = Math.min(x0, e2.clientX), R = Math.max(x0, e2.clientX), T = Math.min(y0, e2.clientY), B = Math.max(y0, e2.clientY);
-        if (R - L < 3 && B - T < 3) return;
         var hit = [].filter.call(D.querySelectorAll('#PAGES_CONTAINER [id^="comp-"]'), function (c) {
           if (c.tagName === 'SECTION' || c.getBoundingClientRect().height <= 0 || c.closest('[id^="bgMedia_"]') || !pickable(c)) return false;
           var b = vbox(c); return b.r > L && b.l < R && b.b > T && b.t < B;
@@ -212,9 +211,9 @@
         mark(); showSel(); status(hit.length ? '框選了 ' + hit.length + ' 個' : '框內沒有可選的項目');
       }
       D.addEventListener('pointermove', mv, true); D.addEventListener('pointerup', up, true);
-    }, true);
+    }
     D.addEventListener('pointerdown', function (ev) {
-      if (ev.button === 2) return;
+      if (ev.button !== 0) return;
       if (ev.target.classList && ev.target.classList.contains('jcd-pl-h')) return;
       if (ev.ctrlKey || ev.altKey || ev.metaKey) {   /* select the next one behind (Illustrator: Ctrl / Cmd + click) */
         ev.preventDefault(); ev.stopPropagation();
@@ -229,7 +228,7 @@
       var p = pick(ev.target);
       if (!p) { if (bgPick(ev)) return; }
       if (!p) { var sc = section(ev.target.nodeType === 1 ? ev.target : ev.target.parentElement);
-        if (sc) { ev.preventDefault(); ev.stopPropagation(); picked = []; bgSel = null; secSel = sc; mark(); showSel(); } return; }
+        if (sc) { ev.preventDefault(); ev.stopPropagation(); marquee(ev, function () { picked = []; bgSel = null; secSel = sc; mark(); showSel(); }); } return; }
       ev.preventDefault(); ev.stopPropagation();
       bgSel = null; secSel = null;
       if (ev.shiftKey) { var i = picked.indexOf(p); if (i >= 0) { picked.splice(i, 1); mark(); showSel(); return; } picked.push(p); }

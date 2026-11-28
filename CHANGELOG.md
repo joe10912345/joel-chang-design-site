@@ -11,6 +11,12 @@ go in `TODO.md`. Entries before 2026-11-27 (structure clean-up) are English only
 
 ## 2026-11-28
 
+### Phone layout tool: box selection with the left button 排版工具：框選改左鍵
+- Joel: "手機板調整器，圈選改成左鍵". Box selection now starts with a left-button drag from empty space (like Illustrator);
+  a plain click there still picks the section; Shift adds to the selection. The right-button version is gone.
+  `preview/mockups/phone-layout.html`, `README.md`.
+- 框選改為在空白處按住左鍵拖曳；只點一下仍是選取段落；Shift 加選。
+
 ### Phone category bars: description 7px as the rule 手機類別標題列說明文字 7px（規範）
 - Joel: "我把小字改成 7px 了，手機板規範要改" (he set Industrial's "Power Tools" / "Business Hardware Solutions" to 7px in the
   tool). Made it the rule instead of per item: `tokens.css` phone `--jcd-bar-sub` 8 → 7px; the bar sizes are no longer
